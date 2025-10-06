@@ -1,0 +1,185 @@
+# RuboCop configuration for GetStream Ruby SDK
+
+AllCops:
+  TargetRubyVersion: 2.6
+  NewCops: enable
+  Exclude:
+    - 'vendor/**/*'
+    - 'tmp/**/*'
+    - 'spec/fixtures/**/*'
+    - 'lib/getstream_ruby/generated/**/*' # Generated code
+    - 'test/**/*' # Legacy test files
+
+# Style configurations
+Style/Documentation:
+  Enabled: false # Disable for generated files
+
+Style/StringLiterals:
+  EnforcedStyle: single_quotes
+
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: comma
+
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: comma
+
+Style/TrailingCommaInArguments:
+  EnforcedStyleForMultiline: comma
+
+# Layout configurations
+Layout/LineLength:
+  Max: 120
+  Exclude:
+    - 'lib/getstream_ruby/generated/**/*'
+
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+
+Layout/HashAlignment:
+  EnforcedColonStyle: key
+  EnforcedHashRocketStyle: key
+
+# Metrics configurations
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+    - 'test/**/*'
+    - 'Rakefile'
+
+Metrics/MethodLength:
+  Max: 20
+  Exclude:
+    - 'lib/getstream_ruby/generated/**/*'
+
+Metrics/ClassLength:
+  Max: 150
+  Exclude:
+    - 'lib/getstream_ruby/generated/**/*'
+
+Metrics/ModuleLength:
+  Max: 150
+  Exclude:
+    - 'lib/getstream_ruby/generated/**/*'
+
+Metrics/AbcSize:
+  Max: 20
+  Exclude:
+    - 'lib/getstream_ruby/generated/**/*'
+
+Metrics/CyclomaticComplexity:
+  Max: 8
+  Exclude:
+    - 'lib/getstream_ruby/generated/**/*'
+
+Metrics/PerceivedComplexity:
+  Max: 8
+  Exclude:
+    - 'lib/getstream_ruby/generated/**/*'
+
+# Lint configurations
+Lint/UnusedMethodArgument:
+  AllowUnusedKeywordArguments: true
+
+Lint/UnusedBlockArgument:
+  AllowUnusedKeywordArguments: true
+
+Lint/ShadowingOuterLocalVariable:
+  Exclude:
+    - 'spec/**/*'
+
+# Naming configurations
+Naming/VariableNumber:
+  EnforcedStyle: snake_case
+
+# Security configurations
+Security/YAMLLoad:
+  Enabled: true
+
+Security/JSONLoad:
+  Enabled: true
+
+Security/MarshalLoad:
+  Enabled: true
+
+# Bundler configurations
+Bundler/OrderedGems:
+  Enabled: true
+
+# Custom configurations
+Style/FrozenStringLiteralComment:
+  Enabled: true
+  EnforcedStyle: always
+
+Style/IfUnlessModifier:
+  Enabled: true
+
+Style/GuardClause:
+  MinBodyLength: 2
+
+Style/EmptyMethod:
+  EnforcedStyle: expanded
+
+Layout/EmptyLinesAroundBlockBody:
+  EnforcedStyle: empty_lines
+
+Layout/EmptyLinesAroundClassBody:
+  EnforcedStyle: empty_lines
+
+Layout/EmptyLinesAroundModuleBody:
+  EnforcedStyle: empty_lines
+
+Layout/EmptyLinesAroundMethodBody:
+  Enabled: true
+
+# Disable some cops that are too strict for this project
+Style/WordArray:
+  Enabled: false
+
+Style/SymbolArray:
+  Enabled: false
+
+Style/PercentLiteralDelimiters:
+  Enabled: false
+
+Style/AsciiComments:
+  Enabled: false
+
+Style/Encoding:
+  Enabled: false
+
+Style/LineEndConcatenation:
+  Enabled: false
+
+Style/RegexpLiteral:
+  Enabled: false
+
+Style/TrivialAccessors:
+  Enabled: false
+
+Style/VariableInterpolation:
+  Enabled: false
+
+Style/WhenThen:
+  Enabled: false
+
+Style/WhileUntilModifier:
+  Enabled: false
+
+Style/YodaCondition:
+  Enabled: false
+
+# Disable cops that conflict with generated code
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Naming/ConstantName:
+  Exclude:
+    - 'lib/getstream_ruby/generated/**/*'
+
+Style/ClassVars:
+  Exclude:
+    - 'lib/getstream_ruby/generated/**/*'
+
+Style/GlobalVars:
+  Exclude:
+    - 'lib/getstream_ruby/generated/**/*'

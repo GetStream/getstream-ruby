@@ -1,14 +1,16 @@
 # frozen_string_literal: true
 
 module GetStreamRuby
+
   class StreamResponse
+
     def initialize(data)
       @data = data
     end
 
-    def method_missing(method_name, *args, &block)
+    def method_missing(method_name, *_args)
       key = method_name.to_s
-      
+
       if @data.is_a?(Hash) && @data.key?(key)
         value = @data[key]
         # Recursively wrap nested hashes
@@ -28,8 +30,6 @@ module GetStreamRuby
         else
           value
         end
-      else
-        nil
       end
     end
 
@@ -49,5 +49,7 @@ module GetStreamRuby
     def inspect
       "#<GetStreamRuby::StreamResponse:0x#{object_id.to_s(16)} @data=#{@data.inspect}>"
     end
+
   end
+
 end

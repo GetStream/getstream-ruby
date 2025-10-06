@@ -1,0 +1,157 @@
+name: Automated Release
+
+on:
+  push:
+    branches: [ master, main ]
+    paths-ignore:
+      - 'README.md'
+      - 'docs/**'
+      - '*.md'
+
+env:
+  RUBY_VERSION: '2.6.0'
+
+jobs:
+  release:
+    name: Automated Release
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        token: ${{ secrets.GITHUB_TOKEN }}
+        
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: ${{ env.RUBY_VERSION }}
+        bundler-cache: true
+        
+    - name: Install dependencies
+      run: |
+        gem install bundler
+        bundle install --jobs 4 --retry 3
+        
+    - name: Configure Git
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        
+    - name: Check for major release trigger
+      id: check-major
+      run: |
+        if git log --oneline -1 | grep -qi "major"; then
+          echo "trigger=major" >> $GITHUB_OUTPUT
+          echo "should_release=true" >> $GITHUB_OUTPUT
+        else
+          echo "should_release=false" >> $GITHUB_OUTPUT
+        fi
+        
+    - name: Check for minor release trigger
+      id: check-minor
+      run: |
+        if git log --oneline -1 | grep -qi "minor"; then
+          echo "trigger=minor" >> $GITHUB_OUTPUT
+          echo "should_release=true" >> $GITHUB_OUTPUT
+        else
+          echo "should_release=false" >> $GITHUB_OUTPUT
+        fi
+        
+    - name: Check for patch release trigger
+      id: check-patch
+      run: |
+        if git log --oneline -1 | grep -qi "patch"; then
+          echo "trigger=patch" >> $GITHUB_OUTPUT
+          echo "should_release=true" >> $GITHUB_OUTPUT
+        else
+          echo "should_release=false" >> $GITHUB_OUTPUT
+        fi
+        
+    - name: Determine release trigger
+      id: release-trigger
+      run: |
+        if [ "${{ steps.check-major.outputs.should_release }}" = "true" ]; then
+          echo "trigger=major" >> $GITHUB_OUTPUT
+          echo "should_release=true" >> $GITHUB_OUTPUT
+        elif [ "${{ steps.check-minor.outputs.should_release }}" = "true" ]; then
+          echo "trigger=minor" >> $GITHUB_OUTPUT
+          echo "should_release=true" >> $GITHUB_OUTPUT
+        elif [ "${{ steps.check-patch.outputs.should_release }}" = "true" ]; then
+          echo "trigger=patch" >> $GITHUB_OUTPUT
+          echo "should_release=true" >> $GITHUB_OUTPUT
+        else
+          echo "should_release=false" >> $GITHUB_OUTPUT
+        fi
+        
+    - name: Run tests before release
+      if: steps.release-trigger.outputs.should_release == 'true'
+      run: make test-unit
+      
+    - name: Release gem
+      if: steps.release-trigger.outputs.should_release == 'true'
+      env:
+        RUBYGEMS_API_KEY: ${{ secrets.RUBYGEMS_API_KEY }}
+      run: |
+        echo "Releasing ${{ steps.release-trigger.outputs.trigger }} version..."
+        make release-${{ steps.release-trigger.outputs.trigger }}
+        
+    - name: Get version
+      if: steps.release-trigger.outputs.should_release == 'true'
+      id: get-version
+      run: |
+        VERSION=$(ruby -e "require_relative 'lib/getstream_ruby/version'; puts GetStreamRuby::VERSION")
+        echo "version=$VERSION" >> $GITHUB_OUTPUT
+        echo "Released version: $VERSION"
+        
+    - name: Create GitHub Release
+      if: steps.release-trigger.outputs.should_release == 'true'
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: v${{ steps.get-version.outputs.version }}
+        release_name: Release v${{ steps.get-version.outputs.version }}
+        body: |
+          ## Release v${{ steps.get-version.outputs.version }}
+          
+          This is an automated ${{ steps.release-trigger.outputs.trigger }} release triggered by commit message.
+          
+          ### Changes
+          - See commit history for detailed changes
+          
+          ### Installation
+          ```bash
+          gem install getstream-ruby -v ${{ steps.get-version.outputs.version }}
+          ```
+          
+          ### Usage
+          ```ruby
+          require 'getstream_ruby'
+          
+          # Configure the client
+          GetStreamRuby.configure do |config|
+            config.api_key = 'your_api_key'
+            config.api_secret = 'your_api_secret'
+            config.app_id = 'your_app_id'
+          end
+          
+          # Use the client
+          client = GetStreamRuby.client
+          ```
+        draft: false
+        prerelease: false
+        
+    - name: Comment on PR
+      if: github.event_name == 'pull_request' && steps.release-trigger.outputs.should_release == 'true'
+      uses: actions/github-script@v6
+      with:
+        script: |
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: '🚀 **Automated Release Triggered!**\n\nA ${{ steps.release-trigger.outputs.trigger }} release has been triggered by the commit message and will be published shortly.'
+          })

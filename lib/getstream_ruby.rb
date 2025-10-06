@@ -1,20 +1,24 @@
+# frozen_string_literal: true
+
 # Only load dotenv for .env method, not for system env method
-require "getstream_ruby/version"
-require "getstream_ruby/client"
-require "getstream_ruby/configuration"
-require "getstream_ruby/errors"
-require "getstream_ruby/resources/feed"
+require 'getstream_ruby/version'
+require 'getstream_ruby/client'
+require 'getstream_ruby/configuration'
+require 'getstream_ruby/errors'
+require 'getstream_ruby/resources/feed'
 
 module GetStreamRuby
+
   class << self
+
     # Method 1: Manual configuration (highest priority)
     def manual(api_key:, api_secret:, app_id:, base_url: nil, timeout: nil)
       config = Configuration.manual(
-        api_key: api_key, 
-        api_secret: api_secret, 
-        app_id: app_id, 
-        base_url: base_url, 
-        timeout: timeout
+        api_key: api_key,
+        api_secret: api_secret,
+        app_id: app_id,
+        base_url: base_url,
+        timeout: timeout,
       )
       Client.new(config)
     end
@@ -33,5 +37,7 @@ module GetStreamRuby
     def client
       env
     end
+
   end
+
 end
