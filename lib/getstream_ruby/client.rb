@@ -36,23 +36,33 @@ module GetStreamRuby
     end
 
     # Generated API clients
+    
+    # @return [GetStream::Generated::CommonClient] The common API client
     def common
       @common ||= GetStream::Generated::CommonClient.new(self)
     end
 
+    # @return [GetStream::Generated::FeedsClient] The feeds API client
     def feeds
       @feeds ||= GetStream::Generated::FeedsClient.new(self)
     end
 
+    # @return [GetStream::Generated::ModerationClient] The moderation API client
     def moderation
       @moderation ||= GetStream::Generated::ModerationClient.new(self)
     end
 
     # Create an individual feed instance
+    # @param feed_group_id [String] The feed group ID
+    # @param feed_id [String] The feed ID
+    # @return [GetStream::Generated::Feed] A feed instance
     def feed(feed_group_id, feed_id)
       GetStream::Generated::Feed.new(self, feed_group_id, feed_id)
     end
 
+    # @param path [String] The API path
+    # @param body [Hash] The request body
+    # @return [GetStreamRuby::StreamResponse] The API response
     def post(path, body = {})
       request(:post, path, body)
     end
