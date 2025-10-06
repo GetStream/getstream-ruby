@@ -33,6 +33,17 @@ module GetStreamRuby
       request(:post, path, body)
     end
 
+    def make_request(method, path, query_params: nil, body: nil)
+      # Handle query parameters
+      if query_params && !query_params.empty?
+        query_string = query_params.map { |k, v| "#{k}=#{v}" }.join("&")
+        path = "#{path}?#{query_string}"
+      end
+      
+      # Make the request
+      request(method, path, body)
+    end
+
     private
 
     def request(method, path, data = {})
