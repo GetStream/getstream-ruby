@@ -21,9 +21,9 @@ module GetStream
         # @!attribute mark_messages_deleted
         #   @return [Boolean]
         attr_accessor :mark_messages_deleted
-        # @!attribute _type
+        # @!attribute type
         #   @return [String]
-        attr_accessor :_type
+        attr_accessor :type
         # @!attribute user
         #   @return [User]
         attr_accessor :user
@@ -35,7 +35,7 @@ module GetStream
           @delete_conversation_channels = attributes[:delete_conversation_channels] || attributes['delete_conversation_channels']
           @hard_delete = attributes[:hard_delete] || attributes['hard_delete']
           @mark_messages_deleted = attributes[:mark_messages_deleted] || attributes['mark_messages_deleted']
-          @_type = attributes[:_type] || attributes['type'] || "user.deleted"
+          @type = attributes[:type] || attributes['type'] || "user.deleted"
           @user = attributes[:user] || attributes['user'] || nil
         end
 
@@ -46,7 +46,7 @@ module GetStream
             delete_conversation_channels: 'delete_conversation_channels',
             hard_delete: 'hard_delete',
             mark_messages_deleted: 'mark_messages_deleted',
-            _type: 'type',
+            type: 'type',
             user: 'user'
           }
         end

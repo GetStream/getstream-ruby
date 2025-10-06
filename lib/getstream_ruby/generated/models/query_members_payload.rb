@@ -9,15 +9,15 @@ module GetStream
       class QueryMembersPayload < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute _type
+        # @!attribute type
         #   @return [String]
-        attr_accessor :_type
+        attr_accessor :type
         # @!attribute filter_conditions
         #   @return [Object]
         attr_accessor :filter_conditions
-        # @!attribute _id
+        # @!attribute id
         #   @return [String]
-        attr_accessor :_id
+        attr_accessor :id
         # @!attribute limit
         #   @return [Integer]
         attr_accessor :limit
@@ -40,9 +40,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @_type = attributes[:_type] || attributes['type']
+          @type = attributes[:type] || attributes['type']
           @filter_conditions = attributes[:filter_conditions] || attributes['filter_conditions']
-          @_id = attributes[:_id] || attributes['id'] || ""
+          @id = attributes[:id] || attributes['id'] || ""
           @limit = attributes[:limit] || attributes['limit'] || 0
           @offset = attributes[:offset] || attributes['offset'] || 0
           @user_id = attributes[:user_id] || attributes['user_id'] || ""
@@ -54,9 +54,9 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            _type: 'type',
+            type: 'type',
             filter_conditions: 'filter_conditions',
-            _id: 'id',
+            id: 'id',
             limit: 'limit',
             offset: 'offset',
             user_id: 'user_id',

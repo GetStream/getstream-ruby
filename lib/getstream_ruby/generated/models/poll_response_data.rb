@@ -9,9 +9,6 @@ module GetStream
       class PollResponseData < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute _id
-        #   @return [String]
-        attr_accessor :_id
         # @!attribute allow_answers
         #   @return [Boolean]
         attr_accessor :allow_answers
@@ -33,6 +30,9 @@ module GetStream
         # @!attribute enforce_unique_vote
         #   @return [Boolean]
         attr_accessor :enforce_unique_vote
+        # @!attribute id
+        #   @return [String]
+        attr_accessor :id
         # @!attribute name
         #   @return [String]
         attr_accessor :name
@@ -76,7 +76,6 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @_id = attributes[:_id] || attributes['id']
           @allow_answers = attributes[:allow_answers] || attributes['allow_answers']
           @allow_user_suggested_options = attributes[:allow_user_suggested_options] || attributes['allow_user_suggested_options']
           @answers_count = attributes[:answers_count] || attributes['answers_count']
@@ -84,6 +83,7 @@ module GetStream
           @created_by_id = attributes[:created_by_id] || attributes['created_by_id']
           @description = attributes[:description] || attributes['description']
           @enforce_unique_vote = attributes[:enforce_unique_vote] || attributes['enforce_unique_vote']
+          @id = attributes[:id] || attributes['id']
           @name = attributes[:name] || attributes['name']
           @updated_at = attributes[:updated_at] || attributes['updated_at']
           @vote_count = attributes[:vote_count] || attributes['vote_count']
@@ -102,7 +102,6 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            _id: 'id',
             allow_answers: 'allow_answers',
             allow_user_suggested_options: 'allow_user_suggested_options',
             answers_count: 'answers_count',
@@ -110,6 +109,7 @@ module GetStream
             created_by_id: 'created_by_id',
             description: 'description',
             enforce_unique_vote: 'enforce_unique_vote',
+            id: 'id',
             name: 'name',
             updated_at: 'updated_at',
             vote_count: 'vote_count',

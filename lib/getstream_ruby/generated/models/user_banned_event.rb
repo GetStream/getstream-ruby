@@ -27,9 +27,9 @@ module GetStream
         # @!attribute created_by
         #   @return [User]
         attr_accessor :created_by
-        # @!attribute _type
+        # @!attribute type
         #   @return [String]
-        attr_accessor :_type
+        attr_accessor :type
         # @!attribute expiration
         #   @return [DateTime]
         attr_accessor :expiration
@@ -52,7 +52,7 @@ module GetStream
           @created_at = attributes[:created_at] || attributes['created_at']
           @shadow = attributes[:shadow] || attributes['shadow']
           @created_by = attributes[:created_by] || attributes['created_by']
-          @_type = attributes[:_type] || attributes['type'] || "user.banned"
+          @type = attributes[:type] || attributes['type'] || "user.banned"
           @expiration = attributes[:expiration] || attributes['expiration'] || nil
           @reason = attributes[:reason] || attributes['reason'] || ""
           @team = attributes[:team] || attributes['team'] || ""
@@ -68,7 +68,7 @@ module GetStream
             created_at: 'created_at',
             shadow: 'shadow',
             created_by: 'created_by',
-            _type: 'type',
+            type: 'type',
             expiration: 'expiration',
             reason: 'reason',
             team: 'team',

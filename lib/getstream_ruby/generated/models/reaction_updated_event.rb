@@ -27,9 +27,9 @@ module GetStream
         # @!attribute reaction
         #   @return [Reaction]
         attr_accessor :reaction
-        # @!attribute _type
+        # @!attribute type
         #   @return [String]
-        attr_accessor :_type
+        attr_accessor :type
         # @!attribute team
         #   @return [String]
         attr_accessor :team
@@ -46,7 +46,7 @@ module GetStream
           @created_at = attributes[:created_at] || attributes['created_at']
           @message = attributes[:message] || attributes['message']
           @reaction = attributes[:reaction] || attributes['reaction']
-          @_type = attributes[:_type] || attributes['type'] || "reaction.updated"
+          @type = attributes[:type] || attributes['type'] || "reaction.updated"
           @team = attributes[:team] || attributes['team'] || ""
           @user = attributes[:user] || attributes['user'] || nil
         end
@@ -60,7 +60,7 @@ module GetStream
             created_at: 'created_at',
             message: 'message',
             reaction: 'reaction',
-            _type: 'type',
+            type: 'type',
             team: 'team',
             user: 'user'
           }

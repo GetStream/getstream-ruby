@@ -9,9 +9,6 @@ module GetStream
       class FeedGroup < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute _id
-        #   @return [String]
-        attr_accessor :_id
         # @!attribute aggregation_version
         #   @return [Integer]
         attr_accessor :aggregation_version
@@ -24,6 +21,9 @@ module GetStream
         # @!attribute default_visibility
         #   @return [String]
         attr_accessor :default_visibility
+        # @!attribute id
+        #   @return [String]
+        attr_accessor :id
         # @!attribute updated_at
         #   @return [DateTime]
         attr_accessor :updated_at
@@ -61,11 +61,11 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @_id = attributes[:_id] || attributes['ID']
           @aggregation_version = attributes[:aggregation_version] || attributes['AggregationVersion']
           @app_pk = attributes[:app_pk] || attributes['AppPK']
           @created_at = attributes[:created_at] || attributes['created_at']
           @default_visibility = attributes[:default_visibility] || attributes['DefaultVisibility']
+          @id = attributes[:id] || attributes['ID']
           @updated_at = attributes[:updated_at] || attributes['updated_at']
           @activity_processors = attributes[:activity_processors] || attributes['ActivityProcessors']
           @activity_selectors = attributes[:activity_selectors] || attributes['ActivitySelectors']
@@ -82,11 +82,11 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            _id: 'ID',
             aggregation_version: 'AggregationVersion',
             app_pk: 'AppPK',
             created_at: 'created_at',
             default_visibility: 'DefaultVisibility',
+            id: 'ID',
             updated_at: 'updated_at',
             activity_processors: 'ActivityProcessors',
             activity_selectors: 'ActivitySelectors',

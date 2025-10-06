@@ -12,9 +12,9 @@ module GetStream
         # @!attribute created_at
         #   @return [DateTime]
         attr_accessor :created_at
-        # @!attribute _type
+        # @!attribute type
         #   @return [String]
-        attr_accessor :_type
+        attr_accessor :type
         # @!attribute user
         #   @return [User]
         attr_accessor :user
@@ -23,7 +23,7 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @created_at = attributes[:created_at] || attributes['created_at']
-          @_type = attributes[:_type] || attributes['type'] || "user.reactivated"
+          @type = attributes[:type] || attributes['type'] || "user.reactivated"
           @user = attributes[:user] || attributes['user'] || nil
         end
 
@@ -31,7 +31,7 @@ module GetStream
         def self.json_field_mappings
           {
             created_at: 'created_at',
-            _type: 'type',
+            type: 'type',
             user: 'user'
           }
         end

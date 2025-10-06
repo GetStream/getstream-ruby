@@ -9,9 +9,6 @@ module GetStream
       class ModerationFlagResponse < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute _type
-        #   @return [String]
-        attr_accessor :_type
         # @!attribute created_at
         #   @return [DateTime]
         attr_accessor :created_at
@@ -21,6 +18,9 @@ module GetStream
         # @!attribute entity_type
         #   @return [String]
         attr_accessor :entity_type
+        # @!attribute type
+        #   @return [String]
+        attr_accessor :type
         # @!attribute updated_at
         #   @return [DateTime]
         attr_accessor :updated_at
@@ -58,10 +58,10 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @_type = attributes[:_type] || attributes['type']
           @created_at = attributes[:created_at] || attributes['created_at']
           @entity_id = attributes[:entity_id] || attributes['entity_id']
           @entity_type = attributes[:entity_type] || attributes['entity_type']
+          @type = attributes[:type] || attributes['type']
           @updated_at = attributes[:updated_at] || attributes['updated_at']
           @user_id = attributes[:user_id] || attributes['user_id']
           @result = attributes[:result] || attributes['result']
@@ -78,10 +78,10 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            _type: 'type',
             created_at: 'created_at',
             entity_id: 'entity_id',
             entity_type: 'entity_type',
+            type: 'type',
             updated_at: 'updated_at',
             user_id: 'user_id',
             result: 'result',

@@ -12,9 +12,6 @@ module GetStream
         # @!attribute name
         #   @return [String] The name of the poll
         attr_accessor :name
-        # @!attribute _id
-        #   @return [String]
-        attr_accessor :_id
         # @!attribute allow_answers
         #   @return [Boolean] Indicates whether users can suggest user defined answers
         attr_accessor :allow_answers
@@ -27,6 +24,9 @@ module GetStream
         # @!attribute enforce_unique_vote
         #   @return [Boolean] Indicates whether users can cast multiple votes
         attr_accessor :enforce_unique_vote
+        # @!attribute id
+        #   @return [String]
+        attr_accessor :id
         # @!attribute is_closed
         #   @return [Boolean] Indicates whether the poll is open for voting
         attr_accessor :is_closed
@@ -53,11 +53,11 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @name = attributes[:name] || attributes['name']
-          @_id = attributes[:_id] || attributes['id'] || ""
           @allow_answers = attributes[:allow_answers] || attributes['allow_answers'] || false
           @allow_user_suggested_options = attributes[:allow_user_suggested_options] || attributes['allow_user_suggested_options'] || false
           @description = attributes[:description] || attributes['description'] || ""
           @enforce_unique_vote = attributes[:enforce_unique_vote] || attributes['enforce_unique_vote'] || false
+          @id = attributes[:id] || attributes['id'] || ""
           @is_closed = attributes[:is_closed] || attributes['is_closed'] || false
           @max_votes_allowed = attributes[:max_votes_allowed] || attributes['max_votes_allowed'] || 0
           @user_id = attributes[:user_id] || attributes['user_id'] || ""
@@ -71,11 +71,11 @@ module GetStream
         def self.json_field_mappings
           {
             name: 'name',
-            _id: 'id',
             allow_answers: 'allow_answers',
             allow_user_suggested_options: 'allow_user_suggested_options',
             description: 'description',
             enforce_unique_vote: 'enforce_unique_vote',
+            id: 'id',
             is_closed: 'is_closed',
             max_votes_allowed: 'max_votes_allowed',
             user_id: 'user_id',

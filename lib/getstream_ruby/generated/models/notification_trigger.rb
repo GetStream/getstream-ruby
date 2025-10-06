@@ -9,25 +9,25 @@ module GetStream
       class NotificationTrigger < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute _type
-        #   @return [String] The type of notification (mention, reaction, comment, follow, etc.)
-        attr_accessor :_type
         # @!attribute text
         #   @return [String] Human-readable text describing the notification
         attr_accessor :text
+        # @!attribute type
+        #   @return [String] The type of notification (mention, reaction, comment, follow, etc.)
+        attr_accessor :type
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @_type = attributes[:_type] || attributes['type']
           @text = attributes[:text] || attributes['text']
+          @type = attributes[:type] || attributes['type']
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            _type: 'type',
-            text: 'text'
+            text: 'text',
+            type: 'type'
           }
         end
       end

@@ -24,9 +24,9 @@ module GetStream
         # @!attribute watcher_count
         #   @return [Integer]
         attr_accessor :watcher_count
-        # @!attribute _type
+        # @!attribute type
         #   @return [String]
-        attr_accessor :_type
+        attr_accessor :type
         # @!attribute team
         #   @return [String]
         attr_accessor :team
@@ -48,7 +48,7 @@ module GetStream
           @cid = attributes[:cid] || attributes['cid']
           @created_at = attributes[:created_at] || attributes['created_at']
           @watcher_count = attributes[:watcher_count] || attributes['watcher_count']
-          @_type = attributes[:_type] || attributes['type'] || "message.new"
+          @type = attributes[:type] || attributes['type'] || "notification.thread_message_new"
           @team = attributes[:team] || attributes['team'] || ""
           @thread_participants = attributes[:thread_participants] || attributes['thread_participants'] || nil
           @message = attributes[:message] || attributes['message'] || nil
@@ -63,7 +63,7 @@ module GetStream
             cid: 'cid',
             created_at: 'created_at',
             watcher_count: 'watcher_count',
-            _type: 'type',
+            type: 'type',
             team: 'team',
             thread_participants: 'thread_participants',
             message: 'message',

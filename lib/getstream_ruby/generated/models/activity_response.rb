@@ -9,12 +9,6 @@ module GetStream
       class ActivityResponse < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute _id
-        #   @return [String] Unique identifier for the activity
-        attr_accessor :_id
-        # @!attribute _type
-        #   @return [String] Type of activity
-        attr_accessor :_type
         # @!attribute bookmark_count
         #   @return [Integer] Number of bookmarks on the activity
         attr_accessor :bookmark_count
@@ -24,6 +18,9 @@ module GetStream
         # @!attribute created_at
         #   @return [DateTime] When the activity was created
         attr_accessor :created_at
+        # @!attribute id
+        #   @return [String] Unique identifier for the activity
+        attr_accessor :id
         # @!attribute popularity
         #   @return [Integer] Popularity score of the activity
         attr_accessor :popularity
@@ -36,6 +33,9 @@ module GetStream
         # @!attribute share_count
         #   @return [Integer] Number of times the activity was shared
         attr_accessor :share_count
+        # @!attribute type
+        #   @return [String] Type of activity
+        attr_accessor :type
         # @!attribute updated_at
         #   @return [DateTime] When the activity was last updated
         attr_accessor :updated_at
@@ -121,15 +121,15 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @_id = attributes[:_id] || attributes['id']
-          @_type = attributes[:_type] || attributes['type']
           @bookmark_count = attributes[:bookmark_count] || attributes['bookmark_count']
           @comment_count = attributes[:comment_count] || attributes['comment_count']
           @created_at = attributes[:created_at] || attributes['created_at']
+          @id = attributes[:id] || attributes['id']
           @popularity = attributes[:popularity] || attributes['popularity']
           @reaction_count = attributes[:reaction_count] || attributes['reaction_count']
           @score = attributes[:score] || attributes['score']
           @share_count = attributes[:share_count] || attributes['share_count']
+          @type = attributes[:type] || attributes['type']
           @updated_at = attributes[:updated_at] || attributes['updated_at']
           @visibility = attributes[:visibility] || attributes['visibility']
           @attachments = attributes[:attachments] || attributes['attachments']
@@ -162,15 +162,15 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            _id: 'id',
-            _type: 'type',
             bookmark_count: 'bookmark_count',
             comment_count: 'comment_count',
             created_at: 'created_at',
+            id: 'id',
             popularity: 'popularity',
             reaction_count: 'reaction_count',
             score: 'score',
             share_count: 'share_count',
+            type: 'type',
             updated_at: 'updated_at',
             visibility: 'visibility',
             attachments: 'attachments',

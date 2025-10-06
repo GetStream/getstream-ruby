@@ -9,15 +9,15 @@ module GetStream
       class UserResponsePrivacyFields < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute _id
-        #   @return [String]
-        attr_accessor :_id
         # @!attribute banned
         #   @return [Boolean]
         attr_accessor :banned
         # @!attribute created_at
         #   @return [DateTime]
         attr_accessor :created_at
+        # @!attribute id
+        #   @return [String]
+        attr_accessor :id
         # @!attribute language
         #   @return [String]
         attr_accessor :language
@@ -73,9 +73,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @_id = attributes[:_id] || attributes['id']
           @banned = attributes[:banned] || attributes['banned']
           @created_at = attributes[:created_at] || attributes['created_at']
+          @id = attributes[:id] || attributes['id']
           @language = attributes[:language] || attributes['language']
           @online = attributes[:online] || attributes['online']
           @role = attributes[:role] || attributes['role']
@@ -98,9 +98,9 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            _id: 'id',
             banned: 'banned',
             created_at: 'created_at',
+            id: 'id',
             language: 'language',
             online: 'online',
             role: 'role',

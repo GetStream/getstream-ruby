@@ -21,9 +21,9 @@ module GetStream
         # @!attribute follow
         #   @return [FollowResponse]
         attr_accessor :follow
-        # @!attribute _type
+        # @!attribute type
         #   @return [String] The type of event: "feeds.follow.created" in this case
-        attr_accessor :_type
+        attr_accessor :type
         # @!attribute feed_visibility
         #   @return [String]
         attr_accessor :feed_visibility
@@ -38,7 +38,7 @@ module GetStream
           @fid = attributes[:fid] || attributes['fid']
           @custom = attributes[:custom] || attributes['custom']
           @follow = attributes[:follow] || attributes['follow']
-          @_type = attributes[:_type] || attributes['type'] || "feeds.follow.created"
+          @type = attributes[:type] || attributes['type'] || "feeds.follow.created"
           @feed_visibility = attributes[:feed_visibility] || attributes['feed_visibility'] || ""
           @received_at = attributes[:received_at] || attributes['received_at'] || nil
         end
@@ -50,7 +50,7 @@ module GetStream
             fid: 'fid',
             custom: 'custom',
             follow: 'follow',
-            _type: 'type',
+            type: 'type',
             feed_visibility: 'feed_visibility',
             received_at: 'received_at'
           }

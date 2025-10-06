@@ -9,12 +9,12 @@ module GetStream
       class BookmarkFolderResponse < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute _id
-        #   @return [String] Unique identifier for the folder
-        attr_accessor :_id
         # @!attribute created_at
         #   @return [DateTime] When the folder was created
         attr_accessor :created_at
+        # @!attribute id
+        #   @return [String] Unique identifier for the folder
+        attr_accessor :id
         # @!attribute name
         #   @return [String] Name of the folder
         attr_accessor :name
@@ -28,8 +28,8 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @_id = attributes[:_id] || attributes['id']
           @created_at = attributes[:created_at] || attributes['created_at']
+          @id = attributes[:id] || attributes['id']
           @name = attributes[:name] || attributes['name']
           @updated_at = attributes[:updated_at] || attributes['updated_at']
           @custom = attributes[:custom] || attributes['custom'] || nil
@@ -38,8 +38,8 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            _id: 'id',
             created_at: 'created_at',
+            id: 'id',
             name: 'name',
             updated_at: 'updated_at',
             custom: 'custom'

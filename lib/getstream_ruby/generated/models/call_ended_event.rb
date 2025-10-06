@@ -18,9 +18,9 @@ module GetStream
         # @!attribute call
         #   @return [CallResponse]
         attr_accessor :call
-        # @!attribute _type
+        # @!attribute type
         #   @return [String] The type of event: "call.ended" in this case
-        attr_accessor :_type
+        attr_accessor :type
         # @!attribute reason
         #   @return [String] The reason why the call ended, if available
         attr_accessor :reason
@@ -34,7 +34,7 @@ module GetStream
           @call_cid = attributes[:call_cid] || attributes['call_cid']
           @created_at = attributes[:created_at] || attributes['created_at']
           @call = attributes[:call] || attributes['call']
-          @_type = attributes[:_type] || attributes['type'] || "call.ended"
+          @type = attributes[:type] || attributes['type'] || "call.ended"
           @reason = attributes[:reason] || attributes['reason'] || ""
           @user = attributes[:user] || attributes['user'] || nil
         end
@@ -45,7 +45,7 @@ module GetStream
             call_cid: 'call_cid',
             created_at: 'created_at',
             call: 'call',
-            _type: 'type',
+            type: 'type',
             reason: 'reason',
             user: 'user'
           }

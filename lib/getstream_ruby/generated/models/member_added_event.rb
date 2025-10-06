@@ -21,9 +21,9 @@ module GetStream
         # @!attribute created_at
         #   @return [DateTime]
         attr_accessor :created_at
-        # @!attribute _type
+        # @!attribute type
         #   @return [String]
-        attr_accessor :_type
+        attr_accessor :type
         # @!attribute team
         #   @return [String]
         attr_accessor :team
@@ -41,7 +41,7 @@ module GetStream
           @channel_type = attributes[:channel_type] || attributes['channel_type']
           @cid = attributes[:cid] || attributes['cid']
           @created_at = attributes[:created_at] || attributes['created_at']
-          @_type = attributes[:_type] || attributes['type'] || "member.added"
+          @type = attributes[:type] || attributes['type'] || "member.added"
           @team = attributes[:team] || attributes['team'] || ""
           @member = attributes[:member] || attributes['member'] || nil
           @user = attributes[:user] || attributes['user'] || nil
@@ -54,7 +54,7 @@ module GetStream
             channel_type: 'channel_type',
             cid: 'cid',
             created_at: 'created_at',
-            _type: 'type',
+            type: 'type',
             team: 'team',
             member: 'member',
             user: 'user'

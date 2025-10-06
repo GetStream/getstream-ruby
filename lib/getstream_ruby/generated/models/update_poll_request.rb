@@ -9,9 +9,9 @@ module GetStream
       class UpdatePollRequest < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute _id
+        # @!attribute id
         #   @return [String] Poll ID
-        attr_accessor :_id
+        attr_accessor :id
         # @!attribute name
         #   @return [String] Poll name
         attr_accessor :name
@@ -52,7 +52,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @_id = attributes[:_id] || attributes['id']
+          @id = attributes[:id] || attributes['id']
           @name = attributes[:name] || attributes['name']
           @allow_answers = attributes[:allow_answers] || attributes['allow_answers'] || false
           @allow_user_suggested_options = attributes[:allow_user_suggested_options] || attributes['allow_user_suggested_options'] || false
@@ -70,7 +70,7 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            _id: 'id',
+            id: 'id',
             name: 'name',
             allow_answers: 'allow_answers',
             allow_user_suggested_options: 'allow_user_suggested_options',

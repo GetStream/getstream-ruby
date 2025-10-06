@@ -21,9 +21,9 @@ module GetStream
         # @!attribute participant
         #   @return [CallParticipantResponse]
         attr_accessor :participant
-        # @!attribute _type
+        # @!attribute type
         #   @return [String] The type of event: "call.session_participant_joined" in this case
-        attr_accessor :_type
+        attr_accessor :type
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -32,7 +32,7 @@ module GetStream
           @created_at = attributes[:created_at] || attributes['created_at']
           @session_id = attributes[:session_id] || attributes['session_id']
           @participant = attributes[:participant] || attributes['participant']
-          @_type = attributes[:_type] || attributes['type'] || "call.session_participant_joined"
+          @type = attributes[:type] || attributes['type'] || "call.session_participant_joined"
         end
 
         # Override field mappings for JSON serialization
@@ -42,7 +42,7 @@ module GetStream
             created_at: 'created_at',
             session_id: 'session_id',
             participant: 'participant',
-            _type: 'type'
+            type: 'type'
           }
         end
       end

@@ -15,20 +15,20 @@ module GetStream
         # @!attribute words
         #   @return [Array<String>] List of words to block
         attr_accessor :words
-        # @!attribute _type
-        #   @return [String] Block list type.
-        attr_accessor :_type
         # @!attribute team
         #   @return [String]
         attr_accessor :team
+        # @!attribute type
+        #   @return [String] Block list type.
+        attr_accessor :type
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @name = attributes[:name] || attributes['name']
           @words = attributes[:words] || attributes['words']
-          @_type = attributes[:_type] || attributes['type'] || ""
           @team = attributes[:team] || attributes['team'] || ""
+          @type = attributes[:type] || attributes['type'] || ""
         end
 
         # Override field mappings for JSON serialization
@@ -36,8 +36,8 @@ module GetStream
           {
             name: 'name',
             words: 'words',
-            _type: 'type',
-            team: 'team'
+            team: 'team',
+            type: 'type'
           }
         end
       end

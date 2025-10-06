@@ -9,12 +9,12 @@ module GetStream
       class EnrichedActivity < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute _id
-        #   @return [String]
-        attr_accessor :_id
         # @!attribute foreign_id
         #   @return [String]
         attr_accessor :foreign_id
+        # @!attribute id
+        #   @return [String]
+        attr_accessor :id
         # @!attribute score
         #   @return [Float]
         attr_accessor :score
@@ -49,8 +49,8 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @_id = attributes[:_id] || attributes['id'] || ""
           @foreign_id = attributes[:foreign_id] || attributes['foreign_id'] || ""
+          @id = attributes[:id] || attributes['id'] || ""
           @score = attributes[:score] || attributes['score'] || 0.0
           @verb = attributes[:verb] || attributes['verb'] || ""
           @to = attributes[:to] || attributes['to'] || nil
@@ -66,8 +66,8 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            _id: 'id',
             foreign_id: 'foreign_id',
+            id: 'id',
             score: 'score',
             verb: 'verb',
             to: 'to',

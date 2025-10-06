@@ -45,9 +45,9 @@ module GetStream
         # @!attribute unread_threads
         #   @return [Integer]
         attr_accessor :unread_threads
-        # @!attribute _type
+        # @!attribute type
         #   @return [String]
-        attr_accessor :_type
+        attr_accessor :type
         # @!attribute last_read_message_id
         #   @return [String]
         attr_accessor :last_read_message_id
@@ -79,7 +79,7 @@ module GetStream
           @unread_count = attributes[:unread_count] || attributes['unread_count']
           @unread_messages = attributes[:unread_messages] || attributes['unread_messages']
           @unread_threads = attributes[:unread_threads] || attributes['unread_threads']
-          @_type = attributes[:_type] || attributes['type'] || "notification.mark_unread"
+          @type = attributes[:type] || attributes['type'] || "notification.mark_unread"
           @last_read_message_id = attributes[:last_read_message_id] || attributes['last_read_message_id'] || ""
           @team = attributes[:team] || attributes['team'] || ""
           @thread_id = attributes[:thread_id] || attributes['thread_id'] || ""
@@ -102,7 +102,7 @@ module GetStream
             unread_count: 'unread_count',
             unread_messages: 'unread_messages',
             unread_threads: 'unread_threads',
-            _type: 'type',
+            type: 'type',
             last_read_message_id: 'last_read_message_id',
             team: 'team',
             thread_id: 'thread_id',

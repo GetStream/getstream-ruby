@@ -24,9 +24,9 @@ module GetStream
         # @!attribute custom
         #   @return [Object]
         attr_accessor :custom
-        # @!attribute _type
+        # @!attribute type
         #   @return [String] The type of event: "reminder.deleted" in this case
-        attr_accessor :_type
+        attr_accessor :type
         # @!attribute parent_id
         #   @return [String] The ID of the parent message, if the reminder is for a thread message
         attr_accessor :parent_id
@@ -45,7 +45,7 @@ module GetStream
           @message_id = attributes[:message_id] || attributes['message_id']
           @user_id = attributes[:user_id] || attributes['user_id']
           @custom = attributes[:custom] || attributes['custom']
-          @_type = attributes[:_type] || attributes['type'] || "reminder.deleted"
+          @type = attributes[:type] || attributes['type'] || "reminder.deleted"
           @parent_id = attributes[:parent_id] || attributes['parent_id'] || ""
           @received_at = attributes[:received_at] || attributes['received_at'] || nil
           @reminder = attributes[:reminder] || attributes['reminder'] || nil
@@ -59,7 +59,7 @@ module GetStream
             message_id: 'message_id',
             user_id: 'user_id',
             custom: 'custom',
-            _type: 'type',
+            type: 'type',
             parent_id: 'parent_id',
             received_at: 'received_at',
             reminder: 'reminder'

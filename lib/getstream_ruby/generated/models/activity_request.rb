@@ -9,18 +9,18 @@ module GetStream
       class ActivityRequest < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute _type
+        # @!attribute type
         #   @return [String] Type of activity
-        attr_accessor :_type
+        attr_accessor :type
         # @!attribute feeds
         #   @return [Array<String>] List of feed IDs to add the activity to
         attr_accessor :feeds
-        # @!attribute _id
-        #   @return [String] Optional ID for the activity
-        attr_accessor :_id
         # @!attribute expires_at
         #   @return [String] Expiration time for the activity
         attr_accessor :expires_at
+        # @!attribute id
+        #   @return [String] Optional ID for the activity
+        attr_accessor :id
         # @!attribute parent_id
         #   @return [String] ID of parent activity for replies/comments
         attr_accessor :parent_id
@@ -64,10 +64,10 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @_type = attributes[:_type] || attributes['type']
+          @type = attributes[:type] || attributes['type']
           @feeds = attributes[:feeds] || attributes['feeds']
-          @_id = attributes[:_id] || attributes['id'] || ""
           @expires_at = attributes[:expires_at] || attributes['expires_at'] || ""
+          @id = attributes[:id] || attributes['id'] || ""
           @parent_id = attributes[:parent_id] || attributes['parent_id'] || ""
           @poll_id = attributes[:poll_id] || attributes['poll_id'] || ""
           @text = attributes[:text] || attributes['text'] || ""
@@ -86,10 +86,10 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            _type: 'type',
+            type: 'type',
             feeds: 'feeds',
-            _id: 'id',
             expires_at: 'expires_at',
+            id: 'id',
             parent_id: 'parent_id',
             poll_id: 'poll_id',
             text: 'text',

@@ -9,21 +9,21 @@ module GetStream
       class BlockListResponse < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute _type
-        #   @return [String] Block list type.
-        attr_accessor :_type
         # @!attribute name
         #   @return [String] Block list name
         attr_accessor :name
+        # @!attribute type
+        #   @return [String] Block list type.
+        attr_accessor :type
         # @!attribute words
         #   @return [Array<String>] List of words to block
         attr_accessor :words
-        # @!attribute _id
-        #   @return [String]
-        attr_accessor :_id
         # @!attribute created_at
         #   @return [DateTime] Date/time of creation
         attr_accessor :created_at
+        # @!attribute id
+        #   @return [String]
+        attr_accessor :id
         # @!attribute team
         #   @return [String]
         attr_accessor :team
@@ -34,11 +34,11 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @_type = attributes[:_type] || attributes['type']
           @name = attributes[:name] || attributes['name']
+          @type = attributes[:type] || attributes['type']
           @words = attributes[:words] || attributes['words']
-          @_id = attributes[:_id] || attributes['id'] || ""
           @created_at = attributes[:created_at] || attributes['created_at'] || nil
+          @id = attributes[:id] || attributes['id'] || ""
           @team = attributes[:team] || attributes['team'] || ""
           @updated_at = attributes[:updated_at] || attributes['updated_at'] || nil
         end
@@ -46,11 +46,11 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            _type: 'type',
             name: 'name',
+            type: 'type',
             words: 'words',
-            _id: 'id',
             created_at: 'created_at',
+            id: 'id',
             team: 'team',
             updated_at: 'updated_at'
           }

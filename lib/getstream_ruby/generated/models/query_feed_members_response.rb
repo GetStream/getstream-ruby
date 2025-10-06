@@ -15,9 +15,9 @@ module GetStream
         # @!attribute members
         #   @return [Array<FeedMemberResponse>] List of feed members
         attr_accessor :members
-        # @!attribute _next
+        # @!attribute next
         #   @return [String] Cursor for next page
-        attr_accessor :_next
+        attr_accessor :next
         # @!attribute prev
         #   @return [String] Cursor for previous page
         attr_accessor :prev
@@ -27,7 +27,7 @@ module GetStream
           super(attributes)
           @duration = attributes[:duration] || attributes['duration']
           @members = attributes[:members] || attributes['members']
-          @_next = attributes[:_next] || attributes['next'] || ""
+          @next = attributes[:next] || attributes['next'] || ""
           @prev = attributes[:prev] || attributes['prev'] || ""
         end
 
@@ -36,7 +36,7 @@ module GetStream
           {
             duration: 'duration',
             members: 'members',
-            _next: 'next',
+            next: 'next',
             prev: 'prev'
           }
         end

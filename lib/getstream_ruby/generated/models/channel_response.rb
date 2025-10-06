@@ -9,12 +9,6 @@ module GetStream
       class ChannelResponse < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute _id
-        #   @return [String] Channel unique ID
-        attr_accessor :_id
-        # @!attribute _type
-        #   @return [String] Type of the channel
-        attr_accessor :_type
         # @!attribute cid
         #   @return [String] Channel CID (<type>:<id>)
         attr_accessor :cid
@@ -27,6 +21,12 @@ module GetStream
         # @!attribute frozen
         #   @return [Boolean] Whether channel is frozen or not
         attr_accessor :frozen
+        # @!attribute id
+        #   @return [String] Channel unique ID
+        attr_accessor :id
+        # @!attribute type
+        #   @return [String] Type of the channel
+        attr_accessor :type
         # @!attribute updated_at
         #   @return [DateTime] Date/time of the last update
         attr_accessor :updated_at
@@ -94,12 +94,12 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @_id = attributes[:_id] || attributes['id']
-          @_type = attributes[:_type] || attributes['type']
           @cid = attributes[:cid] || attributes['cid']
           @created_at = attributes[:created_at] || attributes['created_at']
           @disabled = attributes[:disabled] || attributes['disabled']
           @frozen = attributes[:frozen] || attributes['frozen']
+          @id = attributes[:id] || attributes['id']
+          @type = attributes[:type] || attributes['type']
           @updated_at = attributes[:updated_at] || attributes['updated_at']
           @custom = attributes[:custom] || attributes['custom']
           @auto_translation_enabled = attributes[:auto_translation_enabled] || attributes['auto_translation_enabled'] || false
@@ -126,12 +126,12 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            _id: 'id',
-            _type: 'type',
             cid: 'cid',
             created_at: 'created_at',
             disabled: 'disabled',
             frozen: 'frozen',
+            id: 'id',
+            type: 'type',
             updated_at: 'updated_at',
             custom: 'custom',
             auto_translation_enabled: 'auto_translation_enabled',

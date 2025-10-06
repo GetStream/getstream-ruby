@@ -9,12 +9,12 @@ module GetStream
       class WSEvent < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute _type
-        #   @return [String]
-        attr_accessor :_type
         # @!attribute created_at
         #   @return [DateTime]
         attr_accessor :created_at
+        # @!attribute type
+        #   @return [String]
+        attr_accessor :type
         # @!attribute custom
         #   @return [Object]
         attr_accessor :custom
@@ -94,8 +94,8 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @_type = attributes[:_type] || attributes['type']
           @created_at = attributes[:created_at] || attributes['created_at']
+          @type = attributes[:type] || attributes['type']
           @custom = attributes[:custom] || attributes['custom']
           @automoderation = attributes[:automoderation] || attributes['automoderation'] || false
           @channel_id = attributes[:channel_id] || attributes['channel_id'] || ""
@@ -126,8 +126,8 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            _type: 'type',
             created_at: 'created_at',
+            type: 'type',
             custom: 'custom',
             automoderation: 'automoderation',
             channel_id: 'channel_id',

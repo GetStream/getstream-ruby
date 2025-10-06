@@ -9,9 +9,9 @@ module GetStream
       class CreateMembershipLevelRequest < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute _id
+        # @!attribute id
         #   @return [String] Unique identifier for the membership level
-        attr_accessor :_id
+        attr_accessor :id
         # @!attribute name
         #   @return [String] Display name for the membership level
         attr_accessor :name
@@ -31,7 +31,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @_id = attributes[:_id] || attributes['id']
+          @id = attributes[:id] || attributes['id']
           @name = attributes[:name] || attributes['name']
           @description = attributes[:description] || attributes['description'] || ""
           @priority = attributes[:priority] || attributes['priority'] || 0
@@ -42,7 +42,7 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            _id: 'id',
+            id: 'id',
             name: 'name',
             description: 'description',
             priority: 'priority',

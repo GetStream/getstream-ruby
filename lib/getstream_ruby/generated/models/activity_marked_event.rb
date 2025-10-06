@@ -24,9 +24,9 @@ module GetStream
         # @!attribute user_id
         #   @return [String]
         attr_accessor :user_id
-        # @!attribute _type
+        # @!attribute type
         #   @return [String]
-        attr_accessor :_type
+        attr_accessor :type
         # @!attribute marked_read
         #   @return [Array<String>]
         attr_accessor :marked_read
@@ -42,7 +42,7 @@ module GetStream
           @created_at = attributes[:created_at] || attributes['created_at']
           @feed_id = attributes[:feed_id] || attributes['feed_id']
           @user_id = attributes[:user_id] || attributes['user_id']
-          @_type = attributes[:_type] || attributes['type'] || "activity.marked"
+          @type = attributes[:type] || attributes['type'] || "activity.marked"
           @marked_read = attributes[:marked_read] || attributes['marked_read'] || nil
           @marked_watched = attributes[:marked_watched] || attributes['marked_watched'] || nil
         end
@@ -55,7 +55,7 @@ module GetStream
             created_at: 'created_at',
             feed_id: 'feed_id',
             user_id: 'user_id',
-            _type: 'type',
+            type: 'type',
             marked_read: 'marked_read',
             marked_watched: 'marked_watched'
           }

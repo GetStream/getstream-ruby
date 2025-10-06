@@ -9,12 +9,12 @@ module GetStream
       class User < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute _id
-        #   @return [String]
-        attr_accessor :_id
         # @!attribute banned
         #   @return [Boolean]
         attr_accessor :banned
+        # @!attribute id
+        #   @return [String]
+        attr_accessor :id
         # @!attribute online
         #   @return [Boolean]
         attr_accessor :online
@@ -70,8 +70,8 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @_id = attributes[:_id] || attributes['id']
           @banned = attributes[:banned] || attributes['banned']
+          @id = attributes[:id] || attributes['id']
           @online = attributes[:online] || attributes['online']
           @role = attributes[:role] || attributes['role']
           @custom = attributes[:custom] || attributes['custom']
@@ -94,8 +94,8 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            _id: 'id',
             banned: 'banned',
+            id: 'id',
             online: 'online',
             role: 'role',
             custom: 'custom',

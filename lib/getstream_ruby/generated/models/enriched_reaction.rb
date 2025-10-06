@@ -18,9 +18,9 @@ module GetStream
         # @!attribute user_id
         #   @return [String]
         attr_accessor :user_id
-        # @!attribute _id
+        # @!attribute id
         #   @return [String]
-        attr_accessor :_id
+        attr_accessor :id
         # @!attribute parent
         #   @return [String]
         attr_accessor :parent
@@ -55,7 +55,7 @@ module GetStream
           @activity_id = attributes[:activity_id] || attributes['activity_id']
           @kind = attributes[:kind] || attributes['kind']
           @user_id = attributes[:user_id] || attributes['user_id']
-          @_id = attributes[:_id] || attributes['id'] || ""
+          @id = attributes[:id] || attributes['id'] || ""
           @parent = attributes[:parent] || attributes['parent'] || ""
           @target_feeds = attributes[:target_feeds] || attributes['target_feeds'] || nil
           @children_counts = attributes[:children_counts] || attributes['children_counts'] || nil
@@ -73,7 +73,7 @@ module GetStream
             activity_id: 'activity_id',
             kind: 'kind',
             user_id: 'user_id',
-            _id: 'id',
+            id: 'id',
             parent: 'parent',
             target_feeds: 'target_feeds',
             children_counts: 'children_counts',

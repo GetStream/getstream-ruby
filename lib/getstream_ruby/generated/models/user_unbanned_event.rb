@@ -24,9 +24,9 @@ module GetStream
         # @!attribute shadow
         #   @return [Boolean]
         attr_accessor :shadow
-        # @!attribute _type
+        # @!attribute type
         #   @return [String]
-        attr_accessor :_type
+        attr_accessor :type
         # @!attribute team
         #   @return [String]
         attr_accessor :team
@@ -42,7 +42,7 @@ module GetStream
           @cid = attributes[:cid] || attributes['cid']
           @created_at = attributes[:created_at] || attributes['created_at']
           @shadow = attributes[:shadow] || attributes['shadow']
-          @_type = attributes[:_type] || attributes['type'] || "user.unbanned"
+          @type = attributes[:type] || attributes['type'] || "user.unbanned"
           @team = attributes[:team] || attributes['team'] || ""
           @user = attributes[:user] || attributes['user'] || nil
         end
@@ -55,7 +55,7 @@ module GetStream
             cid: 'cid',
             created_at: 'created_at',
             shadow: 'shadow',
-            _type: 'type',
+            type: 'type',
             team: 'team',
             user: 'user'
           }

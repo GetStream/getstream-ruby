@@ -10,7 +10,7 @@ module GetStream
 
         # Model attributes
         # @!attribute count
-        #   @return [Integer] Count is the number of reactions of this type.sasas
+        #   @return [Integer] Count is the number of reactions of this type.
         attr_accessor :count
         # @!attribute first_reaction_at
         #   @return [DateTime] FirstReactionAt is the time of the first reaction of this type. This is the same also if all reaction of this type are deleted, because if someone will react again with the same type, will be preserved the sorting.

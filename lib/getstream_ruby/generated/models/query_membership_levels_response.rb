@@ -15,9 +15,9 @@ module GetStream
         # @!attribute membership_levels
         #   @return [Array<MembershipLevelResponse>]
         attr_accessor :membership_levels
-        # @!attribute _next
+        # @!attribute next
         #   @return [String] Cursor for next page
-        attr_accessor :_next
+        attr_accessor :next
         # @!attribute prev
         #   @return [String] Cursor for previous page
         attr_accessor :prev
@@ -27,7 +27,7 @@ module GetStream
           super(attributes)
           @duration = attributes[:duration] || attributes['duration']
           @membership_levels = attributes[:membership_levels] || attributes['membership_levels']
-          @_next = attributes[:_next] || attributes['next'] || ""
+          @next = attributes[:next] || attributes['next'] || ""
           @prev = attributes[:prev] || attributes['prev'] || ""
         end
 
@@ -36,7 +36,7 @@ module GetStream
           {
             duration: 'duration',
             membership_levels: 'membership_levels',
-            _next: 'next',
+            next: 'next',
             prev: 'prev'
           }
         end

@@ -133,7 +133,22 @@ module GetStreamRuby
       when 200..299
         StreamResponse.new(response.body)
       else
-        error_message = response.body.is_a?(Hash) && response.body["detail"] ? response.body["detail"] : "Request failed with status #{response.status}"
+        # Parse JSON response body if it's a string
+        parsed_body = if response.body.is_a?(String)
+          begin
+            JSON.parse(response.body)
+          rescue JSON::ParserError
+            response.body
+          end
+        else
+          response.body
+        end
+        
+        error_message = if parsed_body.is_a?(Hash)
+          parsed_body["message"] || parsed_body["detail"] || "Request failed with status #{response.status}"
+        else
+          "Request failed with status #{response.status}"
+        end
         raise APIError, error_message
       end
     end

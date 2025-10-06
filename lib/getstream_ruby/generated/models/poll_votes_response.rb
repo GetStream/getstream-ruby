@@ -15,9 +15,9 @@ module GetStream
         # @!attribute votes
         #   @return [Array<PollVoteResponseData>] Poll votes
         attr_accessor :votes
-        # @!attribute _next
+        # @!attribute next
         #   @return [String]
-        attr_accessor :_next
+        attr_accessor :next
         # @!attribute prev
         #   @return [String]
         attr_accessor :prev
@@ -27,7 +27,7 @@ module GetStream
           super(attributes)
           @duration = attributes[:duration] || attributes['duration']
           @votes = attributes[:votes] || attributes['votes']
-          @_next = attributes[:_next] || attributes['next'] || ""
+          @next = attributes[:next] || attributes['next'] || ""
           @prev = attributes[:prev] || attributes['prev'] || ""
         end
 
@@ -36,7 +36,7 @@ module GetStream
           {
             duration: 'duration',
             votes: 'votes',
-            _next: 'next',
+            next: 'next',
             prev: 'prev'
           }
         end

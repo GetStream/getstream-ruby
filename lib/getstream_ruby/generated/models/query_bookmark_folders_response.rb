@@ -15,9 +15,9 @@ module GetStream
         # @!attribute bookmark_folders
         #   @return [Array<BookmarkFolderResponse>] List of bookmark folders matching the query
         attr_accessor :bookmark_folders
-        # @!attribute _next
+        # @!attribute next
         #   @return [String] Cursor for next page
-        attr_accessor :_next
+        attr_accessor :next
         # @!attribute prev
         #   @return [String] Cursor for previous page
         attr_accessor :prev
@@ -27,7 +27,7 @@ module GetStream
           super(attributes)
           @duration = attributes[:duration] || attributes['duration']
           @bookmark_folders = attributes[:bookmark_folders] || attributes['bookmark_folders']
-          @_next = attributes[:_next] || attributes['next'] || ""
+          @next = attributes[:next] || attributes['next'] || ""
           @prev = attributes[:prev] || attributes['prev'] || ""
         end
 
@@ -36,7 +36,7 @@ module GetStream
           {
             duration: 'duration',
             bookmark_folders: 'bookmark_folders',
-            _next: 'next',
+            next: 'next',
             prev: 'prev'
           }
         end

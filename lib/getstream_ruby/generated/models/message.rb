@@ -9,12 +9,6 @@ module GetStream
       class Message < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute _id
-        #   @return [String]
-        attr_accessor :_id
-        # @!attribute _type
-        #   @return [String]
-        attr_accessor :_type
         # @!attribute cid
         #   @return [String]
         attr_accessor :cid
@@ -27,6 +21,9 @@ module GetStream
         # @!attribute html
         #   @return [String]
         attr_accessor :html
+        # @!attribute id
+        #   @return [String]
+        attr_accessor :id
         # @!attribute pinned
         #   @return [Boolean]
         attr_accessor :pinned
@@ -42,6 +39,9 @@ module GetStream
         # @!attribute text
         #   @return [String]
         attr_accessor :text
+        # @!attribute type
+        #   @return [String]
+        attr_accessor :type
         # @!attribute updated_at
         #   @return [DateTime]
         attr_accessor :updated_at
@@ -145,17 +145,17 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @_id = attributes[:_id] || attributes['id']
-          @_type = attributes[:_type] || attributes['type']
           @cid = attributes[:cid] || attributes['cid']
           @created_at = attributes[:created_at] || attributes['created_at']
           @deleted_reply_count = attributes[:deleted_reply_count] || attributes['deleted_reply_count']
           @html = attributes[:html] || attributes['html']
+          @id = attributes[:id] || attributes['id']
           @pinned = attributes[:pinned] || attributes['pinned']
           @reply_count = attributes[:reply_count] || attributes['reply_count']
           @shadowed = attributes[:shadowed] || attributes['shadowed']
           @silent = attributes[:silent] || attributes['silent']
           @text = attributes[:text] || attributes['text']
+          @type = attributes[:type] || attributes['type']
           @updated_at = attributes[:updated_at] || attributes['updated_at']
           @attachments = attributes[:attachments] || attributes['attachments']
           @latest_reactions = attributes[:latest_reactions] || attributes['latest_reactions']
@@ -194,17 +194,17 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            _id: 'id',
-            _type: 'type',
             cid: 'cid',
             created_at: 'created_at',
             deleted_reply_count: 'deleted_reply_count',
             html: 'html',
+            id: 'id',
             pinned: 'pinned',
             reply_count: 'reply_count',
             shadowed: 'shadowed',
             silent: 'silent',
             text: 'text',
+            type: 'type',
             updated_at: 'updated_at',
             attachments: 'attachments',
             latest_reactions: 'latest_reactions',

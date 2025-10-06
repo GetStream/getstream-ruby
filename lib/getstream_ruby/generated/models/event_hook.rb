@@ -9,9 +9,6 @@ module GetStream
       class EventHook < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute _id
-        #   @return [String]
-        attr_accessor :_id
         # @!attribute created_at
         #   @return [DateTime]
         attr_accessor :created_at
@@ -21,6 +18,9 @@ module GetStream
         # @!attribute hook_type
         #   @return [String]
         attr_accessor :hook_type
+        # @!attribute id
+        #   @return [String]
+        attr_accessor :id
         # @!attribute product
         #   @return [String]
         attr_accessor :product
@@ -79,10 +79,10 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @_id = attributes[:_id] || attributes['id'] || ""
           @created_at = attributes[:created_at] || attributes['created_at'] || nil
           @enabled = attributes[:enabled] || attributes['enabled'] || false
           @hook_type = attributes[:hook_type] || attributes['hook_type'] || ""
+          @id = attributes[:id] || attributes['id'] || ""
           @product = attributes[:product] || attributes['product'] || ""
           @sns_auth_type = attributes[:sns_auth_type] || attributes['sns_auth_type'] || ""
           @sns_key = attributes[:sns_key] || attributes['sns_key'] || ""
@@ -106,10 +106,10 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            _id: 'id',
             created_at: 'created_at',
             enabled: 'enabled',
             hook_type: 'hook_type',
+            id: 'id',
             product: 'product',
             sns_auth_type: 'sns_auth_type',
             sns_key: 'sns_key',

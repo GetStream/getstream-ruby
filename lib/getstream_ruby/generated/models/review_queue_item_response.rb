@@ -9,9 +9,6 @@ module GetStream
       class ReviewQueueItemResponse < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute _id
-        #   @return [String] Unique identifier of the review queue item
-        attr_accessor :_id
         # @!attribute ai_text_severity
         #   @return [String] AI-determined text severity
         attr_accessor :ai_text_severity
@@ -27,6 +24,9 @@ module GetStream
         # @!attribute flags_count
         #   @return [Integer]
         attr_accessor :flags_count
+        # @!attribute id
+        #   @return [String] Unique identifier of the review queue item
+        attr_accessor :id
         # @!attribute recommended_action
         #   @return [String] Suggested moderation action
         attr_accessor :recommended_action
@@ -100,12 +100,12 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @_id = attributes[:_id] || attributes['id']
           @ai_text_severity = attributes[:ai_text_severity] || attributes['ai_text_severity']
           @created_at = attributes[:created_at] || attributes['created_at']
           @entity_id = attributes[:entity_id] || attributes['entity_id']
           @entity_type = attributes[:entity_type] || attributes['entity_type']
           @flags_count = attributes[:flags_count] || attributes['flags_count']
+          @id = attributes[:id] || attributes['id']
           @recommended_action = attributes[:recommended_action] || attributes['recommended_action']
           @reviewed_by = attributes[:reviewed_by] || attributes['reviewed_by']
           @severity = attributes[:severity] || attributes['severity']
@@ -134,12 +134,12 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            _id: 'id',
             ai_text_severity: 'ai_text_severity',
             created_at: 'created_at',
             entity_id: 'entity_id',
             entity_type: 'entity_type',
             flags_count: 'flags_count',
+            id: 'id',
             recommended_action: 'recommended_action',
             reviewed_by: 'reviewed_by',
             severity: 'severity',

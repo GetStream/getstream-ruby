@@ -24,9 +24,9 @@ module GetStream
         # @!attribute custom
         #   @return [Object]
         attr_accessor :custom
-        # @!attribute _type
+        # @!attribute type
         #   @return [String]
-        attr_accessor :_type
+        attr_accessor :type
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -36,7 +36,7 @@ module GetStream
           @message = attributes[:message] || attributes['message']
           @user_id = attributes[:user_id] || attributes['user_id']
           @custom = attributes[:custom] || attributes['custom']
-          @_type = attributes[:_type] || attributes['type'] || "call.moderation_warning"
+          @type = attributes[:type] || attributes['type'] || "call.moderation_warning"
         end
 
         # Override field mappings for JSON serialization
@@ -47,7 +47,7 @@ module GetStream
             message: 'message',
             user_id: 'user_id',
             custom: 'custom',
-            _type: 'type'
+            type: 'type'
           }
         end
       end

@@ -21,9 +21,9 @@ module GetStream
         # @!attribute custom
         #   @return [Object]
         attr_accessor :custom
-        # @!attribute _type
+        # @!attribute type
         #   @return [String] The type of event: "feeds.activity.deleted" in this case
-        attr_accessor :_type
+        attr_accessor :type
         # @!attribute feed_visibility
         #   @return [String]
         attr_accessor :feed_visibility
@@ -41,7 +41,7 @@ module GetStream
           @fid = attributes[:fid] || attributes['fid']
           @activity = attributes[:activity] || attributes['activity']
           @custom = attributes[:custom] || attributes['custom']
-          @_type = attributes[:_type] || attributes['type'] || "feeds.activity.deleted"
+          @type = attributes[:type] || attributes['type'] || "feeds.activity.deleted"
           @feed_visibility = attributes[:feed_visibility] || attributes['feed_visibility'] || ""
           @received_at = attributes[:received_at] || attributes['received_at'] || nil
           @user = attributes[:user] || attributes['user'] || nil
@@ -54,7 +54,7 @@ module GetStream
             fid: 'fid',
             activity: 'activity',
             custom: 'custom',
-            _type: 'type',
+            type: 'type',
             feed_visibility: 'feed_visibility',
             received_at: 'received_at',
             user: 'user'

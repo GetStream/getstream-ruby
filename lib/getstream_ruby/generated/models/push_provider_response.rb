@@ -9,15 +9,15 @@ module GetStream
       class PushProviderResponse < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute _type
-        #   @return [String]
-        attr_accessor :_type
         # @!attribute created_at
         #   @return [DateTime]
         attr_accessor :created_at
         # @!attribute name
         #   @return [String]
         attr_accessor :name
+        # @!attribute type
+        #   @return [String]
+        attr_accessor :type
         # @!attribute updated_at
         #   @return [DateTime]
         attr_accessor :updated_at
@@ -97,9 +97,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @_type = attributes[:_type] || attributes['type']
           @created_at = attributes[:created_at] || attributes['created_at']
           @name = attributes[:name] || attributes['name']
+          @type = attributes[:type] || attributes['type']
           @updated_at = attributes[:updated_at] || attributes['updated_at']
           @apn_auth_key = attributes[:apn_auth_key] || attributes['apn_auth_key'] || ""
           @apn_auth_type = attributes[:apn_auth_type] || attributes['apn_auth_type'] || ""
@@ -130,9 +130,9 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            _type: 'type',
             created_at: 'created_at',
             name: 'name',
+            type: 'type',
             updated_at: 'updated_at',
             apn_auth_key: 'apn_auth_key',
             apn_auth_type: 'apn_auth_type',

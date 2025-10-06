@@ -9,9 +9,9 @@ module GetStream
       class CreateDeviceRequest < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute _id
+        # @!attribute id
         #   @return [String] Device ID
-        attr_accessor :_id
+        attr_accessor :id
         # @!attribute push_provider
         #   @return [String] Push provider
         attr_accessor :push_provider
@@ -31,7 +31,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @_id = attributes[:_id] || attributes['id']
+          @id = attributes[:id] || attributes['id']
           @push_provider = attributes[:push_provider] || attributes['push_provider']
           @push_provider_name = attributes[:push_provider_name] || attributes['push_provider_name'] || ""
           @user_id = attributes[:user_id] || attributes['user_id'] || ""
@@ -42,7 +42,7 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            _id: 'id',
+            id: 'id',
             push_provider: 'push_provider',
             push_provider_name: 'push_provider_name',
             user_id: 'user_id',

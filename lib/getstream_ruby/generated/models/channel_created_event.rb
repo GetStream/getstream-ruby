@@ -12,22 +12,22 @@ module GetStream
         # @!attribute created_at
         #   @return [DateTime]
         attr_accessor :created_at
-        # @!attribute _type
+        # @!attribute type
         #   @return [String]
-        attr_accessor :_type
+        attr_accessor :type
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @created_at = attributes[:created_at] || attributes['created_at']
-          @_type = attributes[:_type] || attributes['type'] || "channel.created"
+          @type = attributes[:type] || attributes['type'] || "channel.created"
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
             created_at: 'created_at',
-            _type: 'type'
+            type: 'type'
           }
         end
       end

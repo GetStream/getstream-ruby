@@ -9,15 +9,15 @@ module GetStream
       class ActivitySelectorConfig < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute _type
-        #   @return [String] Type of selector
-        attr_accessor :_type
         # @!attribute cutoff_time
         #   @return [DateTime] Time threshold for activity selection
         attr_accessor :cutoff_time
         # @!attribute min_popularity
         #   @return [Integer] Minimum popularity threshold
         attr_accessor :min_popularity
+        # @!attribute type
+        #   @return [String] Type of selector
+        attr_accessor :type
         # @!attribute sort
         #   @return [Array<SortParam>] Sort parameters for activity selection
         attr_accessor :sort
@@ -28,9 +28,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @_type = attributes[:_type] || attributes['type'] || ""
           @cutoff_time = attributes[:cutoff_time] || attributes['cutoff_time'] || nil
           @min_popularity = attributes[:min_popularity] || attributes['min_popularity'] || 0
+          @type = attributes[:type] || attributes['type'] || ""
           @sort = attributes[:sort] || attributes['sort'] || nil
           @filter = attributes[:filter] || attributes['filter'] || nil
         end
@@ -38,9 +38,9 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            _type: 'type',
             cutoff_time: 'cutoff_time',
             min_popularity: 'min_popularity',
+            type: 'type',
             sort: 'sort',
             filter: 'filter'
           }

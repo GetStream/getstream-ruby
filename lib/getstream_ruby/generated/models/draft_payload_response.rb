@@ -9,18 +9,15 @@ module GetStream
       class DraftPayloadResponse < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute _id
+        # @!attribute id
         #   @return [String]
-        attr_accessor :_id
+        attr_accessor :id
         # @!attribute text
         #   @return [String]
         attr_accessor :text
         # @!attribute custom
         #   @return [Object]
         attr_accessor :custom
-        # @!attribute _type
-        #   @return [String]
-        attr_accessor :_type
         # @!attribute html
         #   @return [String]
         attr_accessor :html
@@ -42,6 +39,9 @@ module GetStream
         # @!attribute silent
         #   @return [Boolean]
         attr_accessor :silent
+        # @!attribute type
+        #   @return [String]
+        attr_accessor :type
         # @!attribute attachments
         #   @return [Array<Attachment>]
         attr_accessor :attachments
@@ -52,10 +52,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @_id = attributes[:_id] || attributes['id']
+          @id = attributes[:id] || attributes['id']
           @text = attributes[:text] || attributes['text']
           @custom = attributes[:custom] || attributes['custom']
-          @_type = attributes[:_type] || attributes['type'] || ""
           @html = attributes[:html] || attributes['html'] || ""
           @mml = attributes[:mml] || attributes['mml'] || ""
           @parent_id = attributes[:parent_id] || attributes['parent_id'] || ""
@@ -63,6 +62,7 @@ module GetStream
           @quoted_message_id = attributes[:quoted_message_id] || attributes['quoted_message_id'] || ""
           @show_in_channel = attributes[:show_in_channel] || attributes['show_in_channel'] || false
           @silent = attributes[:silent] || attributes['silent'] || false
+          @type = attributes[:type] || attributes['type'] || ""
           @attachments = attributes[:attachments] || attributes['attachments'] || nil
           @mentioned_users = attributes[:mentioned_users] || attributes['mentioned_users'] || nil
         end
@@ -70,10 +70,9 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            _id: 'id',
+            id: 'id',
             text: 'text',
             custom: 'custom',
-            _type: 'type',
             html: 'html',
             mml: 'mml',
             parent_id: 'parent_id',
@@ -81,6 +80,7 @@ module GetStream
             quoted_message_id: 'quoted_message_id',
             show_in_channel: 'show_in_channel',
             silent: 'silent',
+            type: 'type',
             attachments: 'attachments',
             mentioned_users: 'mentioned_users'
           }

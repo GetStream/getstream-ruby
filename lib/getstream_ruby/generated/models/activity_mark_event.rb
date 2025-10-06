@@ -18,9 +18,9 @@ module GetStream
         # @!attribute custom
         #   @return [Object]
         attr_accessor :custom
-        # @!attribute _type
+        # @!attribute type
         #   @return [String] The type of event: "feeds.activity.marked" in this case
-        attr_accessor :_type
+        attr_accessor :type
         # @!attribute feed_visibility
         #   @return [String]
         attr_accessor :feed_visibility
@@ -52,7 +52,7 @@ module GetStream
           @created_at = attributes[:created_at] || attributes['created_at']
           @fid = attributes[:fid] || attributes['fid']
           @custom = attributes[:custom] || attributes['custom']
-          @_type = attributes[:_type] || attributes['type'] || "feeds.activity.marked"
+          @type = attributes[:type] || attributes['type'] || "feeds.activity.marked"
           @feed_visibility = attributes[:feed_visibility] || attributes['feed_visibility'] || ""
           @mark_all_read = attributes[:mark_all_read] || attributes['mark_all_read'] || false
           @mark_all_seen = attributes[:mark_all_seen] || attributes['mark_all_seen'] || false
@@ -69,7 +69,7 @@ module GetStream
             created_at: 'created_at',
             fid: 'fid',
             custom: 'custom',
-            _type: 'type',
+            type: 'type',
             feed_visibility: 'feed_visibility',
             mark_all_read: 'mark_all_read',
             mark_all_seen: 'mark_all_seen',

@@ -9,9 +9,9 @@ module GetStream
       class AddCommentReactionRequest < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute _type
+        # @!attribute type
         #   @return [String] The type of reaction, eg upvote, like, ...
-        attr_accessor :_type
+        attr_accessor :type
         # @!attribute create_notification_activity
         #   @return [Boolean] Whether to create a notification activity for this reaction
         attr_accessor :create_notification_activity
@@ -31,7 +31,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @_type = attributes[:_type] || attributes['type']
+          @type = attributes[:type] || attributes['type']
           @create_notification_activity = attributes[:create_notification_activity] || attributes['create_notification_activity'] || false
           @skip_push = attributes[:skip_push] || attributes['skip_push'] || false
           @user_id = attributes[:user_id] || attributes['user_id'] || ""
@@ -42,7 +42,7 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            _type: 'type',
+            type: 'type',
             create_notification_activity: 'create_notification_activity',
             skip_push: 'skip_push',
             user_id: 'user_id',

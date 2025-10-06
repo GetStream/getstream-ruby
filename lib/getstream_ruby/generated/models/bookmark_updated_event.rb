@@ -18,9 +18,9 @@ module GetStream
         # @!attribute custom
         #   @return [Object]
         attr_accessor :custom
-        # @!attribute _type
+        # @!attribute type
         #   @return [String] The type of event: "feeds.bookmark.updated" in this case
-        attr_accessor :_type
+        attr_accessor :type
         # @!attribute received_at
         #   @return [DateTime]
         attr_accessor :received_at
@@ -34,7 +34,7 @@ module GetStream
           @created_at = attributes[:created_at] || attributes['created_at']
           @bookmark = attributes[:bookmark] || attributes['bookmark']
           @custom = attributes[:custom] || attributes['custom']
-          @_type = attributes[:_type] || attributes['type'] || "feeds.bookmark.updated"
+          @type = attributes[:type] || attributes['type'] || "feeds.bookmark.updated"
           @received_at = attributes[:received_at] || attributes['received_at'] || nil
           @user = attributes[:user] || attributes['user'] || nil
         end
@@ -45,7 +45,7 @@ module GetStream
             created_at: 'created_at',
             bookmark: 'bookmark',
             custom: 'custom',
-            _type: 'type',
+            type: 'type',
             received_at: 'received_at',
             user: 'user'
           }

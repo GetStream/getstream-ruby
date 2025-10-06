@@ -9,12 +9,12 @@ module GetStream
       class QueryBookmarkFoldersRequest < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute _next
-        #   @return [String]
-        attr_accessor :_next
         # @!attribute limit
         #   @return [Integer]
         attr_accessor :limit
+        # @!attribute next
+        #   @return [String]
+        attr_accessor :next
         # @!attribute prev
         #   @return [String]
         attr_accessor :prev
@@ -28,8 +28,8 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @_next = attributes[:_next] || attributes['next'] || ""
           @limit = attributes[:limit] || attributes['limit'] || 0
+          @next = attributes[:next] || attributes['next'] || ""
           @prev = attributes[:prev] || attributes['prev'] || ""
           @sort = attributes[:sort] || attributes['sort'] || nil
           @filter = attributes[:filter] || attributes['filter'] || nil
@@ -38,8 +38,8 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            _next: 'next',
             limit: 'limit',
+            next: 'next',
             prev: 'prev',
             sort: 'sort',
             filter: 'filter'

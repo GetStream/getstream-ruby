@@ -9,20 +9,20 @@ module GetStream
       class Data < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute _id
+        # @!attribute id
         #   @return [String]
-        attr_accessor :_id
+        attr_accessor :id
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @_id = attributes[:_id] || attributes['id']
+          @id = attributes[:id] || attributes['id']
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            _id: 'id'
+            id: 'id'
           }
         end
       end

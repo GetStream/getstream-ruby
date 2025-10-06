@@ -9,9 +9,6 @@ module GetStream
       class ThreadedCommentResponse < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute _id
-        #   @return [String]
-        attr_accessor :_id
         # @!attribute confidence_score
         #   @return [Float]
         attr_accessor :confidence_score
@@ -21,6 +18,9 @@ module GetStream
         # @!attribute downvote_count
         #   @return [Integer]
         attr_accessor :downvote_count
+        # @!attribute id
+        #   @return [String]
+        attr_accessor :id
         # @!attribute object_id
         #   @return [String]
         attr_accessor :object_id
@@ -91,10 +91,10 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @_id = attributes[:_id] || attributes['id']
           @confidence_score = attributes[:confidence_score] || attributes['confidence_score']
           @created_at = attributes[:created_at] || attributes['created_at']
           @downvote_count = attributes[:downvote_count] || attributes['downvote_count']
+          @id = attributes[:id] || attributes['id']
           @object_id = attributes[:object_id] || attributes['object_id']
           @object_type = attributes[:object_type] || attributes['object_type']
           @reaction_count = attributes[:reaction_count] || attributes['reaction_count']
@@ -122,10 +122,10 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            _id: 'id',
             confidence_score: 'confidence_score',
             created_at: 'created_at',
             downvote_count: 'downvote_count',
+            id: 'id',
             object_id: 'object_id',
             object_type: 'object_type',
             reaction_count: 'reaction_count',

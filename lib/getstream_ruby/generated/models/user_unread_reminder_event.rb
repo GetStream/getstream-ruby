@@ -15,9 +15,9 @@ module GetStream
         # @!attribute channels
         #   @return [Hash<String, ChannelMessages>]
         attr_accessor :channels
-        # @!attribute _type
+        # @!attribute type
         #   @return [String]
-        attr_accessor :_type
+        attr_accessor :type
         # @!attribute user
         #   @return [User]
         attr_accessor :user
@@ -27,7 +27,7 @@ module GetStream
           super(attributes)
           @created_at = attributes[:created_at] || attributes['created_at']
           @channels = attributes[:channels] || attributes['channels']
-          @_type = attributes[:_type] || attributes['type'] || "user.unread_message_reminder"
+          @type = attributes[:type] || attributes['type'] || "user.unread_message_reminder"
           @user = attributes[:user] || attributes['user'] || nil
         end
 
@@ -36,7 +36,7 @@ module GetStream
           {
             created_at: 'created_at',
             channels: 'channels',
-            _type: 'type',
+            type: 'type',
             user: 'user'
           }
         end

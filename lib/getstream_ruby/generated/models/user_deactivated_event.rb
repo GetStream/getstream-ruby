@@ -15,9 +15,9 @@ module GetStream
         # @!attribute created_by
         #   @return [User]
         attr_accessor :created_by
-        # @!attribute _type
+        # @!attribute type
         #   @return [String]
-        attr_accessor :_type
+        attr_accessor :type
         # @!attribute user
         #   @return [User]
         attr_accessor :user
@@ -27,7 +27,7 @@ module GetStream
           super(attributes)
           @created_at = attributes[:created_at] || attributes['created_at']
           @created_by = attributes[:created_by] || attributes['created_by']
-          @_type = attributes[:_type] || attributes['type'] || "user.deactivated"
+          @type = attributes[:type] || attributes['type'] || "user.deactivated"
           @user = attributes[:user] || attributes['user'] || nil
         end
 
@@ -36,7 +36,7 @@ module GetStream
           {
             created_at: 'created_at',
             created_by: 'created_by',
-            _type: 'type',
+            type: 'type',
             user: 'user'
           }
         end

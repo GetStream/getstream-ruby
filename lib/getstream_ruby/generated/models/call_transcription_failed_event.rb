@@ -18,9 +18,9 @@ module GetStream
         # @!attribute egress_id
         #   @return [String]
         attr_accessor :egress_id
-        # @!attribute _type
+        # @!attribute type
         #   @return [String] The type of event: "call.transcription_failed" in this case
-        attr_accessor :_type
+        attr_accessor :type
         # @!attribute error
         #   @return [String] The error message detailing why transcription failed.
         attr_accessor :error
@@ -31,7 +31,7 @@ module GetStream
           @call_cid = attributes[:call_cid] || attributes['call_cid']
           @created_at = attributes[:created_at] || attributes['created_at']
           @egress_id = attributes[:egress_id] || attributes['egress_id']
-          @_type = attributes[:_type] || attributes['type'] || "call.transcription_failed"
+          @type = attributes[:type] || attributes['type'] || "call.transcription_failed"
           @error = attributes[:error] || attributes['error'] || ""
         end
 
@@ -41,7 +41,7 @@ module GetStream
             call_cid: 'call_cid',
             created_at: 'created_at',
             egress_id: 'egress_id',
-            _type: 'type',
+            type: 'type',
             error: 'error'
           }
         end

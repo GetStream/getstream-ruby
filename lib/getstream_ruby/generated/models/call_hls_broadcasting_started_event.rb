@@ -21,9 +21,9 @@ module GetStream
         # @!attribute call
         #   @return [CallResponse]
         attr_accessor :call
-        # @!attribute _type
+        # @!attribute type
         #   @return [String] The type of event: "call.hls_broadcasting_started" in this case
-        attr_accessor :_type
+        attr_accessor :type
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -32,7 +32,7 @@ module GetStream
           @created_at = attributes[:created_at] || attributes['created_at']
           @hls_playlist_url = attributes[:hls_playlist_url] || attributes['hls_playlist_url']
           @call = attributes[:call] || attributes['call']
-          @_type = attributes[:_type] || attributes['type'] || "call.hls_broadcasting_started"
+          @type = attributes[:type] || attributes['type'] || "call.hls_broadcasting_started"
         end
 
         # Override field mappings for JSON serialization
@@ -42,7 +42,7 @@ module GetStream
             created_at: 'created_at',
             hls_playlist_url: 'hls_playlist_url',
             call: 'call',
-            _type: 'type'
+            type: 'type'
           }
         end
       end

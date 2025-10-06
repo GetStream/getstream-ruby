@@ -39,9 +39,9 @@ module GetStream
         # @!attribute feed
         #   @return [FeedResponse]
         attr_accessor :feed
-        # @!attribute _next
+        # @!attribute next
         #   @return [String]
-        attr_accessor :_next
+        attr_accessor :next
         # @!attribute prev
         #   @return [String]
         attr_accessor :prev
@@ -77,7 +77,7 @@ module GetStream
           @own_capabilities = attributes[:own_capabilities] || attributes['own_capabilities']
           @pinned_activities = attributes[:pinned_activities] || attributes['pinned_activities']
           @feed = attributes[:feed] || attributes['feed']
-          @_next = attributes[:_next] || attributes['next'] || ""
+          @next = attributes[:next] || attributes['next'] || ""
           @prev = attributes[:prev] || attributes['prev'] || ""
           @own_follows = attributes[:own_follows] || attributes['own_follows'] || nil
           @followers_pagination = attributes[:followers_pagination] || attributes['followers_pagination'] || nil
@@ -100,7 +100,7 @@ module GetStream
             own_capabilities: 'own_capabilities',
             pinned_activities: 'pinned_activities',
             feed: 'feed',
-            _next: 'next',
+            next: 'next',
             prev: 'prev',
             own_follows: 'own_follows',
             followers_pagination: 'followers_pagination',

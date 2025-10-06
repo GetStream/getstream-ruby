@@ -24,9 +24,9 @@ module GetStream
         # @!attribute hard_delete
         #   @return [Boolean]
         attr_accessor :hard_delete
-        # @!attribute _type
+        # @!attribute type
         #   @return [String]
-        attr_accessor :_type
+        attr_accessor :type
         # @!attribute deleted_for_me
         #   @return [Boolean]
         attr_accessor :deleted_for_me
@@ -51,7 +51,7 @@ module GetStream
           @cid = attributes[:cid] || attributes['cid']
           @created_at = attributes[:created_at] || attributes['created_at']
           @hard_delete = attributes[:hard_delete] || attributes['hard_delete']
-          @_type = attributes[:_type] || attributes['type'] || "message.deleted"
+          @type = attributes[:type] || attributes['type'] || "message.deleted"
           @deleted_for_me = attributes[:deleted_for_me] || attributes['deleted_for_me'] || false
           @team = attributes[:team] || attributes['team'] || ""
           @thread_participants = attributes[:thread_participants] || attributes['thread_participants'] || nil
@@ -67,7 +67,7 @@ module GetStream
             cid: 'cid',
             created_at: 'created_at',
             hard_delete: 'hard_delete',
-            _type: 'type',
+            type: 'type',
             deleted_for_me: 'deleted_for_me',
             team: 'team',
             thread_participants: 'thread_participants',
