@@ -8,7 +8,10 @@ Dir[File.join(__dir__, "models", "*.rb")].sort.each { |file| require_relative fi
 module GetStream
   module Generated
     # Moderation API client with generated methods
-    class ModerationClient < GetStreamRuby::Client
+    class ModerationClient
+      def initialize(client)
+        @client = client
+      end
       # Ban a user from a channel or the entire app
       #
       # @param ban_request [BanRequest]
@@ -19,7 +22,7 @@ module GetStream
         body = ban_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -36,7 +39,7 @@ module GetStream
         body = bulk_image_moderation_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -53,7 +56,7 @@ module GetStream
         body = check_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -70,7 +73,7 @@ module GetStream
         body = upsert_config_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -91,7 +94,7 @@ module GetStream
         query_params['team'] = team unless team.nil?
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :delete,
           path,
           query_params: query_params
@@ -112,7 +115,7 @@ module GetStream
         query_params['team'] = team unless team.nil?
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :get,
           path,
           query_params: query_params
@@ -129,7 +132,7 @@ module GetStream
         body = query_moderation_configs_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -146,7 +149,7 @@ module GetStream
         body = custom_check_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -160,7 +163,7 @@ module GetStream
         path = '/api/v2/moderation/feeds_moderation_template'
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :delete,
           path
         )
@@ -173,7 +176,7 @@ module GetStream
         path = '/api/v2/moderation/feeds_moderation_template'
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :get,
           path
         )
@@ -189,7 +192,7 @@ module GetStream
         body = upsert_moderation_template_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -206,7 +209,7 @@ module GetStream
         body = flag_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -223,7 +226,7 @@ module GetStream
         body = query_moderation_flags_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -240,7 +243,7 @@ module GetStream
         body = query_moderation_logs_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -257,7 +260,7 @@ module GetStream
         body = upsert_moderation_rule_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -271,7 +274,7 @@ module GetStream
         path = '/api/v2/moderation/moderation_rule/{id}'
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :delete,
           path
         )
@@ -284,7 +287,7 @@ module GetStream
         path = '/api/v2/moderation/moderation_rule/{id}'
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :get,
           path
         )
@@ -300,7 +303,7 @@ module GetStream
         body = query_moderation_rules_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -317,7 +320,7 @@ module GetStream
         body = mute_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -334,7 +337,7 @@ module GetStream
         body = query_review_queue_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -351,7 +354,7 @@ module GetStream
         path = path.gsub('{id}', _id.to_s)
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :get,
           path
         )
@@ -367,7 +370,7 @@ module GetStream
         body = submit_action_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -392,7 +395,7 @@ module GetStream
         body = unban_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           query_params: query_params,
@@ -410,7 +413,7 @@ module GetStream
         body = unmute_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body

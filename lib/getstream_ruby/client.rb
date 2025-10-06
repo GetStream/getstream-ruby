@@ -2,6 +2,12 @@ require "faraday"
 require "faraday/retry"
 require "json"
 require "jwt"
+require_relative "generated/base_model"
+require_relative "generated/common_client"
+require_relative "generated/feeds_client"
+require_relative "generated/moderation_client"
+require_relative "generated/feed"
+require_relative "stream_response"
 
 module GetStreamRuby
   class Client
@@ -29,6 +35,24 @@ module GetStreamRuby
       @feed ||= Resources::Feed.new(self)
     end
 
+    # Generated API clients
+    def common
+      @common ||= GetStream::Generated::CommonClient.new(self)
+    end
+
+    def feeds
+      @feeds ||= GetStream::Generated::FeedsClient.new(self)
+    end
+
+    def moderation
+      @moderation ||= GetStream::Generated::ModerationClient.new(self)
+    end
+
+    # Create an individual feed instance
+    def feed(feed_group_id, feed_id)
+      GetStream::Generated::Feed.new(self, feed_group_id, feed_id)
+    end
+
     def post(path, body = {})
       request(:post, path, body)
     end
@@ -47,10 +71,15 @@ module GetStreamRuby
     private
 
     def request(method, path, data = {})
+
+      # Add API key to query parameters
+      query_params = { api_key: @configuration.api_key }
       response = @connection.send(method) do |req|
-        req.url path
+        req.url path, query_params
         req.headers["Authorization"] = generate_auth_header
         req.headers["Content-Type"] = "application/json"
+        req.headers["stream-auth-type"] = "jwt"
+        req.headers["X-Stream-Client"] = get_user_agent
         req.body = data.to_json
       end
 
@@ -76,20 +105,23 @@ module GetStreamRuby
     def generate_auth_header
       token = JWT.encode(
         {
-          iss: @configuration.app_id,
           iat: Time.now.to_i,
-          exp: Time.now.to_i + 3600
+          server: true
         },
         @configuration.api_secret,
         "HS256"
       )
-      "Bearer #{token}"
+      token
+    end
+
+    def get_user_agent
+      "getstream-ruby-#{GetStreamRuby::VERSION}"
     end
 
     def handle_response(response)
       case response.status
       when 200..299
-        response.body
+        StreamResponse.new(response.body)
       else
         error_message = response.body.is_a?(Hash) && response.body["detail"] ? response.body["detail"] : "Request failed with status #{response.status}"
         raise APIError, error_message

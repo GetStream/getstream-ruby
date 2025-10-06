@@ -8,7 +8,10 @@ Dir[File.join(__dir__, "models", "*.rb")].sort.each { |file| require_relative fi
 module GetStream
   module Generated
     # Common API client with generated methods
-    class CommonClient < GetStreamRuby::Client
+    class CommonClient
+      def initialize(client)
+        @client = client
+      end
       # This Method returns the application settings
       #
       # @return [GetStream::StreamResponse<GetApplicationResponse>]
@@ -16,7 +19,7 @@ module GetStream
         path = '/api/v2/app'
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :get,
           path
         )
@@ -32,7 +35,7 @@ module GetStream
         body = update_app_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :patch,
           path,
           body: body
@@ -50,7 +53,7 @@ module GetStream
         query_params['team'] = team unless team.nil?
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :get,
           path,
           query_params: query_params
@@ -67,7 +70,7 @@ module GetStream
         body = create_block_list_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -88,7 +91,7 @@ module GetStream
         query_params['team'] = team unless team.nil?
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :delete,
           path,
           query_params: query_params
@@ -109,7 +112,7 @@ module GetStream
         query_params['team'] = team unless team.nil?
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :get,
           path,
           query_params: query_params
@@ -129,7 +132,7 @@ module GetStream
         body = update_block_list_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :put,
           path,
           body: body
@@ -146,7 +149,7 @@ module GetStream
         body = check_push_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -163,7 +166,7 @@ module GetStream
         body = check_sns_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -180,7 +183,7 @@ module GetStream
         body = check_sqs_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -200,7 +203,7 @@ module GetStream
         query_params['user_id'] = user_id unless user_id.nil?
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :delete,
           path,
           query_params: query_params
@@ -218,7 +221,7 @@ module GetStream
         query_params['user_id'] = user_id unless user_id.nil?
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :get,
           path,
           query_params: query_params
@@ -235,7 +238,7 @@ module GetStream
         body = create_device_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -252,7 +255,7 @@ module GetStream
         body = export_users_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -266,7 +269,7 @@ module GetStream
         path = '/api/v2/external_storage'
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :get,
           path
         )
@@ -282,7 +285,7 @@ module GetStream
         body = create_external_storage_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -299,7 +302,7 @@ module GetStream
         path = path.gsub('{name}', name.to_s)
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :delete,
           path
         )
@@ -318,7 +321,7 @@ module GetStream
         body = update_external_storage_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :put,
           path,
           body: body
@@ -335,7 +338,7 @@ module GetStream
         path = path.gsub('{name}', name.to_s)
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :get,
           path
         )
@@ -351,7 +354,7 @@ module GetStream
         body = create_guest_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -368,7 +371,7 @@ module GetStream
         body = create_import_url_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -382,7 +385,7 @@ module GetStream
         path = '/api/v2/imports'
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :get,
           path
         )
@@ -398,7 +401,7 @@ module GetStream
         body = create_import_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -415,7 +418,7 @@ module GetStream
         path = path.gsub('{id}', _id.to_s)
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :get,
           path
         )
@@ -432,7 +435,7 @@ module GetStream
         query_params['url'] = url unless url.nil?
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :get,
           path,
           query_params: query_params
@@ -446,7 +449,7 @@ module GetStream
         path = '/api/v2/permissions'
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :get,
           path
         )
@@ -462,7 +465,7 @@ module GetStream
         path = path.gsub('{id}', _id.to_s)
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :get,
           path
         )
@@ -478,7 +481,7 @@ module GetStream
         body = create_poll_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -495,7 +498,7 @@ module GetStream
         body = update_poll_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :put,
           path,
           body: body
@@ -516,7 +519,7 @@ module GetStream
         body = query_polls_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           query_params: query_params,
@@ -538,7 +541,7 @@ module GetStream
         query_params['user_id'] = user_id unless user_id.nil?
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :delete,
           path,
           query_params: query_params
@@ -559,7 +562,7 @@ module GetStream
         query_params['user_id'] = user_id unless user_id.nil?
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :get,
           path,
           query_params: query_params
@@ -579,7 +582,7 @@ module GetStream
         body = update_poll_partial_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :patch,
           path,
           body: body
@@ -599,7 +602,7 @@ module GetStream
         body = create_poll_option_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -619,7 +622,7 @@ module GetStream
         body = update_poll_option_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :put,
           path,
           body: body
@@ -642,7 +645,7 @@ module GetStream
         query_params['user_id'] = user_id unless user_id.nil?
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :delete,
           path,
           query_params: query_params
@@ -665,7 +668,7 @@ module GetStream
         query_params['user_id'] = user_id unless user_id.nil?
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :get,
           path,
           query_params: query_params
@@ -689,7 +692,7 @@ module GetStream
         body = query_poll_votes_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           query_params: query_params,
@@ -707,7 +710,7 @@ module GetStream
         body = upsert_push_preferences_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -721,7 +724,7 @@ module GetStream
         path = '/api/v2/push_providers'
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :get,
           path
         )
@@ -737,7 +740,7 @@ module GetStream
         body = upsert_push_provider_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -756,7 +759,7 @@ module GetStream
         path = path.gsub('{name}', name.to_s)
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :delete,
           path
         )
@@ -775,7 +778,7 @@ module GetStream
         query_params['push_provider_name'] = push_provider_name unless push_provider_name.nil?
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :get,
           path,
           query_params: query_params
@@ -792,7 +795,7 @@ module GetStream
         body = upsert_push_template_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -818,7 +821,7 @@ module GetStream
         query_params['endpoints'] = endpoints unless endpoints.nil?
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :get,
           path,
           query_params: query_params
@@ -832,7 +835,7 @@ module GetStream
         path = '/api/v2/roles'
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :get,
           path
         )
@@ -848,7 +851,7 @@ module GetStream
         body = create_role_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -865,7 +868,7 @@ module GetStream
         path = path.gsub('{name}', name.to_s)
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :delete,
           path
         )
@@ -881,7 +884,7 @@ module GetStream
         path = path.gsub('{id}', _id.to_s)
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :get,
           path
         )
@@ -898,7 +901,7 @@ module GetStream
         query_params['url'] = url unless url.nil?
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :delete,
           path,
           query_params: query_params
@@ -915,7 +918,7 @@ module GetStream
         body = file_upload_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -933,7 +936,7 @@ module GetStream
         query_params['url'] = url unless url.nil?
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :delete,
           path,
           query_params: query_params
@@ -950,7 +953,7 @@ module GetStream
         body = image_upload_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -968,7 +971,7 @@ module GetStream
         query_params['payload'] = payload unless payload.nil?
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :get,
           path,
           query_params: query_params
@@ -985,7 +988,7 @@ module GetStream
         body = update_users_partial_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :patch,
           path,
           body: body
@@ -1002,7 +1005,7 @@ module GetStream
         body = update_users_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -1020,7 +1023,7 @@ module GetStream
         query_params['user_id'] = user_id unless user_id.nil?
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :get,
           path,
           query_params: query_params
@@ -1037,7 +1040,7 @@ module GetStream
         body = block_users_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -1054,7 +1057,7 @@ module GetStream
         body = deactivate_users_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -1071,7 +1074,7 @@ module GetStream
         body = delete_users_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -1089,7 +1092,7 @@ module GetStream
         query_params['user_id'] = user_id unless user_id.nil?
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :get,
           path,
           query_params: query_params
@@ -1110,7 +1113,7 @@ module GetStream
         body = update_live_location_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :put,
           path,
           query_params: query_params,
@@ -1128,7 +1131,7 @@ module GetStream
         body = reactivate_users_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -1145,7 +1148,7 @@ module GetStream
         body = restore_users_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -1162,7 +1165,7 @@ module GetStream
         body = unblock_users_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -1182,7 +1185,7 @@ module GetStream
         body = deactivate_user_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -1199,7 +1202,7 @@ module GetStream
         path = path.gsub('{user_id}', user_id.to_s)
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :get,
           path
         )
@@ -1218,7 +1221,7 @@ module GetStream
         body = reactivate_user_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body

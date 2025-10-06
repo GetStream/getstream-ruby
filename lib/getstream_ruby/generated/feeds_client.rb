@@ -8,7 +8,10 @@ Dir[File.join(__dir__, "models", "*.rb")].sort.each { |file| require_relative fi
 module GetStream
   module Generated
     # Feeds API client with generated methods
-    class FeedsClient < GetStreamRuby::Client
+    class FeedsClient
+      def initialize(client)
+        @client = client
+      end
       # Create a new activity or update an existing one
       #
       # @param add_activity_request [AddActivityRequest]
@@ -19,7 +22,7 @@ module GetStream
         body = add_activity_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -36,7 +39,7 @@ module GetStream
         body = upsert_activities_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -53,7 +56,7 @@ module GetStream
         body = delete_activities_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -70,7 +73,7 @@ module GetStream
         body = query_activities_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -93,7 +96,7 @@ module GetStream
         query_params['user_id'] = user_id unless user_id.nil?
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :delete,
           path,
           query_params: query_params
@@ -113,7 +116,7 @@ module GetStream
         body = update_bookmark_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :patch,
           path,
           body: body
@@ -133,7 +136,7 @@ module GetStream
         body = add_bookmark_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -153,7 +156,7 @@ module GetStream
         body = activity_feedback_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -175,7 +178,7 @@ module GetStream
         body = cast_poll_vote_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -200,7 +203,7 @@ module GetStream
         query_params['user_id'] = user_id unless user_id.nil?
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :delete,
           path,
           query_params: query_params
@@ -220,7 +223,7 @@ module GetStream
         body = add_reaction_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -240,7 +243,7 @@ module GetStream
         body = query_activity_reactions_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -263,7 +266,7 @@ module GetStream
         query_params['user_id'] = user_id unless user_id.nil?
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :delete,
           path,
           query_params: query_params
@@ -284,7 +287,7 @@ module GetStream
         query_params['hard_delete'] = hard_delete unless hard_delete.nil?
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :delete,
           path,
           query_params: query_params
@@ -301,7 +304,7 @@ module GetStream
         path = path.gsub('{id}', _id.to_s)
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :get,
           path
         )
@@ -320,7 +323,7 @@ module GetStream
         body = update_activity_partial_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :patch,
           path,
           body: body
@@ -340,7 +343,7 @@ module GetStream
         body = update_activity_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :put,
           path,
           body: body
@@ -357,7 +360,7 @@ module GetStream
         body = query_bookmark_folders_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -374,7 +377,7 @@ module GetStream
         path = path.gsub('{folder_id}', folder_id.to_s)
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :delete,
           path
         )
@@ -393,7 +396,7 @@ module GetStream
         body = update_bookmark_folder_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :patch,
           path,
           body: body
@@ -410,7 +413,7 @@ module GetStream
         body = query_bookmarks_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -442,7 +445,7 @@ module GetStream
         query_params['next'] = _next unless _next.nil?
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :get,
           path,
           query_params: query_params
@@ -459,7 +462,7 @@ module GetStream
         body = add_comment_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -476,7 +479,7 @@ module GetStream
         body = add_comments_batch_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -493,7 +496,7 @@ module GetStream
         body = query_comments_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -514,7 +517,7 @@ module GetStream
         query_params['hard_delete'] = hard_delete unless hard_delete.nil?
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :delete,
           path,
           query_params: query_params
@@ -531,7 +534,7 @@ module GetStream
         path = path.gsub('{id}', _id.to_s)
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :get,
           path
         )
@@ -550,7 +553,7 @@ module GetStream
         body = update_comment_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :patch,
           path,
           body: body
@@ -570,7 +573,7 @@ module GetStream
         body = add_comment_reaction_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -590,7 +593,7 @@ module GetStream
         body = query_comment_reactions_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -613,7 +616,7 @@ module GetStream
         query_params['user_id'] = user_id unless user_id.nil?
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :delete,
           path,
           query_params: query_params
@@ -644,7 +647,7 @@ module GetStream
         query_params['next'] = _next unless _next.nil?
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :get,
           path,
           query_params: query_params
@@ -658,7 +661,7 @@ module GetStream
         path = '/api/v2/feeds/feed_groups'
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :get,
           path
         )
@@ -674,7 +677,7 @@ module GetStream
         body = create_feed_group_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -697,7 +700,7 @@ module GetStream
         query_params['hard_delete'] = hard_delete unless hard_delete.nil?
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :delete,
           path,
           query_params: query_params
@@ -719,7 +722,7 @@ module GetStream
         body = get_or_create_feed_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -741,7 +744,7 @@ module GetStream
         body = update_feed_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :put,
           path,
           body: body
@@ -763,7 +766,7 @@ module GetStream
         body = mark_activity_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -788,7 +791,7 @@ module GetStream
         query_params['user_id'] = user_id unless user_id.nil?
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :delete,
           path,
           query_params: query_params
@@ -812,7 +815,7 @@ module GetStream
         body = pin_activity_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -834,7 +837,7 @@ module GetStream
         body = update_feed_members_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :patch,
           path,
           body: body
@@ -856,7 +859,7 @@ module GetStream
         body = accept_feed_member_invite_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -878,7 +881,7 @@ module GetStream
         body = query_feed_members_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -900,7 +903,7 @@ module GetStream
         body = reject_feed_member_invite_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -923,7 +926,7 @@ module GetStream
         query_params['user_id'] = user_id unless user_id.nil?
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :get,
           path,
           query_params: query_params
@@ -944,7 +947,7 @@ module GetStream
         query_params['hard_delete'] = hard_delete unless hard_delete.nil?
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :delete,
           path,
           query_params: query_params
@@ -961,7 +964,7 @@ module GetStream
         path = path.gsub('{id}', _id.to_s)
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :get,
           path
         )
@@ -980,7 +983,7 @@ module GetStream
         body = get_or_create_feed_group_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -1000,7 +1003,7 @@ module GetStream
         body = update_feed_group_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :put,
           path,
           body: body
@@ -1014,7 +1017,7 @@ module GetStream
         path = '/api/v2/feeds/feed_views'
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :get,
           path
         )
@@ -1030,7 +1033,7 @@ module GetStream
         body = create_feed_view_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -1047,7 +1050,7 @@ module GetStream
         path = path.gsub('{id}', _id.to_s)
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :delete,
           path
         )
@@ -1063,7 +1066,7 @@ module GetStream
         path = path.gsub('{id}', _id.to_s)
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :get,
           path
         )
@@ -1082,7 +1085,7 @@ module GetStream
         body = get_or_create_feed_view_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -1102,7 +1105,7 @@ module GetStream
         body = update_feed_view_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :put,
           path,
           body: body
@@ -1116,7 +1119,7 @@ module GetStream
         path = '/api/v2/feeds/feed_visibilities'
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :get,
           path
         )
@@ -1132,7 +1135,7 @@ module GetStream
         path = path.gsub('{name}', name.to_s)
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :get,
           path
         )
@@ -1148,7 +1151,7 @@ module GetStream
         body = create_feeds_batch_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -1165,7 +1168,7 @@ module GetStream
         body = query_feeds_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -1182,7 +1185,7 @@ module GetStream
         body = update_follow_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :patch,
           path,
           body: body
@@ -1199,7 +1202,7 @@ module GetStream
         body = follow_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -1216,7 +1219,7 @@ module GetStream
         body = accept_follow_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -1233,7 +1236,7 @@ module GetStream
         body = follow_batch_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -1250,7 +1253,7 @@ module GetStream
         body = query_follows_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -1267,7 +1270,7 @@ module GetStream
         body = reject_follow_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -1286,7 +1289,7 @@ module GetStream
         path = path.gsub('{target}', target.to_s)
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :delete,
           path
         )
@@ -1302,7 +1305,7 @@ module GetStream
         body = create_membership_level_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -1319,7 +1322,7 @@ module GetStream
         body = query_membership_levels_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -1336,7 +1339,7 @@ module GetStream
         path = path.gsub('{id}', _id.to_s)
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :delete,
           path
         )
@@ -1355,7 +1358,7 @@ module GetStream
         body = update_membership_level_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :patch,
           path,
           body: body
@@ -1372,7 +1375,7 @@ module GetStream
         body = unfollow_batch_request
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path,
           body: body
@@ -1389,7 +1392,7 @@ module GetStream
         path = path.gsub('{user_id}', user_id.to_s)
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :delete,
           path
         )
@@ -1405,7 +1408,7 @@ module GetStream
         path = path.gsub('{user_id}', user_id.to_s)
 
         # Make the API request
-        make_request(
+        @client.make_request(
           :post,
           path
         )

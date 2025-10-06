@@ -18,7 +18,6 @@ module GetStreamRuby
         @timeout = timeout || 30
       end
 
-      puts @api_key
       @logger = nil
     end
 
