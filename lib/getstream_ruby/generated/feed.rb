@@ -13,6 +13,7 @@ module GetStream
         @feed_group_id = feed_group_id
         @feed_id = feed_id
       end
+
       # Delete a single feed by its ID
       #
       # @param hard_delete [Boolean]
@@ -20,7 +21,7 @@ module GetStream
       def delete_feed(hard_delete = nil)
         # Build query parameters
         query_params = {}
-        query_params["hard_delete"] = hard_delete unless hard_delete.nil?
+        query_params['hard_delete'] = hard_delete unless hard_delete.nil?
 
         # Delegate to the FeedsClient
         @client.feeds.delete_feed(@feed_group_id, @feed_id, query_params)
@@ -64,7 +65,7 @@ module GetStream
       def unpin_activity(activity_id, user_id = nil)
         # Build query parameters
         query_params = {}
-        query_params["user_id"] = user_id unless user_id.nil?
+        query_params['user_id'] = user_id unless user_id.nil?
 
         # Delegate to the FeedsClient
         @client.feeds.unpin_activity(@feed_group_id, @feed_id, activity_id, query_params)
