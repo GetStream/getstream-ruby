@@ -9,8 +9,14 @@ module GetStream
       class Thresholds < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute explicit
+        #   @return [LabelThresholds]
         attr_accessor :explicit
+        # @!attribute spam
+        #   @return [LabelThresholds]
         attr_accessor :spam
+        # @!attribute toxic
+        #   @return [LabelThresholds]
         attr_accessor :toxic
 
         # Initialize with attributes

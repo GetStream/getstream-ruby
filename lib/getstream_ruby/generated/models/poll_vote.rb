@@ -9,14 +9,32 @@ module GetStream
       class PollVote < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _id
+        #   @return [String]
         attr_accessor :_id
+        # @!attribute created_at
+        #   @return [DateTime]
         attr_accessor :created_at
+        # @!attribute option_id
+        #   @return [String]
         attr_accessor :option_id
+        # @!attribute poll_id
+        #   @return [String]
         attr_accessor :poll_id
+        # @!attribute updated_at
+        #   @return [DateTime]
         attr_accessor :updated_at
+        # @!attribute answer_text
+        #   @return [String]
         attr_accessor :answer_text
+        # @!attribute is_answer
+        #   @return [Boolean]
         attr_accessor :is_answer
+        # @!attribute user_id
+        #   @return [String]
         attr_accessor :user_id
+        # @!attribute user
+        #   @return [User]
         attr_accessor :user
 
         # Initialize with attributes

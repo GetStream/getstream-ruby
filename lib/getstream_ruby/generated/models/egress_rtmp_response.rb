@@ -9,9 +9,17 @@ module GetStream
       class EgressRTMPResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute name
+        #   @return [String]
         attr_accessor :name
+        # @!attribute started_at
+        #   @return [DateTime]
         attr_accessor :started_at
+        # @!attribute stream_key
+        #   @return [String]
         attr_accessor :stream_key
+        # @!attribute stream_url
+        #   @return [String]
         attr_accessor :stream_url
 
         # Initialize with attributes

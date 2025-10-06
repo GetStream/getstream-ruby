@@ -9,9 +9,17 @@ module GetStream
       class MuteChannelResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
-        attr_accessor :channel_mutes  # Object with mutes (if multiple channels were muted)
+        # @!attribute channel_mutes
+        #   @return [Array<ChannelMute>] Object with mutes (if multiple channels were muted)
+        attr_accessor :channel_mutes
+        # @!attribute channel_mute
+        #   @return [ChannelMute]
         attr_accessor :channel_mute
+        # @!attribute own_user
+        #   @return [OwnUser]
         attr_accessor :own_user
 
         # Initialize with attributes

@@ -9,16 +9,38 @@ module GetStream
       class MessageModerationResult < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :action  # Action taken by automod
-        attr_accessor :created_at  # Date/time of creation
-        attr_accessor :message_id  # ID of the message
-        attr_accessor :updated_at  # Date/time of the last update
-        attr_accessor :user_bad_karma  # Whether user has bad karma
-        attr_accessor :user_karma  # Karma of the user
-        attr_accessor :blocked_word  # Word that was blocked
-        attr_accessor :blocklist_name  # Name of the blocklist
-        attr_accessor :moderated_by  # User who moderated the message
+        # @!attribute action
+        #   @return [String] Action taken by automod
+        attr_accessor :action
+        # @!attribute created_at
+        #   @return [DateTime] Date/time of creation
+        attr_accessor :created_at
+        # @!attribute message_id
+        #   @return [String] ID of the message
+        attr_accessor :message_id
+        # @!attribute updated_at
+        #   @return [DateTime] Date/time of the last update
+        attr_accessor :updated_at
+        # @!attribute user_bad_karma
+        #   @return [Boolean] Whether user has bad karma
+        attr_accessor :user_bad_karma
+        # @!attribute user_karma
+        #   @return [Float] Karma of the user
+        attr_accessor :user_karma
+        # @!attribute blocked_word
+        #   @return [String] Word that was blocked
+        attr_accessor :blocked_word
+        # @!attribute blocklist_name
+        #   @return [String] Name of the blocklist
+        attr_accessor :blocklist_name
+        # @!attribute moderated_by
+        #   @return [String] User who moderated the message
+        attr_accessor :moderated_by
+        # @!attribute ai_moderation_response
+        #   @return [ModerationResponse]
         attr_accessor :ai_moderation_response
+        # @!attribute moderation_thresholds
+        #   @return [Thresholds]
         attr_accessor :moderation_thresholds
 
         # Initialize with attributes

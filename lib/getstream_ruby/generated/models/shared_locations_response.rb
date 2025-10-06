@@ -9,7 +9,11 @@ module GetStream
       class SharedLocationsResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
+        # @!attribute active_live_locations
+        #   @return [Array<SharedLocationResponseData>]
         attr_accessor :active_live_locations
 
         # Initialize with attributes

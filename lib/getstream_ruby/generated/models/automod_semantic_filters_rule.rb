@@ -9,8 +9,14 @@ module GetStream
       class AutomodSemanticFiltersRule < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute action
+        #   @return [String]
         attr_accessor :action
+        # @!attribute name
+        #   @return [String]
         attr_accessor :name
+        # @!attribute threshold
+        #   @return [Float]
         attr_accessor :threshold
 
         # Initialize with attributes

@@ -9,10 +9,20 @@ module GetStream
       class BlockedUserResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :blocked_user_id  # ID of the user who got blocked
+        # @!attribute blocked_user_id
+        #   @return [String] ID of the user who got blocked
+        attr_accessor :blocked_user_id
+        # @!attribute created_at
+        #   @return [DateTime]
         attr_accessor :created_at
-        attr_accessor :user_id  # ID of the user who blocked another user
+        # @!attribute user_id
+        #   @return [String] ID of the user who blocked another user
+        attr_accessor :user_id
+        # @!attribute blocked_user
+        #   @return [UserResponse]
         attr_accessor :blocked_user
+        # @!attribute user
+        #   @return [UserResponse]
         attr_accessor :user
 
         # Initialize with attributes

@@ -9,8 +9,14 @@ module GetStream
       class RTMPLocation < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute name
+        #   @return [String]
         attr_accessor :name
+        # @!attribute stream_key
+        #   @return [String]
         attr_accessor :stream_key
+        # @!attribute stream_url
+        #   @return [String]
         attr_accessor :stream_url
 
         # Initialize with attributes

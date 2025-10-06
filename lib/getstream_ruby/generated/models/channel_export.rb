@@ -9,11 +9,21 @@ module GetStream
       class ChannelExport < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :_id  # Channel ID
-        attr_accessor :_type  # Channel type
+        # @!attribute _id
+        #   @return [String] Channel ID
+        attr_accessor :_id
+        # @!attribute _type
+        #   @return [String] Channel type
+        attr_accessor :_type
+        # @!attribute cid
+        #   @return [String]
         attr_accessor :cid
-        attr_accessor :messages_since  # Date to export messages since
-        attr_accessor :messages_until  # Date to export messages until
+        # @!attribute messages_since
+        #   @return [DateTime] Date to export messages since
+        attr_accessor :messages_since
+        # @!attribute messages_until
+        #   @return [DateTime] Date to export messages until
+        attr_accessor :messages_until
 
         # Initialize with attributes
         def initialize(attributes = {})

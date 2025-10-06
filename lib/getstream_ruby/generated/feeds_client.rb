@@ -15,7 +15,7 @@ module GetStream
       # Create a new activity or update an existing one
       #
       # @param add_activity_request [AddActivityRequest]
-      # @return [GetStream::StreamResponse<AddActivityResponse>]
+      # @return [Models::AddActivityResponse]
       def add_activity(add_activity_request)
         path = '/api/v2/feeds/activities'
         # Build request body
@@ -32,7 +32,7 @@ module GetStream
       # Create new activities or update existing ones in a batch operation
       #
       # @param upsert_activities_request [UpsertActivitiesRequest]
-      # @return [GetStream::StreamResponse<UpsertActivitiesResponse>]
+      # @return [Models::UpsertActivitiesResponse]
       def upsert_activities(upsert_activities_request)
         path = '/api/v2/feeds/activities/batch'
         # Build request body
@@ -49,7 +49,7 @@ module GetStream
       # Delete one or more activities by their IDs
       #
       # @param delete_activities_request [DeleteActivitiesRequest]
-      # @return [GetStream::StreamResponse<DeleteActivitiesResponse>]
+      # @return [Models::DeleteActivitiesResponse]
       def delete_activities(delete_activities_request)
         path = '/api/v2/feeds/activities/delete'
         # Build request body
@@ -66,7 +66,7 @@ module GetStream
       # Query activities based on filters with pagination and sorting options
       #
       # @param query_activities_request [QueryActivitiesRequest]
-      # @return [GetStream::StreamResponse<QueryActivitiesResponse>]
+      # @return [Models::QueryActivitiesResponse]
       def query_activities(query_activities_request)
         path = '/api/v2/feeds/activities/query'
         # Build request body
@@ -85,7 +85,7 @@ module GetStream
       # @param activity_id [String]
       # @param folder_id [String]
       # @param user_id [String]
-      # @return [GetStream::StreamResponse<DeleteBookmarkResponse>]
+      # @return [Models::DeleteBookmarkResponse]
       def delete_bookmark(activity_id, folder_id = nil, user_id = nil)
         path = '/api/v2/feeds/activities/{activity_id}/bookmarks'
         # Replace path parameters
@@ -107,7 +107,7 @@ module GetStream
       #
       # @param activity_id [String]
       # @param update_bookmark_request [UpdateBookmarkRequest]
-      # @return [GetStream::StreamResponse<UpdateBookmarkResponse>]
+      # @return [Models::UpdateBookmarkResponse]
       def update_bookmark(activity_id, update_bookmark_request)
         path = '/api/v2/feeds/activities/{activity_id}/bookmarks'
         # Replace path parameters
@@ -127,7 +127,7 @@ module GetStream
       #
       # @param activity_id [String]
       # @param add_bookmark_request [AddBookmarkRequest]
-      # @return [GetStream::StreamResponse<AddBookmarkResponse>]
+      # @return [Models::AddBookmarkResponse]
       def add_bookmark(activity_id, add_bookmark_request)
         path = '/api/v2/feeds/activities/{activity_id}/bookmarks'
         # Replace path parameters
@@ -147,7 +147,7 @@ module GetStream
       #
       # @param activity_id [String]
       # @param activity_feedback_request [ActivityFeedbackRequest]
-      # @return [GetStream::StreamResponse<ActivityFeedbackResponse>]
+      # @return [Models::ActivityFeedbackResponse]
       def activity_feedback(activity_id, activity_feedback_request)
         path = '/api/v2/feeds/activities/{activity_id}/feedback'
         # Replace path parameters
@@ -168,7 +168,7 @@ module GetStream
       # @param activity_id [String]
       # @param poll_id [String]
       # @param cast_poll_vote_request [CastPollVoteRequest]
-      # @return [GetStream::StreamResponse<PollVoteResponse>]
+      # @return [Models::PollVoteResponse]
       def cast_poll_vote(activity_id, poll_id, cast_poll_vote_request)
         path = '/api/v2/feeds/activities/{activity_id}/polls/{poll_id}/vote'
         # Replace path parameters
@@ -191,7 +191,7 @@ module GetStream
       # @param poll_id [String]
       # @param vote_id [String]
       # @param user_id [String]
-      # @return [GetStream::StreamResponse<PollVoteResponse>]
+      # @return [Models::PollVoteResponse]
       def delete_poll_vote(activity_id, poll_id, vote_id, user_id = nil)
         path = '/api/v2/feeds/activities/{activity_id}/polls/{poll_id}/vote/{vote_id}'
         # Replace path parameters
@@ -214,7 +214,7 @@ module GetStream
       #
       # @param activity_id [String]
       # @param add_reaction_request [AddReactionRequest]
-      # @return [GetStream::StreamResponse<AddReactionResponse>]
+      # @return [Models::AddReactionResponse]
       def add_reaction(activity_id, add_reaction_request)
         path = '/api/v2/feeds/activities/{activity_id}/reactions'
         # Replace path parameters
@@ -234,7 +234,7 @@ module GetStream
       #
       # @param activity_id [String]
       # @param query_activity_reactions_request [QueryActivityReactionsRequest]
-      # @return [GetStream::StreamResponse<QueryActivityReactionsResponse>]
+      # @return [Models::QueryActivityReactionsResponse]
       def query_activity_reactions(activity_id, query_activity_reactions_request)
         path = '/api/v2/feeds/activities/{activity_id}/reactions/query'
         # Replace path parameters
@@ -255,7 +255,7 @@ module GetStream
       # @param activity_id [String]
       # @param _type [String]
       # @param user_id [String]
-      # @return [GetStream::StreamResponse<DeleteActivityReactionResponse>]
+      # @return [Models::DeleteActivityReactionResponse]
       def delete_activity_reaction(activity_id, _type, user_id = nil)
         path = '/api/v2/feeds/activities/{activity_id}/reactions/{type}'
         # Replace path parameters
@@ -277,7 +277,7 @@ module GetStream
       #
       # @param _id [String]
       # @param hard_delete [Boolean]
-      # @return [GetStream::StreamResponse<DeleteActivityResponse>]
+      # @return [Models::DeleteActivityResponse]
       def delete_activity(_id, hard_delete = nil)
         path = '/api/v2/feeds/activities/{id}'
         # Replace path parameters
@@ -297,7 +297,7 @@ module GetStream
       # Returns activity by ID
       #
       # @param _id [String]
-      # @return [GetStream::StreamResponse<GetActivityResponse>]
+      # @return [Models::GetActivityResponse]
       def get_activity(_id)
         path = '/api/v2/feeds/activities/{id}'
         # Replace path parameters
@@ -314,7 +314,7 @@ module GetStream
       #
       # @param _id [String]
       # @param update_activity_partial_request [UpdateActivityPartialRequest]
-      # @return [GetStream::StreamResponse<UpdateActivityPartialResponse>]
+      # @return [Models::UpdateActivityPartialResponse]
       def update_activity_partial(_id, update_activity_partial_request)
         path = '/api/v2/feeds/activities/{id}'
         # Replace path parameters
@@ -334,7 +334,7 @@ module GetStream
       #
       # @param _id [String]
       # @param update_activity_request [UpdateActivityRequest]
-      # @return [GetStream::StreamResponse<UpdateActivityResponse>]
+      # @return [Models::UpdateActivityResponse]
       def update_activity(_id, update_activity_request)
         path = '/api/v2/feeds/activities/{id}'
         # Replace path parameters
@@ -353,7 +353,7 @@ module GetStream
       # Query bookmark folders with filter query
       #
       # @param query_bookmark_folders_request [QueryBookmarkFoldersRequest]
-      # @return [GetStream::StreamResponse<QueryBookmarkFoldersResponse>]
+      # @return [Models::QueryBookmarkFoldersResponse]
       def query_bookmark_folders(query_bookmark_folders_request)
         path = '/api/v2/feeds/bookmark_folders/query'
         # Build request body
@@ -370,7 +370,7 @@ module GetStream
       # Delete a bookmark folder by its ID
       #
       # @param folder_id [String]
-      # @return [GetStream::StreamResponse<DeleteBookmarkFolderResponse>]
+      # @return [Models::DeleteBookmarkFolderResponse]
       def delete_bookmark_folder(folder_id)
         path = '/api/v2/feeds/bookmark_folders/{folder_id}'
         # Replace path parameters
@@ -387,7 +387,7 @@ module GetStream
       #
       # @param folder_id [String]
       # @param update_bookmark_folder_request [UpdateBookmarkFolderRequest]
-      # @return [GetStream::StreamResponse<UpdateBookmarkFolderResponse>]
+      # @return [Models::UpdateBookmarkFolderResponse]
       def update_bookmark_folder(folder_id, update_bookmark_folder_request)
         path = '/api/v2/feeds/bookmark_folders/{folder_id}'
         # Replace path parameters
@@ -406,7 +406,7 @@ module GetStream
       # Query bookmarks with filter query
       #
       # @param query_bookmarks_request [QueryBookmarksRequest]
-      # @return [GetStream::StreamResponse<QueryBookmarksResponse>]
+      # @return [Models::QueryBookmarksResponse]
       def query_bookmarks(query_bookmarks_request)
         path = '/api/v2/feeds/bookmarks/query'
         # Build request body
@@ -430,7 +430,7 @@ module GetStream
       # @param limit [Integer]
       # @param prev [String]
       # @param _next [String]
-      # @return [GetStream::StreamResponse<GetCommentsResponse>]
+      # @return [Models::GetCommentsResponse]
       def get_comments(object_id, object_type, depth = nil, sort = nil, replies_limit = nil, limit = nil, prev = nil, _next = nil)
         path = '/api/v2/feeds/comments'
         # Build query parameters
@@ -455,7 +455,7 @@ module GetStream
       # Adds a comment to an object (e.g., activity) or a reply to an existing comment, and broadcasts appropriate events
       #
       # @param add_comment_request [AddCommentRequest]
-      # @return [GetStream::StreamResponse<AddCommentResponse>]
+      # @return [Models::AddCommentResponse]
       def add_comment(add_comment_request)
         path = '/api/v2/feeds/comments'
         # Build request body
@@ -472,7 +472,7 @@ module GetStream
       # Adds multiple comments in a single request. Each comment must specify the object type and ID.
       #
       # @param add_comments_batch_request [AddCommentsBatchRequest]
-      # @return [GetStream::StreamResponse<AddCommentsBatchResponse>]
+      # @return [Models::AddCommentsBatchResponse]
       def add_comments_batch(add_comments_batch_request)
         path = '/api/v2/feeds/comments/batch'
         # Build request body
@@ -489,7 +489,7 @@ module GetStream
       # Query comments using MongoDB-style filters with pagination and sorting options
       #
       # @param query_comments_request [QueryCommentsRequest]
-      # @return [GetStream::StreamResponse<QueryCommentsResponse>]
+      # @return [Models::QueryCommentsResponse]
       def query_comments(query_comments_request)
         path = '/api/v2/feeds/comments/query'
         # Build request body
@@ -507,7 +507,7 @@ module GetStream
       #
       # @param _id [String]
       # @param hard_delete [Boolean]
-      # @return [GetStream::StreamResponse<DeleteCommentResponse>]
+      # @return [Models::DeleteCommentResponse]
       def delete_comment(_id, hard_delete = nil)
         path = '/api/v2/feeds/comments/{id}'
         # Replace path parameters
@@ -527,7 +527,7 @@ module GetStream
       # Get a comment by ID
       #
       # @param _id [String]
-      # @return [GetStream::StreamResponse<GetCommentResponse>]
+      # @return [Models::GetCommentResponse]
       def get_comment(_id)
         path = '/api/v2/feeds/comments/{id}'
         # Replace path parameters
@@ -544,7 +544,7 @@ module GetStream
       #
       # @param _id [String]
       # @param update_comment_request [UpdateCommentRequest]
-      # @return [GetStream::StreamResponse<UpdateCommentResponse>]
+      # @return [Models::UpdateCommentResponse]
       def update_comment(_id, update_comment_request)
         path = '/api/v2/feeds/comments/{id}'
         # Replace path parameters
@@ -564,7 +564,7 @@ module GetStream
       #
       # @param _id [String]
       # @param add_comment_reaction_request [AddCommentReactionRequest]
-      # @return [GetStream::StreamResponse<AddCommentReactionResponse>]
+      # @return [Models::AddCommentReactionResponse]
       def add_comment_reaction(_id, add_comment_reaction_request)
         path = '/api/v2/feeds/comments/{id}/reactions'
         # Replace path parameters
@@ -584,7 +584,7 @@ module GetStream
       #
       # @param _id [String]
       # @param query_comment_reactions_request [QueryCommentReactionsRequest]
-      # @return [GetStream::StreamResponse<QueryCommentReactionsResponse>]
+      # @return [Models::QueryCommentReactionsResponse]
       def query_comment_reactions(_id, query_comment_reactions_request)
         path = '/api/v2/feeds/comments/{id}/reactions/query'
         # Replace path parameters
@@ -605,7 +605,7 @@ module GetStream
       # @param _id [String]
       # @param _type [String]
       # @param user_id [String]
-      # @return [GetStream::StreamResponse<DeleteCommentReactionResponse>]
+      # @return [Models::DeleteCommentReactionResponse]
       def delete_comment_reaction(_id, _type, user_id = nil)
         path = '/api/v2/feeds/comments/{id}/reactions/{type}'
         # Replace path parameters
@@ -632,7 +632,7 @@ module GetStream
       # @param limit [Integer]
       # @param prev [String]
       # @param _next [String]
-      # @return [GetStream::StreamResponse<GetCommentRepliesResponse>]
+      # @return [Models::GetCommentRepliesResponse]
       def get_comment_replies(_id, depth = nil, sort = nil, replies_limit = nil, limit = nil, prev = nil, _next = nil)
         path = '/api/v2/feeds/comments/{id}/replies'
         # Replace path parameters
@@ -656,7 +656,7 @@ module GetStream
 
       # List all feed groups for the application
       #
-      # @return [GetStream::StreamResponse<ListFeedGroupsResponse>]
+      # @return [Models::ListFeedGroupsResponse]
       def list_feed_groups()
         path = '/api/v2/feeds/feed_groups'
 
@@ -670,7 +670,7 @@ module GetStream
       # Creates a new feed group with the specified configuration
       #
       # @param create_feed_group_request [CreateFeedGroupRequest]
-      # @return [GetStream::StreamResponse<CreateFeedGroupResponse>]
+      # @return [Models::CreateFeedGroupResponse]
       def create_feed_group(create_feed_group_request)
         path = '/api/v2/feeds/feed_groups'
         # Build request body
@@ -689,7 +689,7 @@ module GetStream
       # @param feed_group_id [String]
       # @param feed_id [String]
       # @param hard_delete [Boolean]
-      # @return [GetStream::StreamResponse<DeleteFeedResponse>]
+      # @return [Models::DeleteFeedResponse]
       def delete_feed(feed_group_id, feed_id, hard_delete = nil)
         path = '/api/v2/feeds/feed_groups/{feed_group_id}/feeds/{feed_id}'
         # Replace path parameters
@@ -712,7 +712,7 @@ module GetStream
       # @param feed_group_id [String]
       # @param feed_id [String]
       # @param get_or_create_feed_request [GetOrCreateFeedRequest]
-      # @return [GetStream::StreamResponse<GetOrCreateFeedResponse>]
+      # @return [Models::GetOrCreateFeedResponse]
       def get_or_create_feed(feed_group_id, feed_id, get_or_create_feed_request)
         path = '/api/v2/feeds/feed_groups/{feed_group_id}/feeds/{feed_id}'
         # Replace path parameters
@@ -734,7 +734,7 @@ module GetStream
       # @param feed_group_id [String]
       # @param feed_id [String]
       # @param update_feed_request [UpdateFeedRequest]
-      # @return [GetStream::StreamResponse<UpdateFeedResponse>]
+      # @return [Models::UpdateFeedResponse]
       def update_feed(feed_group_id, feed_id, update_feed_request)
         path = '/api/v2/feeds/feed_groups/{feed_group_id}/feeds/{feed_id}'
         # Replace path parameters
@@ -756,7 +756,7 @@ module GetStream
       # @param feed_group_id [String]
       # @param feed_id [String]
       # @param mark_activity_request [MarkActivityRequest]
-      # @return [GetStream::StreamResponse<Response>]
+      # @return [Models::Response]
       def mark_activity(feed_group_id, feed_id, mark_activity_request)
         path = '/api/v2/feeds/feed_groups/{feed_group_id}/feeds/{feed_id}/activities/mark/batch'
         # Replace path parameters
@@ -779,7 +779,7 @@ module GetStream
       # @param feed_id [String]
       # @param activity_id [String]
       # @param user_id [String]
-      # @return [GetStream::StreamResponse<UnpinActivityResponse>]
+      # @return [Models::UnpinActivityResponse]
       def unpin_activity(feed_group_id, feed_id, activity_id, user_id = nil)
         path = '/api/v2/feeds/feed_groups/{feed_group_id}/feeds/{feed_id}/activities/{activity_id}/pin'
         # Replace path parameters
@@ -804,7 +804,7 @@ module GetStream
       # @param feed_id [String]
       # @param activity_id [String]
       # @param pin_activity_request [PinActivityRequest]
-      # @return [GetStream::StreamResponse<PinActivityResponse>]
+      # @return [Models::PinActivityResponse]
       def pin_activity(feed_group_id, feed_id, activity_id, pin_activity_request)
         path = '/api/v2/feeds/feed_groups/{feed_group_id}/feeds/{feed_id}/activities/{activity_id}/pin'
         # Replace path parameters
@@ -827,7 +827,7 @@ module GetStream
       # @param feed_group_id [String]
       # @param feed_id [String]
       # @param update_feed_members_request [UpdateFeedMembersRequest]
-      # @return [GetStream::StreamResponse<UpdateFeedMembersResponse>]
+      # @return [Models::UpdateFeedMembersResponse]
       def update_feed_members(feed_group_id, feed_id, update_feed_members_request)
         path = '/api/v2/feeds/feed_groups/{feed_group_id}/feeds/{feed_id}/members'
         # Replace path parameters
@@ -849,7 +849,7 @@ module GetStream
       # @param feed_id [String]
       # @param feed_group_id [String]
       # @param accept_feed_member_invite_request [AcceptFeedMemberInviteRequest]
-      # @return [GetStream::StreamResponse<AcceptFeedMemberInviteResponse>]
+      # @return [Models::AcceptFeedMemberInviteResponse]
       def accept_feed_member_invite(feed_id, feed_group_id, accept_feed_member_invite_request)
         path = '/api/v2/feeds/feed_groups/{feed_group_id}/feeds/{feed_id}/members/accept'
         # Replace path parameters
@@ -871,7 +871,7 @@ module GetStream
       # @param feed_group_id [String]
       # @param feed_id [String]
       # @param query_feed_members_request [QueryFeedMembersRequest]
-      # @return [GetStream::StreamResponse<QueryFeedMembersResponse>]
+      # @return [Models::QueryFeedMembersResponse]
       def query_feed_members(feed_group_id, feed_id, query_feed_members_request)
         path = '/api/v2/feeds/feed_groups/{feed_group_id}/feeds/{feed_id}/members/query'
         # Replace path parameters
@@ -893,7 +893,7 @@ module GetStream
       # @param feed_group_id [String]
       # @param feed_id [String]
       # @param reject_feed_member_invite_request [RejectFeedMemberInviteRequest]
-      # @return [GetStream::StreamResponse<RejectFeedMemberInviteResponse>]
+      # @return [Models::RejectFeedMemberInviteResponse]
       def reject_feed_member_invite(feed_group_id, feed_id, reject_feed_member_invite_request)
         path = '/api/v2/feeds/feed_groups/{feed_group_id}/feeds/{feed_id}/members/reject'
         # Replace path parameters
@@ -915,7 +915,7 @@ module GetStream
       # @param feed_group_id [String]
       # @param limit [Integer]
       # @param user_id [String]
-      # @return [GetStream::StreamResponse<GetFollowSuggestionsResponse>]
+      # @return [Models::GetFollowSuggestionsResponse]
       def get_follow_suggestions(feed_group_id, limit = nil, user_id = nil)
         path = '/api/v2/feeds/feed_groups/{feed_group_id}/follow_suggestions'
         # Replace path parameters
@@ -937,7 +937,7 @@ module GetStream
       #
       # @param _id [String]
       # @param hard_delete [Boolean]
-      # @return [GetStream::StreamResponse<DeleteFeedGroupResponse>]
+      # @return [Models::DeleteFeedGroupResponse]
       def delete_feed_group(_id, hard_delete = nil)
         path = '/api/v2/feeds/feed_groups/{id}'
         # Replace path parameters
@@ -957,7 +957,7 @@ module GetStream
       # Get a feed group by ID
       #
       # @param _id [String]
-      # @return [GetStream::StreamResponse<GetFeedGroupResponse>]
+      # @return [Models::GetFeedGroupResponse]
       def get_feed_group(_id)
         path = '/api/v2/feeds/feed_groups/{id}'
         # Replace path parameters
@@ -974,7 +974,7 @@ module GetStream
       #
       # @param _id [String]
       # @param get_or_create_feed_group_request [GetOrCreateFeedGroupRequest]
-      # @return [GetStream::StreamResponse<GetOrCreateFeedGroupResponse>]
+      # @return [Models::GetOrCreateFeedGroupResponse]
       def get_or_create_feed_group(_id, get_or_create_feed_group_request)
         path = '/api/v2/feeds/feed_groups/{id}'
         # Replace path parameters
@@ -994,7 +994,7 @@ module GetStream
       #
       # @param _id [String]
       # @param update_feed_group_request [UpdateFeedGroupRequest]
-      # @return [GetStream::StreamResponse<UpdateFeedGroupResponse>]
+      # @return [Models::UpdateFeedGroupResponse]
       def update_feed_group(_id, update_feed_group_request)
         path = '/api/v2/feeds/feed_groups/{id}'
         # Replace path parameters
@@ -1012,7 +1012,7 @@ module GetStream
 
       # List all feed views for a feed group
       #
-      # @return [GetStream::StreamResponse<ListFeedViewsResponse>]
+      # @return [Models::ListFeedViewsResponse]
       def list_feed_views()
         path = '/api/v2/feeds/feed_views'
 
@@ -1026,7 +1026,7 @@ module GetStream
       # Create a custom view for a feed group with specific selectors, ranking, or aggregation options
       #
       # @param create_feed_view_request [CreateFeedViewRequest]
-      # @return [GetStream::StreamResponse<CreateFeedViewResponse>]
+      # @return [Models::CreateFeedViewResponse]
       def create_feed_view(create_feed_view_request)
         path = '/api/v2/feeds/feed_views'
         # Build request body
@@ -1043,7 +1043,7 @@ module GetStream
       # Delete an existing custom feed view
       #
       # @param _id [String]
-      # @return [GetStream::StreamResponse<DeleteFeedViewResponse>]
+      # @return [Models::DeleteFeedViewResponse]
       def delete_feed_view(_id)
         path = '/api/v2/feeds/feed_views/{id}'
         # Replace path parameters
@@ -1059,7 +1059,7 @@ module GetStream
       # Get a feed view by its ID
       #
       # @param _id [String]
-      # @return [GetStream::StreamResponse<GetFeedViewResponse>]
+      # @return [Models::GetFeedViewResponse]
       def get_feed_view(_id)
         path = '/api/v2/feeds/feed_views/{id}'
         # Replace path parameters
@@ -1076,7 +1076,7 @@ module GetStream
       #
       # @param _id [String]
       # @param get_or_create_feed_view_request [GetOrCreateFeedViewRequest]
-      # @return [GetStream::StreamResponse<GetOrCreateFeedViewResponse>]
+      # @return [Models::GetOrCreateFeedViewResponse]
       def get_or_create_feed_view(_id, get_or_create_feed_view_request)
         path = '/api/v2/feeds/feed_views/{id}'
         # Replace path parameters
@@ -1096,7 +1096,7 @@ module GetStream
       #
       # @param _id [String]
       # @param update_feed_view_request [UpdateFeedViewRequest]
-      # @return [GetStream::StreamResponse<UpdateFeedViewResponse>]
+      # @return [Models::UpdateFeedViewResponse]
       def update_feed_view(_id, update_feed_view_request)
         path = '/api/v2/feeds/feed_views/{id}'
         # Replace path parameters
@@ -1114,7 +1114,7 @@ module GetStream
 
       # Gets all available feed visibility configurations and their permissions
       #
-      # @return [GetStream::StreamResponse<ListFeedVisibilitiesResponse>]
+      # @return [Models::ListFeedVisibilitiesResponse]
       def list_feed_visibilities()
         path = '/api/v2/feeds/feed_visibilities'
 
@@ -1128,7 +1128,7 @@ module GetStream
       # Gets feed visibility configuration and permissions
       #
       # @param name [String]
-      # @return [GetStream::StreamResponse<GetFeedVisibilityResponse>]
+      # @return [Models::GetFeedVisibilityResponse]
       def get_feed_visibility(name)
         path = '/api/v2/feeds/feed_visibilities/{name}'
         # Replace path parameters
@@ -1144,7 +1144,7 @@ module GetStream
       # Create multiple feeds at once for a given feed group
       #
       # @param create_feeds_batch_request [CreateFeedsBatchRequest]
-      # @return [GetStream::StreamResponse<CreateFeedsBatchResponse>]
+      # @return [Models::CreateFeedsBatchResponse]
       def create_feeds_batch(create_feeds_batch_request)
         path = '/api/v2/feeds/feeds/batch'
         # Build request body
@@ -1161,7 +1161,7 @@ module GetStream
       # Query feeds with filter query
       #
       # @param query_feeds_request [QueryFeedsRequest]
-      # @return [GetStream::StreamResponse<QueryFeedsResponse>]
+      # @return [Models::QueryFeedsResponse]
       def query_feeds(query_feeds_request)
         path = '/api/v2/feeds/feeds/query'
         # Build request body
@@ -1178,7 +1178,7 @@ module GetStream
       # Updates a follow's custom data, push preference, and follower role. Source owner can update custom data and push preference. Follower role can only be updated via server-side requests.
       #
       # @param update_follow_request [UpdateFollowRequest]
-      # @return [GetStream::StreamResponse<UpdateFollowResponse>]
+      # @return [Models::UpdateFollowResponse]
       def update_follow(update_follow_request)
         path = '/api/v2/feeds/follows'
         # Build request body
@@ -1195,7 +1195,7 @@ module GetStream
       # Creates a follow and broadcasts FollowAddedEvent
       #
       # @param follow_request [FollowRequest]
-      # @return [GetStream::StreamResponse<SingleFollowResponse>]
+      # @return [Models::SingleFollowResponse]
       def follow(follow_request)
         path = '/api/v2/feeds/follows'
         # Build request body
@@ -1212,7 +1212,7 @@ module GetStream
       # Accepts a pending follow request
       #
       # @param accept_follow_request [AcceptFollowRequest]
-      # @return [GetStream::StreamResponse<AcceptFollowResponse>]
+      # @return [Models::AcceptFollowResponse]
       def accept_follow(accept_follow_request)
         path = '/api/v2/feeds/follows/accept'
         # Build request body
@@ -1229,7 +1229,7 @@ module GetStream
       # Creates multiple follows at once and broadcasts FollowAddedEvent for each follow
       #
       # @param follow_batch_request [FollowBatchRequest]
-      # @return [GetStream::StreamResponse<FollowBatchResponse>]
+      # @return [Models::FollowBatchResponse]
       def follow_batch(follow_batch_request)
         path = '/api/v2/feeds/follows/batch'
         # Build request body
@@ -1246,7 +1246,7 @@ module GetStream
       # Query follows based on filters with pagination and sorting options
       #
       # @param query_follows_request [QueryFollowsRequest]
-      # @return [GetStream::StreamResponse<QueryFollowsResponse>]
+      # @return [Models::QueryFollowsResponse]
       def query_follows(query_follows_request)
         path = '/api/v2/feeds/follows/query'
         # Build request body
@@ -1263,7 +1263,7 @@ module GetStream
       # Rejects a pending follow request
       #
       # @param reject_follow_request [RejectFollowRequest]
-      # @return [GetStream::StreamResponse<RejectFollowResponse>]
+      # @return [Models::RejectFollowResponse]
       def reject_follow(reject_follow_request)
         path = '/api/v2/feeds/follows/reject'
         # Build request body
@@ -1281,7 +1281,7 @@ module GetStream
       #
       # @param source [String]
       # @param target [String]
-      # @return [GetStream::StreamResponse<UnfollowResponse>]
+      # @return [Models::UnfollowResponse]
       def unfollow(source, target)
         path = '/api/v2/feeds/follows/{source}/{target}'
         # Replace path parameters
@@ -1298,7 +1298,7 @@ module GetStream
       # Create a new membership level with tag-based access controls
       #
       # @param create_membership_level_request [CreateMembershipLevelRequest]
-      # @return [GetStream::StreamResponse<CreateMembershipLevelResponse>]
+      # @return [Models::CreateMembershipLevelResponse]
       def create_membership_level(create_membership_level_request)
         path = '/api/v2/feeds/membership_levels'
         # Build request body
@@ -1315,7 +1315,7 @@ module GetStream
       # Query membership levels with filter query
       #
       # @param query_membership_levels_request [QueryMembershipLevelsRequest]
-      # @return [GetStream::StreamResponse<QueryMembershipLevelsResponse>]
+      # @return [Models::QueryMembershipLevelsResponse]
       def query_membership_levels(query_membership_levels_request)
         path = '/api/v2/feeds/membership_levels/query'
         # Build request body
@@ -1332,7 +1332,7 @@ module GetStream
       # Delete a membership level by its UUID. This operation is irreversible.
       #
       # @param _id [String]
-      # @return [GetStream::StreamResponse<Response>]
+      # @return [Models::Response]
       def delete_membership_level(_id)
         path = '/api/v2/feeds/membership_levels/{id}'
         # Replace path parameters
@@ -1349,7 +1349,7 @@ module GetStream
       #
       # @param _id [String]
       # @param update_membership_level_request [UpdateMembershipLevelRequest]
-      # @return [GetStream::StreamResponse<UpdateMembershipLevelResponse>]
+      # @return [Models::UpdateMembershipLevelResponse]
       def update_membership_level(_id, update_membership_level_request)
         path = '/api/v2/feeds/membership_levels/{id}'
         # Replace path parameters
@@ -1368,7 +1368,7 @@ module GetStream
       # Removes multiple follows at once and broadcasts FollowRemovedEvent for each one
       #
       # @param unfollow_batch_request [UnfollowBatchRequest]
-      # @return [GetStream::StreamResponse<UnfollowBatchResponse>]
+      # @return [Models::UnfollowBatchResponse]
       def unfollow_batch(unfollow_batch_request)
         path = '/api/v2/feeds/unfollow/batch'
         # Build request body
@@ -1385,7 +1385,7 @@ module GetStream
       # Delete all activities, reactions, comments, and bookmarks for a user
       #
       # @param user_id [String]
-      # @return [GetStream::StreamResponse<DeleteFeedUserDataResponse>]
+      # @return [Models::DeleteFeedUserDataResponse]
       def delete_feed_user_data(user_id)
         path = '/api/v2/feeds/users/{user_id}/delete'
         # Replace path parameters
@@ -1401,7 +1401,7 @@ module GetStream
       # Export all activities, reactions, comments, and bookmarks for a user
       #
       # @param user_id [String]
-      # @return [GetStream::StreamResponse<ExportFeedUserDataResponse>]
+      # @return [Models::ExportFeedUserDataResponse]
       def export_feed_user_data(user_id)
         path = '/api/v2/feeds/users/{user_id}/export'
         # Replace path parameters

@@ -9,6 +9,8 @@ module GetStream
       class CreateImportURLRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute filename
+        #   @return [String]
         attr_accessor :filename
 
         # Initialize with attributes

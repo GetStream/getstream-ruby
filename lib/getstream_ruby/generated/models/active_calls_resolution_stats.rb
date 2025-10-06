@@ -9,7 +9,11 @@ module GetStream
       class ActiveCallsResolutionStats < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute p10
+        #   @return [Float]
         attr_accessor :p10
+        # @!attribute p50
+        #   @return [Float]
         attr_accessor :p50
 
         # Initialize with attributes

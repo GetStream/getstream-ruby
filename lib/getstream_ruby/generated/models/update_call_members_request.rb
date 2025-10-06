@@ -9,8 +9,12 @@ module GetStream
       class UpdateCallMembersRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :remove_members  # List of userID to remove
-        attr_accessor :update_members  # List of members to update or insert
+        # @!attribute remove_members
+        #   @return [Array<String>] List of userID to remove
+        attr_accessor :remove_members
+        # @!attribute update_members
+        #   @return [Array<MemberRequest>] List of members to update or insert
+        attr_accessor :update_members
 
         # Initialize with attributes
         def initialize(attributes = {})

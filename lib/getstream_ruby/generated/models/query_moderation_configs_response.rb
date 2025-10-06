@@ -9,9 +9,17 @@ module GetStream
       class QueryModerationConfigsResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
-        attr_accessor :configs  # List of moderation configurations
+        # @!attribute configs
+        #   @return [Array<ConfigResponse>] List of moderation configurations
+        attr_accessor :configs
+        # @!attribute _next
+        #   @return [String]
         attr_accessor :_next
+        # @!attribute prev
+        #   @return [String]
         attr_accessor :prev
 
         # Initialize with attributes

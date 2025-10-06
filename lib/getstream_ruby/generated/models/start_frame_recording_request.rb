@@ -9,6 +9,8 @@ module GetStream
       class StartFrameRecordingRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute recording_external_storage
+        #   @return [String]
         attr_accessor :recording_external_storage
 
         # Initialize with attributes

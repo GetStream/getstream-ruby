@@ -9,23 +9,57 @@ module GetStream
       class FeedResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :_id  # Unique identifier for the feed
-        attr_accessor :created_at  # When the feed was created
-        attr_accessor :description  # Description of the feed
-        attr_accessor :feed  # Fully qualified feed ID (group_id:id)
-        attr_accessor :follower_count  # Number of followers of this feed
-        attr_accessor :following_count  # Number of feeds this feed follows
-        attr_accessor :group_id  # Group this feed belongs to
-        attr_accessor :member_count  # Number of members in this feed
-        attr_accessor :name  # Name of the feed
-        attr_accessor :pin_count  # Number of pinned activities in this feed
-        attr_accessor :updated_at  # When the feed was last updated
+        # @!attribute _id
+        #   @return [String] Unique identifier for the feed
+        attr_accessor :_id
+        # @!attribute created_at
+        #   @return [DateTime] When the feed was created
+        attr_accessor :created_at
+        # @!attribute description
+        #   @return [String] Description of the feed
+        attr_accessor :description
+        # @!attribute feed
+        #   @return [String] Fully qualified feed ID (group_id:id)
+        attr_accessor :feed
+        # @!attribute follower_count
+        #   @return [Integer] Number of followers of this feed
+        attr_accessor :follower_count
+        # @!attribute following_count
+        #   @return [Integer] Number of feeds this feed follows
+        attr_accessor :following_count
+        # @!attribute group_id
+        #   @return [String] Group this feed belongs to
+        attr_accessor :group_id
+        # @!attribute member_count
+        #   @return [Integer] Number of members in this feed
+        attr_accessor :member_count
+        # @!attribute name
+        #   @return [String] Name of the feed
+        attr_accessor :name
+        # @!attribute pin_count
+        #   @return [Integer] Number of pinned activities in this feed
+        attr_accessor :pin_count
+        # @!attribute updated_at
+        #   @return [DateTime] When the feed was last updated
+        attr_accessor :updated_at
+        # @!attribute created_by
+        #   @return [UserResponse]
         attr_accessor :created_by
-        attr_accessor :deleted_at  # When the feed was deleted
-        attr_accessor :visibility  # Visibility setting for the feed
-        attr_accessor :filter_tags  # Tags used for filtering feeds
-        attr_accessor :own_follows  # Follow relationships where the current user's feeds are following this feed
-        attr_accessor :custom  # Custom data for the feed
+        # @!attribute deleted_at
+        #   @return [DateTime] When the feed was deleted
+        attr_accessor :deleted_at
+        # @!attribute visibility
+        #   @return [String] Visibility setting for the feed
+        attr_accessor :visibility
+        # @!attribute filter_tags
+        #   @return [Array<String>] Tags used for filtering feeds
+        attr_accessor :filter_tags
+        # @!attribute own_follows
+        #   @return [Array<FollowResponse>] Follow relationships where the current user's feeds are following this feed
+        attr_accessor :own_follows
+        # @!attribute custom
+        #   @return [Object] Custom data for the feed
+        attr_accessor :custom
 
         # Initialize with attributes
         def initialize(attributes = {})

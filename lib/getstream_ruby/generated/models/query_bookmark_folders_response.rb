@@ -9,10 +9,18 @@ module GetStream
       class QueryBookmarkFoldersResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
-        attr_accessor :bookmark_folders  # List of bookmark folders matching the query
-        attr_accessor :_next  # Cursor for next page
-        attr_accessor :prev  # Cursor for previous page
+        # @!attribute bookmark_folders
+        #   @return [Array<BookmarkFolderResponse>] List of bookmark folders matching the query
+        attr_accessor :bookmark_folders
+        # @!attribute _next
+        #   @return [String] Cursor for next page
+        attr_accessor :_next
+        # @!attribute prev
+        #   @return [String] Cursor for previous page
+        attr_accessor :prev
 
         # Initialize with attributes
         def initialize(attributes = {})

@@ -9,7 +9,11 @@ module GetStream
       class AsyncModerationCallbackConfig < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute mode
+        #   @return [String]
         attr_accessor :mode
+        # @!attribute server_url
+        #   @return [String]
         attr_accessor :server_url
 
         # Initialize with attributes

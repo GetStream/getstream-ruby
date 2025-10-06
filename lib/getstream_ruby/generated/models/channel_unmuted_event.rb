@@ -9,7 +9,11 @@ module GetStream
       class ChannelUnmutedEvent < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute created_at
+        #   @return [DateTime]
         attr_accessor :created_at
+        # @!attribute _type
+        #   @return [String]
         attr_accessor :_type
 
         # Initialize with attributes

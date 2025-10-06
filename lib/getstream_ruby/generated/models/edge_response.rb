@@ -9,15 +9,35 @@ module GetStream
       class EdgeResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _id
+        #   @return [String]
         attr_accessor :_id
+        # @!attribute continent_code
+        #   @return [String]
         attr_accessor :continent_code
+        # @!attribute country_iso_code
+        #   @return [String]
         attr_accessor :country_iso_code
+        # @!attribute green
+        #   @return [Integer]
         attr_accessor :green
+        # @!attribute latency_test_url
+        #   @return [String]
         attr_accessor :latency_test_url
+        # @!attribute latitude
+        #   @return [Float]
         attr_accessor :latitude
+        # @!attribute longitude
+        #   @return [Float]
         attr_accessor :longitude
+        # @!attribute red
+        #   @return [Integer]
         attr_accessor :red
+        # @!attribute subdivision_iso_code
+        #   @return [String]
         attr_accessor :subdivision_iso_code
+        # @!attribute yellow
+        #   @return [Integer]
         attr_accessor :yellow
 
         # Initialize with attributes

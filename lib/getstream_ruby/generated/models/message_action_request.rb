@@ -9,8 +9,14 @@ module GetStream
       class MessageActionRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :form_data  # ReadOnlyData to execute command with
+        # @!attribute form_data
+        #   @return [Hash<String, String>] ReadOnlyData to execute command with
+        attr_accessor :form_data
+        # @!attribute user_id
+        #   @return [String]
         attr_accessor :user_id
+        # @!attribute user
+        #   @return [UserRequest]
         attr_accessor :user
 
         # Initialize with attributes

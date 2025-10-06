@@ -9,11 +9,23 @@ module GetStream
       class QueryReviewQueueResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
-        attr_accessor :items  # List of review queue items
-        attr_accessor :action_config  # Configuration for moderation actions
-        attr_accessor :stats  # Statistics about the review queue
+        # @!attribute items
+        #   @return [Array<ReviewQueueItemResponse>] List of review queue items
+        attr_accessor :items
+        # @!attribute action_config
+        #   @return [Hash<String, Array<ModerationActionConfig>>] Configuration for moderation actions
+        attr_accessor :action_config
+        # @!attribute stats
+        #   @return [Object] Statistics about the review queue
+        attr_accessor :stats
+        # @!attribute _next
+        #   @return [String]
         attr_accessor :_next
+        # @!attribute prev
+        #   @return [String]
         attr_accessor :prev
 
         # Initialize with attributes

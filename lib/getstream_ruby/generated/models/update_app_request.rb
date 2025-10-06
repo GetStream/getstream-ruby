@@ -9,52 +9,146 @@ module GetStream
       class UpdateAppRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute async_url_enrich_enabled
+        #   @return [Boolean]
         attr_accessor :async_url_enrich_enabled
+        # @!attribute auto_translation_enabled
+        #   @return [Boolean]
         attr_accessor :auto_translation_enabled
+        # @!attribute before_message_send_hook_url
+        #   @return [String]
         attr_accessor :before_message_send_hook_url
+        # @!attribute cdn_expiration_seconds
+        #   @return [Integer]
         attr_accessor :cdn_expiration_seconds
+        # @!attribute channel_hide_members_only
+        #   @return [Boolean]
         attr_accessor :channel_hide_members_only
+        # @!attribute custom_action_handler_url
+        #   @return [String]
         attr_accessor :custom_action_handler_url
+        # @!attribute disable_auth_checks
+        #   @return [Boolean]
         attr_accessor :disable_auth_checks
+        # @!attribute disable_permissions_checks
+        #   @return [Boolean]
         attr_accessor :disable_permissions_checks
+        # @!attribute enforce_unique_usernames
+        #   @return [String]
         attr_accessor :enforce_unique_usernames
+        # @!attribute feeds_moderation_enabled
+        #   @return [Boolean]
         attr_accessor :feeds_moderation_enabled
+        # @!attribute feeds_v2_region
+        #   @return [String]
         attr_accessor :feeds_v2_region
+        # @!attribute guest_user_creation_disabled
+        #   @return [Boolean]
         attr_accessor :guest_user_creation_disabled
+        # @!attribute image_moderation_enabled
+        #   @return [Boolean]
         attr_accessor :image_moderation_enabled
+        # @!attribute max_aggregated_activities_length
+        #   @return [Integer]
         attr_accessor :max_aggregated_activities_length
+        # @!attribute migrate_permissions_to_v2
+        #   @return [Boolean]
         attr_accessor :migrate_permissions_to_v2
+        # @!attribute moderation_enabled
+        #   @return [Boolean]
         attr_accessor :moderation_enabled
+        # @!attribute moderation_webhook_url
+        #   @return [String]
         attr_accessor :moderation_webhook_url
+        # @!attribute multi_tenant_enabled
+        #   @return [Boolean]
         attr_accessor :multi_tenant_enabled
+        # @!attribute permission_version
+        #   @return [String]
         attr_accessor :permission_version
+        # @!attribute reminders_interval
+        #   @return [Integer]
         attr_accessor :reminders_interval
+        # @!attribute reminders_max_members
+        #   @return [Integer]
         attr_accessor :reminders_max_members
+        # @!attribute revoke_tokens_issued_before
+        #   @return [DateTime]
         attr_accessor :revoke_tokens_issued_before
+        # @!attribute sns_key
+        #   @return [String]
         attr_accessor :sns_key
+        # @!attribute sns_secret
+        #   @return [String]
         attr_accessor :sns_secret
+        # @!attribute sns_topic_arn
+        #   @return [String]
         attr_accessor :sns_topic_arn
+        # @!attribute sqs_key
+        #   @return [String]
         attr_accessor :sqs_key
+        # @!attribute sqs_secret
+        #   @return [String]
         attr_accessor :sqs_secret
+        # @!attribute sqs_url
+        #   @return [String]
         attr_accessor :sqs_url
+        # @!attribute user_response_time_enabled
+        #   @return [Boolean]
         attr_accessor :user_response_time_enabled
+        # @!attribute webhook_url
+        #   @return [String]
         attr_accessor :webhook_url
+        # @!attribute allowed_flag_reasons
+        #   @return [Array<String>]
         attr_accessor :allowed_flag_reasons
+        # @!attribute event_hooks
+        #   @return [Array<EventHook>]
         attr_accessor :event_hooks
+        # @!attribute image_moderation_block_labels
+        #   @return [Array<String>]
         attr_accessor :image_moderation_block_labels
+        # @!attribute image_moderation_labels
+        #   @return [Array<String>]
         attr_accessor :image_moderation_labels
+        # @!attribute user_search_disallowed_roles
+        #   @return [Array<String>]
         attr_accessor :user_search_disallowed_roles
+        # @!attribute webhook_events
+        #   @return [Array<String>]
         attr_accessor :webhook_events
+        # @!attribute apn_config
+        #   @return [APNConfig]
         attr_accessor :apn_config
+        # @!attribute async_moderation_config
+        #   @return [AsyncModerationConfiguration]
         attr_accessor :async_moderation_config
+        # @!attribute datadog_info
+        #   @return [DataDogInfo]
         attr_accessor :datadog_info
+        # @!attribute file_upload_config
+        #   @return [FileUploadConfig]
         attr_accessor :file_upload_config
+        # @!attribute firebase_config
+        #   @return [FirebaseConfig]
         attr_accessor :firebase_config
+        # @!attribute grants
+        #   @return [Hash<String, Array<String>>]
         attr_accessor :grants
+        # @!attribute huawei_config
+        #   @return [HuaweiConfig]
         attr_accessor :huawei_config
+        # @!attribute image_upload_config
+        #   @return [FileUploadConfig]
         attr_accessor :image_upload_config
+        # @!attribute moderation_dashboard_preferences
+        #   @return [ModerationDashboardPreferences]
         attr_accessor :moderation_dashboard_preferences
+        # @!attribute push_config
+        #   @return [PushConfig]
         attr_accessor :push_config
+        # @!attribute xiaomi_config
+        #   @return [XiaomiConfig]
         attr_accessor :xiaomi_config
 
         # Initialize with attributes

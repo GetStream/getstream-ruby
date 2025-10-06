@@ -9,7 +9,11 @@ module GetStream
       class GetApplicationResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :duration  # Duration of the request in milliseconds
+        # @!attribute duration
+        #   @return [String] Duration of the request in milliseconds
+        attr_accessor :duration
+        # @!attribute app
+        #   @return [AppResponseFields]
         attr_accessor :app
 
         # Initialize with attributes

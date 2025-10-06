@@ -9,8 +9,14 @@ module GetStream
       class DeviceErrorInfo < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute error_message
+        #   @return [String]
         attr_accessor :error_message
+        # @!attribute provider
+        #   @return [String]
         attr_accessor :provider
+        # @!attribute provider_name
+        #   @return [String]
         attr_accessor :provider_name
 
         # Initialize with attributes

@@ -9,8 +9,12 @@ module GetStream
       class QueryUsersResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :duration  # Duration of the request in milliseconds
-        attr_accessor :users  # Array of users as result of filters applied.
+        # @!attribute duration
+        #   @return [String] Duration of the request in milliseconds
+        attr_accessor :duration
+        # @!attribute users
+        #   @return [Array<FullUserResponse>] Array of users as result of filters applied.
+        attr_accessor :users
 
         # Initialize with attributes
         def initialize(attributes = {})

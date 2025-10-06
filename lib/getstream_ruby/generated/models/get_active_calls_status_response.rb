@@ -9,10 +9,20 @@ module GetStream
       class GetActiveCallsStatusResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
-        attr_accessor :end_time  # End time of the status period
-        attr_accessor :start_time  # Start time of the status period
+        # @!attribute end_time
+        #   @return [DateTime] End time of the status period
+        attr_accessor :end_time
+        # @!attribute start_time
+        #   @return [DateTime] Start time of the status period
+        attr_accessor :start_time
+        # @!attribute metrics
+        #   @return [ActiveCallsMetrics]
         attr_accessor :metrics
+        # @!attribute summary
+        #   @return [ActiveCallsSummary]
         attr_accessor :summary
 
         # Initialize with attributes

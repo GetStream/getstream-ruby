@@ -9,6 +9,8 @@ module GetStream
       class WebhookEvent < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _type
+        #   @return [String]
         attr_accessor :_type
 
         # Initialize with attributes

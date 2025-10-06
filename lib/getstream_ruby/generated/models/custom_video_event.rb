@@ -9,11 +9,21 @@ module GetStream
       class CustomVideoEvent < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute call_cid
+        #   @return [String]
         attr_accessor :call_cid
+        # @!attribute created_at
+        #   @return [DateTime]
         attr_accessor :created_at
-        attr_accessor :custom  # Custom data for this object
+        # @!attribute custom
+        #   @return [Object] Custom data for this object
+        attr_accessor :custom
+        # @!attribute user
+        #   @return [UserResponse]
         attr_accessor :user
-        attr_accessor :_type  # The type of event, "custom" in this case
+        # @!attribute _type
+        #   @return [String] The type of event, "custom" in this case
+        attr_accessor :_type
 
         # Initialize with attributes
         def initialize(attributes = {})

@@ -9,9 +9,17 @@ module GetStream
       class ModerationPayload < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute images
+        #   @return [Array<String>]
         attr_accessor :images
+        # @!attribute texts
+        #   @return [Array<String>]
         attr_accessor :texts
+        # @!attribute videos
+        #   @return [Array<String>]
         attr_accessor :videos
+        # @!attribute custom
+        #   @return [Object]
         attr_accessor :custom
 
         # Initialize with attributes

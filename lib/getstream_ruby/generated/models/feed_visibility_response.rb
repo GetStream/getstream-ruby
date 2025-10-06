@@ -9,9 +9,15 @@ module GetStream
       class FeedVisibilityResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :description  # Description of the feed visibility level
-        attr_accessor :name  # Name of the feed visibility level
-        attr_accessor :grants  # Permission grants for each role
+        # @!attribute description
+        #   @return [String] Description of the feed visibility level
+        attr_accessor :description
+        # @!attribute name
+        #   @return [String] Name of the feed visibility level
+        attr_accessor :name
+        # @!attribute grants
+        #   @return [Hash<String, Array<String>>] Permission grants for each role
+        attr_accessor :grants
 
         # Initialize with attributes
         def initialize(attributes = {})

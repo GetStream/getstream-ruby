@@ -9,11 +9,21 @@ module GetStream
       class FeedMemberRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :user_id  # ID of the user to add as a member
-        attr_accessor :invite  # Whether this is an invite to become a member
-        attr_accessor :membership_level  # ID of the membership level to assign to the member
-        attr_accessor :role  # Role of the member in the feed
-        attr_accessor :custom  # Custom data for the member
+        # @!attribute user_id
+        #   @return [String] ID of the user to add as a member
+        attr_accessor :user_id
+        # @!attribute invite
+        #   @return [Boolean] Whether this is an invite to become a member
+        attr_accessor :invite
+        # @!attribute membership_level
+        #   @return [String] ID of the membership level to assign to the member
+        attr_accessor :membership_level
+        # @!attribute role
+        #   @return [String] Role of the member in the feed
+        attr_accessor :role
+        # @!attribute custom
+        #   @return [Object] Custom data for the member
+        attr_accessor :custom
 
         # Initialize with attributes
         def initialize(attributes = {})

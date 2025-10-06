@@ -9,7 +9,9 @@ module GetStream
       class BulkImageModerationRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :csv_file  # URL to CSV file containing image URLs to moderate
+        # @!attribute csv_file
+        #   @return [String] URL to CSV file containing image URLs to moderate
+        attr_accessor :csv_file
 
         # Initialize with attributes
         def initialize(attributes = {})

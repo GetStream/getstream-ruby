@@ -9,7 +9,11 @@ module GetStream
       class UpdateReminderResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :duration  # Duration of the request in milliseconds
+        # @!attribute duration
+        #   @return [String] Duration of the request in milliseconds
+        attr_accessor :duration
+        # @!attribute reminder
+        #   @return [ReminderResponseData]
         attr_accessor :reminder
 
         # Initialize with attributes

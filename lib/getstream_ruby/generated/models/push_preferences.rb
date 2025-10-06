@@ -9,10 +9,20 @@ module GetStream
       class PushPreferences < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute call_level
+        #   @return [String]
         attr_accessor :call_level
+        # @!attribute chat_level
+        #   @return [String]
         attr_accessor :chat_level
+        # @!attribute disabled_until
+        #   @return [DateTime]
         attr_accessor :disabled_until
+        # @!attribute feeds_level
+        #   @return [String]
         attr_accessor :feeds_level
+        # @!attribute feeds_preferences
+        #   @return [FeedsPreferences]
         attr_accessor :feeds_preferences
 
         # Initialize with attributes

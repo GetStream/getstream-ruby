@@ -9,7 +9,11 @@ module GetStream
       class CountByMinuteResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute count
+        #   @return [Integer]
         attr_accessor :count
+        # @!attribute start_ts
+        #   @return [DateTime]
         attr_accessor :start_ts
 
         # Initialize with attributes

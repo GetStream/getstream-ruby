@@ -9,13 +9,29 @@ module GetStream
       class Device < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _id
+        #   @return [String]
         attr_accessor :_id
+        # @!attribute created_at
+        #   @return [DateTime]
         attr_accessor :created_at
+        # @!attribute push_provider
+        #   @return [String]
         attr_accessor :push_provider
+        # @!attribute user_id
+        #   @return [String]
         attr_accessor :user_id
+        # @!attribute disabled
+        #   @return [Boolean]
         attr_accessor :disabled
+        # @!attribute disabled_reason
+        #   @return [String]
         attr_accessor :disabled_reason
+        # @!attribute push_provider_name
+        #   @return [String]
         attr_accessor :push_provider_name
+        # @!attribute voip
+        #   @return [Boolean]
         attr_accessor :voip
 
         # Initialize with attributes

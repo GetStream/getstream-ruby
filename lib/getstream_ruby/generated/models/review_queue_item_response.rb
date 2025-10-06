@@ -9,34 +9,92 @@ module GetStream
       class ReviewQueueItemResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :_id  # Unique identifier of the review queue item
-        attr_accessor :ai_text_severity  # AI-determined text severity
-        attr_accessor :created_at  # When the item was created
-        attr_accessor :entity_id  # ID of the entity being reviewed
-        attr_accessor :entity_type  # Type of entity being reviewed
+        # @!attribute _id
+        #   @return [String] Unique identifier of the review queue item
+        attr_accessor :_id
+        # @!attribute ai_text_severity
+        #   @return [String] AI-determined text severity
+        attr_accessor :ai_text_severity
+        # @!attribute created_at
+        #   @return [DateTime] When the item was created
+        attr_accessor :created_at
+        # @!attribute entity_id
+        #   @return [String] ID of the entity being reviewed
+        attr_accessor :entity_id
+        # @!attribute entity_type
+        #   @return [String] Type of entity being reviewed
+        attr_accessor :entity_type
+        # @!attribute flags_count
+        #   @return [Integer]
         attr_accessor :flags_count
-        attr_accessor :recommended_action  # Suggested moderation action
-        attr_accessor :reviewed_by  # ID of the moderator who reviewed the item
-        attr_accessor :severity  # Severity level of the content
-        attr_accessor :status  # Current status of the review
-        attr_accessor :updated_at  # When the item was last updated
-        attr_accessor :actions  # Moderation actions taken
-        attr_accessor :bans  # Associated ban records
-        attr_accessor :flags  # Associated flag records
-        attr_accessor :languages  # Detected languages in the content
-        attr_accessor :completed_at  # When the review was completed
+        # @!attribute recommended_action
+        #   @return [String] Suggested moderation action
+        attr_accessor :recommended_action
+        # @!attribute reviewed_by
+        #   @return [String] ID of the moderator who reviewed the item
+        attr_accessor :reviewed_by
+        # @!attribute severity
+        #   @return [Integer] Severity level of the content
+        attr_accessor :severity
+        # @!attribute status
+        #   @return [String] Current status of the review
+        attr_accessor :status
+        # @!attribute updated_at
+        #   @return [DateTime] When the item was last updated
+        attr_accessor :updated_at
+        # @!attribute actions
+        #   @return [Array<ActionLogResponse>] Moderation actions taken
+        attr_accessor :actions
+        # @!attribute bans
+        #   @return [Array<Ban>] Associated ban records
+        attr_accessor :bans
+        # @!attribute flags
+        #   @return [Array<ModerationFlagResponse>] Associated flag records
+        attr_accessor :flags
+        # @!attribute languages
+        #   @return [Array<String>] Detected languages in the content
+        attr_accessor :languages
+        # @!attribute completed_at
+        #   @return [DateTime] When the review was completed
+        attr_accessor :completed_at
+        # @!attribute config_key
+        #   @return [String]
         attr_accessor :config_key
-        attr_accessor :entity_creator_id  # ID of who created the entity
-        attr_accessor :reviewed_at  # When the item was reviewed
-        attr_accessor :teams  # Teams associated with this item
+        # @!attribute entity_creator_id
+        #   @return [String] ID of who created the entity
+        attr_accessor :entity_creator_id
+        # @!attribute reviewed_at
+        #   @return [DateTime] When the item was reviewed
+        attr_accessor :reviewed_at
+        # @!attribute teams
+        #   @return [Array<String>] Teams associated with this item
+        attr_accessor :teams
+        # @!attribute activity
+        #   @return [EnrichedActivity]
         attr_accessor :activity
+        # @!attribute assigned_to
+        #   @return [UserResponse]
         attr_accessor :assigned_to
+        # @!attribute call
+        #   @return [CallResponse]
         attr_accessor :call
+        # @!attribute entity_creator
+        #   @return [EntityCreatorResponse]
         attr_accessor :entity_creator
+        # @!attribute feeds_v2_activity
+        #   @return [EnrichedActivity]
         attr_accessor :feeds_v2_activity
+        # @!attribute feeds_v2_reaction
+        #   @return [Reaction]
         attr_accessor :feeds_v2_reaction
+        # @!attribute message
+        #   @return [MessageResponse]
         attr_accessor :message
+        # @!attribute moderation_payload
+        #   @return [ModerationPayload]
         attr_accessor :moderation_payload
+        # @!attribute reaction
+        #   @return [Reaction]
         attr_accessor :reaction
 
         # Initialize with attributes

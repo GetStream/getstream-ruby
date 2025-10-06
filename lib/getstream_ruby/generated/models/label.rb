@@ -9,8 +9,14 @@ module GetStream
       class Label < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute name
+        #   @return [String]
         attr_accessor :name
+        # @!attribute harm_labels
+        #   @return [Array<String>]
         attr_accessor :harm_labels
+        # @!attribute phrase_list_ids
+        #   @return [Array<Integer>]
         attr_accessor :phrase_list_ids
 
         # Initialize with attributes

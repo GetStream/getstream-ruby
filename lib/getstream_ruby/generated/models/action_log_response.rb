@@ -9,15 +9,35 @@ module GetStream
       class ActionLogResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :_id  # Unique identifier of the action log
-        attr_accessor :_type  # Type of moderation action
-        attr_accessor :created_at  # Timestamp when the action was taken
-        attr_accessor :reason  # Reason for the moderation action
-        attr_accessor :target_user_id  # ID of the user who was the target of the action
-        attr_accessor :user_id  # ID of the user who performed the action
-        attr_accessor :custom  # Additional metadata about the action
+        # @!attribute _id
+        #   @return [String] Unique identifier of the action log
+        attr_accessor :_id
+        # @!attribute _type
+        #   @return [String] Type of moderation action
+        attr_accessor :_type
+        # @!attribute created_at
+        #   @return [DateTime] Timestamp when the action was taken
+        attr_accessor :created_at
+        # @!attribute reason
+        #   @return [String] Reason for the moderation action
+        attr_accessor :reason
+        # @!attribute target_user_id
+        #   @return [String] ID of the user who was the target of the action
+        attr_accessor :target_user_id
+        # @!attribute user_id
+        #   @return [String] ID of the user who performed the action
+        attr_accessor :user_id
+        # @!attribute custom
+        #   @return [Object] Additional metadata about the action
+        attr_accessor :custom
+        # @!attribute review_queue_item
+        #   @return [ReviewQueueItemResponse]
         attr_accessor :review_queue_item
+        # @!attribute target_user
+        #   @return [UserResponse]
         attr_accessor :target_user
+        # @!attribute user
+        #   @return [UserResponse]
         attr_accessor :user
 
         # Initialize with attributes

@@ -9,8 +9,14 @@ module GetStream
       class IngressAudioEncodingOptionsRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute bitrate
+        #   @return [Integer]
         attr_accessor :bitrate
+        # @!attribute channels
+        #   @return [Integer]
         attr_accessor :channels
+        # @!attribute enable_dtx
+        #   @return [Boolean]
         attr_accessor :enable_dtx
 
         # Initialize with attributes

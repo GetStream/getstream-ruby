@@ -9,6 +9,8 @@ module GetStream
       class MessageStatsResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute count_over_time
+        #   @return [Array<CountByMinuteResponse>]
         attr_accessor :count_over_time
 
         # Initialize with attributes

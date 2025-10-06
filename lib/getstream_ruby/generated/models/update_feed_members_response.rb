@@ -9,9 +9,17 @@ module GetStream
       class UpdateFeedMembersResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :duration  # Duration of the request in milliseconds
+        # @!attribute duration
+        #   @return [String] Duration of the request in milliseconds
+        attr_accessor :duration
+        # @!attribute added
+        #   @return [Array<FeedMemberResponse>]
         attr_accessor :added
+        # @!attribute removed_ids
+        #   @return [Array<String>]
         attr_accessor :removed_ids
+        # @!attribute updated
+        #   @return [Array<FeedMemberResponse>]
         attr_accessor :updated
 
         # Initialize with attributes

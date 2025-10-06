@@ -9,6 +9,8 @@ module GetStream
       class PublisherAudioMetrics < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute jitter_ms
+        #   @return [ActiveCallsLatencyStats]
         attr_accessor :jitter_ms
 
         # Initialize with attributes

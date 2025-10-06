@@ -9,7 +9,11 @@ module GetStream
       class StopLiveResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
+        # @!attribute call
+        #   @return [CallResponse]
         attr_accessor :call
 
         # Initialize with attributes

@@ -9,12 +9,26 @@ module GetStream
       class TruncateChannelRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :hard_delete  # Permanently delete channel data (messages, reactions, etc.)
-        attr_accessor :skip_push  # When `message` is set disables all push notifications for it
-        attr_accessor :truncated_at  # Truncate channel data up to `truncated_at`. The system message (if provided) creation time is always greater than `truncated_at`
+        # @!attribute hard_delete
+        #   @return [Boolean] Permanently delete channel data (messages, reactions, etc.)
+        attr_accessor :hard_delete
+        # @!attribute skip_push
+        #   @return [Boolean] When `message` is set disables all push notifications for it
+        attr_accessor :skip_push
+        # @!attribute truncated_at
+        #   @return [DateTime] Truncate channel data up to `truncated_at`. The system message (if provided) creation time is always greater than `truncated_at`
+        attr_accessor :truncated_at
+        # @!attribute user_id
+        #   @return [String]
         attr_accessor :user_id
-        attr_accessor :member_ids  # List of member IDs to hide message history for. If empty, truncates the channel for all members
+        # @!attribute member_ids
+        #   @return [Array<String>] List of member IDs to hide message history for. If empty, truncates the channel for all members
+        attr_accessor :member_ids
+        # @!attribute message
+        #   @return [MessageRequest]
         attr_accessor :message
+        # @!attribute user
+        #   @return [UserRequest]
         attr_accessor :user
 
         # Initialize with attributes

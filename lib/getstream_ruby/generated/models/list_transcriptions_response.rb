@@ -9,8 +9,12 @@ module GetStream
       class ListTranscriptionsResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
-        attr_accessor :transcriptions  # List of transcriptions for the call
+        # @!attribute transcriptions
+        #   @return [Array<CallTranscription>] List of transcriptions for the call
+        attr_accessor :transcriptions
 
         # Initialize with attributes
         def initialize(attributes = {})

@@ -9,8 +9,12 @@ module GetStream
       class StartHLSBroadcastingResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
-        attr_accessor :playlist_url  # the URL of the HLS playlist
+        # @!attribute playlist_url
+        #   @return [String] the URL of the HLS playlist
+        attr_accessor :playlist_url
 
         # Initialize with attributes
         def initialize(attributes = {})

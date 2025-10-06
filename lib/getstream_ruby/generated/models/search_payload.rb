@@ -9,13 +9,29 @@ module GetStream
       class SearchPayload < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :filter_conditions  # Channel filter conditions
-        attr_accessor :_next  # Pagination parameter. Cannot be used with non-zero offset.
-        attr_accessor :limit  # Number of messages to return
-        attr_accessor :offset  # Pagination offset. Cannot be used with sort or next.
-        attr_accessor :query  # Search phrase
-        attr_accessor :sort  # Sort parameters. Cannot be used with non-zero offset
-        attr_accessor :message_filter_conditions  # Message filter conditions
+        # @!attribute filter_conditions
+        #   @return [Object] Channel filter conditions
+        attr_accessor :filter_conditions
+        # @!attribute _next
+        #   @return [String] Pagination parameter. Cannot be used with non-zero offset.
+        attr_accessor :_next
+        # @!attribute limit
+        #   @return [Integer] Number of messages to return
+        attr_accessor :limit
+        # @!attribute offset
+        #   @return [Integer] Pagination offset. Cannot be used with sort or next.
+        attr_accessor :offset
+        # @!attribute query
+        #   @return [String] Search phrase
+        attr_accessor :query
+        # @!attribute sort
+        #   @return [Array<SortParamRequest>] Sort parameters. Cannot be used with non-zero offset
+        attr_accessor :sort
+        # @!attribute message_filter_conditions
+        #   @return [Object] Message filter conditions
+        attr_accessor :message_filter_conditions
+        # @!attribute message_options
+        #   @return [MessageOptions]
         attr_accessor :message_options
 
         # Initialize with attributes

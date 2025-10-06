@@ -9,14 +9,32 @@ module GetStream
       class BanRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :target_user_id  # ID of the user to ban
-        attr_accessor :banned_by_id  # ID of the user performing the ban
-        attr_accessor :channel_cid  # Channel where the ban applies
+        # @!attribute target_user_id
+        #   @return [String] ID of the user to ban
+        attr_accessor :target_user_id
+        # @!attribute banned_by_id
+        #   @return [String] ID of the user performing the ban
+        attr_accessor :banned_by_id
+        # @!attribute channel_cid
+        #   @return [String] Channel where the ban applies
+        attr_accessor :channel_cid
+        # @!attribute delete_messages
+        #   @return [String]
         attr_accessor :delete_messages
-        attr_accessor :ip_ban  # Whether to ban the user's IP address
-        attr_accessor :reason  # Optional explanation for the ban
-        attr_accessor :shadow  # Whether this is a shadow ban
-        attr_accessor :timeout  # Duration of the ban in minutes
+        # @!attribute ip_ban
+        #   @return [Boolean] Whether to ban the user's IP address
+        attr_accessor :ip_ban
+        # @!attribute reason
+        #   @return [String] Optional explanation for the ban
+        attr_accessor :reason
+        # @!attribute shadow
+        #   @return [Boolean] Whether this is a shadow ban
+        attr_accessor :shadow
+        # @!attribute timeout
+        #   @return [Integer] Duration of the ban in minutes
+        attr_accessor :timeout
+        # @!attribute banned_by
+        #   @return [UserRequest]
         attr_accessor :banned_by
 
         # Initialize with attributes

@@ -9,7 +9,11 @@ module GetStream
       class MarkReviewedRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute content_to_mark_as_reviewed_limit
+        #   @return [Integer]
         attr_accessor :content_to_mark_as_reviewed_limit
+        # @!attribute disable_marking_content_as_reviewed
+        #   @return [Boolean]
         attr_accessor :disable_marking_content_as_reviewed
 
         # Initialize with attributes

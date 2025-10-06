@@ -9,7 +9,11 @@ module GetStream
       class UpdateCallMembersResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :duration  # Duration of the request in milliseconds
+        # @!attribute duration
+        #   @return [String] Duration of the request in milliseconds
+        attr_accessor :duration
+        # @!attribute members
+        #   @return [Array<MemberResponse>]
         attr_accessor :members
 
         # Initialize with attributes

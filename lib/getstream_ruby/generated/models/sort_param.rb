@@ -9,7 +9,11 @@ module GetStream
       class SortParam < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute direction
+        #   @return [Integer]
         attr_accessor :direction
+        # @!attribute field
+        #   @return [String]
         attr_accessor :field
 
         # Initialize with attributes

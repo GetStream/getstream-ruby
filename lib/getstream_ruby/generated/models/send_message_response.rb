@@ -9,9 +9,15 @@ module GetStream
       class SendMessageResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :duration  # Duration of the request in milliseconds
+        # @!attribute duration
+        #   @return [String] Duration of the request in milliseconds
+        attr_accessor :duration
+        # @!attribute message
+        #   @return [MessageResponse]
         attr_accessor :message
-        attr_accessor :pending_message_metadata  # Pending message metadata
+        # @!attribute pending_message_metadata
+        #   @return [Hash<String, String>] Pending message metadata
+        attr_accessor :pending_message_metadata
 
         # Initialize with attributes
         def initialize(attributes = {})

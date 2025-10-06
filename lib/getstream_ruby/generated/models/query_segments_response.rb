@@ -9,9 +9,17 @@ module GetStream
       class QuerySegmentsResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :duration  # Duration of the request in milliseconds
-        attr_accessor :segments  # Segments
+        # @!attribute duration
+        #   @return [String] Duration of the request in milliseconds
+        attr_accessor :duration
+        # @!attribute segments
+        #   @return [Array<SegmentResponse>] Segments
+        attr_accessor :segments
+        # @!attribute _next
+        #   @return [String]
         attr_accessor :_next
+        # @!attribute prev
+        #   @return [String]
         attr_accessor :prev
 
         # Initialize with attributes

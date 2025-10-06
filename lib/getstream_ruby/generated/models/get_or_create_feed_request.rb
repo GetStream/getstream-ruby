@@ -9,20 +9,50 @@ module GetStream
       class GetOrCreateFeedRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _next
+        #   @return [String]
         attr_accessor :_next
+        # @!attribute limit
+        #   @return [Integer]
         attr_accessor :limit
+        # @!attribute prev
+        #   @return [String]
         attr_accessor :prev
+        # @!attribute user_id
+        #   @return [String]
         attr_accessor :user_id
+        # @!attribute view
+        #   @return [String]
         attr_accessor :view
+        # @!attribute watch
+        #   @return [Boolean]
         attr_accessor :watch
+        # @!attribute activity_selector_options
+        #   @return [Object]
         attr_accessor :activity_selector_options
+        # @!attribute data
+        #   @return [FeedInput]
         attr_accessor :data
+        # @!attribute external_ranking
+        #   @return [Object]
         attr_accessor :external_ranking
+        # @!attribute filter
+        #   @return [Object]
         attr_accessor :filter
+        # @!attribute followers_pagination
+        #   @return [PagerRequest]
         attr_accessor :followers_pagination
+        # @!attribute following_pagination
+        #   @return [PagerRequest]
         attr_accessor :following_pagination
+        # @!attribute interest_weights
+        #   @return [Hash<String, Float>]
         attr_accessor :interest_weights
+        # @!attribute member_pagination
+        #   @return [PagerRequest]
         attr_accessor :member_pagination
+        # @!attribute user
+        #   @return [UserRequest]
         attr_accessor :user
 
         # Initialize with attributes

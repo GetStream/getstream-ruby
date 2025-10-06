@@ -9,9 +9,17 @@ module GetStream
       class CreateBlockListRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :name  # Block list name
-        attr_accessor :words  # List of words to block
-        attr_accessor :_type  # Block list type.
+        # @!attribute name
+        #   @return [String] Block list name
+        attr_accessor :name
+        # @!attribute words
+        #   @return [Array<String>] List of words to block
+        attr_accessor :words
+        # @!attribute _type
+        #   @return [String] Block list type.
+        attr_accessor :_type
+        # @!attribute team
+        #   @return [String]
         attr_accessor :team
 
         # Initialize with attributes

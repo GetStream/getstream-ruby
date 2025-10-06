@@ -9,14 +9,32 @@ module GetStream
       class MessageChangeSet < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute attachments
+        #   @return [Boolean]
         attr_accessor :attachments
+        # @!attribute custom
+        #   @return [Boolean]
         attr_accessor :custom
+        # @!attribute html
+        #   @return [Boolean]
         attr_accessor :html
+        # @!attribute mentioned_user_ids
+        #   @return [Boolean]
         attr_accessor :mentioned_user_ids
+        # @!attribute mml
+        #   @return [Boolean]
         attr_accessor :mml
+        # @!attribute pin
+        #   @return [Boolean]
         attr_accessor :pin
+        # @!attribute quoted_message_id
+        #   @return [Boolean]
         attr_accessor :quoted_message_id
+        # @!attribute silent
+        #   @return [Boolean]
         attr_accessor :silent
+        # @!attribute text
+        #   @return [Boolean]
         attr_accessor :text
 
         # Initialize with attributes

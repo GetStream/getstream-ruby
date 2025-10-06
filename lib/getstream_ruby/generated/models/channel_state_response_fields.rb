@@ -9,21 +9,53 @@ module GetStream
       class ChannelStateResponseFields < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :members  # List of channel members
-        attr_accessor :messages  # List of channel messages
-        attr_accessor :pinned_messages  # List of pinned messages in the channel
+        # @!attribute members
+        #   @return [Array<ChannelMember>] List of channel members
+        attr_accessor :members
+        # @!attribute messages
+        #   @return [Array<MessageResponse>] List of channel messages
+        attr_accessor :messages
+        # @!attribute pinned_messages
+        #   @return [Array<MessageResponse>] List of pinned messages in the channel
+        attr_accessor :pinned_messages
+        # @!attribute threads
+        #   @return [Array<ThreadStateResponse>]
         attr_accessor :threads
-        attr_accessor :hidden  # Whether this channel is hidden or not
-        attr_accessor :hide_messages_before  # Messages before this date are hidden from the user
-        attr_accessor :watcher_count  # Number of channel watchers
-        attr_accessor :active_live_locations  # Active live locations in the channel
+        # @!attribute hidden
+        #   @return [Boolean] Whether this channel is hidden or not
+        attr_accessor :hidden
+        # @!attribute hide_messages_before
+        #   @return [DateTime] Messages before this date are hidden from the user
+        attr_accessor :hide_messages_before
+        # @!attribute watcher_count
+        #   @return [Integer] Number of channel watchers
+        attr_accessor :watcher_count
+        # @!attribute active_live_locations
+        #   @return [Array<SharedLocationResponseData>] Active live locations in the channel
+        attr_accessor :active_live_locations
+        # @!attribute deleted_messages
+        #   @return [Array<String>]
         attr_accessor :deleted_messages
-        attr_accessor :pending_messages  # Pending messages that this user has sent
-        attr_accessor :read  # List of read states
-        attr_accessor :watchers  # List of user who is watching the channel
+        # @!attribute pending_messages
+        #   @return [Array<PendingMessageResponse>] Pending messages that this user has sent
+        attr_accessor :pending_messages
+        # @!attribute read
+        #   @return [Array<ReadStateResponse>] List of read states
+        attr_accessor :read
+        # @!attribute watchers
+        #   @return [Array<UserResponse>] List of user who is watching the channel
+        attr_accessor :watchers
+        # @!attribute channel
+        #   @return [ChannelResponse]
         attr_accessor :channel
+        # @!attribute draft
+        #   @return [DraftResponse]
         attr_accessor :draft
+        # @!attribute membership
+        #   @return [ChannelMember]
         attr_accessor :membership
+        # @!attribute push_preferences
+        #   @return [ChannelPushPreferences]
         attr_accessor :push_preferences
 
         # Initialize with attributes

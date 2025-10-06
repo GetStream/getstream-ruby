@@ -9,11 +9,21 @@ module GetStream
       class CallMemberUpdatedEvent < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute call_cid
+        #   @return [String]
         attr_accessor :call_cid
+        # @!attribute created_at
+        #   @return [DateTime]
         attr_accessor :created_at
-        attr_accessor :members  # The list of members that were updated
+        # @!attribute members
+        #   @return [Array<MemberResponse>] The list of members that were updated
+        attr_accessor :members
+        # @!attribute call
+        #   @return [CallResponse]
         attr_accessor :call
-        attr_accessor :_type  # The type of event: "call.member_updated" in this case
+        # @!attribute _type
+        #   @return [String] The type of event: "call.member_updated" in this case
+        attr_accessor :_type
 
         # Initialize with attributes
         def initialize(attributes = {})

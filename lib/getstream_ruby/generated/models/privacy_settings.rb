@@ -9,7 +9,11 @@ module GetStream
       class PrivacySettings < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute read_receipts
+        #   @return [ReadReceipts]
         attr_accessor :read_receipts
+        # @!attribute typing_indicators
+        #   @return [TypingIndicators]
         attr_accessor :typing_indicators
 
         # Initialize with attributes

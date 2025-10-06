@@ -9,32 +9,86 @@ module GetStream
       class EntityCreatorResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _id
+        #   @return [String]
         attr_accessor :_id
-        attr_accessor :ban_count  # Number of minor actions performed on the user
+        # @!attribute ban_count
+        #   @return [Integer] Number of minor actions performed on the user
+        attr_accessor :ban_count
+        # @!attribute banned
+        #   @return [Boolean]
         attr_accessor :banned
+        # @!attribute created_at
+        #   @return [DateTime]
         attr_accessor :created_at
-        attr_accessor :deleted_content_count  # Number of major actions performed on the user
-        attr_accessor :flagged_count  # Number of flag actions performed on the user
+        # @!attribute deleted_content_count
+        #   @return [Integer] Number of major actions performed on the user
+        attr_accessor :deleted_content_count
+        # @!attribute flagged_count
+        #   @return [Integer] Number of flag actions performed on the user
+        attr_accessor :flagged_count
+        # @!attribute invisible
+        #   @return [Boolean]
         attr_accessor :invisible
+        # @!attribute language
+        #   @return [String]
         attr_accessor :language
+        # @!attribute online
+        #   @return [Boolean]
         attr_accessor :online
+        # @!attribute role
+        #   @return [String]
         attr_accessor :role
+        # @!attribute shadow_banned
+        #   @return [Boolean]
         attr_accessor :shadow_banned
+        # @!attribute updated_at
+        #   @return [DateTime]
         attr_accessor :updated_at
+        # @!attribute blocked_user_ids
+        #   @return [Array<String>]
         attr_accessor :blocked_user_ids
+        # @!attribute teams
+        #   @return [Array<String>]
         attr_accessor :teams
+        # @!attribute custom
+        #   @return [Object]
         attr_accessor :custom
+        # @!attribute avg_response_time
+        #   @return [Integer]
         attr_accessor :avg_response_time
+        # @!attribute ban_expires
+        #   @return [DateTime]
         attr_accessor :ban_expires
+        # @!attribute deactivated_at
+        #   @return [DateTime]
         attr_accessor :deactivated_at
+        # @!attribute deleted_at
+        #   @return [DateTime]
         attr_accessor :deleted_at
+        # @!attribute image
+        #   @return [String]
         attr_accessor :image
+        # @!attribute last_active
+        #   @return [DateTime]
         attr_accessor :last_active
+        # @!attribute name
+        #   @return [String]
         attr_accessor :name
+        # @!attribute revoke_tokens_issued_before
+        #   @return [DateTime]
         attr_accessor :revoke_tokens_issued_before
+        # @!attribute devices
+        #   @return [Array<DeviceResponse>]
         attr_accessor :devices
+        # @!attribute privacy_settings
+        #   @return [PrivacySettingsResponse]
         attr_accessor :privacy_settings
+        # @!attribute push_notifications
+        #   @return [PushNotificationSettingsResponse]
         attr_accessor :push_notifications
+        # @!attribute teams_role
+        #   @return [Hash<String, String>]
         attr_accessor :teams_role
 
         # Initialize with attributes

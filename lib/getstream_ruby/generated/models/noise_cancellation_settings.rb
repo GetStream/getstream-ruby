@@ -9,6 +9,8 @@ module GetStream
       class NoiseCancellationSettings < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute mode
+        #   @return [String]
         attr_accessor :mode
 
         # Initialize with attributes

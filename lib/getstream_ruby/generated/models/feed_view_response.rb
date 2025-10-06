@@ -9,11 +9,23 @@ module GetStream
       class FeedViewResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :_id  # Unique identifier for the custom feed view
-        attr_accessor :last_used_at  # When the feed view was last used
-        attr_accessor :activity_processors  # Configured activity processors
-        attr_accessor :activity_selectors  # Configured activity selectors
+        # @!attribute _id
+        #   @return [String] Unique identifier for the custom feed view
+        attr_accessor :_id
+        # @!attribute last_used_at
+        #   @return [DateTime] When the feed view was last used
+        attr_accessor :last_used_at
+        # @!attribute activity_processors
+        #   @return [Array<ActivityProcessorConfig>] Configured activity processors
+        attr_accessor :activity_processors
+        # @!attribute activity_selectors
+        #   @return [Array<ActivitySelectorConfig>] Configured activity selectors
+        attr_accessor :activity_selectors
+        # @!attribute aggregation
+        #   @return [AggregationConfig]
         attr_accessor :aggregation
+        # @!attribute ranking
+        #   @return [RankingConfig]
         attr_accessor :ranking
 
         # Initialize with attributes

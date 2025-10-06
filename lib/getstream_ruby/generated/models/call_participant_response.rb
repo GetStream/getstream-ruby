@@ -9,9 +9,17 @@ module GetStream
       class CallParticipantResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute joined_at
+        #   @return [DateTime]
         attr_accessor :joined_at
+        # @!attribute role
+        #   @return [String]
         attr_accessor :role
+        # @!attribute user_session_id
+        #   @return [String]
         attr_accessor :user_session_id
+        # @!attribute user
+        #   @return [UserResponse]
         attr_accessor :user
 
         # Initialize with attributes

@@ -9,9 +9,17 @@ module GetStream
       class CustomCheckResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :_id  # Unique identifier of the custom check
+        # @!attribute _id
+        #   @return [String] Unique identifier of the custom check
+        attr_accessor :_id
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
-        attr_accessor :status  # Status of the custom check
+        # @!attribute status
+        #   @return [String] Status of the custom check
+        attr_accessor :status
+        # @!attribute item
+        #   @return [ReviewQueueItemResponse]
         attr_accessor :item
 
         # Initialize with attributes

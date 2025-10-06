@@ -9,14 +9,30 @@ module GetStream
       class CreateCallTypeResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :created_at  # the time the call type was created
+        # @!attribute created_at
+        #   @return [DateTime] the time the call type was created
+        attr_accessor :created_at
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
-        attr_accessor :name  # the name of the call type
-        attr_accessor :updated_at  # the time the call type was last updated
-        attr_accessor :grants  # the permissions granted to each role
+        # @!attribute name
+        #   @return [String] the name of the call type
+        attr_accessor :name
+        # @!attribute updated_at
+        #   @return [DateTime] the time the call type was last updated
+        attr_accessor :updated_at
+        # @!attribute grants
+        #   @return [Hash<String, Array<String>>] the permissions granted to each role
+        attr_accessor :grants
+        # @!attribute notification_settings
+        #   @return [NotificationSettings]
         attr_accessor :notification_settings
+        # @!attribute settings
+        #   @return [CallSettingsResponse]
         attr_accessor :settings
-        attr_accessor :external_storage  # the external storage for the call type
+        # @!attribute external_storage
+        #   @return [String] the external storage for the call type
+        attr_accessor :external_storage
 
         # Initialize with attributes
         def initialize(attributes = {})

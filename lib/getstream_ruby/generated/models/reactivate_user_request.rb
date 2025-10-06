@@ -9,9 +9,15 @@ module GetStream
       class ReactivateUserRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :created_by_id  # ID of the user who's reactivating the user
-        attr_accessor :name  # Set this field to put new name for the user
-        attr_accessor :restore_messages  # Restore previously deleted messages
+        # @!attribute created_by_id
+        #   @return [String] ID of the user who's reactivating the user
+        attr_accessor :created_by_id
+        # @!attribute name
+        #   @return [String] Set this field to put new name for the user
+        attr_accessor :name
+        # @!attribute restore_messages
+        #   @return [Boolean] Restore previously deleted messages
+        attr_accessor :restore_messages
 
         # Initialize with attributes
         def initialize(attributes = {})

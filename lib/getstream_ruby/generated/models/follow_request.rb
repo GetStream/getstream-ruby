@@ -9,12 +9,24 @@ module GetStream
       class FollowRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :source  # Fully qualified ID of the source feed
-        attr_accessor :target  # Fully qualified ID of the target feed
-        attr_accessor :create_notification_activity  # Whether to create a notification activity for this follow
-        attr_accessor :push_preference  # Push preference for the follow relationship
+        # @!attribute source
+        #   @return [String] Fully qualified ID of the source feed
+        attr_accessor :source
+        # @!attribute target
+        #   @return [String] Fully qualified ID of the target feed
+        attr_accessor :target
+        # @!attribute create_notification_activity
+        #   @return [Boolean] Whether to create a notification activity for this follow
+        attr_accessor :create_notification_activity
+        # @!attribute push_preference
+        #   @return [String] Push preference for the follow relationship
+        attr_accessor :push_preference
+        # @!attribute skip_push
+        #   @return [Boolean]
         attr_accessor :skip_push
-        attr_accessor :custom  # Custom data for the follow relationship
+        # @!attribute custom
+        #   @return [Object] Custom data for the follow relationship
+        attr_accessor :custom
 
         # Initialize with attributes
         def initialize(attributes = {})

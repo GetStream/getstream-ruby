@@ -9,23 +9,59 @@ module GetStream
       class GetOrCreateFeedResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute created
+        #   @return [Boolean]
         attr_accessor :created
-        attr_accessor :duration  # Duration of the request in milliseconds
+        # @!attribute duration
+        #   @return [String] Duration of the request in milliseconds
+        attr_accessor :duration
+        # @!attribute activities
+        #   @return [Array<ActivityResponse>]
         attr_accessor :activities
+        # @!attribute aggregated_activities
+        #   @return [Array<AggregatedActivityResponse>]
         attr_accessor :aggregated_activities
+        # @!attribute followers
+        #   @return [Array<FollowResponse>]
         attr_accessor :followers
+        # @!attribute following
+        #   @return [Array<FollowResponse>]
         attr_accessor :following
+        # @!attribute members
+        #   @return [Array<FeedMemberResponse>]
         attr_accessor :members
+        # @!attribute own_capabilities
+        #   @return [Array<FeedOwnCapability>]
         attr_accessor :own_capabilities
+        # @!attribute pinned_activities
+        #   @return [Array<ActivityPinResponse>]
         attr_accessor :pinned_activities
+        # @!attribute feed
+        #   @return [FeedResponse]
         attr_accessor :feed
+        # @!attribute _next
+        #   @return [String]
         attr_accessor :_next
+        # @!attribute prev
+        #   @return [String]
         attr_accessor :prev
+        # @!attribute own_follows
+        #   @return [Array<FollowResponse>]
         attr_accessor :own_follows
+        # @!attribute followers_pagination
+        #   @return [PagerResponse]
         attr_accessor :followers_pagination
+        # @!attribute following_pagination
+        #   @return [PagerResponse]
         attr_accessor :following_pagination
+        # @!attribute member_pagination
+        #   @return [PagerResponse]
         attr_accessor :member_pagination
+        # @!attribute notification_status
+        #   @return [NotificationStatusResponse]
         attr_accessor :notification_status
+        # @!attribute own_membership
+        #   @return [FeedMemberResponse]
         attr_accessor :own_membership
 
         # Initialize with attributes

@@ -9,8 +9,14 @@ module GetStream
       class PollOptionRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _id
+        #   @return [String]
         attr_accessor :_id
+        # @!attribute text
+        #   @return [String]
         attr_accessor :text
+        # @!attribute custom
+        #   @return [Object]
         attr_accessor :custom
 
         # Initialize with attributes

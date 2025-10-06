@@ -9,8 +9,14 @@ module GetStream
       class CreateImportURLResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :duration  # Duration of the request in milliseconds
+        # @!attribute duration
+        #   @return [String] Duration of the request in milliseconds
+        attr_accessor :duration
+        # @!attribute path
+        #   @return [String]
         attr_accessor :path
+        # @!attribute upload_url
+        #   @return [String]
         attr_accessor :upload_url
 
         # Initialize with attributes

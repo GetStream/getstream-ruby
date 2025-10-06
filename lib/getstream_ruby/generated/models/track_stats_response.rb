@@ -9,7 +9,11 @@ module GetStream
       class TrackStatsResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute duration_seconds
+        #   @return [Integer]
         attr_accessor :duration_seconds
+        # @!attribute track_type
+        #   @return [String]
         attr_accessor :track_type
 
         # Initialize with attributes

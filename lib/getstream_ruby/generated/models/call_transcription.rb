@@ -9,10 +9,20 @@ module GetStream
       class CallTranscription < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute end_time
+        #   @return [DateTime]
         attr_accessor :end_time
+        # @!attribute filename
+        #   @return [String]
         attr_accessor :filename
+        # @!attribute session_id
+        #   @return [String]
         attr_accessor :session_id
+        # @!attribute start_time
+        #   @return [DateTime]
         attr_accessor :start_time
+        # @!attribute url
+        #   @return [String]
         attr_accessor :url
 
         # Initialize with attributes

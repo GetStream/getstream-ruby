@@ -9,19 +9,47 @@ module GetStream
       class Flag < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :created_at  # Date/time of creation
+        # @!attribute created_at
+        #   @return [DateTime] Date/time of creation
+        attr_accessor :created_at
+        # @!attribute created_by_automod
+        #   @return [Boolean]
         attr_accessor :created_by_automod
-        attr_accessor :updated_at  # Date/time of the last update
-        attr_accessor :approved_at  # Date of the approval
+        # @!attribute updated_at
+        #   @return [DateTime] Date/time of the last update
+        attr_accessor :updated_at
+        # @!attribute approved_at
+        #   @return [DateTime] Date of the approval
+        attr_accessor :approved_at
+        # @!attribute reason
+        #   @return [String]
         attr_accessor :reason
-        attr_accessor :rejected_at  # Date of the rejection
-        attr_accessor :reviewed_at  # Date of the review
+        # @!attribute rejected_at
+        #   @return [DateTime] Date of the rejection
+        attr_accessor :rejected_at
+        # @!attribute reviewed_at
+        #   @return [DateTime] Date of the review
+        attr_accessor :reviewed_at
+        # @!attribute reviewed_by
+        #   @return [String]
         attr_accessor :reviewed_by
-        attr_accessor :target_message_id  # ID of flagged message
+        # @!attribute target_message_id
+        #   @return [String] ID of flagged message
+        attr_accessor :target_message_id
+        # @!attribute custom
+        #   @return [Object]
         attr_accessor :custom
+        # @!attribute details
+        #   @return [FlagDetails]
         attr_accessor :details
+        # @!attribute target_message
+        #   @return [Message]
         attr_accessor :target_message
+        # @!attribute target_user
+        #   @return [User]
         attr_accessor :target_user
+        # @!attribute user
+        #   @return [User]
         attr_accessor :user
 
         # Initialize with attributes

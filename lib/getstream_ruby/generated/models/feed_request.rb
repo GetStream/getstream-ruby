@@ -9,15 +9,33 @@ module GetStream
       class FeedRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :feed_group_id  # ID of the feed group
-        attr_accessor :feed_id  # ID of the feed
-        attr_accessor :created_by_id  # ID of the feed creator
-        attr_accessor :description  # Description of the feed
-        attr_accessor :name  # Name of the feed
-        attr_accessor :visibility  # Visibility setting for the feed
-        attr_accessor :filter_tags  # Tags used for filtering feeds
-        attr_accessor :members  # Initial members for the feed
-        attr_accessor :custom  # Custom data for the feed
+        # @!attribute feed_group_id
+        #   @return [String] ID of the feed group
+        attr_accessor :feed_group_id
+        # @!attribute feed_id
+        #   @return [String] ID of the feed
+        attr_accessor :feed_id
+        # @!attribute created_by_id
+        #   @return [String] ID of the feed creator
+        attr_accessor :created_by_id
+        # @!attribute description
+        #   @return [String] Description of the feed
+        attr_accessor :description
+        # @!attribute name
+        #   @return [String] Name of the feed
+        attr_accessor :name
+        # @!attribute visibility
+        #   @return [String] Visibility setting for the feed
+        attr_accessor :visibility
+        # @!attribute filter_tags
+        #   @return [Array<String>] Tags used for filtering feeds
+        attr_accessor :filter_tags
+        # @!attribute members
+        #   @return [Array<FeedMemberRequest>] Initial members for the feed
+        attr_accessor :members
+        # @!attribute custom
+        #   @return [Object] Custom data for the feed
+        attr_accessor :custom
 
         # Initialize with attributes
         def initialize(attributes = {})

@@ -9,10 +9,18 @@ module GetStream
       class UpdateLiveLocationRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :message_id  # Live location ID
-        attr_accessor :end_at  # Time when the live location expires
-        attr_accessor :latitude  # Latitude coordinate
-        attr_accessor :longitude  # Longitude coordinate
+        # @!attribute message_id
+        #   @return [String] Live location ID
+        attr_accessor :message_id
+        # @!attribute end_at
+        #   @return [DateTime] Time when the live location expires
+        attr_accessor :end_at
+        # @!attribute latitude
+        #   @return [Float] Latitude coordinate
+        attr_accessor :latitude
+        # @!attribute longitude
+        #   @return [Float] Longitude coordinate
+        attr_accessor :longitude
 
         # Initialize with attributes
         def initialize(attributes = {})

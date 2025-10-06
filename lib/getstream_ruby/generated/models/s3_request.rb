@@ -9,10 +9,18 @@ module GetStream
       class S3Request < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :s3_region  # The AWS region where the bucket is hosted
-        attr_accessor :s3_api_key  # The AWS API key. To use Amazon S3 as your storage provider, you have two authentication options: IAM role or API key. If you do not specify the `s3_api_key` parameter, Stream will use IAM role authentication. In that case make sure to have the correct IAM role configured for your application.
-        attr_accessor :s3_custom_endpoint_url  # The custom endpoint for S3. If you want to use a custom endpoint, you must also provide the `s3_api_key` and `s3_secret` parameters.
-        attr_accessor :s3_secret  # The AWS API Secret
+        # @!attribute s3_region
+        #   @return [String] The AWS region where the bucket is hosted
+        attr_accessor :s3_region
+        # @!attribute s3_api_key
+        #   @return [String] The AWS API key. To use Amazon S3 as your storage provider, you have two authentication options: IAM role or API key. If you do not specify the `s3_api_key` parameter, Stream will use IAM role authentication. In that case make sure to have the correct IAM role configured for your application.
+        attr_accessor :s3_api_key
+        # @!attribute s3_custom_endpoint_url
+        #   @return [String] The custom endpoint for S3. If you want to use a custom endpoint, you must also provide the `s3_api_key` and `s3_secret` parameters.
+        attr_accessor :s3_custom_endpoint_url
+        # @!attribute s3_secret
+        #   @return [String] The AWS API Secret
+        attr_accessor :s3_secret
 
         # Initialize with attributes
         def initialize(attributes = {})

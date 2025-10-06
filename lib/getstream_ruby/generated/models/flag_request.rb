@@ -9,13 +9,29 @@ module GetStream
       class FlagRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :entity_id  # Unique identifier of the entity being flagged
-        attr_accessor :entity_type  # Type of entity being flagged (e.g., message, user)
-        attr_accessor :entity_creator_id  # ID of the user who created the flagged entity
-        attr_accessor :reason  # Optional explanation for why the content is being flagged
+        # @!attribute entity_id
+        #   @return [String] Unique identifier of the entity being flagged
+        attr_accessor :entity_id
+        # @!attribute entity_type
+        #   @return [String] Type of entity being flagged (e.g., message, user)
+        attr_accessor :entity_type
+        # @!attribute entity_creator_id
+        #   @return [String] ID of the user who created the flagged entity
+        attr_accessor :entity_creator_id
+        # @!attribute reason
+        #   @return [String] Optional explanation for why the content is being flagged
+        attr_accessor :reason
+        # @!attribute user_id
+        #   @return [String]
         attr_accessor :user_id
-        attr_accessor :custom  # Additional metadata about the flag
+        # @!attribute custom
+        #   @return [Object] Additional metadata about the flag
+        attr_accessor :custom
+        # @!attribute moderation_payload
+        #   @return [ModerationPayload]
         attr_accessor :moderation_payload
+        # @!attribute user
+        #   @return [UserRequest]
         attr_accessor :user
 
         # Initialize with attributes

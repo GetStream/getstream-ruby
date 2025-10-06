@@ -9,8 +9,12 @@ module GetStream
       class DeleteFeedResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
-        attr_accessor :task_id  # The ID of the async task that will handle feed cleanup and hard deletion
+        # @!attribute task_id
+        #   @return [String] The ID of the async task that will handle feed cleanup and hard deletion
+        attr_accessor :task_id
 
         # Initialize with attributes
         def initialize(attributes = {})

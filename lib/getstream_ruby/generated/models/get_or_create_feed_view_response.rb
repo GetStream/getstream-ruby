@@ -9,8 +9,14 @@ module GetStream
       class GetOrCreateFeedViewResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
-        attr_accessor :was_created  # Indicates whether the feed view was newly created (true) or already existed (false)
+        # @!attribute was_created
+        #   @return [Boolean] Indicates whether the feed view was newly created (true) or already existed (false)
+        attr_accessor :was_created
+        # @!attribute feed_view
+        #   @return [FeedViewResponse]
         attr_accessor :feed_view
 
         # Initialize with attributes

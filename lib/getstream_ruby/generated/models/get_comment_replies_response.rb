@@ -9,9 +9,17 @@ module GetStream
       class GetCommentRepliesResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
-        attr_accessor :comments  # Threaded listing of replies to the comment
+        # @!attribute comments
+        #   @return [Array<ThreadedCommentResponse>] Threaded listing of replies to the comment
+        attr_accessor :comments
+        # @!attribute _next
+        #   @return [String]
         attr_accessor :_next
+        # @!attribute prev
+        #   @return [String]
         attr_accessor :prev
 
         # Initialize with attributes

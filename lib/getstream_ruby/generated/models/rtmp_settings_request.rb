@@ -9,8 +9,14 @@ module GetStream
       class RTMPSettingsRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute enabled
+        #   @return [Boolean]
         attr_accessor :enabled
-        attr_accessor :quality  # Resolution to set for the RTMP stream
+        # @!attribute quality
+        #   @return [String] Resolution to set for the RTMP stream
+        attr_accessor :quality
+        # @!attribute layout
+        #   @return [LayoutSettingsRequest]
         attr_accessor :layout
 
         # Initialize with attributes

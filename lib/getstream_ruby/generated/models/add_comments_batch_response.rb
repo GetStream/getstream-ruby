@@ -9,8 +9,12 @@ module GetStream
       class AddCommentsBatchResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
-        attr_accessor :comments  # List of comments added
+        # @!attribute comments
+        #   @return [Array<CommentResponse>] List of comments added
+        attr_accessor :comments
 
         # Initialize with attributes
         def initialize(attributes = {})

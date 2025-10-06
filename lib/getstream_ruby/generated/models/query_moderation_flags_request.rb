@@ -9,10 +9,20 @@ module GetStream
       class QueryModerationFlagsRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _next
+        #   @return [String]
         attr_accessor :_next
+        # @!attribute limit
+        #   @return [Integer]
         attr_accessor :limit
+        # @!attribute prev
+        #   @return [String]
         attr_accessor :prev
+        # @!attribute sort
+        #   @return [Array<SortParam>]
         attr_accessor :sort
+        # @!attribute filter
+        #   @return [Object]
         attr_accessor :filter
 
         # Initialize with attributes

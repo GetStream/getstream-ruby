@@ -13,15 +13,14 @@ module GetStream
         @feed_group_id = feed_group_id
         @feed_id = feed_id
       end
-
       # Delete a single feed by its ID
       #
       # @param hard_delete [Boolean]
-      # @return [GetStream::StreamResponse<DeleteFeedResponse>]
+      # @return [Models::DeleteFeedResponse]
       def delete_feed(hard_delete = nil)
         # Build query parameters
         query_params = {}
-        query_params['hard_delete'] = hard_delete unless hard_delete.nil?
+        query_params["hard_delete"] = hard_delete unless hard_delete.nil?
 
         # Delegate to the FeedsClient
         @client.feeds.delete_feed(@feed_group_id, @feed_id, query_params)
@@ -30,7 +29,7 @@ module GetStream
       # Create a single feed for a given feed group
       #
       # @param get_or_create_feed_request [GetOrCreateFeedRequest]
-      # @return [GetStream::StreamResponse<GetOrCreateFeedResponse>]
+      # @return [Models::GetOrCreateFeedResponse]
       def get_or_create_feed(get_or_create_feed_request)
 
         # Delegate to the FeedsClient
@@ -40,7 +39,7 @@ module GetStream
       # Update an existing feed
       #
       # @param update_feed_request [UpdateFeedRequest]
-      # @return [GetStream::StreamResponse<UpdateFeedResponse>]
+      # @return [Models::UpdateFeedResponse]
       def update_feed(update_feed_request)
 
         # Delegate to the FeedsClient
@@ -50,7 +49,7 @@ module GetStream
       # Mark activities as read/seen/watched. Can mark by timestamp (seen), activity IDs (read), or all as read.
       #
       # @param mark_activity_request [MarkActivityRequest]
-      # @return [GetStream::StreamResponse<Response>]
+      # @return [Models::Response]
       def mark_activity(mark_activity_request)
 
         # Delegate to the FeedsClient
@@ -61,11 +60,11 @@ module GetStream
       #
       # @param activity_id [String]
       # @param user_id [String]
-      # @return [GetStream::StreamResponse<UnpinActivityResponse>]
+      # @return [Models::UnpinActivityResponse]
       def unpin_activity(activity_id, user_id = nil)
         # Build query parameters
         query_params = {}
-        query_params['user_id'] = user_id unless user_id.nil?
+        query_params["user_id"] = user_id unless user_id.nil?
 
         # Delegate to the FeedsClient
         @client.feeds.unpin_activity(@feed_group_id, @feed_id, activity_id, query_params)
@@ -75,7 +74,7 @@ module GetStream
       #
       # @param activity_id [String]
       # @param pin_activity_request [PinActivityRequest]
-      # @return [GetStream::StreamResponse<PinActivityResponse>]
+      # @return [Models::PinActivityResponse]
       def pin_activity(activity_id, pin_activity_request)
 
         # Delegate to the FeedsClient
@@ -85,7 +84,7 @@ module GetStream
       # Add, remove, or set members for a feed
       #
       # @param update_feed_members_request [UpdateFeedMembersRequest]
-      # @return [GetStream::StreamResponse<UpdateFeedMembersResponse>]
+      # @return [Models::UpdateFeedMembersResponse]
       def update_feed_members(update_feed_members_request)
 
         # Delegate to the FeedsClient
@@ -95,7 +94,7 @@ module GetStream
       # Accepts a pending feed member request
       #
       # @param accept_feed_member_invite_request [AcceptFeedMemberInviteRequest]
-      # @return [GetStream::StreamResponse<AcceptFeedMemberInviteResponse>]
+      # @return [Models::AcceptFeedMemberInviteResponse]
       def accept_feed_member_invite(accept_feed_member_invite_request)
 
         # Delegate to the FeedsClient
@@ -105,7 +104,7 @@ module GetStream
       # Query feed members based on filters with pagination and sorting options
       #
       # @param query_feed_members_request [QueryFeedMembersRequest]
-      # @return [GetStream::StreamResponse<QueryFeedMembersResponse>]
+      # @return [Models::QueryFeedMembersResponse]
       def query_feed_members(query_feed_members_request)
 
         # Delegate to the FeedsClient
@@ -115,7 +114,7 @@ module GetStream
       # Rejects a pending feed member request
       #
       # @param reject_feed_member_invite_request [RejectFeedMemberInviteRequest]
-      # @return [GetStream::StreamResponse<RejectFeedMemberInviteResponse>]
+      # @return [Models::RejectFeedMemberInviteResponse]
       def reject_feed_member_invite(reject_feed_member_invite_request)
 
         # Delegate to the FeedsClient

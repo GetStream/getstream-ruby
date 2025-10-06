@@ -9,7 +9,11 @@ module GetStream
       class GetBlockListResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
+        # @!attribute blocklist
+        #   @return [BlockListResponse]
         attr_accessor :blocklist
 
         # Initialize with attributes

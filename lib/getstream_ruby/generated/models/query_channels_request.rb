@@ -9,14 +9,32 @@ module GetStream
       class QueryChannelsRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :limit  # Number of channels to limit
-        attr_accessor :member_limit  # Number of members to limit
-        attr_accessor :message_limit  # Number of messages to limit
-        attr_accessor :offset  # Channel pagination offset
-        attr_accessor :state  # Whether to update channel state or not
+        # @!attribute limit
+        #   @return [Integer] Number of channels to limit
+        attr_accessor :limit
+        # @!attribute member_limit
+        #   @return [Integer] Number of members to limit
+        attr_accessor :member_limit
+        # @!attribute message_limit
+        #   @return [Integer] Number of messages to limit
+        attr_accessor :message_limit
+        # @!attribute offset
+        #   @return [Integer] Channel pagination offset
+        attr_accessor :offset
+        # @!attribute state
+        #   @return [Boolean] Whether to update channel state or not
+        attr_accessor :state
+        # @!attribute user_id
+        #   @return [String]
         attr_accessor :user_id
-        attr_accessor :sort  # List of sort parameters
+        # @!attribute sort
+        #   @return [Array<SortParamRequest>] List of sort parameters
+        attr_accessor :sort
+        # @!attribute filter_conditions
+        #   @return [Object]
         attr_accessor :filter_conditions
+        # @!attribute user
+        #   @return [UserRequest]
         attr_accessor :user
 
         # Initialize with attributes

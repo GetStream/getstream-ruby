@@ -9,8 +9,14 @@ module GetStream
       class BroadcastSettingsResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute enabled
+        #   @return [Boolean]
         attr_accessor :enabled
+        # @!attribute hls
+        #   @return [HLSSettingsResponse]
         attr_accessor :hls
+        # @!attribute rtmp
+        #   @return [RTMPSettingsResponse]
         attr_accessor :rtmp
 
         # Initialize with attributes

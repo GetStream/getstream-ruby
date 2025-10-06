@@ -9,8 +9,14 @@ module GetStream
       class UnreadCountsChannelType < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute channel_count
+        #   @return [Integer]
         attr_accessor :channel_count
+        # @!attribute channel_type
+        #   @return [String]
         attr_accessor :channel_type
+        # @!attribute unread_count
+        #   @return [Integer]
         attr_accessor :unread_count
 
         # Initialize with attributes

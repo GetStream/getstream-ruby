@@ -9,7 +9,9 @@ module GetStream
       class UpdateUsersRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :users  # Object containing users
+        # @!attribute users
+        #   @return [Hash<String, UserRequest>] Object containing users
+        attr_accessor :users
 
         # Initialize with attributes
         def initialize(attributes = {})

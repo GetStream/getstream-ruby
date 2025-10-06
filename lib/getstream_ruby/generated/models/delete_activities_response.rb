@@ -9,8 +9,12 @@ module GetStream
       class DeleteActivitiesResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
-        attr_accessor :deleted_ids  # List of activity IDs that were successfully deleted
+        # @!attribute deleted_ids
+        #   @return [Array<String>] List of activity IDs that were successfully deleted
+        attr_accessor :deleted_ids
 
         # Initialize with attributes
         def initialize(attributes = {})

@@ -9,9 +9,17 @@ module GetStream
       class ModerationResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute action
+        #   @return [String]
         attr_accessor :action
+        # @!attribute explicit
+        #   @return [Float]
         attr_accessor :explicit
+        # @!attribute spam
+        #   @return [Float]
         attr_accessor :spam
+        # @!attribute toxic
+        #   @return [Float]
         attr_accessor :toxic
 
         # Initialize with attributes

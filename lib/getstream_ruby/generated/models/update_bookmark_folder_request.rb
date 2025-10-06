@@ -9,9 +9,17 @@ module GetStream
       class UpdateBookmarkFolderRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :name  # Name of the folder
+        # @!attribute name
+        #   @return [String] Name of the folder
+        attr_accessor :name
+        # @!attribute user_id
+        #   @return [String]
         attr_accessor :user_id
-        attr_accessor :custom  # Custom data for the folder
+        # @!attribute custom
+        #   @return [Object] Custom data for the folder
+        attr_accessor :custom
+        # @!attribute user
+        #   @return [UserRequest]
         attr_accessor :user
 
         # Initialize with attributes

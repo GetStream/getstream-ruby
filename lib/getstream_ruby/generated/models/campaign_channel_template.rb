@@ -9,10 +9,20 @@ module GetStream
       class CampaignChannelTemplate < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _type
+        #   @return [String]
         attr_accessor :_type
+        # @!attribute custom
+        #   @return [Object]
         attr_accessor :custom
+        # @!attribute _id
+        #   @return [String]
         attr_accessor :_id
+        # @!attribute team
+        #   @return [String]
         attr_accessor :team
+        # @!attribute members
+        #   @return [Array<String>]
         attr_accessor :members
 
         # Initialize with attributes

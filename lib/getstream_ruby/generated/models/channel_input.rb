@@ -9,17 +9,41 @@ module GetStream
       class ChannelInput < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :auto_translation_enabled  # Enable or disable auto translation
-        attr_accessor :auto_translation_language  # Switch auto translation language
+        # @!attribute auto_translation_enabled
+        #   @return [Boolean] Enable or disable auto translation
+        attr_accessor :auto_translation_enabled
+        # @!attribute auto_translation_language
+        #   @return [String] Switch auto translation language
+        attr_accessor :auto_translation_language
+        # @!attribute created_by_id
+        #   @return [String]
         attr_accessor :created_by_id
+        # @!attribute disabled
+        #   @return [Boolean]
         attr_accessor :disabled
-        attr_accessor :frozen  # Freeze or unfreeze the channel
-        attr_accessor :team  # Team the channel belongs to (if multi-tenant mode is enabled)
+        # @!attribute frozen
+        #   @return [Boolean] Freeze or unfreeze the channel
+        attr_accessor :frozen
+        # @!attribute team
+        #   @return [String] Team the channel belongs to (if multi-tenant mode is enabled)
+        attr_accessor :team
+        # @!attribute truncated_by_id
+        #   @return [String]
         attr_accessor :truncated_by_id
+        # @!attribute invites
+        #   @return [Array<ChannelMember>]
         attr_accessor :invites
+        # @!attribute members
+        #   @return [Array<ChannelMember>]
         attr_accessor :members
+        # @!attribute config_overrides
+        #   @return [ChannelConfig]
         attr_accessor :config_overrides
+        # @!attribute created_by
+        #   @return [UserRequest]
         attr_accessor :created_by
+        # @!attribute custom
+        #   @return [Object]
         attr_accessor :custom
 
         # Initialize with attributes

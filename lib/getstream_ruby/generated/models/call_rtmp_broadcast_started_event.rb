@@ -9,10 +9,18 @@ module GetStream
       class CallRtmpBroadcastStartedEvent < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :call_cid  # The unique identifier for a call (<type>:<id>)
-        attr_accessor :created_at  # Date/time of creation
-        attr_accessor :name  # Name of the given RTMP broadcast
-        attr_accessor :_type  # The type of event: "call.rtmp_broadcast_started" in this case
+        # @!attribute call_cid
+        #   @return [String] The unique identifier for a call (<type>:<id>)
+        attr_accessor :call_cid
+        # @!attribute created_at
+        #   @return [DateTime] Date/time of creation
+        attr_accessor :created_at
+        # @!attribute name
+        #   @return [String] Name of the given RTMP broadcast
+        attr_accessor :name
+        # @!attribute _type
+        #   @return [String] The type of event: "call.rtmp_broadcast_started" in this case
+        attr_accessor :_type
 
         # Initialize with attributes
         def initialize(attributes = {})

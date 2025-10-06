@@ -9,7 +9,11 @@ module GetStream
       class PaginationParams < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute limit
+        #   @return [Integer]
         attr_accessor :limit
+        # @!attribute offset
+        #   @return [Integer]
         attr_accessor :offset
 
         # Initialize with attributes

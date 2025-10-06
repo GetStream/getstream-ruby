@@ -9,8 +9,14 @@ module GetStream
       class BlockListRule < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute action
+        #   @return [String]
         attr_accessor :action
+        # @!attribute name
+        #   @return [String]
         attr_accessor :name
+        # @!attribute team
+        #   @return [String]
         attr_accessor :team
 
         # Initialize with attributes

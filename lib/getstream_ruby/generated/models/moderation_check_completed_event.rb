@@ -9,13 +9,29 @@ module GetStream
       class ModerationCheckCompletedEvent < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute created_at
+        #   @return [DateTime]
         attr_accessor :created_at
-        attr_accessor :entity_id  # The ID of entity which was moderated
-        attr_accessor :entity_type  # The type of the entity which was moderated
-        attr_accessor :recommended_action  # The recommended action
-        attr_accessor :review_queue_item_id  # The review queue item ID
+        # @!attribute entity_id
+        #   @return [String] The ID of entity which was moderated
+        attr_accessor :entity_id
+        # @!attribute entity_type
+        #   @return [String] The type of the entity which was moderated
+        attr_accessor :entity_type
+        # @!attribute recommended_action
+        #   @return [String] The recommended action
+        attr_accessor :recommended_action
+        # @!attribute review_queue_item_id
+        #   @return [String] The review queue item ID
+        attr_accessor :review_queue_item_id
+        # @!attribute custom
+        #   @return [Object]
         attr_accessor :custom
+        # @!attribute _type
+        #   @return [String]
         attr_accessor :_type
+        # @!attribute received_at
+        #   @return [DateTime]
         attr_accessor :received_at
 
         # Initialize with attributes

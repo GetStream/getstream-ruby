@@ -9,11 +9,21 @@ module GetStream
       class UpdateFeedMembersRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :operation  # Type of update operation to perform
+        # @!attribute operation
+        #   @return [String] Type of update operation to perform
+        attr_accessor :operation
+        # @!attribute _next
+        #   @return [String]
         attr_accessor :_next
+        # @!attribute limit
+        #   @return [Integer]
         attr_accessor :limit
+        # @!attribute prev
+        #   @return [String]
         attr_accessor :prev
-        attr_accessor :members  # List of members to upsert, remove, or set
+        # @!attribute members
+        #   @return [Array<FeedMemberRequest>] List of members to upsert, remove, or set
+        attr_accessor :members
 
         # Initialize with attributes
         def initialize(attributes = {})

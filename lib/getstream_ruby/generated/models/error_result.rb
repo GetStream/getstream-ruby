@@ -9,8 +9,14 @@ module GetStream
       class ErrorResult < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _type
+        #   @return [String]
         attr_accessor :_type
+        # @!attribute stacktrace
+        #   @return [String]
         attr_accessor :stacktrace
+        # @!attribute version
+        #   @return [String]
         attr_accessor :version
 
         # Initialize with attributes

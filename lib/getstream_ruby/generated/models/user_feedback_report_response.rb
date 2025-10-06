@@ -9,6 +9,8 @@ module GetStream
       class UserFeedbackReportResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute daily
+        #   @return [Array<DailyAggregateUserFeedbackReportResponse>]
         attr_accessor :daily
 
         # Initialize with attributes

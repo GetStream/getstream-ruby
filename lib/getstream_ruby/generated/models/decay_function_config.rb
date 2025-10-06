@@ -9,12 +9,24 @@ module GetStream
       class DecayFunctionConfig < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :base  # Base value for decay function
-        attr_accessor :decay  # Decay rate
-        attr_accessor :direction  # Direction of decay
-        attr_accessor :offset  # Offset value for decay function
-        attr_accessor :origin  # Origin value for decay function
-        attr_accessor :scale  # Scale factor for decay function
+        # @!attribute base
+        #   @return [String] Base value for decay function
+        attr_accessor :base
+        # @!attribute decay
+        #   @return [String] Decay rate
+        attr_accessor :decay
+        # @!attribute direction
+        #   @return [String] Direction of decay
+        attr_accessor :direction
+        # @!attribute offset
+        #   @return [String] Offset value for decay function
+        attr_accessor :offset
+        # @!attribute origin
+        #   @return [String] Origin value for decay function
+        attr_accessor :origin
+        # @!attribute scale
+        #   @return [String] Scale factor for decay function
+        attr_accessor :scale
 
         # Initialize with attributes
         def initialize(attributes = {})

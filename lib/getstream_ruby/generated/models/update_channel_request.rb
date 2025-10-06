@@ -9,20 +9,50 @@ module GetStream
       class UpdateChannelRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :accept_invite  # Set to `true` to accept the invite
-        attr_accessor :cooldown  # Sets cool down period for the channel in seconds
-        attr_accessor :hide_history  # Set to `true` to hide channel's history when adding new members
-        attr_accessor :reject_invite  # Set to `true` to reject the invite
-        attr_accessor :skip_push  # When `message` is set disables all push notifications for it
+        # @!attribute accept_invite
+        #   @return [Boolean] Set to `true` to accept the invite
+        attr_accessor :accept_invite
+        # @!attribute cooldown
+        #   @return [Integer] Sets cool down period for the channel in seconds
+        attr_accessor :cooldown
+        # @!attribute hide_history
+        #   @return [Boolean] Set to `true` to hide channel's history when adding new members
+        attr_accessor :hide_history
+        # @!attribute reject_invite
+        #   @return [Boolean] Set to `true` to reject the invite
+        attr_accessor :reject_invite
+        # @!attribute skip_push
+        #   @return [Boolean] When `message` is set disables all push notifications for it
+        attr_accessor :skip_push
+        # @!attribute user_id
+        #   @return [String]
         attr_accessor :user_id
-        attr_accessor :add_members  # List of user IDs to add to the channel
-        attr_accessor :add_moderators  # List of user IDs to make channel moderators
-        attr_accessor :assign_roles  # List of channel member role assignments. If any specified user is not part of the channel, the request will fail
-        attr_accessor :demote_moderators  # List of user IDs to take away moderators status from
-        attr_accessor :invites  # List of user IDs to invite to the channel
-        attr_accessor :remove_members  # List of user IDs to remove from the channel
+        # @!attribute add_members
+        #   @return [Array<ChannelMember>] List of user IDs to add to the channel
+        attr_accessor :add_members
+        # @!attribute add_moderators
+        #   @return [Array<String>] List of user IDs to make channel moderators
+        attr_accessor :add_moderators
+        # @!attribute assign_roles
+        #   @return [Array<ChannelMember>] List of channel member role assignments. If any specified user is not part of the channel, the request will fail
+        attr_accessor :assign_roles
+        # @!attribute demote_moderators
+        #   @return [Array<String>] List of user IDs to take away moderators status from
+        attr_accessor :demote_moderators
+        # @!attribute invites
+        #   @return [Array<ChannelMember>] List of user IDs to invite to the channel
+        attr_accessor :invites
+        # @!attribute remove_members
+        #   @return [Array<String>] List of user IDs to remove from the channel
+        attr_accessor :remove_members
+        # @!attribute data
+        #   @return [ChannelInput]
         attr_accessor :data
+        # @!attribute message
+        #   @return [MessageRequest]
         attr_accessor :message
+        # @!attribute user
+        #   @return [UserRequest]
         attr_accessor :user
 
         # Initialize with attributes

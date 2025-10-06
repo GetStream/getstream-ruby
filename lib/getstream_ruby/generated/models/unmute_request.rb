@@ -9,8 +9,14 @@ module GetStream
       class UnmuteRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :target_ids  # User IDs to unmute
+        # @!attribute target_ids
+        #   @return [Array<String>] User IDs to unmute
+        attr_accessor :target_ids
+        # @!attribute user_id
+        #   @return [String]
         attr_accessor :user_id
+        # @!attribute user
+        #   @return [UserRequest]
         attr_accessor :user
 
         # Initialize with attributes

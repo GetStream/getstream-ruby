@@ -9,14 +9,32 @@ module GetStream
       class SendClosedCaptionRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute speaker_id
+        #   @return [String]
         attr_accessor :speaker_id
+        # @!attribute text
+        #   @return [String]
         attr_accessor :text
+        # @!attribute end_time
+        #   @return [DateTime]
         attr_accessor :end_time
+        # @!attribute language
+        #   @return [String]
         attr_accessor :language
+        # @!attribute service
+        #   @return [String]
         attr_accessor :service
+        # @!attribute start_time
+        #   @return [DateTime]
         attr_accessor :start_time
+        # @!attribute translated
+        #   @return [Boolean]
         attr_accessor :translated
+        # @!attribute user_id
+        #   @return [String]
         attr_accessor :user_id
+        # @!attribute user
+        #   @return [UserRequest]
         attr_accessor :user
 
         # Initialize with attributes

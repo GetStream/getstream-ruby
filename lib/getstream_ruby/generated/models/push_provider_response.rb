@@ -9,33 +9,89 @@ module GetStream
       class PushProviderResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _type
+        #   @return [String]
         attr_accessor :_type
+        # @!attribute created_at
+        #   @return [DateTime]
         attr_accessor :created_at
+        # @!attribute name
+        #   @return [String]
         attr_accessor :name
+        # @!attribute updated_at
+        #   @return [DateTime]
         attr_accessor :updated_at
+        # @!attribute apn_auth_key
+        #   @return [String]
         attr_accessor :apn_auth_key
+        # @!attribute apn_auth_type
+        #   @return [String]
         attr_accessor :apn_auth_type
+        # @!attribute apn_development
+        #   @return [Boolean]
         attr_accessor :apn_development
+        # @!attribute apn_host
+        #   @return [String]
         attr_accessor :apn_host
+        # @!attribute apn_key_id
+        #   @return [String]
         attr_accessor :apn_key_id
+        # @!attribute apn_p12_cert
+        #   @return [String]
         attr_accessor :apn_p12_cert
+        # @!attribute apn_sandbox_certificate
+        #   @return [Boolean]
         attr_accessor :apn_sandbox_certificate
+        # @!attribute apn_supports_remote_notifications
+        #   @return [Boolean]
         attr_accessor :apn_supports_remote_notifications
+        # @!attribute apn_supports_voip_notifications
+        #   @return [Boolean]
         attr_accessor :apn_supports_voip_notifications
+        # @!attribute apn_team_id
+        #   @return [String]
         attr_accessor :apn_team_id
+        # @!attribute apn_topic
+        #   @return [String]
         attr_accessor :apn_topic
+        # @!attribute description
+        #   @return [String]
         attr_accessor :description
+        # @!attribute disabled_at
+        #   @return [DateTime]
         attr_accessor :disabled_at
+        # @!attribute disabled_reason
+        #   @return [String]
         attr_accessor :disabled_reason
+        # @!attribute firebase_apn_template
+        #   @return [String]
         attr_accessor :firebase_apn_template
+        # @!attribute firebase_credentials
+        #   @return [String]
         attr_accessor :firebase_credentials
+        # @!attribute firebase_data_template
+        #   @return [String]
         attr_accessor :firebase_data_template
+        # @!attribute firebase_host
+        #   @return [String]
         attr_accessor :firebase_host
+        # @!attribute firebase_notification_template
+        #   @return [String]
         attr_accessor :firebase_notification_template
+        # @!attribute firebase_server_key
+        #   @return [String]
         attr_accessor :firebase_server_key
+        # @!attribute huawei_app_id
+        #   @return [String]
         attr_accessor :huawei_app_id
+        # @!attribute huawei_app_secret
+        #   @return [String]
         attr_accessor :huawei_app_secret
+        # @!attribute xiaomi_app_secret
+        #   @return [String]
         attr_accessor :xiaomi_app_secret
+        # @!attribute xiaomi_package_name
+        #   @return [String]
         attr_accessor :xiaomi_package_name
 
         # Initialize with attributes

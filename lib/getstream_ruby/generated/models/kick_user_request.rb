@@ -9,9 +9,17 @@ module GetStream
       class KickUserRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :user_id  # The user to kick
-        attr_accessor :block  # If true, also block the user from rejoining the call
-        attr_accessor :kicked_by_id  # Server-side: ID of the user performing the action
+        # @!attribute user_id
+        #   @return [String] The user to kick
+        attr_accessor :user_id
+        # @!attribute block
+        #   @return [Boolean] If true, also block the user from rejoining the call
+        attr_accessor :block
+        # @!attribute kicked_by_id
+        #   @return [String] Server-side: ID of the user performing the action
+        attr_accessor :kicked_by_id
+        # @!attribute kicked_by
+        #   @return [UserRequest]
         attr_accessor :kicked_by
 
         # Initialize with attributes

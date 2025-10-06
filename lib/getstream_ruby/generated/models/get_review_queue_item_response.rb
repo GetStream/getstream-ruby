@@ -9,7 +9,11 @@ module GetStream
       class GetReviewQueueItemResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
+        # @!attribute item
+        #   @return [ReviewQueueItemResponse]
         attr_accessor :item
 
         # Initialize with attributes

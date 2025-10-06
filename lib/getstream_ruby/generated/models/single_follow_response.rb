@@ -9,7 +9,11 @@ module GetStream
       class SingleFollowResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
+        # @!attribute follow
+        #   @return [FollowResponse]
         attr_accessor :follow
 
         # Initialize with attributes

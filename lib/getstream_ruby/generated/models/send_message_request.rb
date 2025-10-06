@@ -9,12 +9,26 @@ module GetStream
       class SendMessageRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute message
+        #   @return [MessageRequest]
         attr_accessor :message
+        # @!attribute force_moderation
+        #   @return [Boolean]
         attr_accessor :force_moderation
+        # @!attribute keep_channel_hidden
+        #   @return [Boolean]
         attr_accessor :keep_channel_hidden
+        # @!attribute pending
+        #   @return [Boolean]
         attr_accessor :pending
+        # @!attribute skip_enrich_url
+        #   @return [Boolean]
         attr_accessor :skip_enrich_url
+        # @!attribute skip_push
+        #   @return [Boolean]
         attr_accessor :skip_push
+        # @!attribute pending_message_metadata
+        #   @return [Hash<String, String>]
         attr_accessor :pending_message_metadata
 
         # Initialize with attributes

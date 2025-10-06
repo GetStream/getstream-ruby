@@ -9,8 +9,14 @@ module GetStream
       class FlagFeedback < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute created_at
+        #   @return [DateTime]
         attr_accessor :created_at
+        # @!attribute message_id
+        #   @return [String]
         attr_accessor :message_id
+        # @!attribute labels
+        #   @return [Array<Label>]
         attr_accessor :labels
 
         # Initialize with attributes

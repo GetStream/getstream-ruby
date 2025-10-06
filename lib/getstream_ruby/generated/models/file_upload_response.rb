@@ -9,9 +9,15 @@ module GetStream
       class FileUploadResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :duration  # Duration of the request in milliseconds
-        attr_accessor :file  # URL to the uploaded asset. Should be used to put to `asset_url` attachment field
-        attr_accessor :thumb_url  # URL of the file thumbnail for supported file formats. Should be put to `thumb_url` attachment field
+        # @!attribute duration
+        #   @return [String] Duration of the request in milliseconds
+        attr_accessor :duration
+        # @!attribute file
+        #   @return [String] URL to the uploaded asset. Should be used to put to `asset_url` attachment field
+        attr_accessor :file
+        # @!attribute thumb_url
+        #   @return [String] URL of the file thumbnail for supported file formats. Should be put to `thumb_url` attachment field
+        attr_accessor :thumb_url
 
         # Initialize with attributes
         def initialize(attributes = {})

@@ -9,7 +9,11 @@ module GetStream
       class UpdateMemberPartialRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute unset
+        #   @return [Array<String>]
         attr_accessor :unset
+        # @!attribute set
+        #   @return [Object]
         attr_accessor :set
 
         # Initialize with attributes

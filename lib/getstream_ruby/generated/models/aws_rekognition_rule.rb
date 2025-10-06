@@ -9,8 +9,14 @@ module GetStream
       class AWSRekognitionRule < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute action
+        #   @return [String]
         attr_accessor :action
+        # @!attribute label
+        #   @return [String]
         attr_accessor :label
+        # @!attribute min_confidence
+        #   @return [Float]
         attr_accessor :min_confidence
 
         # Initialize with attributes

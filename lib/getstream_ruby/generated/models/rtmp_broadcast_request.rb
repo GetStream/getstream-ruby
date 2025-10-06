@@ -9,10 +9,20 @@ module GetStream
       class RTMPBroadcastRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :name  # Name identifier for RTMP broadcast, must be unique in call
-        attr_accessor :stream_url  # URL for the RTMP server to send the call to
-        attr_accessor :quality  # If provided, will override the call's RTMP settings quality
-        attr_accessor :stream_key  # If provided, will be appended at the end of stream_url
+        # @!attribute name
+        #   @return [String] Name identifier for RTMP broadcast, must be unique in call
+        attr_accessor :name
+        # @!attribute stream_url
+        #   @return [String] URL for the RTMP server to send the call to
+        attr_accessor :stream_url
+        # @!attribute quality
+        #   @return [String] If provided, will override the call's RTMP settings quality
+        attr_accessor :quality
+        # @!attribute stream_key
+        #   @return [String] If provided, will be appended at the end of stream_url
+        attr_accessor :stream_key
+        # @!attribute layout
+        #   @return [LayoutSettingsRequest]
         attr_accessor :layout
 
         # Initialize with attributes

@@ -9,29 +9,77 @@ module GetStream
       class UserResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :_id  # Unique user identifier
-        attr_accessor :banned  # Whether a user is banned or not
-        attr_accessor :created_at  # Date/time of creation
+        # @!attribute _id
+        #   @return [String] Unique user identifier
+        attr_accessor :_id
+        # @!attribute banned
+        #   @return [Boolean] Whether a user is banned or not
+        attr_accessor :banned
+        # @!attribute created_at
+        #   @return [DateTime] Date/time of creation
+        attr_accessor :created_at
+        # @!attribute invisible
+        #   @return [Boolean]
         attr_accessor :invisible
-        attr_accessor :language  # Preferred language of a user
-        attr_accessor :online  # Whether a user online or not
-        attr_accessor :role  # Determines the set of user permissions
-        attr_accessor :shadow_banned  # Whether a user is shadow banned
-        attr_accessor :updated_at  # Date/time of the last update
+        # @!attribute language
+        #   @return [String] Preferred language of a user
+        attr_accessor :language
+        # @!attribute online
+        #   @return [Boolean] Whether a user online or not
+        attr_accessor :online
+        # @!attribute role
+        #   @return [String] Determines the set of user permissions
+        attr_accessor :role
+        # @!attribute shadow_banned
+        #   @return [Boolean] Whether a user is shadow banned
+        attr_accessor :shadow_banned
+        # @!attribute updated_at
+        #   @return [DateTime] Date/time of the last update
+        attr_accessor :updated_at
+        # @!attribute blocked_user_ids
+        #   @return [Array<String>]
         attr_accessor :blocked_user_ids
-        attr_accessor :teams  # List of teams user is a part of
-        attr_accessor :custom  # Custom data for this object
+        # @!attribute teams
+        #   @return [Array<String>] List of teams user is a part of
+        attr_accessor :teams
+        # @!attribute custom
+        #   @return [Object] Custom data for this object
+        attr_accessor :custom
+        # @!attribute avg_response_time
+        #   @return [Integer]
         attr_accessor :avg_response_time
-        attr_accessor :ban_expires  # Date when ban expires
-        attr_accessor :deactivated_at  # Date of deactivation
-        attr_accessor :deleted_at  # Date/time of deletion
+        # @!attribute ban_expires
+        #   @return [DateTime] Date when ban expires
+        attr_accessor :ban_expires
+        # @!attribute deactivated_at
+        #   @return [DateTime] Date of deactivation
+        attr_accessor :deactivated_at
+        # @!attribute deleted_at
+        #   @return [DateTime] Date/time of deletion
+        attr_accessor :deleted_at
+        # @!attribute image
+        #   @return [String]
         attr_accessor :image
-        attr_accessor :last_active  # Date of last activity
-        attr_accessor :name  # Optional name of user
-        attr_accessor :revoke_tokens_issued_before  # Revocation date for tokens
-        attr_accessor :devices  # List of devices user is using
+        # @!attribute last_active
+        #   @return [DateTime] Date of last activity
+        attr_accessor :last_active
+        # @!attribute name
+        #   @return [String] Optional name of user
+        attr_accessor :name
+        # @!attribute revoke_tokens_issued_before
+        #   @return [DateTime] Revocation date for tokens
+        attr_accessor :revoke_tokens_issued_before
+        # @!attribute devices
+        #   @return [Array<DeviceResponse>] List of devices user is using
+        attr_accessor :devices
+        # @!attribute privacy_settings
+        #   @return [PrivacySettingsResponse]
         attr_accessor :privacy_settings
+        # @!attribute push_notifications
+        #   @return [PushNotificationSettingsResponse]
         attr_accessor :push_notifications
+        # @!attribute teams_role
+        #   @return [Hash<String, String>]
         attr_accessor :teams_role
 
         # Initialize with attributes

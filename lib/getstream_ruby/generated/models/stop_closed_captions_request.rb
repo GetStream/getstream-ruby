@@ -9,6 +9,8 @@ module GetStream
       class StopClosedCaptionsRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute stop_transcription
+        #   @return [Boolean]
         attr_accessor :stop_transcription
 
         # Initialize with attributes

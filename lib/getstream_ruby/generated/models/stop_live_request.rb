@@ -9,10 +9,20 @@ module GetStream
       class StopLiveRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute continue_closed_caption
+        #   @return [Boolean]
         attr_accessor :continue_closed_caption
+        # @!attribute continue_hls
+        #   @return [Boolean]
         attr_accessor :continue_hls
+        # @!attribute continue_recording
+        #   @return [Boolean]
         attr_accessor :continue_recording
+        # @!attribute continue_rtmp_broadcasts
+        #   @return [Boolean]
         attr_accessor :continue_rtmp_broadcasts
+        # @!attribute continue_transcription
+        #   @return [Boolean]
         attr_accessor :continue_transcription
 
         # Initialize with attributes

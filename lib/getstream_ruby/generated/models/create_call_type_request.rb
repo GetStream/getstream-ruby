@@ -9,10 +9,20 @@ module GetStream
       class CreateCallTypeRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute name
+        #   @return [String]
         attr_accessor :name
-        attr_accessor :external_storage  # the external storage for the call type
-        attr_accessor :grants  # the permissions granted to each role
+        # @!attribute external_storage
+        #   @return [String] the external storage for the call type
+        attr_accessor :external_storage
+        # @!attribute grants
+        #   @return [Hash<String, Array<String>>] the permissions granted to each role
+        attr_accessor :grants
+        # @!attribute notification_settings
+        #   @return [NotificationSettings]
         attr_accessor :notification_settings
+        # @!attribute settings
+        #   @return [CallSettingsRequest]
         attr_accessor :settings
 
         # Initialize with attributes

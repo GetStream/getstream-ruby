@@ -9,14 +9,30 @@ module GetStream
       class MembershipLevelResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :_id  # Unique identifier for the membership level
-        attr_accessor :created_at  # When the membership level was created
-        attr_accessor :name  # Display name for the membership level
-        attr_accessor :priority  # Priority level
-        attr_accessor :updated_at  # When the membership level was last updated
-        attr_accessor :tags  # Activity tags this membership level gives access to
-        attr_accessor :description  # Description of the membership level
-        attr_accessor :custom  # Custom data for the membership level
+        # @!attribute _id
+        #   @return [String] Unique identifier for the membership level
+        attr_accessor :_id
+        # @!attribute created_at
+        #   @return [DateTime] When the membership level was created
+        attr_accessor :created_at
+        # @!attribute name
+        #   @return [String] Display name for the membership level
+        attr_accessor :name
+        # @!attribute priority
+        #   @return [Integer] Priority level
+        attr_accessor :priority
+        # @!attribute updated_at
+        #   @return [DateTime] When the membership level was last updated
+        attr_accessor :updated_at
+        # @!attribute tags
+        #   @return [Array<String>] Activity tags this membership level gives access to
+        attr_accessor :tags
+        # @!attribute description
+        #   @return [String] Description of the membership level
+        attr_accessor :description
+        # @!attribute custom
+        #   @return [Object] Custom data for the membership level
+        attr_accessor :custom
 
         # Initialize with attributes
         def initialize(attributes = {})

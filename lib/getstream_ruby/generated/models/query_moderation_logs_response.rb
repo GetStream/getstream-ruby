@@ -9,9 +9,17 @@ module GetStream
       class QueryModerationLogsResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
-        attr_accessor :logs  # List of moderation action logs
+        # @!attribute logs
+        #   @return [Array<ActionLogResponse>] List of moderation action logs
+        attr_accessor :logs
+        # @!attribute _next
+        #   @return [String]
         attr_accessor :_next
+        # @!attribute prev
+        #   @return [String]
         attr_accessor :prev
 
         # Initialize with attributes

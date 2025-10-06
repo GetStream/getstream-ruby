@@ -9,12 +9,26 @@ module GetStream
       class AudioSettingsRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute default_device
+        #   @return [String]
         attr_accessor :default_device
+        # @!attribute access_request_enabled
+        #   @return [Boolean]
         attr_accessor :access_request_enabled
+        # @!attribute mic_default_on
+        #   @return [Boolean]
         attr_accessor :mic_default_on
+        # @!attribute opus_dtx_enabled
+        #   @return [Boolean]
         attr_accessor :opus_dtx_enabled
+        # @!attribute redundant_coding_enabled
+        #   @return [Boolean]
         attr_accessor :redundant_coding_enabled
+        # @!attribute speaker_default_on
+        #   @return [Boolean]
         attr_accessor :speaker_default_on
+        # @!attribute noise_cancellation
+        #   @return [NoiseCancellationSettings]
         attr_accessor :noise_cancellation
 
         # Initialize with attributes

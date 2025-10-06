@@ -9,6 +9,8 @@ module GetStream
       class MessageOptions < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute include_thread_participants
+        #   @return [Boolean]
         attr_accessor :include_thread_participants
 
         # Initialize with attributes

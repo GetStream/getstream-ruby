@@ -9,8 +9,12 @@ module GetStream
       class QueryBannedUsersResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :duration  # Duration of the request in milliseconds
-        attr_accessor :bans  # List of found bans
+        # @!attribute duration
+        #   @return [String] Duration of the request in milliseconds
+        attr_accessor :duration
+        # @!attribute bans
+        #   @return [Array<BanResponse>] List of found bans
+        attr_accessor :bans
 
         # Initialize with attributes
         def initialize(attributes = {})

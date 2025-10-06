@@ -9,8 +9,14 @@ module GetStream
       class FrameRecordSettings < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute capture_interval_in_seconds
+        #   @return [Integer]
         attr_accessor :capture_interval_in_seconds
+        # @!attribute mode
+        #   @return [String]
         attr_accessor :mode
+        # @!attribute quality
+        #   @return [String]
         attr_accessor :quality
 
         # Initialize with attributes

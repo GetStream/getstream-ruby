@@ -9,7 +9,11 @@ module GetStream
       class ChannelPushPreferences < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute chat_level
+        #   @return [String]
         attr_accessor :chat_level
+        # @!attribute disabled_until
+        #   @return [DateTime]
         attr_accessor :disabled_until
 
         # Initialize with attributes

@@ -9,8 +9,14 @@ module GetStream
       class UnblockUsersRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute blocked_user_id
+        #   @return [String]
         attr_accessor :blocked_user_id
+        # @!attribute user_id
+        #   @return [String]
         attr_accessor :user_id
+        # @!attribute user
+        #   @return [UserRequest]
         attr_accessor :user
 
         # Initialize with attributes

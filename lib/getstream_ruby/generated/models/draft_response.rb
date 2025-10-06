@@ -9,12 +9,26 @@ module GetStream
       class DraftResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute channel_cid
+        #   @return [String]
         attr_accessor :channel_cid
+        # @!attribute created_at
+        #   @return [DateTime]
         attr_accessor :created_at
+        # @!attribute message
+        #   @return [DraftPayloadResponse]
         attr_accessor :message
+        # @!attribute parent_id
+        #   @return [String]
         attr_accessor :parent_id
+        # @!attribute channel
+        #   @return [ChannelResponse]
         attr_accessor :channel
+        # @!attribute parent_message
+        #   @return [MessageResponse]
         attr_accessor :parent_message
+        # @!attribute quoted_message
+        #   @return [MessageResponse]
         attr_accessor :quoted_message
 
         # Initialize with attributes

@@ -9,16 +9,38 @@ module GetStream
       class MessageDeletedEvent < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute channel_id
+        #   @return [String]
         attr_accessor :channel_id
+        # @!attribute channel_type
+        #   @return [String]
         attr_accessor :channel_type
+        # @!attribute cid
+        #   @return [String]
         attr_accessor :cid
+        # @!attribute created_at
+        #   @return [DateTime]
         attr_accessor :created_at
+        # @!attribute hard_delete
+        #   @return [Boolean]
         attr_accessor :hard_delete
+        # @!attribute _type
+        #   @return [String]
         attr_accessor :_type
+        # @!attribute deleted_for_me
+        #   @return [Boolean]
         attr_accessor :deleted_for_me
+        # @!attribute team
+        #   @return [String]
         attr_accessor :team
+        # @!attribute thread_participants
+        #   @return [Array<User>]
         attr_accessor :thread_participants
+        # @!attribute message
+        #   @return [Message]
         attr_accessor :message
+        # @!attribute user
+        #   @return [User]
         attr_accessor :user
 
         # Initialize with attributes

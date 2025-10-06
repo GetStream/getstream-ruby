@@ -9,13 +9,29 @@ module GetStream
       class ActivityMarkedEvent < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute all_read
+        #   @return [Boolean]
         attr_accessor :all_read
+        # @!attribute all_seen
+        #   @return [Boolean]
         attr_accessor :all_seen
+        # @!attribute created_at
+        #   @return [DateTime]
         attr_accessor :created_at
+        # @!attribute feed_id
+        #   @return [String]
         attr_accessor :feed_id
+        # @!attribute user_id
+        #   @return [String]
         attr_accessor :user_id
+        # @!attribute _type
+        #   @return [String]
         attr_accessor :_type
+        # @!attribute marked_read
+        #   @return [Array<String>]
         attr_accessor :marked_read
+        # @!attribute marked_watched
+        #   @return [Array<String>]
         attr_accessor :marked_watched
 
         # Initialize with attributes

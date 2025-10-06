@@ -9,35 +9,95 @@ module GetStream
       class FullUserResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _id
+        #   @return [String]
         attr_accessor :_id
+        # @!attribute banned
+        #   @return [Boolean]
         attr_accessor :banned
+        # @!attribute created_at
+        #   @return [DateTime]
         attr_accessor :created_at
+        # @!attribute invisible
+        #   @return [Boolean]
         attr_accessor :invisible
+        # @!attribute language
+        #   @return [String]
         attr_accessor :language
+        # @!attribute online
+        #   @return [Boolean]
         attr_accessor :online
+        # @!attribute role
+        #   @return [String]
         attr_accessor :role
+        # @!attribute shadow_banned
+        #   @return [Boolean]
         attr_accessor :shadow_banned
+        # @!attribute total_unread_count
+        #   @return [Integer]
         attr_accessor :total_unread_count
+        # @!attribute unread_channels
+        #   @return [Integer]
         attr_accessor :unread_channels
+        # @!attribute unread_count
+        #   @return [Integer]
         attr_accessor :unread_count
+        # @!attribute unread_threads
+        #   @return [Integer]
         attr_accessor :unread_threads
+        # @!attribute updated_at
+        #   @return [DateTime]
         attr_accessor :updated_at
+        # @!attribute blocked_user_ids
+        #   @return [Array<String>]
         attr_accessor :blocked_user_ids
+        # @!attribute channel_mutes
+        #   @return [Array<ChannelMute>]
         attr_accessor :channel_mutes
+        # @!attribute devices
+        #   @return [Array<DeviceResponse>]
         attr_accessor :devices
+        # @!attribute mutes
+        #   @return [Array<UserMuteResponse>]
         attr_accessor :mutes
+        # @!attribute teams
+        #   @return [Array<String>]
         attr_accessor :teams
+        # @!attribute custom
+        #   @return [Object]
         attr_accessor :custom
+        # @!attribute avg_response_time
+        #   @return [Integer]
         attr_accessor :avg_response_time
+        # @!attribute ban_expires
+        #   @return [DateTime]
         attr_accessor :ban_expires
+        # @!attribute deactivated_at
+        #   @return [DateTime]
         attr_accessor :deactivated_at
+        # @!attribute deleted_at
+        #   @return [DateTime]
         attr_accessor :deleted_at
+        # @!attribute image
+        #   @return [String]
         attr_accessor :image
+        # @!attribute last_active
+        #   @return [DateTime]
         attr_accessor :last_active
+        # @!attribute name
+        #   @return [String]
         attr_accessor :name
+        # @!attribute revoke_tokens_issued_before
+        #   @return [DateTime]
         attr_accessor :revoke_tokens_issued_before
+        # @!attribute latest_hidden_channels
+        #   @return [Array<String>]
         attr_accessor :latest_hidden_channels
+        # @!attribute privacy_settings
+        #   @return [PrivacySettingsResponse]
         attr_accessor :privacy_settings
+        # @!attribute teams_role
+        #   @return [Hash<String, String>]
         attr_accessor :teams_role
 
         # Initialize with attributes

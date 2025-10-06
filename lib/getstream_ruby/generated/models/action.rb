@@ -9,10 +9,20 @@ module GetStream
       class Action < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _type
+        #   @return [String]
         attr_accessor :_type
+        # @!attribute name
+        #   @return [String]
         attr_accessor :name
+        # @!attribute text
+        #   @return [String]
         attr_accessor :text
+        # @!attribute style
+        #   @return [String]
         attr_accessor :style
+        # @!attribute value
+        #   @return [String]
         attr_accessor :value
 
         # Initialize with attributes

@@ -9,7 +9,11 @@ module GetStream
       class AddCommentResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
+        # @!attribute comment
+        #   @return [CommentResponse]
         attr_accessor :comment
 
         # Initialize with attributes

@@ -9,7 +9,9 @@ module GetStream
       class DeleteSegmentTargetsRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :target_ids  # Target IDs
+        # @!attribute target_ids
+        #   @return [Array<String>] Target IDs
+        attr_accessor :target_ids
 
         # Initialize with attributes
         def initialize(attributes = {})

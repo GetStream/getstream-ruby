@@ -9,9 +9,17 @@ module GetStream
       class LLMRule < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute description
+        #   @return [String]
         attr_accessor :description
+        # @!attribute label
+        #   @return [String]
         attr_accessor :label
+        # @!attribute action
+        #   @return [String]
         attr_accessor :action
+        # @!attribute severity_rules
+        #   @return [Array<BodyguardSeverityRule>]
         attr_accessor :severity_rules
 
         # Initialize with attributes

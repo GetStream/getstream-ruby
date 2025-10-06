@@ -9,16 +9,38 @@ module GetStream
       class QueryReviewQueueRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _next
+        #   @return [String]
         attr_accessor :_next
+        # @!attribute limit
+        #   @return [Integer]
         attr_accessor :limit
-        attr_accessor :lock_count  # Number of items to lock (1-25)
-        attr_accessor :lock_duration  # Duration for which items should be locked
-        attr_accessor :lock_items  # Whether to lock items for review (true), unlock items (false), or just fetch (nil)
+        # @!attribute lock_count
+        #   @return [Integer] Number of items to lock (1-25)
+        attr_accessor :lock_count
+        # @!attribute lock_duration
+        #   @return [Integer] Duration for which items should be locked
+        attr_accessor :lock_duration
+        # @!attribute lock_items
+        #   @return [Boolean] Whether to lock items for review (true), unlock items (false), or just fetch (nil)
+        attr_accessor :lock_items
+        # @!attribute prev
+        #   @return [String]
         attr_accessor :prev
-        attr_accessor :stats_only  # Whether to return only statistics
+        # @!attribute stats_only
+        #   @return [Boolean] Whether to return only statistics
+        attr_accessor :stats_only
+        # @!attribute user_id
+        #   @return [String]
         attr_accessor :user_id
-        attr_accessor :sort  # Sorting parameters for the results
-        attr_accessor :filter  # Filter conditions for review queue items
+        # @!attribute sort
+        #   @return [Array<SortParamRequest>] Sorting parameters for the results
+        attr_accessor :sort
+        # @!attribute filter
+        #   @return [Object] Filter conditions for review queue items
+        attr_accessor :filter
+        # @!attribute user
+        #   @return [UserRequest]
         attr_accessor :user
 
         # Initialize with attributes

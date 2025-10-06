@@ -9,6 +9,8 @@ module GetStream
       class SessionSettings < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute inactivity_timeout_seconds
+        #   @return [Integer]
         attr_accessor :inactivity_timeout_seconds
 
         # Initialize with attributes

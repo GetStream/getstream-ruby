@@ -9,7 +9,11 @@ module GetStream
       class ListImportsResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :duration  # Duration of the request in milliseconds
+        # @!attribute duration
+        #   @return [String] Duration of the request in milliseconds
+        attr_accessor :duration
+        # @!attribute import_tasks
+        #   @return [Array<ImportTask>]
         attr_accessor :import_tasks
 
         # Initialize with attributes

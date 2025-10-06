@@ -9,11 +9,21 @@ module GetStream
       class QueryCommentsRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :filter  # MongoDB-style filter for querying comments
+        # @!attribute filter
+        #   @return [Object] MongoDB-style filter for querying comments
+        attr_accessor :filter
+        # @!attribute _next
+        #   @return [String]
         attr_accessor :_next
-        attr_accessor :limit  # Maximum number of comments to return
+        # @!attribute limit
+        #   @return [Integer] Maximum number of comments to return
+        attr_accessor :limit
+        # @!attribute prev
+        #   @return [String]
         attr_accessor :prev
-        attr_accessor :sort  # first (oldest), last (newest) or top
+        # @!attribute sort
+        #   @return [String] first (oldest), last (newest) or top
+        attr_accessor :sort
 
         # Initialize with attributes
         def initialize(attributes = {})

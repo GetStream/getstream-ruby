@@ -9,7 +9,9 @@ module GetStream
       class UpsertActivitiesRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :activities  # List of activities to create or update
+        # @!attribute activities
+        #   @return [Array<ActivityRequest>] List of activities to create or update
+        attr_accessor :activities
 
         # Initialize with attributes
         def initialize(attributes = {})

@@ -9,11 +9,21 @@ module GetStream
       class QueryFeedMembersRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _next
+        #   @return [String]
         attr_accessor :_next
+        # @!attribute limit
+        #   @return [Integer]
         attr_accessor :limit
+        # @!attribute prev
+        #   @return [String]
         attr_accessor :prev
-        attr_accessor :sort  # Sort parameters for the query
-        attr_accessor :filter  # Filter parameters for the query
+        # @!attribute sort
+        #   @return [Array<SortParamRequest>] Sort parameters for the query
+        attr_accessor :sort
+        # @!attribute filter
+        #   @return [Object] Filter parameters for the query
+        attr_accessor :filter
 
         # Initialize with attributes
         def initialize(attributes = {})

@@ -9,9 +9,15 @@ module GetStream
       class UpdateCommentRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :comment  # Updated text content of the comment
+        # @!attribute comment
+        #   @return [String] Updated text content of the comment
+        attr_accessor :comment
+        # @!attribute skip_push
+        #   @return [Boolean]
         attr_accessor :skip_push
-        attr_accessor :custom  # Updated custom data for the comment
+        # @!attribute custom
+        #   @return [Object] Updated custom data for the comment
+        attr_accessor :custom
 
         # Initialize with attributes
         def initialize(attributes = {})

@@ -9,7 +9,11 @@ module GetStream
       class ChannelMessages < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute messages
+        #   @return [Array<Message>]
         attr_accessor :messages
+        # @!attribute channel
+        #   @return [ChannelResponse]
         attr_accessor :channel
 
         # Initialize with attributes

@@ -9,11 +9,23 @@ module GetStream
       class CreateDeviceRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :_id  # Device ID
-        attr_accessor :push_provider  # Push provider
-        attr_accessor :push_provider_name  # Push provider name
-        attr_accessor :user_id  # **Server-side only**. User ID which server acts upon
-        attr_accessor :voip_token  # When true the token is for Apple VoIP push notifications
+        # @!attribute _id
+        #   @return [String] Device ID
+        attr_accessor :_id
+        # @!attribute push_provider
+        #   @return [String] Push provider
+        attr_accessor :push_provider
+        # @!attribute push_provider_name
+        #   @return [String] Push provider name
+        attr_accessor :push_provider_name
+        # @!attribute user_id
+        #   @return [String] **Server-side only**. User ID which server acts upon
+        attr_accessor :user_id
+        # @!attribute voip_token
+        #   @return [Boolean] When true the token is for Apple VoIP push notifications
+        attr_accessor :voip_token
+        # @!attribute user
+        #   @return [UserRequest]
         attr_accessor :user
 
         # Initialize with attributes

@@ -9,7 +9,11 @@ module GetStream
       class VoteData < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute answer_text
+        #   @return [String]
         attr_accessor :answer_text
+        # @!attribute option_id
+        #   @return [String]
         attr_accessor :option_id
 
         # Initialize with attributes

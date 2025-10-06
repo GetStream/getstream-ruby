@@ -9,7 +9,9 @@ module GetStream
       class CreateFeedsBatchRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :feeds  # List of feeds to create
+        # @!attribute feeds
+        #   @return [Array<FeedRequest>] List of feeds to create
+        attr_accessor :feeds
 
         # Initialize with attributes
         def initialize(attributes = {})

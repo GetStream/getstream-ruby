@@ -9,9 +9,15 @@ module GetStream
       class UpdateCommandRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :description  # Description, shown in commands auto-completion
-        attr_accessor :args  # Arguments help text, shown in commands auto-completion
-        attr_accessor :set  # Set name used for grouping commands
+        # @!attribute description
+        #   @return [String] Description, shown in commands auto-completion
+        attr_accessor :description
+        # @!attribute args
+        #   @return [String] Arguments help text, shown in commands auto-completion
+        attr_accessor :args
+        # @!attribute set
+        #   @return [String] Set name used for grouping commands
+        attr_accessor :set
 
         # Initialize with attributes
         def initialize(attributes = {})

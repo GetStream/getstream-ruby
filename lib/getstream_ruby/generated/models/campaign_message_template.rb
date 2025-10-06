@@ -9,9 +9,17 @@ module GetStream
       class CampaignMessageTemplate < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute poll_id
+        #   @return [String]
         attr_accessor :poll_id
+        # @!attribute text
+        #   @return [String]
         attr_accessor :text
+        # @!attribute attachments
+        #   @return [Array<Attachment>]
         attr_accessor :attachments
+        # @!attribute custom
+        #   @return [Object]
         attr_accessor :custom
 
         # Initialize with attributes

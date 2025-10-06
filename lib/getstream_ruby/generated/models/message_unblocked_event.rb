@@ -9,11 +9,23 @@ module GetStream
       class MessageUnblockedEvent < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute cid
+        #   @return [String]
         attr_accessor :cid
+        # @!attribute created_at
+        #   @return [DateTime]
         attr_accessor :created_at
+        # @!attribute _type
+        #   @return [String]
         attr_accessor :_type
+        # @!attribute thread_participants
+        #   @return [Array<User>]
         attr_accessor :thread_participants
+        # @!attribute message
+        #   @return [Message]
         attr_accessor :message
+        # @!attribute user
+        #   @return [User]
         attr_accessor :user
 
         # Initialize with attributes

@@ -9,11 +9,23 @@ module GetStream
       class ModerationFlaggedEvent < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :content_type  # The type of content that was flagged
+        # @!attribute content_type
+        #   @return [String] The type of content that was flagged
+        attr_accessor :content_type
+        # @!attribute created_at
+        #   @return [DateTime]
         attr_accessor :created_at
-        attr_accessor :object_id  # The ID of the flagged content
+        # @!attribute object_id
+        #   @return [String] The ID of the flagged content
+        attr_accessor :object_id
+        # @!attribute custom
+        #   @return [Object]
         attr_accessor :custom
+        # @!attribute _type
+        #   @return [String]
         attr_accessor :_type
+        # @!attribute received_at
+        #   @return [DateTime]
         attr_accessor :received_at
 
         # Initialize with attributes

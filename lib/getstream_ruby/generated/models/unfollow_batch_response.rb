@@ -9,8 +9,12 @@ module GetStream
       class UnfollowBatchResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
-        attr_accessor :follows  # List of follow relationships that were removed
+        # @!attribute follows
+        #   @return [Array<FollowResponse>] List of follow relationships that were removed
+        attr_accessor :follows
 
         # Initialize with attributes
         def initialize(attributes = {})

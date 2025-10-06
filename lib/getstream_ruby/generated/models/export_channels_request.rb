@@ -9,12 +9,24 @@ module GetStream
       class ExportChannelsRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :channels  # Export options for channels
-        attr_accessor :clear_deleted_message_text  # Set if deleted message text should be cleared
+        # @!attribute channels
+        #   @return [Array<ChannelExport>] Export options for channels
+        attr_accessor :channels
+        # @!attribute clear_deleted_message_text
+        #   @return [Boolean] Set if deleted message text should be cleared
+        attr_accessor :clear_deleted_message_text
+        # @!attribute export_users
+        #   @return [Boolean]
         attr_accessor :export_users
-        attr_accessor :include_soft_deleted_channels  # Set if you want to include deleted channels
-        attr_accessor :include_truncated_messages  # Set if you want to include truncated messages
-        attr_accessor :version  # Export version
+        # @!attribute include_soft_deleted_channels
+        #   @return [Boolean] Set if you want to include deleted channels
+        attr_accessor :include_soft_deleted_channels
+        # @!attribute include_truncated_messages
+        #   @return [Boolean] Set if you want to include truncated messages
+        attr_accessor :include_truncated_messages
+        # @!attribute version
+        #   @return [String] Export version
+        attr_accessor :version
 
         # Initialize with attributes
         def initialize(attributes = {})

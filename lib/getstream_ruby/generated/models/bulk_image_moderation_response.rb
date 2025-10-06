@@ -9,8 +9,12 @@ module GetStream
       class BulkImageModerationResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
-        attr_accessor :task_id  # ID of the task for processing the bulk image moderation
+        # @!attribute task_id
+        #   @return [String] ID of the task for processing the bulk image moderation
+        attr_accessor :task_id
 
         # Initialize with attributes
         def initialize(attributes = {})

@@ -9,8 +9,12 @@ module GetStream
       class UpdateBlockListRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute team
+        #   @return [String]
         attr_accessor :team
-        attr_accessor :words  # List of words to block
+        # @!attribute words
+        #   @return [Array<String>] List of words to block
+        attr_accessor :words
 
         # Initialize with attributes
         def initialize(attributes = {})

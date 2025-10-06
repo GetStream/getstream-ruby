@@ -9,8 +9,14 @@ module GetStream
       class MarkChannelsReadRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute user_id
+        #   @return [String]
         attr_accessor :user_id
-        attr_accessor :read_by_channel  # Map of channel ID to last read message ID
+        # @!attribute read_by_channel
+        #   @return [Hash<String, String>] Map of channel ID to last read message ID
+        attr_accessor :read_by_channel
+        # @!attribute user
+        #   @return [UserRequest]
         attr_accessor :user
 
         # Initialize with attributes

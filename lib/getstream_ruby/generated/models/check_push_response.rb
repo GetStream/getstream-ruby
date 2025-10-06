@@ -9,13 +9,29 @@ module GetStream
       class CheckPushResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
-        attr_accessor :event_type  # The event type that was tested
+        # @!attribute event_type
+        #   @return [String] The event type that was tested
+        attr_accessor :event_type
+        # @!attribute rendered_apn_template
+        #   @return [String]
         attr_accessor :rendered_apn_template
+        # @!attribute rendered_firebase_template
+        #   @return [String]
         attr_accessor :rendered_firebase_template
-        attr_accessor :skip_devices  # Don't require existing devices to render templates
-        attr_accessor :general_errors  # List of general errors
-        attr_accessor :device_errors  # Object with device errors
+        # @!attribute skip_devices
+        #   @return [Boolean] Don't require existing devices to render templates
+        attr_accessor :skip_devices
+        # @!attribute general_errors
+        #   @return [Array<String>] List of general errors
+        attr_accessor :general_errors
+        # @!attribute device_errors
+        #   @return [Hash<String, DeviceErrorInfo>] Object with device errors
+        attr_accessor :device_errors
+        # @!attribute rendered_message
+        #   @return [Hash<String, String>]
         attr_accessor :rendered_message
 
         # Initialize with attributes

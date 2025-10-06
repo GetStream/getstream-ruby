@@ -9,6 +9,8 @@ module GetStream
       class QualityScoreReport < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute histogram
+        #   @return [Array<ReportByHistogramBucket>]
         attr_accessor :histogram
 
         # Initialize with attributes

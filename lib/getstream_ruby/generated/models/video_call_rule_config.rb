@@ -9,8 +9,14 @@ module GetStream
       class VideoCallRuleConfig < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute flag_all_labels
+        #   @return [Boolean]
         attr_accessor :flag_all_labels
+        # @!attribute flagged_labels
+        #   @return [Array<String>]
         attr_accessor :flagged_labels
+        # @!attribute rules
+        #   @return [Array<HarmConfig>]
         attr_accessor :rules
 
         # Initialize with attributes

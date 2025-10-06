@@ -9,6 +9,8 @@ module GetStream
       class ReadReceipts < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute enabled
+        #   @return [Boolean]
         attr_accessor :enabled
 
         # Initialize with attributes

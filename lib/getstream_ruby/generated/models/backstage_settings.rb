@@ -9,7 +9,11 @@ module GetStream
       class BackstageSettings < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute enabled
+        #   @return [Boolean]
         attr_accessor :enabled
+        # @!attribute join_ahead_time_seconds
+        #   @return [Integer]
         attr_accessor :join_ahead_time_seconds
 
         # Initialize with attributes

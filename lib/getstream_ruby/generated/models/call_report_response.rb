@@ -9,8 +9,14 @@ module GetStream
       class CallReportResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute score
+        #   @return [Float]
         attr_accessor :score
+        # @!attribute ended_at
+        #   @return [DateTime]
         attr_accessor :ended_at
+        # @!attribute started_at
+        #   @return [DateTime]
         attr_accessor :started_at
 
         # Initialize with attributes

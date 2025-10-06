@@ -9,7 +9,9 @@ module GetStream
       class KickUserResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :duration  # Duration of the request in milliseconds
+        # @!attribute duration
+        #   @return [String] Duration of the request in milliseconds
+        attr_accessor :duration
 
         # Initialize with attributes
         def initialize(attributes = {})

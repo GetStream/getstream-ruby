@@ -9,9 +9,15 @@ module GetStream
       class CheckSQSRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :sqs_key  # AWS SQS access key
-        attr_accessor :sqs_secret  # AWS SQS key secret
-        attr_accessor :sqs_url  # AWS SQS endpoint URL
+        # @!attribute sqs_key
+        #   @return [String] AWS SQS access key
+        attr_accessor :sqs_key
+        # @!attribute sqs_secret
+        #   @return [String] AWS SQS key secret
+        attr_accessor :sqs_secret
+        # @!attribute sqs_url
+        #   @return [String] AWS SQS endpoint URL
+        attr_accessor :sqs_url
 
         # Initialize with attributes
         def initialize(attributes = {})

@@ -9,6 +9,8 @@ module GetStream
       class ExportUsersRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute user_ids
+        #   @return [Array<String>]
         attr_accessor :user_ids
 
         # Initialize with attributes

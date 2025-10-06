@@ -9,7 +9,11 @@ module GetStream
       class GetFeedViewResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
+        # @!attribute feed_view
+        #   @return [FeedViewResponse]
         attr_accessor :feed_view
 
         # Initialize with attributes

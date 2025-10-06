@@ -9,7 +9,9 @@ module GetStream
       class UpsertPushPreferencesRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :preferences  # A list of push preferences for channels, calls, or the user.
+        # @!attribute preferences
+        #   @return [Array<PushPreferenceInput>] A list of push preferences for channels, calls, or the user.
+        attr_accessor :preferences
 
         # Initialize with attributes
         def initialize(attributes = {})

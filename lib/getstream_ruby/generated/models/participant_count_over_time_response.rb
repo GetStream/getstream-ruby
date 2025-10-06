@@ -9,6 +9,8 @@ module GetStream
       class ParticipantCountOverTimeResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute by_minute
+        #   @return [Array<ParticipantCountByMinuteResponse>]
         attr_accessor :by_minute
 
         # Initialize with attributes

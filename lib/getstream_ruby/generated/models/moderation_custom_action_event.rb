@@ -9,13 +9,29 @@ module GetStream
       class ModerationCustomActionEvent < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :action_id  # The ID of the custom action that was executed
+        # @!attribute action_id
+        #   @return [String] The ID of the custom action that was executed
+        attr_accessor :action_id
+        # @!attribute created_at
+        #   @return [DateTime]
         attr_accessor :created_at
+        # @!attribute custom
+        #   @return [Object]
         attr_accessor :custom
+        # @!attribute review_queue_item
+        #   @return [ReviewQueueItemResponse]
         attr_accessor :review_queue_item
+        # @!attribute _type
+        #   @return [String]
         attr_accessor :_type
+        # @!attribute received_at
+        #   @return [DateTime]
         attr_accessor :received_at
-        attr_accessor :action_options  # Additional options passed to the custom action
+        # @!attribute action_options
+        #   @return [Object] Additional options passed to the custom action
+        attr_accessor :action_options
+        # @!attribute message
+        #   @return [MessageResponse]
         attr_accessor :message
 
         # Initialize with attributes

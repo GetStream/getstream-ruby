@@ -9,23 +9,59 @@ module GetStream
       class ModerationConfig < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute async
+        #   @return [Boolean]
         attr_accessor :async
+        # @!attribute created_at
+        #   @return [DateTime]
         attr_accessor :created_at
+        # @!attribute key
+        #   @return [String]
         attr_accessor :key
+        # @!attribute team
+        #   @return [String]
         attr_accessor :team
+        # @!attribute updated_at
+        #   @return [DateTime]
         attr_accessor :updated_at
+        # @!attribute supported_video_call_harm_types
+        #   @return [Array<String>]
         attr_accessor :supported_video_call_harm_types
+        # @!attribute ai_image_config
+        #   @return [AIImageConfig]
         attr_accessor :ai_image_config
+        # @!attribute ai_image_lite_config
+        #   @return [BodyguardImageAnalysisConfig]
         attr_accessor :ai_image_lite_config
+        # @!attribute ai_text_config
+        #   @return [AITextConfig]
         attr_accessor :ai_text_config
+        # @!attribute ai_video_config
+        #   @return [AIVideoConfig]
         attr_accessor :ai_video_config
+        # @!attribute automod_platform_circumvention_config
+        #   @return [AutomodPlatformCircumventionConfig]
         attr_accessor :automod_platform_circumvention_config
+        # @!attribute automod_semantic_filters_config
+        #   @return [AutomodSemanticFiltersConfig]
         attr_accessor :automod_semantic_filters_config
+        # @!attribute automod_toxicity_config
+        #   @return [AutomodToxicityConfig]
         attr_accessor :automod_toxicity_config
+        # @!attribute block_list_config
+        #   @return [BlockListConfig]
         attr_accessor :block_list_config
+        # @!attribute google_vision_config
+        #   @return [GoogleVisionConfig]
         attr_accessor :google_vision_config
+        # @!attribute llm_config
+        #   @return [LLMConfig]
         attr_accessor :llm_config
+        # @!attribute velocity_filter_config
+        #   @return [VelocityFilterConfig]
         attr_accessor :velocity_filter_config
+        # @!attribute video_call_rule_config
+        #   @return [VideoCallRuleConfig]
         attr_accessor :video_call_rule_config
 
         # Initialize with attributes

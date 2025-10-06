@@ -9,9 +9,17 @@ module GetStream
       class ActiveCallsFPSStats < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute p05
+        #   @return [Float]
         attr_accessor :p05
+        # @!attribute p10
+        #   @return [Float]
         attr_accessor :p10
+        # @!attribute p50
+        #   @return [Float]
         attr_accessor :p50
+        # @!attribute p90
+        #   @return [Float]
         attr_accessor :p90
 
         # Initialize with attributes

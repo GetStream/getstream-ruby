@@ -9,8 +9,14 @@ module GetStream
       class ScreensharingSettingsResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute access_request_enabled
+        #   @return [Boolean]
         attr_accessor :access_request_enabled
+        # @!attribute enabled
+        #   @return [Boolean]
         attr_accessor :enabled
+        # @!attribute target_resolution
+        #   @return [TargetResolution]
         attr_accessor :target_resolution
 
         # Initialize with attributes

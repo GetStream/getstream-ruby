@@ -9,7 +9,9 @@ module GetStream
       class DeleteCallRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :hard  # if true the call will be hard deleted along with all related data
+        # @!attribute hard
+        #   @return [Boolean] if true the call will be hard deleted along with all related data
+        attr_accessor :hard
 
         # Initialize with attributes
         def initialize(attributes = {})

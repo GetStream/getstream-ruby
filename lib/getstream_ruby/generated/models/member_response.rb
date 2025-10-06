@@ -9,12 +9,26 @@ module GetStream
       class MemberResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :created_at  # Date/time of creation
-        attr_accessor :updated_at  # Date/time of the last update
+        # @!attribute created_at
+        #   @return [DateTime] Date/time of creation
+        attr_accessor :created_at
+        # @!attribute updated_at
+        #   @return [DateTime] Date/time of the last update
+        attr_accessor :updated_at
+        # @!attribute user_id
+        #   @return [String]
         attr_accessor :user_id
-        attr_accessor :custom  # Custom member response data
+        # @!attribute custom
+        #   @return [Object] Custom member response data
+        attr_accessor :custom
+        # @!attribute user
+        #   @return [UserResponse]
         attr_accessor :user
-        attr_accessor :deleted_at  # Date/time of deletion
+        # @!attribute deleted_at
+        #   @return [DateTime] Date/time of deletion
+        attr_accessor :deleted_at
+        # @!attribute role
+        #   @return [String]
         attr_accessor :role
 
         # Initialize with attributes

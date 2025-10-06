@@ -9,10 +9,20 @@ module GetStream
       class PublisherVideoMetrics < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute bitrate
+        #   @return [ActiveCallsBitrateStats]
         attr_accessor :bitrate
+        # @!attribute fps_30
+        #   @return [ActiveCallsFPSStats]
         attr_accessor :fps_30
+        # @!attribute frame_encoding_time_ms
+        #   @return [ActiveCallsLatencyStats]
         attr_accessor :frame_encoding_time_ms
+        # @!attribute jitter_ms
+        #   @return [ActiveCallsLatencyStats]
         attr_accessor :jitter_ms
+        # @!attribute resolution
+        #   @return [ActiveCallsResolutionStats]
         attr_accessor :resolution
 
         # Initialize with attributes

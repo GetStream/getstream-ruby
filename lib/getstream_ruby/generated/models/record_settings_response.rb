@@ -9,9 +9,17 @@ module GetStream
       class RecordSettingsResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute audio_only
+        #   @return [Boolean]
         attr_accessor :audio_only
+        # @!attribute mode
+        #   @return [String]
         attr_accessor :mode
+        # @!attribute quality
+        #   @return [String]
         attr_accessor :quality
+        # @!attribute layout
+        #   @return [LayoutSettingsResponse]
         attr_accessor :layout
 
         # Initialize with attributes

@@ -9,8 +9,14 @@ module GetStream
       class PublisherAllMetrics < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute audio
+        #   @return [PublisherAudioMetrics]
         attr_accessor :audio
+        # @!attribute rtt_ms
+        #   @return [ActiveCallsLatencyStats]
         attr_accessor :rtt_ms
+        # @!attribute video
+        #   @return [PublisherVideoMetrics]
         attr_accessor :video
 
         # Initialize with attributes

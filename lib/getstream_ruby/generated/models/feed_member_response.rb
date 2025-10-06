@@ -9,14 +9,32 @@ module GetStream
       class FeedMemberResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :created_at  # When the membership was created
-        attr_accessor :role  # Role of the member in the feed
-        attr_accessor :status  # Status of the membership
-        attr_accessor :updated_at  # When the membership was last updated
+        # @!attribute created_at
+        #   @return [DateTime] When the membership was created
+        attr_accessor :created_at
+        # @!attribute role
+        #   @return [String] Role of the member in the feed
+        attr_accessor :role
+        # @!attribute status
+        #   @return [String] Status of the membership
+        attr_accessor :status
+        # @!attribute updated_at
+        #   @return [DateTime] When the membership was last updated
+        attr_accessor :updated_at
+        # @!attribute user
+        #   @return [UserResponse]
         attr_accessor :user
-        attr_accessor :invite_accepted_at  # When the invite was accepted
-        attr_accessor :invite_rejected_at  # When the invite was rejected
-        attr_accessor :custom  # Custom data for the membership
+        # @!attribute invite_accepted_at
+        #   @return [DateTime] When the invite was accepted
+        attr_accessor :invite_accepted_at
+        # @!attribute invite_rejected_at
+        #   @return [DateTime] When the invite was rejected
+        attr_accessor :invite_rejected_at
+        # @!attribute custom
+        #   @return [Object] Custom data for the membership
+        attr_accessor :custom
+        # @!attribute membership_level
+        #   @return [MembershipLevelResponse]
         attr_accessor :membership_level
 
         # Initialize with attributes

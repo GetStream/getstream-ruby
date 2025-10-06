@@ -9,30 +9,78 @@ module GetStream
       class CommentResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :_id  # Unique identifier for the comment
-        attr_accessor :confidence_score  # Confidence score of the comment
-        attr_accessor :created_at  # When the comment was created
-        attr_accessor :downvote_count  # Number of downvotes for this comment
-        attr_accessor :object_id  # ID of the object this comment is associated with
-        attr_accessor :object_type  # Type of the object this comment is associated with
-        attr_accessor :reaction_count  # Number of reactions to this comment
-        attr_accessor :reply_count  # Number of replies to this comment
-        attr_accessor :score  # Score of the comment based on reactions
-        attr_accessor :status  # Status of the comment (e.g., active, deleted)
-        attr_accessor :updated_at  # When the comment was last updated
-        attr_accessor :upvote_count  # Number of upvotes for this comment
-        attr_accessor :mentioned_users  # Users mentioned in the comment
-        attr_accessor :own_reactions  # Current user's reactions to this activity
+        # @!attribute _id
+        #   @return [String] Unique identifier for the comment
+        attr_accessor :_id
+        # @!attribute confidence_score
+        #   @return [Float] Confidence score of the comment
+        attr_accessor :confidence_score
+        # @!attribute created_at
+        #   @return [DateTime] When the comment was created
+        attr_accessor :created_at
+        # @!attribute downvote_count
+        #   @return [Integer] Number of downvotes for this comment
+        attr_accessor :downvote_count
+        # @!attribute object_id
+        #   @return [String] ID of the object this comment is associated with
+        attr_accessor :object_id
+        # @!attribute object_type
+        #   @return [String] Type of the object this comment is associated with
+        attr_accessor :object_type
+        # @!attribute reaction_count
+        #   @return [Integer] Number of reactions to this comment
+        attr_accessor :reaction_count
+        # @!attribute reply_count
+        #   @return [Integer] Number of replies to this comment
+        attr_accessor :reply_count
+        # @!attribute score
+        #   @return [Integer] Score of the comment based on reactions
+        attr_accessor :score
+        # @!attribute status
+        #   @return [String] Status of the comment (e.g., active, deleted)
+        attr_accessor :status
+        # @!attribute updated_at
+        #   @return [DateTime] When the comment was last updated
+        attr_accessor :updated_at
+        # @!attribute upvote_count
+        #   @return [Integer] Number of upvotes for this comment
+        attr_accessor :upvote_count
+        # @!attribute mentioned_users
+        #   @return [Array<UserResponse>] Users mentioned in the comment
+        attr_accessor :mentioned_users
+        # @!attribute own_reactions
+        #   @return [Array<FeedsReactionResponse>] Current user's reactions to this activity
+        attr_accessor :own_reactions
+        # @!attribute user
+        #   @return [UserResponse]
         attr_accessor :user
-        attr_accessor :controversy_score  # Controversy score of the comment
-        attr_accessor :deleted_at  # When the comment was deleted
-        attr_accessor :parent_id  # ID of parent comment for nested replies
-        attr_accessor :text  # Text content of the comment
+        # @!attribute controversy_score
+        #   @return [Float] Controversy score of the comment
+        attr_accessor :controversy_score
+        # @!attribute deleted_at
+        #   @return [DateTime] When the comment was deleted
+        attr_accessor :deleted_at
+        # @!attribute parent_id
+        #   @return [String] ID of parent comment for nested replies
+        attr_accessor :parent_id
+        # @!attribute text
+        #   @return [String] Text content of the comment
+        attr_accessor :text
+        # @!attribute attachments
+        #   @return [Array<Attachment>]
         attr_accessor :attachments
-        attr_accessor :latest_reactions  # Recent reactions to the comment
-        attr_accessor :custom  # Custom data for the comment
+        # @!attribute latest_reactions
+        #   @return [Array<FeedsReactionResponse>] Recent reactions to the comment
+        attr_accessor :latest_reactions
+        # @!attribute custom
+        #   @return [Object] Custom data for the comment
+        attr_accessor :custom
+        # @!attribute moderation
+        #   @return [ModerationV2Response]
         attr_accessor :moderation
-        attr_accessor :reaction_groups  # Grouped reactions by type
+        # @!attribute reaction_groups
+        #   @return [Hash<String, ReactionGroupResponse>] Grouped reactions by type
+        attr_accessor :reaction_groups
 
         # Initialize with attributes
         def initialize(attributes = {})

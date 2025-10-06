@@ -9,17 +9,41 @@ module GetStream
       class SubmitActionRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :action_type  # Type of moderation action to perform (mark_reviewed, delete_message, etc.)
-        attr_accessor :item_id  # UUID of the review queue item to act on
+        # @!attribute action_type
+        #   @return [String] Type of moderation action to perform (mark_reviewed, delete_message, etc.)
+        attr_accessor :action_type
+        # @!attribute item_id
+        #   @return [String] UUID of the review queue item to act on
+        attr_accessor :item_id
+        # @!attribute user_id
+        #   @return [String]
         attr_accessor :user_id
+        # @!attribute ban
+        #   @return [BanActionRequest]
         attr_accessor :ban
+        # @!attribute custom
+        #   @return [CustomActionRequest]
         attr_accessor :custom
+        # @!attribute delete_activity
+        #   @return [DeleteActivityRequest]
         attr_accessor :delete_activity
+        # @!attribute delete_message
+        #   @return [DeleteMessageRequest]
         attr_accessor :delete_message
+        # @!attribute delete_reaction
+        #   @return [DeleteReactionRequest]
         attr_accessor :delete_reaction
+        # @!attribute delete_user
+        #   @return [DeleteUserRequest]
         attr_accessor :delete_user
+        # @!attribute mark_reviewed
+        #   @return [MarkReviewedRequest]
         attr_accessor :mark_reviewed
+        # @!attribute unban
+        #   @return [UnbanActionRequest]
         attr_accessor :unban
+        # @!attribute user
+        #   @return [UserRequest]
         attr_accessor :user
 
         # Initialize with attributes

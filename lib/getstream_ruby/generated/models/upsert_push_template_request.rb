@@ -9,11 +9,21 @@ module GetStream
       class UpsertPushTemplateRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :event_type  # Event type (message.new, message.updated, reaction.new)
-        attr_accessor :push_provider_type  # Push provider type (firebase, apn)
-        attr_accessor :enable_push  # Whether to send push notification for this event
-        attr_accessor :push_provider_name  # Push provider name
-        attr_accessor :template  # Push template
+        # @!attribute event_type
+        #   @return [String] Event type (message.new, message.updated, reaction.new)
+        attr_accessor :event_type
+        # @!attribute push_provider_type
+        #   @return [String] Push provider type (firebase, apn)
+        attr_accessor :push_provider_type
+        # @!attribute enable_push
+        #   @return [Boolean] Whether to send push notification for this event
+        attr_accessor :enable_push
+        # @!attribute push_provider_name
+        #   @return [String] Push provider name
+        attr_accessor :push_provider_name
+        # @!attribute template
+        #   @return [String] Push template
+        attr_accessor :template
 
         # Initialize with attributes
         def initialize(attributes = {})

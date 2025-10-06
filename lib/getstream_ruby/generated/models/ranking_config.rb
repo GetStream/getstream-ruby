@@ -9,10 +9,18 @@ module GetStream
       class RankingConfig < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :_type  # Type of ranking algorithm
-        attr_accessor :score  # Scoring formula
-        attr_accessor :defaults  # Default values for ranking
-        attr_accessor :functions  # Decay functions configuration
+        # @!attribute _type
+        #   @return [String] Type of ranking algorithm
+        attr_accessor :_type
+        # @!attribute score
+        #   @return [String] Scoring formula
+        attr_accessor :score
+        # @!attribute defaults
+        #   @return [Object] Default values for ranking
+        attr_accessor :defaults
+        # @!attribute functions
+        #   @return [Hash<String, DecayFunctionConfig>] Decay functions configuration
+        attr_accessor :functions
 
         # Initialize with attributes
         def initialize(attributes = {})

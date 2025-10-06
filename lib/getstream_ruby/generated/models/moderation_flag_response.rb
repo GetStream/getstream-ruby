@@ -9,20 +9,50 @@ module GetStream
       class ModerationFlagResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _type
+        #   @return [String]
         attr_accessor :_type
+        # @!attribute created_at
+        #   @return [DateTime]
         attr_accessor :created_at
+        # @!attribute entity_id
+        #   @return [String]
         attr_accessor :entity_id
+        # @!attribute entity_type
+        #   @return [String]
         attr_accessor :entity_type
+        # @!attribute updated_at
+        #   @return [DateTime]
         attr_accessor :updated_at
+        # @!attribute user_id
+        #   @return [String]
         attr_accessor :user_id
+        # @!attribute result
+        #   @return [Array<Object>]
         attr_accessor :result
+        # @!attribute entity_creator_id
+        #   @return [String]
         attr_accessor :entity_creator_id
+        # @!attribute reason
+        #   @return [String]
         attr_accessor :reason
+        # @!attribute review_queue_item_id
+        #   @return [String]
         attr_accessor :review_queue_item_id
+        # @!attribute labels
+        #   @return [Array<String>]
         attr_accessor :labels
+        # @!attribute custom
+        #   @return [Object]
         attr_accessor :custom
+        # @!attribute moderation_payload
+        #   @return [ModerationPayload]
         attr_accessor :moderation_payload
+        # @!attribute review_queue_item
+        #   @return [ReviewQueueItemResponse]
         attr_accessor :review_queue_item
+        # @!attribute user
+        #   @return [UserResponse]
         attr_accessor :user
 
         # Initialize with attributes

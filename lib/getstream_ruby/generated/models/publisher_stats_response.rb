@@ -9,8 +9,14 @@ module GetStream
       class PublisherStatsResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute total
+        #   @return [Integer]
         attr_accessor :total
+        # @!attribute unique
+        #   @return [Integer]
         attr_accessor :unique
+        # @!attribute by_track
+        #   @return [Array<TrackStatsResponse>]
         attr_accessor :by_track
 
         # Initialize with attributes

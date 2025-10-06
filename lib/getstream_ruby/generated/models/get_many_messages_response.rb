@@ -9,8 +9,12 @@ module GetStream
       class GetManyMessagesResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
-        attr_accessor :messages  # List of messages
+        # @!attribute messages
+        #   @return [Array<MessageResponse>] List of messages
+        attr_accessor :messages
 
         # Initialize with attributes
         def initialize(attributes = {})

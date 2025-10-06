@@ -9,7 +9,11 @@ module GetStream
       class CreateImportRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute mode
+        #   @return [String]
         attr_accessor :mode
+        # @!attribute path
+        #   @return [String]
         attr_accessor :path
 
         # Initialize with attributes

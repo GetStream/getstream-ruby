@@ -9,8 +9,14 @@ module GetStream
       class ActiveCallsMetrics < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute join_call_api
+        #   @return [JoinCallAPIMetrics]
         attr_accessor :join_call_api
+        # @!attribute publishers
+        #   @return [PublishersMetrics]
         attr_accessor :publishers
+        # @!attribute subscribers
+        #   @return [SubscribersMetrics]
         attr_accessor :subscribers
 
         # Initialize with attributes

@@ -9,11 +9,21 @@ module GetStream
       class QueryBookmarkFoldersRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _next
+        #   @return [String]
         attr_accessor :_next
+        # @!attribute limit
+        #   @return [Integer]
         attr_accessor :limit
+        # @!attribute prev
+        #   @return [String]
         attr_accessor :prev
-        attr_accessor :sort  # Sorting parameters for the query
-        attr_accessor :filter  # Filters to apply to the query
+        # @!attribute sort
+        #   @return [Array<SortParamRequest>] Sorting parameters for the query
+        attr_accessor :sort
+        # @!attribute filter
+        #   @return [Object] Filters to apply to the query
+        attr_accessor :filter
 
         # Initialize with attributes
         def initialize(attributes = {})

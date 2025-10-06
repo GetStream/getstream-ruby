@@ -9,8 +9,12 @@ module GetStream
       class GetBlockedUsersResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :duration  # Duration of the request in milliseconds
-        attr_accessor :blocks  # Array of blocked user object
+        # @!attribute duration
+        #   @return [String] Duration of the request in milliseconds
+        attr_accessor :duration
+        # @!attribute blocks
+        #   @return [Array<BlockedUserResponse>] Array of blocked user object
+        attr_accessor :blocks
 
         # Initialize with attributes
         def initialize(attributes = {})

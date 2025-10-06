@@ -9,8 +9,14 @@ module GetStream
       class GetOrCreateFeedGroupResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
-        attr_accessor :was_created  # Indicates whether the feed group was created (true) or already existed (false)
+        # @!attribute was_created
+        #   @return [Boolean] Indicates whether the feed group was created (true) or already existed (false)
+        attr_accessor :was_created
+        # @!attribute feed_group
+        #   @return [FeedGroupResponse]
         attr_accessor :feed_group
 
         # Initialize with attributes

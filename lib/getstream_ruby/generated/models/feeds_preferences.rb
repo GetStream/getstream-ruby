@@ -9,12 +9,24 @@ module GetStream
       class FeedsPreferences < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :comment  # Push notification preference for comments on user's activities
-        attr_accessor :comment_reaction  # Push notification preference for reactions on comments
-        attr_accessor :follow  # Push notification preference for new followers
-        attr_accessor :mention  # Push notification preference for mentions in activities or comments
-        attr_accessor :reaction  # Push notification preference for reactions on user's activities or comments
-        attr_accessor :custom_activity_types  # Push notification preferences for custom activity types. Map of activity type to preference (all or none)
+        # @!attribute comment
+        #   @return [String] Push notification preference for comments on user's activities
+        attr_accessor :comment
+        # @!attribute comment_reaction
+        #   @return [String] Push notification preference for reactions on comments
+        attr_accessor :comment_reaction
+        # @!attribute follow
+        #   @return [String] Push notification preference for new followers
+        attr_accessor :follow
+        # @!attribute mention
+        #   @return [String] Push notification preference for mentions in activities or comments
+        attr_accessor :mention
+        # @!attribute reaction
+        #   @return [String] Push notification preference for reactions on user's activities or comments
+        attr_accessor :reaction
+        # @!attribute custom_activity_types
+        #   @return [Hash<String, String>] Push notification preferences for custom activity types. Map of activity type to preference (all or none)
+        attr_accessor :custom_activity_types
 
         # Initialize with attributes
         def initialize(attributes = {})

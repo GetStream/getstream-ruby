@@ -9,9 +9,17 @@ module GetStream
       class AIImageConfig < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute async
+        #   @return [Boolean]
         attr_accessor :async
+        # @!attribute enabled
+        #   @return [Boolean]
         attr_accessor :enabled
+        # @!attribute ocr_rules
+        #   @return [Array<OCRRule>]
         attr_accessor :ocr_rules
+        # @!attribute rules
+        #   @return [Array<AWSRekognitionRule>]
         attr_accessor :rules
 
         # Initialize with attributes

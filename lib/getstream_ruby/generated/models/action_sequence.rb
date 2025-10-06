@@ -9,12 +9,26 @@ module GetStream
       class ActionSequence < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute action
+        #   @return [String]
         attr_accessor :action
+        # @!attribute blur
+        #   @return [Boolean]
         attr_accessor :blur
+        # @!attribute cooldown_period
+        #   @return [Integer]
         attr_accessor :cooldown_period
+        # @!attribute threshold
+        #   @return [Integer]
         attr_accessor :threshold
+        # @!attribute time_window
+        #   @return [Integer]
         attr_accessor :time_window
+        # @!attribute warning
+        #   @return [Boolean]
         attr_accessor :warning
+        # @!attribute warning_text
+        #   @return [String]
         attr_accessor :warning_text
 
         # Initialize with attributes

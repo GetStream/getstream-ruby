@@ -9,10 +9,20 @@ module GetStream
       class IngressVideoLayer < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute bitrate
+        #   @return [Integer]
         attr_accessor :bitrate
+        # @!attribute codec
+        #   @return [String]
         attr_accessor :codec
+        # @!attribute frame_rate
+        #   @return [Integer]
         attr_accessor :frame_rate
+        # @!attribute max_dimension
+        #   @return [Integer]
         attr_accessor :max_dimension
+        # @!attribute min_dimension
+        #   @return [Integer]
         attr_accessor :min_dimension
 
         # Initialize with attributes

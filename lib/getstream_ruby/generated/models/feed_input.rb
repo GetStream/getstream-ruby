@@ -9,11 +9,23 @@ module GetStream
       class FeedInput < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute description
+        #   @return [String]
         attr_accessor :description
+        # @!attribute name
+        #   @return [String]
         attr_accessor :name
+        # @!attribute visibility
+        #   @return [String]
         attr_accessor :visibility
+        # @!attribute filter_tags
+        #   @return [Array<String>]
         attr_accessor :filter_tags
+        # @!attribute members
+        #   @return [Array<FeedMemberRequest>]
         attr_accessor :members
+        # @!attribute custom
+        #   @return [Object]
         attr_accessor :custom
 
         # Initialize with attributes

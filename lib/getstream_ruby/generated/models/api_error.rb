@@ -9,14 +9,30 @@ module GetStream
       class APIError < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :code  # API error code
-        attr_accessor :duration  # Request duration
-        attr_accessor :message  # Message describing an error
-        attr_accessor :more_info  # URL with additional information
-        attr_accessor :status_code  # Response HTTP status code
-        attr_accessor :details  # Additional error-specific information
-        attr_accessor :unrecoverable  # Flag that indicates if the error is unrecoverable, requests that return unrecoverable errors should not be retried, this error only applies to the request that caused it
-        attr_accessor :exception_fields  # Additional error info
+        # @!attribute code
+        #   @return [Integer] API error code
+        attr_accessor :code
+        # @!attribute duration
+        #   @return [String] Request duration
+        attr_accessor :duration
+        # @!attribute message
+        #   @return [String] Message describing an error
+        attr_accessor :message
+        # @!attribute more_info
+        #   @return [String] URL with additional information
+        attr_accessor :more_info
+        # @!attribute status_code
+        #   @return [Integer] Response HTTP status code
+        attr_accessor :status_code
+        # @!attribute details
+        #   @return [Array<Integer>] Additional error-specific information
+        attr_accessor :details
+        # @!attribute unrecoverable
+        #   @return [Boolean] Flag that indicates if the error is unrecoverable, requests that return unrecoverable errors should not be retried, this error only applies to the request that caused it
+        attr_accessor :unrecoverable
+        # @!attribute exception_fields
+        #   @return [Hash<String, String>] Additional error info
+        attr_accessor :exception_fields
 
         # Initialize with attributes
         def initialize(attributes = {})

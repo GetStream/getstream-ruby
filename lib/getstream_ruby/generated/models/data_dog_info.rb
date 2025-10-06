@@ -9,8 +9,14 @@ module GetStream
       class DataDogInfo < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute api_key
+        #   @return [String]
         attr_accessor :api_key
+        # @!attribute enabled
+        #   @return [Boolean]
         attr_accessor :enabled
+        # @!attribute site
+        #   @return [String]
         attr_accessor :site
 
         # Initialize with attributes

@@ -9,6 +9,8 @@ module GetStream
       class UpdateUsersPartialRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute users
+        #   @return [Array<UpdateUserPartialRequest>]
         attr_accessor :users
 
         # Initialize with attributes

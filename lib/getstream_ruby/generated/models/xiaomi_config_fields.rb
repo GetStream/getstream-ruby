@@ -9,8 +9,14 @@ module GetStream
       class XiaomiConfigFields < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute enabled
+        #   @return [Boolean]
         attr_accessor :enabled
+        # @!attribute package_name
+        #   @return [String]
         attr_accessor :package_name
+        # @!attribute secret
+        #   @return [String]
         attr_accessor :secret
 
         # Initialize with attributes

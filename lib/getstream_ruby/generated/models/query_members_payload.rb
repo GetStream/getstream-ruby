@@ -9,14 +9,32 @@ module GetStream
       class QueryMembersPayload < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _type
+        #   @return [String]
         attr_accessor :_type
+        # @!attribute filter_conditions
+        #   @return [Object]
         attr_accessor :filter_conditions
+        # @!attribute _id
+        #   @return [String]
         attr_accessor :_id
+        # @!attribute limit
+        #   @return [Integer]
         attr_accessor :limit
+        # @!attribute offset
+        #   @return [Integer]
         attr_accessor :offset
+        # @!attribute user_id
+        #   @return [String]
         attr_accessor :user_id
+        # @!attribute members
+        #   @return [Array<ChannelMember>]
         attr_accessor :members
+        # @!attribute sort
+        #   @return [Array<SortParamRequest>]
         attr_accessor :sort
+        # @!attribute user
+        #   @return [UserRequest]
         attr_accessor :user
 
         # Initialize with attributes

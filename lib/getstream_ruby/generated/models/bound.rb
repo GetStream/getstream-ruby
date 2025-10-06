@@ -9,7 +9,11 @@ module GetStream
       class Bound < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute inclusive
+        #   @return [Boolean]
         attr_accessor :inclusive
+        # @!attribute value
+        #   @return [Float]
         attr_accessor :value
 
         # Initialize with attributes

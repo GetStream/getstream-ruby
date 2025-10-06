@@ -9,8 +9,14 @@ module GetStream
       class RuleBuilderAction < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _type
+        #   @return [String]
         attr_accessor :_type
+        # @!attribute ban_options
+        #   @return [BanOptions]
         attr_accessor :ban_options
+        # @!attribute flag_user_options
+        #   @return [FlagUserOptions]
         attr_accessor :flag_user_options
 
         # Initialize with attributes

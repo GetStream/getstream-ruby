@@ -9,7 +9,11 @@ module GetStream
       class ActiveCallsLatencyStats < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute p50
+        #   @return [Float]
         attr_accessor :p50
+        # @!attribute p90
+        #   @return [Float]
         attr_accessor :p90
 
         # Initialize with attributes

@@ -9,13 +9,29 @@ module GetStream
       class ActivityUnpinnedEvent < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :created_at  # Date/time of creation
-        attr_accessor :fid  # The ID of the feed
+        # @!attribute created_at
+        #   @return [DateTime] Date/time of creation
+        attr_accessor :created_at
+        # @!attribute fid
+        #   @return [String] The ID of the feed
+        attr_accessor :fid
+        # @!attribute custom
+        #   @return [Object]
         attr_accessor :custom
+        # @!attribute pinned_activity
+        #   @return [PinActivityResponse]
         attr_accessor :pinned_activity
-        attr_accessor :_type  # The type of event: "feeds.activity.unpinned" in this case
+        # @!attribute _type
+        #   @return [String] The type of event: "feeds.activity.unpinned" in this case
+        attr_accessor :_type
+        # @!attribute feed_visibility
+        #   @return [String]
         attr_accessor :feed_visibility
+        # @!attribute received_at
+        #   @return [DateTime]
         attr_accessor :received_at
+        # @!attribute user
+        #   @return [UserResponseCommonFields]
         attr_accessor :user
 
         # Initialize with attributes

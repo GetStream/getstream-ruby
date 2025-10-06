@@ -9,11 +9,21 @@ module GetStream
       class ActivitySelectorConfig < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :_type  # Type of selector
-        attr_accessor :cutoff_time  # Time threshold for activity selection
-        attr_accessor :min_popularity  # Minimum popularity threshold
-        attr_accessor :sort  # Sort parameters for activity selection
-        attr_accessor :filter  # Filter for activity selection
+        # @!attribute _type
+        #   @return [String] Type of selector
+        attr_accessor :_type
+        # @!attribute cutoff_time
+        #   @return [DateTime] Time threshold for activity selection
+        attr_accessor :cutoff_time
+        # @!attribute min_popularity
+        #   @return [Integer] Minimum popularity threshold
+        attr_accessor :min_popularity
+        # @!attribute sort
+        #   @return [Array<SortParam>] Sort parameters for activity selection
+        attr_accessor :sort
+        # @!attribute filter
+        #   @return [Object] Filter for activity selection
+        attr_accessor :filter
 
         # Initialize with attributes
         def initialize(attributes = {})

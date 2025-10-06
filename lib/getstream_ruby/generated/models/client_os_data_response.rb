@@ -9,8 +9,14 @@ module GetStream
       class ClientOSDataResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute architecture
+        #   @return [String]
         attr_accessor :architecture
+        # @!attribute name
+        #   @return [String]
         attr_accessor :name
+        # @!attribute version
+        #   @return [String]
         attr_accessor :version
 
         # Initialize with attributes

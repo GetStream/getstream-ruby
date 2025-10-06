@@ -9,7 +9,11 @@ module GetStream
       class PushNotificationSettingsResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute disabled
+        #   @return [Boolean]
         attr_accessor :disabled
+        # @!attribute disabled_until
+        #   @return [DateTime]
         attr_accessor :disabled_until
 
         # Initialize with attributes

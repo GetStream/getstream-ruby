@@ -9,10 +9,20 @@ module GetStream
       class HarmConfig < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute cooldown_period
+        #   @return [Integer]
         attr_accessor :cooldown_period
+        # @!attribute severity
+        #   @return [Integer]
         attr_accessor :severity
+        # @!attribute threshold
+        #   @return [Integer]
         attr_accessor :threshold
+        # @!attribute action_sequences
+        #   @return [Array<ActionSequence>]
         attr_accessor :action_sequences
+        # @!attribute harm_types
+        #   @return [Array<String>]
         attr_accessor :harm_types
 
         # Initialize with attributes

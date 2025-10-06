@@ -9,10 +9,20 @@ module GetStream
       class UpdateExternalStorageResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _type
+        #   @return [String]
         attr_accessor :_type
+        # @!attribute bucket
+        #   @return [String]
         attr_accessor :bucket
-        attr_accessor :duration  # Duration of the request in milliseconds
+        # @!attribute duration
+        #   @return [String] Duration of the request in milliseconds
+        attr_accessor :duration
+        # @!attribute name
+        #   @return [String]
         attr_accessor :name
+        # @!attribute path
+        #   @return [String]
         attr_accessor :path
 
         # Initialize with attributes

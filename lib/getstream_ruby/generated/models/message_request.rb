@@ -9,25 +9,65 @@ module GetStream
       class MessageRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _id
+        #   @return [String]
         attr_accessor :_id
+        # @!attribute _type
+        #   @return [String]
         attr_accessor :_type
+        # @!attribute html
+        #   @return [String]
         attr_accessor :html
+        # @!attribute mml
+        #   @return [String]
         attr_accessor :mml
+        # @!attribute parent_id
+        #   @return [String]
         attr_accessor :parent_id
+        # @!attribute pin_expires
+        #   @return [DateTime]
         attr_accessor :pin_expires
+        # @!attribute pinned
+        #   @return [Boolean]
         attr_accessor :pinned
+        # @!attribute pinned_at
+        #   @return [DateTime]
         attr_accessor :pinned_at
+        # @!attribute poll_id
+        #   @return [String]
         attr_accessor :poll_id
+        # @!attribute quoted_message_id
+        #   @return [String]
         attr_accessor :quoted_message_id
+        # @!attribute show_in_channel
+        #   @return [Boolean]
         attr_accessor :show_in_channel
+        # @!attribute silent
+        #   @return [Boolean]
         attr_accessor :silent
+        # @!attribute text
+        #   @return [String]
         attr_accessor :text
+        # @!attribute user_id
+        #   @return [String]
         attr_accessor :user_id
+        # @!attribute attachments
+        #   @return [Array<Attachment>]
         attr_accessor :attachments
+        # @!attribute mentioned_users
+        #   @return [Array<String>]
         attr_accessor :mentioned_users
+        # @!attribute restricted_visibility
+        #   @return [Array<String>]
         attr_accessor :restricted_visibility
+        # @!attribute custom
+        #   @return [Object]
         attr_accessor :custom
+        # @!attribute shared_location
+        #   @return [SharedLocation]
         attr_accessor :shared_location
+        # @!attribute user
+        #   @return [UserRequest]
         attr_accessor :user
 
         # Initialize with attributes

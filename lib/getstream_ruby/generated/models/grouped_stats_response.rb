@@ -9,7 +9,11 @@ module GetStream
       class GroupedStatsResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute name
+        #   @return [String]
         attr_accessor :name
+        # @!attribute unique
+        #   @return [Integer]
         attr_accessor :unique
 
         # Initialize with attributes

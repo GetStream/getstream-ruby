@@ -9,11 +9,23 @@ module GetStream
       class ModerationActionConfig < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute action
+        #   @return [String]
         attr_accessor :action
+        # @!attribute description
+        #   @return [String]
         attr_accessor :description
+        # @!attribute entity_type
+        #   @return [String]
         attr_accessor :entity_type
+        # @!attribute icon
+        #   @return [String]
         attr_accessor :icon
+        # @!attribute order
+        #   @return [Integer]
         attr_accessor :order
+        # @!attribute custom
+        #   @return [Object]
         attr_accessor :custom
 
         # Initialize with attributes

@@ -9,16 +9,38 @@ module GetStream
       class SegmentResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _id
+        #   @return [String]
         attr_accessor :_id
+        # @!attribute _type
+        #   @return [String]
         attr_accessor :_type
+        # @!attribute all_sender_channels
+        #   @return [Boolean]
         attr_accessor :all_sender_channels
+        # @!attribute all_users
+        #   @return [Boolean]
         attr_accessor :all_users
+        # @!attribute created_at
+        #   @return [DateTime]
         attr_accessor :created_at
+        # @!attribute deleted_at
+        #   @return [DateTime]
         attr_accessor :deleted_at
+        # @!attribute description
+        #   @return [String]
         attr_accessor :description
+        # @!attribute name
+        #   @return [String]
         attr_accessor :name
+        # @!attribute size
+        #   @return [Integer]
         attr_accessor :size
+        # @!attribute updated_at
+        #   @return [DateTime]
         attr_accessor :updated_at
+        # @!attribute filter
+        #   @return [Object]
         attr_accessor :filter
 
         # Initialize with attributes

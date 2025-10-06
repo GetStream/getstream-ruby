@@ -9,9 +9,17 @@ module GetStream
       class DeleteUserRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute delete_conversation_channels
+        #   @return [Boolean]
         attr_accessor :delete_conversation_channels
+        # @!attribute delete_feeds_content
+        #   @return [Boolean]
         attr_accessor :delete_feeds_content
+        # @!attribute hard_delete
+        #   @return [Boolean]
         attr_accessor :hard_delete
+        # @!attribute mark_messages_deleted
+        #   @return [Boolean]
         attr_accessor :mark_messages_deleted
 
         # Initialize with attributes

@@ -9,9 +9,17 @@ module GetStream
       class MuteRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :target_ids  # User IDs to mute (if multiple users)
-        attr_accessor :timeout  # Duration of mute in minutes
+        # @!attribute target_ids
+        #   @return [Array<String>] User IDs to mute (if multiple users)
+        attr_accessor :target_ids
+        # @!attribute timeout
+        #   @return [Integer] Duration of mute in minutes
+        attr_accessor :timeout
+        # @!attribute user_id
+        #   @return [String]
         attr_accessor :user_id
+        # @!attribute user
+        #   @return [UserRequest]
         attr_accessor :user
 
         # Initialize with attributes

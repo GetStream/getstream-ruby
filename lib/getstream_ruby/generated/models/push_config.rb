@@ -9,7 +9,11 @@ module GetStream
       class PushConfig < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute version
+        #   @return [String]
         attr_accessor :version
+        # @!attribute offline_only
+        #   @return [Boolean]
         attr_accessor :offline_only
 
         # Initialize with attributes

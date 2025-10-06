@@ -9,10 +9,20 @@ module GetStream
       class ImageData < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute frames
+        #   @return [String]
         attr_accessor :frames
+        # @!attribute height
+        #   @return [String]
         attr_accessor :height
+        # @!attribute size
+        #   @return [String]
         attr_accessor :size
+        # @!attribute url
+        #   @return [String]
         attr_accessor :url
+        # @!attribute width
+        #   @return [String]
         attr_accessor :width
 
         # Initialize with attributes

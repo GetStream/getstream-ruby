@@ -9,7 +9,9 @@ module GetStream
       class UnfollowBatchRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :follows  # List of follow relationships to remove
+        # @!attribute follows
+        #   @return [Array<FollowPair>] List of follow relationships to remove
+        attr_accessor :follows
 
         # Initialize with attributes
         def initialize(attributes = {})

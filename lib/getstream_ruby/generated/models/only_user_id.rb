@@ -9,6 +9,8 @@ module GetStream
       class OnlyUserID < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _id
+        #   @return [String]
         attr_accessor :_id
 
         # Initialize with attributes

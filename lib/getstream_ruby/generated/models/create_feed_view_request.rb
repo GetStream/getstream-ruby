@@ -9,10 +9,20 @@ module GetStream
       class CreateFeedViewRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :_id  # Unique identifier for the feed view
-        attr_accessor :activity_processors  # Configured activity Processors
-        attr_accessor :activity_selectors  # Configuration for selecting activities
+        # @!attribute _id
+        #   @return [String] Unique identifier for the feed view
+        attr_accessor :_id
+        # @!attribute activity_processors
+        #   @return [Array<ActivityProcessorConfig>] Configured activity Processors
+        attr_accessor :activity_processors
+        # @!attribute activity_selectors
+        #   @return [Array<ActivitySelectorConfig>] Configuration for selecting activities
+        attr_accessor :activity_selectors
+        # @!attribute aggregation
+        #   @return [AggregationConfig]
         attr_accessor :aggregation
+        # @!attribute ranking
+        #   @return [RankingConfig]
         attr_accessor :ranking
 
         # Initialize with attributes

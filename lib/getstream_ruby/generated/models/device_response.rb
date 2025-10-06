@@ -9,14 +9,30 @@ module GetStream
       class DeviceResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :_id  # Device ID
-        attr_accessor :created_at  # Date/time of creation
-        attr_accessor :push_provider  # Push provider
-        attr_accessor :user_id  # User ID
-        attr_accessor :disabled  # Whether device is disabled or not
-        attr_accessor :disabled_reason  # Reason explaining why device had been disabled
-        attr_accessor :push_provider_name  # Push provider name
-        attr_accessor :voip  # When true the token is for Apple VoIP push notifications
+        # @!attribute _id
+        #   @return [String] Device ID
+        attr_accessor :_id
+        # @!attribute created_at
+        #   @return [DateTime] Date/time of creation
+        attr_accessor :created_at
+        # @!attribute push_provider
+        #   @return [String] Push provider
+        attr_accessor :push_provider
+        # @!attribute user_id
+        #   @return [String] User ID
+        attr_accessor :user_id
+        # @!attribute disabled
+        #   @return [Boolean] Whether device is disabled or not
+        attr_accessor :disabled
+        # @!attribute disabled_reason
+        #   @return [String] Reason explaining why device had been disabled
+        attr_accessor :disabled_reason
+        # @!attribute push_provider_name
+        #   @return [String] Push provider name
+        attr_accessor :push_provider_name
+        # @!attribute voip
+        #   @return [Boolean] When true the token is for Apple VoIP push notifications
+        attr_accessor :voip
 
         # Initialize with attributes
         def initialize(attributes = {})

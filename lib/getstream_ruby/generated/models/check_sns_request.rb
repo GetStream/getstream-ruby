@@ -9,9 +9,15 @@ module GetStream
       class CheckSNSRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :sns_key  # AWS SNS access key
-        attr_accessor :sns_secret  # AWS SNS key secret
-        attr_accessor :sns_topic_arn  # AWS SNS topic ARN
+        # @!attribute sns_key
+        #   @return [String] AWS SNS access key
+        attr_accessor :sns_key
+        # @!attribute sns_secret
+        #   @return [String] AWS SNS key secret
+        attr_accessor :sns_secret
+        # @!attribute sns_topic_arn
+        #   @return [String] AWS SNS topic ARN
+        attr_accessor :sns_topic_arn
 
         # Initialize with attributes
         def initialize(attributes = {})

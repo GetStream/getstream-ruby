@@ -9,9 +9,17 @@ module GetStream
       class ReadStateResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute last_read
+        #   @return [DateTime]
         attr_accessor :last_read
+        # @!attribute unread_messages
+        #   @return [Integer]
         attr_accessor :unread_messages
+        # @!attribute user
+        #   @return [UserResponse]
         attr_accessor :user
+        # @!attribute last_read_message_id
+        #   @return [String]
         attr_accessor :last_read_message_id
 
         # Initialize with attributes

@@ -9,39 +9,107 @@ module GetStream
       class ChannelConfigWithInfo < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute automod
+        #   @return [String]
         attr_accessor :automod
+        # @!attribute automod_behavior
+        #   @return [String]
         attr_accessor :automod_behavior
+        # @!attribute connect_events
+        #   @return [Boolean]
         attr_accessor :connect_events
+        # @!attribute count_messages
+        #   @return [Boolean]
         attr_accessor :count_messages
+        # @!attribute created_at
+        #   @return [DateTime]
         attr_accessor :created_at
+        # @!attribute custom_events
+        #   @return [Boolean]
         attr_accessor :custom_events
+        # @!attribute mark_messages_pending
+        #   @return [Boolean]
         attr_accessor :mark_messages_pending
+        # @!attribute max_message_length
+        #   @return [Integer]
         attr_accessor :max_message_length
+        # @!attribute mutes
+        #   @return [Boolean]
         attr_accessor :mutes
+        # @!attribute name
+        #   @return [String]
         attr_accessor :name
+        # @!attribute polls
+        #   @return [Boolean]
         attr_accessor :polls
+        # @!attribute push_notifications
+        #   @return [Boolean]
         attr_accessor :push_notifications
+        # @!attribute quotes
+        #   @return [Boolean]
         attr_accessor :quotes
+        # @!attribute reactions
+        #   @return [Boolean]
         attr_accessor :reactions
+        # @!attribute read_events
+        #   @return [Boolean]
         attr_accessor :read_events
+        # @!attribute reminders
+        #   @return [Boolean]
         attr_accessor :reminders
+        # @!attribute replies
+        #   @return [Boolean]
         attr_accessor :replies
+        # @!attribute search
+        #   @return [Boolean]
         attr_accessor :search
+        # @!attribute shared_locations
+        #   @return [Boolean]
         attr_accessor :shared_locations
+        # @!attribute skip_last_msg_update_for_system_msgs
+        #   @return [Boolean]
         attr_accessor :skip_last_msg_update_for_system_msgs
+        # @!attribute typing_events
+        #   @return [Boolean]
         attr_accessor :typing_events
+        # @!attribute updated_at
+        #   @return [DateTime]
         attr_accessor :updated_at
+        # @!attribute uploads
+        #   @return [Boolean]
         attr_accessor :uploads
+        # @!attribute url_enrichment
+        #   @return [Boolean]
         attr_accessor :url_enrichment
+        # @!attribute user_message_reminders
+        #   @return [Boolean]
         attr_accessor :user_message_reminders
+        # @!attribute commands
+        #   @return [Array<Command>]
         attr_accessor :commands
+        # @!attribute blocklist
+        #   @return [String]
         attr_accessor :blocklist
+        # @!attribute blocklist_behavior
+        #   @return [String]
         attr_accessor :blocklist_behavior
+        # @!attribute partition_size
+        #   @return [Integer]
         attr_accessor :partition_size
+        # @!attribute partition_ttl
+        #   @return [String]
         attr_accessor :partition_ttl
+        # @!attribute allowed_flag_reasons
+        #   @return [Array<String>]
         attr_accessor :allowed_flag_reasons
+        # @!attribute blocklists
+        #   @return [Array<BlockListOptions>]
         attr_accessor :blocklists
+        # @!attribute automod_thresholds
+        #   @return [Thresholds]
         attr_accessor :automod_thresholds
+        # @!attribute grants
+        #   @return [Hash<String, Array<String>>]
         attr_accessor :grants
 
         # Initialize with attributes

@@ -9,12 +9,26 @@ module GetStream
       class CreateExternalStorageRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :bucket  # The name of the bucket on the service provider
-        attr_accessor :name  # The name of the provider, this must be unique
-        attr_accessor :storage_type  # The type of storage to use
+        # @!attribute bucket
+        #   @return [String] The name of the bucket on the service provider
+        attr_accessor :bucket
+        # @!attribute name
+        #   @return [String] The name of the provider, this must be unique
+        attr_accessor :name
+        # @!attribute storage_type
+        #   @return [String] The type of storage to use
+        attr_accessor :storage_type
+        # @!attribute gcs_credentials
+        #   @return [String]
         attr_accessor :gcs_credentials
-        attr_accessor :path  # The path prefix to use for storing files
+        # @!attribute path
+        #   @return [String] The path prefix to use for storing files
+        attr_accessor :path
+        # @!attribute aws_s3
+        #   @return [S3Request]
         attr_accessor :aws_s3
+        # @!attribute azure_blob
+        #   @return [AzureRequest]
         attr_accessor :azure_blob
 
         # Initialize with attributes

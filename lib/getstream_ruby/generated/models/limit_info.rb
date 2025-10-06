@@ -9,9 +9,15 @@ module GetStream
       class LimitInfo < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :limit  # The maximum number of calls allowed for the time window
-        attr_accessor :remaining  # The number of remaining calls in the current window
-        attr_accessor :reset  # The Unix timestamp of the next window
+        # @!attribute limit
+        #   @return [Integer] The maximum number of calls allowed for the time window
+        attr_accessor :limit
+        # @!attribute remaining
+        #   @return [Integer] The number of remaining calls in the current window
+        attr_accessor :remaining
+        # @!attribute reset
+        #   @return [Integer] The Unix timestamp of the next window
+        attr_accessor :reset
 
         # Initialize with attributes
         def initialize(attributes = {})

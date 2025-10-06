@@ -9,10 +9,18 @@ module GetStream
       class SearchWarning < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :warning_code  # Code corresponding to the warning
-        attr_accessor :warning_description  # Description of the warning
-        attr_accessor :channel_search_count  # Number of channels searched
-        attr_accessor :channel_search_cids  # Channel CIDs for the searched channels
+        # @!attribute warning_code
+        #   @return [Integer] Code corresponding to the warning
+        attr_accessor :warning_code
+        # @!attribute warning_description
+        #   @return [String] Description of the warning
+        attr_accessor :warning_description
+        # @!attribute channel_search_count
+        #   @return [Integer] Number of channels searched
+        attr_accessor :channel_search_count
+        # @!attribute channel_search_cids
+        #   @return [Array<String>] Channel CIDs for the searched channels
+        attr_accessor :channel_search_cids
 
         # Initialize with attributes
         def initialize(attributes = {})

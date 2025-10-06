@@ -9,6 +9,8 @@ module GetStream
       class BodyguardImageAnalysisConfig < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute rules
+        #   @return [Array<BodyguardRule>]
         attr_accessor :rules
 
         # Initialize with attributes

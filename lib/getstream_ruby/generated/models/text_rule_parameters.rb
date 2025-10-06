@@ -9,12 +9,26 @@ module GetStream
       class TextRuleParameters < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute contains_url
+        #   @return [Boolean]
         attr_accessor :contains_url
+        # @!attribute severity
+        #   @return [String]
         attr_accessor :severity
+        # @!attribute threshold
+        #   @return [Integer]
         attr_accessor :threshold
+        # @!attribute time_window
+        #   @return [String]
         attr_accessor :time_window
+        # @!attribute blocklist_match
+        #   @return [Array<String>]
         attr_accessor :blocklist_match
+        # @!attribute harm_labels
+        #   @return [Array<String>]
         attr_accessor :harm_labels
+        # @!attribute llm_harm_labels
+        #   @return [Hash<String, String>]
         attr_accessor :llm_harm_labels
 
         # Initialize with attributes

@@ -9,7 +9,11 @@ module GetStream
       class FileUploadRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :file  # file field
+        # @!attribute file
+        #   @return [String] file field
+        attr_accessor :file
+        # @!attribute user
+        #   @return [OnlyUserID]
         attr_accessor :user
 
         # Initialize with attributes

@@ -9,11 +9,23 @@ module GetStream
       class AddCommentReactionRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :_type  # The type of reaction, eg upvote, like, ...
-        attr_accessor :create_notification_activity  # Whether to create a notification activity for this reaction
+        # @!attribute _type
+        #   @return [String] The type of reaction, eg upvote, like, ...
+        attr_accessor :_type
+        # @!attribute create_notification_activity
+        #   @return [Boolean] Whether to create a notification activity for this reaction
+        attr_accessor :create_notification_activity
+        # @!attribute skip_push
+        #   @return [Boolean]
         attr_accessor :skip_push
+        # @!attribute user_id
+        #   @return [String]
         attr_accessor :user_id
-        attr_accessor :custom  # Optional custom data to add to the reaction
+        # @!attribute custom
+        #   @return [Object] Optional custom data to add to the reaction
+        attr_accessor :custom
+        # @!attribute user
+        #   @return [UserRequest]
         attr_accessor :user
 
         # Initialize with attributes

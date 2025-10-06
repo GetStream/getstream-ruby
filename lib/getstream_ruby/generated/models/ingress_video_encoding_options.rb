@@ -9,6 +9,8 @@ module GetStream
       class IngressVideoEncodingOptions < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute layers
+        #   @return [Array<IngressVideoLayer>]
         attr_accessor :layers
 
         # Initialize with attributes

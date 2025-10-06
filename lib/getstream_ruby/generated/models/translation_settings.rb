@@ -9,7 +9,11 @@ module GetStream
       class TranslationSettings < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute enabled
+        #   @return [Boolean]
         attr_accessor :enabled
+        # @!attribute languages
+        #   @return [Array<String>]
         attr_accessor :languages
 
         # Initialize with attributes

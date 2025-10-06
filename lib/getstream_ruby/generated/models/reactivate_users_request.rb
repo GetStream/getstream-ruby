@@ -9,10 +9,18 @@ module GetStream
       class ReactivateUsersRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :user_ids  # User IDs to reactivate
-        attr_accessor :created_by_id  # ID of the user who's reactivating the users
+        # @!attribute user_ids
+        #   @return [Array<String>] User IDs to reactivate
+        attr_accessor :user_ids
+        # @!attribute created_by_id
+        #   @return [String] ID of the user who's reactivating the users
+        attr_accessor :created_by_id
+        # @!attribute restore_channels
+        #   @return [Boolean]
         attr_accessor :restore_channels
-        attr_accessor :restore_messages  # Restore previously deleted messages
+        # @!attribute restore_messages
+        #   @return [Boolean] Restore previously deleted messages
+        attr_accessor :restore_messages
 
         # Initialize with attributes
         def initialize(attributes = {})

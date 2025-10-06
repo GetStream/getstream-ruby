@@ -9,8 +9,12 @@ module GetStream
       class ActivityLocation < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :lat  # Latitude coordinate
-        attr_accessor :lng  # Longitude coordinate
+        # @!attribute lat
+        #   @return [Float] Latitude coordinate
+        attr_accessor :lat
+        # @!attribute lng
+        #   @return [Float] Longitude coordinate
+        attr_accessor :lng
 
         # Initialize with attributes
         def initialize(attributes = {})

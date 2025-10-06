@@ -9,9 +9,17 @@ module GetStream
       class UpdateChannelPartialRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute user_id
+        #   @return [String]
         attr_accessor :user_id
+        # @!attribute unset
+        #   @return [Array<String>]
         attr_accessor :unset
+        # @!attribute set
+        #   @return [Object]
         attr_accessor :set
+        # @!attribute user
+        #   @return [UserRequest]
         attr_accessor :user
 
         # Initialize with attributes

@@ -9,9 +9,17 @@ module GetStream
       class UpdateActivityPartialRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute user_id
+        #   @return [String]
         attr_accessor :user_id
-        attr_accessor :unset  # List of dot-notation paths to remove
-        attr_accessor :set  # Map of dot-notation field paths to new values
+        # @!attribute unset
+        #   @return [Array<String>] List of dot-notation paths to remove
+        attr_accessor :unset
+        # @!attribute set
+        #   @return [Object] Map of dot-notation field paths to new values
+        attr_accessor :set
+        # @!attribute user
+        #   @return [UserRequest]
         attr_accessor :user
 
         # Initialize with attributes

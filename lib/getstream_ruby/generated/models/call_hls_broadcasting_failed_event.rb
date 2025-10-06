@@ -9,9 +9,15 @@ module GetStream
       class CallHLSBroadcastingFailedEvent < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute call_cid
+        #   @return [String]
         attr_accessor :call_cid
+        # @!attribute created_at
+        #   @return [DateTime]
         attr_accessor :created_at
-        attr_accessor :_type  # The type of event: "call.hls_broadcasting_failed" in this case
+        # @!attribute _type
+        #   @return [String] The type of event: "call.hls_broadcasting_failed" in this case
+        attr_accessor :_type
 
         # Initialize with attributes
         def initialize(attributes = {})

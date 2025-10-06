@@ -9,8 +9,14 @@ module GetStream
       class HideChannelRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :clear_history  # Whether to clear message history of the channel or not
+        # @!attribute clear_history
+        #   @return [Boolean] Whether to clear message history of the channel or not
+        attr_accessor :clear_history
+        # @!attribute user_id
+        #   @return [String]
         attr_accessor :user_id
+        # @!attribute user
+        #   @return [UserRequest]
         attr_accessor :user
 
         # Initialize with attributes

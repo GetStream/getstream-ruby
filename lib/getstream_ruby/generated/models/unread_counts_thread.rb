@@ -9,9 +9,17 @@ module GetStream
       class UnreadCountsThread < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute last_read
+        #   @return [DateTime]
         attr_accessor :last_read
+        # @!attribute last_read_message_id
+        #   @return [String]
         attr_accessor :last_read_message_id
+        # @!attribute parent_message_id
+        #   @return [String]
         attr_accessor :parent_message_id
+        # @!attribute unread_count
+        #   @return [Integer]
         attr_accessor :unread_count
 
         # Initialize with attributes

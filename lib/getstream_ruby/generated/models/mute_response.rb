@@ -9,9 +9,17 @@ module GetStream
       class MuteResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
-        attr_accessor :mutes  # Object with mutes (if multiple users were muted)
-        attr_accessor :non_existing_users  # A list of users that can't be found. Common cause for this is deleted users
+        # @!attribute mutes
+        #   @return [Array<UserMute>] Object with mutes (if multiple users were muted)
+        attr_accessor :mutes
+        # @!attribute non_existing_users
+        #   @return [Array<String>] A list of users that can't be found. Common cause for this is deleted users
+        attr_accessor :non_existing_users
+        # @!attribute own_user
+        #   @return [OwnUser]
         attr_accessor :own_user
 
         # Initialize with attributes

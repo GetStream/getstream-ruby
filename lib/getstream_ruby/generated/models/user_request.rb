@@ -9,16 +9,36 @@ module GetStream
       class UserRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :_id  # User ID
-        attr_accessor :image  # User's profile image URL
+        # @!attribute _id
+        #   @return [String] User ID
+        attr_accessor :_id
+        # @!attribute image
+        #   @return [String] User's profile image URL
+        attr_accessor :image
+        # @!attribute invisible
+        #   @return [Boolean]
         attr_accessor :invisible
+        # @!attribute language
+        #   @return [String]
         attr_accessor :language
-        attr_accessor :name  # Optional name of user
-        attr_accessor :role  # User's global role
-        attr_accessor :teams  # List of teams the user belongs to
-        attr_accessor :custom  # Custom user data
+        # @!attribute name
+        #   @return [String] Optional name of user
+        attr_accessor :name
+        # @!attribute role
+        #   @return [String] User's global role
+        attr_accessor :role
+        # @!attribute teams
+        #   @return [Array<String>] List of teams the user belongs to
+        attr_accessor :teams
+        # @!attribute custom
+        #   @return [Object] Custom user data
+        attr_accessor :custom
+        # @!attribute privacy_settings
+        #   @return [PrivacySettingsResponse]
         attr_accessor :privacy_settings
-        attr_accessor :teams_role  # Map of team-specific roles for the user
+        # @!attribute teams_role
+        #   @return [Hash<String, String>] Map of team-specific roles for the user
+        attr_accessor :teams_role
 
         # Initialize with attributes
         def initialize(attributes = {})

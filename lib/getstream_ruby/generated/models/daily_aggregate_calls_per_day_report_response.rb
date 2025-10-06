@@ -9,7 +9,11 @@ module GetStream
       class DailyAggregateCallsPerDayReportResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute date
+        #   @return [String]
         attr_accessor :date
+        # @!attribute report
+        #   @return [CallsPerDayReport]
         attr_accessor :report
 
         # Initialize with attributes

@@ -9,6 +9,8 @@ module GetStream
       class UnbanResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
 
         # Initialize with attributes

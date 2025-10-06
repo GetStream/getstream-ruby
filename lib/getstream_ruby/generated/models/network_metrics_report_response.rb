@@ -9,9 +9,17 @@ module GetStream
       class NetworkMetricsReportResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute average_connection_time
+        #   @return [Float]
         attr_accessor :average_connection_time
+        # @!attribute average_jitter
+        #   @return [Float]
         attr_accessor :average_jitter
+        # @!attribute average_latency
+        #   @return [Float]
         attr_accessor :average_latency
+        # @!attribute average_time_to_reconnect
+        #   @return [Float]
         attr_accessor :average_time_to_reconnect
 
         # Initialize with attributes

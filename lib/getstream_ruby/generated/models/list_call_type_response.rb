@@ -9,7 +9,11 @@ module GetStream
       class ListCallTypeResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
+        # @!attribute call_types
+        #   @return [Hash<String, CallTypeResponse>]
         attr_accessor :call_types
 
         # Initialize with attributes

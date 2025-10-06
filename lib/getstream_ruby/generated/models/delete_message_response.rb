@@ -9,7 +9,11 @@ module GetStream
       class DeleteMessageResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :duration  # Duration of the request in milliseconds
+        # @!attribute duration
+        #   @return [String] Duration of the request in milliseconds
+        attr_accessor :duration
+        # @!attribute message
+        #   @return [MessageResponse]
         attr_accessor :message
 
         # Initialize with attributes

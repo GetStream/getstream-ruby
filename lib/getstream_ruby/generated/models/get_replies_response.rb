@@ -9,7 +9,11 @@ module GetStream
       class GetRepliesResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :duration  # Duration of the request in milliseconds
+        # @!attribute duration
+        #   @return [String] Duration of the request in milliseconds
+        attr_accessor :duration
+        # @!attribute messages
+        #   @return [Array<MessageResponse>]
         attr_accessor :messages
 
         # Initialize with attributes

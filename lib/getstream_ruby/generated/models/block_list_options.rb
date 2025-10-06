@@ -9,8 +9,12 @@ module GetStream
       class BlockListOptions < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :behavior  # Blocklist behavior
-        attr_accessor :blocklist  # Blocklist name
+        # @!attribute behavior
+        #   @return [String] Blocklist behavior
+        attr_accessor :behavior
+        # @!attribute blocklist
+        #   @return [String] Blocklist name
+        attr_accessor :blocklist
 
         # Initialize with attributes
         def initialize(attributes = {})

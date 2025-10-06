@@ -9,13 +9,29 @@ module GetStream
       class AsyncExportErrorEvent < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute created_at
+        #   @return [DateTime]
         attr_accessor :created_at
+        # @!attribute error
+        #   @return [String]
         attr_accessor :error
+        # @!attribute finished_at
+        #   @return [DateTime]
         attr_accessor :finished_at
+        # @!attribute started_at
+        #   @return [DateTime]
         attr_accessor :started_at
+        # @!attribute task_id
+        #   @return [String]
         attr_accessor :task_id
+        # @!attribute custom
+        #   @return [Object]
         attr_accessor :custom
+        # @!attribute _type
+        #   @return [String]
         attr_accessor :_type
+        # @!attribute received_at
+        #   @return [DateTime]
         attr_accessor :received_at
 
         # Initialize with attributes

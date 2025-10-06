@@ -9,11 +9,21 @@ module GetStream
       class CallHLSBroadcastingStartedEvent < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute call_cid
+        #   @return [String]
         attr_accessor :call_cid
+        # @!attribute created_at
+        #   @return [DateTime]
         attr_accessor :created_at
+        # @!attribute hls_playlist_url
+        #   @return [String]
         attr_accessor :hls_playlist_url
+        # @!attribute call
+        #   @return [CallResponse]
         attr_accessor :call
-        attr_accessor :_type  # The type of event: "call.hls_broadcasting_started" in this case
+        # @!attribute _type
+        #   @return [String] The type of event: "call.hls_broadcasting_started" in this case
+        attr_accessor :_type
 
         # Initialize with attributes
         def initialize(attributes = {})

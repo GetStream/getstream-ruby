@@ -9,17 +9,41 @@ module GetStream
       class CallSessionResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _id
+        #   @return [String]
         attr_accessor :_id
+        # @!attribute anonymous_participant_count
+        #   @return [Integer]
         attr_accessor :anonymous_participant_count
+        # @!attribute participants
+        #   @return [Array<CallParticipantResponse>]
         attr_accessor :participants
+        # @!attribute accepted_by
+        #   @return [Hash<String, DateTime>]
         attr_accessor :accepted_by
+        # @!attribute missed_by
+        #   @return [Hash<String, DateTime>]
         attr_accessor :missed_by
+        # @!attribute participants_count_by_role
+        #   @return [Hash<String, Integer>]
         attr_accessor :participants_count_by_role
+        # @!attribute rejected_by
+        #   @return [Hash<String, DateTime>]
         attr_accessor :rejected_by
+        # @!attribute ended_at
+        #   @return [DateTime]
         attr_accessor :ended_at
+        # @!attribute live_ended_at
+        #   @return [DateTime]
         attr_accessor :live_ended_at
+        # @!attribute live_started_at
+        #   @return [DateTime]
         attr_accessor :live_started_at
+        # @!attribute started_at
+        #   @return [DateTime]
         attr_accessor :started_at
+        # @!attribute timer_ends_at
+        #   @return [DateTime]
         attr_accessor :timer_ends_at
 
         # Initialize with attributes

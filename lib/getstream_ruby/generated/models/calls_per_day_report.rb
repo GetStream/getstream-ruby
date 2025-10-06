@@ -9,6 +9,8 @@ module GetStream
       class CallsPerDayReport < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute count
+        #   @return [Integer]
         attr_accessor :count
 
         # Initialize with attributes

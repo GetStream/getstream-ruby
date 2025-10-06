@@ -9,7 +9,11 @@ module GetStream
       class UpsertModerationTemplateRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :name  # Name of the moderation template
+        # @!attribute name
+        #   @return [String] Name of the moderation template
+        attr_accessor :name
+        # @!attribute config
+        #   @return [FeedsModerationTemplateConfig]
         attr_accessor :config
 
         # Initialize with attributes

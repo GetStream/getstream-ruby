@@ -9,10 +9,18 @@ module GetStream
       class AzureRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :abs_account_name  # The account name
-        attr_accessor :abs_client_id  # The client id
-        attr_accessor :abs_client_secret  # The client secret
-        attr_accessor :abs_tenant_id  # The tenant id
+        # @!attribute abs_account_name
+        #   @return [String] The account name
+        attr_accessor :abs_account_name
+        # @!attribute abs_client_id
+        #   @return [String] The client id
+        attr_accessor :abs_client_id
+        # @!attribute abs_client_secret
+        #   @return [String] The client secret
+        attr_accessor :abs_client_secret
+        # @!attribute abs_tenant_id
+        #   @return [String] The tenant id
+        attr_accessor :abs_tenant_id
 
         # Initialize with attributes
         def initialize(attributes = {})

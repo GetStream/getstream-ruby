@@ -9,8 +9,14 @@ module GetStream
       class GetCampaignResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :duration  # Duration of the request in milliseconds
+        # @!attribute duration
+        #   @return [String] Duration of the request in milliseconds
+        attr_accessor :duration
+        # @!attribute campaign
+        #   @return [CampaignResponse]
         attr_accessor :campaign
+        # @!attribute users
+        #   @return [PagerResponse]
         attr_accessor :users
 
         # Initialize with attributes

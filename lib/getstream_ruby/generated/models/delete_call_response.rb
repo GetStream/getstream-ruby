@@ -9,8 +9,14 @@ module GetStream
       class DeleteCallResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
+        # @!attribute call
+        #   @return [CallResponse]
         attr_accessor :call
+        # @!attribute task_id
+        #   @return [String]
         attr_accessor :task_id
 
         # Initialize with attributes

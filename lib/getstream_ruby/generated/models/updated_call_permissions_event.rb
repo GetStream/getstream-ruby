@@ -9,11 +9,21 @@ module GetStream
       class UpdatedCallPermissionsEvent < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute call_cid
+        #   @return [String]
         attr_accessor :call_cid
+        # @!attribute created_at
+        #   @return [DateTime]
         attr_accessor :created_at
-        attr_accessor :own_capabilities  # The capabilities of the current user
+        # @!attribute own_capabilities
+        #   @return [Array<OwnCapability>] The capabilities of the current user
+        attr_accessor :own_capabilities
+        # @!attribute user
+        #   @return [UserResponse]
         attr_accessor :user
-        attr_accessor :_type  # The type of event: "call.permissions_updated" in this case
+        # @!attribute _type
+        #   @return [String] The type of event: "call.permissions_updated" in this case
+        attr_accessor :_type
 
         # Initialize with attributes
         def initialize(attributes = {})

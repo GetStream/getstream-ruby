@@ -9,10 +9,20 @@ module GetStream
       class QueryModerationRulesResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
-        attr_accessor :rules  # List of moderation rules
-        attr_accessor :default_llm_labels  # Default LLM label descriptions
+        # @!attribute rules
+        #   @return [Array<ModerationRuleV2Response>] List of moderation rules
+        attr_accessor :rules
+        # @!attribute default_llm_labels
+        #   @return [Hash<String, String>] Default LLM label descriptions
+        attr_accessor :default_llm_labels
+        # @!attribute _next
+        #   @return [String]
         attr_accessor :_next
+        # @!attribute prev
+        #   @return [String]
         attr_accessor :prev
 
         # Initialize with attributes

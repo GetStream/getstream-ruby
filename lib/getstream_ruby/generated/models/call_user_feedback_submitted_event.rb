@@ -9,16 +9,36 @@ module GetStream
       class CallUserFeedbackSubmittedEvent < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute call_cid
+        #   @return [String]
         attr_accessor :call_cid
+        # @!attribute created_at
+        #   @return [DateTime]
         attr_accessor :created_at
-        attr_accessor :rating  # The rating given by the user (1-5)
-        attr_accessor :session_id  # Call session ID
+        # @!attribute rating
+        #   @return [Integer] The rating given by the user (1-5)
+        attr_accessor :rating
+        # @!attribute session_id
+        #   @return [String] Call session ID
+        attr_accessor :session_id
+        # @!attribute user
+        #   @return [UserResponse]
         attr_accessor :user
-        attr_accessor :_type  # The type of event, "call.user_feedback" in this case
-        attr_accessor :reason  # The reason provided by the user for the rating
+        # @!attribute _type
+        #   @return [String] The type of event, "call.user_feedback" in this case
+        attr_accessor :_type
+        # @!attribute reason
+        #   @return [String] The reason provided by the user for the rating
+        attr_accessor :reason
+        # @!attribute sdk
+        #   @return [String]
         attr_accessor :sdk
+        # @!attribute sdk_version
+        #   @return [String]
         attr_accessor :sdk_version
-        attr_accessor :custom  # Custom data provided by the user
+        # @!attribute custom
+        #   @return [Object] Custom data provided by the user
+        attr_accessor :custom
 
         # Initialize with attributes
         def initialize(attributes = {})

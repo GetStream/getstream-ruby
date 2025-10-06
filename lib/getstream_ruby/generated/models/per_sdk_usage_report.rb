@@ -9,7 +9,11 @@ module GetStream
       class PerSDKUsageReport < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute total
+        #   @return [Integer]
         attr_accessor :total
+        # @!attribute by_version
+        #   @return [Hash<String, Integer>]
         attr_accessor :by_version
 
         # Initialize with attributes

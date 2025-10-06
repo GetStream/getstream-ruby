@@ -9,11 +9,21 @@ module GetStream
       class CallTranscriptionFailedEvent < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute call_cid
+        #   @return [String]
         attr_accessor :call_cid
+        # @!attribute created_at
+        #   @return [DateTime]
         attr_accessor :created_at
+        # @!attribute egress_id
+        #   @return [String]
         attr_accessor :egress_id
-        attr_accessor :_type  # The type of event: "call.transcription_failed" in this case
-        attr_accessor :error  # The error message detailing why transcription failed.
+        # @!attribute _type
+        #   @return [String] The type of event: "call.transcription_failed" in this case
+        attr_accessor :_type
+        # @!attribute error
+        #   @return [String] The error message detailing why transcription failed.
+        attr_accessor :error
 
         # Initialize with attributes
         def initialize(attributes = {})

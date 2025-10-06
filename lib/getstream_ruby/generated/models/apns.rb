@@ -9,11 +9,23 @@ module GetStream
       class APNS < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute body
+        #   @return [String]
         attr_accessor :body
+        # @!attribute title
+        #   @return [String]
         attr_accessor :title
+        # @!attribute content_available
+        #   @return [Integer]
         attr_accessor :content_available
+        # @!attribute mutable_content
+        #   @return [Integer]
         attr_accessor :mutable_content
+        # @!attribute sound
+        #   @return [String]
         attr_accessor :sound
+        # @!attribute data
+        #   @return [Object]
         attr_accessor :data
 
         # Initialize with attributes

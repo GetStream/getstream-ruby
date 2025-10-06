@@ -9,23 +9,59 @@ module GetStream
       class NotificationMarkUnreadEvent < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute channel_id
+        #   @return [String]
         attr_accessor :channel_id
+        # @!attribute channel_member_count
+        #   @return [Integer]
         attr_accessor :channel_member_count
+        # @!attribute channel_type
+        #   @return [String]
         attr_accessor :channel_type
+        # @!attribute cid
+        #   @return [String]
         attr_accessor :cid
+        # @!attribute created_at
+        #   @return [DateTime]
         attr_accessor :created_at
+        # @!attribute first_unread_message_id
+        #   @return [String]
         attr_accessor :first_unread_message_id
+        # @!attribute last_read_at
+        #   @return [DateTime]
         attr_accessor :last_read_at
+        # @!attribute total_unread_count
+        #   @return [Integer]
         attr_accessor :total_unread_count
+        # @!attribute unread_channels
+        #   @return [Integer]
         attr_accessor :unread_channels
+        # @!attribute unread_count
+        #   @return [Integer]
         attr_accessor :unread_count
+        # @!attribute unread_messages
+        #   @return [Integer]
         attr_accessor :unread_messages
+        # @!attribute unread_threads
+        #   @return [Integer]
         attr_accessor :unread_threads
+        # @!attribute _type
+        #   @return [String]
         attr_accessor :_type
+        # @!attribute last_read_message_id
+        #   @return [String]
         attr_accessor :last_read_message_id
+        # @!attribute team
+        #   @return [String]
         attr_accessor :team
+        # @!attribute thread_id
+        #   @return [String]
         attr_accessor :thread_id
+        # @!attribute channel
+        #   @return [ChannelResponse]
         attr_accessor :channel
+        # @!attribute user
+        #   @return [User]
         attr_accessor :user
 
         # Initialize with attributes

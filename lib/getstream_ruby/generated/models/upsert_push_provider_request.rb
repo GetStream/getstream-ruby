@@ -9,6 +9,8 @@ module GetStream
       class UpsertPushProviderRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute push_provider
+        #   @return [PushProvider]
         attr_accessor :push_provider
 
         # Initialize with attributes

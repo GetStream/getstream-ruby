@@ -9,6 +9,8 @@ module GetStream
       class FCM < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute data
+        #   @return [Object]
         attr_accessor :data
 
         # Initialize with attributes

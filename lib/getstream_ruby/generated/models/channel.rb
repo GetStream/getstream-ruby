@@ -9,31 +9,83 @@ module GetStream
       class Channel < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _id
+        #   @return [String]
         attr_accessor :_id
+        # @!attribute _type
+        #   @return [String]
         attr_accessor :_type
+        # @!attribute auto_translation_language
+        #   @return [String]
         attr_accessor :auto_translation_language
+        # @!attribute cid
+        #   @return [String]
         attr_accessor :cid
+        # @!attribute created_at
+        #   @return [DateTime]
         attr_accessor :created_at
+        # @!attribute disabled
+        #   @return [Boolean]
         attr_accessor :disabled
+        # @!attribute frozen
+        #   @return [Boolean]
         attr_accessor :frozen
+        # @!attribute updated_at
+        #   @return [DateTime]
         attr_accessor :updated_at
+        # @!attribute custom
+        #   @return [Object]
         attr_accessor :custom
+        # @!attribute auto_translation_enabled
+        #   @return [Boolean]
         attr_accessor :auto_translation_enabled
+        # @!attribute cooldown
+        #   @return [Integer]
         attr_accessor :cooldown
+        # @!attribute deleted_at
+        #   @return [DateTime]
         attr_accessor :deleted_at
+        # @!attribute last_campaigns
+        #   @return [String]
         attr_accessor :last_campaigns
+        # @!attribute last_message_at
+        #   @return [DateTime]
         attr_accessor :last_message_at
+        # @!attribute member_count
+        #   @return [Integer]
         attr_accessor :member_count
+        # @!attribute message_count
+        #   @return [Integer]
         attr_accessor :message_count
+        # @!attribute message_count_updated_at
+        #   @return [DateTime]
         attr_accessor :message_count_updated_at
+        # @!attribute team
+        #   @return [String]
         attr_accessor :team
+        # @!attribute active_live_locations
+        #   @return [Array<SharedLocation>]
         attr_accessor :active_live_locations
+        # @!attribute invites
+        #   @return [Array<ChannelMember>]
         attr_accessor :invites
+        # @!attribute members
+        #   @return [Array<ChannelMember>]
         attr_accessor :members
+        # @!attribute config
+        #   @return [ChannelConfig]
         attr_accessor :config
+        # @!attribute config_overrides
+        #   @return [ConfigOverrides]
         attr_accessor :config_overrides
+        # @!attribute created_by
+        #   @return [User]
         attr_accessor :created_by
+        # @!attribute members_lookup
+        #   @return [Hash<String, ChannelMemberLookup>]
         attr_accessor :members_lookup
+        # @!attribute truncated_by
+        #   @return [User]
         attr_accessor :truncated_by
 
         # Initialize with attributes

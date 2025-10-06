@@ -9,8 +9,14 @@ module GetStream
       class IngressSettings < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute enabled
+        #   @return [Boolean]
         attr_accessor :enabled
+        # @!attribute audio_encoding_options
+        #   @return [IngressAudioEncodingOptions]
         attr_accessor :audio_encoding_options
+        # @!attribute video_encoding_options
+        #   @return [Hash<String, IngressVideoEncodingOptions>]
         attr_accessor :video_encoding_options
 
         # Initialize with attributes

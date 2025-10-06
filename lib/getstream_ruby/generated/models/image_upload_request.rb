@@ -9,8 +9,14 @@ module GetStream
       class ImageUploadRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute file
+        #   @return [String]
         attr_accessor :file
-        attr_accessor :upload_sizes  # field with JSON-encoded array of image size configurations
+        # @!attribute upload_sizes
+        #   @return [Array<ImageSize>] field with JSON-encoded array of image size configurations
+        attr_accessor :upload_sizes
+        # @!attribute user
+        #   @return [OnlyUserID]
         attr_accessor :user
 
         # Initialize with attributes

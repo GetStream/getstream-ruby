@@ -9,7 +9,9 @@ module GetStream
       class StartRTMPBroadcastsRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :broadcasts  # List of broadcasts to start
+        # @!attribute broadcasts
+        #   @return [Array<RTMPBroadcastRequest>] List of broadcasts to start
+        attr_accessor :broadcasts
 
         # Initialize with attributes
         def initialize(attributes = {})

@@ -9,12 +9,26 @@ module GetStream
       class FlagUpdatedEvent < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute created_at
+        #   @return [DateTime]
         attr_accessor :created_at
+        # @!attribute custom
+        #   @return [Object]
         attr_accessor :custom
+        # @!attribute _type
+        #   @return [String]
         attr_accessor :_type
+        # @!attribute received_at
+        #   @return [DateTime]
         attr_accessor :received_at
+        # @!attribute created_by
+        #   @return [UserResponse]
         attr_accessor :created_by
+        # @!attribute message
+        #   @return [MessageResponse]
         attr_accessor :message
+        # @!attribute user
+        #   @return [UserResponse]
         attr_accessor :user
 
         # Initialize with attributes

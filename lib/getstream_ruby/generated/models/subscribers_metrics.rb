@@ -9,6 +9,8 @@ module GetStream
       class SubscribersMetrics < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute all
+        #   @return [SubscriberAllMetrics]
         attr_accessor :all
 
         # Initialize with attributes

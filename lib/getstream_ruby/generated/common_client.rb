@@ -14,7 +14,7 @@ module GetStream
       end
       # This Method returns the application settings
       #
-      # @return [GetStream::StreamResponse<GetApplicationResponse>]
+      # @return [Models::GetApplicationResponse]
       def get_app()
         path = '/api/v2/app'
 
@@ -28,7 +28,7 @@ module GetStream
       # This Method updates one or more application settings
       #
       # @param update_app_request [UpdateAppRequest]
-      # @return [GetStream::StreamResponse<Response>]
+      # @return [Models::Response]
       def update_app(update_app_request)
         path = '/api/v2/app'
         # Build request body
@@ -45,7 +45,7 @@ module GetStream
       # Returns all available block lists
       #
       # @param team [String]
-      # @return [GetStream::StreamResponse<ListBlockListResponse>]
+      # @return [Models::ListBlockListResponse]
       def list_block_lists(team = nil)
         path = '/api/v2/blocklists'
         # Build query parameters
@@ -63,7 +63,7 @@ module GetStream
       # Creates a new application blocklist, once created the blocklist can be used by any channel type
       #
       # @param create_block_list_request [CreateBlockListRequest]
-      # @return [GetStream::StreamResponse<CreateBlockListResponse>]
+      # @return [Models::CreateBlockListResponse]
       def create_block_list(create_block_list_request)
         path = '/api/v2/blocklists'
         # Build request body
@@ -81,7 +81,7 @@ module GetStream
       #
       # @param name [String]
       # @param team [String]
-      # @return [GetStream::StreamResponse<Response>]
+      # @return [Models::Response]
       def delete_block_list(name, team = nil)
         path = '/api/v2/blocklists/{name}'
         # Replace path parameters
@@ -102,7 +102,7 @@ module GetStream
       #
       # @param name [String]
       # @param team [String]
-      # @return [GetStream::StreamResponse<GetBlockListResponse>]
+      # @return [Models::GetBlockListResponse]
       def get_block_list(name, team = nil)
         path = '/api/v2/blocklists/{name}'
         # Replace path parameters
@@ -123,7 +123,7 @@ module GetStream
       #
       # @param name [String]
       # @param update_block_list_request [UpdateBlockListRequest]
-      # @return [GetStream::StreamResponse<UpdateBlockListResponse>]
+      # @return [Models::UpdateBlockListResponse]
       def update_block_list(name, update_block_list_request)
         path = '/api/v2/blocklists/{name}'
         # Replace path parameters
@@ -142,7 +142,7 @@ module GetStream
       # Sends a test message via push, this is a test endpoint to verify your push settings
       #
       # @param check_push_request [CheckPushRequest]
-      # @return [GetStream::StreamResponse<CheckPushResponse>]
+      # @return [Models::CheckPushResponse]
       def check_push(check_push_request)
         path = '/api/v2/check_push'
         # Build request body
@@ -159,7 +159,7 @@ module GetStream
       # Validates Amazon SNS configuration
       #
       # @param check_sns_request [CheckSNSRequest]
-      # @return [GetStream::StreamResponse<CheckSNSResponse>]
+      # @return [Models::CheckSNSResponse]
       def check_sns(check_sns_request)
         path = '/api/v2/check_sns'
         # Build request body
@@ -176,7 +176,7 @@ module GetStream
       # Validates Amazon SQS credentials
       #
       # @param check_sqs_request [CheckSQSRequest]
-      # @return [GetStream::StreamResponse<CheckSQSResponse>]
+      # @return [Models::CheckSQSResponse]
       def check_sqs(check_sqs_request)
         path = '/api/v2/check_sqs'
         # Build request body
@@ -194,7 +194,7 @@ module GetStream
       #
       # @param _id [String]
       # @param user_id [String]
-      # @return [GetStream::StreamResponse<Response>]
+      # @return [Models::Response]
       def delete_device(_id, user_id = nil)
         path = '/api/v2/devices'
         # Build query parameters
@@ -213,7 +213,7 @@ module GetStream
       # Returns all available devices
       #
       # @param user_id [String]
-      # @return [GetStream::StreamResponse<ListDevicesResponse>]
+      # @return [Models::ListDevicesResponse]
       def list_devices(user_id = nil)
         path = '/api/v2/devices'
         # Build query parameters
@@ -231,7 +231,7 @@ module GetStream
       # Adds a new device to a user, if the same device already exists the call will have no effect
       #
       # @param create_device_request [CreateDeviceRequest]
-      # @return [GetStream::StreamResponse<Response>]
+      # @return [Models::Response]
       def create_device(create_device_request)
         path = '/api/v2/devices'
         # Build request body
@@ -248,7 +248,7 @@ module GetStream
       # Exports user profile, reactions and messages for list of given users
       #
       # @param export_users_request [ExportUsersRequest]
-      # @return [GetStream::StreamResponse<ExportUsersResponse>]
+      # @return [Models::ExportUsersResponse]
       def export_users(export_users_request)
         path = '/api/v2/export/users'
         # Build request body
@@ -264,7 +264,7 @@ module GetStream
 
       # Lists external storage
       #
-      # @return [GetStream::StreamResponse<ListExternalStorageResponse>]
+      # @return [Models::ListExternalStorageResponse]
       def list_external_storage()
         path = '/api/v2/external_storage'
 
@@ -278,7 +278,7 @@ module GetStream
       # Creates new external storage
       #
       # @param create_external_storage_request [CreateExternalStorageRequest]
-      # @return [GetStream::StreamResponse<CreateExternalStorageResponse>]
+      # @return [Models::CreateExternalStorageResponse]
       def create_external_storage(create_external_storage_request)
         path = '/api/v2/external_storage'
         # Build request body
@@ -295,7 +295,7 @@ module GetStream
       # Deletes external storage
       #
       # @param name [String]
-      # @return [GetStream::StreamResponse<DeleteExternalStorageResponse>]
+      # @return [Models::DeleteExternalStorageResponse]
       def delete_external_storage(name)
         path = '/api/v2/external_storage/{name}'
         # Replace path parameters
@@ -312,7 +312,7 @@ module GetStream
       #
       # @param name [String]
       # @param update_external_storage_request [UpdateExternalStorageRequest]
-      # @return [GetStream::StreamResponse<UpdateExternalStorageResponse>]
+      # @return [Models::UpdateExternalStorageResponse]
       def update_external_storage(name, update_external_storage_request)
         path = '/api/v2/external_storage/{name}'
         # Replace path parameters
@@ -331,7 +331,7 @@ module GetStream
       # 
       #
       # @param name [String]
-      # @return [GetStream::StreamResponse<CheckExternalStorageResponse>]
+      # @return [Models::CheckExternalStorageResponse]
       def check_external_storage(name)
         path = '/api/v2/external_storage/{name}/check'
         # Replace path parameters
@@ -347,7 +347,7 @@ module GetStream
       # 
       #
       # @param create_guest_request [CreateGuestRequest]
-      # @return [GetStream::StreamResponse<CreateGuestResponse>]
+      # @return [Models::CreateGuestResponse]
       def create_guest(create_guest_request)
         path = '/api/v2/guest'
         # Build request body
@@ -364,7 +364,7 @@ module GetStream
       # Creates a new import URL
       #
       # @param create_import_url_request [CreateImportURLRequest]
-      # @return [GetStream::StreamResponse<CreateImportURLResponse>]
+      # @return [Models::CreateImportURLResponse]
       def create_import_url(create_import_url_request)
         path = '/api/v2/import_urls'
         # Build request body
@@ -380,7 +380,7 @@ module GetStream
 
       # Gets an import
       #
-      # @return [GetStream::StreamResponse<ListImportsResponse>]
+      # @return [Models::ListImportsResponse]
       def list_imports()
         path = '/api/v2/imports'
 
@@ -394,7 +394,7 @@ module GetStream
       # Creates a new import
       #
       # @param create_import_request [CreateImportRequest]
-      # @return [GetStream::StreamResponse<CreateImportResponse>]
+      # @return [Models::CreateImportResponse]
       def create_import(create_import_request)
         path = '/api/v2/imports'
         # Build request body
@@ -411,7 +411,7 @@ module GetStream
       # Gets an import
       #
       # @param _id [String]
-      # @return [GetStream::StreamResponse<GetImportResponse>]
+      # @return [Models::GetImportResponse]
       def get_import(_id)
         path = '/api/v2/imports/{id}'
         # Replace path parameters
@@ -427,7 +427,7 @@ module GetStream
       # Get an OpenGraph attachment for a link
       #
       # @param url [String]
-      # @return [GetStream::StreamResponse<GetOGResponse>]
+      # @return [Models::GetOGResponse]
       def get_og(url)
         path = '/api/v2/og'
         # Build query parameters
@@ -444,7 +444,7 @@ module GetStream
 
       # Lists all available permissions
       #
-      # @return [GetStream::StreamResponse<ListPermissionsResponse>]
+      # @return [Models::ListPermissionsResponse]
       def list_permissions()
         path = '/api/v2/permissions'
 
@@ -458,7 +458,7 @@ module GetStream
       # Gets custom permission
       #
       # @param _id [String]
-      # @return [GetStream::StreamResponse<GetCustomPermissionResponse>]
+      # @return [Models::GetCustomPermissionResponse]
       def get_permission(_id)
         path = '/api/v2/permissions/{id}'
         # Replace path parameters
@@ -474,7 +474,7 @@ module GetStream
       # Creates a new poll
       #
       # @param create_poll_request [CreatePollRequest]
-      # @return [GetStream::StreamResponse<PollResponse>]
+      # @return [Models::PollResponse]
       def create_poll(create_poll_request)
         path = '/api/v2/polls'
         # Build request body
@@ -491,7 +491,7 @@ module GetStream
       # Updates a pollSends events:- feeds.poll.closed- feeds.poll.updated- poll.closed- poll.updated
       #
       # @param update_poll_request [UpdatePollRequest]
-      # @return [GetStream::StreamResponse<PollResponse>]
+      # @return [Models::PollResponse]
       def update_poll(update_poll_request)
         path = '/api/v2/polls'
         # Build request body
@@ -509,7 +509,7 @@ module GetStream
       #
       # @param query_polls_request [QueryPollsRequest]
       # @param user_id [String]
-      # @return [GetStream::StreamResponse<QueryPollsResponse>]
+      # @return [Models::QueryPollsResponse]
       def query_polls(query_polls_request, user_id = nil)
         path = '/api/v2/polls/query'
         # Build query parameters
@@ -531,7 +531,7 @@ module GetStream
       #
       # @param poll_id [String]
       # @param user_id [String]
-      # @return [GetStream::StreamResponse<Response>]
+      # @return [Models::Response]
       def delete_poll(poll_id, user_id = nil)
         path = '/api/v2/polls/{poll_id}'
         # Replace path parameters
@@ -552,7 +552,7 @@ module GetStream
       #
       # @param poll_id [String]
       # @param user_id [String]
-      # @return [GetStream::StreamResponse<PollResponse>]
+      # @return [Models::PollResponse]
       def get_poll(poll_id, user_id = nil)
         path = '/api/v2/polls/{poll_id}'
         # Replace path parameters
@@ -573,7 +573,7 @@ module GetStream
       #
       # @param poll_id [String]
       # @param update_poll_partial_request [UpdatePollPartialRequest]
-      # @return [GetStream::StreamResponse<PollResponse>]
+      # @return [Models::PollResponse]
       def update_poll_partial(poll_id, update_poll_partial_request)
         path = '/api/v2/polls/{poll_id}'
         # Replace path parameters
@@ -593,7 +593,7 @@ module GetStream
       #
       # @param poll_id [String]
       # @param create_poll_option_request [CreatePollOptionRequest]
-      # @return [GetStream::StreamResponse<PollOptionResponse>]
+      # @return [Models::PollOptionResponse]
       def create_poll_option(poll_id, create_poll_option_request)
         path = '/api/v2/polls/{poll_id}/options'
         # Replace path parameters
@@ -613,7 +613,7 @@ module GetStream
       #
       # @param poll_id [String]
       # @param update_poll_option_request [UpdatePollOptionRequest]
-      # @return [GetStream::StreamResponse<PollOptionResponse>]
+      # @return [Models::PollOptionResponse]
       def update_poll_option(poll_id, update_poll_option_request)
         path = '/api/v2/polls/{poll_id}/options'
         # Replace path parameters
@@ -634,7 +634,7 @@ module GetStream
       # @param poll_id [String]
       # @param option_id [String]
       # @param user_id [String]
-      # @return [GetStream::StreamResponse<Response>]
+      # @return [Models::Response]
       def delete_poll_option(poll_id, option_id, user_id = nil)
         path = '/api/v2/polls/{poll_id}/options/{option_id}'
         # Replace path parameters
@@ -657,7 +657,7 @@ module GetStream
       # @param poll_id [String]
       # @param option_id [String]
       # @param user_id [String]
-      # @return [GetStream::StreamResponse<PollOptionResponse>]
+      # @return [Models::PollOptionResponse]
       def get_poll_option(poll_id, option_id, user_id = nil)
         path = '/api/v2/polls/{poll_id}/options/{option_id}'
         # Replace path parameters
@@ -680,7 +680,7 @@ module GetStream
       # @param poll_id [String]
       # @param query_poll_votes_request [QueryPollVotesRequest]
       # @param user_id [String]
-      # @return [GetStream::StreamResponse<PollVotesResponse>]
+      # @return [Models::PollVotesResponse]
       def query_poll_votes(poll_id, query_poll_votes_request, user_id = nil)
         path = '/api/v2/polls/{poll_id}/votes'
         # Replace path parameters
@@ -703,7 +703,7 @@ module GetStream
       # Upserts the push preferences for a user and or channel member. Set to all, mentions or none
       #
       # @param upsert_push_preferences_request [UpsertPushPreferencesRequest]
-      # @return [GetStream::StreamResponse<UpsertPushPreferencesResponse>]
+      # @return [Models::UpsertPushPreferencesResponse]
       def update_push_notification_preferences(upsert_push_preferences_request)
         path = '/api/v2/push_preferences'
         # Build request body
@@ -719,7 +719,7 @@ module GetStream
 
       # List details of all push providers.
       #
-      # @return [GetStream::StreamResponse<ListPushProvidersResponse>]
+      # @return [Models::ListPushProvidersResponse]
       def list_push_providers()
         path = '/api/v2/push_providers'
 
@@ -733,7 +733,7 @@ module GetStream
       # Upsert a push provider for v2 with multi bundle/package support
       #
       # @param upsert_push_provider_request [UpsertPushProviderRequest]
-      # @return [GetStream::StreamResponse<UpsertPushProviderResponse>]
+      # @return [Models::UpsertPushProviderResponse]
       def upsert_push_provider(upsert_push_provider_request)
         path = '/api/v2/push_providers'
         # Build request body
@@ -751,7 +751,7 @@ module GetStream
       #
       # @param _type [String]
       # @param name [String]
-      # @return [GetStream::StreamResponse<Response>]
+      # @return [Models::Response]
       def delete_push_provider(_type, name)
         path = '/api/v2/push_providers/{type}/{name}'
         # Replace path parameters
@@ -769,7 +769,7 @@ module GetStream
       #
       # @param push_provider_type [String]
       # @param push_provider_name [String]
-      # @return [GetStream::StreamResponse<GetPushTemplatesResponse>]
+      # @return [Models::GetPushTemplatesResponse]
       def get_push_templates(push_provider_type, push_provider_name = nil)
         path = '/api/v2/push_templates'
         # Build query parameters
@@ -788,7 +788,7 @@ module GetStream
       # Create or update a push notification template for a specific event type and push provider
       #
       # @param upsert_push_template_request [UpsertPushTemplateRequest]
-      # @return [GetStream::StreamResponse<UpsertPushTemplateResponse>]
+      # @return [Models::UpsertPushTemplateResponse]
       def upsert_push_template(upsert_push_template_request)
         path = '/api/v2/push_templates'
         # Build request body
@@ -809,7 +809,7 @@ module GetStream
       # @param ios [Boolean]
       # @param web [Boolean]
       # @param endpoints [String]
-      # @return [GetStream::StreamResponse<GetRateLimitsResponse>]
+      # @return [Models::GetRateLimitsResponse]
       def get_rate_limits(server_side = nil, android = nil, ios = nil, web = nil, endpoints = nil)
         path = '/api/v2/rate_limits'
         # Build query parameters
@@ -830,7 +830,7 @@ module GetStream
 
       # Lists all available roles
       #
-      # @return [GetStream::StreamResponse<ListRolesResponse>]
+      # @return [Models::ListRolesResponse]
       def list_roles()
         path = '/api/v2/roles'
 
@@ -844,7 +844,7 @@ module GetStream
       # Creates custom role
       #
       # @param create_role_request [CreateRoleRequest]
-      # @return [GetStream::StreamResponse<CreateRoleResponse>]
+      # @return [Models::CreateRoleResponse]
       def create_role(create_role_request)
         path = '/api/v2/roles'
         # Build request body
@@ -861,7 +861,7 @@ module GetStream
       # Deletes custom role
       #
       # @param name [String]
-      # @return [GetStream::StreamResponse<Response>]
+      # @return [Models::Response]
       def delete_role(name)
         path = '/api/v2/roles/{name}'
         # Replace path parameters
@@ -877,7 +877,7 @@ module GetStream
       # Gets status of a task
       #
       # @param _id [String]
-      # @return [GetStream::StreamResponse<GetTaskResponse>]
+      # @return [Models::GetTaskResponse]
       def get_task(_id)
         path = '/api/v2/tasks/{id}'
         # Replace path parameters
@@ -893,7 +893,7 @@ module GetStream
       # Deletes previously uploaded file
       #
       # @param url [String]
-      # @return [GetStream::StreamResponse<Response>]
+      # @return [Models::Response]
       def delete_file(url = nil)
         path = '/api/v2/uploads/file'
         # Build query parameters
@@ -911,7 +911,7 @@ module GetStream
       # Uploads file
       #
       # @param file_upload_request [FileUploadRequest]
-      # @return [GetStream::StreamResponse<FileUploadResponse>]
+      # @return [Models::FileUploadResponse]
       def upload_file(file_upload_request)
         path = '/api/v2/uploads/file'
         # Build request body
@@ -928,7 +928,7 @@ module GetStream
       # Deletes previously uploaded image
       #
       # @param url [String]
-      # @return [GetStream::StreamResponse<Response>]
+      # @return [Models::Response]
       def delete_image(url = nil)
         path = '/api/v2/uploads/image'
         # Build query parameters
@@ -946,7 +946,7 @@ module GetStream
       # Uploads image
       #
       # @param image_upload_request [ImageUploadRequest]
-      # @return [GetStream::StreamResponse<ImageUploadResponse>]
+      # @return [Models::ImageUploadResponse]
       def upload_image(image_upload_request)
         path = '/api/v2/uploads/image'
         # Build request body
@@ -963,7 +963,7 @@ module GetStream
       # Find and filter users
       #
       # @param payload [QueryUsersPayload]
-      # @return [GetStream::StreamResponse<QueryUsersResponse>]
+      # @return [Models::QueryUsersResponse]
       def query_users(payload = nil)
         path = '/api/v2/users'
         # Build query parameters
@@ -981,7 +981,7 @@ module GetStream
       # Updates certain fields of the userSends events:- user.presence.changed- user.updated- user.presence.changed
       #
       # @param update_users_partial_request [UpdateUsersPartialRequest]
-      # @return [GetStream::StreamResponse<UpdateUsersResponse>]
+      # @return [Models::UpdateUsersResponse]
       def update_users_partial(update_users_partial_request)
         path = '/api/v2/users'
         # Build request body
@@ -998,7 +998,7 @@ module GetStream
       # Update or create users in bulkSends events:- user.updated
       #
       # @param update_users_request [UpdateUsersRequest]
-      # @return [GetStream::StreamResponse<UpdateUsersResponse>]
+      # @return [Models::UpdateUsersResponse]
       def update_users(update_users_request)
         path = '/api/v2/users'
         # Build request body
@@ -1015,7 +1015,7 @@ module GetStream
       # Get list of blocked Users
       #
       # @param user_id [String]
-      # @return [GetStream::StreamResponse<GetBlockedUsersResponse>]
+      # @return [Models::GetBlockedUsersResponse]
       def get_blocked_users(user_id = nil)
         path = '/api/v2/users/block'
         # Build query parameters
@@ -1033,7 +1033,7 @@ module GetStream
       # Block users
       #
       # @param block_users_request [BlockUsersRequest]
-      # @return [GetStream::StreamResponse<BlockUsersResponse>]
+      # @return [Models::BlockUsersResponse]
       def block_users(block_users_request)
         path = '/api/v2/users/block'
         # Build request body
@@ -1050,7 +1050,7 @@ module GetStream
       # Deactivate users in batchesSends events:- user.deactivated
       #
       # @param deactivate_users_request [DeactivateUsersRequest]
-      # @return [GetStream::StreamResponse<DeactivateUsersResponse>]
+      # @return [Models::DeactivateUsersResponse]
       def deactivate_users(deactivate_users_request)
         path = '/api/v2/users/deactivate'
         # Build request body
@@ -1067,7 +1067,7 @@ module GetStream
       # Deletes users and optionally all their belongings asynchronously.Sends events:- channel.deleted- user.deleted
       #
       # @param delete_users_request [DeleteUsersRequest]
-      # @return [GetStream::StreamResponse<DeleteUsersResponse>]
+      # @return [Models::DeleteUsersResponse]
       def delete_users(delete_users_request)
         path = '/api/v2/users/delete'
         # Build request body
@@ -1084,7 +1084,7 @@ module GetStream
       # Retrieves all active live locations for a user
       #
       # @param user_id [String]
-      # @return [GetStream::StreamResponse<SharedLocationsResponse>]
+      # @return [Models::SharedLocationsResponse]
       def get_user_live_locations(user_id = nil)
         path = '/api/v2/users/live_locations'
         # Build query parameters
@@ -1103,7 +1103,7 @@ module GetStream
       #
       # @param update_live_location_request [UpdateLiveLocationRequest]
       # @param user_id [String]
-      # @return [GetStream::StreamResponse<SharedLocationResponse>]
+      # @return [Models::SharedLocationResponse]
       def update_live_location(update_live_location_request, user_id = nil)
         path = '/api/v2/users/live_locations'
         # Build query parameters
@@ -1124,7 +1124,7 @@ module GetStream
       # Reactivate users in batchesSends events:- user.reactivated- user.reactivated
       #
       # @param reactivate_users_request [ReactivateUsersRequest]
-      # @return [GetStream::StreamResponse<ReactivateUsersResponse>]
+      # @return [Models::ReactivateUsersResponse]
       def reactivate_users(reactivate_users_request)
         path = '/api/v2/users/reactivate'
         # Build request body
@@ -1141,7 +1141,7 @@ module GetStream
       # Restore soft deleted users
       #
       # @param restore_users_request [RestoreUsersRequest]
-      # @return [GetStream::StreamResponse<Response>]
+      # @return [Models::Response]
       def restore_users(restore_users_request)
         path = '/api/v2/users/restore'
         # Build request body
@@ -1158,7 +1158,7 @@ module GetStream
       # Unblock users
       #
       # @param unblock_users_request [UnblockUsersRequest]
-      # @return [GetStream::StreamResponse<UnblockUsersResponse>]
+      # @return [Models::UnblockUsersResponse]
       def unblock_users(unblock_users_request)
         path = '/api/v2/users/unblock'
         # Build request body
@@ -1176,7 +1176,7 @@ module GetStream
       #
       # @param user_id [String]
       # @param deactivate_user_request [DeactivateUserRequest]
-      # @return [GetStream::StreamResponse<DeactivateUserResponse>]
+      # @return [Models::DeactivateUserResponse]
       def deactivate_user(user_id, deactivate_user_request)
         path = '/api/v2/users/{user_id}/deactivate'
         # Replace path parameters
@@ -1195,7 +1195,7 @@ module GetStream
       # Exports the user's profile, reactions and messages. Raises an error if a user has more than 10k messages or reactions
       #
       # @param user_id [String]
-      # @return [GetStream::StreamResponse<ExportUserResponse>]
+      # @return [Models::ExportUserResponse]
       def export_user(user_id)
         path = '/api/v2/users/{user_id}/export'
         # Replace path parameters
@@ -1212,7 +1212,7 @@ module GetStream
       #
       # @param user_id [String]
       # @param reactivate_user_request [ReactivateUserRequest]
-      # @return [GetStream::StreamResponse<ReactivateUserResponse>]
+      # @return [Models::ReactivateUserResponse]
       def reactivate_user(user_id, reactivate_user_request)
         path = '/api/v2/users/{user_id}/reactivate'
         # Replace path parameters

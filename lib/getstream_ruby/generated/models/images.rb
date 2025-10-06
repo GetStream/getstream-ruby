@@ -9,12 +9,26 @@ module GetStream
       class Images < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute fixed_height
+        #   @return [ImageData]
         attr_accessor :fixed_height
+        # @!attribute fixed_height_downsampled
+        #   @return [ImageData]
         attr_accessor :fixed_height_downsampled
+        # @!attribute fixed_height_still
+        #   @return [ImageData]
         attr_accessor :fixed_height_still
+        # @!attribute fixed_width
+        #   @return [ImageData]
         attr_accessor :fixed_width
+        # @!attribute fixed_width_downsampled
+        #   @return [ImageData]
         attr_accessor :fixed_width_downsampled
+        # @!attribute fixed_width_still
+        #   @return [ImageData]
         attr_accessor :fixed_width_still
+        # @!attribute original
+        #   @return [ImageData]
         attr_accessor :original
 
         # Initialize with attributes

@@ -9,10 +9,18 @@ module GetStream
       class DeactivateUsersRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :user_ids  # User IDs to deactivate
-        attr_accessor :created_by_id  # ID of the user who deactivated the users
+        # @!attribute user_ids
+        #   @return [Array<String>] User IDs to deactivate
+        attr_accessor :user_ids
+        # @!attribute created_by_id
+        #   @return [String] ID of the user who deactivated the users
+        attr_accessor :created_by_id
+        # @!attribute mark_channels_deleted
+        #   @return [Boolean]
         attr_accessor :mark_channels_deleted
-        attr_accessor :mark_messages_deleted  # Makes messages appear to be deleted
+        # @!attribute mark_messages_deleted
+        #   @return [Boolean] Makes messages appear to be deleted
+        attr_accessor :mark_messages_deleted
 
         # Initialize with attributes
         def initialize(attributes = {})

@@ -9,7 +9,11 @@ module GetStream
       class GetFeedGroupResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
+        # @!attribute feed_group
+        #   @return [FeedGroupResponse]
         attr_accessor :feed_group
 
         # Initialize with attributes

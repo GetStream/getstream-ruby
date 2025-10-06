@@ -9,8 +9,12 @@ module GetStream
       class ExportFeedUserDataResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
-        attr_accessor :task_id  # The task ID for the export task
+        # @!attribute task_id
+        #   @return [String] The task ID for the export task
+        attr_accessor :task_id
 
         # Initialize with attributes
         def initialize(attributes = {})

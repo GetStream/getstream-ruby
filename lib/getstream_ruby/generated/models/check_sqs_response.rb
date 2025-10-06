@@ -9,10 +9,18 @@ module GetStream
       class CheckSQSResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
-        attr_accessor :status  # Validation result
-        attr_accessor :error  # Error text
-        attr_accessor :data  # Error data
+        # @!attribute status
+        #   @return [String] Validation result
+        attr_accessor :status
+        # @!attribute error
+        #   @return [String] Error text
+        attr_accessor :error
+        # @!attribute data
+        #   @return [Object] Error data
+        attr_accessor :data
 
         # Initialize with attributes
         def initialize(attributes = {})

@@ -9,8 +9,12 @@ module GetStream
       class QueryMessageFlagsResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :duration  # Duration of the request in milliseconds
-        attr_accessor :flags  # The flags that match the query
+        # @!attribute duration
+        #   @return [String] Duration of the request in milliseconds
+        attr_accessor :duration
+        # @!attribute flags
+        #   @return [Array<MessageFlagResponse>] The flags that match the query
+        attr_accessor :flags
 
         # Initialize with attributes
         def initialize(attributes = {})

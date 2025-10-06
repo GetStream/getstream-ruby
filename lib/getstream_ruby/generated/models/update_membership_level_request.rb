@@ -9,11 +9,21 @@ module GetStream
       class UpdateMembershipLevelRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :description  # Optional description of the membership level
-        attr_accessor :name  # Display name for the membership level
-        attr_accessor :priority  # Priority level (higher numbers = higher priority)
-        attr_accessor :tags  # Activity tags this membership level gives access to
-        attr_accessor :custom  # Custom data for the membership level
+        # @!attribute description
+        #   @return [String] Optional description of the membership level
+        attr_accessor :description
+        # @!attribute name
+        #   @return [String] Display name for the membership level
+        attr_accessor :name
+        # @!attribute priority
+        #   @return [Integer] Priority level (higher numbers = higher priority)
+        attr_accessor :priority
+        # @!attribute tags
+        #   @return [Array<String>] Activity tags this membership level gives access to
+        attr_accessor :tags
+        # @!attribute custom
+        #   @return [Object] Custom data for the membership level
+        attr_accessor :custom
 
         # Initialize with attributes
         def initialize(attributes = {})

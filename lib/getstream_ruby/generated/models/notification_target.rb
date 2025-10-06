@@ -9,12 +9,24 @@ module GetStream
       class NotificationTarget < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :_id  # The ID of the target (activity ID or user ID)
-        attr_accessor :_type  # The type of the target activity (for activity targets)
-        attr_accessor :name  # The name of the target user (for user targets like follows)
-        attr_accessor :text  # The text content of the target activity (for activity targets)
-        attr_accessor :user_id  # The ID of the user who created the target activity (for activity targets)
-        attr_accessor :attachments  # Attachments on the target activity (for activity targets)
+        # @!attribute _id
+        #   @return [String] The ID of the target (activity ID or user ID)
+        attr_accessor :_id
+        # @!attribute _type
+        #   @return [String] The type of the target activity (for activity targets)
+        attr_accessor :_type
+        # @!attribute name
+        #   @return [String] The name of the target user (for user targets like follows)
+        attr_accessor :name
+        # @!attribute text
+        #   @return [String] The text content of the target activity (for activity targets)
+        attr_accessor :text
+        # @!attribute user_id
+        #   @return [String] The ID of the user who created the target activity (for activity targets)
+        attr_accessor :user_id
+        # @!attribute attachments
+        #   @return [Array<Attachment>] Attachments on the target activity (for activity targets)
+        attr_accessor :attachments
 
         # Initialize with attributes
         def initialize(attributes = {})

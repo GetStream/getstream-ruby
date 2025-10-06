@@ -9,12 +9,26 @@ module GetStream
       class VelocityFilterConfig < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute advanced_filters
+        #   @return [Boolean]
         attr_accessor :advanced_filters
+        # @!attribute async
+        #   @return [Boolean]
         attr_accessor :async
+        # @!attribute cascading_actions
+        #   @return [Boolean]
         attr_accessor :cascading_actions
+        # @!attribute cids_per_user
+        #   @return [Integer]
         attr_accessor :cids_per_user
+        # @!attribute enabled
+        #   @return [Boolean]
         attr_accessor :enabled
+        # @!attribute first_message_only
+        #   @return [Boolean]
         attr_accessor :first_message_only
+        # @!attribute rules
+        #   @return [Array<VelocityFilterConfigRule>]
         attr_accessor :rules
 
         # Initialize with attributes

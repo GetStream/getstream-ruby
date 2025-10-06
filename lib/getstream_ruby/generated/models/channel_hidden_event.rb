@@ -9,14 +9,32 @@ module GetStream
       class ChannelHiddenEvent < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute channel_id
+        #   @return [String]
         attr_accessor :channel_id
+        # @!attribute channel_member_count
+        #   @return [Integer]
         attr_accessor :channel_member_count
+        # @!attribute channel_type
+        #   @return [String]
         attr_accessor :channel_type
+        # @!attribute cid
+        #   @return [String]
         attr_accessor :cid
+        # @!attribute clear_history
+        #   @return [Boolean]
         attr_accessor :clear_history
+        # @!attribute created_at
+        #   @return [DateTime]
         attr_accessor :created_at
+        # @!attribute _type
+        #   @return [String]
         attr_accessor :_type
+        # @!attribute channel
+        #   @return [ChannelResponse]
         attr_accessor :channel
+        # @!attribute user
+        #   @return [User]
         attr_accessor :user
 
         # Initialize with attributes

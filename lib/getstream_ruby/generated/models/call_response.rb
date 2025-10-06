@@ -9,29 +9,77 @@ module GetStream
       class CallResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :_id  # Call ID
-        attr_accessor :_type  # The type of call
+        # @!attribute _id
+        #   @return [String] Call ID
+        attr_accessor :_id
+        # @!attribute _type
+        #   @return [String] The type of call
+        attr_accessor :_type
+        # @!attribute backstage
+        #   @return [Boolean]
         attr_accessor :backstage
+        # @!attribute captioning
+        #   @return [Boolean]
         attr_accessor :captioning
-        attr_accessor :cid  # The unique identifier for a call (<type>:<id>)
-        attr_accessor :created_at  # Date/time of creation
+        # @!attribute cid
+        #   @return [String] The unique identifier for a call (<type>:<id>)
+        attr_accessor :cid
+        # @!attribute created_at
+        #   @return [DateTime] Date/time of creation
+        attr_accessor :created_at
+        # @!attribute current_session_id
+        #   @return [String]
         attr_accessor :current_session_id
+        # @!attribute recording
+        #   @return [Boolean]
         attr_accessor :recording
+        # @!attribute transcribing
+        #   @return [Boolean]
         attr_accessor :transcribing
+        # @!attribute translating
+        #   @return [Boolean]
         attr_accessor :translating
-        attr_accessor :updated_at  # Date/time of the last update
+        # @!attribute updated_at
+        #   @return [DateTime] Date/time of the last update
+        attr_accessor :updated_at
+        # @!attribute blocked_user_ids
+        #   @return [Array<String>]
         attr_accessor :blocked_user_ids
+        # @!attribute created_by
+        #   @return [UserResponse]
         attr_accessor :created_by
-        attr_accessor :custom  # Custom data for this object
+        # @!attribute custom
+        #   @return [Object] Custom data for this object
+        attr_accessor :custom
+        # @!attribute egress
+        #   @return [EgressResponse]
         attr_accessor :egress
+        # @!attribute ingress
+        #   @return [CallIngressResponse]
         attr_accessor :ingress
+        # @!attribute settings
+        #   @return [CallSettingsResponse]
         attr_accessor :settings
+        # @!attribute channel_cid
+        #   @return [String]
         attr_accessor :channel_cid
-        attr_accessor :ended_at  # Date/time when the call ended
+        # @!attribute ended_at
+        #   @return [DateTime] Date/time when the call ended
+        attr_accessor :ended_at
+        # @!attribute join_ahead_time_seconds
+        #   @return [Integer]
         attr_accessor :join_ahead_time_seconds
-        attr_accessor :starts_at  # Date/time when the call will start
+        # @!attribute starts_at
+        #   @return [DateTime] Date/time when the call will start
+        attr_accessor :starts_at
+        # @!attribute team
+        #   @return [String]
         attr_accessor :team
+        # @!attribute session
+        #   @return [CallSessionResponse]
         attr_accessor :session
+        # @!attribute thumbnails
+        #   @return [ThumbnailResponse]
         attr_accessor :thumbnails
 
         # Initialize with attributes

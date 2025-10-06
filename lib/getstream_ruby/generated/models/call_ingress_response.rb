@@ -9,8 +9,14 @@ module GetStream
       class CallIngressResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute rtmp
+        #   @return [RTMPIngress]
         attr_accessor :rtmp
+        # @!attribute srt
+        #   @return [SRTIngress]
         attr_accessor :srt
+        # @!attribute whip
+        #   @return [WHIPIngress]
         attr_accessor :whip
 
         # Initialize with attributes

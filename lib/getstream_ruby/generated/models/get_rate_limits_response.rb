@@ -9,11 +9,21 @@ module GetStream
       class GetRateLimitsResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
-        attr_accessor :android  # Map of endpoint rate limits for the Android platform
-        attr_accessor :ios  # Map of endpoint rate limits for the iOS platform
-        attr_accessor :server_side  # Map of endpoint rate limits for the server-side platform
-        attr_accessor :web  # Map of endpoint rate limits for the web platform
+        # @!attribute android
+        #   @return [Hash<String, LimitInfo>] Map of endpoint rate limits for the Android platform
+        attr_accessor :android
+        # @!attribute ios
+        #   @return [Hash<String, LimitInfo>] Map of endpoint rate limits for the iOS platform
+        attr_accessor :ios
+        # @!attribute server_side
+        #   @return [Hash<String, LimitInfo>] Map of endpoint rate limits for the server-side platform
+        attr_accessor :server_side
+        # @!attribute web
+        #   @return [Hash<String, LimitInfo>] Map of endpoint rate limits for the web platform
+        attr_accessor :web
 
         # Initialize with attributes
         def initialize(attributes = {})

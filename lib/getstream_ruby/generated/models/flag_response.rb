@@ -9,8 +9,12 @@ module GetStream
       class FlagResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
-        attr_accessor :item_id  # Unique identifier of the created moderation item
+        # @!attribute item_id
+        #   @return [String] Unique identifier of the created moderation item
+        attr_accessor :item_id
 
         # Initialize with attributes
         def initialize(attributes = {})

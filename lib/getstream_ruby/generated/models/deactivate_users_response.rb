@@ -9,7 +9,11 @@ module GetStream
       class DeactivateUsersResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :duration  # Duration of the request in milliseconds
+        # @!attribute duration
+        #   @return [String] Duration of the request in milliseconds
+        attr_accessor :duration
+        # @!attribute task_id
+        #   @return [String]
         attr_accessor :task_id
 
         # Initialize with attributes

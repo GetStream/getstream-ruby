@@ -9,9 +9,17 @@ module GetStream
       class SegmentTargetResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute app_pk
+        #   @return [Integer]
         attr_accessor :app_pk
+        # @!attribute created_at
+        #   @return [DateTime]
         attr_accessor :created_at
+        # @!attribute segment_id
+        #   @return [String]
         attr_accessor :segment_id
+        # @!attribute target_id
+        #   @return [String]
         attr_accessor :target_id
 
         # Initialize with attributes

@@ -9,8 +9,14 @@ module GetStream
       class JoinCallAPIMetrics < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute failures
+        #   @return [Float]
         attr_accessor :failures
+        # @!attribute total
+        #   @return [Float]
         attr_accessor :total
+        # @!attribute latency
+        #   @return [ActiveCallsLatencyStats]
         attr_accessor :latency
 
         # Initialize with attributes

@@ -9,8 +9,14 @@ module GetStream
       class EventNotificationSettings < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute enabled
+        #   @return [Boolean]
         attr_accessor :enabled
+        # @!attribute apns
+        #   @return [APNS]
         attr_accessor :apns
+        # @!attribute fcm
+        #   @return [FCM]
         attr_accessor :fcm
 
         # Initialize with attributes

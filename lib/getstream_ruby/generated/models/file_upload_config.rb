@@ -9,10 +9,20 @@ module GetStream
       class FileUploadConfig < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute size_limit
+        #   @return [Integer]
         attr_accessor :size_limit
+        # @!attribute allowed_file_extensions
+        #   @return [Array<String>]
         attr_accessor :allowed_file_extensions
+        # @!attribute allowed_mime_types
+        #   @return [Array<String>]
         attr_accessor :allowed_mime_types
+        # @!attribute blocked_file_extensions
+        #   @return [Array<String>]
         attr_accessor :blocked_file_extensions
+        # @!attribute blocked_mime_types
+        #   @return [Array<String>]
         attr_accessor :blocked_mime_types
 
         # Initialize with attributes

@@ -9,7 +9,11 @@ module GetStream
       class ShowChannelRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute user_id
+        #   @return [String]
         attr_accessor :user_id
+        # @!attribute user
+        #   @return [UserRequest]
         attr_accessor :user
 
         # Initialize with attributes

@@ -9,6 +9,8 @@ module GetStream
       class SRTIngress < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute address
+        #   @return [String]
         attr_accessor :address
 
         # Initialize with attributes

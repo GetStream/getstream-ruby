@@ -9,7 +9,11 @@ module GetStream
       class UpsertPushProviderResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :duration  # Duration of the request in milliseconds
+        # @!attribute duration
+        #   @return [String] Duration of the request in milliseconds
+        attr_accessor :duration
+        # @!attribute push_provider
+        #   @return [PushProviderResponse]
         attr_accessor :push_provider
 
         # Initialize with attributes

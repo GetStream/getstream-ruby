@@ -9,10 +9,18 @@ module GetStream
       class ReactionGroupResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :count  # Count is the number of reactions of this type.sasas
-        attr_accessor :first_reaction_at  # FirstReactionAt is the time of the first reaction of this type. This is the same also if all reaction of this type are deleted, because if someone will react again with the same type, will be preserved the sorting.
-        attr_accessor :last_reaction_at  # LastReactionAt is the time of the last reaction of this type.
-        attr_accessor :sum_scores  # SumScores is the sum of all scores of reactions of this type. Medium allows you to clap articles more than once and shows the sum of all claps from all users. For example, you can send `clap` x5 using `score: 5`.
+        # @!attribute count
+        #   @return [Integer] Count is the number of reactions of this type.sasas
+        attr_accessor :count
+        # @!attribute first_reaction_at
+        #   @return [DateTime] FirstReactionAt is the time of the first reaction of this type. This is the same also if all reaction of this type are deleted, because if someone will react again with the same type, will be preserved the sorting.
+        attr_accessor :first_reaction_at
+        # @!attribute last_reaction_at
+        #   @return [DateTime] LastReactionAt is the time of the last reaction of this type.
+        attr_accessor :last_reaction_at
+        # @!attribute sum_scores
+        #   @return [Integer] SumScores is the sum of all scores of reactions of this type. Medium allows you to clap articles more than once and shows the sum of all claps from all users. For example, you can send `clap` x5 using `score: 5`.
+        attr_accessor :sum_scores
 
         # Initialize with attributes
         def initialize(attributes = {})

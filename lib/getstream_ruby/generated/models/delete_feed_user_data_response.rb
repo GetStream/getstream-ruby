@@ -9,10 +9,20 @@ module GetStream
       class DeleteFeedUserDataResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :deleted_activities  # Number of activities that were deleted
-        attr_accessor :deleted_bookmarks  # Number of bookmarks that were deleted
-        attr_accessor :deleted_comments  # Number of comments that were deleted
-        attr_accessor :deleted_reactions  # Number of reactions that were deleted
+        # @!attribute deleted_activities
+        #   @return [Integer] Number of activities that were deleted
+        attr_accessor :deleted_activities
+        # @!attribute deleted_bookmarks
+        #   @return [Integer] Number of bookmarks that were deleted
+        attr_accessor :deleted_bookmarks
+        # @!attribute deleted_comments
+        #   @return [Integer] Number of comments that were deleted
+        attr_accessor :deleted_comments
+        # @!attribute deleted_reactions
+        #   @return [Integer] Number of reactions that were deleted
+        attr_accessor :deleted_reactions
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
 
         # Initialize with attributes

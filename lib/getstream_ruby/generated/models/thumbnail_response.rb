@@ -9,6 +9,8 @@ module GetStream
       class ThumbnailResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute image_url
+        #   @return [String]
         attr_accessor :image_url
 
         # Initialize with attributes

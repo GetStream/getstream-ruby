@@ -9,7 +9,9 @@ module GetStream
       class UnblockUserRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :user_id  # the user to unblock
+        # @!attribute user_id
+        #   @return [String] the user to unblock
+        attr_accessor :user_id
 
         # Initialize with attributes
         def initialize(attributes = {})

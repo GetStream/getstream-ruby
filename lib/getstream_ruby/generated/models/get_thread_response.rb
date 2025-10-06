@@ -9,7 +9,11 @@ module GetStream
       class GetThreadResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
+        # @!attribute thread
+        #   @return [ThreadStateResponse]
         attr_accessor :thread
 
         # Initialize with attributes

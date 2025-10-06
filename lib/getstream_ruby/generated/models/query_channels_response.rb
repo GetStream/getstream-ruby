@@ -9,8 +9,12 @@ module GetStream
       class QueryChannelsResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :duration  # Duration of the request in milliseconds
-        attr_accessor :channels  # List of channels
+        # @!attribute duration
+        #   @return [String] Duration of the request in milliseconds
+        attr_accessor :duration
+        # @!attribute channels
+        #   @return [Array<ChannelStateResponseFields>] List of channels
+        attr_accessor :channels
 
         # Initialize with attributes
         def initialize(attributes = {})

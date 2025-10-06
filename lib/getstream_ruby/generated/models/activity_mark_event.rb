@@ -9,17 +9,41 @@ module GetStream
       class ActivityMarkEvent < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :created_at  # Date/time of creation
+        # @!attribute created_at
+        #   @return [DateTime] Date/time of creation
+        attr_accessor :created_at
+        # @!attribute fid
+        #   @return [String]
         attr_accessor :fid
+        # @!attribute custom
+        #   @return [Object]
         attr_accessor :custom
-        attr_accessor :_type  # The type of event: "feeds.activity.marked" in this case
+        # @!attribute _type
+        #   @return [String] The type of event: "feeds.activity.marked" in this case
+        attr_accessor :_type
+        # @!attribute feed_visibility
+        #   @return [String]
         attr_accessor :feed_visibility
-        attr_accessor :mark_all_read  # Whether all activities were marked as read
-        attr_accessor :mark_all_seen  # Whether all activities were marked as seen
+        # @!attribute mark_all_read
+        #   @return [Boolean] Whether all activities were marked as read
+        attr_accessor :mark_all_read
+        # @!attribute mark_all_seen
+        #   @return [Boolean] Whether all activities were marked as seen
+        attr_accessor :mark_all_seen
+        # @!attribute received_at
+        #   @return [DateTime]
         attr_accessor :received_at
-        attr_accessor :mark_read  # The IDs of activities marked as read
-        attr_accessor :mark_seen  # The IDs of activities marked as seen
-        attr_accessor :mark_watched  # The IDs of activities marked as watched
+        # @!attribute mark_read
+        #   @return [Array<String>] The IDs of activities marked as read
+        attr_accessor :mark_read
+        # @!attribute mark_seen
+        #   @return [Array<String>] The IDs of activities marked as seen
+        attr_accessor :mark_seen
+        # @!attribute mark_watched
+        #   @return [Array<String>] The IDs of activities marked as watched
+        attr_accessor :mark_watched
+        # @!attribute user
+        #   @return [UserResponseCommonFields]
         attr_accessor :user
 
         # Initialize with attributes

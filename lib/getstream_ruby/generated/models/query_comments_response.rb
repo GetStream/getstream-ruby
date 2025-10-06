@@ -9,10 +9,18 @@ module GetStream
       class QueryCommentsResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
-        attr_accessor :comments  # List of comments matching the query
-        attr_accessor :_next  # Cursor for next page
-        attr_accessor :prev  # Cursor for previous page
+        # @!attribute comments
+        #   @return [Array<CommentResponse>] List of comments matching the query
+        attr_accessor :comments
+        # @!attribute _next
+        #   @return [String] Cursor for next page
+        attr_accessor :_next
+        # @!attribute prev
+        #   @return [String] Cursor for previous page
+        attr_accessor :prev
 
         # Initialize with attributes
         def initialize(attributes = {})

@@ -9,10 +9,18 @@ module GetStream
       class ImageSize < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :crop  # Crop mode
-        attr_accessor :height  # Target image height
-        attr_accessor :resize  # Resize method
-        attr_accessor :width  # Target image width
+        # @!attribute crop
+        #   @return [String] Crop mode
+        attr_accessor :crop
+        # @!attribute height
+        #   @return [Integer] Target image height
+        attr_accessor :height
+        # @!attribute resize
+        #   @return [String] Resize method
+        attr_accessor :resize
+        # @!attribute width
+        #   @return [Integer] Target image width
+        attr_accessor :width
 
         # Initialize with attributes
         def initialize(attributes = {})

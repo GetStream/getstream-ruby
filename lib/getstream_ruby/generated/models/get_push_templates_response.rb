@@ -9,7 +9,11 @@ module GetStream
       class GetPushTemplatesResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :duration  # Duration of the request in milliseconds
+        # @!attribute duration
+        #   @return [String] Duration of the request in milliseconds
+        attr_accessor :duration
+        # @!attribute templates
+        #   @return [Array<PushTemplate>]
         attr_accessor :templates
 
         # Initialize with attributes

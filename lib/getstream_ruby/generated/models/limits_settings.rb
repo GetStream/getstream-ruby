@@ -9,9 +9,17 @@ module GetStream
       class LimitsSettings < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute max_participants_exclude_roles
+        #   @return [Array<String>]
         attr_accessor :max_participants_exclude_roles
+        # @!attribute max_duration_seconds
+        #   @return [Integer]
         attr_accessor :max_duration_seconds
+        # @!attribute max_participants
+        #   @return [Integer]
         attr_accessor :max_participants
+        # @!attribute max_participants_exclude_owner
+        #   @return [Boolean]
         attr_accessor :max_participants_exclude_owner
 
         # Initialize with attributes

@@ -9,8 +9,14 @@ module GetStream
       class Field < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute short
+        #   @return [Boolean]
         attr_accessor :short
+        # @!attribute title
+        #   @return [String]
         attr_accessor :title
+        # @!attribute value
+        #   @return [String]
         attr_accessor :value
 
         # Initialize with attributes

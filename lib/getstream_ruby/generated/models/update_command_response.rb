@@ -9,7 +9,11 @@ module GetStream
       class UpdateCommandResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
+        # @!attribute command
+        #   @return [Command]
         attr_accessor :command
 
         # Initialize with attributes

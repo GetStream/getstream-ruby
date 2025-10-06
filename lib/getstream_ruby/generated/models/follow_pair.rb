@@ -9,8 +9,12 @@ module GetStream
       class FollowPair < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :source  # Fully qualified ID of the source feed
-        attr_accessor :target  # Fully qualified ID of the target feed
+        # @!attribute source
+        #   @return [String] Fully qualified ID of the source feed
+        attr_accessor :source
+        # @!attribute target
+        #   @return [String] Fully qualified ID of the target feed
+        attr_accessor :target
 
         # Initialize with attributes
         def initialize(attributes = {})

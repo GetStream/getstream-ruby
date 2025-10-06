@@ -9,15 +9,35 @@ module GetStream
       class APNConfig < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute auth_key
+        #   @return [String]
         attr_accessor :auth_key
+        # @!attribute auth_type
+        #   @return [String]
         attr_accessor :auth_type
+        # @!attribute bundle_id
+        #   @return [String]
         attr_accessor :bundle_id
+        # @!attribute development
+        #   @return [Boolean]
         attr_accessor :development
+        # @!attribute disabled
+        #   @return [Boolean]
         attr_accessor :disabled
+        # @!attribute host
+        #   @return [String]
         attr_accessor :host
+        # @!attribute key_id
+        #   @return [String]
         attr_accessor :key_id
+        # @!attribute notification_template
+        #   @return [String]
         attr_accessor :notification_template
+        # @!attribute p12_cert
+        #   @return [String]
         attr_accessor :p12_cert
+        # @!attribute team_id
+        #   @return [String]
         attr_accessor :team_id
 
         # Initialize with attributes

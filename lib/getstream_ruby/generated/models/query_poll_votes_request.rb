@@ -9,11 +9,21 @@ module GetStream
       class QueryPollVotesRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _next
+        #   @return [String]
         attr_accessor :_next
+        # @!attribute limit
+        #   @return [Integer]
         attr_accessor :limit
+        # @!attribute prev
+        #   @return [String]
         attr_accessor :prev
-        attr_accessor :sort  # Array of sort parameters
-        attr_accessor :filter  # Filter to apply to the query
+        # @!attribute sort
+        #   @return [Array<SortParamRequest>] Array of sort parameters
+        attr_accessor :sort
+        # @!attribute filter
+        #   @return [Object] Filter to apply to the query
+        attr_accessor :filter
 
         # Initialize with attributes
         def initialize(attributes = {})

@@ -9,10 +9,20 @@ module GetStream
       class LLMConfig < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute app_context
+        #   @return [String]
         attr_accessor :app_context
+        # @!attribute async
+        #   @return [Boolean]
         attr_accessor :async
+        # @!attribute enabled
+        #   @return [Boolean]
         attr_accessor :enabled
+        # @!attribute rules
+        #   @return [Array<LLMRule>]
         attr_accessor :rules
+        # @!attribute severity_descriptions
+        #   @return [Hash<String, String>]
         attr_accessor :severity_descriptions
 
         # Initialize with attributes

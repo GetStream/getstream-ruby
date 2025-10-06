@@ -9,8 +9,14 @@ module GetStream
       class UpdateUserPermissionsRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute user_id
+        #   @return [String]
         attr_accessor :user_id
+        # @!attribute grant_permissions
+        #   @return [Array<String>]
         attr_accessor :grant_permissions
+        # @!attribute revoke_permissions
+        #   @return [Array<String>]
         attr_accessor :revoke_permissions
 
         # Initialize with attributes

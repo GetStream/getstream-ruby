@@ -9,10 +9,20 @@ module GetStream
       class ReportByHistogramBucket < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute category
+        #   @return [String]
         attr_accessor :category
+        # @!attribute count
+        #   @return [Integer]
         attr_accessor :count
+        # @!attribute sum
+        #   @return [Float]
         attr_accessor :sum
+        # @!attribute lower_bound
+        #   @return [Bound]
         attr_accessor :lower_bound
+        # @!attribute upper_bound
+        #   @return [Bound]
         attr_accessor :upper_bound
 
         # Initialize with attributes

@@ -9,15 +9,35 @@ module GetStream
       class ParticipantReportResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute sum
+        #   @return [Integer]
         attr_accessor :sum
+        # @!attribute unique
+        #   @return [Integer]
         attr_accessor :unique
+        # @!attribute max_concurrent
+        #   @return [Integer]
         attr_accessor :max_concurrent
+        # @!attribute by_browser
+        #   @return [Array<GroupedStatsResponse>]
         attr_accessor :by_browser
+        # @!attribute by_country
+        #   @return [Array<GroupedStatsResponse>]
         attr_accessor :by_country
+        # @!attribute by_device
+        #   @return [Array<GroupedStatsResponse>]
         attr_accessor :by_device
+        # @!attribute by_operating_system
+        #   @return [Array<GroupedStatsResponse>]
         attr_accessor :by_operating_system
+        # @!attribute count_over_time
+        #   @return [ParticipantCountOverTimeResponse]
         attr_accessor :count_over_time
+        # @!attribute publishers
+        #   @return [PublisherStatsResponse]
         attr_accessor :publishers
+        # @!attribute subscribers
+        #   @return [SubscriberStatsResponse]
         attr_accessor :subscribers
 
         # Initialize with attributes

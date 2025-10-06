@@ -9,10 +9,20 @@ module GetStream
       class UpsertModerationTemplateResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :created_at  # When the template was created
+        # @!attribute created_at
+        #   @return [DateTime] When the template was created
+        attr_accessor :created_at
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
-        attr_accessor :name  # Name of the moderation template
-        attr_accessor :updated_at  # When the template was last updated
+        # @!attribute name
+        #   @return [String] Name of the moderation template
+        attr_accessor :name
+        # @!attribute updated_at
+        #   @return [DateTime] When the template was last updated
+        attr_accessor :updated_at
+        # @!attribute config
+        #   @return [FeedsModerationTemplateConfig]
         attr_accessor :config
 
         # Initialize with attributes

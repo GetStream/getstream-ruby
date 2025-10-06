@@ -9,13 +9,29 @@ module GetStream
       class MemberAddedEvent < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute channel_id
+        #   @return [String]
         attr_accessor :channel_id
+        # @!attribute channel_type
+        #   @return [String]
         attr_accessor :channel_type
+        # @!attribute cid
+        #   @return [String]
         attr_accessor :cid
+        # @!attribute created_at
+        #   @return [DateTime]
         attr_accessor :created_at
+        # @!attribute _type
+        #   @return [String]
         attr_accessor :_type
+        # @!attribute team
+        #   @return [String]
         attr_accessor :team
+        # @!attribute member
+        #   @return [ChannelMember]
         attr_accessor :member
+        # @!attribute user
+        #   @return [User]
         attr_accessor :user
 
         # Initialize with attributes

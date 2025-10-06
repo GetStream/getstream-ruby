@@ -9,19 +9,47 @@ module GetStream
       class ConfigOverrides < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute commands
+        #   @return [Array<String>]
         attr_accessor :commands
+        # @!attribute grants
+        #   @return [Hash<String, Array<String>>]
         attr_accessor :grants
+        # @!attribute blocklist
+        #   @return [String]
         attr_accessor :blocklist
+        # @!attribute blocklist_behavior
+        #   @return [String]
         attr_accessor :blocklist_behavior
+        # @!attribute count_messages
+        #   @return [Boolean]
         attr_accessor :count_messages
+        # @!attribute max_message_length
+        #   @return [Integer]
         attr_accessor :max_message_length
+        # @!attribute quotes
+        #   @return [Boolean]
         attr_accessor :quotes
+        # @!attribute reactions
+        #   @return [Boolean]
         attr_accessor :reactions
+        # @!attribute replies
+        #   @return [Boolean]
         attr_accessor :replies
+        # @!attribute shared_locations
+        #   @return [Boolean]
         attr_accessor :shared_locations
+        # @!attribute typing_events
+        #   @return [Boolean]
         attr_accessor :typing_events
+        # @!attribute uploads
+        #   @return [Boolean]
         attr_accessor :uploads
+        # @!attribute url_enrichment
+        #   @return [Boolean]
         attr_accessor :url_enrichment
+        # @!attribute user_message_reminders
+        #   @return [Boolean]
         attr_accessor :user_message_reminders
 
         # Initialize with attributes

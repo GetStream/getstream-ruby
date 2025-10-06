@@ -9,19 +9,47 @@ module GetStream
       class ModerationRuleV2Response < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _id
+        #   @return [String]
         attr_accessor :_id
+        # @!attribute created_at
+        #   @return [DateTime]
         attr_accessor :created_at
+        # @!attribute description
+        #   @return [String]
         attr_accessor :description
+        # @!attribute enabled
+        #   @return [Boolean]
         attr_accessor :enabled
+        # @!attribute name
+        #   @return [String]
         attr_accessor :name
+        # @!attribute rule_type
+        #   @return [String]
         attr_accessor :rule_type
+        # @!attribute team
+        #   @return [String]
         attr_accessor :team
+        # @!attribute updated_at
+        #   @return [DateTime]
         attr_accessor :updated_at
+        # @!attribute config_keys
+        #   @return [Array<String>]
         attr_accessor :config_keys
+        # @!attribute action
+        #   @return [RuleBuilderAction]
         attr_accessor :action
+        # @!attribute cooldown_period
+        #   @return [String]
         attr_accessor :cooldown_period
+        # @!attribute logic
+        #   @return [String]
         attr_accessor :logic
+        # @!attribute conditions
+        #   @return [Array<RuleBuilderCondition>]
         attr_accessor :conditions
+        # @!attribute groups
+        #   @return [Array<RuleBuilderConditionGroup>]
         attr_accessor :groups
 
         # Initialize with attributes

@@ -9,12 +9,26 @@ module GetStream
       class RuleBuilderRule < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute rule_type
+        #   @return [String]
         attr_accessor :rule_type
+        # @!attribute action
+        #   @return [RuleBuilderAction]
         attr_accessor :action
+        # @!attribute _id
+        #   @return [String]
         attr_accessor :_id
+        # @!attribute cooldown_period
+        #   @return [String]
         attr_accessor :cooldown_period
+        # @!attribute logic
+        #   @return [String]
         attr_accessor :logic
+        # @!attribute conditions
+        #   @return [Array<RuleBuilderCondition>]
         attr_accessor :conditions
+        # @!attribute groups
+        #   @return [Array<RuleBuilderConditionGroup>]
         attr_accessor :groups
 
         # Initialize with attributes

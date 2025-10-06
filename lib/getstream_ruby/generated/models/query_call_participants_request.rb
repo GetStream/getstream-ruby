@@ -9,6 +9,8 @@ module GetStream
       class QueryCallParticipantsRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute filter_conditions
+        #   @return [Object]
         attr_accessor :filter_conditions
 
         # Initialize with attributes

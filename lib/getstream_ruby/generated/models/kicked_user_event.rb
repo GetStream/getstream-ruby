@@ -9,10 +9,20 @@ module GetStream
       class KickedUserEvent < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute call_cid
+        #   @return [String]
         attr_accessor :call_cid
+        # @!attribute created_at
+        #   @return [DateTime]
         attr_accessor :created_at
+        # @!attribute user
+        #   @return [UserResponse]
         attr_accessor :user
-        attr_accessor :_type  # The type of event: "call.kicked_user" in this case
+        # @!attribute _type
+        #   @return [String] The type of event: "call.kicked_user" in this case
+        attr_accessor :_type
+        # @!attribute kicked_by_user
+        #   @return [UserResponse]
         attr_accessor :kicked_by_user
 
         # Initialize with attributes

@@ -9,13 +9,29 @@ module GetStream
       class CallType < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute app_pk
+        #   @return [Integer]
         attr_accessor :app_pk
+        # @!attribute created_at
+        #   @return [DateTime]
         attr_accessor :created_at
+        # @!attribute external_storage
+        #   @return [String]
         attr_accessor :external_storage
+        # @!attribute name
+        #   @return [String]
         attr_accessor :name
+        # @!attribute pk
+        #   @return [Integer]
         attr_accessor :pk
+        # @!attribute updated_at
+        #   @return [DateTime]
         attr_accessor :updated_at
+        # @!attribute notification_settings
+        #   @return [NotificationSettings]
         attr_accessor :notification_settings
+        # @!attribute settings
+        #   @return [CallSettings]
         attr_accessor :settings
 
         # Initialize with attributes

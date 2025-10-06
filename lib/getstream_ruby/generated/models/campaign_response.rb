@@ -9,27 +9,71 @@ module GetStream
       class CampaignResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _id
+        #   @return [String]
         attr_accessor :_id
+        # @!attribute create_channels
+        #   @return [Boolean]
         attr_accessor :create_channels
+        # @!attribute created_at
+        #   @return [DateTime]
         attr_accessor :created_at
+        # @!attribute description
+        #   @return [String]
         attr_accessor :description
+        # @!attribute name
+        #   @return [String]
         attr_accessor :name
+        # @!attribute sender_id
+        #   @return [String]
         attr_accessor :sender_id
+        # @!attribute sender_mode
+        #   @return [String]
         attr_accessor :sender_mode
+        # @!attribute show_channels
+        #   @return [Boolean]
         attr_accessor :show_channels
+        # @!attribute skip_push
+        #   @return [Boolean]
         attr_accessor :skip_push
+        # @!attribute skip_webhook
+        #   @return [Boolean]
         attr_accessor :skip_webhook
+        # @!attribute status
+        #   @return [String]
         attr_accessor :status
+        # @!attribute updated_at
+        #   @return [DateTime]
         attr_accessor :updated_at
+        # @!attribute segment_ids
+        #   @return [Array<String>]
         attr_accessor :segment_ids
+        # @!attribute segments
+        #   @return [Array<Segment>]
         attr_accessor :segments
+        # @!attribute user_ids
+        #   @return [Array<String>]
         attr_accessor :user_ids
+        # @!attribute users
+        #   @return [Array<UserResponse>]
         attr_accessor :users
+        # @!attribute stats
+        #   @return [CampaignStatsResponse]
         attr_accessor :stats
+        # @!attribute scheduled_for
+        #   @return [DateTime]
         attr_accessor :scheduled_for
+        # @!attribute stop_at
+        #   @return [DateTime]
         attr_accessor :stop_at
+        # @!attribute channel_template
+        #   @return [CampaignChannelTemplate]
         attr_accessor :channel_template
+        # @!attribute message_template
+        #   @return [CampaignMessageTemplate]
         attr_accessor :message_template
+        # @!attribute sender
+        #   @return [UserResponse]
         attr_accessor :sender
 
         # Initialize with attributes

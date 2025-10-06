@@ -9,14 +9,32 @@ module GetStream
       class UserFeedbackResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute cid
+        #   @return [String]
         attr_accessor :cid
+        # @!attribute rating
+        #   @return [Integer]
         attr_accessor :rating
+        # @!attribute reason
+        #   @return [String]
         attr_accessor :reason
+        # @!attribute sdk
+        #   @return [String]
         attr_accessor :sdk
+        # @!attribute sdk_version
+        #   @return [String]
         attr_accessor :sdk_version
+        # @!attribute session_id
+        #   @return [String]
         attr_accessor :session_id
+        # @!attribute user_id
+        #   @return [String]
         attr_accessor :user_id
+        # @!attribute platform
+        #   @return [PlatformDataResponse]
         attr_accessor :platform
+        # @!attribute custom
+        #   @return [Object]
         attr_accessor :custom
 
         # Initialize with attributes

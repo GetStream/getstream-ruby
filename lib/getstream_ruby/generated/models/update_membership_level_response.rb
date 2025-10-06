@@ -9,7 +9,11 @@ module GetStream
       class UpdateMembershipLevelResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
+        # @!attribute membership_level
+        #   @return [MembershipLevelResponse]
         attr_accessor :membership_level
 
         # Initialize with attributes

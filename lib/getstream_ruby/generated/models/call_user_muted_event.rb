@@ -9,12 +9,24 @@ module GetStream
       class CallUserMutedEvent < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute call_cid
+        #   @return [String]
         attr_accessor :call_cid
+        # @!attribute created_at
+        #   @return [DateTime]
         attr_accessor :created_at
+        # @!attribute from_user_id
+        #   @return [String]
         attr_accessor :from_user_id
+        # @!attribute reason
+        #   @return [String]
         attr_accessor :reason
+        # @!attribute muted_user_ids
+        #   @return [Array<String>]
         attr_accessor :muted_user_ids
-        attr_accessor :_type  # The type of event: "call.user_muted" in this case
+        # @!attribute _type
+        #   @return [String] The type of event: "call.user_muted" in this case
+        attr_accessor :_type
 
         # Initialize with attributes
         def initialize(attributes = {})

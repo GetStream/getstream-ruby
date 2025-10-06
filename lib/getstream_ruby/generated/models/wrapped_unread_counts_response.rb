@@ -9,12 +9,26 @@ module GetStream
       class WrappedUnreadCountsResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :duration  # Duration of the request in milliseconds
+        # @!attribute duration
+        #   @return [String] Duration of the request in milliseconds
+        attr_accessor :duration
+        # @!attribute total_unread_count
+        #   @return [Integer]
         attr_accessor :total_unread_count
+        # @!attribute total_unread_threads_count
+        #   @return [Integer]
         attr_accessor :total_unread_threads_count
+        # @!attribute channel_type
+        #   @return [Array<UnreadCountsChannelType>]
         attr_accessor :channel_type
+        # @!attribute channels
+        #   @return [Array<UnreadCountsChannel>]
         attr_accessor :channels
+        # @!attribute threads
+        #   @return [Array<UnreadCountsThread>]
         attr_accessor :threads
+        # @!attribute total_unread_count_by_team
+        #   @return [Hash<String, Integer>]
         attr_accessor :total_unread_count_by_team
 
         # Initialize with attributes

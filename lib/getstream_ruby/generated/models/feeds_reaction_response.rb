@@ -9,13 +9,27 @@ module GetStream
       class FeedsReactionResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :_type  # Type of reaction
-        attr_accessor :activity_id  # ID of the activity that was reacted to
-        attr_accessor :created_at  # When the reaction was created
-        attr_accessor :updated_at  # When the reaction was last updated
+        # @!attribute _type
+        #   @return [String] Type of reaction
+        attr_accessor :_type
+        # @!attribute activity_id
+        #   @return [String] ID of the activity that was reacted to
+        attr_accessor :activity_id
+        # @!attribute created_at
+        #   @return [DateTime] When the reaction was created
+        attr_accessor :created_at
+        # @!attribute updated_at
+        #   @return [DateTime] When the reaction was last updated
+        attr_accessor :updated_at
+        # @!attribute user
+        #   @return [UserResponse]
         attr_accessor :user
-        attr_accessor :comment_id  # ID of the comment that was reacted to
-        attr_accessor :custom  # Custom data for the reaction
+        # @!attribute comment_id
+        #   @return [String] ID of the comment that was reacted to
+        attr_accessor :comment_id
+        # @!attribute custom
+        #   @return [Object] Custom data for the reaction
+        attr_accessor :custom
 
         # Initialize with attributes
         def initialize(attributes = {})

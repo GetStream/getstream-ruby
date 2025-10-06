@@ -9,10 +9,18 @@ module GetStream
       class QueryMembershipLevelsResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
+        # @!attribute membership_levels
+        #   @return [Array<MembershipLevelResponse>]
         attr_accessor :membership_levels
-        attr_accessor :_next  # Cursor for next page
-        attr_accessor :prev  # Cursor for previous page
+        # @!attribute _next
+        #   @return [String] Cursor for next page
+        attr_accessor :_next
+        # @!attribute prev
+        #   @return [String] Cursor for previous page
+        attr_accessor :prev
 
         # Initialize with attributes
         def initialize(attributes = {})

@@ -9,18 +9,44 @@ module GetStream
       class UserMessagesDeletedEvent < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :created_at  # Date/time of creation
+        # @!attribute created_at
+        #   @return [DateTime] Date/time of creation
+        attr_accessor :created_at
+        # @!attribute custom
+        #   @return [Object]
         attr_accessor :custom
+        # @!attribute user
+        #   @return [UserResponseCommonFields]
         attr_accessor :user
-        attr_accessor :_type  # The type of event: "user.messages.deleted" in this case
-        attr_accessor :channel_id  # The ID of the channel where the target user's messages were deleted
+        # @!attribute _type
+        #   @return [String] The type of event: "user.messages.deleted" in this case
+        attr_accessor :_type
+        # @!attribute channel_id
+        #   @return [String] The ID of the channel where the target user's messages were deleted
+        attr_accessor :channel_id
+        # @!attribute channel_member_count
+        #   @return [Integer]
         attr_accessor :channel_member_count
+        # @!attribute channel_message_count
+        #   @return [Integer]
         attr_accessor :channel_message_count
-        attr_accessor :channel_type  # The type of the channel where the target user's messages were deleted
-        attr_accessor :cid  # The CID of the channel where the target user's messages were deleted
-        attr_accessor :hard_delete  # Whether Messages were hard deleted
+        # @!attribute channel_type
+        #   @return [String] The type of the channel where the target user's messages were deleted
+        attr_accessor :channel_type
+        # @!attribute cid
+        #   @return [String] The CID of the channel where the target user's messages were deleted
+        attr_accessor :cid
+        # @!attribute hard_delete
+        #   @return [Boolean] Whether Messages were hard deleted
+        attr_accessor :hard_delete
+        # @!attribute received_at
+        #   @return [DateTime]
         attr_accessor :received_at
-        attr_accessor :team  # The team of the channel where the target user's messages were deleted
+        # @!attribute team
+        #   @return [String] The team of the channel where the target user's messages were deleted
+        attr_accessor :team
+        # @!attribute channel_custom
+        #   @return [Object]
         attr_accessor :channel_custom
 
         # Initialize with attributes

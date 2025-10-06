@@ -9,10 +9,20 @@ module GetStream
       class UserUpdatedEvent < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :created_at  # Date/time of creation
+        # @!attribute created_at
+        #   @return [DateTime] Date/time of creation
+        attr_accessor :created_at
+        # @!attribute custom
+        #   @return [Object]
         attr_accessor :custom
+        # @!attribute user
+        #   @return [UserResponsePrivacyFields]
         attr_accessor :user
-        attr_accessor :_type  # The type of event: "user.updated" in this case
+        # @!attribute _type
+        #   @return [String] The type of event: "user.updated" in this case
+        attr_accessor :_type
+        # @!attribute received_at
+        #   @return [DateTime]
         attr_accessor :received_at
 
         # Initialize with attributes

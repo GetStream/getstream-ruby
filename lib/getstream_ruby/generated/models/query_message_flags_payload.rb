@@ -9,12 +9,26 @@ module GetStream
       class QueryMessageFlagsPayload < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute limit
+        #   @return [Integer]
         attr_accessor :limit
+        # @!attribute offset
+        #   @return [Integer]
         attr_accessor :offset
-        attr_accessor :show_deleted_messages  # Whether to include deleted messages in the results
+        # @!attribute show_deleted_messages
+        #   @return [Boolean] Whether to include deleted messages in the results
+        attr_accessor :show_deleted_messages
+        # @!attribute user_id
+        #   @return [String]
         attr_accessor :user_id
+        # @!attribute sort
+        #   @return [Array<SortParamRequest>]
         attr_accessor :sort
+        # @!attribute filter_conditions
+        #   @return [Object]
         attr_accessor :filter_conditions
+        # @!attribute user
+        #   @return [UserRequest]
         attr_accessor :user
 
         # Initialize with attributes

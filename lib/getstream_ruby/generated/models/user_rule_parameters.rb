@@ -9,6 +9,8 @@ module GetStream
       class UserRuleParameters < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute max_age
+        #   @return [String]
         attr_accessor :max_age
 
         # Initialize with attributes

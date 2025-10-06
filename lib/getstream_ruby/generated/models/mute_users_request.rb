@@ -9,13 +9,29 @@ module GetStream
       class MuteUsersRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute audio
+        #   @return [Boolean]
         attr_accessor :audio
+        # @!attribute mute_all_users
+        #   @return [Boolean]
         attr_accessor :mute_all_users
+        # @!attribute muted_by_id
+        #   @return [String]
         attr_accessor :muted_by_id
+        # @!attribute screenshare
+        #   @return [Boolean]
         attr_accessor :screenshare
+        # @!attribute screenshare_audio
+        #   @return [Boolean]
         attr_accessor :screenshare_audio
+        # @!attribute video
+        #   @return [Boolean]
         attr_accessor :video
+        # @!attribute user_ids
+        #   @return [Array<String>]
         attr_accessor :user_ids
+        # @!attribute muted_by
+        #   @return [UserRequest]
         attr_accessor :muted_by
 
         # Initialize with attributes

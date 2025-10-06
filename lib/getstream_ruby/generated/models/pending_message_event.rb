@@ -9,14 +9,32 @@ module GetStream
       class PendingMessageEvent < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :_method  # The method used for the pending message
-        attr_accessor :created_at  # Date/time of creation
+        # @!attribute _method
+        #   @return [String] The method used for the pending message
+        attr_accessor :_method
+        # @!attribute created_at
+        #   @return [DateTime] Date/time of creation
+        attr_accessor :created_at
+        # @!attribute custom
+        #   @return [Object]
         attr_accessor :custom
-        attr_accessor :_type  # The type of event: "message.pending" in this case
+        # @!attribute _type
+        #   @return [String] The type of event: "message.pending" in this case
+        attr_accessor :_type
+        # @!attribute received_at
+        #   @return [DateTime]
         attr_accessor :received_at
+        # @!attribute channel
+        #   @return [Channel]
         attr_accessor :channel
+        # @!attribute message
+        #   @return [Message]
         attr_accessor :message
+        # @!attribute metadata
+        #   @return [Hash<String, String>]
         attr_accessor :metadata
+        # @!attribute user
+        #   @return [User]
         attr_accessor :user
 
         # Initialize with attributes

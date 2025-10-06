@@ -9,8 +9,14 @@ module GetStream
       class HuaweiConfig < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _id
+        #   @return [String]
         attr_accessor :_id
+        # @!attribute disabled
+        #   @return [Boolean]
         attr_accessor :disabled
+        # @!attribute secret
+        #   @return [String]
         attr_accessor :secret
 
         # Initialize with attributes

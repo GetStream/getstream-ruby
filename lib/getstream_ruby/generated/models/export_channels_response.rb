@@ -9,8 +9,12 @@ module GetStream
       class ExportChannelsResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :duration  # Duration of the request in milliseconds
-        attr_accessor :task_id  # ID of the task to export channels
+        # @!attribute duration
+        #   @return [String] Duration of the request in milliseconds
+        attr_accessor :duration
+        # @!attribute task_id
+        #   @return [String] ID of the task to export channels
+        attr_accessor :task_id
 
         # Initialize with attributes
         def initialize(attributes = {})

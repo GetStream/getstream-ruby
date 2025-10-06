@@ -9,8 +9,14 @@ module GetStream
       class UserReactivatedEvent < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute created_at
+        #   @return [DateTime]
         attr_accessor :created_at
+        # @!attribute _type
+        #   @return [String]
         attr_accessor :_type
+        # @!attribute user
+        #   @return [User]
         attr_accessor :user
 
         # Initialize with attributes

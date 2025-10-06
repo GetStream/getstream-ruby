@@ -9,26 +9,68 @@ module GetStream
       class PollResponseData < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _id
+        #   @return [String]
         attr_accessor :_id
+        # @!attribute allow_answers
+        #   @return [Boolean]
         attr_accessor :allow_answers
+        # @!attribute allow_user_suggested_options
+        #   @return [Boolean]
         attr_accessor :allow_user_suggested_options
+        # @!attribute answers_count
+        #   @return [Integer]
         attr_accessor :answers_count
+        # @!attribute created_at
+        #   @return [DateTime]
         attr_accessor :created_at
+        # @!attribute created_by_id
+        #   @return [String]
         attr_accessor :created_by_id
+        # @!attribute description
+        #   @return [String]
         attr_accessor :description
+        # @!attribute enforce_unique_vote
+        #   @return [Boolean]
         attr_accessor :enforce_unique_vote
+        # @!attribute name
+        #   @return [String]
         attr_accessor :name
+        # @!attribute updated_at
+        #   @return [DateTime]
         attr_accessor :updated_at
+        # @!attribute vote_count
+        #   @return [Integer]
         attr_accessor :vote_count
+        # @!attribute voting_visibility
+        #   @return [String]
         attr_accessor :voting_visibility
+        # @!attribute latest_answers
+        #   @return [Array<PollVoteResponseData>]
         attr_accessor :latest_answers
+        # @!attribute options
+        #   @return [Array<PollOptionResponseData>]
         attr_accessor :options
+        # @!attribute own_votes
+        #   @return [Array<PollVoteResponseData>]
         attr_accessor :own_votes
+        # @!attribute custom
+        #   @return [Object]
         attr_accessor :custom
+        # @!attribute latest_votes_by_option
+        #   @return [Hash<String, Array<PollVoteResponseData>>]
         attr_accessor :latest_votes_by_option
+        # @!attribute vote_counts_by_option
+        #   @return [Hash<String, Integer>]
         attr_accessor :vote_counts_by_option
+        # @!attribute is_closed
+        #   @return [Boolean]
         attr_accessor :is_closed
+        # @!attribute max_votes_allowed
+        #   @return [Integer]
         attr_accessor :max_votes_allowed
+        # @!attribute created_by
+        #   @return [UserResponse]
         attr_accessor :created_by
 
         # Initialize with attributes

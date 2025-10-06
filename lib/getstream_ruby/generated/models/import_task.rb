@@ -9,13 +9,29 @@ module GetStream
       class ImportTask < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _id
+        #   @return [String]
         attr_accessor :_id
+        # @!attribute created_at
+        #   @return [DateTime]
         attr_accessor :created_at
+        # @!attribute mode
+        #   @return [String]
         attr_accessor :mode
+        # @!attribute path
+        #   @return [String]
         attr_accessor :path
+        # @!attribute state
+        #   @return [String]
         attr_accessor :state
+        # @!attribute updated_at
+        #   @return [DateTime]
         attr_accessor :updated_at
+        # @!attribute history
+        #   @return [Array<ImportTaskHistory>]
         attr_accessor :history
+        # @!attribute size
+        #   @return [Integer]
         attr_accessor :size
 
         # Initialize with attributes

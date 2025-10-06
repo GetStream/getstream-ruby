@@ -9,6 +9,8 @@ module GetStream
       class VideoContentParameters < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute harm_labels
+        #   @return [Array<String>]
         attr_accessor :harm_labels
 
         # Initialize with attributes

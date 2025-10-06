@@ -9,11 +9,21 @@ module GetStream
       class Role < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :created_at  # Date/time of creation
-        attr_accessor :custom  # Whether this is a custom role or built-in
-        attr_accessor :name  # Unique role name
-        attr_accessor :updated_at  # Date/time of the last update
-        attr_accessor :scopes  # List of scopes where this role is currently present. `.app` means that role is present in app-level grants
+        # @!attribute created_at
+        #   @return [DateTime] Date/time of creation
+        attr_accessor :created_at
+        # @!attribute custom
+        #   @return [Boolean] Whether this is a custom role or built-in
+        attr_accessor :custom
+        # @!attribute name
+        #   @return [String] Unique role name
+        attr_accessor :name
+        # @!attribute updated_at
+        #   @return [DateTime] Date/time of the last update
+        attr_accessor :updated_at
+        # @!attribute scopes
+        #   @return [Array<String>] List of scopes where this role is currently present. `.app` means that role is present in app-level grants
+        attr_accessor :scopes
 
         # Initialize with attributes
         def initialize(attributes = {})

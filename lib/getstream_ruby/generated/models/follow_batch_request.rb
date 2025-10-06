@@ -9,7 +9,9 @@ module GetStream
       class FollowBatchRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :follows  # List of follow relationships to create
+        # @!attribute follows
+        #   @return [Array<FollowRequest>] List of follow relationships to create
+        attr_accessor :follows
 
         # Initialize with attributes
         def initialize(attributes = {})

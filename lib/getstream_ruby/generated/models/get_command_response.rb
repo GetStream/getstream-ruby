@@ -9,12 +9,26 @@ module GetStream
       class GetCommandResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute args
+        #   @return [String]
         attr_accessor :args
+        # @!attribute description
+        #   @return [String]
         attr_accessor :description
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
+        # @!attribute name
+        #   @return [String]
         attr_accessor :name
+        # @!attribute set
+        #   @return [String]
         attr_accessor :set
+        # @!attribute created_at
+        #   @return [DateTime]
         attr_accessor :created_at
+        # @!attribute updated_at
+        #   @return [DateTime]
         attr_accessor :updated_at
 
         # Initialize with attributes

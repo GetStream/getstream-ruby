@@ -9,10 +9,20 @@ module GetStream
       class QueryCallsRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _next
+        #   @return [String]
         attr_accessor :_next
+        # @!attribute limit
+        #   @return [Integer]
         attr_accessor :limit
+        # @!attribute prev
+        #   @return [String]
         attr_accessor :prev
-        attr_accessor :sort  # Array of sort parameters
+        # @!attribute sort
+        #   @return [Array<SortParamRequest>] Array of sort parameters
+        attr_accessor :sort
+        # @!attribute filter_conditions
+        #   @return [Object]
         attr_accessor :filter_conditions
 
         # Initialize with attributes

@@ -9,8 +9,12 @@ module GetStream
       class LabelThresholds < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :block  # Threshold for automatic message block
-        attr_accessor :flag  # Threshold for automatic message flag
+        # @!attribute block
+        #   @return [Float] Threshold for automatic message block
+        attr_accessor :block
+        # @!attribute flag
+        #   @return [Float] Threshold for automatic message flag
+        attr_accessor :flag
 
         # Initialize with attributes
         def initialize(attributes = {})

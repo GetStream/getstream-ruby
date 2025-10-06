@@ -9,8 +9,14 @@ module GetStream
       class SubscriberVideoMetrics < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute fps_30
+        #   @return [ActiveCallsFPSStats]
         attr_accessor :fps_30
+        # @!attribute jitter_ms
+        #   @return [ActiveCallsLatencyStats]
         attr_accessor :jitter_ms
+        # @!attribute packets_lost_pct
+        #   @return [ActiveCallsLatencyStats]
         attr_accessor :packets_lost_pct
 
         # Initialize with attributes

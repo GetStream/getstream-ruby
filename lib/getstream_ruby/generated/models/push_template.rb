@@ -9,10 +9,20 @@ module GetStream
       class PushTemplate < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute created_at
+        #   @return [DateTime]
         attr_accessor :created_at
+        # @!attribute enable_push
+        #   @return [Boolean]
         attr_accessor :enable_push
+        # @!attribute event_type
+        #   @return [String]
         attr_accessor :event_type
+        # @!attribute updated_at
+        #   @return [DateTime]
         attr_accessor :updated_at
+        # @!attribute template
+        #   @return [String]
         attr_accessor :template
 
         # Initialize with attributes

@@ -9,9 +9,17 @@ module GetStream
       class ExportUserResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :duration  # Duration of the request in milliseconds
-        attr_accessor :messages  # List of exported messages
-        attr_accessor :reactions  # List of exported reactions
+        # @!attribute duration
+        #   @return [String] Duration of the request in milliseconds
+        attr_accessor :duration
+        # @!attribute messages
+        #   @return [Array<MessageResponse>] List of exported messages
+        attr_accessor :messages
+        # @!attribute reactions
+        #   @return [Array<ReactionResponse>] List of exported reactions
+        attr_accessor :reactions
+        # @!attribute user
+        #   @return [UserResponse]
         attr_accessor :user
 
         # Initialize with attributes

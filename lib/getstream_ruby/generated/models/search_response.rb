@@ -9,10 +9,20 @@ module GetStream
       class SearchResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :duration  # Duration of the request in milliseconds
-        attr_accessor :results  # Search results
-        attr_accessor :_next  # Value to pass to the next search query in order to paginate
-        attr_accessor :previous  # Value that points to the previous page. Pass as the next value in a search query to paginate backwards
+        # @!attribute duration
+        #   @return [String] Duration of the request in milliseconds
+        attr_accessor :duration
+        # @!attribute results
+        #   @return [Array<SearchResult>] Search results
+        attr_accessor :results
+        # @!attribute _next
+        #   @return [String] Value to pass to the next search query in order to paginate
+        attr_accessor :_next
+        # @!attribute previous
+        #   @return [String] Value that points to the previous page. Pass as the next value in a search query to paginate backwards
+        attr_accessor :previous
+        # @!attribute results_warning
+        #   @return [SearchWarning]
         attr_accessor :results_warning
 
         # Initialize with attributes

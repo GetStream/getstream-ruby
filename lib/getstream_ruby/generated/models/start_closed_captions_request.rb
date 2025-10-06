@@ -9,9 +9,17 @@ module GetStream
       class StartClosedCaptionsRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :enable_transcription  # Enable transcriptions along with closed captions
-        attr_accessor :external_storage  # Which external storage to use for transcriptions (only applicable if enable_transcription is true)
-        attr_accessor :language  # The spoken language in the call, if not provided the language defined in the transcription settings will be used
+        # @!attribute enable_transcription
+        #   @return [Boolean] Enable transcriptions along with closed captions
+        attr_accessor :enable_transcription
+        # @!attribute external_storage
+        #   @return [String] Which external storage to use for transcriptions (only applicable if enable_transcription is true)
+        attr_accessor :external_storage
+        # @!attribute language
+        #   @return [String] The spoken language in the call, if not provided the language defined in the transcription settings will be used
+        attr_accessor :language
+        # @!attribute speech_segment_config
+        #   @return [SpeechSegmentConfig]
         attr_accessor :speech_segment_config
 
         # Initialize with attributes

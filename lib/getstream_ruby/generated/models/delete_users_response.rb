@@ -9,8 +9,12 @@ module GetStream
       class DeleteUsersResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :duration  # Duration of the request in milliseconds
-        attr_accessor :task_id  # ID of the task to delete users
+        # @!attribute duration
+        #   @return [String] Duration of the request in milliseconds
+        attr_accessor :duration
+        # @!attribute task_id
+        #   @return [String] ID of the task to delete users
+        attr_accessor :task_id
 
         # Initialize with attributes
         def initialize(attributes = {})

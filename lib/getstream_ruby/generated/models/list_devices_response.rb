@@ -9,8 +9,12 @@ module GetStream
       class ListDevicesResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
-        attr_accessor :devices  # List of devices
+        # @!attribute devices
+        #   @return [Array<DeviceResponse>] List of devices
+        attr_accessor :devices
 
         # Initialize with attributes
         def initialize(attributes = {})

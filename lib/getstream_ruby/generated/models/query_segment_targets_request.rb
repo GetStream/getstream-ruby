@@ -9,10 +9,20 @@ module GetStream
       class QuerySegmentTargetsRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :_next  # Next
-        attr_accessor :limit  # Limit
-        attr_accessor :prev  # Prev
+        # @!attribute _next
+        #   @return [String] Next
+        attr_accessor :_next
+        # @!attribute limit
+        #   @return [Integer] Limit
+        attr_accessor :limit
+        # @!attribute prev
+        #   @return [String] Prev
+        attr_accessor :prev
+        # @!attribute sort
+        #   @return [Array<SortParamRequest>]
         attr_accessor :sort
+        # @!attribute filter
+        #   @return [Object]
         attr_accessor :filter
 
         # Initialize with attributes

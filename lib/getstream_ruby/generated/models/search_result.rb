@@ -9,6 +9,8 @@ module GetStream
       class SearchResult < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute message
+        #   @return [SearchResultMessage]
         attr_accessor :message
 
         # Initialize with attributes

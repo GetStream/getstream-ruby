@@ -9,7 +9,11 @@ module GetStream
       class SpeechSegmentConfig < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute max_speech_caption_ms
+        #   @return [Integer]
         attr_accessor :max_speech_caption_ms
+        # @!attribute silence_duration_ms
+        #   @return [Integer]
         attr_accessor :silence_duration_ms
 
         # Initialize with attributes

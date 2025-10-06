@@ -9,8 +9,12 @@ module GetStream
       class PushNotificationConfig < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :enable_push  # Whether push notifications are enabled for this feed group
-        attr_accessor :push_types  # List of notification types that should trigger push notifications (e.g., follow, comment, reaction, comment_reaction, mention)
+        # @!attribute enable_push
+        #   @return [Boolean] Whether push notifications are enabled for this feed group
+        attr_accessor :enable_push
+        # @!attribute push_types
+        #   @return [Array<String>] List of notification types that should trigger push notifications (e.g., follow, comment, reaction, comment_reaction, mention)
+        attr_accessor :push_types
 
         # Initialize with attributes
         def initialize(attributes = {})

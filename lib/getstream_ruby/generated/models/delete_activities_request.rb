@@ -9,9 +9,17 @@ module GetStream
       class DeleteActivitiesRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :ids  # List of activity IDs to delete
-        attr_accessor :hard_delete  # Whether to permanently delete the activities
+        # @!attribute ids
+        #   @return [Array<String>] List of activity IDs to delete
+        attr_accessor :ids
+        # @!attribute hard_delete
+        #   @return [Boolean] Whether to permanently delete the activities
+        attr_accessor :hard_delete
+        # @!attribute user_id
+        #   @return [String]
         attr_accessor :user_id
+        # @!attribute user
+        #   @return [UserRequest]
         attr_accessor :user
 
         # Initialize with attributes

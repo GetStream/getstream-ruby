@@ -9,12 +9,24 @@ module GetStream
       class CallRejectedEvent < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute call_cid
+        #   @return [String]
         attr_accessor :call_cid
+        # @!attribute created_at
+        #   @return [DateTime]
         attr_accessor :created_at
+        # @!attribute call
+        #   @return [CallResponse]
         attr_accessor :call
+        # @!attribute user
+        #   @return [UserResponse]
         attr_accessor :user
-        attr_accessor :_type  # The type of event: "call.rejected" in this case
-        attr_accessor :reason  # Provides information about why the call was rejected. You can provide any value, but the Stream API and SDKs use these default values: rejected, cancel, timeout and busy
+        # @!attribute _type
+        #   @return [String] The type of event: "call.rejected" in this case
+        attr_accessor :_type
+        # @!attribute reason
+        #   @return [String] Provides information about why the call was rejected. You can provide any value, but the Stream API and SDKs use these default values: rejected, cancel, timeout and busy
+        attr_accessor :reason
 
         # Initialize with attributes
         def initialize(attributes = {})

@@ -9,6 +9,8 @@ module GetStream
       class ChannelMemberResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute channel_role
+        #   @return [String]
         attr_accessor :channel_role
 
         # Initialize with attributes

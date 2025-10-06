@@ -9,6 +9,8 @@ module GetStream
       class QualityScoreReportResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute daily
+        #   @return [Array<DailyAggregateQualityScoreReportResponse>]
         attr_accessor :daily
 
         # Initialize with attributes

@@ -9,9 +9,17 @@ module GetStream
       class GetCallResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
+        # @!attribute members
+        #   @return [Array<MemberResponse>]
         attr_accessor :members
+        # @!attribute own_capabilities
+        #   @return [Array<OwnCapability>]
         attr_accessor :own_capabilities
+        # @!attribute call
+        #   @return [CallResponse]
         attr_accessor :call
 
         # Initialize with attributes

@@ -9,6 +9,8 @@ module GetStream
       class DeleteActivityRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute hard_delete
+        #   @return [Boolean]
         attr_accessor :hard_delete
 
         # Initialize with attributes

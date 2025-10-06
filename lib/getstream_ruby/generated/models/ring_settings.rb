@@ -9,8 +9,14 @@ module GetStream
       class RingSettings < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute auto_cancel_timeout_ms
+        #   @return [Integer]
         attr_accessor :auto_cancel_timeout_ms
+        # @!attribute incoming_call_timeout_ms
+        #   @return [Integer]
         attr_accessor :incoming_call_timeout_ms
+        # @!attribute missed_call_timeout_ms
+        #   @return [Integer]
         attr_accessor :missed_call_timeout_ms
 
         # Initialize with attributes

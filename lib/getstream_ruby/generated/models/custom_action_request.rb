@@ -9,7 +9,11 @@ module GetStream
       class CustomActionRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _id
+        #   @return [String]
         attr_accessor :_id
+        # @!attribute options
+        #   @return [Object]
         attr_accessor :options
 
         # Initialize with attributes

@@ -9,23 +9,57 @@ module GetStream
       class ActivityRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :_type  # Type of activity
-        attr_accessor :feeds  # List of feed IDs to add the activity to
-        attr_accessor :_id  # Optional ID for the activity
-        attr_accessor :expires_at  # Expiration time for the activity
-        attr_accessor :parent_id  # ID of parent activity for replies/comments
-        attr_accessor :poll_id  # ID of a poll to attach to activity
-        attr_accessor :text  # Text content of the activity
-        attr_accessor :user_id  # ID of the user creating the activity
-        attr_accessor :visibility  # Visibility setting for the activity
-        attr_accessor :visibility_tag  # If visibility is 'tag', this is the tag name and is required
-        attr_accessor :attachments  # List of attachments for the activity
-        attr_accessor :filter_tags  # Tags for filtering activities
-        attr_accessor :interest_tags  # Tags for indicating user interests
-        attr_accessor :mentioned_user_ids  # List of users mentioned in the activity
-        attr_accessor :custom  # Custom data for the activity
+        # @!attribute _type
+        #   @return [String] Type of activity
+        attr_accessor :_type
+        # @!attribute feeds
+        #   @return [Array<String>] List of feed IDs to add the activity to
+        attr_accessor :feeds
+        # @!attribute _id
+        #   @return [String] Optional ID for the activity
+        attr_accessor :_id
+        # @!attribute expires_at
+        #   @return [String] Expiration time for the activity
+        attr_accessor :expires_at
+        # @!attribute parent_id
+        #   @return [String] ID of parent activity for replies/comments
+        attr_accessor :parent_id
+        # @!attribute poll_id
+        #   @return [String] ID of a poll to attach to activity
+        attr_accessor :poll_id
+        # @!attribute text
+        #   @return [String] Text content of the activity
+        attr_accessor :text
+        # @!attribute user_id
+        #   @return [String] ID of the user creating the activity
+        attr_accessor :user_id
+        # @!attribute visibility
+        #   @return [String] Visibility setting for the activity
+        attr_accessor :visibility
+        # @!attribute visibility_tag
+        #   @return [String] If visibility is 'tag', this is the tag name and is required
+        attr_accessor :visibility_tag
+        # @!attribute attachments
+        #   @return [Array<Attachment>] List of attachments for the activity
+        attr_accessor :attachments
+        # @!attribute filter_tags
+        #   @return [Array<String>] Tags for filtering activities
+        attr_accessor :filter_tags
+        # @!attribute interest_tags
+        #   @return [Array<String>] Tags for indicating user interests
+        attr_accessor :interest_tags
+        # @!attribute mentioned_user_ids
+        #   @return [Array<String>] List of users mentioned in the activity
+        attr_accessor :mentioned_user_ids
+        # @!attribute custom
+        #   @return [Object] Custom data for the activity
+        attr_accessor :custom
+        # @!attribute location
+        #   @return [ActivityLocation]
         attr_accessor :location
-        attr_accessor :search_data  # Additional data for search indexing
+        # @!attribute search_data
+        #   @return [Object] Additional data for search indexing
+        attr_accessor :search_data
 
         # Initialize with attributes
         def initialize(attributes = {})

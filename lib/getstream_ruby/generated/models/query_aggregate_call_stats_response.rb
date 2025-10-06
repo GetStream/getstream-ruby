@@ -9,13 +9,29 @@ module GetStream
       class QueryAggregateCallStatsResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :duration  # Duration of the request in milliseconds
+        # @!attribute duration
+        #   @return [String] Duration of the request in milliseconds
+        attr_accessor :duration
+        # @!attribute call_duration_report
+        #   @return [CallDurationReportResponse]
         attr_accessor :call_duration_report
+        # @!attribute call_participant_count_report
+        #   @return [CallParticipantCountReportResponse]
         attr_accessor :call_participant_count_report
+        # @!attribute calls_per_day_report
+        #   @return [CallsPerDayReportResponse]
         attr_accessor :calls_per_day_report
+        # @!attribute network_metrics_report
+        #   @return [NetworkMetricsReportResponse]
         attr_accessor :network_metrics_report
+        # @!attribute quality_score_report
+        #   @return [QualityScoreReportResponse]
         attr_accessor :quality_score_report
+        # @!attribute sdk_usage_report
+        #   @return [SDKUsageReportResponse]
         attr_accessor :sdk_usage_report
+        # @!attribute user_feedback_report
+        #   @return [UserFeedbackReportResponse]
         attr_accessor :user_feedback_report
 
         # Initialize with attributes

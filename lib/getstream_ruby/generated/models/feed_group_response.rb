@@ -9,17 +9,41 @@ module GetStream
       class FeedGroupResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :_id  # Identifier within the group
-        attr_accessor :created_at  # When the feed group was created
-        attr_accessor :updated_at  # When the feed group was last updated
-        attr_accessor :default_visibility  # Default visibility for activities
-        attr_accessor :activity_processors  # Configuration for activity processors
-        attr_accessor :activity_selectors  # Configuration for activity selectors
+        # @!attribute _id
+        #   @return [String] Identifier within the group
+        attr_accessor :_id
+        # @!attribute created_at
+        #   @return [DateTime] When the feed group was created
+        attr_accessor :created_at
+        # @!attribute updated_at
+        #   @return [DateTime] When the feed group was last updated
+        attr_accessor :updated_at
+        # @!attribute default_visibility
+        #   @return [String] Default visibility for activities
+        attr_accessor :default_visibility
+        # @!attribute activity_processors
+        #   @return [Array<ActivityProcessorConfig>] Configuration for activity processors
+        attr_accessor :activity_processors
+        # @!attribute activity_selectors
+        #   @return [Array<ActivitySelectorConfig>] Configuration for activity selectors
+        attr_accessor :activity_selectors
+        # @!attribute aggregation
+        #   @return [AggregationConfig]
         attr_accessor :aggregation
-        attr_accessor :custom  # Custom data for the feed group
+        # @!attribute custom
+        #   @return [Object] Custom data for the feed group
+        attr_accessor :custom
+        # @!attribute notification
+        #   @return [NotificationConfig]
         attr_accessor :notification
+        # @!attribute push_notification
+        #   @return [PushNotificationConfig]
         attr_accessor :push_notification
+        # @!attribute ranking
+        #   @return [RankingConfig]
         attr_accessor :ranking
+        # @!attribute stories
+        #   @return [StoriesConfig]
         attr_accessor :stories
 
         # Initialize with attributes

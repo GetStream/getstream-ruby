@@ -9,8 +9,12 @@ module GetStream
       class DeleteChannelsRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :cids  # All channels that should be deleted
-        attr_accessor :hard_delete  # Specify if channels and all ressources should be hard deleted
+        # @!attribute cids
+        #   @return [Array<String>] All channels that should be deleted
+        attr_accessor :cids
+        # @!attribute hard_delete
+        #   @return [Boolean] Specify if channels and all ressources should be hard deleted
+        attr_accessor :hard_delete
 
         # Initialize with attributes
         def initialize(attributes = {})

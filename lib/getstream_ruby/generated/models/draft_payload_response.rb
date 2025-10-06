@@ -9,18 +9,44 @@ module GetStream
       class DraftPayloadResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _id
+        #   @return [String]
         attr_accessor :_id
+        # @!attribute text
+        #   @return [String]
         attr_accessor :text
+        # @!attribute custom
+        #   @return [Object]
         attr_accessor :custom
+        # @!attribute _type
+        #   @return [String]
         attr_accessor :_type
+        # @!attribute html
+        #   @return [String]
         attr_accessor :html
+        # @!attribute mml
+        #   @return [String]
         attr_accessor :mml
+        # @!attribute parent_id
+        #   @return [String]
         attr_accessor :parent_id
+        # @!attribute poll_id
+        #   @return [String]
         attr_accessor :poll_id
+        # @!attribute quoted_message_id
+        #   @return [String]
         attr_accessor :quoted_message_id
+        # @!attribute show_in_channel
+        #   @return [Boolean]
         attr_accessor :show_in_channel
+        # @!attribute silent
+        #   @return [Boolean]
         attr_accessor :silent
+        # @!attribute attachments
+        #   @return [Array<Attachment>]
         attr_accessor :attachments
+        # @!attribute mentioned_users
+        #   @return [Array<UserResponse>]
         attr_accessor :mentioned_users
 
         # Initialize with attributes

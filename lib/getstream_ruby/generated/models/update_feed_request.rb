@@ -9,8 +9,12 @@ module GetStream
       class UpdateFeedRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :created_by_id  # ID of the new feed creator (owner)
-        attr_accessor :custom  # Custom data for the feed
+        # @!attribute created_by_id
+        #   @return [String] ID of the new feed creator (owner)
+        attr_accessor :created_by_id
+        # @!attribute custom
+        #   @return [Object] Custom data for the feed
+        attr_accessor :custom
 
         # Initialize with attributes
         def initialize(attributes = {})

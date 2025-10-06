@@ -9,17 +9,41 @@ module GetStream
       class UpdateActivityRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :expires_at  # Time when the activity will expire
-        attr_accessor :poll_id  # Poll ID
-        attr_accessor :text  # The text content of the activity
+        # @!attribute expires_at
+        #   @return [DateTime] Time when the activity will expire
+        attr_accessor :expires_at
+        # @!attribute poll_id
+        #   @return [String] Poll ID
+        attr_accessor :poll_id
+        # @!attribute text
+        #   @return [String] The text content of the activity
+        attr_accessor :text
+        # @!attribute user_id
+        #   @return [String]
         attr_accessor :user_id
-        attr_accessor :visibility  # Visibility setting for the activity
-        attr_accessor :attachments  # List of attachments for the activity
-        attr_accessor :feeds  # List of feeds the activity is present in
-        attr_accessor :filter_tags  # Tags used for filtering the activity
-        attr_accessor :interest_tags  # Tags indicating interest categories
-        attr_accessor :custom  # Custom data for the activity
+        # @!attribute visibility
+        #   @return [String] Visibility setting for the activity
+        attr_accessor :visibility
+        # @!attribute attachments
+        #   @return [Array<Attachment>] List of attachments for the activity
+        attr_accessor :attachments
+        # @!attribute feeds
+        #   @return [Array<String>] List of feeds the activity is present in
+        attr_accessor :feeds
+        # @!attribute filter_tags
+        #   @return [Array<String>] Tags used for filtering the activity
+        attr_accessor :filter_tags
+        # @!attribute interest_tags
+        #   @return [Array<String>] Tags indicating interest categories
+        attr_accessor :interest_tags
+        # @!attribute custom
+        #   @return [Object] Custom data for the activity
+        attr_accessor :custom
+        # @!attribute location
+        #   @return [ActivityLocation]
         attr_accessor :location
+        # @!attribute user
+        #   @return [UserRequest]
         attr_accessor :user
 
         # Initialize with attributes

@@ -9,7 +9,11 @@ module GetStream
       class PollVoteResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :duration  # Duration of the request in milliseconds
+        # @!attribute duration
+        #   @return [String] Duration of the request in milliseconds
+        attr_accessor :duration
+        # @!attribute vote
+        #   @return [PollVoteResponseData]
         attr_accessor :vote
 
         # Initialize with attributes

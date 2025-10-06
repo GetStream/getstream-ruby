@@ -9,9 +9,17 @@ module GetStream
       class MuteChannelRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :expiration  # Duration of mute in milliseconds
+        # @!attribute expiration
+        #   @return [Integer] Duration of mute in milliseconds
+        attr_accessor :expiration
+        # @!attribute user_id
+        #   @return [String]
         attr_accessor :user_id
-        attr_accessor :channel_cids  # Channel CIDs to mute (if multiple channels)
+        # @!attribute channel_cids
+        #   @return [Array<String>] Channel CIDs to mute (if multiple channels)
+        attr_accessor :channel_cids
+        # @!attribute user
+        #   @return [UserRequest]
         attr_accessor :user
 
         # Initialize with attributes

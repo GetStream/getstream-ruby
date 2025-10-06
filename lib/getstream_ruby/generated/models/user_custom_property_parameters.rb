@@ -9,7 +9,11 @@ module GetStream
       class UserCustomPropertyParameters < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute operator
+        #   @return [String]
         attr_accessor :operator
+        # @!attribute property_key
+        #   @return [String]
         attr_accessor :property_key
 
         # Initialize with attributes

@@ -9,7 +9,11 @@ module GetStream
       class ListRecordingsResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
+        # @!attribute recordings
+        #   @return [Array<CallRecording>]
         attr_accessor :recordings
 
         # Initialize with attributes

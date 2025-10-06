@@ -9,6 +9,8 @@ module GetStream
       class ChatActivityStatsResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute messages
+        #   @return [MessageStatsResponse]
         attr_accessor :messages
 
         # Initialize with attributes

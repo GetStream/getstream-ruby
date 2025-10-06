@@ -9,14 +9,32 @@ module GetStream
       class ReminderResponseData < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute channel_cid
+        #   @return [String]
         attr_accessor :channel_cid
+        # @!attribute created_at
+        #   @return [DateTime]
         attr_accessor :created_at
+        # @!attribute message_id
+        #   @return [String]
         attr_accessor :message_id
+        # @!attribute updated_at
+        #   @return [DateTime]
         attr_accessor :updated_at
+        # @!attribute user_id
+        #   @return [String]
         attr_accessor :user_id
+        # @!attribute remind_at
+        #   @return [DateTime]
         attr_accessor :remind_at
+        # @!attribute channel
+        #   @return [ChannelResponse]
         attr_accessor :channel
+        # @!attribute message
+        #   @return [Message]
         attr_accessor :message
+        # @!attribute user
+        #   @return [User]
         attr_accessor :user
 
         # Initialize with attributes

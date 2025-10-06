@@ -9,12 +9,26 @@ module GetStream
       class UpdateFeedGroupRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :activity_processors  # Configuration for activity processors (max 10)
-        attr_accessor :activity_selectors  # Configuration for activity selectors (max 10)
+        # @!attribute activity_processors
+        #   @return [Array<ActivityProcessorConfig>] Configuration for activity processors (max 10)
+        attr_accessor :activity_processors
+        # @!attribute activity_selectors
+        #   @return [Array<ActivitySelectorConfig>] Configuration for activity selectors (max 10)
+        attr_accessor :activity_selectors
+        # @!attribute aggregation
+        #   @return [AggregationConfig]
         attr_accessor :aggregation
-        attr_accessor :custom  # Custom data for the feed group
+        # @!attribute custom
+        #   @return [Object] Custom data for the feed group
+        attr_accessor :custom
+        # @!attribute notification
+        #   @return [NotificationConfig]
         attr_accessor :notification
+        # @!attribute push_notification
+        #   @return [PushNotificationConfig]
         attr_accessor :push_notification
+        # @!attribute ranking
+        #   @return [RankingConfig]
         attr_accessor :ranking
 
         # Initialize with attributes

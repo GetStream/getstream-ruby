@@ -9,12 +9,26 @@ module GetStream
       class QueryRemindersRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _next
+        #   @return [String]
         attr_accessor :_next
+        # @!attribute limit
+        #   @return [Integer]
         attr_accessor :limit
+        # @!attribute prev
+        #   @return [String]
         attr_accessor :prev
+        # @!attribute user_id
+        #   @return [String]
         attr_accessor :user_id
-        attr_accessor :sort  # Array of sort parameters
-        attr_accessor :filter  # Filter to apply to the query
+        # @!attribute sort
+        #   @return [Array<SortParamRequest>] Array of sort parameters
+        attr_accessor :sort
+        # @!attribute filter
+        #   @return [Object] Filter to apply to the query
+        attr_accessor :filter
+        # @!attribute user
+        #   @return [UserRequest]
         attr_accessor :user
 
         # Initialize with attributes

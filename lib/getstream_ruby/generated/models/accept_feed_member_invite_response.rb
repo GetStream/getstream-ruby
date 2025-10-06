@@ -9,7 +9,11 @@ module GetStream
       class AcceptFeedMemberInviteResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
+        # @!attribute member
+        #   @return [FeedMemberResponse]
         attr_accessor :member
 
         # Initialize with attributes

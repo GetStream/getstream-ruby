@@ -9,8 +9,14 @@ module GetStream
       class UpdateCallRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :starts_at  # the time the call is scheduled to start
-        attr_accessor :custom  # Custom data for this object
+        # @!attribute starts_at
+        #   @return [DateTime] the time the call is scheduled to start
+        attr_accessor :starts_at
+        # @!attribute custom
+        #   @return [Object] Custom data for this object
+        attr_accessor :custom
+        # @!attribute settings_override
+        #   @return [CallSettingsRequest]
         attr_accessor :settings_override
 
         # Initialize with attributes

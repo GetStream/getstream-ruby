@@ -9,8 +9,14 @@ module GetStream
       class CastPollVoteRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute user_id
+        #   @return [String]
         attr_accessor :user_id
+        # @!attribute user
+        #   @return [UserRequest]
         attr_accessor :user
+        # @!attribute vote
+        #   @return [VoteData]
         attr_accessor :vote
 
         # Initialize with attributes

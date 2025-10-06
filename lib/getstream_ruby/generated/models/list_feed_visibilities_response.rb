@@ -9,8 +9,12 @@ module GetStream
       class ListFeedVisibilitiesResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
-        attr_accessor :feed_visibilities  # Map of feed visibility configurations by name
+        # @!attribute feed_visibilities
+        #   @return [Hash<String, FeedVisibilityResponse>] Map of feed visibility configurations by name
+        attr_accessor :feed_visibilities
 
         # Initialize with attributes
         def initialize(attributes = {})

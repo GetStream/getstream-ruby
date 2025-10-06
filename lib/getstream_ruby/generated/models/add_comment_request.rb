@@ -9,16 +9,38 @@ module GetStream
       class AddCommentRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :comment  # Text content of the comment
-        attr_accessor :object_id  # ID of the object to comment on
-        attr_accessor :object_type  # Type of the object to comment on
-        attr_accessor :create_notification_activity  # Whether to create a notification activity for this comment
-        attr_accessor :parent_id  # ID of parent comment for replies
+        # @!attribute comment
+        #   @return [String] Text content of the comment
+        attr_accessor :comment
+        # @!attribute object_id
+        #   @return [String] ID of the object to comment on
+        attr_accessor :object_id
+        # @!attribute object_type
+        #   @return [String] Type of the object to comment on
+        attr_accessor :object_type
+        # @!attribute create_notification_activity
+        #   @return [Boolean] Whether to create a notification activity for this comment
+        attr_accessor :create_notification_activity
+        # @!attribute parent_id
+        #   @return [String] ID of parent comment for replies
+        attr_accessor :parent_id
+        # @!attribute skip_push
+        #   @return [Boolean]
         attr_accessor :skip_push
+        # @!attribute user_id
+        #   @return [String]
         attr_accessor :user_id
-        attr_accessor :attachments  # Media attachments for the reply
-        attr_accessor :mentioned_user_ids  # List of users mentioned in the reply
-        attr_accessor :custom  # Custom data for the comment
+        # @!attribute attachments
+        #   @return [Array<Attachment>] Media attachments for the reply
+        attr_accessor :attachments
+        # @!attribute mentioned_user_ids
+        #   @return [Array<String>] List of users mentioned in the reply
+        attr_accessor :mentioned_user_ids
+        # @!attribute custom
+        #   @return [Object] Custom data for the comment
+        attr_accessor :custom
+        # @!attribute user
+        #   @return [UserRequest]
         attr_accessor :user
 
         # Initialize with attributes

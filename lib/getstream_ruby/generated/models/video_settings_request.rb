@@ -9,10 +9,20 @@ module GetStream
       class VideoSettingsRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute access_request_enabled
+        #   @return [Boolean]
         attr_accessor :access_request_enabled
+        # @!attribute camera_default_on
+        #   @return [Boolean]
         attr_accessor :camera_default_on
+        # @!attribute camera_facing
+        #   @return [String]
         attr_accessor :camera_facing
+        # @!attribute enabled
+        #   @return [Boolean]
         attr_accessor :enabled
+        # @!attribute target_resolution
+        #   @return [TargetResolution]
         attr_accessor :target_resolution
 
         # Initialize with attributes

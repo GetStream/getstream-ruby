@@ -9,6 +9,8 @@ module GetStream
       class SendUserCustomEventRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute event
+        #   @return [UserCustomEventRequest]
         attr_accessor :event
 
         # Initialize with attributes

@@ -9,10 +9,18 @@ module GetStream
       class ImageUploadResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :duration  # Duration of the request in milliseconds
+        # @!attribute duration
+        #   @return [String] Duration of the request in milliseconds
+        attr_accessor :duration
+        # @!attribute file
+        #   @return [String]
         attr_accessor :file
+        # @!attribute thumb_url
+        #   @return [String]
         attr_accessor :thumb_url
-        attr_accessor :upload_sizes  # Array of image size configurations
+        # @!attribute upload_sizes
+        #   @return [Array<ImageSize>] Array of image size configurations
+        attr_accessor :upload_sizes
 
         # Initialize with attributes
         def initialize(attributes = {})

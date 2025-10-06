@@ -9,11 +9,23 @@ module GetStream
       class BookmarkFolderDeletedEvent < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :created_at  # Date/time of creation
+        # @!attribute created_at
+        #   @return [DateTime] Date/time of creation
+        attr_accessor :created_at
+        # @!attribute bookmark_folder
+        #   @return [BookmarkFolderResponse]
         attr_accessor :bookmark_folder
+        # @!attribute custom
+        #   @return [Object]
         attr_accessor :custom
-        attr_accessor :_type  # The type of event: "feeds.bookmark_folder.deleted" in this case
+        # @!attribute _type
+        #   @return [String] The type of event: "feeds.bookmark_folder.deleted" in this case
+        attr_accessor :_type
+        # @!attribute received_at
+        #   @return [DateTime]
         attr_accessor :received_at
+        # @!attribute user
+        #   @return [UserResponseCommonFields]
         attr_accessor :user
 
         # Initialize with attributes

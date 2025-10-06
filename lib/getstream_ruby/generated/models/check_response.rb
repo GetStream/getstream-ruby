@@ -9,10 +9,20 @@ module GetStream
       class CheckResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
-        attr_accessor :recommended_action  # Suggested action based on moderation results
-        attr_accessor :status  # Status of the moderation check (completed or pending)
-        attr_accessor :task_id  # ID of the running moderation task
+        # @!attribute recommended_action
+        #   @return [String] Suggested action based on moderation results
+        attr_accessor :recommended_action
+        # @!attribute status
+        #   @return [String] Status of the moderation check (completed or pending)
+        attr_accessor :status
+        # @!attribute task_id
+        #   @return [String] ID of the running moderation task
+        attr_accessor :task_id
+        # @!attribute item
+        #   @return [ReviewQueueItemResponse]
         attr_accessor :item
 
         # Initialize with attributes

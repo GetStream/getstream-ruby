@@ -9,22 +9,56 @@ module GetStream
       class ChannelStateResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
+        # @!attribute members
+        #   @return [Array<ChannelMember>]
         attr_accessor :members
+        # @!attribute messages
+        #   @return [Array<MessageResponse>]
         attr_accessor :messages
+        # @!attribute pinned_messages
+        #   @return [Array<MessageResponse>]
         attr_accessor :pinned_messages
+        # @!attribute threads
+        #   @return [Array<ThreadStateResponse>]
         attr_accessor :threads
+        # @!attribute hidden
+        #   @return [Boolean]
         attr_accessor :hidden
+        # @!attribute hide_messages_before
+        #   @return [DateTime]
         attr_accessor :hide_messages_before
+        # @!attribute watcher_count
+        #   @return [Integer]
         attr_accessor :watcher_count
+        # @!attribute active_live_locations
+        #   @return [Array<SharedLocationResponseData>]
         attr_accessor :active_live_locations
+        # @!attribute deleted_messages
+        #   @return [Array<String>]
         attr_accessor :deleted_messages
+        # @!attribute pending_messages
+        #   @return [Array<PendingMessageResponse>]
         attr_accessor :pending_messages
+        # @!attribute read
+        #   @return [Array<ReadStateResponse>]
         attr_accessor :read
+        # @!attribute watchers
+        #   @return [Array<UserResponse>]
         attr_accessor :watchers
+        # @!attribute channel
+        #   @return [ChannelResponse]
         attr_accessor :channel
+        # @!attribute draft
+        #   @return [DraftResponse]
         attr_accessor :draft
+        # @!attribute membership
+        #   @return [ChannelMember]
         attr_accessor :membership
+        # @!attribute push_preferences
+        #   @return [ChannelPushPreferences]
         attr_accessor :push_preferences
 
         # Initialize with attributes

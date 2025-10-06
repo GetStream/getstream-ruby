@@ -9,11 +9,23 @@ module GetStream
       class BookmarkUpdatedEvent < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :created_at  # Date/time of creation
+        # @!attribute created_at
+        #   @return [DateTime] Date/time of creation
+        attr_accessor :created_at
+        # @!attribute bookmark
+        #   @return [BookmarkResponse]
         attr_accessor :bookmark
+        # @!attribute custom
+        #   @return [Object]
         attr_accessor :custom
-        attr_accessor :_type  # The type of event: "feeds.bookmark.updated" in this case
+        # @!attribute _type
+        #   @return [String] The type of event: "feeds.bookmark.updated" in this case
+        attr_accessor :_type
+        # @!attribute received_at
+        #   @return [DateTime]
         attr_accessor :received_at
+        # @!attribute user
+        #   @return [UserResponseCommonFields]
         attr_accessor :user
 
         # Initialize with attributes

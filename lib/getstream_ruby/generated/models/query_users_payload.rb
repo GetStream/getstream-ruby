@@ -9,13 +9,29 @@ module GetStream
       class QueryUsersPayload < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute filter_conditions
+        #   @return [Object]
         attr_accessor :filter_conditions
+        # @!attribute include_deactivated_users
+        #   @return [Boolean]
         attr_accessor :include_deactivated_users
+        # @!attribute limit
+        #   @return [Integer]
         attr_accessor :limit
+        # @!attribute offset
+        #   @return [Integer]
         attr_accessor :offset
+        # @!attribute presence
+        #   @return [Boolean]
         attr_accessor :presence
+        # @!attribute user_id
+        #   @return [String]
         attr_accessor :user_id
+        # @!attribute sort
+        #   @return [Array<SortParamRequest>]
         attr_accessor :sort
+        # @!attribute user
+        #   @return [UserRequest]
         attr_accessor :user
 
         # Initialize with attributes

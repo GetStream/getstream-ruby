@@ -9,8 +9,12 @@ module GetStream
       class MembersResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :duration  # Duration of the request in milliseconds
-        attr_accessor :members  # List of found members
+        # @!attribute duration
+        #   @return [String] Duration of the request in milliseconds
+        attr_accessor :duration
+        # @!attribute members
+        #   @return [Array<ChannelMember>] List of found members
+        attr_accessor :members
 
         # Initialize with attributes
         def initialize(attributes = {})

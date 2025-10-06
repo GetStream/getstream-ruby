@@ -9,17 +9,41 @@ module GetStream
       class EnrichedActivity < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _id
+        #   @return [String]
         attr_accessor :_id
+        # @!attribute foreign_id
+        #   @return [String]
         attr_accessor :foreign_id
+        # @!attribute score
+        #   @return [Float]
         attr_accessor :score
+        # @!attribute verb
+        #   @return [String]
         attr_accessor :verb
+        # @!attribute to
+        #   @return [Array<String>]
         attr_accessor :to
+        # @!attribute actor
+        #   @return [Data]
         attr_accessor :actor
+        # @!attribute latest_reactions
+        #   @return [Hash<String, Array<EnrichedReaction>>]
         attr_accessor :latest_reactions
+        # @!attribute object
+        #   @return [Data]
         attr_accessor :object
+        # @!attribute origin
+        #   @return [Data]
         attr_accessor :origin
+        # @!attribute own_reactions
+        #   @return [Hash<String, Array<EnrichedReaction>>]
         attr_accessor :own_reactions
+        # @!attribute reaction_counts
+        #   @return [Hash<String, Integer>]
         attr_accessor :reaction_counts
+        # @!attribute target
+        #   @return [Data]
         attr_accessor :target
 
         # Initialize with attributes

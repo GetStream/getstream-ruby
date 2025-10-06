@@ -9,16 +9,36 @@ module GetStream
       class Permission < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :_id  # Unique permission ID
-        attr_accessor :action  # Action name this permission is for (e.g. SendMessage)
-        attr_accessor :custom  # Whether this is a custom permission or built-in
-        attr_accessor :description  # Description of the permission
-        attr_accessor :level  # Level at which permission could be applied (app or channel)
-        attr_accessor :name  # Name of the permission
-        attr_accessor :owner  # Whether this permission applies to resource owner or not
-        attr_accessor :same_team  # Whether this permission applies to teammates (multi-tenancy mode only)
-        attr_accessor :tags  # List of tags of the permission
-        attr_accessor :condition  # MongoDB style condition which decides whether or not the permission is granted
+        # @!attribute _id
+        #   @return [String] Unique permission ID
+        attr_accessor :_id
+        # @!attribute action
+        #   @return [String] Action name this permission is for (e.g. SendMessage)
+        attr_accessor :action
+        # @!attribute custom
+        #   @return [Boolean] Whether this is a custom permission or built-in
+        attr_accessor :custom
+        # @!attribute description
+        #   @return [String] Description of the permission
+        attr_accessor :description
+        # @!attribute level
+        #   @return [String] Level at which permission could be applied (app or channel)
+        attr_accessor :level
+        # @!attribute name
+        #   @return [String] Name of the permission
+        attr_accessor :name
+        # @!attribute owner
+        #   @return [Boolean] Whether this permission applies to resource owner or not
+        attr_accessor :owner
+        # @!attribute same_team
+        #   @return [Boolean] Whether this permission applies to teammates (multi-tenancy mode only)
+        attr_accessor :same_team
+        # @!attribute tags
+        #   @return [Array<String>] List of tags of the permission
+        attr_accessor :tags
+        # @!attribute condition
+        #   @return [Object] MongoDB style condition which decides whether or not the permission is granted
+        attr_accessor :condition
 
         # Initialize with attributes
         def initialize(attributes = {})

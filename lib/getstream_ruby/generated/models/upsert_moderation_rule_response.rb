@@ -9,7 +9,11 @@ module GetStream
       class UpsertModerationRuleResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :duration  # Duration of the request in milliseconds
+        # @!attribute duration
+        #   @return [String] Duration of the request in milliseconds
+        attr_accessor :duration
+        # @!attribute rule
+        #   @return [ModerationRuleV2Response]
         attr_accessor :rule
 
         # Initialize with attributes

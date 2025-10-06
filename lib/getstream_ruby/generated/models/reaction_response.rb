@@ -9,13 +9,29 @@ module GetStream
       class ReactionResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :_type  # Type of reaction
-        attr_accessor :created_at  # Date/time of creation
-        attr_accessor :message_id  # Message ID
-        attr_accessor :score  # Score of the reaction
-        attr_accessor :updated_at  # Date/time of the last update
-        attr_accessor :user_id  # User ID
-        attr_accessor :custom  # Custom data for this object
+        # @!attribute _type
+        #   @return [String] Type of reaction
+        attr_accessor :_type
+        # @!attribute created_at
+        #   @return [DateTime] Date/time of creation
+        attr_accessor :created_at
+        # @!attribute message_id
+        #   @return [String] Message ID
+        attr_accessor :message_id
+        # @!attribute score
+        #   @return [Integer] Score of the reaction
+        attr_accessor :score
+        # @!attribute updated_at
+        #   @return [DateTime] Date/time of the last update
+        attr_accessor :updated_at
+        # @!attribute user_id
+        #   @return [String] User ID
+        attr_accessor :user_id
+        # @!attribute custom
+        #   @return [Object] Custom data for this object
+        attr_accessor :custom
+        # @!attribute user
+        #   @return [UserResponse]
         attr_accessor :user
 
         # Initialize with attributes

@@ -9,11 +9,23 @@ module GetStream
       class QueryCallParticipantsResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
+        # @!attribute total_participants
+        #   @return [Integer]
         attr_accessor :total_participants
+        # @!attribute members
+        #   @return [Array<MemberResponse>]
         attr_accessor :members
+        # @!attribute own_capabilities
+        #   @return [Array<OwnCapability>]
         attr_accessor :own_capabilities
-        attr_accessor :participants  # List of call participants
+        # @!attribute participants
+        #   @return [Array<CallParticipantResponse>] List of call participants
+        attr_accessor :participants
+        # @!attribute call
+        #   @return [CallResponse]
         attr_accessor :call
 
         # Initialize with attributes

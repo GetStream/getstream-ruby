@@ -9,12 +9,26 @@ module GetStream
       class CampaignStatsResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute progress
+        #   @return [Float]
         attr_accessor :progress
+        # @!attribute stats_channels_created
+        #   @return [Integer]
         attr_accessor :stats_channels_created
+        # @!attribute stats_completed_at
+        #   @return [DateTime]
         attr_accessor :stats_completed_at
+        # @!attribute stats_messages_sent
+        #   @return [Integer]
         attr_accessor :stats_messages_sent
+        # @!attribute stats_started_at
+        #   @return [DateTime]
         attr_accessor :stats_started_at
+        # @!attribute stats_users_read
+        #   @return [Integer]
         attr_accessor :stats_users_read
+        # @!attribute stats_users_sent
+        #   @return [Integer]
         attr_accessor :stats_users_sent
 
         # Initialize with attributes

@@ -9,27 +9,71 @@ module GetStream
       class Attachment < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute custom
+        #   @return [Object]
         attr_accessor :custom
-        attr_accessor :_type  # Attachment type (e.g. image, video, url)
+        # @!attribute _type
+        #   @return [String] Attachment type (e.g. image, video, url)
+        attr_accessor :_type
+        # @!attribute asset_url
+        #   @return [String]
         attr_accessor :asset_url
+        # @!attribute author_icon
+        #   @return [String]
         attr_accessor :author_icon
+        # @!attribute author_link
+        #   @return [String]
         attr_accessor :author_link
+        # @!attribute author_name
+        #   @return [String]
         attr_accessor :author_name
+        # @!attribute color
+        #   @return [String]
         attr_accessor :color
+        # @!attribute fallback
+        #   @return [String]
         attr_accessor :fallback
+        # @!attribute footer
+        #   @return [String]
         attr_accessor :footer
+        # @!attribute footer_icon
+        #   @return [String]
         attr_accessor :footer_icon
+        # @!attribute image_url
+        #   @return [String]
         attr_accessor :image_url
+        # @!attribute og_scrape_url
+        #   @return [String]
         attr_accessor :og_scrape_url
+        # @!attribute original_height
+        #   @return [Integer]
         attr_accessor :original_height
+        # @!attribute original_width
+        #   @return [Integer]
         attr_accessor :original_width
+        # @!attribute pretext
+        #   @return [String]
         attr_accessor :pretext
+        # @!attribute text
+        #   @return [String]
         attr_accessor :text
+        # @!attribute thumb_url
+        #   @return [String]
         attr_accessor :thumb_url
+        # @!attribute title
+        #   @return [String]
         attr_accessor :title
+        # @!attribute title_link
+        #   @return [String]
         attr_accessor :title_link
+        # @!attribute actions
+        #   @return [Array<Action>]
         attr_accessor :actions
+        # @!attribute fields
+        #   @return [Array<Field>]
         attr_accessor :fields
+        # @!attribute giphy
+        #   @return [Images]
         attr_accessor :giphy
 
         # Initialize with attributes

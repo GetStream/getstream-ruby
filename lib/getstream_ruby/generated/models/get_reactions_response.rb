@@ -9,8 +9,12 @@ module GetStream
       class GetReactionsResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
-        attr_accessor :reactions  # List of reactions
+        # @!attribute reactions
+        #   @return [Array<Reaction>] List of reactions
+        attr_accessor :reactions
 
         # Initialize with attributes
         def initialize(attributes = {})

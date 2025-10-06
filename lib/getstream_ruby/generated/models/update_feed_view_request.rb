@@ -9,9 +9,17 @@ module GetStream
       class UpdateFeedViewRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :activity_processors  # Updated activity processors
-        attr_accessor :activity_selectors  # Updated configuration for selecting activities
+        # @!attribute activity_processors
+        #   @return [Array<ActivityProcessorConfig>] Updated activity processors
+        attr_accessor :activity_processors
+        # @!attribute activity_selectors
+        #   @return [Array<ActivitySelectorConfig>] Updated configuration for selecting activities
+        attr_accessor :activity_selectors
+        # @!attribute aggregation
+        #   @return [AggregationConfig]
         attr_accessor :aggregation
+        # @!attribute ranking
+        #   @return [RankingConfig]
         attr_accessor :ranking
 
         # Initialize with attributes

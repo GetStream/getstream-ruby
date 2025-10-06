@@ -9,7 +9,11 @@ module GetStream
       class AsyncModerationConfiguration < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute timeout_ms
+        #   @return [Integer]
         attr_accessor :timeout_ms
+        # @!attribute callback
+        #   @return [AsyncModerationCallbackConfig]
         attr_accessor :callback
 
         # Initialize with attributes

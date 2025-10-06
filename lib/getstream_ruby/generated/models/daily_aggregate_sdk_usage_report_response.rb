@@ -9,7 +9,11 @@ module GetStream
       class DailyAggregateSDKUsageReportResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute date
+        #   @return [String]
         attr_accessor :date
+        # @!attribute report
+        #   @return [SDKUsageReport]
         attr_accessor :report
 
         # Initialize with attributes

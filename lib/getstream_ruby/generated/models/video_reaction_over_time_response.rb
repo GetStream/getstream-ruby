@@ -9,6 +9,8 @@ module GetStream
       class VideoReactionOverTimeResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute by_minute
+        #   @return [Array<CountByMinuteResponse>]
         attr_accessor :by_minute
 
         # Initialize with attributes

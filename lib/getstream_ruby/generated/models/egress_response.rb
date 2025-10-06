@@ -9,9 +9,17 @@ module GetStream
       class EgressResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute broadcasting
+        #   @return [Boolean]
         attr_accessor :broadcasting
+        # @!attribute rtmps
+        #   @return [Array<EgressRTMPResponse>]
         attr_accessor :rtmps
+        # @!attribute frame_recording
+        #   @return [FrameRecordingResponse]
         attr_accessor :frame_recording
+        # @!attribute hls
+        #   @return [EgressHLSResponse]
         attr_accessor :hls
 
         # Initialize with attributes

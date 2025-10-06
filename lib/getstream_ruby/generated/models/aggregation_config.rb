@@ -9,7 +9,9 @@ module GetStream
       class AggregationConfig < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :format  # Format for activity aggregation
+        # @!attribute format
+        #   @return [String] Format for activity aggregation
+        attr_accessor :format
 
         # Initialize with attributes
         def initialize(attributes = {})

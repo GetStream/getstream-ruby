@@ -9,11 +9,21 @@ module GetStream
       class PermissionRequestEvent < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute call_cid
+        #   @return [String]
         attr_accessor :call_cid
+        # @!attribute created_at
+        #   @return [DateTime]
         attr_accessor :created_at
-        attr_accessor :permissions  # The list of permissions requested by the user
+        # @!attribute permissions
+        #   @return [Array<String>] The list of permissions requested by the user
+        attr_accessor :permissions
+        # @!attribute user
+        #   @return [UserResponse]
         attr_accessor :user
-        attr_accessor :_type  # The type of event: "call.permission_request" in this case
+        # @!attribute _type
+        #   @return [String] The type of event: "call.permission_request" in this case
+        attr_accessor :_type
 
         # Initialize with attributes
         def initialize(attributes = {})

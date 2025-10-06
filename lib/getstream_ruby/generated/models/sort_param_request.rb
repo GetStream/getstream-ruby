@@ -9,8 +9,12 @@ module GetStream
       class SortParamRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :direction  # Direction of sorting, 1 for Ascending, -1 for Descending, default is 1
-        attr_accessor :field  # Name of field to sort by
+        # @!attribute direction
+        #   @return [Integer] Direction of sorting, 1 for Ascending, -1 for Descending, default is 1
+        attr_accessor :direction
+        # @!attribute field
+        #   @return [String] Name of field to sort by
+        attr_accessor :field
 
         # Initialize with attributes
         def initialize(attributes = {})

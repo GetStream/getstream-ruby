@@ -9,9 +9,17 @@ module GetStream
       class FlagMessageDetails < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute pin_changed
+        #   @return [Boolean]
         attr_accessor :pin_changed
+        # @!attribute should_enrich
+        #   @return [Boolean]
         attr_accessor :should_enrich
+        # @!attribute skip_push
+        #   @return [Boolean]
         attr_accessor :skip_push
+        # @!attribute updated_by_id
+        #   @return [String]
         attr_accessor :updated_by_id
 
         # Initialize with attributes

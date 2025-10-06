@@ -9,9 +9,15 @@ module GetStream
       class UpdateUsersResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :duration  # Duration of the request in milliseconds
+        # @!attribute duration
+        #   @return [String] Duration of the request in milliseconds
+        attr_accessor :duration
+        # @!attribute membership_deletion_task_id
+        #   @return [String]
         attr_accessor :membership_deletion_task_id
-        attr_accessor :users  # Object containing users
+        # @!attribute users
+        #   @return [Hash<String, FullUserResponse>] Object containing users
+        attr_accessor :users
 
         # Initialize with attributes
         def initialize(attributes = {})

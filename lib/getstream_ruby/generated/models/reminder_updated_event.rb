@@ -9,14 +9,32 @@ module GetStream
       class ReminderUpdatedEvent < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :cid  # The CID of the Channel for which the reminder was created
-        attr_accessor :created_at  # Date/time of creation
-        attr_accessor :message_id  # The ID of the message for which the reminder was created
-        attr_accessor :user_id  # The ID of the user for whom the reminder was created
+        # @!attribute cid
+        #   @return [String] The CID of the Channel for which the reminder was created
+        attr_accessor :cid
+        # @!attribute created_at
+        #   @return [DateTime] Date/time of creation
+        attr_accessor :created_at
+        # @!attribute message_id
+        #   @return [String] The ID of the message for which the reminder was created
+        attr_accessor :message_id
+        # @!attribute user_id
+        #   @return [String] The ID of the user for whom the reminder was created
+        attr_accessor :user_id
+        # @!attribute custom
+        #   @return [Object]
         attr_accessor :custom
-        attr_accessor :_type  # The type of event: "reminder.updated" in this case
-        attr_accessor :parent_id  # The ID of the parent message, if the reminder is for a thread message
+        # @!attribute _type
+        #   @return [String] The type of event: "reminder.updated" in this case
+        attr_accessor :_type
+        # @!attribute parent_id
+        #   @return [String] The ID of the parent message, if the reminder is for a thread message
+        attr_accessor :parent_id
+        # @!attribute received_at
+        #   @return [DateTime]
         attr_accessor :received_at
+        # @!attribute reminder
+        #   @return [ReminderResponseData]
         attr_accessor :reminder
 
         # Initialize with attributes

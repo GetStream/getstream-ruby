@@ -9,6 +9,8 @@ module GetStream
       class GeofenceSettingsResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute names
+        #   @return [Array<String>]
         attr_accessor :names
 
         # Initialize with attributes

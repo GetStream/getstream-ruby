@@ -9,16 +9,38 @@ module GetStream
       class MessageReadEvent < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute channel_id
+        #   @return [String]
         attr_accessor :channel_id
+        # @!attribute channel_type
+        #   @return [String]
         attr_accessor :channel_type
+        # @!attribute cid
+        #   @return [String]
         attr_accessor :cid
+        # @!attribute created_at
+        #   @return [DateTime]
         attr_accessor :created_at
+        # @!attribute _type
+        #   @return [String]
         attr_accessor :_type
+        # @!attribute channel_last_message_at
+        #   @return [DateTime]
         attr_accessor :channel_last_message_at
+        # @!attribute last_read_message_id
+        #   @return [String]
         attr_accessor :last_read_message_id
+        # @!attribute team
+        #   @return [String]
         attr_accessor :team
+        # @!attribute channel
+        #   @return [ChannelResponse]
         attr_accessor :channel
+        # @!attribute thread
+        #   @return [ThreadResponse]
         attr_accessor :thread
+        # @!attribute user
+        #   @return [UserResponseCommonFields]
         attr_accessor :user
 
         # Initialize with attributes

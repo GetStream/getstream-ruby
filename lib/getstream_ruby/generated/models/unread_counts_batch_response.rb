@@ -9,7 +9,11 @@ module GetStream
       class UnreadCountsBatchResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :duration  # Duration of the request in milliseconds
+        # @!attribute duration
+        #   @return [String] Duration of the request in milliseconds
+        attr_accessor :duration
+        # @!attribute counts_by_user
+        #   @return [Hash<String, UnreadCountsResponse>]
         attr_accessor :counts_by_user
 
         # Initialize with attributes

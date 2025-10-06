@@ -9,11 +9,23 @@ module GetStream
       class BanActionRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute channel_ban_only
+        #   @return [Boolean]
         attr_accessor :channel_ban_only
+        # @!attribute delete_messages
+        #   @return [String]
         attr_accessor :delete_messages
+        # @!attribute ip_ban
+        #   @return [Boolean]
         attr_accessor :ip_ban
+        # @!attribute reason
+        #   @return [String]
         attr_accessor :reason
+        # @!attribute shadow
+        #   @return [Boolean]
         attr_accessor :shadow
+        # @!attribute timeout
+        #   @return [Integer]
         attr_accessor :timeout
 
         # Initialize with attributes

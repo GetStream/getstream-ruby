@@ -9,9 +9,17 @@ module GetStream
       class UpdateCallTypeRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute external_storage
+        #   @return [String]
         attr_accessor :external_storage
+        # @!attribute grants
+        #   @return [Hash<String, Array<String>>]
         attr_accessor :grants
+        # @!attribute notification_settings
+        #   @return [NotificationSettings]
         attr_accessor :notification_settings
+        # @!attribute settings
+        #   @return [CallSettingsRequest]
         attr_accessor :settings
 
         # Initialize with attributes

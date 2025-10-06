@@ -9,6 +9,8 @@ module GetStream
       class DeleteModerationTemplateResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
 
         # Initialize with attributes

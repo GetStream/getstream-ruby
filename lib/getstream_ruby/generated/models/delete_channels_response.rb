@@ -9,9 +9,15 @@ module GetStream
       class DeleteChannelsResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :duration  # Duration of the request in milliseconds
+        # @!attribute duration
+        #   @return [String] Duration of the request in milliseconds
+        attr_accessor :duration
+        # @!attribute task_id
+        #   @return [String]
         attr_accessor :task_id
-        attr_accessor :result  # Map of channel IDs and their deletion results
+        # @!attribute result
+        #   @return [Hash<String, DeleteChannelsResultResponse>] Map of channel IDs and their deletion results
+        attr_accessor :result
 
         # Initialize with attributes
         def initialize(attributes = {})

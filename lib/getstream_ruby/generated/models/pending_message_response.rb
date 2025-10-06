@@ -9,9 +9,17 @@ module GetStream
       class PendingMessageResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute channel
+        #   @return [ChannelResponse]
         attr_accessor :channel
+        # @!attribute message
+        #   @return [MessageResponse]
         attr_accessor :message
+        # @!attribute metadata
+        #   @return [Hash<String, String>]
         attr_accessor :metadata
+        # @!attribute user
+        #   @return [UserResponse]
         attr_accessor :user
 
         # Initialize with attributes

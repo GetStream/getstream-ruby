@@ -9,8 +9,12 @@ module GetStream
       class DeleteCommandResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
-        attr_accessor :name  # Command name
+        # @!attribute name
+        #   @return [String] Command name
+        attr_accessor :name
 
         # Initialize with attributes
         def initialize(attributes = {})

@@ -9,7 +9,11 @@ module GetStream
       class ListRolesResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :duration  # Duration of the request in milliseconds
+        # @!attribute duration
+        #   @return [String] Duration of the request in milliseconds
+        attr_accessor :duration
+        # @!attribute roles
+        #   @return [Array<Role>]
         attr_accessor :roles
 
         # Initialize with attributes

@@ -9,8 +9,14 @@ module GetStream
       class BodyguardRule < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute label
+        #   @return [String]
         attr_accessor :label
+        # @!attribute action
+        #   @return [String]
         attr_accessor :action
+        # @!attribute severity_rules
+        #   @return [Array<BodyguardSeverityRule>]
         attr_accessor :severity_rules
 
         # Initialize with attributes

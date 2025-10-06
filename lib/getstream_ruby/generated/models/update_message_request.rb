@@ -9,8 +9,14 @@ module GetStream
       class UpdateMessageRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute message
+        #   @return [MessageRequest]
         attr_accessor :message
-        attr_accessor :skip_enrich_url  # Skip enrich URL
+        # @!attribute skip_enrich_url
+        #   @return [Boolean] Skip enrich URL
+        attr_accessor :skip_enrich_url
+        # @!attribute skip_push
+        #   @return [Boolean]
         attr_accessor :skip_push
 
         # Initialize with attributes

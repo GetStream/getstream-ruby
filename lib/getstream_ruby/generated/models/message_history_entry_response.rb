@@ -9,12 +9,26 @@ module GetStream
       class MessageHistoryEntryResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute is_deleted
+        #   @return [Boolean]
         attr_accessor :is_deleted
+        # @!attribute message_id
+        #   @return [String]
         attr_accessor :message_id
+        # @!attribute message_updated_at
+        #   @return [DateTime]
         attr_accessor :message_updated_at
+        # @!attribute message_updated_by_id
+        #   @return [String]
         attr_accessor :message_updated_by_id
+        # @!attribute text
+        #   @return [String]
         attr_accessor :text
+        # @!attribute attachments
+        #   @return [Array<Attachment>]
         attr_accessor :attachments
+        # @!attribute custom
+        #   @return [Object]
         attr_accessor :custom
 
         # Initialize with attributes

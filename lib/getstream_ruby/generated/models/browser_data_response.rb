@@ -9,7 +9,11 @@ module GetStream
       class BrowserDataResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute name
+        #   @return [String]
         attr_accessor :name
+        # @!attribute version
+        #   @return [String]
         attr_accessor :version
 
         # Initialize with attributes

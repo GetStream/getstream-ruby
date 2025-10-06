@@ -9,16 +9,38 @@ module GetStream
       class SharedLocation < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute channel_cid
+        #   @return [String]
         attr_accessor :channel_cid
+        # @!attribute created_at
+        #   @return [DateTime]
         attr_accessor :created_at
+        # @!attribute created_by_device_id
+        #   @return [String]
         attr_accessor :created_by_device_id
+        # @!attribute message_id
+        #   @return [String]
         attr_accessor :message_id
+        # @!attribute updated_at
+        #   @return [DateTime]
         attr_accessor :updated_at
+        # @!attribute user_id
+        #   @return [String]
         attr_accessor :user_id
+        # @!attribute end_at
+        #   @return [DateTime]
         attr_accessor :end_at
+        # @!attribute latitude
+        #   @return [Float]
         attr_accessor :latitude
+        # @!attribute longitude
+        #   @return [Float]
         attr_accessor :longitude
+        # @!attribute channel
+        #   @return [Channel]
         attr_accessor :channel
+        # @!attribute message
+        #   @return [Message]
         attr_accessor :message
 
         # Initialize with attributes

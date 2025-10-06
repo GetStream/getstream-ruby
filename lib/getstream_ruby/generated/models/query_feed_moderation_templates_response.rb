@@ -9,8 +9,12 @@ module GetStream
       class QueryFeedModerationTemplatesResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
-        attr_accessor :templates  # List of moderation templates
+        # @!attribute templates
+        #   @return [Array<QueryFeedModerationTemplate>] List of moderation templates
+        attr_accessor :templates
 
         # Initialize with attributes
         def initialize(attributes = {})

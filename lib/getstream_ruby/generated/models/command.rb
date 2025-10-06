@@ -9,12 +9,24 @@ module GetStream
       class Command < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :args  # Arguments help text, shown in commands auto-completion
-        attr_accessor :description  # Description, shown in commands auto-completion
-        attr_accessor :name  # Unique command name
-        attr_accessor :set  # Set name used for grouping commands
-        attr_accessor :created_at  # Date/time of creation
-        attr_accessor :updated_at  # Date/time of the last update
+        # @!attribute args
+        #   @return [String] Arguments help text, shown in commands auto-completion
+        attr_accessor :args
+        # @!attribute description
+        #   @return [String] Description, shown in commands auto-completion
+        attr_accessor :description
+        # @!attribute name
+        #   @return [String] Unique command name
+        attr_accessor :name
+        # @!attribute set
+        #   @return [String] Set name used for grouping commands
+        attr_accessor :set
+        # @!attribute created_at
+        #   @return [DateTime] Date/time of creation
+        attr_accessor :created_at
+        # @!attribute updated_at
+        #   @return [DateTime] Date/time of the last update
+        attr_accessor :updated_at
 
         # Initialize with attributes
         def initialize(attributes = {})

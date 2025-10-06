@@ -9,9 +9,17 @@ module GetStream
       class ActiveCallsSummary < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute active_calls
+        #   @return [Integer]
         attr_accessor :active_calls
+        # @!attribute active_publishers
+        #   @return [Integer]
         attr_accessor :active_publishers
+        # @!attribute active_subscribers
+        #   @return [Integer]
         attr_accessor :active_subscribers
+        # @!attribute participants
+        #   @return [Integer]
         attr_accessor :participants
 
         # Initialize with attributes

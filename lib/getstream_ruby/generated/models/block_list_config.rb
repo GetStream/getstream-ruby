@@ -9,8 +9,14 @@ module GetStream
       class BlockListConfig < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute async
+        #   @return [Boolean]
         attr_accessor :async
+        # @!attribute enabled
+        #   @return [Boolean]
         attr_accessor :enabled
+        # @!attribute rules
+        #   @return [Array<BlockListRule>]
         attr_accessor :rules
 
         # Initialize with attributes

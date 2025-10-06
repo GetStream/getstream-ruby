@@ -9,11 +9,23 @@ module GetStream
       class NotificationStatusResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :unread  # Number of unread notifications
-        attr_accessor :unseen  # Number of unseen notifications
+        # @!attribute unread
+        #   @return [Integer] Number of unread notifications
+        attr_accessor :unread
+        # @!attribute unseen
+        #   @return [Integer] Number of unseen notifications
+        attr_accessor :unseen
+        # @!attribute last_read_at
+        #   @return [DateTime]
         attr_accessor :last_read_at
-        attr_accessor :last_seen_at  # When notifications were last seen
-        attr_accessor :read_activities  # IDs of activities that have been read
+        # @!attribute last_seen_at
+        #   @return [DateTime] When notifications were last seen
+        attr_accessor :last_seen_at
+        # @!attribute read_activities
+        #   @return [Array<String>] IDs of activities that have been read
+        attr_accessor :read_activities
+        # @!attribute seen_activities
+        #   @return [Array<String>]
         attr_accessor :seen_activities
 
         # Initialize with attributes

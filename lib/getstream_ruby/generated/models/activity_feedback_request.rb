@@ -9,12 +9,26 @@ module GetStream
       class ActivityFeedbackRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :hide  # Whether to hide this activity
-        attr_accessor :mute_user  # Whether to mute the user who created this activity
-        attr_accessor :reason  # Reason for the feedback (optional)
-        attr_accessor :report  # Whether to report this activity
-        attr_accessor :show_less  # Whether to show less content like this
+        # @!attribute hide
+        #   @return [Boolean] Whether to hide this activity
+        attr_accessor :hide
+        # @!attribute mute_user
+        #   @return [Boolean] Whether to mute the user who created this activity
+        attr_accessor :mute_user
+        # @!attribute reason
+        #   @return [String] Reason for the feedback (optional)
+        attr_accessor :reason
+        # @!attribute report
+        #   @return [Boolean] Whether to report this activity
+        attr_accessor :report
+        # @!attribute show_less
+        #   @return [Boolean] Whether to show less content like this
+        attr_accessor :show_less
+        # @!attribute user_id
+        #   @return [String]
         attr_accessor :user_id
+        # @!attribute user
+        #   @return [UserRequest]
         attr_accessor :user
 
         # Initialize with attributes

@@ -9,7 +9,11 @@ module GetStream
       class RuleBuilderConfig < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute async
+        #   @return [Boolean]
         attr_accessor :async
+        # @!attribute rules
+        #   @return [Array<RuleBuilderRule>]
         attr_accessor :rules
 
         # Initialize with attributes

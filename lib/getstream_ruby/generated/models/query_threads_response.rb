@@ -9,9 +9,17 @@ module GetStream
       class QueryThreadsResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :duration  # Duration of the request in milliseconds
-        attr_accessor :threads  # List of enriched thread states
+        # @!attribute duration
+        #   @return [String] Duration of the request in milliseconds
+        attr_accessor :duration
+        # @!attribute threads
+        #   @return [Array<ThreadStateResponse>] List of enriched thread states
+        attr_accessor :threads
+        # @!attribute _next
+        #   @return [String]
         attr_accessor :_next
+        # @!attribute prev
+        #   @return [String]
         attr_accessor :prev
 
         # Initialize with attributes

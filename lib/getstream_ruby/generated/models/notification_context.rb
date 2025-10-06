@@ -9,7 +9,11 @@ module GetStream
       class NotificationContext < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute target
+        #   @return [NotificationTarget]
         attr_accessor :target
+        # @!attribute trigger
+        #   @return [NotificationTrigger]
         attr_accessor :trigger
 
         # Initialize with attributes

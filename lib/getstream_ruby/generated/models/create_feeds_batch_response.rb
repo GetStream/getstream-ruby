@@ -9,8 +9,12 @@ module GetStream
       class CreateFeedsBatchResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
-        attr_accessor :feeds  # List of created feeds
+        # @!attribute feeds
+        #   @return [Array<FeedResponse>] List of created feeds
+        attr_accessor :feeds
 
         # Initialize with attributes
         def initialize(attributes = {})

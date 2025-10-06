@@ -9,9 +9,15 @@ module GetStream
       class RingSettingsRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :auto_cancel_timeout_ms  # When none of the callees accept a ring call in this time a rejection will be sent by the caller with reason 'timeout' by the SDKs
-        attr_accessor :incoming_call_timeout_ms  # When a callee is online but doesn't answer a ring call in this time a rejection will be sent with reason 'timeout' by the SDKs
-        attr_accessor :missed_call_timeout_ms  # When a callee doesn't accept or reject a ring call in this time a missed call event will be sent
+        # @!attribute auto_cancel_timeout_ms
+        #   @return [Integer] When none of the callees accept a ring call in this time a rejection will be sent by the caller with reason 'timeout' by the SDKs
+        attr_accessor :auto_cancel_timeout_ms
+        # @!attribute incoming_call_timeout_ms
+        #   @return [Integer] When a callee is online but doesn't answer a ring call in this time a rejection will be sent with reason 'timeout' by the SDKs
+        attr_accessor :incoming_call_timeout_ms
+        # @!attribute missed_call_timeout_ms
+        #   @return [Integer] When a callee doesn't accept or reject a ring call in this time a missed call event will be sent
+        attr_accessor :missed_call_timeout_ms
 
         # Initialize with attributes
         def initialize(attributes = {})

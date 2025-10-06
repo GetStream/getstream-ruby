@@ -9,50 +9,140 @@ module GetStream
       class MessageWithChannelResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :_id  # Message ID is unique string identifier of the message
-        attr_accessor :_type  # Contains type of the message
-        attr_accessor :cid  # Channel unique identifier in <type>:<id> format
-        attr_accessor :created_at  # Date/time of creation
+        # @!attribute _id
+        #   @return [String] Message ID is unique string identifier of the message
+        attr_accessor :_id
+        # @!attribute _type
+        #   @return [String] Contains type of the message
+        attr_accessor :_type
+        # @!attribute cid
+        #   @return [String] Channel unique identifier in <type>:<id> format
+        attr_accessor :cid
+        # @!attribute created_at
+        #   @return [DateTime] Date/time of creation
+        attr_accessor :created_at
+        # @!attribute deleted_reply_count
+        #   @return [Integer]
         attr_accessor :deleted_reply_count
-        attr_accessor :html  # Contains HTML markup of the message. Can only be set when using server-side API
-        attr_accessor :pinned  # Whether message is pinned or not
-        attr_accessor :reply_count  # Number of replies to this message
-        attr_accessor :shadowed  # Whether the message was shadowed or not
-        attr_accessor :silent  # Whether message is silent or not
-        attr_accessor :text  # Text of the message. Should be empty if `mml` is provided
-        attr_accessor :updated_at  # Date/time of the last update
-        attr_accessor :attachments  # Array of message attachments
-        attr_accessor :latest_reactions  # List of 10 latest reactions to this message
-        attr_accessor :mentioned_users  # List of mentioned users
-        attr_accessor :own_reactions  # List of 10 latest reactions of authenticated user to this message
-        attr_accessor :restricted_visibility  # A list of user ids that have restricted visibility to the message, if the list is not empty, the message is only visible to the users in the list
+        # @!attribute html
+        #   @return [String] Contains HTML markup of the message. Can only be set when using server-side API
+        attr_accessor :html
+        # @!attribute pinned
+        #   @return [Boolean] Whether message is pinned or not
+        attr_accessor :pinned
+        # @!attribute reply_count
+        #   @return [Integer] Number of replies to this message
+        attr_accessor :reply_count
+        # @!attribute shadowed
+        #   @return [Boolean] Whether the message was shadowed or not
+        attr_accessor :shadowed
+        # @!attribute silent
+        #   @return [Boolean] Whether message is silent or not
+        attr_accessor :silent
+        # @!attribute text
+        #   @return [String] Text of the message. Should be empty if `mml` is provided
+        attr_accessor :text
+        # @!attribute updated_at
+        #   @return [DateTime] Date/time of the last update
+        attr_accessor :updated_at
+        # @!attribute attachments
+        #   @return [Array<Attachment>] Array of message attachments
+        attr_accessor :attachments
+        # @!attribute latest_reactions
+        #   @return [Array<ReactionResponse>] List of 10 latest reactions to this message
+        attr_accessor :latest_reactions
+        # @!attribute mentioned_users
+        #   @return [Array<UserResponse>] List of mentioned users
+        attr_accessor :mentioned_users
+        # @!attribute own_reactions
+        #   @return [Array<ReactionResponse>] List of 10 latest reactions of authenticated user to this message
+        attr_accessor :own_reactions
+        # @!attribute restricted_visibility
+        #   @return [Array<String>] A list of user ids that have restricted visibility to the message, if the list is not empty, the message is only visible to the users in the list
+        attr_accessor :restricted_visibility
+        # @!attribute channel
+        #   @return [ChannelResponse]
         attr_accessor :channel
+        # @!attribute custom
+        #   @return [Object]
         attr_accessor :custom
-        attr_accessor :reaction_counts  # An object containing number of reactions of each type. Key: reaction type (string), value: number of reactions (int)
-        attr_accessor :reaction_scores  # An object containing scores of reactions of each type. Key: reaction type (string), value: total score of reactions (int)
+        # @!attribute reaction_counts
+        #   @return [Hash<String, Integer>] An object containing number of reactions of each type. Key: reaction type (string), value: number of reactions (int)
+        attr_accessor :reaction_counts
+        # @!attribute reaction_scores
+        #   @return [Hash<String, Integer>] An object containing scores of reactions of each type. Key: reaction type (string), value: total score of reactions (int)
+        attr_accessor :reaction_scores
+        # @!attribute user
+        #   @return [UserResponse]
         attr_accessor :user
-        attr_accessor :command  # Contains provided slash command
-        attr_accessor :deleted_at  # Date/time of deletion
+        # @!attribute command
+        #   @return [String] Contains provided slash command
+        attr_accessor :command
+        # @!attribute deleted_at
+        #   @return [DateTime] Date/time of deletion
+        attr_accessor :deleted_at
+        # @!attribute deleted_for_me
+        #   @return [Boolean]
         attr_accessor :deleted_for_me
+        # @!attribute message_text_updated_at
+        #   @return [DateTime]
         attr_accessor :message_text_updated_at
-        attr_accessor :mml  # Should be empty if `text` is provided. Can only be set when using server-side API
-        attr_accessor :parent_id  # ID of parent message (thread)
-        attr_accessor :pin_expires  # Date when pinned message expires
-        attr_accessor :pinned_at  # Date when message got pinned
-        attr_accessor :poll_id  # Identifier of the poll to include in the message
+        # @!attribute mml
+        #   @return [String] Should be empty if `text` is provided. Can only be set when using server-side API
+        attr_accessor :mml
+        # @!attribute parent_id
+        #   @return [String] ID of parent message (thread)
+        attr_accessor :parent_id
+        # @!attribute pin_expires
+        #   @return [DateTime] Date when pinned message expires
+        attr_accessor :pin_expires
+        # @!attribute pinned_at
+        #   @return [DateTime] Date when message got pinned
+        attr_accessor :pinned_at
+        # @!attribute poll_id
+        #   @return [String] Identifier of the poll to include in the message
+        attr_accessor :poll_id
+        # @!attribute quoted_message_id
+        #   @return [String]
         attr_accessor :quoted_message_id
-        attr_accessor :show_in_channel  # Whether thread reply should be shown in the channel as well
-        attr_accessor :thread_participants  # List of users who participate in thread
+        # @!attribute show_in_channel
+        #   @return [Boolean] Whether thread reply should be shown in the channel as well
+        attr_accessor :show_in_channel
+        # @!attribute thread_participants
+        #   @return [Array<UserResponse>] List of users who participate in thread
+        attr_accessor :thread_participants
+        # @!attribute draft
+        #   @return [DraftResponse]
         attr_accessor :draft
-        attr_accessor :i18n  # Object with translations. Key `language` contains the original language key. Other keys contain translations
-        attr_accessor :image_labels  # Contains image moderation information
+        # @!attribute i18n
+        #   @return [Hash<String, String>] Object with translations. Key `language` contains the original language key. Other keys contain translations
+        attr_accessor :i18n
+        # @!attribute image_labels
+        #   @return [Hash<String, Array<String>>] Contains image moderation information
+        attr_accessor :image_labels
+        # @!attribute member
+        #   @return [ChannelMemberResponse]
         attr_accessor :member
+        # @!attribute moderation
+        #   @return [ModerationV2Response]
         attr_accessor :moderation
+        # @!attribute pinned_by
+        #   @return [UserResponse]
         attr_accessor :pinned_by
+        # @!attribute poll
+        #   @return [PollResponseData]
         attr_accessor :poll
+        # @!attribute quoted_message
+        #   @return [MessageResponse]
         attr_accessor :quoted_message
+        # @!attribute reaction_groups
+        #   @return [Hash<String, ReactionGroupResponse>]
         attr_accessor :reaction_groups
+        # @!attribute reminder
+        #   @return [ReminderResponseData]
         attr_accessor :reminder
+        # @!attribute shared_location
+        #   @return [SharedLocationResponseData]
         attr_accessor :shared_location
 
         # Initialize with attributes

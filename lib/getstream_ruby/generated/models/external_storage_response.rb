@@ -9,9 +9,17 @@ module GetStream
       class ExternalStorageResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _type
+        #   @return [String]
         attr_accessor :_type
+        # @!attribute bucket
+        #   @return [String]
         attr_accessor :bucket
+        # @!attribute name
+        #   @return [String]
         attr_accessor :name
+        # @!attribute path
+        #   @return [String]
         attr_accessor :path
 
         # Initialize with attributes

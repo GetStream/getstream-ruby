@@ -9,21 +9,53 @@ module GetStream
       class FeedGroup < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _id
+        #   @return [String]
         attr_accessor :_id
+        # @!attribute aggregation_version
+        #   @return [Integer]
         attr_accessor :aggregation_version
+        # @!attribute app_pk
+        #   @return [Integer]
         attr_accessor :app_pk
+        # @!attribute created_at
+        #   @return [DateTime]
         attr_accessor :created_at
+        # @!attribute default_visibility
+        #   @return [String]
         attr_accessor :default_visibility
+        # @!attribute updated_at
+        #   @return [DateTime]
         attr_accessor :updated_at
+        # @!attribute activity_processors
+        #   @return [Array<ActivityProcessorConfig>]
         attr_accessor :activity_processors
+        # @!attribute activity_selectors
+        #   @return [Array<ActivitySelectorConfig>]
         attr_accessor :activity_selectors
+        # @!attribute custom
+        #   @return [Object]
         attr_accessor :custom
+        # @!attribute deleted_at
+        #   @return [DateTime]
         attr_accessor :deleted_at
+        # @!attribute last_feed_get_at
+        #   @return [DateTime]
         attr_accessor :last_feed_get_at
+        # @!attribute aggregation
+        #   @return [AggregationConfig]
         attr_accessor :aggregation
+        # @!attribute notification
+        #   @return [NotificationConfig]
         attr_accessor :notification
+        # @!attribute push_notification
+        #   @return [PushNotificationConfig]
         attr_accessor :push_notification
+        # @!attribute ranking
+        #   @return [RankingConfig]
         attr_accessor :ranking
+        # @!attribute stories
+        #   @return [StoriesConfig]
         attr_accessor :stories
 
         # Initialize with attributes

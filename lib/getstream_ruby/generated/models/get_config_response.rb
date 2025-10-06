@@ -9,7 +9,11 @@ module GetStream
       class GetConfigResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
+        # @!attribute config
+        #   @return [ConfigResponse]
         attr_accessor :config
 
         # Initialize with attributes

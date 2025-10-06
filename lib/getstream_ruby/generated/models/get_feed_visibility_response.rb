@@ -9,7 +9,11 @@ module GetStream
       class GetFeedVisibilityResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
+        # @!attribute feed_visibility
+        #   @return [FeedVisibilityResponse]
         attr_accessor :feed_visibility
 
         # Initialize with attributes

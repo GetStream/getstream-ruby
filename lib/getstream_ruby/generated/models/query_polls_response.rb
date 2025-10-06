@@ -9,9 +9,17 @@ module GetStream
       class QueryPollsResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :duration  # Duration of the request in milliseconds
-        attr_accessor :polls  # Polls data returned by the query
+        # @!attribute duration
+        #   @return [String] Duration of the request in milliseconds
+        attr_accessor :duration
+        # @!attribute polls
+        #   @return [Array<PollResponseData>] Polls data returned by the query
+        attr_accessor :polls
+        # @!attribute _next
+        #   @return [String]
         attr_accessor :_next
+        # @!attribute prev
+        #   @return [String]
         attr_accessor :prev
 
         # Initialize with attributes

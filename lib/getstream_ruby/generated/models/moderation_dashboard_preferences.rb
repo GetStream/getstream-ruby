@@ -9,8 +9,14 @@ module GetStream
       class ModerationDashboardPreferences < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute disable_flagging_reviewed_entity
+        #   @return [Boolean]
         attr_accessor :disable_flagging_reviewed_entity
+        # @!attribute flag_user_on_flagged_content
+        #   @return [Boolean]
         attr_accessor :flag_user_on_flagged_content
+        # @!attribute media_queue_blur_enabled
+        #   @return [Boolean]
         attr_accessor :media_queue_blur_enabled
 
         # Initialize with attributes

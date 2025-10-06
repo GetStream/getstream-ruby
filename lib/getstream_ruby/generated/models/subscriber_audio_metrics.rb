@@ -9,8 +9,14 @@ module GetStream
       class SubscriberAudioMetrics < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute concealment_pct
+        #   @return [ActiveCallsLatencyStats]
         attr_accessor :concealment_pct
+        # @!attribute jitter_ms
+        #   @return [ActiveCallsLatencyStats]
         attr_accessor :jitter_ms
+        # @!attribute packets_lost_pct
+        #   @return [ActiveCallsLatencyStats]
         attr_accessor :packets_lost_pct
 
         # Initialize with attributes

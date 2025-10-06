@@ -9,8 +9,12 @@ module GetStream
       class UpsertActivitiesResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
-        attr_accessor :activities  # List of created or updated activities
+        # @!attribute activities
+        #   @return [Array<ActivityResponse>] List of created or updated activities
+        attr_accessor :activities
 
         # Initialize with attributes
         def initialize(attributes = {})

@@ -9,7 +9,11 @@ module GetStream
       class FeedsModerationTemplateConfig < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute config_key
+        #   @return [String]
         attr_accessor :config_key
+        # @!attribute data_types
+        #   @return [Hash<String, String>]
         attr_accessor :data_types
 
         # Initialize with attributes

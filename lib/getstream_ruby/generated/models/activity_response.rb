@@ -9,41 +9,113 @@ module GetStream
       class ActivityResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :_id  # Unique identifier for the activity
-        attr_accessor :_type  # Type of activity
-        attr_accessor :bookmark_count  # Number of bookmarks on the activity
-        attr_accessor :comment_count  # Number of comments on the activity
-        attr_accessor :created_at  # When the activity was created
-        attr_accessor :popularity  # Popularity score of the activity
-        attr_accessor :reaction_count  # Number of reactions to the activity
-        attr_accessor :score  # Ranking score for this activity
-        attr_accessor :share_count  # Number of times the activity was shared
-        attr_accessor :updated_at  # When the activity was last updated
-        attr_accessor :visibility  # Visibility setting for the activity
-        attr_accessor :attachments  # Media attachments for the activity
-        attr_accessor :comments  # Comments on this activity
-        attr_accessor :feeds  # List of feed IDs containing this activity
-        attr_accessor :filter_tags  # Tags for filtering
-        attr_accessor :interest_tags  # Tags for user interests
-        attr_accessor :latest_reactions  # Recent reactions to the activity
-        attr_accessor :mentioned_users  # Users mentioned in the activity
-        attr_accessor :own_bookmarks  # Current user's bookmarks for this activity
-        attr_accessor :own_reactions  # Current user's reactions to this activity
-        attr_accessor :custom  # Custom data for the activity
-        attr_accessor :reaction_groups  # Grouped reactions by type
-        attr_accessor :search_data  # Data for search indexing
+        # @!attribute _id
+        #   @return [String] Unique identifier for the activity
+        attr_accessor :_id
+        # @!attribute _type
+        #   @return [String] Type of activity
+        attr_accessor :_type
+        # @!attribute bookmark_count
+        #   @return [Integer] Number of bookmarks on the activity
+        attr_accessor :bookmark_count
+        # @!attribute comment_count
+        #   @return [Integer] Number of comments on the activity
+        attr_accessor :comment_count
+        # @!attribute created_at
+        #   @return [DateTime] When the activity was created
+        attr_accessor :created_at
+        # @!attribute popularity
+        #   @return [Integer] Popularity score of the activity
+        attr_accessor :popularity
+        # @!attribute reaction_count
+        #   @return [Integer] Number of reactions to the activity
+        attr_accessor :reaction_count
+        # @!attribute score
+        #   @return [Float] Ranking score for this activity
+        attr_accessor :score
+        # @!attribute share_count
+        #   @return [Integer] Number of times the activity was shared
+        attr_accessor :share_count
+        # @!attribute updated_at
+        #   @return [DateTime] When the activity was last updated
+        attr_accessor :updated_at
+        # @!attribute visibility
+        #   @return [String] Visibility setting for the activity
+        attr_accessor :visibility
+        # @!attribute attachments
+        #   @return [Array<Attachment>] Media attachments for the activity
+        attr_accessor :attachments
+        # @!attribute comments
+        #   @return [Array<CommentResponse>] Comments on this activity
+        attr_accessor :comments
+        # @!attribute feeds
+        #   @return [Array<String>] List of feed IDs containing this activity
+        attr_accessor :feeds
+        # @!attribute filter_tags
+        #   @return [Array<String>] Tags for filtering
+        attr_accessor :filter_tags
+        # @!attribute interest_tags
+        #   @return [Array<String>] Tags for user interests
+        attr_accessor :interest_tags
+        # @!attribute latest_reactions
+        #   @return [Array<FeedsReactionResponse>] Recent reactions to the activity
+        attr_accessor :latest_reactions
+        # @!attribute mentioned_users
+        #   @return [Array<UserResponse>] Users mentioned in the activity
+        attr_accessor :mentioned_users
+        # @!attribute own_bookmarks
+        #   @return [Array<BookmarkResponse>] Current user's bookmarks for this activity
+        attr_accessor :own_bookmarks
+        # @!attribute own_reactions
+        #   @return [Array<FeedsReactionResponse>] Current user's reactions to this activity
+        attr_accessor :own_reactions
+        # @!attribute custom
+        #   @return [Object] Custom data for the activity
+        attr_accessor :custom
+        # @!attribute reaction_groups
+        #   @return [Hash<String, ReactionGroupResponse>] Grouped reactions by type
+        attr_accessor :reaction_groups
+        # @!attribute search_data
+        #   @return [Object] Data for search indexing
+        attr_accessor :search_data
+        # @!attribute user
+        #   @return [UserResponse]
         attr_accessor :user
-        attr_accessor :deleted_at  # When the activity was deleted
-        attr_accessor :edited_at  # When the activity was last edited
-        attr_accessor :expires_at  # When the activity will expire
-        attr_accessor :hidden  # If this activity is hidden for this user. For premium content where you want to show a preview
-        attr_accessor :text  # Text content of the activity
-        attr_accessor :visibility_tag  # If visibility is 'tag', this is the tag name
+        # @!attribute deleted_at
+        #   @return [DateTime] When the activity was deleted
+        attr_accessor :deleted_at
+        # @!attribute edited_at
+        #   @return [DateTime] When the activity was last edited
+        attr_accessor :edited_at
+        # @!attribute expires_at
+        #   @return [DateTime] When the activity will expire
+        attr_accessor :expires_at
+        # @!attribute hidden
+        #   @return [Boolean] If this activity is hidden for this user. For premium content where you want to show a preview
+        attr_accessor :hidden
+        # @!attribute text
+        #   @return [String] Text content of the activity
+        attr_accessor :text
+        # @!attribute visibility_tag
+        #   @return [String] If visibility is 'tag', this is the tag name
+        attr_accessor :visibility_tag
+        # @!attribute current_feed
+        #   @return [FeedResponse]
         attr_accessor :current_feed
+        # @!attribute location
+        #   @return [ActivityLocation]
         attr_accessor :location
+        # @!attribute moderation
+        #   @return [ModerationV2Response]
         attr_accessor :moderation
+        # @!attribute notification_context
+        #   @return [NotificationContext]
         attr_accessor :notification_context
+        # @!attribute parent
+        #   @return [ActivityResponse]
         attr_accessor :parent
+        # @!attribute poll
+        #   @return [PollResponseData]
         attr_accessor :poll
 
         # Initialize with attributes

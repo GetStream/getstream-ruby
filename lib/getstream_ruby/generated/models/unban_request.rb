@@ -9,7 +9,11 @@ module GetStream
       class UnbanRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :unbanned_by_id  # ID of the user performing the unban
+        # @!attribute unbanned_by_id
+        #   @return [String] ID of the user performing the unban
+        attr_accessor :unbanned_by_id
+        # @!attribute unbanned_by
+        #   @return [UserRequest]
         attr_accessor :unbanned_by
 
         # Initialize with attributes

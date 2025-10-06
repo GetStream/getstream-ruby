@@ -9,10 +9,20 @@ module GetStream
       class UserMute < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :created_at  # Date/time of creation
-        attr_accessor :updated_at  # Date/time of the last update
-        attr_accessor :expires  # Date/time of mute expiration
+        # @!attribute created_at
+        #   @return [DateTime] Date/time of creation
+        attr_accessor :created_at
+        # @!attribute updated_at
+        #   @return [DateTime] Date/time of the last update
+        attr_accessor :updated_at
+        # @!attribute expires
+        #   @return [DateTime] Date/time of mute expiration
+        attr_accessor :expires
+        # @!attribute target
+        #   @return [User]
         attr_accessor :target
+        # @!attribute user
+        #   @return [User]
         attr_accessor :user
 
         # Initialize with attributes

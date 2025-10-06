@@ -9,10 +9,20 @@ module GetStream
       class CampaignStartedEvent < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute created_at
+        #   @return [DateTime]
         attr_accessor :created_at
+        # @!attribute custom
+        #   @return [Object]
         attr_accessor :custom
+        # @!attribute _type
+        #   @return [String]
         attr_accessor :_type
+        # @!attribute received_at
+        #   @return [DateTime]
         attr_accessor :received_at
+        # @!attribute campaign
+        #   @return [CampaignResponse]
         attr_accessor :campaign
 
         # Initialize with attributes

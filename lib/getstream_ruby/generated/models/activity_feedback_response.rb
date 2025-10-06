@@ -9,7 +9,11 @@ module GetStream
       class ActivityFeedbackResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :activity_id  # The ID of the activity that received feedback
+        # @!attribute activity_id
+        #   @return [String] The ID of the activity that received feedback
+        attr_accessor :activity_id
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
 
         # Initialize with attributes

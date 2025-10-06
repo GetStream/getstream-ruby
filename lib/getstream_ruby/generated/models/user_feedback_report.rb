@@ -9,7 +9,11 @@ module GetStream
       class UserFeedbackReport < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute unreported_count
+        #   @return [Integer]
         attr_accessor :unreported_count
+        # @!attribute count_by_rating
+        #   @return [Hash<String, Integer>]
         attr_accessor :count_by_rating
 
         # Initialize with attributes

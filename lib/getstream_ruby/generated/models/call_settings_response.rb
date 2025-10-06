@@ -9,19 +9,47 @@ module GetStream
       class CallSettingsResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute audio
+        #   @return [AudioSettingsResponse]
         attr_accessor :audio
+        # @!attribute backstage
+        #   @return [BackstageSettingsResponse]
         attr_accessor :backstage
+        # @!attribute broadcasting
+        #   @return [BroadcastSettingsResponse]
         attr_accessor :broadcasting
+        # @!attribute frame_recording
+        #   @return [FrameRecordingSettingsResponse]
         attr_accessor :frame_recording
+        # @!attribute geofencing
+        #   @return [GeofenceSettingsResponse]
         attr_accessor :geofencing
+        # @!attribute limits
+        #   @return [LimitsSettingsResponse]
         attr_accessor :limits
+        # @!attribute recording
+        #   @return [RecordSettingsResponse]
         attr_accessor :recording
+        # @!attribute ring
+        #   @return [RingSettingsResponse]
         attr_accessor :ring
+        # @!attribute screensharing
+        #   @return [ScreensharingSettingsResponse]
         attr_accessor :screensharing
+        # @!attribute session
+        #   @return [SessionSettingsResponse]
         attr_accessor :session
+        # @!attribute thumbnails
+        #   @return [ThumbnailsSettingsResponse]
         attr_accessor :thumbnails
+        # @!attribute transcription
+        #   @return [TranscriptionSettingsResponse]
         attr_accessor :transcription
+        # @!attribute video
+        #   @return [VideoSettingsResponse]
         attr_accessor :video
+        # @!attribute ingress
+        #   @return [IngressSettingsResponse]
         attr_accessor :ingress
 
         # Initialize with attributes

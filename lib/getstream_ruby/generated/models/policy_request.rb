@@ -9,12 +9,24 @@ module GetStream
       class PolicyRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute action
+        #   @return [String]
         attr_accessor :action
-        attr_accessor :name  # User-friendly policy name
-        attr_accessor :owner  # Whether policy applies to resource owner or not
-        attr_accessor :priority  # Policy priority
-        attr_accessor :resources  # List of resources to apply policy to
-        attr_accessor :roles  # List of roles to apply policy to
+        # @!attribute name
+        #   @return [String] User-friendly policy name
+        attr_accessor :name
+        # @!attribute owner
+        #   @return [Boolean] Whether policy applies to resource owner or not
+        attr_accessor :owner
+        # @!attribute priority
+        #   @return [Integer] Policy priority
+        attr_accessor :priority
+        # @!attribute resources
+        #   @return [Array<String>] List of resources to apply policy to
+        attr_accessor :resources
+        # @!attribute roles
+        #   @return [Array<String>] List of roles to apply policy to
+        attr_accessor :roles
 
         # Initialize with attributes
         def initialize(attributes = {})

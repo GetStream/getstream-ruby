@@ -9,11 +9,21 @@ module GetStream
       class BookmarkFolderResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :_id  # Unique identifier for the folder
-        attr_accessor :created_at  # When the folder was created
-        attr_accessor :name  # Name of the folder
-        attr_accessor :updated_at  # When the folder was last updated
-        attr_accessor :custom  # Custom data for the folder
+        # @!attribute _id
+        #   @return [String] Unique identifier for the folder
+        attr_accessor :_id
+        # @!attribute created_at
+        #   @return [DateTime] When the folder was created
+        attr_accessor :created_at
+        # @!attribute name
+        #   @return [String] Name of the folder
+        attr_accessor :name
+        # @!attribute updated_at
+        #   @return [DateTime] When the folder was last updated
+        attr_accessor :updated_at
+        # @!attribute custom
+        #   @return [Object] Custom data for the folder
+        attr_accessor :custom
 
         # Initialize with attributes
         def initialize(attributes = {})

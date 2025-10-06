@@ -9,12 +9,24 @@ module GetStream
       class CallSessionParticipantCountsUpdatedEvent < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute anonymous_participant_count
+        #   @return [Integer]
         attr_accessor :anonymous_participant_count
+        # @!attribute call_cid
+        #   @return [String]
         attr_accessor :call_cid
+        # @!attribute created_at
+        #   @return [DateTime]
         attr_accessor :created_at
-        attr_accessor :session_id  # Call session ID
+        # @!attribute session_id
+        #   @return [String] Call session ID
+        attr_accessor :session_id
+        # @!attribute participants_count_by_role
+        #   @return [Hash<String, Integer>]
         attr_accessor :participants_count_by_role
-        attr_accessor :_type  # The type of event: "call.session_participant_count_updated" in this case
+        # @!attribute _type
+        #   @return [String] The type of event: "call.session_participant_count_updated" in this case
+        attr_accessor :_type
 
         # Initialize with attributes
         def initialize(attributes = {})

@@ -9,15 +9,33 @@ module GetStream
       class CallFrameRecordingFrameReadyEvent < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute call_cid
+        #   @return [String]
         attr_accessor :call_cid
-        attr_accessor :captured_at  # The time the frame was captured
+        # @!attribute captured_at
+        #   @return [DateTime] The time the frame was captured
+        attr_accessor :captured_at
+        # @!attribute created_at
+        #   @return [DateTime]
         attr_accessor :created_at
+        # @!attribute egress_id
+        #   @return [String]
         attr_accessor :egress_id
-        attr_accessor :session_id  # Call session ID
-        attr_accessor :track_type  # The type of the track frame was captured from (TRACK_TYPE_VIDEO|TRACK_TYPE_SCREEN_SHARE)
-        attr_accessor :url  # The URL of the frame
-        attr_accessor :users  # The users in the frame
-        attr_accessor :_type  # The type of event: "call.frame_recording_ready" in this case
+        # @!attribute session_id
+        #   @return [String] Call session ID
+        attr_accessor :session_id
+        # @!attribute track_type
+        #   @return [String] The type of the track frame was captured from (TRACK_TYPE_VIDEO|TRACK_TYPE_SCREEN_SHARE)
+        attr_accessor :track_type
+        # @!attribute url
+        #   @return [String] The URL of the frame
+        attr_accessor :url
+        # @!attribute users
+        #   @return [Hash<String, UserResponse>] The users in the frame
+        attr_accessor :users
+        # @!attribute _type
+        #   @return [String] The type of event: "call.frame_recording_ready" in this case
+        attr_accessor :_type
 
         # Initialize with attributes
         def initialize(attributes = {})

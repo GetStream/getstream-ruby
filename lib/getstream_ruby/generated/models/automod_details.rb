@@ -9,10 +9,20 @@ module GetStream
       class AutomodDetails < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute action
+        #   @return [String]
         attr_accessor :action
+        # @!attribute original_message_type
+        #   @return [String]
         attr_accessor :original_message_type
+        # @!attribute image_labels
+        #   @return [Array<String>]
         attr_accessor :image_labels
+        # @!attribute message_details
+        #   @return [FlagMessageDetails]
         attr_accessor :message_details
+        # @!attribute result
+        #   @return [MessageModerationResult]
         attr_accessor :result
 
         # Initialize with attributes

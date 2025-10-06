@@ -9,7 +9,11 @@ module GetStream
       class StartCampaignRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute scheduled_for
+        #   @return [DateTime]
         attr_accessor :scheduled_for
+        # @!attribute stop_at
+        #   @return [DateTime]
         attr_accessor :stop_at
 
         # Initialize with attributes

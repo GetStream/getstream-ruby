@@ -9,7 +9,9 @@ module GetStream
       class WHIPIngress < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :address  # URL for a new whip input, every time a new link is created
+        # @!attribute address
+        #   @return [String] URL for a new whip input, every time a new link is created
+        attr_accessor :address
 
         # Initialize with attributes
         def initialize(attributes = {})

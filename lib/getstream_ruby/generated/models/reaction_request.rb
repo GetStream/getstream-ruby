@@ -9,12 +9,26 @@ module GetStream
       class ReactionRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :_type  # The type of reaction (e.g. 'like', 'laugh', 'wow')
-        attr_accessor :created_at  # Date/time of creation
-        attr_accessor :score  # Reaction score. If not specified reaction has score of 1
-        attr_accessor :updated_at  # Date/time of the last update
+        # @!attribute _type
+        #   @return [String] The type of reaction (e.g. 'like', 'laugh', 'wow')
+        attr_accessor :_type
+        # @!attribute created_at
+        #   @return [DateTime] Date/time of creation
+        attr_accessor :created_at
+        # @!attribute score
+        #   @return [Integer] Reaction score. If not specified reaction has score of 1
+        attr_accessor :score
+        # @!attribute updated_at
+        #   @return [DateTime] Date/time of the last update
+        attr_accessor :updated_at
+        # @!attribute user_id
+        #   @return [String]
         attr_accessor :user_id
+        # @!attribute custom
+        #   @return [Object]
         attr_accessor :custom
+        # @!attribute user
+        #   @return [UserRequest]
         attr_accessor :user
 
         # Initialize with attributes

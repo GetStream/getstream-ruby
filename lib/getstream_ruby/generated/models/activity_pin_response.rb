@@ -9,10 +9,20 @@ module GetStream
       class ActivityPinResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :created_at  # When the pin was created
-        attr_accessor :feed  # ID of the feed where activity is pinned
-        attr_accessor :updated_at  # When the pin was last updated
+        # @!attribute created_at
+        #   @return [DateTime] When the pin was created
+        attr_accessor :created_at
+        # @!attribute feed
+        #   @return [String] ID of the feed where activity is pinned
+        attr_accessor :feed
+        # @!attribute updated_at
+        #   @return [DateTime] When the pin was last updated
+        attr_accessor :updated_at
+        # @!attribute activity
+        #   @return [ActivityResponse]
         attr_accessor :activity
+        # @!attribute user
+        #   @return [UserResponse]
         attr_accessor :user
 
         # Initialize with attributes

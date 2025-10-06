@@ -9,10 +9,20 @@ module GetStream
       class AITextConfig < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute async
+        #   @return [Boolean]
         attr_accessor :async
+        # @!attribute enabled
+        #   @return [Boolean]
         attr_accessor :enabled
+        # @!attribute profile
+        #   @return [String]
         attr_accessor :profile
+        # @!attribute rules
+        #   @return [Array<BodyguardRule>]
         attr_accessor :rules
+        # @!attribute severity_rules
+        #   @return [Array<BodyguardSeverityRule>]
         attr_accessor :severity_rules
 
         # Initialize with attributes

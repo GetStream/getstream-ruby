@@ -9,12 +9,26 @@ module GetStream
       class ChannelMemberLookup < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute archived
+        #   @return [Boolean]
         attr_accessor :archived
+        # @!attribute banned
+        #   @return [Boolean]
         attr_accessor :banned
+        # @!attribute hidden
+        #   @return [Boolean]
         attr_accessor :hidden
+        # @!attribute pinned
+        #   @return [Boolean]
         attr_accessor :pinned
+        # @!attribute archived_at
+        #   @return [DateTime]
         attr_accessor :archived_at
+        # @!attribute ban_expires
+        #   @return [DateTime]
         attr_accessor :ban_expires
+        # @!attribute pinned_at
+        #   @return [DateTime]
         attr_accessor :pinned_at
 
         # Initialize with attributes

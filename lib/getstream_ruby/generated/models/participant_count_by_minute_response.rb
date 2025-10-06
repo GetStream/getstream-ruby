@@ -9,10 +9,20 @@ module GetStream
       class ParticipantCountByMinuteResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute first
+        #   @return [Integer]
         attr_accessor :first
+        # @!attribute last
+        #   @return [Integer]
         attr_accessor :last
+        # @!attribute max
+        #   @return [Integer]
         attr_accessor :max
+        # @!attribute min
+        #   @return [Integer]
         attr_accessor :min
+        # @!attribute start_ts
+        #   @return [DateTime]
         attr_accessor :start_ts
 
         # Initialize with attributes

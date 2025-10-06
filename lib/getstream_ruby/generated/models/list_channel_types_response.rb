@@ -9,8 +9,12 @@ module GetStream
       class ListChannelTypesResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
-        attr_accessor :channel_types  # Object with all channel types
+        # @!attribute channel_types
+        #   @return [Hash<String, ChannelTypeConfig>] Object with all channel types
+        attr_accessor :channel_types
 
         # Initialize with attributes
         def initialize(attributes = {})

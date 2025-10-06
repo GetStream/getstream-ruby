@@ -9,8 +9,12 @@ module GetStream
       class FollowBatchResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
-        attr_accessor :follows  # List of created follow relationships
+        # @!attribute follows
+        #   @return [Array<FollowResponse>] List of created follow relationships
+        attr_accessor :follows
 
         # Initialize with attributes
         def initialize(attributes = {})

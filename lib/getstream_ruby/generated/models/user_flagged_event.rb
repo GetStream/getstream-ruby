@@ -9,10 +9,20 @@ module GetStream
       class UserFlaggedEvent < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute created_at
+        #   @return [DateTime]
         attr_accessor :created_at
+        # @!attribute _type
+        #   @return [String]
         attr_accessor :_type
+        # @!attribute target_user
+        #   @return [String]
         attr_accessor :target_user
+        # @!attribute target_users
+        #   @return [Array<String>]
         attr_accessor :target_users
+        # @!attribute user
+        #   @return [User]
         attr_accessor :user
 
         # Initialize with attributes

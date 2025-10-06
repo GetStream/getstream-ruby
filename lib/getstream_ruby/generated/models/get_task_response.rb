@@ -9,13 +9,27 @@ module GetStream
       class GetTaskResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute created_at
+        #   @return [DateTime]
         attr_accessor :created_at
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
-        attr_accessor :status  # Current status of task
-        attr_accessor :task_id  # ID of task
+        # @!attribute status
+        #   @return [String] Current status of task
+        attr_accessor :status
+        # @!attribute task_id
+        #   @return [String] ID of task
+        attr_accessor :task_id
+        # @!attribute updated_at
+        #   @return [DateTime]
         attr_accessor :updated_at
+        # @!attribute error
+        #   @return [ErrorResult]
         attr_accessor :error
-        attr_accessor :result  # Result produced by task after completion
+        # @!attribute result
+        #   @return [Object] Result produced by task after completion
+        attr_accessor :result
 
         # Initialize with attributes
         def initialize(attributes = {})

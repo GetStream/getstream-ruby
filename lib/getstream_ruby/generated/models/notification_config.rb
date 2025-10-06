@@ -9,8 +9,12 @@ module GetStream
       class NotificationConfig < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :track_read  # Whether to track read status
-        attr_accessor :track_seen  # Whether to track seen status
+        # @!attribute track_read
+        #   @return [Boolean] Whether to track read status
+        attr_accessor :track_read
+        # @!attribute track_seen
+        #   @return [Boolean] Whether to track seen status
+        attr_accessor :track_seen
 
         # Initialize with attributes
         def initialize(attributes = {})

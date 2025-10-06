@@ -9,16 +9,38 @@ module GetStream
       class UpsertModerationRuleRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute name
+        #   @return [String]
         attr_accessor :name
+        # @!attribute rule_type
+        #   @return [String]
         attr_accessor :rule_type
+        # @!attribute action
+        #   @return [RuleBuilderAction]
         attr_accessor :action
+        # @!attribute cooldown_period
+        #   @return [String]
         attr_accessor :cooldown_period
+        # @!attribute description
+        #   @return [String]
         attr_accessor :description
+        # @!attribute enabled
+        #   @return [Boolean]
         attr_accessor :enabled
+        # @!attribute logic
+        #   @return [String]
         attr_accessor :logic
+        # @!attribute team
+        #   @return [String]
         attr_accessor :team
+        # @!attribute conditions
+        #   @return [Array<RuleBuilderCondition>]
         attr_accessor :conditions
+        # @!attribute config_keys
+        #   @return [Array<String>]
         attr_accessor :config_keys
+        # @!attribute groups
+        #   @return [Array<RuleBuilderConditionGroup>]
         attr_accessor :groups
 
         # Initialize with attributes

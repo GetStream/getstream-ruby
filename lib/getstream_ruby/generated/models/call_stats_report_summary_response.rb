@@ -9,13 +9,29 @@ module GetStream
       class CallStatsReportSummaryResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute call_cid
+        #   @return [String]
         attr_accessor :call_cid
+        # @!attribute call_duration_seconds
+        #   @return [Integer]
         attr_accessor :call_duration_seconds
+        # @!attribute call_session_id
+        #   @return [String]
         attr_accessor :call_session_id
+        # @!attribute call_status
+        #   @return [String]
         attr_accessor :call_status
+        # @!attribute first_stats_time
+        #   @return [DateTime]
         attr_accessor :first_stats_time
+        # @!attribute created_at
+        #   @return [DateTime]
         attr_accessor :created_at
+        # @!attribute min_user_rating
+        #   @return [Integer]
         attr_accessor :min_user_rating
+        # @!attribute quality_score
+        #   @return [Integer]
         attr_accessor :quality_score
 
         # Initialize with attributes

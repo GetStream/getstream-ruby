@@ -9,8 +9,14 @@ module GetStream
       class UpdateReminderRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute remind_at
+        #   @return [DateTime]
         attr_accessor :remind_at
+        # @!attribute user_id
+        #   @return [String]
         attr_accessor :user_id
+        # @!attribute user
+        #   @return [UserRequest]
         attr_accessor :user
 
         # Initialize with attributes

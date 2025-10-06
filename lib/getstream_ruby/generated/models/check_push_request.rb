@@ -9,15 +9,35 @@ module GetStream
       class CheckPushRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :apn_template  # Push message template for APN
-        attr_accessor :event_type  # Type of event for push templates (default: message.new)
-        attr_accessor :firebase_data_template  # Push message data template for Firebase
-        attr_accessor :firebase_template  # Push message template for Firebase
-        attr_accessor :message_id  # Message ID to send push notification for
-        attr_accessor :push_provider_name  # Name of push provider
-        attr_accessor :push_provider_type  # Push provider type
-        attr_accessor :skip_devices  # Don't require existing devices to render templates
+        # @!attribute apn_template
+        #   @return [String] Push message template for APN
+        attr_accessor :apn_template
+        # @!attribute event_type
+        #   @return [String] Type of event for push templates (default: message.new)
+        attr_accessor :event_type
+        # @!attribute firebase_data_template
+        #   @return [String] Push message data template for Firebase
+        attr_accessor :firebase_data_template
+        # @!attribute firebase_template
+        #   @return [String] Push message template for Firebase
+        attr_accessor :firebase_template
+        # @!attribute message_id
+        #   @return [String] Message ID to send push notification for
+        attr_accessor :message_id
+        # @!attribute push_provider_name
+        #   @return [String] Name of push provider
+        attr_accessor :push_provider_name
+        # @!attribute push_provider_type
+        #   @return [String] Push provider type
+        attr_accessor :push_provider_type
+        # @!attribute skip_devices
+        #   @return [Boolean] Don't require existing devices to render templates
+        attr_accessor :skip_devices
+        # @!attribute user_id
+        #   @return [String]
         attr_accessor :user_id
+        # @!attribute user
+        #   @return [UserRequest]
         attr_accessor :user
 
         # Initialize with attributes

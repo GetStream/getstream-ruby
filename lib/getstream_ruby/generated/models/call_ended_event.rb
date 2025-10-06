@@ -9,11 +9,23 @@ module GetStream
       class CallEndedEvent < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute call_cid
+        #   @return [String]
         attr_accessor :call_cid
+        # @!attribute created_at
+        #   @return [DateTime]
         attr_accessor :created_at
+        # @!attribute call
+        #   @return [CallResponse]
         attr_accessor :call
-        attr_accessor :_type  # The type of event: "call.ended" in this case
-        attr_accessor :reason  # The reason why the call ended, if available
+        # @!attribute _type
+        #   @return [String] The type of event: "call.ended" in this case
+        attr_accessor :_type
+        # @!attribute reason
+        #   @return [String] The reason why the call ended, if available
+        attr_accessor :reason
+        # @!attribute user
+        #   @return [UserResponse]
         attr_accessor :user
 
         # Initialize with attributes

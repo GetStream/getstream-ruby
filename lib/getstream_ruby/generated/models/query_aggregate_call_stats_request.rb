@@ -9,8 +9,14 @@ module GetStream
       class QueryAggregateCallStatsRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute from
+        #   @return [String]
         attr_accessor :from
+        # @!attribute to
+        #   @return [String]
         attr_accessor :to
+        # @!attribute report_types
+        #   @return [Array<String>]
         attr_accessor :report_types
 
         # Initialize with attributes

@@ -9,7 +9,11 @@ module GetStream
       class VideoReactionsResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute reaction
+        #   @return [String]
         attr_accessor :reaction
+        # @!attribute count_over_time
+        #   @return [VideoReactionOverTimeResponse]
         attr_accessor :count_over_time
 
         # Initialize with attributes

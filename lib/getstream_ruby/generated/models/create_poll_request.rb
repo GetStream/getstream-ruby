@@ -9,18 +9,44 @@ module GetStream
       class CreatePollRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :name  # The name of the poll
+        # @!attribute name
+        #   @return [String] The name of the poll
+        attr_accessor :name
+        # @!attribute _id
+        #   @return [String]
         attr_accessor :_id
-        attr_accessor :allow_answers  # Indicates whether users can suggest user defined answers
+        # @!attribute allow_answers
+        #   @return [Boolean] Indicates whether users can suggest user defined answers
+        attr_accessor :allow_answers
+        # @!attribute allow_user_suggested_options
+        #   @return [Boolean]
         attr_accessor :allow_user_suggested_options
-        attr_accessor :description  # A description of the poll
-        attr_accessor :enforce_unique_vote  # Indicates whether users can cast multiple votes
-        attr_accessor :is_closed  # Indicates whether the poll is open for voting
-        attr_accessor :max_votes_allowed  # Indicates the maximum amount of votes a user can cast
+        # @!attribute description
+        #   @return [String] A description of the poll
+        attr_accessor :description
+        # @!attribute enforce_unique_vote
+        #   @return [Boolean] Indicates whether users can cast multiple votes
+        attr_accessor :enforce_unique_vote
+        # @!attribute is_closed
+        #   @return [Boolean] Indicates whether the poll is open for voting
+        attr_accessor :is_closed
+        # @!attribute max_votes_allowed
+        #   @return [Integer] Indicates the maximum amount of votes a user can cast
+        attr_accessor :max_votes_allowed
+        # @!attribute user_id
+        #   @return [String]
         attr_accessor :user_id
+        # @!attribute voting_visibility
+        #   @return [String]
         attr_accessor :voting_visibility
+        # @!attribute options
+        #   @return [Array<PollOptionInput>]
         attr_accessor :options
+        # @!attribute custom
+        #   @return [Object]
         attr_accessor :custom
+        # @!attribute user
+        #   @return [UserRequest]
         attr_accessor :user
 
         # Initialize with attributes

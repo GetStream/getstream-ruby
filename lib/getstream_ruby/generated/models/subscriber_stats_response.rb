@@ -9,8 +9,14 @@ module GetStream
       class SubscriberStatsResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute total
+        #   @return [Integer]
         attr_accessor :total
+        # @!attribute total_subscribed_duration_seconds
+        #   @return [Integer]
         attr_accessor :total_subscribed_duration_seconds
+        # @!attribute unique
+        #   @return [Integer]
         attr_accessor :unique
 
         # Initialize with attributes

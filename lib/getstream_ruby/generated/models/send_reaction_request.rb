@@ -9,9 +9,15 @@ module GetStream
       class SendReactionRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute reaction
+        #   @return [ReactionRequest]
         attr_accessor :reaction
-        attr_accessor :enforce_unique  # Whether to replace all existing user reactions
-        attr_accessor :skip_push  # Skips any mobile push notifications
+        # @!attribute enforce_unique
+        #   @return [Boolean] Whether to replace all existing user reactions
+        attr_accessor :enforce_unique
+        # @!attribute skip_push
+        #   @return [Boolean] Skips any mobile push notifications
+        attr_accessor :skip_push
 
         # Initialize with attributes
         def initialize(attributes = {})

@@ -9,53 +9,149 @@ module GetStream
       class AppResponseFields < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute async_url_enrich_enabled
+        #   @return [Boolean]
         attr_accessor :async_url_enrich_enabled
+        # @!attribute auto_translation_enabled
+        #   @return [Boolean]
         attr_accessor :auto_translation_enabled
+        # @!attribute campaign_enabled
+        #   @return [Boolean]
         attr_accessor :campaign_enabled
+        # @!attribute cdn_expiration_seconds
+        #   @return [Integer]
         attr_accessor :cdn_expiration_seconds
+        # @!attribute custom_action_handler_url
+        #   @return [String]
         attr_accessor :custom_action_handler_url
+        # @!attribute disable_auth_checks
+        #   @return [Boolean]
         attr_accessor :disable_auth_checks
+        # @!attribute disable_permissions_checks
+        #   @return [Boolean]
         attr_accessor :disable_permissions_checks
+        # @!attribute enforce_unique_usernames
+        #   @return [String]
         attr_accessor :enforce_unique_usernames
+        # @!attribute guest_user_creation_disabled
+        #   @return [Boolean]
         attr_accessor :guest_user_creation_disabled
+        # @!attribute image_moderation_enabled
+        #   @return [Boolean]
         attr_accessor :image_moderation_enabled
+        # @!attribute moderation_bulk_submit_action_enabled
+        #   @return [Boolean]
         attr_accessor :moderation_bulk_submit_action_enabled
+        # @!attribute moderation_enabled
+        #   @return [Boolean]
         attr_accessor :moderation_enabled
+        # @!attribute moderation_llm_configurability_enabled
+        #   @return [Boolean]
         attr_accessor :moderation_llm_configurability_enabled
+        # @!attribute moderation_multitenant_blocklist_enabled
+        #   @return [Boolean]
         attr_accessor :moderation_multitenant_blocklist_enabled
+        # @!attribute moderation_webhook_url
+        #   @return [String]
         attr_accessor :moderation_webhook_url
+        # @!attribute multi_tenant_enabled
+        #   @return [Boolean]
         attr_accessor :multi_tenant_enabled
+        # @!attribute name
+        #   @return [String]
         attr_accessor :name
+        # @!attribute organization
+        #   @return [String]
         attr_accessor :organization
+        # @!attribute permission_version
+        #   @return [String]
         attr_accessor :permission_version
+        # @!attribute reminders_interval
+        #   @return [Integer]
         attr_accessor :reminders_interval
+        # @!attribute sns_key
+        #   @return [String]
         attr_accessor :sns_key
+        # @!attribute sns_secret
+        #   @return [String]
         attr_accessor :sns_secret
+        # @!attribute sns_topic_arn
+        #   @return [String]
         attr_accessor :sns_topic_arn
+        # @!attribute sqs_key
+        #   @return [String]
         attr_accessor :sqs_key
+        # @!attribute sqs_secret
+        #   @return [String]
         attr_accessor :sqs_secret
+        # @!attribute sqs_url
+        #   @return [String]
         attr_accessor :sqs_url
+        # @!attribute suspended
+        #   @return [Boolean]
         attr_accessor :suspended
+        # @!attribute suspended_explanation
+        #   @return [String]
         attr_accessor :suspended_explanation
+        # @!attribute use_hook_v2
+        #   @return [Boolean]
         attr_accessor :use_hook_v2
+        # @!attribute user_response_time_enabled
+        #   @return [Boolean]
         attr_accessor :user_response_time_enabled
+        # @!attribute webhook_url
+        #   @return [String]
         attr_accessor :webhook_url
+        # @!attribute event_hooks
+        #   @return [Array<EventHook>]
         attr_accessor :event_hooks
+        # @!attribute user_search_disallowed_roles
+        #   @return [Array<String>]
         attr_accessor :user_search_disallowed_roles
+        # @!attribute webhook_events
+        #   @return [Array<String>]
         attr_accessor :webhook_events
+        # @!attribute call_types
+        #   @return [Hash<String, CallType>]
         attr_accessor :call_types
+        # @!attribute channel_configs
+        #   @return [Hash<String, ChannelConfig>]
         attr_accessor :channel_configs
+        # @!attribute file_upload_config
+        #   @return [FileUploadConfig]
         attr_accessor :file_upload_config
+        # @!attribute grants
+        #   @return [Hash<String, Array<String>>]
         attr_accessor :grants
+        # @!attribute image_upload_config
+        #   @return [FileUploadConfig]
         attr_accessor :image_upload_config
+        # @!attribute policies
+        #   @return [Hash<String, Array<Policy>>]
         attr_accessor :policies
+        # @!attribute push_notifications
+        #   @return [PushNotificationFields]
         attr_accessor :push_notifications
+        # @!attribute before_message_send_hook_url
+        #   @return [String]
         attr_accessor :before_message_send_hook_url
+        # @!attribute revoke_tokens_issued_before
+        #   @return [DateTime]
         attr_accessor :revoke_tokens_issued_before
+        # @!attribute allowed_flag_reasons
+        #   @return [Array<String>]
         attr_accessor :allowed_flag_reasons
+        # @!attribute geofences
+        #   @return [Array<GeofenceResponse>]
         attr_accessor :geofences
+        # @!attribute image_moderation_labels
+        #   @return [Array<String>]
         attr_accessor :image_moderation_labels
+        # @!attribute datadog_info
+        #   @return [DataDogInfo]
         attr_accessor :datadog_info
+        # @!attribute moderation_dashboard_preferences
+        #   @return [ModerationDashboardPreferences]
         attr_accessor :moderation_dashboard_preferences
 
         # Initialize with attributes

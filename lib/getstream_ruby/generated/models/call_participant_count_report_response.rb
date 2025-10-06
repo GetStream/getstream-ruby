@@ -9,6 +9,8 @@ module GetStream
       class CallParticipantCountReportResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute daily
+        #   @return [Array<DailyAggregateCallParticipantCountReportResponse>]
         attr_accessor :daily
 
         # Initialize with attributes

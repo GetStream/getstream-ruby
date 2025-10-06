@@ -9,35 +9,93 @@ module GetStream
       class CreateChannelTypeRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :automod  # Automod
-        attr_accessor :automod_behavior  # Automod behavior
-        attr_accessor :max_message_length  # Max message length
-        attr_accessor :name  # Channel type name
-        attr_accessor :blocklist  # Blocklist
-        attr_accessor :blocklist_behavior  # Blocklist behavior
-        attr_accessor :connect_events  # Connect events
-        attr_accessor :custom_events  # Custom events
-        attr_accessor :mark_messages_pending  # Mark messages pending
-        attr_accessor :message_retention  # Message retention
-        attr_accessor :mutes  # Mutes
-        attr_accessor :partition_size  # Partition size
-        attr_accessor :partition_ttl  # Partition TTL
-        attr_accessor :polls  # Polls
-        attr_accessor :push_notifications  # Push notifications
-        attr_accessor :reactions  # Reactions
-        attr_accessor :read_events  # Read events
-        attr_accessor :replies  # Replies
-        attr_accessor :search  # Search
-        attr_accessor :shared_locations  # Enables shared location messages
+        # @!attribute automod
+        #   @return [String] Automod
+        attr_accessor :automod
+        # @!attribute automod_behavior
+        #   @return [String] Automod behavior
+        attr_accessor :automod_behavior
+        # @!attribute max_message_length
+        #   @return [Integer] Max message length
+        attr_accessor :max_message_length
+        # @!attribute name
+        #   @return [String] Channel type name
+        attr_accessor :name
+        # @!attribute blocklist
+        #   @return [String] Blocklist
+        attr_accessor :blocklist
+        # @!attribute blocklist_behavior
+        #   @return [String] Blocklist behavior
+        attr_accessor :blocklist_behavior
+        # @!attribute connect_events
+        #   @return [Boolean] Connect events
+        attr_accessor :connect_events
+        # @!attribute custom_events
+        #   @return [Boolean] Custom events
+        attr_accessor :custom_events
+        # @!attribute mark_messages_pending
+        #   @return [Boolean] Mark messages pending
+        attr_accessor :mark_messages_pending
+        # @!attribute message_retention
+        #   @return [String] Message retention
+        attr_accessor :message_retention
+        # @!attribute mutes
+        #   @return [Boolean] Mutes
+        attr_accessor :mutes
+        # @!attribute partition_size
+        #   @return [Integer] Partition size
+        attr_accessor :partition_size
+        # @!attribute partition_ttl
+        #   @return [String] Partition TTL
+        attr_accessor :partition_ttl
+        # @!attribute polls
+        #   @return [Boolean] Polls
+        attr_accessor :polls
+        # @!attribute push_notifications
+        #   @return [Boolean] Push notifications
+        attr_accessor :push_notifications
+        # @!attribute reactions
+        #   @return [Boolean] Reactions
+        attr_accessor :reactions
+        # @!attribute read_events
+        #   @return [Boolean] Read events
+        attr_accessor :read_events
+        # @!attribute replies
+        #   @return [Boolean] Replies
+        attr_accessor :replies
+        # @!attribute search
+        #   @return [Boolean] Search
+        attr_accessor :search
+        # @!attribute shared_locations
+        #   @return [Boolean] Enables shared location messages
+        attr_accessor :shared_locations
+        # @!attribute skip_last_msg_update_for_system_msgs
+        #   @return [Boolean]
         attr_accessor :skip_last_msg_update_for_system_msgs
-        attr_accessor :typing_events  # Typing events
-        attr_accessor :uploads  # Uploads
-        attr_accessor :url_enrichment  # URL enrichment
+        # @!attribute typing_events
+        #   @return [Boolean] Typing events
+        attr_accessor :typing_events
+        # @!attribute uploads
+        #   @return [Boolean] Uploads
+        attr_accessor :uploads
+        # @!attribute url_enrichment
+        #   @return [Boolean] URL enrichment
+        attr_accessor :url_enrichment
+        # @!attribute user_message_reminders
+        #   @return [Boolean]
         attr_accessor :user_message_reminders
-        attr_accessor :blocklists  # Blocklists
-        attr_accessor :commands  # List of commands that channel supports
-        attr_accessor :permissions  # List of permissions for the channel type
-        attr_accessor :grants  # List of grants for the channel type
+        # @!attribute blocklists
+        #   @return [Array<BlockListOptions>] Blocklists
+        attr_accessor :blocklists
+        # @!attribute commands
+        #   @return [Array<String>] List of commands that channel supports
+        attr_accessor :commands
+        # @!attribute permissions
+        #   @return [Array<PolicyRequest>] List of permissions for the channel type
+        attr_accessor :permissions
+        # @!attribute grants
+        #   @return [Hash<String, Array<String>>] List of grants for the channel type
+        attr_accessor :grants
 
         # Initialize with attributes
         def initialize(attributes = {})

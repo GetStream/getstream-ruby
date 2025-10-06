@@ -9,15 +9,35 @@ module GetStream
       class QueryThreadsRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _next
+        #   @return [String]
         attr_accessor :_next
+        # @!attribute limit
+        #   @return [Integer]
         attr_accessor :limit
+        # @!attribute member_limit
+        #   @return [Integer]
         attr_accessor :member_limit
-        attr_accessor :participant_limit  # Limit the number of participants returned per each thread
+        # @!attribute participant_limit
+        #   @return [Integer] Limit the number of participants returned per each thread
+        attr_accessor :participant_limit
+        # @!attribute prev
+        #   @return [String]
         attr_accessor :prev
-        attr_accessor :reply_limit  # Limit the number of replies returned per each thread
+        # @!attribute reply_limit
+        #   @return [Integer] Limit the number of replies returned per each thread
+        attr_accessor :reply_limit
+        # @!attribute user_id
+        #   @return [String]
         attr_accessor :user_id
-        attr_accessor :sort  # Sort conditions to apply to threads
-        attr_accessor :filter  # Filter conditions to apply to threads
+        # @!attribute sort
+        #   @return [Array<SortParamRequest>] Sort conditions to apply to threads
+        attr_accessor :sort
+        # @!attribute filter
+        #   @return [Object] Filter conditions to apply to threads
+        attr_accessor :filter
+        # @!attribute user
+        #   @return [UserRequest]
         attr_accessor :user
 
         # Initialize with attributes

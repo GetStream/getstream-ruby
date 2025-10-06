@@ -9,12 +9,26 @@ module GetStream
       class FeedGroupDeletedEvent < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :created_at  # Date/time of creation
+        # @!attribute created_at
+        #   @return [DateTime] Date/time of creation
+        attr_accessor :created_at
+        # @!attribute fid
+        #   @return [String]
         attr_accessor :fid
-        attr_accessor :group_id  # The ID of the feed group that was deleted
+        # @!attribute group_id
+        #   @return [String] The ID of the feed group that was deleted
+        attr_accessor :group_id
+        # @!attribute custom
+        #   @return [Object]
         attr_accessor :custom
-        attr_accessor :_type  # The type of event: "feeds.feed_group.deleted" in this case
+        # @!attribute _type
+        #   @return [String] The type of event: "feeds.feed_group.deleted" in this case
+        attr_accessor :_type
+        # @!attribute feed_visibility
+        #   @return [String]
         attr_accessor :feed_visibility
+        # @!attribute received_at
+        #   @return [DateTime]
         attr_accessor :received_at
 
         # Initialize with attributes

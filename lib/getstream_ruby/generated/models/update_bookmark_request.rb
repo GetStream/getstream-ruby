@@ -9,11 +9,23 @@ module GetStream
       class UpdateBookmarkRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :folder_id  # ID of the folder to move the bookmark to
+        # @!attribute folder_id
+        #   @return [String] ID of the folder to move the bookmark to
+        attr_accessor :folder_id
+        # @!attribute new_folder_id
+        #   @return [String]
         attr_accessor :new_folder_id
+        # @!attribute user_id
+        #   @return [String]
         attr_accessor :user_id
-        attr_accessor :custom  # Custom data for the bookmark
+        # @!attribute custom
+        #   @return [Object] Custom data for the bookmark
+        attr_accessor :custom
+        # @!attribute new_folder
+        #   @return [AddFolderRequest]
         attr_accessor :new_folder
+        # @!attribute user
+        #   @return [UserRequest]
         attr_accessor :user
 
         # Initialize with attributes

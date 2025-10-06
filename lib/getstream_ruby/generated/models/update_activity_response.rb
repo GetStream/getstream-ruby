@@ -9,7 +9,11 @@ module GetStream
       class UpdateActivityResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
+        # @!attribute activity
+        #   @return [ActivityResponse]
         attr_accessor :activity
 
         # Initialize with attributes

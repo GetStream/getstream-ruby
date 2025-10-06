@@ -9,7 +9,11 @@ module GetStream
       class ListExternalStorageResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :duration  # Duration of the request in milliseconds
+        # @!attribute duration
+        #   @return [String] Duration of the request in milliseconds
+        attr_accessor :duration
+        # @!attribute external_storages
+        #   @return [Hash<String, ExternalStorageResponse>]
         attr_accessor :external_storages
 
         # Initialize with attributes

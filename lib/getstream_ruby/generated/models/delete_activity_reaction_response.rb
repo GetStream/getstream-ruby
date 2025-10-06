@@ -9,8 +9,14 @@ module GetStream
       class DeleteActivityReactionResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
+        # @!attribute activity
+        #   @return [ActivityResponse]
         attr_accessor :activity
+        # @!attribute reaction
+        #   @return [FeedsReactionResponse]
         attr_accessor :reaction
 
         # Initialize with attributes

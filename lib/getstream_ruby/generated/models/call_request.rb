@@ -9,14 +9,32 @@ module GetStream
       class CallRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute channel_cid
+        #   @return [String]
         attr_accessor :channel_cid
+        # @!attribute created_by_id
+        #   @return [String]
         attr_accessor :created_by_id
+        # @!attribute starts_at
+        #   @return [DateTime]
         attr_accessor :starts_at
+        # @!attribute team
+        #   @return [String]
         attr_accessor :team
+        # @!attribute video
+        #   @return [Boolean]
         attr_accessor :video
+        # @!attribute members
+        #   @return [Array<MemberRequest>]
         attr_accessor :members
+        # @!attribute created_by
+        #   @return [UserRequest]
         attr_accessor :created_by
+        # @!attribute custom
+        #   @return [Object]
         attr_accessor :custom
+        # @!attribute settings_override
+        #   @return [CallSettingsRequest]
         attr_accessor :settings_override
 
         # Initialize with attributes

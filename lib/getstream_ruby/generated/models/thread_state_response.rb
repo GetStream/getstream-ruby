@@ -9,24 +9,62 @@ module GetStream
       class ThreadStateResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :active_participant_count  # Active Participant Count
-        attr_accessor :channel_cid  # Channel CID
-        attr_accessor :created_at  # Date/time of creation
-        attr_accessor :created_by_user_id  # Created By User ID
-        attr_accessor :parent_message_id  # Parent Message ID
-        attr_accessor :participant_count  # Participant Count
-        attr_accessor :title  # Title
-        attr_accessor :updated_at  # Date/time of the last update
+        # @!attribute active_participant_count
+        #   @return [Integer] Active Participant Count
+        attr_accessor :active_participant_count
+        # @!attribute channel_cid
+        #   @return [String] Channel CID
+        attr_accessor :channel_cid
+        # @!attribute created_at
+        #   @return [DateTime] Date/time of creation
+        attr_accessor :created_at
+        # @!attribute created_by_user_id
+        #   @return [String] Created By User ID
+        attr_accessor :created_by_user_id
+        # @!attribute parent_message_id
+        #   @return [String] Parent Message ID
+        attr_accessor :parent_message_id
+        # @!attribute participant_count
+        #   @return [Integer] Participant Count
+        attr_accessor :participant_count
+        # @!attribute title
+        #   @return [String] Title
+        attr_accessor :title
+        # @!attribute updated_at
+        #   @return [DateTime] Date/time of the last update
+        attr_accessor :updated_at
+        # @!attribute latest_replies
+        #   @return [Array<MessageResponse>]
         attr_accessor :latest_replies
-        attr_accessor :custom  # Custom data for this object
-        attr_accessor :deleted_at  # Deleted At
-        attr_accessor :last_message_at  # Last Message At
-        attr_accessor :reply_count  # Reply Count
+        # @!attribute custom
+        #   @return [Object] Custom data for this object
+        attr_accessor :custom
+        # @!attribute deleted_at
+        #   @return [DateTime] Deleted At
+        attr_accessor :deleted_at
+        # @!attribute last_message_at
+        #   @return [DateTime] Last Message At
+        attr_accessor :last_message_at
+        # @!attribute reply_count
+        #   @return [Integer] Reply Count
+        attr_accessor :reply_count
+        # @!attribute read
+        #   @return [Array<ReadStateResponse>]
         attr_accessor :read
-        attr_accessor :thread_participants  # Thread Participants
+        # @!attribute thread_participants
+        #   @return [Array<ThreadParticipant>] Thread Participants
+        attr_accessor :thread_participants
+        # @!attribute channel
+        #   @return [ChannelResponse]
         attr_accessor :channel
+        # @!attribute created_by
+        #   @return [UserResponse]
         attr_accessor :created_by
+        # @!attribute draft
+        #   @return [DraftResponse]
         attr_accessor :draft
+        # @!attribute parent_message
+        #   @return [MessageResponse]
         attr_accessor :parent_message
 
         # Initialize with attributes

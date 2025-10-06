@@ -9,8 +9,14 @@ module GetStream
       class AutomodRule < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute action
+        #   @return [String]
         attr_accessor :action
+        # @!attribute label
+        #   @return [String]
         attr_accessor :label
+        # @!attribute threshold
+        #   @return [Float]
         attr_accessor :threshold
 
         # Initialize with attributes

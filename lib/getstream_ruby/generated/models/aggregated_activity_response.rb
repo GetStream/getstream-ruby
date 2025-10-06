@@ -9,14 +9,30 @@ module GetStream
       class AggregatedActivityResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :activity_count  # Number of activities in this aggregation
-        attr_accessor :created_at  # When the aggregation was created
-        attr_accessor :group  # Grouping identifier
-        attr_accessor :score  # Ranking score for this aggregation
-        attr_accessor :updated_at  # When the aggregation was last updated
-        attr_accessor :user_count  # Number of unique users in this aggregation
-        attr_accessor :user_count_truncated  # Whether this activity group has been truncated due to exceeding the group size limit
-        attr_accessor :activities  # List of activities in this aggregation
+        # @!attribute activity_count
+        #   @return [Integer] Number of activities in this aggregation
+        attr_accessor :activity_count
+        # @!attribute created_at
+        #   @return [DateTime] When the aggregation was created
+        attr_accessor :created_at
+        # @!attribute group
+        #   @return [String] Grouping identifier
+        attr_accessor :group
+        # @!attribute score
+        #   @return [Float] Ranking score for this aggregation
+        attr_accessor :score
+        # @!attribute updated_at
+        #   @return [DateTime] When the aggregation was last updated
+        attr_accessor :updated_at
+        # @!attribute user_count
+        #   @return [Integer] Number of unique users in this aggregation
+        attr_accessor :user_count
+        # @!attribute user_count_truncated
+        #   @return [Boolean] Whether this activity group has been truncated due to exceeding the group size limit
+        attr_accessor :user_count_truncated
+        # @!attribute activities
+        #   @return [Array<ActivityResponse>] List of activities in this aggregation
+        attr_accessor :activities
 
         # Initialize with attributes
         def initialize(attributes = {})

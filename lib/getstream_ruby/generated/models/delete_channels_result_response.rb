@@ -9,7 +9,11 @@ module GetStream
       class DeleteChannelsResultResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute status
+        #   @return [String]
         attr_accessor :status
+        # @!attribute error
+        #   @return [String]
         attr_accessor :error
 
         # Initialize with attributes

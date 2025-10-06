@@ -9,10 +9,20 @@ module GetStream
       class GetOrCreateCallRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute members_limit
+        #   @return [Integer]
         attr_accessor :members_limit
-        attr_accessor :notify  # if provided it sends a notification event to the members for this call
-        attr_accessor :ring  # if provided it sends a ring event to the members for this call
+        # @!attribute notify
+        #   @return [Boolean] if provided it sends a notification event to the members for this call
+        attr_accessor :notify
+        # @!attribute ring
+        #   @return [Boolean] if provided it sends a ring event to the members for this call
+        attr_accessor :ring
+        # @!attribute video
+        #   @return [Boolean]
         attr_accessor :video
+        # @!attribute data
+        #   @return [CallRequest]
         attr_accessor :data
 
         # Initialize with attributes

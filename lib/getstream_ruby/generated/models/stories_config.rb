@@ -9,8 +9,12 @@ module GetStream
       class StoriesConfig < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :expiration_behaviour  # Behavior when stories expire
-        attr_accessor :skip_watched  # Whether to skip already watched stories
+        # @!attribute expiration_behaviour
+        #   @return [String] Behavior when stories expire
+        attr_accessor :expiration_behaviour
+        # @!attribute skip_watched
+        #   @return [Boolean] Whether to skip already watched stories
+        attr_accessor :skip_watched
 
         # Initialize with attributes
         def initialize(attributes = {})

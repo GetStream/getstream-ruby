@@ -9,11 +9,21 @@ module GetStream
       class CallCreatedEvent < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute call_cid
+        #   @return [String]
         attr_accessor :call_cid
+        # @!attribute created_at
+        #   @return [DateTime]
         attr_accessor :created_at
-        attr_accessor :members  # the members added to this call
+        # @!attribute members
+        #   @return [Array<MemberResponse>] the members added to this call
+        attr_accessor :members
+        # @!attribute call
+        #   @return [CallResponse]
         attr_accessor :call
-        attr_accessor :_type  # The type of event: "call.created" in this case
+        # @!attribute _type
+        #   @return [String] The type of event: "call.created" in this case
+        attr_accessor :_type
 
         # Initialize with attributes
         def initialize(attributes = {})

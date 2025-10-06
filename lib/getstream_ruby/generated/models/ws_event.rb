@@ -9,32 +9,86 @@ module GetStream
       class WSEvent < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _type
+        #   @return [String]
         attr_accessor :_type
+        # @!attribute created_at
+        #   @return [DateTime]
         attr_accessor :created_at
+        # @!attribute custom
+        #   @return [Object]
         attr_accessor :custom
+        # @!attribute automoderation
+        #   @return [Boolean]
         attr_accessor :automoderation
+        # @!attribute channel_id
+        #   @return [String]
         attr_accessor :channel_id
+        # @!attribute channel_last_message_at
+        #   @return [DateTime]
         attr_accessor :channel_last_message_at
+        # @!attribute channel_type
+        #   @return [String]
         attr_accessor :channel_type
+        # @!attribute cid
+        #   @return [String]
         attr_accessor :cid
+        # @!attribute connection_id
+        #   @return [String]
         attr_accessor :connection_id
+        # @!attribute parent_id
+        #   @return [String]
         attr_accessor :parent_id
+        # @!attribute reason
+        #   @return [String]
         attr_accessor :reason
+        # @!attribute team
+        #   @return [String]
         attr_accessor :team
+        # @!attribute thread_id
+        #   @return [String]
         attr_accessor :thread_id
+        # @!attribute user_id
+        #   @return [String]
         attr_accessor :user_id
+        # @!attribute watcher_count
+        #   @return [Integer]
         attr_accessor :watcher_count
+        # @!attribute automoderation_scores
+        #   @return [ModerationResponse]
         attr_accessor :automoderation_scores
+        # @!attribute channel
+        #   @return [ChannelResponse]
         attr_accessor :channel
+        # @!attribute created_by
+        #   @return [UserResponse]
         attr_accessor :created_by
+        # @!attribute me
+        #   @return [OwnUserResponse]
         attr_accessor :me
+        # @!attribute member
+        #   @return [ChannelMember]
         attr_accessor :member
+        # @!attribute message
+        #   @return [MessageResponse]
         attr_accessor :message
+        # @!attribute message_update
+        #   @return [MessageUpdate]
         attr_accessor :message_update
+        # @!attribute poll
+        #   @return [PollResponseData]
         attr_accessor :poll
+        # @!attribute poll_vote
+        #   @return [PollVoteResponseData]
         attr_accessor :poll_vote
+        # @!attribute reaction
+        #   @return [ReactionResponse]
         attr_accessor :reaction
+        # @!attribute thread
+        #   @return [ThreadResponse]
         attr_accessor :thread
+        # @!attribute user
+        #   @return [UserResponse]
         attr_accessor :user
 
         # Initialize with attributes

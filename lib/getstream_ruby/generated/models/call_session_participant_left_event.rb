@@ -9,13 +9,27 @@ module GetStream
       class CallSessionParticipantLeftEvent < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute call_cid
+        #   @return [String]
         attr_accessor :call_cid
+        # @!attribute created_at
+        #   @return [DateTime]
         attr_accessor :created_at
-        attr_accessor :duration_seconds  # The duration participant was in the session in seconds
-        attr_accessor :session_id  # Call session ID
+        # @!attribute duration_seconds
+        #   @return [Integer] The duration participant was in the session in seconds
+        attr_accessor :duration_seconds
+        # @!attribute session_id
+        #   @return [String] Call session ID
+        attr_accessor :session_id
+        # @!attribute participant
+        #   @return [CallParticipantResponse]
         attr_accessor :participant
-        attr_accessor :_type  # The type of event: "call.session_participant_left" in this case
-        attr_accessor :reason  # The reason why the participant left the session
+        # @!attribute _type
+        #   @return [String] The type of event: "call.session_participant_left" in this case
+        attr_accessor :_type
+        # @!attribute reason
+        #   @return [String] The reason why the participant left the session
+        attr_accessor :reason
 
         # Initialize with attributes
         def initialize(attributes = {})

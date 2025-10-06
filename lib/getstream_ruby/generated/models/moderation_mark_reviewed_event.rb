@@ -9,11 +9,23 @@ module GetStream
       class ModerationMarkReviewedEvent < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute created_at
+        #   @return [DateTime]
         attr_accessor :created_at
+        # @!attribute custom
+        #   @return [Object]
         attr_accessor :custom
+        # @!attribute item
+        #   @return [ReviewQueueItemResponse]
         attr_accessor :item
+        # @!attribute _type
+        #   @return [String]
         attr_accessor :_type
+        # @!attribute received_at
+        #   @return [DateTime]
         attr_accessor :received_at
+        # @!attribute message
+        #   @return [MessageResponse]
         attr_accessor :message
 
         # Initialize with attributes

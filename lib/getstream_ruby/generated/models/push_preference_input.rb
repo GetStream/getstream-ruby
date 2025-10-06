@@ -9,13 +9,29 @@ module GetStream
       class PushPreferenceInput < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :call_level  # Set the level of call push notifications for the user. One of all, none, default
-        attr_accessor :channel_cid  # Set the push preferences for a specific channel. If empty it sets the default for the user
-        attr_accessor :chat_level  # Set the level of chat push notifications for the user. One of all, mentions, none, default
-        attr_accessor :disabled_until  # Disable push notifications till a certain time
-        attr_accessor :feeds_level  # Set the level of feeds push notifications for the user. One of all, none, default
-        attr_accessor :remove_disable  # Remove the disabled until time. (IE stop snoozing notifications)
-        attr_accessor :user_id  # The user id for which to set the push preferences. Required when using server side auths, defaults to current user with client side auth.
+        # @!attribute call_level
+        #   @return [String] Set the level of call push notifications for the user. One of all, none, default
+        attr_accessor :call_level
+        # @!attribute channel_cid
+        #   @return [String] Set the push preferences for a specific channel. If empty it sets the default for the user
+        attr_accessor :channel_cid
+        # @!attribute chat_level
+        #   @return [String] Set the level of chat push notifications for the user. One of all, mentions, none, default
+        attr_accessor :chat_level
+        # @!attribute disabled_until
+        #   @return [DateTime] Disable push notifications till a certain time
+        attr_accessor :disabled_until
+        # @!attribute feeds_level
+        #   @return [String] Set the level of feeds push notifications for the user. One of all, none, default
+        attr_accessor :feeds_level
+        # @!attribute remove_disable
+        #   @return [Boolean] Remove the disabled until time. (IE stop snoozing notifications)
+        attr_accessor :remove_disable
+        # @!attribute user_id
+        #   @return [String] The user id for which to set the push preferences. Required when using server side auths, defaults to current user with client side auth.
+        attr_accessor :user_id
+        # @!attribute feeds_preferences
+        #   @return [FeedsPreferences]
         attr_accessor :feeds_preferences
 
         # Initialize with attributes

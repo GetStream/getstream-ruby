@@ -9,10 +9,18 @@ module GetStream
       class QueryActivitiesResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
-        attr_accessor :activities  # List of activities matching the query
-        attr_accessor :_next  # Cursor for next page
-        attr_accessor :prev  # Cursor for previous page
+        # @!attribute activities
+        #   @return [Array<ActivityResponse>] List of activities matching the query
+        attr_accessor :activities
+        # @!attribute _next
+        #   @return [String] Cursor for next page
+        attr_accessor :_next
+        # @!attribute prev
+        #   @return [String] Cursor for previous page
+        attr_accessor :prev
 
         # Initialize with attributes
         def initialize(attributes = {})

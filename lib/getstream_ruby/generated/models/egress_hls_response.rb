@@ -9,7 +9,11 @@ module GetStream
       class EgressHLSResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute playlist_url
+        #   @return [String]
         attr_accessor :playlist_url
+        # @!attribute status
+        #   @return [String]
         attr_accessor :status
 
         # Initialize with attributes

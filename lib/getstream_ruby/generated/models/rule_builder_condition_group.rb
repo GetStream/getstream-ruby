@@ -9,7 +9,11 @@ module GetStream
       class RuleBuilderConditionGroup < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute logic
+        #   @return [String]
         attr_accessor :logic
+        # @!attribute conditions
+        #   @return [Array<RuleBuilderCondition>]
         attr_accessor :conditions
 
         # Initialize with attributes

@@ -9,8 +9,14 @@ module GetStream
       class CallStateResponseFields < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :members  # List of call members
+        # @!attribute members
+        #   @return [Array<MemberResponse>] List of call members
+        attr_accessor :members
+        # @!attribute own_capabilities
+        #   @return [Array<OwnCapability>]
         attr_accessor :own_capabilities
+        # @!attribute call
+        #   @return [CallResponse]
         attr_accessor :call
 
         # Initialize with attributes

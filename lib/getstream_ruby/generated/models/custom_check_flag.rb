@@ -9,10 +9,18 @@ module GetStream
       class CustomCheckFlag < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :_type  # Type of check (custom_check_text, custom_check_image, custom_check_video)
-        attr_accessor :reason  # Optional explanation for the flag
-        attr_accessor :labels  # Labels from various moderation sources
-        attr_accessor :custom  # Additional metadata for the flag
+        # @!attribute _type
+        #   @return [String] Type of check (custom_check_text, custom_check_image, custom_check_video)
+        attr_accessor :_type
+        # @!attribute reason
+        #   @return [String] Optional explanation for the flag
+        attr_accessor :reason
+        # @!attribute labels
+        #   @return [Array<String>] Labels from various moderation sources
+        attr_accessor :labels
+        # @!attribute custom
+        #   @return [Object] Additional metadata for the flag
+        attr_accessor :custom
 
         # Initialize with attributes
         def initialize(attributes = {})

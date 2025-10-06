@@ -9,6 +9,8 @@ module GetStream
       class DeleteFeedViewResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
 
         # Initialize with attributes

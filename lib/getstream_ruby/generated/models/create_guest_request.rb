@@ -9,6 +9,8 @@ module GetStream
       class CreateGuestRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute user
+        #   @return [UserRequest]
         attr_accessor :user
 
         # Initialize with attributes

@@ -9,12 +9,26 @@ module GetStream
       class QueryCallMembersRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _id
+        #   @return [String]
         attr_accessor :_id
+        # @!attribute _type
+        #   @return [String]
         attr_accessor :_type
+        # @!attribute _next
+        #   @return [String]
         attr_accessor :_next
+        # @!attribute limit
+        #   @return [Integer]
         attr_accessor :limit
+        # @!attribute prev
+        #   @return [String]
         attr_accessor :prev
+        # @!attribute sort
+        #   @return [Array<SortParamRequest>]
         attr_accessor :sort
+        # @!attribute filter_conditions
+        #   @return [Object]
         attr_accessor :filter_conditions
 
         # Initialize with attributes

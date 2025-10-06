@@ -9,19 +9,47 @@ module GetStream
       class VelocityFilterConfigRule < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute action
+        #   @return [String]
         attr_accessor :action
+        # @!attribute ban_duration
+        #   @return [Integer]
         attr_accessor :ban_duration
+        # @!attribute cascading_action
+        #   @return [String]
         attr_accessor :cascading_action
+        # @!attribute cascading_threshold
+        #   @return [Integer]
         attr_accessor :cascading_threshold
+        # @!attribute check_message_context
+        #   @return [Boolean]
         attr_accessor :check_message_context
+        # @!attribute fast_spam_threshold
+        #   @return [Integer]
         attr_accessor :fast_spam_threshold
+        # @!attribute fast_spam_ttl
+        #   @return [Integer]
         attr_accessor :fast_spam_ttl
+        # @!attribute ip_ban
+        #   @return [Boolean]
         attr_accessor :ip_ban
+        # @!attribute probation_period
+        #   @return [Integer]
         attr_accessor :probation_period
+        # @!attribute shadow_ban
+        #   @return [Boolean]
         attr_accessor :shadow_ban
+        # @!attribute slow_spam_ban_duration
+        #   @return [Integer]
         attr_accessor :slow_spam_ban_duration
+        # @!attribute slow_spam_threshold
+        #   @return [Integer]
         attr_accessor :slow_spam_threshold
+        # @!attribute slow_spam_ttl
+        #   @return [Integer]
         attr_accessor :slow_spam_ttl
+        # @!attribute url_only
+        #   @return [Boolean]
         attr_accessor :url_only
 
         # Initialize with attributes

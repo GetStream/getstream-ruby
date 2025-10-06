@@ -9,8 +9,14 @@ module GetStream
       class UpdateUserPartialRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :_id  # User ID to update
+        # @!attribute _id
+        #   @return [String] User ID to update
+        attr_accessor :_id
+        # @!attribute unset
+        #   @return [Array<String>]
         attr_accessor :unset
+        # @!attribute set
+        #   @return [Object]
         attr_accessor :set
 
         # Initialize with attributes

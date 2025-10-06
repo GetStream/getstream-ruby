@@ -9,9 +9,17 @@ module GetStream
       class UpdateChannelResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :duration  # Duration of the request in milliseconds
-        attr_accessor :members  # List of channel members
+        # @!attribute duration
+        #   @return [String] Duration of the request in milliseconds
+        attr_accessor :duration
+        # @!attribute members
+        #   @return [Array<ChannelMember>] List of channel members
+        attr_accessor :members
+        # @!attribute channel
+        #   @return [ChannelResponse]
         attr_accessor :channel
+        # @!attribute message
+        #   @return [MessageResponse]
         attr_accessor :message
 
         # Initialize with attributes

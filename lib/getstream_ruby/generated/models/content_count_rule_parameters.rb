@@ -9,7 +9,11 @@ module GetStream
       class ContentCountRuleParameters < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute threshold
+        #   @return [Integer]
         attr_accessor :threshold
+        # @!attribute time_window
+        #   @return [String]
         attr_accessor :time_window
 
         # Initialize with attributes

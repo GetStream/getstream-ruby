@@ -9,8 +9,14 @@ module GetStream
       class CreateGuestResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :access_token  # the access token to authenticate the user
-        attr_accessor :duration  # Duration of the request in milliseconds
+        # @!attribute access_token
+        #   @return [String] the access token to authenticate the user
+        attr_accessor :access_token
+        # @!attribute duration
+        #   @return [String] Duration of the request in milliseconds
+        attr_accessor :duration
+        # @!attribute user
+        #   @return [UserResponse]
         attr_accessor :user
 
         # Initialize with attributes

@@ -9,13 +9,27 @@ module GetStream
       class CallNotificationEvent < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute call_cid
+        #   @return [String]
         attr_accessor :call_cid
+        # @!attribute created_at
+        #   @return [DateTime]
         attr_accessor :created_at
-        attr_accessor :session_id  # Call session ID
-        attr_accessor :members  # Call members
+        # @!attribute session_id
+        #   @return [String] Call session ID
+        attr_accessor :session_id
+        # @!attribute members
+        #   @return [Array<MemberResponse>] Call members
+        attr_accessor :members
+        # @!attribute call
+        #   @return [CallResponse]
         attr_accessor :call
+        # @!attribute user
+        #   @return [UserResponse]
         attr_accessor :user
-        attr_accessor :_type  # The type of event: "call.notification" in this case
+        # @!attribute _type
+        #   @return [String] The type of event: "call.notification" in this case
+        attr_accessor :_type
 
         # Initialize with attributes
         def initialize(attributes = {})

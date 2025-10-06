@@ -9,6 +9,8 @@ module GetStream
       class UnreadCountsBatchRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute user_ids
+        #   @return [Array<String>]
         attr_accessor :user_ids
 
         # Initialize with attributes

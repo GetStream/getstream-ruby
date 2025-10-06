@@ -9,8 +9,12 @@ module GetStream
       class GetFollowSuggestionsResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
-        attr_accessor :suggestions  # List of suggested feeds to follow
+        # @!attribute suggestions
+        #   @return [Array<FeedResponse>] List of suggested feeds to follow
+        attr_accessor :suggestions
 
         # Initialize with attributes
         def initialize(attributes = {})

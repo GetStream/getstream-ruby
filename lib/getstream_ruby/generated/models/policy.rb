@@ -9,13 +9,29 @@ module GetStream
       class Policy < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute action
+        #   @return [Integer]
         attr_accessor :action
+        # @!attribute created_at
+        #   @return [DateTime]
         attr_accessor :created_at
+        # @!attribute name
+        #   @return [String]
         attr_accessor :name
+        # @!attribute owner
+        #   @return [Boolean]
         attr_accessor :owner
+        # @!attribute priority
+        #   @return [Integer]
         attr_accessor :priority
+        # @!attribute updated_at
+        #   @return [DateTime]
         attr_accessor :updated_at
+        # @!attribute resources
+        #   @return [Array<String>]
         attr_accessor :resources
+        # @!attribute roles
+        #   @return [Array<String>]
         attr_accessor :roles
 
         # Initialize with attributes

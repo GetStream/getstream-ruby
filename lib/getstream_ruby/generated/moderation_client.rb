@@ -15,7 +15,7 @@ module GetStream
       # Ban a user from a channel or the entire app
       #
       # @param ban_request [BanRequest]
-      # @return [GetStream::StreamResponse<BanResponse>]
+      # @return [Models::BanResponse]
       def ban(ban_request)
         path = '/api/v2/moderation/ban'
         # Build request body
@@ -32,7 +32,7 @@ module GetStream
       # Moderate multiple images in bulk using a CSV file
       #
       # @param bulk_image_moderation_request [BulkImageModerationRequest]
-      # @return [GetStream::StreamResponse<BulkImageModerationResponse>]
+      # @return [Models::BulkImageModerationResponse]
       def bulk_image_moderation(bulk_image_moderation_request)
         path = '/api/v2/moderation/bulk_image_moderation'
         # Build request body
@@ -49,7 +49,7 @@ module GetStream
       # Run moderation checks on the provided content
       #
       # @param check_request [CheckRequest]
-      # @return [GetStream::StreamResponse<CheckResponse>]
+      # @return [Models::CheckResponse]
       def check(check_request)
         path = '/api/v2/moderation/check'
         # Build request body
@@ -66,7 +66,7 @@ module GetStream
       # Create a new moderation configuration or update an existing one. Configure settings for content filtering, AI analysis, toxicity detection, and other moderation features.
       #
       # @param upsert_config_request [UpsertConfigRequest]
-      # @return [GetStream::StreamResponse<UpsertConfigResponse>]
+      # @return [Models::UpsertConfigResponse]
       def upsert_config(upsert_config_request)
         path = '/api/v2/moderation/config'
         # Build request body
@@ -84,7 +84,7 @@ module GetStream
       #
       # @param key [String]
       # @param team [String]
-      # @return [GetStream::StreamResponse<DeleteModerationConfigResponse>]
+      # @return [Models::DeleteModerationConfigResponse]
       def delete_config(key, team = nil)
         path = '/api/v2/moderation/config/{key}'
         # Replace path parameters
@@ -105,7 +105,7 @@ module GetStream
       #
       # @param key [String]
       # @param team [String]
-      # @return [GetStream::StreamResponse<GetConfigResponse>]
+      # @return [Models::GetConfigResponse]
       def get_config(key, team = nil)
         path = '/api/v2/moderation/config/{key}'
         # Replace path parameters
@@ -125,7 +125,7 @@ module GetStream
       # Search and filter moderation configurations across your application. This endpoint is designed for building moderation dashboards and managing multiple configuration sets.
       #
       # @param query_moderation_configs_request [QueryModerationConfigsRequest]
-      # @return [GetStream::StreamResponse<QueryModerationConfigsResponse>]
+      # @return [Models::QueryModerationConfigsResponse]
       def query_moderation_configs(query_moderation_configs_request)
         path = '/api/v2/moderation/configs'
         # Build request body
@@ -142,7 +142,7 @@ module GetStream
       # Custom check, add your own AI model reports to the review queue
       #
       # @param custom_check_request [CustomCheckRequest]
-      # @return [GetStream::StreamResponse<CustomCheckResponse>]
+      # @return [Models::CustomCheckResponse]
       def custom_check(custom_check_request)
         path = '/api/v2/moderation/custom_check'
         # Build request body
@@ -158,7 +158,7 @@ module GetStream
 
       # Delete a specific moderation template by its name
       #
-      # @return [GetStream::StreamResponse<DeleteModerationTemplateResponse>]
+      # @return [Models::DeleteModerationTemplateResponse]
       def v2_delete_template()
         path = '/api/v2/moderation/feeds_moderation_template'
 
@@ -171,7 +171,7 @@ module GetStream
 
       # Retrieve a list of feed moderation templates that define preset moderation rules and configurations. Limited to 100 templates per request.
       #
-      # @return [GetStream::StreamResponse<QueryFeedModerationTemplatesResponse>]
+      # @return [Models::QueryFeedModerationTemplatesResponse]
       def v2_query_templates()
         path = '/api/v2/moderation/feeds_moderation_template'
 
@@ -185,7 +185,7 @@ module GetStream
       # Upsert feeds template for moderation
       #
       # @param upsert_moderation_template_request [UpsertModerationTemplateRequest]
-      # @return [GetStream::StreamResponse<UpsertModerationTemplateResponse>]
+      # @return [Models::UpsertModerationTemplateResponse]
       def v2_upsert_template(upsert_moderation_template_request)
         path = '/api/v2/moderation/feeds_moderation_template'
         # Build request body
@@ -202,7 +202,7 @@ module GetStream
       # Flag any type of content (messages, users, channels, activities) for moderation review. Supports custom content types and additional metadata for flagged content.
       #
       # @param flag_request [FlagRequest]
-      # @return [GetStream::StreamResponse<FlagResponse>]
+      # @return [Models::FlagResponse]
       def flag(flag_request)
         path = '/api/v2/moderation/flag'
         # Build request body
@@ -219,7 +219,7 @@ module GetStream
       # Query flags associated with moderation items. This is used for building a moderation dashboard.
       #
       # @param query_moderation_flags_request [QueryModerationFlagsRequest]
-      # @return [GetStream::StreamResponse<QueryModerationFlagsResponse>]
+      # @return [Models::QueryModerationFlagsResponse]
       def query_moderation_flags(query_moderation_flags_request)
         path = '/api/v2/moderation/flags'
         # Build request body
@@ -236,7 +236,7 @@ module GetStream
       # Search and filter moderation action logs with support for pagination. View the history of moderation actions taken, including who performed them and when.
       #
       # @param query_moderation_logs_request [QueryModerationLogsRequest]
-      # @return [GetStream::StreamResponse<QueryModerationLogsResponse>]
+      # @return [Models::QueryModerationLogsResponse]
       def query_moderation_logs(query_moderation_logs_request)
         path = '/api/v2/moderation/logs'
         # Build request body
@@ -253,7 +253,7 @@ module GetStream
       # Create or update a moderation rule that can apply app-wide or to specific moderation configs
       #
       # @param upsert_moderation_rule_request [UpsertModerationRuleRequest]
-      # @return [GetStream::StreamResponse<UpsertModerationRuleResponse>]
+      # @return [Models::UpsertModerationRuleResponse]
       def upsert_moderation_rule(upsert_moderation_rule_request)
         path = '/api/v2/moderation/moderation_rule'
         # Build request body
@@ -269,7 +269,7 @@ module GetStream
 
       # Delete an existing moderation rule
       #
-      # @return [GetStream::StreamResponse<DeleteModerationRuleResponse>]
+      # @return [Models::DeleteModerationRuleResponse]
       def delete_moderation_rule()
         path = '/api/v2/moderation/moderation_rule/{id}'
 
@@ -282,7 +282,7 @@ module GetStream
 
       # Get a specific moderation rule by ID
       #
-      # @return [GetStream::StreamResponse<GetModerationRuleResponse>]
+      # @return [Models::GetModerationRuleResponse]
       def get_moderation_rule()
         path = '/api/v2/moderation/moderation_rule/{id}'
 
@@ -296,7 +296,7 @@ module GetStream
       # Search and filter moderation rules across your application. This endpoint is designed for building moderation dashboards and managing multiple rule sets.
       #
       # @param query_moderation_rules_request [QueryModerationRulesRequest]
-      # @return [GetStream::StreamResponse<QueryModerationRulesResponse>]
+      # @return [Models::QueryModerationRulesResponse]
       def query_moderation_rules(query_moderation_rules_request)
         path = '/api/v2/moderation/moderation_rules'
         # Build request body
@@ -313,7 +313,7 @@ module GetStream
       # Mute a user. Mutes are generally not visible to the user you mute, while block is something you notice.
       #
       # @param mute_request [MuteRequest]
-      # @return [GetStream::StreamResponse<MuteResponse>]
+      # @return [Models::MuteResponse]
       def mute(mute_request)
         path = '/api/v2/moderation/mute'
         # Build request body
@@ -330,7 +330,7 @@ module GetStream
       # Query review queue items allows you to filter the review queue items. This is used for building a moderation dashboard.
       #
       # @param query_review_queue_request [QueryReviewQueueRequest]
-      # @return [GetStream::StreamResponse<QueryReviewQueueResponse>]
+      # @return [Models::QueryReviewQueueResponse]
       def query_review_queue(query_review_queue_request)
         path = '/api/v2/moderation/review_queue'
         # Build request body
@@ -347,7 +347,7 @@ module GetStream
       # Retrieve a specific review queue item by its ID
       #
       # @param _id [String]
-      # @return [GetStream::StreamResponse<GetReviewQueueItemResponse>]
+      # @return [Models::GetReviewQueueItemResponse]
       def get_review_queue_item(_id)
         path = '/api/v2/moderation/review_queue/{id}'
         # Replace path parameters
@@ -363,7 +363,7 @@ module GetStream
       # Take action on flagged content, such as marking content as safe, deleting content, banning users, or executing custom moderation actions. Supports various action types with configurable parameters.
       #
       # @param submit_action_request [SubmitActionRequest]
-      # @return [GetStream::StreamResponse<SubmitActionResponse>]
+      # @return [Models::SubmitActionResponse]
       def submit_action(submit_action_request)
         path = '/api/v2/moderation/submit_action'
         # Build request body
@@ -383,7 +383,7 @@ module GetStream
       # @param target_user_id [String]
       # @param channel_cid [String]
       # @param created_by [String]
-      # @return [GetStream::StreamResponse<UnbanResponse>]
+      # @return [Models::UnbanResponse]
       def unban(unban_request, target_user_id, channel_cid = nil, created_by = nil)
         path = '/api/v2/moderation/unban'
         # Build query parameters
@@ -406,7 +406,7 @@ module GetStream
       # Unmute a user
       #
       # @param unmute_request [UnmuteRequest]
-      # @return [GetStream::StreamResponse<UnmuteResponse>]
+      # @return [Models::UnmuteResponse]
       def unmute(unmute_request)
         path = '/api/v2/moderation/unmute'
         # Build request body

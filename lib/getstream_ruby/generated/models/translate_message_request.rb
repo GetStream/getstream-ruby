@@ -9,7 +9,9 @@ module GetStream
       class TranslateMessageRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :language  # Language to translate message to
+        # @!attribute language
+        #   @return [String] Language to translate message to
+        attr_accessor :language
 
         # Initialize with attributes
         def initialize(attributes = {})

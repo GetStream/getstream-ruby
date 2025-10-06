@@ -9,8 +9,12 @@ module GetStream
       class ListCommandsResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
-        attr_accessor :commands  # List of commands
+        # @!attribute commands
+        #   @return [Array<Command>] List of commands
+        attr_accessor :commands
 
         # Initialize with attributes
         def initialize(attributes = {})

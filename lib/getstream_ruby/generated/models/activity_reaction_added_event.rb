@@ -9,14 +9,32 @@ module GetStream
       class ActivityReactionAddedEvent < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :created_at  # Date/time of creation
+        # @!attribute created_at
+        #   @return [DateTime] Date/time of creation
+        attr_accessor :created_at
+        # @!attribute fid
+        #   @return [String]
         attr_accessor :fid
+        # @!attribute activity
+        #   @return [ActivityResponse]
         attr_accessor :activity
+        # @!attribute custom
+        #   @return [Object]
         attr_accessor :custom
+        # @!attribute reaction
+        #   @return [FeedsReactionResponse]
         attr_accessor :reaction
-        attr_accessor :_type  # The type of event: "feeds.activity.reaction.added" in this case
+        # @!attribute _type
+        #   @return [String] The type of event: "feeds.activity.reaction.added" in this case
+        attr_accessor :_type
+        # @!attribute feed_visibility
+        #   @return [String]
         attr_accessor :feed_visibility
+        # @!attribute received_at
+        #   @return [DateTime]
         attr_accessor :received_at
+        # @!attribute user
+        #   @return [UserResponseCommonFields]
         attr_accessor :user
 
         # Initialize with attributes

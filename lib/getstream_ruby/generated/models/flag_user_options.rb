@@ -9,6 +9,8 @@ module GetStream
       class FlagUserOptions < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute reason
+        #   @return [String]
         attr_accessor :reason
 
         # Initialize with attributes

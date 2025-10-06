@@ -9,9 +9,15 @@ module GetStream
       class AcceptFollowRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :source  # Fully qualified ID of the source feed
-        attr_accessor :target  # Fully qualified ID of the target feed
-        attr_accessor :follower_role  # Optional role for the follower in the follow relationship
+        # @!attribute source
+        #   @return [String] Fully qualified ID of the source feed
+        attr_accessor :source
+        # @!attribute target
+        #   @return [String] Fully qualified ID of the target feed
+        attr_accessor :target
+        # @!attribute follower_role
+        #   @return [String] Optional role for the follower in the follow relationship
+        attr_accessor :follower_role
 
         # Initialize with attributes
         def initialize(attributes = {})

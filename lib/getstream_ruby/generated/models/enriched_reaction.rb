@@ -9,18 +9,44 @@ module GetStream
       class EnrichedReaction < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute activity_id
+        #   @return [String]
         attr_accessor :activity_id
+        # @!attribute kind
+        #   @return [String]
         attr_accessor :kind
+        # @!attribute user_id
+        #   @return [String]
         attr_accessor :user_id
+        # @!attribute _id
+        #   @return [String]
         attr_accessor :_id
+        # @!attribute parent
+        #   @return [String]
         attr_accessor :parent
+        # @!attribute target_feeds
+        #   @return [Array<String>]
         attr_accessor :target_feeds
+        # @!attribute children_counts
+        #   @return [Hash<String, Integer>]
         attr_accessor :children_counts
+        # @!attribute created_at
+        #   @return [Time]
         attr_accessor :created_at
+        # @!attribute data
+        #   @return [Object]
         attr_accessor :data
+        # @!attribute latest_children
+        #   @return [Hash<String, Array<EnrichedReaction>>]
         attr_accessor :latest_children
+        # @!attribute own_children
+        #   @return [Hash<String, Array<EnrichedReaction>>]
         attr_accessor :own_children
+        # @!attribute updated_at
+        #   @return [Time]
         attr_accessor :updated_at
+        # @!attribute user
+        #   @return [Data]
         attr_accessor :user
 
         # Initialize with attributes

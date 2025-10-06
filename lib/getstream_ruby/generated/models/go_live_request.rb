@@ -9,11 +9,23 @@ module GetStream
       class GoLiveRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute recording_storage_name
+        #   @return [String]
         attr_accessor :recording_storage_name
+        # @!attribute start_closed_caption
+        #   @return [Boolean]
         attr_accessor :start_closed_caption
+        # @!attribute start_hls
+        #   @return [Boolean]
         attr_accessor :start_hls
+        # @!attribute start_recording
+        #   @return [Boolean]
         attr_accessor :start_recording
+        # @!attribute start_transcription
+        #   @return [Boolean]
         attr_accessor :start_transcription
+        # @!attribute transcription_storage_name
+        #   @return [String]
         attr_accessor :transcription_storage_name
 
         # Initialize with attributes

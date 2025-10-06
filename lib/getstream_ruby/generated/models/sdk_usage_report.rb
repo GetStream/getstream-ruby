@@ -9,6 +9,8 @@ module GetStream
       class SDKUsageReport < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute per_sdk_usage
+        #   @return [Hash<String, PerSDKUsageReport>]
         attr_accessor :per_sdk_usage
 
         # Initialize with attributes

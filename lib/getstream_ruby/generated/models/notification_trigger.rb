@@ -9,8 +9,12 @@ module GetStream
       class NotificationTrigger < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :_type  # The type of notification (mention, reaction, comment, follow, etc.)
-        attr_accessor :text  # Human-readable text describing the notification
+        # @!attribute _type
+        #   @return [String] The type of notification (mention, reaction, comment, follow, etc.)
+        attr_accessor :_type
+        # @!attribute text
+        #   @return [String] Human-readable text describing the notification
+        attr_accessor :text
 
         # Initialize with attributes
         def initialize(attributes = {})

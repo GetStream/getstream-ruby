@@ -9,9 +9,17 @@ module GetStream
       class QueryRemindersResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :duration  # Duration of the request in milliseconds
-        attr_accessor :reminders  # MessageReminders data returned by the query
+        # @!attribute duration
+        #   @return [String] Duration of the request in milliseconds
+        attr_accessor :duration
+        # @!attribute reminders
+        #   @return [Array<ReminderResponseData>] MessageReminders data returned by the query
+        attr_accessor :reminders
+        # @!attribute _next
+        #   @return [String]
         attr_accessor :_next
+        # @!attribute prev
+        #   @return [String]
         attr_accessor :prev
 
         # Initialize with attributes

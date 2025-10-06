@@ -9,7 +9,11 @@ module GetStream
       class UserRatingReportResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute average
+        #   @return [Float]
         attr_accessor :average
+        # @!attribute count
+        #   @return [Integer]
         attr_accessor :count
 
         # Initialize with attributes

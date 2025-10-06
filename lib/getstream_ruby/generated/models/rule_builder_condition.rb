@@ -9,17 +9,41 @@ module GetStream
       class RuleBuilderCondition < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _type
+        #   @return [String]
         attr_accessor :_type
+        # @!attribute confidence
+        #   @return [Float]
         attr_accessor :confidence
+        # @!attribute content_count_rule_params
+        #   @return [ContentCountRuleParameters]
         attr_accessor :content_count_rule_params
+        # @!attribute image_content_params
+        #   @return [ImageContentParameters]
         attr_accessor :image_content_params
+        # @!attribute image_rule_params
+        #   @return [ImageRuleParameters]
         attr_accessor :image_rule_params
+        # @!attribute text_content_params
+        #   @return [TextContentParameters]
         attr_accessor :text_content_params
+        # @!attribute text_rule_params
+        #   @return [TextRuleParameters]
         attr_accessor :text_rule_params
+        # @!attribute user_created_within_params
+        #   @return [UserCreatedWithinParameters]
         attr_accessor :user_created_within_params
+        # @!attribute user_custom_property_params
+        #   @return [UserCustomPropertyParameters]
         attr_accessor :user_custom_property_params
+        # @!attribute user_rule_params
+        #   @return [UserRuleParameters]
         attr_accessor :user_rule_params
+        # @!attribute video_content_params
+        #   @return [VideoContentParameters]
         attr_accessor :video_content_params
+        # @!attribute video_rule_params
+        #   @return [VideoRuleParameters]
         attr_accessor :video_rule_params
 
         # Initialize with attributes

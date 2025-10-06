@@ -9,16 +9,36 @@ module GetStream
       class FollowResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :created_at  # When the follow relationship was created
-        attr_accessor :follower_role  # Role of the follower (source user) in the follow relationship
-        attr_accessor :push_preference  # Push preference for notifications
-        attr_accessor :status  # Status of the follow relationship
-        attr_accessor :updated_at  # When the follow relationship was last updated
+        # @!attribute created_at
+        #   @return [DateTime] When the follow relationship was created
+        attr_accessor :created_at
+        # @!attribute follower_role
+        #   @return [String] Role of the follower (source user) in the follow relationship
+        attr_accessor :follower_role
+        # @!attribute push_preference
+        #   @return [String] Push preference for notifications
+        attr_accessor :push_preference
+        # @!attribute status
+        #   @return [String] Status of the follow relationship
+        attr_accessor :status
+        # @!attribute updated_at
+        #   @return [DateTime] When the follow relationship was last updated
+        attr_accessor :updated_at
+        # @!attribute source_feed
+        #   @return [FeedResponse]
         attr_accessor :source_feed
+        # @!attribute target_feed
+        #   @return [FeedResponse]
         attr_accessor :target_feed
-        attr_accessor :request_accepted_at  # When the follow request was accepted
-        attr_accessor :request_rejected_at  # When the follow request was rejected
-        attr_accessor :custom  # Custom data for the follow relationship
+        # @!attribute request_accepted_at
+        #   @return [DateTime] When the follow request was accepted
+        attr_accessor :request_accepted_at
+        # @!attribute request_rejected_at
+        #   @return [DateTime] When the follow request was rejected
+        attr_accessor :request_rejected_at
+        # @!attribute custom
+        #   @return [Object] Custom data for the follow relationship
+        attr_accessor :custom
 
         # Initialize with attributes
         def initialize(attributes = {})

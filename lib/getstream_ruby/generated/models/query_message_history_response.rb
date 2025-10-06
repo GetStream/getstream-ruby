@@ -9,9 +9,17 @@ module GetStream
       class QueryMessageHistoryResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :duration  # Duration of the request in milliseconds
-        attr_accessor :message_history  # Message history entries
+        # @!attribute duration
+        #   @return [String] Duration of the request in milliseconds
+        attr_accessor :duration
+        # @!attribute message_history
+        #   @return [Array<MessageHistoryEntryResponse>] Message history entries
+        attr_accessor :message_history
+        # @!attribute _next
+        #   @return [String]
         attr_accessor :_next
+        # @!attribute prev
+        #   @return [String]
         attr_accessor :prev
 
         # Initialize with attributes

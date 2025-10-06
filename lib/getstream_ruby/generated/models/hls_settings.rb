@@ -9,9 +9,17 @@ module GetStream
       class HLSSettings < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute auto_on
+        #   @return [Boolean]
         attr_accessor :auto_on
+        # @!attribute enabled
+        #   @return [Boolean]
         attr_accessor :enabled
+        # @!attribute quality_tracks
+        #   @return [Array<String>]
         attr_accessor :quality_tracks
+        # @!attribute layout
+        #   @return [LayoutSettings]
         attr_accessor :layout
 
         # Initialize with attributes

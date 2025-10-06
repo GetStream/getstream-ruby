@@ -9,8 +9,12 @@ module GetStream
       class AddFolderRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :name  # Name of the folder
-        attr_accessor :custom  # Custom data for the folder
+        # @!attribute name
+        #   @return [String] Name of the folder
+        attr_accessor :name
+        # @!attribute custom
+        #   @return [Object] Custom data for the folder
+        attr_accessor :custom
 
         # Initialize with attributes
         def initialize(attributes = {})

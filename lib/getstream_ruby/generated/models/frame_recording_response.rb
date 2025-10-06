@@ -9,6 +9,8 @@ module GetStream
       class FrameRecordingResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute status
+        #   @return [String]
         attr_accessor :status
 
         # Initialize with attributes

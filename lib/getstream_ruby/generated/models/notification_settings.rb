@@ -9,11 +9,23 @@ module GetStream
       class NotificationSettings < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute enabled
+        #   @return [Boolean]
         attr_accessor :enabled
+        # @!attribute call_live_started
+        #   @return [EventNotificationSettings]
         attr_accessor :call_live_started
+        # @!attribute call_missed
+        #   @return [EventNotificationSettings]
         attr_accessor :call_missed
+        # @!attribute call_notification
+        #   @return [EventNotificationSettings]
         attr_accessor :call_notification
+        # @!attribute call_ring
+        #   @return [EventNotificationSettings]
         attr_accessor :call_ring
+        # @!attribute session_started
+        #   @return [EventNotificationSettings]
         attr_accessor :session_started
 
         # Initialize with attributes

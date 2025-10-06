@@ -9,12 +9,26 @@ module GetStream
       class ModerationV2Response < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute action
+        #   @return [String]
         attr_accessor :action
+        # @!attribute original_text
+        #   @return [String]
         attr_accessor :original_text
+        # @!attribute blocklist_matched
+        #   @return [String]
         attr_accessor :blocklist_matched
+        # @!attribute platform_circumvented
+        #   @return [Boolean]
         attr_accessor :platform_circumvented
+        # @!attribute semantic_filter_matched
+        #   @return [String]
         attr_accessor :semantic_filter_matched
+        # @!attribute image_harms
+        #   @return [Array<String>]
         attr_accessor :image_harms
+        # @!attribute text_harms
+        #   @return [Array<String>]
         attr_accessor :text_harms
 
         # Initialize with attributes

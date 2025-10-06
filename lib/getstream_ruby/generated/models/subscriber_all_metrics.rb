@@ -9,8 +9,14 @@ module GetStream
       class SubscriberAllMetrics < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute audio
+        #   @return [SubscriberAudioMetrics]
         attr_accessor :audio
+        # @!attribute rtt_ms
+        #   @return [ActiveCallsLatencyStats]
         attr_accessor :rtt_ms
+        # @!attribute video
+        #   @return [SubscriberVideoMetrics]
         attr_accessor :video
 
         # Initialize with attributes

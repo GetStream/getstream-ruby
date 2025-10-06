@@ -9,8 +9,14 @@ module GetStream
       class PlatformDataResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute browser
+        #   @return [BrowserDataResponse]
         attr_accessor :browser
+        # @!attribute device
+        #   @return [DeviceDataResponse]
         attr_accessor :device
+        # @!attribute os
+        #   @return [ClientOSDataResponse]
         attr_accessor :os
 
         # Initialize with attributes

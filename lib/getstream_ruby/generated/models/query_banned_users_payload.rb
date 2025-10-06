@@ -9,12 +9,26 @@ module GetStream
       class QueryBannedUsersPayload < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute filter_conditions
+        #   @return [Object]
         attr_accessor :filter_conditions
-        attr_accessor :exclude_expired_bans  # Whether to exclude expired bans or not
-        attr_accessor :limit  # Number of records to return
-        attr_accessor :offset  # Number of records to offset
+        # @!attribute exclude_expired_bans
+        #   @return [Boolean] Whether to exclude expired bans or not
+        attr_accessor :exclude_expired_bans
+        # @!attribute limit
+        #   @return [Integer] Number of records to return
+        attr_accessor :limit
+        # @!attribute offset
+        #   @return [Integer] Number of records to offset
+        attr_accessor :offset
+        # @!attribute user_id
+        #   @return [String]
         attr_accessor :user_id
-        attr_accessor :sort  # Array of sort parameters
+        # @!attribute sort
+        #   @return [Array<SortParamRequest>] Array of sort parameters
+        attr_accessor :sort
+        # @!attribute user
+        #   @return [UserRequest]
         attr_accessor :user
 
         # Initialize with attributes

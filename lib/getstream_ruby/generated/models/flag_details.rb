@@ -9,8 +9,14 @@ module GetStream
       class FlagDetails < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute original_text
+        #   @return [String]
         attr_accessor :original_text
+        # @!attribute extra
+        #   @return [Object]
         attr_accessor :extra
+        # @!attribute automod
+        #   @return [AutomodDetails]
         attr_accessor :automod
 
         # Initialize with attributes

@@ -9,27 +9,71 @@ module GetStream
       class EventHook < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _id
+        #   @return [String]
         attr_accessor :_id
+        # @!attribute created_at
+        #   @return [DateTime]
         attr_accessor :created_at
+        # @!attribute enabled
+        #   @return [Boolean]
         attr_accessor :enabled
+        # @!attribute hook_type
+        #   @return [String]
         attr_accessor :hook_type
+        # @!attribute product
+        #   @return [String]
         attr_accessor :product
+        # @!attribute sns_auth_type
+        #   @return [String]
         attr_accessor :sns_auth_type
+        # @!attribute sns_key
+        #   @return [String]
         attr_accessor :sns_key
+        # @!attribute sns_region
+        #   @return [String]
         attr_accessor :sns_region
+        # @!attribute sns_role_arn
+        #   @return [String]
         attr_accessor :sns_role_arn
+        # @!attribute sns_secret
+        #   @return [String]
         attr_accessor :sns_secret
+        # @!attribute sns_topic_arn
+        #   @return [String]
         attr_accessor :sns_topic_arn
+        # @!attribute sqs_auth_type
+        #   @return [String]
         attr_accessor :sqs_auth_type
+        # @!attribute sqs_key
+        #   @return [String]
         attr_accessor :sqs_key
+        # @!attribute sqs_queue_url
+        #   @return [String]
         attr_accessor :sqs_queue_url
+        # @!attribute sqs_region
+        #   @return [String]
         attr_accessor :sqs_region
+        # @!attribute sqs_role_arn
+        #   @return [String]
         attr_accessor :sqs_role_arn
+        # @!attribute sqs_secret
+        #   @return [String]
         attr_accessor :sqs_secret
+        # @!attribute timeout_ms
+        #   @return [Integer]
         attr_accessor :timeout_ms
+        # @!attribute updated_at
+        #   @return [DateTime]
         attr_accessor :updated_at
+        # @!attribute webhook_url
+        #   @return [String]
         attr_accessor :webhook_url
+        # @!attribute event_types
+        #   @return [Array<String>]
         attr_accessor :event_types
+        # @!attribute callback
+        #   @return [AsyncModerationCallbackConfig]
         attr_accessor :callback
 
         # Initialize with attributes

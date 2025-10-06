@@ -9,49 +9,137 @@ module GetStream
       class Message < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _id
+        #   @return [String]
         attr_accessor :_id
+        # @!attribute _type
+        #   @return [String]
         attr_accessor :_type
+        # @!attribute cid
+        #   @return [String]
         attr_accessor :cid
+        # @!attribute created_at
+        #   @return [DateTime]
         attr_accessor :created_at
+        # @!attribute deleted_reply_count
+        #   @return [Integer]
         attr_accessor :deleted_reply_count
+        # @!attribute html
+        #   @return [String]
         attr_accessor :html
+        # @!attribute pinned
+        #   @return [Boolean]
         attr_accessor :pinned
+        # @!attribute reply_count
+        #   @return [Integer]
         attr_accessor :reply_count
+        # @!attribute shadowed
+        #   @return [Boolean]
         attr_accessor :shadowed
+        # @!attribute silent
+        #   @return [Boolean]
         attr_accessor :silent
+        # @!attribute text
+        #   @return [String]
         attr_accessor :text
+        # @!attribute updated_at
+        #   @return [DateTime]
         attr_accessor :updated_at
+        # @!attribute attachments
+        #   @return [Array<Attachment>]
         attr_accessor :attachments
+        # @!attribute latest_reactions
+        #   @return [Array<Reaction>]
         attr_accessor :latest_reactions
+        # @!attribute mentioned_users
+        #   @return [Array<User>]
         attr_accessor :mentioned_users
+        # @!attribute own_reactions
+        #   @return [Array<Reaction>]
         attr_accessor :own_reactions
+        # @!attribute restricted_visibility
+        #   @return [Array<String>]
         attr_accessor :restricted_visibility
+        # @!attribute custom
+        #   @return [Object]
         attr_accessor :custom
+        # @!attribute reaction_counts
+        #   @return [Hash<String, Integer>]
         attr_accessor :reaction_counts
+        # @!attribute reaction_groups
+        #   @return [Hash<String, ReactionGroupResponse>]
         attr_accessor :reaction_groups
+        # @!attribute reaction_scores
+        #   @return [Hash<String, Integer>]
         attr_accessor :reaction_scores
+        # @!attribute before_message_send_failed
+        #   @return [Boolean]
         attr_accessor :before_message_send_failed
+        # @!attribute command
+        #   @return [String]
         attr_accessor :command
+        # @!attribute deleted_at
+        #   @return [DateTime]
         attr_accessor :deleted_at
+        # @!attribute deleted_for_me
+        #   @return [Boolean]
         attr_accessor :deleted_for_me
+        # @!attribute message_text_updated_at
+        #   @return [DateTime]
         attr_accessor :message_text_updated_at
+        # @!attribute mml
+        #   @return [String]
         attr_accessor :mml
+        # @!attribute parent_id
+        #   @return [String]
         attr_accessor :parent_id
+        # @!attribute pin_expires
+        #   @return [DateTime]
         attr_accessor :pin_expires
+        # @!attribute pinned_at
+        #   @return [DateTime]
         attr_accessor :pinned_at
+        # @!attribute poll_id
+        #   @return [String]
         attr_accessor :poll_id
+        # @!attribute quoted_message_id
+        #   @return [String]
         attr_accessor :quoted_message_id
+        # @!attribute show_in_channel
+        #   @return [Boolean]
         attr_accessor :show_in_channel
+        # @!attribute thread_participants
+        #   @return [Array<User>]
         attr_accessor :thread_participants
+        # @!attribute i18n
+        #   @return [Hash<String, String>]
         attr_accessor :i18n
+        # @!attribute image_labels
+        #   @return [Hash<String, Array<String>>]
         attr_accessor :image_labels
+        # @!attribute member
+        #   @return [ChannelMember]
         attr_accessor :member
+        # @!attribute moderation
+        #   @return [ModerationV2Response]
         attr_accessor :moderation
+        # @!attribute pinned_by
+        #   @return [User]
         attr_accessor :pinned_by
+        # @!attribute poll
+        #   @return [Poll]
         attr_accessor :poll
+        # @!attribute quoted_message
+        #   @return [Message]
         attr_accessor :quoted_message
+        # @!attribute reminder
+        #   @return [MessageReminder]
         attr_accessor :reminder
+        # @!attribute shared_location
+        #   @return [SharedLocation]
         attr_accessor :shared_location
+        # @!attribute user
+        #   @return [User]
         attr_accessor :user
 
         # Initialize with attributes

@@ -9,8 +9,14 @@ module GetStream
       class DeleteCommentResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
+        # @!attribute activity
+        #   @return [ActivityResponse]
         attr_accessor :activity
+        # @!attribute comment
+        #   @return [CommentResponse]
         attr_accessor :comment
 
         # Initialize with attributes

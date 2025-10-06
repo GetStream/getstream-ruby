@@ -9,10 +9,20 @@ module GetStream
       class TranscriptionSettingsRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute closed_caption_mode
+        #   @return [String]
         attr_accessor :closed_caption_mode
+        # @!attribute language
+        #   @return [String]
         attr_accessor :language
+        # @!attribute mode
+        #   @return [String]
         attr_accessor :mode
+        # @!attribute speech_segment_config
+        #   @return [SpeechSegmentConfig]
         attr_accessor :speech_segment_config
+        # @!attribute translation
+        #   @return [TranslationSettings]
         attr_accessor :translation
 
         # Initialize with attributes

@@ -9,12 +9,26 @@ module GetStream
       class PushNotificationFields < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute offline_only
+        #   @return [Boolean]
         attr_accessor :offline_only
+        # @!attribute version
+        #   @return [String]
         attr_accessor :version
+        # @!attribute apn
+        #   @return [APNConfigFields]
         attr_accessor :apn
+        # @!attribute firebase
+        #   @return [FirebaseConfigFields]
         attr_accessor :firebase
+        # @!attribute huawei
+        #   @return [HuaweiConfigFields]
         attr_accessor :huawei
+        # @!attribute xiaomi
+        #   @return [XiaomiConfigFields]
         attr_accessor :xiaomi
+        # @!attribute providers
+        #   @return [Array<PushProvider>]
         attr_accessor :providers
 
         # Initialize with attributes

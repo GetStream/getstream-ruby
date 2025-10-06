@@ -9,12 +9,26 @@ module GetStream
       class CustomCheckRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :entity_id  # Unique identifier of the entity
-        attr_accessor :entity_type  # Type of entity to perform custom check on
-        attr_accessor :flags  # List of custom check flags (1-10 flags required)
-        attr_accessor :entity_creator_id  # ID of the user who created the entity (required for non-message entities)
+        # @!attribute entity_id
+        #   @return [String] Unique identifier of the entity
+        attr_accessor :entity_id
+        # @!attribute entity_type
+        #   @return [String] Type of entity to perform custom check on
+        attr_accessor :entity_type
+        # @!attribute flags
+        #   @return [Array<CustomCheckFlag>] List of custom check flags (1-10 flags required)
+        attr_accessor :flags
+        # @!attribute entity_creator_id
+        #   @return [String] ID of the user who created the entity (required for non-message entities)
+        attr_accessor :entity_creator_id
+        # @!attribute user_id
+        #   @return [String]
         attr_accessor :user_id
+        # @!attribute moderation_payload
+        #   @return [ModerationPayload]
         attr_accessor :moderation_payload
+        # @!attribute user
+        #   @return [UserRequest]
         attr_accessor :user
 
         # Initialize with attributes

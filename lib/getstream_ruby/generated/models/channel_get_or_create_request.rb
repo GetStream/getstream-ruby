@@ -9,12 +9,26 @@ module GetStream
       class ChannelGetOrCreateRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :hide_for_creator  # Whether this channel will be hidden for the user who created the channel or not
-        attr_accessor :state  # Refresh channel state
+        # @!attribute hide_for_creator
+        #   @return [Boolean] Whether this channel will be hidden for the user who created the channel or not
+        attr_accessor :hide_for_creator
+        # @!attribute state
+        #   @return [Boolean] Refresh channel state
+        attr_accessor :state
+        # @!attribute thread_unread_counts
+        #   @return [Boolean]
         attr_accessor :thread_unread_counts
+        # @!attribute data
+        #   @return [ChannelInput]
         attr_accessor :data
+        # @!attribute members
+        #   @return [PaginationParams]
         attr_accessor :members
+        # @!attribute messages
+        #   @return [MessagePaginationParams]
         attr_accessor :messages
+        # @!attribute watchers
+        #   @return [PaginationParams]
         attr_accessor :watchers
 
         # Initialize with attributes

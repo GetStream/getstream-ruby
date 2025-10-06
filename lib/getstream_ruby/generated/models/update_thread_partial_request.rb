@@ -9,9 +9,17 @@ module GetStream
       class UpdateThreadPartialRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute user_id
+        #   @return [String]
         attr_accessor :user_id
-        attr_accessor :unset  # Array of field names to unset
-        attr_accessor :set  # Sets new field values
+        # @!attribute unset
+        #   @return [Array<String>] Array of field names to unset
+        attr_accessor :unset
+        # @!attribute set
+        #   @return [Object] Sets new field values
+        attr_accessor :set
+        # @!attribute user
+        #   @return [UserRequest]
         attr_accessor :user
 
         # Initialize with attributes

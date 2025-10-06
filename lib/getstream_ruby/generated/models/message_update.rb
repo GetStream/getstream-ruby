@@ -9,7 +9,11 @@ module GetStream
       class MessageUpdate < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute old_text
+        #   @return [String]
         attr_accessor :old_text
+        # @!attribute change_set
+        #   @return [MessageChangeSet]
         attr_accessor :change_set
 
         # Initialize with attributes

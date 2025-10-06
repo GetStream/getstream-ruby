@@ -9,10 +9,18 @@ module GetStream
       class RepliesMeta < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :depth_truncated  # True if the subtree was cut because the requested depth was reached.
-        attr_accessor :has_more  # True if more siblings exist in the database.
-        attr_accessor :remaining  # Number of unread siblings that match current filters.
-        attr_accessor :next_cursor  # Opaque cursor to request the next page of siblings.
+        # @!attribute depth_truncated
+        #   @return [Boolean] True if the subtree was cut because the requested depth was reached.
+        attr_accessor :depth_truncated
+        # @!attribute has_more
+        #   @return [Boolean] True if more siblings exist in the database.
+        attr_accessor :has_more
+        # @!attribute remaining
+        #   @return [Integer] Number of unread siblings that match current filters.
+        attr_accessor :remaining
+        # @!attribute next_cursor
+        #   @return [String] Opaque cursor to request the next page of siblings.
+        attr_accessor :next_cursor
 
         # Initialize with attributes
         def initialize(attributes = {})

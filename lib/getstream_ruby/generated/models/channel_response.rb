@@ -9,32 +9,86 @@ module GetStream
       class ChannelResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :_id  # Channel unique ID
-        attr_accessor :_type  # Type of the channel
-        attr_accessor :cid  # Channel CID (<type>:<id>)
-        attr_accessor :created_at  # Date/time of creation
+        # @!attribute _id
+        #   @return [String] Channel unique ID
+        attr_accessor :_id
+        # @!attribute _type
+        #   @return [String] Type of the channel
+        attr_accessor :_type
+        # @!attribute cid
+        #   @return [String] Channel CID (<type>:<id>)
+        attr_accessor :cid
+        # @!attribute created_at
+        #   @return [DateTime] Date/time of creation
+        attr_accessor :created_at
+        # @!attribute disabled
+        #   @return [Boolean]
         attr_accessor :disabled
-        attr_accessor :frozen  # Whether channel is frozen or not
-        attr_accessor :updated_at  # Date/time of the last update
-        attr_accessor :custom  # Custom data for this object
-        attr_accessor :auto_translation_enabled  # Whether auto translation is enabled or not
-        attr_accessor :auto_translation_language  # Language to translate to when auto translation is active
-        attr_accessor :blocked  # Whether this channel is blocked by current user or not
-        attr_accessor :cooldown  # Cooldown period after sending each message
-        attr_accessor :deleted_at  # Date/time of deletion
-        attr_accessor :hidden  # Whether this channel is hidden by current user or not
-        attr_accessor :hide_messages_before  # Date since when the message history is accessible
-        attr_accessor :last_message_at  # Date of the last message sent
-        attr_accessor :member_count  # Number of members in the channel
-        attr_accessor :message_count  # Number of messages in the channel
-        attr_accessor :mute_expires_at  # Date of mute expiration
-        attr_accessor :muted  # Whether this channel is muted or not
-        attr_accessor :team  # Team the channel belongs to (multi-tenant only)
-        attr_accessor :truncated_at  # Date of the latest truncation of the channel
-        attr_accessor :members  # List of channel members (max 100)
-        attr_accessor :own_capabilities  # List of channel capabilities of authenticated user
+        # @!attribute frozen
+        #   @return [Boolean] Whether channel is frozen or not
+        attr_accessor :frozen
+        # @!attribute updated_at
+        #   @return [DateTime] Date/time of the last update
+        attr_accessor :updated_at
+        # @!attribute custom
+        #   @return [Object] Custom data for this object
+        attr_accessor :custom
+        # @!attribute auto_translation_enabled
+        #   @return [Boolean] Whether auto translation is enabled or not
+        attr_accessor :auto_translation_enabled
+        # @!attribute auto_translation_language
+        #   @return [String] Language to translate to when auto translation is active
+        attr_accessor :auto_translation_language
+        # @!attribute blocked
+        #   @return [Boolean] Whether this channel is blocked by current user or not
+        attr_accessor :blocked
+        # @!attribute cooldown
+        #   @return [Integer] Cooldown period after sending each message
+        attr_accessor :cooldown
+        # @!attribute deleted_at
+        #   @return [DateTime] Date/time of deletion
+        attr_accessor :deleted_at
+        # @!attribute hidden
+        #   @return [Boolean] Whether this channel is hidden by current user or not
+        attr_accessor :hidden
+        # @!attribute hide_messages_before
+        #   @return [DateTime] Date since when the message history is accessible
+        attr_accessor :hide_messages_before
+        # @!attribute last_message_at
+        #   @return [DateTime] Date of the last message sent
+        attr_accessor :last_message_at
+        # @!attribute member_count
+        #   @return [Integer] Number of members in the channel
+        attr_accessor :member_count
+        # @!attribute message_count
+        #   @return [Integer] Number of messages in the channel
+        attr_accessor :message_count
+        # @!attribute mute_expires_at
+        #   @return [DateTime] Date of mute expiration
+        attr_accessor :mute_expires_at
+        # @!attribute muted
+        #   @return [Boolean] Whether this channel is muted or not
+        attr_accessor :muted
+        # @!attribute team
+        #   @return [String] Team the channel belongs to (multi-tenant only)
+        attr_accessor :team
+        # @!attribute truncated_at
+        #   @return [DateTime] Date of the latest truncation of the channel
+        attr_accessor :truncated_at
+        # @!attribute members
+        #   @return [Array<ChannelMember>] List of channel members (max 100)
+        attr_accessor :members
+        # @!attribute own_capabilities
+        #   @return [Array<ChannelOwnCapability>] List of channel capabilities of authenticated user
+        attr_accessor :own_capabilities
+        # @!attribute config
+        #   @return [ChannelConfigWithInfo]
         attr_accessor :config
+        # @!attribute created_by
+        #   @return [UserResponse]
         attr_accessor :created_by
+        # @!attribute truncated_by
+        #   @return [UserResponse]
         attr_accessor :truncated_by
 
         # Initialize with attributes

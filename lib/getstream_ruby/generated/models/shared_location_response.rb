@@ -9,17 +9,41 @@ module GetStream
       class SharedLocationResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :channel_cid  # Channel CID
-        attr_accessor :created_at  # Date/time of creation
-        attr_accessor :created_by_device_id  # Device ID that created the live location
+        # @!attribute channel_cid
+        #   @return [String] Channel CID
+        attr_accessor :channel_cid
+        # @!attribute created_at
+        #   @return [DateTime] Date/time of creation
+        attr_accessor :created_at
+        # @!attribute created_by_device_id
+        #   @return [String] Device ID that created the live location
+        attr_accessor :created_by_device_id
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
-        attr_accessor :latitude  # Latitude coordinate
-        attr_accessor :longitude  # Longitude coordinate
-        attr_accessor :message_id  # Message ID
-        attr_accessor :updated_at  # Date/time of the last update
-        attr_accessor :user_id  # User ID
-        attr_accessor :end_at  # Time when the live location expires
+        # @!attribute latitude
+        #   @return [Float] Latitude coordinate
+        attr_accessor :latitude
+        # @!attribute longitude
+        #   @return [Float] Longitude coordinate
+        attr_accessor :longitude
+        # @!attribute message_id
+        #   @return [String] Message ID
+        attr_accessor :message_id
+        # @!attribute updated_at
+        #   @return [DateTime] Date/time of the last update
+        attr_accessor :updated_at
+        # @!attribute user_id
+        #   @return [String] User ID
+        attr_accessor :user_id
+        # @!attribute end_at
+        #   @return [DateTime] Time when the live location expires
+        attr_accessor :end_at
+        # @!attribute channel
+        #   @return [ChannelResponse]
         attr_accessor :channel
+        # @!attribute message
+        #   @return [MessageResponse]
         attr_accessor :message
 
         # Initialize with attributes

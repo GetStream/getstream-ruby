@@ -9,8 +9,14 @@ module GetStream
       class TargetResolution < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute bitrate
+        #   @return [Integer]
         attr_accessor :bitrate
+        # @!attribute height
+        #   @return [Integer]
         attr_accessor :height
+        # @!attribute width
+        #   @return [Integer]
         attr_accessor :width
 
         # Initialize with attributes

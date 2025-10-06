@@ -9,11 +9,23 @@ module GetStream
       class GetCallReportResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :duration  # Duration of the request in milliseconds
+        # @!attribute duration
+        #   @return [String] Duration of the request in milliseconds
+        attr_accessor :duration
+        # @!attribute session_id
+        #   @return [String]
         attr_accessor :session_id
+        # @!attribute report
+        #   @return [ReportResponse]
         attr_accessor :report
+        # @!attribute video_reactions
+        #   @return [Array<VideoReactionsResponse>]
         attr_accessor :video_reactions
+        # @!attribute chat_activity
+        #   @return [ChatActivityStatsResponse]
         attr_accessor :chat_activity
+        # @!attribute session
+        #   @return [CallSessionResponse]
         attr_accessor :session
 
         # Initialize with attributes

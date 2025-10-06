@@ -9,15 +9,35 @@ module GetStream
       class ThreadParticipant < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute app_pk
+        #   @return [Integer]
         attr_accessor :app_pk
+        # @!attribute channel_cid
+        #   @return [String]
         attr_accessor :channel_cid
-        attr_accessor :created_at  # Date/time of creation
+        # @!attribute created_at
+        #   @return [DateTime] Date/time of creation
+        attr_accessor :created_at
+        # @!attribute last_read_at
+        #   @return [DateTime]
         attr_accessor :last_read_at
+        # @!attribute custom
+        #   @return [Object]
         attr_accessor :custom
+        # @!attribute last_thread_message_at
+        #   @return [DateTime]
         attr_accessor :last_thread_message_at
-        attr_accessor :left_thread_at  # Left Thread At is the time when the user left the thread
-        attr_accessor :thread_id  # Thead ID is unique string identifier of the thread
-        attr_accessor :user_id  # User ID is unique string identifier of the user
+        # @!attribute left_thread_at
+        #   @return [DateTime] Left Thread At is the time when the user left the thread
+        attr_accessor :left_thread_at
+        # @!attribute thread_id
+        #   @return [String] Thead ID is unique string identifier of the thread
+        attr_accessor :thread_id
+        # @!attribute user_id
+        #   @return [String] User ID is unique string identifier of the user
+        attr_accessor :user_id
+        # @!attribute user
+        #   @return [UserResponse]
         attr_accessor :user
 
         # Initialize with attributes

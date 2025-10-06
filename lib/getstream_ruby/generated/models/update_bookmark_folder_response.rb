@@ -9,7 +9,11 @@ module GetStream
       class UpdateBookmarkFolderResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
+        # @!attribute bookmark_folder
+        #   @return [BookmarkFolderResponse]
         attr_accessor :bookmark_folder
 
         # Initialize with attributes

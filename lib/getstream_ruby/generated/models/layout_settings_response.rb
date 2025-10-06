@@ -9,10 +9,20 @@ module GetStream
       class LayoutSettingsResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute external_app_url
+        #   @return [String]
         attr_accessor :external_app_url
+        # @!attribute external_css_url
+        #   @return [String]
         attr_accessor :external_css_url
+        # @!attribute name
+        #   @return [String]
         attr_accessor :name
+        # @!attribute detect_orientation
+        #   @return [Boolean]
         attr_accessor :detect_orientation
+        # @!attribute options
+        #   @return [Object]
         attr_accessor :options
 
         # Initialize with attributes

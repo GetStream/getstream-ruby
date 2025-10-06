@@ -9,19 +9,47 @@ module GetStream
       class MessageFlagResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute created_at
+        #   @return [DateTime]
         attr_accessor :created_at
+        # @!attribute created_by_automod
+        #   @return [Boolean]
         attr_accessor :created_by_automod
+        # @!attribute updated_at
+        #   @return [DateTime]
         attr_accessor :updated_at
+        # @!attribute approved_at
+        #   @return [DateTime]
         attr_accessor :approved_at
+        # @!attribute reason
+        #   @return [String]
         attr_accessor :reason
+        # @!attribute rejected_at
+        #   @return [DateTime]
         attr_accessor :rejected_at
+        # @!attribute reviewed_at
+        #   @return [DateTime]
         attr_accessor :reviewed_at
+        # @!attribute custom
+        #   @return [Object]
         attr_accessor :custom
+        # @!attribute details
+        #   @return [FlagDetails]
         attr_accessor :details
+        # @!attribute message
+        #   @return [Message]
         attr_accessor :message
+        # @!attribute moderation_feedback
+        #   @return [FlagFeedback]
         attr_accessor :moderation_feedback
+        # @!attribute moderation_result
+        #   @return [MessageModerationResult]
         attr_accessor :moderation_result
+        # @!attribute reviewed_by
+        #   @return [UserResponse]
         attr_accessor :reviewed_by
+        # @!attribute user
+        #   @return [UserResponse]
         attr_accessor :user
 
         # Initialize with attributes

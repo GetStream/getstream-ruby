@@ -9,24 +9,62 @@ module GetStream
       class User < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _id
+        #   @return [String]
         attr_accessor :_id
+        # @!attribute banned
+        #   @return [Boolean]
         attr_accessor :banned
+        # @!attribute online
+        #   @return [Boolean]
         attr_accessor :online
+        # @!attribute role
+        #   @return [String]
         attr_accessor :role
+        # @!attribute custom
+        #   @return [Object]
         attr_accessor :custom
+        # @!attribute teams_role
+        #   @return [Hash<String, String>]
         attr_accessor :teams_role
+        # @!attribute avg_response_time
+        #   @return [Integer]
         attr_accessor :avg_response_time
+        # @!attribute ban_expires
+        #   @return [DateTime]
         attr_accessor :ban_expires
+        # @!attribute created_at
+        #   @return [DateTime]
         attr_accessor :created_at
+        # @!attribute deactivated_at
+        #   @return [DateTime]
         attr_accessor :deactivated_at
+        # @!attribute deleted_at
+        #   @return [DateTime]
         attr_accessor :deleted_at
+        # @!attribute invisible
+        #   @return [Boolean]
         attr_accessor :invisible
+        # @!attribute language
+        #   @return [String]
         attr_accessor :language
+        # @!attribute last_active
+        #   @return [DateTime]
         attr_accessor :last_active
+        # @!attribute last_engaged_at
+        #   @return [DateTime]
         attr_accessor :last_engaged_at
+        # @!attribute revoke_tokens_issued_before
+        #   @return [DateTime]
         attr_accessor :revoke_tokens_issued_before
+        # @!attribute updated_at
+        #   @return [DateTime]
         attr_accessor :updated_at
+        # @!attribute teams
+        #   @return [Array<String>]
         attr_accessor :teams
+        # @!attribute privacy_settings
+        #   @return [PrivacySettings]
         attr_accessor :privacy_settings
 
         # Initialize with attributes

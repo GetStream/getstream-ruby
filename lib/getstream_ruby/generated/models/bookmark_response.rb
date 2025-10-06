@@ -9,11 +9,23 @@ module GetStream
       class BookmarkResponse < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :created_at  # When the bookmark was created
-        attr_accessor :updated_at  # When the bookmark was last updated
+        # @!attribute created_at
+        #   @return [DateTime] When the bookmark was created
+        attr_accessor :created_at
+        # @!attribute updated_at
+        #   @return [DateTime] When the bookmark was last updated
+        attr_accessor :updated_at
+        # @!attribute activity
+        #   @return [ActivityResponse]
         attr_accessor :activity
+        # @!attribute user
+        #   @return [UserResponse]
         attr_accessor :user
-        attr_accessor :custom  # Custom data for the bookmark
+        # @!attribute custom
+        #   @return [Object] Custom data for the bookmark
+        attr_accessor :custom
+        # @!attribute folder
+        #   @return [BookmarkFolderResponse]
         attr_accessor :folder
 
         # Initialize with attributes

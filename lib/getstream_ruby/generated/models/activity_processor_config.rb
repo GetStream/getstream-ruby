@@ -9,7 +9,9 @@ module GetStream
       class ActivityProcessorConfig < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :_type  # Type of activity processor (required)
+        # @!attribute _type
+        #   @return [String] Type of activity processor (required)
+        attr_accessor :_type
 
         # Initialize with attributes
         def initialize(attributes = {})

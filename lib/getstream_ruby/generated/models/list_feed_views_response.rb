@@ -9,8 +9,12 @@ module GetStream
       class ListFeedViewsResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
-        attr_accessor :views  # Map of feed view ID to feed view
+        # @!attribute views
+        #   @return [Hash<String, FeedViewResponse>] Map of feed view ID to feed view
+        attr_accessor :views
 
         # Initialize with attributes
         def initialize(attributes = {})

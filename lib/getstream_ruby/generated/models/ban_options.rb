@@ -9,10 +9,20 @@ module GetStream
       class BanOptions < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute delete_messages
+        #   @return [String]
         attr_accessor :delete_messages
+        # @!attribute duration
+        #   @return [Integer]
         attr_accessor :duration
+        # @!attribute ip_ban
+        #   @return [Boolean]
         attr_accessor :ip_ban
+        # @!attribute reason
+        #   @return [String]
         attr_accessor :reason
+        # @!attribute shadow_ban
+        #   @return [Boolean]
         attr_accessor :shadow_ban
 
         # Initialize with attributes

@@ -9,9 +9,15 @@ module GetStream
       class MemberRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute user_id
+        #   @return [String]
         attr_accessor :user_id
+        # @!attribute role
+        #   @return [String]
         attr_accessor :role
-        attr_accessor :custom  # Custom data for this object
+        # @!attribute custom
+        #   @return [Object] Custom data for this object
+        attr_accessor :custom
 
         # Initialize with attributes
         def initialize(attributes = {})

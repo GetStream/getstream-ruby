@@ -9,8 +9,14 @@ module GetStream
       class ImportTaskHistory < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute created_at
+        #   @return [DateTime]
         attr_accessor :created_at
+        # @!attribute next_state
+        #   @return [String]
         attr_accessor :next_state
+        # @!attribute prev_state
+        #   @return [String]
         attr_accessor :prev_state
 
         # Initialize with attributes

@@ -9,14 +9,32 @@ module GetStream
       class NotificationFeedUpdatedEvent < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :created_at  # Date/time of creation
-        attr_accessor :fid  # The ID of the feed
+        # @!attribute created_at
+        #   @return [DateTime] Date/time of creation
+        attr_accessor :created_at
+        # @!attribute fid
+        #   @return [String] The ID of the feed
+        attr_accessor :fid
+        # @!attribute custom
+        #   @return [Object]
         attr_accessor :custom
-        attr_accessor :_type  # The type of event: "feeds.notification_feed.updated" in this case
+        # @!attribute _type
+        #   @return [String] The type of event: "feeds.notification_feed.updated" in this case
+        attr_accessor :_type
+        # @!attribute feed_visibility
+        #   @return [String]
         attr_accessor :feed_visibility
+        # @!attribute received_at
+        #   @return [DateTime]
         attr_accessor :received_at
-        attr_accessor :aggregated_activities  # Aggregated activities for notification feeds
+        # @!attribute aggregated_activities
+        #   @return [Array<AggregatedActivityResponse>] Aggregated activities for notification feeds
+        attr_accessor :aggregated_activities
+        # @!attribute notification_status
+        #   @return [NotificationStatusResponse]
         attr_accessor :notification_status
+        # @!attribute user
+        #   @return [UserResponseCommonFields]
         attr_accessor :user
 
         # Initialize with attributes

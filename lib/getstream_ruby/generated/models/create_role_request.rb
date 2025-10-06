@@ -9,7 +9,9 @@ module GetStream
       class CreateRoleRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :name  # Role name
+        # @!attribute name
+        #   @return [String] Role name
+        attr_accessor :name
 
         # Initialize with attributes
         def initialize(attributes = {})

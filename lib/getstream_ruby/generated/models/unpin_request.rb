@@ -9,8 +9,12 @@ module GetStream
       class UnpinRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :session_id  # the session ID of the user who pinned the message
-        attr_accessor :user_id  # the user ID of the user who pinned the message
+        # @!attribute session_id
+        #   @return [String] the session ID of the user who pinned the message
+        attr_accessor :session_id
+        # @!attribute user_id
+        #   @return [String] the user ID of the user who pinned the message
+        attr_accessor :user_id
 
         # Initialize with attributes
         def initialize(attributes = {})

@@ -9,9 +9,17 @@ module GetStream
       class MarkReadRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :message_id  # ID of the message that is considered last read by client
-        attr_accessor :thread_id  # Optional Thread ID to specifically mark a given thread as read
+        # @!attribute message_id
+        #   @return [String] ID of the message that is considered last read by client
+        attr_accessor :message_id
+        # @!attribute thread_id
+        #   @return [String] Optional Thread ID to specifically mark a given thread as read
+        attr_accessor :thread_id
+        # @!attribute user_id
+        #   @return [String]
         attr_accessor :user_id
+        # @!attribute user
+        #   @return [UserRequest]
         attr_accessor :user
 
         # Initialize with attributes

@@ -9,28 +9,74 @@ module GetStream
       class GetOGResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
+        # @!attribute custom
+        #   @return [Object]
         attr_accessor :custom
-        attr_accessor :_type  # Attachment type, could be empty, image, audio or video
-        attr_accessor :asset_url  # URL of detected video or audio
+        # @!attribute _type
+        #   @return [String] Attachment type, could be empty, image, audio or video
+        attr_accessor :_type
+        # @!attribute asset_url
+        #   @return [String] URL of detected video or audio
+        attr_accessor :asset_url
+        # @!attribute author_icon
+        #   @return [String]
         attr_accessor :author_icon
-        attr_accessor :author_link  # og:site
-        attr_accessor :author_name  # og:site_name
+        # @!attribute author_link
+        #   @return [String] og:site
+        attr_accessor :author_link
+        # @!attribute author_name
+        #   @return [String] og:site_name
+        attr_accessor :author_name
+        # @!attribute color
+        #   @return [String]
         attr_accessor :color
+        # @!attribute fallback
+        #   @return [String]
         attr_accessor :fallback
+        # @!attribute footer
+        #   @return [String]
         attr_accessor :footer
+        # @!attribute footer_icon
+        #   @return [String]
         attr_accessor :footer_icon
-        attr_accessor :image_url  # URL of detected image
-        attr_accessor :og_scrape_url  # extracted url from the text
+        # @!attribute image_url
+        #   @return [String] URL of detected image
+        attr_accessor :image_url
+        # @!attribute og_scrape_url
+        #   @return [String] extracted url from the text
+        attr_accessor :og_scrape_url
+        # @!attribute original_height
+        #   @return [Integer]
         attr_accessor :original_height
+        # @!attribute original_width
+        #   @return [Integer]
         attr_accessor :original_width
+        # @!attribute pretext
+        #   @return [String]
         attr_accessor :pretext
-        attr_accessor :text  # og:description
-        attr_accessor :thumb_url  # URL of detected thumb image
-        attr_accessor :title  # og:title
-        attr_accessor :title_link  # og:url
+        # @!attribute text
+        #   @return [String] og:description
+        attr_accessor :text
+        # @!attribute thumb_url
+        #   @return [String] URL of detected thumb image
+        attr_accessor :thumb_url
+        # @!attribute title
+        #   @return [String] og:title
+        attr_accessor :title
+        # @!attribute title_link
+        #   @return [String] og:url
+        attr_accessor :title_link
+        # @!attribute actions
+        #   @return [Array<Action>]
         attr_accessor :actions
+        # @!attribute fields
+        #   @return [Array<Field>]
         attr_accessor :fields
+        # @!attribute giphy
+        #   @return [Images]
         attr_accessor :giphy
 
         # Initialize with attributes

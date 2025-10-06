@@ -9,11 +9,23 @@ module GetStream
       class CollectUserFeedbackRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute rating
+        #   @return [Integer]
         attr_accessor :rating
+        # @!attribute sdk
+        #   @return [String]
         attr_accessor :sdk
+        # @!attribute sdk_version
+        #   @return [String]
         attr_accessor :sdk_version
+        # @!attribute reason
+        #   @return [String]
         attr_accessor :reason
+        # @!attribute user_session_id
+        #   @return [String]
         attr_accessor :user_session_id
+        # @!attribute custom
+        #   @return [Object]
         attr_accessor :custom
 
         # Initialize with attributes

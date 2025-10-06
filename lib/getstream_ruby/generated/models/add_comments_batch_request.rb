@@ -9,7 +9,9 @@ module GetStream
       class AddCommentsBatchRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :comments  # List of comments to add
+        # @!attribute comments
+        #   @return [Array<AddCommentRequest>] List of comments to add
+        attr_accessor :comments
 
         # Initialize with attributes
         def initialize(attributes = {})

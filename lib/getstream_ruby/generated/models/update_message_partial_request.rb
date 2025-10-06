@@ -9,10 +9,20 @@ module GetStream
       class UpdateMessagePartialRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :skip_enrich_url  # Skip enriching the URL in the message
+        # @!attribute skip_enrich_url
+        #   @return [Boolean] Skip enriching the URL in the message
+        attr_accessor :skip_enrich_url
+        # @!attribute user_id
+        #   @return [String]
         attr_accessor :user_id
-        attr_accessor :unset  # Array of field names to unset
-        attr_accessor :set  # Sets new field values
+        # @!attribute unset
+        #   @return [Array<String>] Array of field names to unset
+        attr_accessor :unset
+        # @!attribute set
+        #   @return [Object] Sets new field values
+        attr_accessor :set
+        # @!attribute user
+        #   @return [UserRequest]
         attr_accessor :user
 
         # Initialize with attributes

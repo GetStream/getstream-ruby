@@ -9,12 +9,26 @@ module GetStream
       class ReviewQueueItemNewEvent < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute created_at
+        #   @return [DateTime]
         attr_accessor :created_at
+        # @!attribute custom
+        #   @return [Object]
         attr_accessor :custom
+        # @!attribute _type
+        #   @return [String]
         attr_accessor :_type
+        # @!attribute received_at
+        #   @return [DateTime]
         attr_accessor :received_at
-        attr_accessor :flags  # The flags associated with this review queue item
+        # @!attribute flags
+        #   @return [Array<ModerationFlagResponse>] The flags associated with this review queue item
+        attr_accessor :flags
+        # @!attribute action
+        #   @return [ActionLogResponse]
         attr_accessor :action
+        # @!attribute review_queue_item
+        #   @return [ReviewQueueItemResponse]
         attr_accessor :review_queue_item
 
         # Initialize with attributes

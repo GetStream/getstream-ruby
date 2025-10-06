@@ -9,9 +9,17 @@ module GetStream
       class UnpinActivityResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute duration
+        #   @return [String]
         attr_accessor :duration
-        attr_accessor :feed  # Fully qualified ID of the feed the activity was unpinned from
-        attr_accessor :user_id  # ID of the user who unpinned the activity
+        # @!attribute feed
+        #   @return [String] Fully qualified ID of the feed the activity was unpinned from
+        attr_accessor :feed
+        # @!attribute user_id
+        #   @return [String] ID of the user who unpinned the activity
+        attr_accessor :user_id
+        # @!attribute activity
+        #   @return [ActivityResponse]
         attr_accessor :activity
 
         # Initialize with attributes

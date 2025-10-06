@@ -9,13 +9,29 @@ module GetStream
       class FeedUpdatedEvent < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute created_at
+        #   @return [DateTime]
         attr_accessor :created_at
+        # @!attribute fid
+        #   @return [String]
         attr_accessor :fid
+        # @!attribute custom
+        #   @return [Object]
         attr_accessor :custom
+        # @!attribute feed
+        #   @return [FeedResponse]
         attr_accessor :feed
-        attr_accessor :_type  # The type of event: "feeds.feed.updated" in this case
+        # @!attribute _type
+        #   @return [String] The type of event: "feeds.feed.updated" in this case
+        attr_accessor :_type
+        # @!attribute feed_visibility
+        #   @return [String]
         attr_accessor :feed_visibility
+        # @!attribute received_at
+        #   @return [DateTime]
         attr_accessor :received_at
+        # @!attribute user
+        #   @return [UserResponseCommonFields]
         attr_accessor :user
 
         # Initialize with attributes

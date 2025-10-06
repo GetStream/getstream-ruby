@@ -9,12 +9,26 @@ module GetStream
       class QueryModerationLogsRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _next
+        #   @return [String]
         attr_accessor :_next
+        # @!attribute limit
+        #   @return [Integer]
         attr_accessor :limit
+        # @!attribute prev
+        #   @return [String]
         attr_accessor :prev
+        # @!attribute user_id
+        #   @return [String]
         attr_accessor :user_id
-        attr_accessor :sort  # Sorting parameters for the results
-        attr_accessor :filter  # Filter conditions for moderation logs
+        # @!attribute sort
+        #   @return [Array<SortParamRequest>] Sorting parameters for the results
+        attr_accessor :sort
+        # @!attribute filter
+        #   @return [Object] Filter conditions for moderation logs
+        attr_accessor :filter
+        # @!attribute user
+        #   @return [UserRequest]
         attr_accessor :user
 
         # Initialize with attributes

@@ -9,8 +9,14 @@ module GetStream
       class ReportResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute call
+        #   @return [CallReportResponse]
         attr_accessor :call
+        # @!attribute participants
+        #   @return [ParticipantReportResponse]
         attr_accessor :participants
+        # @!attribute user_ratings
+        #   @return [UserRatingReportResponse]
         attr_accessor :user_ratings
 
         # Initialize with attributes

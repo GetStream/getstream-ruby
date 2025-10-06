@@ -9,16 +9,38 @@ module GetStream
       class CheckRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :entity_creator_id  # ID of the user who created the entity
-        attr_accessor :entity_id  # Unique identifier of the entity to moderate
-        attr_accessor :entity_type  # Type of entity to moderate
-        attr_accessor :config_key  # Key of the moderation configuration to use
-        attr_accessor :config_team  # Team associated with the configuration
-        attr_accessor :test_mode  # Whether to run moderation in test mode
+        # @!attribute entity_creator_id
+        #   @return [String] ID of the user who created the entity
+        attr_accessor :entity_creator_id
+        # @!attribute entity_id
+        #   @return [String] Unique identifier of the entity to moderate
+        attr_accessor :entity_id
+        # @!attribute entity_type
+        #   @return [String] Type of entity to moderate
+        attr_accessor :entity_type
+        # @!attribute config_key
+        #   @return [String] Key of the moderation configuration to use
+        attr_accessor :config_key
+        # @!attribute config_team
+        #   @return [String] Team associated with the configuration
+        attr_accessor :config_team
+        # @!attribute test_mode
+        #   @return [Boolean] Whether to run moderation in test mode
+        attr_accessor :test_mode
+        # @!attribute user_id
+        #   @return [String]
         attr_accessor :user_id
+        # @!attribute config
+        #   @return [ModerationConfig]
         attr_accessor :config
+        # @!attribute moderation_payload
+        #   @return [ModerationPayload]
         attr_accessor :moderation_payload
-        attr_accessor :options  # Additional moderation configuration options
+        # @!attribute options
+        #   @return [Object] Additional moderation configuration options
+        attr_accessor :options
+        # @!attribute user
+        #   @return [UserRequest]
         attr_accessor :user
 
         # Initialize with attributes

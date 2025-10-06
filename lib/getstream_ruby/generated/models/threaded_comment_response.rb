@@ -9,31 +9,83 @@ module GetStream
       class ThreadedCommentResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _id
+        #   @return [String]
         attr_accessor :_id
+        # @!attribute confidence_score
+        #   @return [Float]
         attr_accessor :confidence_score
+        # @!attribute created_at
+        #   @return [DateTime]
         attr_accessor :created_at
+        # @!attribute downvote_count
+        #   @return [Integer]
         attr_accessor :downvote_count
+        # @!attribute object_id
+        #   @return [String]
         attr_accessor :object_id
+        # @!attribute object_type
+        #   @return [String]
         attr_accessor :object_type
+        # @!attribute reaction_count
+        #   @return [Integer]
         attr_accessor :reaction_count
+        # @!attribute reply_count
+        #   @return [Integer]
         attr_accessor :reply_count
+        # @!attribute score
+        #   @return [Integer]
         attr_accessor :score
+        # @!attribute status
+        #   @return [String]
         attr_accessor :status
+        # @!attribute updated_at
+        #   @return [DateTime]
         attr_accessor :updated_at
+        # @!attribute upvote_count
+        #   @return [Integer]
         attr_accessor :upvote_count
+        # @!attribute mentioned_users
+        #   @return [Array<UserResponse>]
         attr_accessor :mentioned_users
+        # @!attribute own_reactions
+        #   @return [Array<FeedsReactionResponse>]
         attr_accessor :own_reactions
+        # @!attribute user
+        #   @return [UserResponse]
         attr_accessor :user
+        # @!attribute controversy_score
+        #   @return [Float]
         attr_accessor :controversy_score
+        # @!attribute deleted_at
+        #   @return [DateTime]
         attr_accessor :deleted_at
+        # @!attribute parent_id
+        #   @return [String]
         attr_accessor :parent_id
+        # @!attribute text
+        #   @return [String]
         attr_accessor :text
+        # @!attribute attachments
+        #   @return [Array<Attachment>]
         attr_accessor :attachments
+        # @!attribute latest_reactions
+        #   @return [Array<FeedsReactionResponse>]
         attr_accessor :latest_reactions
-        attr_accessor :replies  # Slice of nested comments (may be empty).
+        # @!attribute replies
+        #   @return [Array<ThreadedCommentResponse>] Slice of nested comments (may be empty).
+        attr_accessor :replies
+        # @!attribute custom
+        #   @return [Object]
         attr_accessor :custom
+        # @!attribute meta
+        #   @return [RepliesMeta]
         attr_accessor :meta
+        # @!attribute moderation
+        #   @return [ModerationV2Response]
         attr_accessor :moderation
+        # @!attribute reaction_groups
+        #   @return [Hash<String, ReactionGroupResponse>]
         attr_accessor :reaction_groups
 
         # Initialize with attributes

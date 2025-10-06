@@ -9,12 +9,26 @@ module GetStream
       class BanResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute created_at
+        #   @return [DateTime]
         attr_accessor :created_at
+        # @!attribute expires
+        #   @return [DateTime]
         attr_accessor :expires
+        # @!attribute reason
+        #   @return [String]
         attr_accessor :reason
+        # @!attribute shadow
+        #   @return [Boolean]
         attr_accessor :shadow
+        # @!attribute banned_by
+        #   @return [UserResponse]
         attr_accessor :banned_by
+        # @!attribute channel
+        #   @return [ChannelResponse]
         attr_accessor :channel
+        # @!attribute user
+        #   @return [UserResponse]
         attr_accessor :user
 
         # Initialize with attributes

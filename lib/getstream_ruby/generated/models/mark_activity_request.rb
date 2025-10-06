@@ -9,12 +9,26 @@ module GetStream
       class MarkActivityRequest < GetStream::BaseModel
 
         # Model attributes
-        attr_accessor :mark_all_read  # Whether to mark all activities as read
-        attr_accessor :mark_all_seen  # Whether to mark all activities as seen
+        # @!attribute mark_all_read
+        #   @return [Boolean] Whether to mark all activities as read
+        attr_accessor :mark_all_read
+        # @!attribute mark_all_seen
+        #   @return [Boolean] Whether to mark all activities as seen
+        attr_accessor :mark_all_seen
+        # @!attribute user_id
+        #   @return [String]
         attr_accessor :user_id
-        attr_accessor :mark_read  # List of activity IDs to mark as read
-        attr_accessor :mark_seen  # List of activity IDs to mark as seen
-        attr_accessor :mark_watched  # List of activity IDs to mark as watched (for stories)
+        # @!attribute mark_read
+        #   @return [Array<String>] List of activity IDs to mark as read
+        attr_accessor :mark_read
+        # @!attribute mark_seen
+        #   @return [Array<String>] List of activity IDs to mark as seen
+        attr_accessor :mark_seen
+        # @!attribute mark_watched
+        #   @return [Array<String>] List of activity IDs to mark as watched (for stories)
+        attr_accessor :mark_watched
+        # @!attribute user
+        #   @return [UserRequest]
         attr_accessor :user
 
         # Initialize with attributes

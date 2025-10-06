@@ -9,11 +9,23 @@ module GetStream
       class FirebaseConfig < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute apn_template
+        #   @return [String]
         attr_accessor :apn_template
+        # @!attribute credentials_json
+        #   @return [String]
         attr_accessor :credentials_json
+        # @!attribute data_template
+        #   @return [String]
         attr_accessor :data_template
+        # @!attribute disabled
+        #   @return [Boolean]
         attr_accessor :disabled
+        # @!attribute notification_template
+        #   @return [String]
         attr_accessor :notification_template
+        # @!attribute server_key
+        #   @return [String]
         attr_accessor :server_key
 
         # Initialize with attributes
