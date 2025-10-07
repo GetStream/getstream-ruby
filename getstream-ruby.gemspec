@@ -22,9 +22,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'json', '~> 2.0'
   spec.add_dependency 'jwt', '~> 2.0'
 
-  spec.add_development_dependency 'pry', '~> 0.14'
-  spec.add_development_dependency 'rspec', '~> 3.0'
-  spec.add_development_dependency 'webmock', '~> 3.0'
   spec.metadata['rubygems_mfa_required'] = 'true'
 
 end
