@@ -8,6 +8,7 @@ group :development, :test do
 
   gem 'bundler-audit', '~> 0.9'
   gem 'pry'
+  gem 'rake', '~> 13.0'
   gem 'rspec'
   gem 'rubocop', '~> 1.50'
   gem 'rubocop-performance', '~> 1.17'

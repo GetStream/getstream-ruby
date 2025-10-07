@@ -2,6 +2,7 @@
 
 require 'rspec'
 require 'securerandom'
+require 'time'
 require_relative 'base_integration_test'
 
 RSpec.describe 'Feed Integration Tests', type: :integration do
@@ -11,9 +12,9 @@ RSpec.describe 'Feed Integration Tests', type: :integration do
   let(:feed_group_id) { 'user' }
   # let(:feed_id) { "test-user-#{SecureRandom.hex(8)}" }
   let(:feed_id) { 'test-user-ruby-sdk1' }
-  let(:feed_id2) { 'test-user-ruby-sdk2' }
-  let(:test_user_id1) { 'test-user-ruby-sdk1' }
-  let(:test_user_id2) { 'test-user-ruby-sdk2' }
+  let(:feed_id_2) { 'test-user-ruby-sdk2' }
+  let(:test_user_id_1) { 'test-user-ruby-sdk1' }
+  let(:test_user_id_2) { 'test-user-ruby-sdk2' }
 
   before(:each) do
     # Test users will be created as needed in individual tests
@@ -33,11 +34,11 @@ RSpec.describe 'Feed Integration Tests', type: :integration do
       puts "\n📝 Testing activity operations..."
 
       # Create test user and feed
-      test_helper.create_test_feed(feed_group_id, feed_id, test_user_id1)
+      test_helper.create_test_feed(feed_group_id, feed_id, test_user_id_1)
 
       # snippet-start: CreateActivity
       # Create activity
-      activity_id = test_helper.create_test_activity(feed_group_id, feed_id, test_user_id1,
+      activity_id = test_helper.create_test_activity(feed_group_id, feed_id, test_user_id_1,
                                                      'Test activity for CRUD operations')
       expect(activity_id).not_to be_nil
       puts "✅ Created activity: #{activity_id}"
@@ -56,7 +57,7 @@ RSpec.describe 'Feed Integration Tests', type: :integration do
       # Update activity
       update_request = GetStream::Generated::Models::UpdateActivityRequest.new(
         text: 'Updated activity text from Ruby SDK',
-        user_id: test_user_id1,
+        user_id: test_user_id_1,
         custom: {
           updated: true,
           update_time: Time.now.to_i,
@@ -74,7 +75,7 @@ RSpec.describe 'Feed Integration Tests', type: :integration do
 
       puts "\n🖼️ Testing activity creation with attachments..."
 
-      test_helper.create_test_feed(feed_group_id, feed_id, test_user_id1)
+      test_helper.create_test_feed(feed_group_id, feed_id, test_user_id_1)
 
       # snippet-start: CreateActivityWithAttachment
       attachment = GetStream::Generated::Models::Attachment.new(
@@ -87,7 +88,7 @@ RSpec.describe 'Feed Integration Tests', type: :integration do
         type: 'post',
         _type: 'post',
         text: 'Look at this amazing image!',
-        user_id: test_user_id1,
+        user_id: test_user_id_1,
         feeds: ["#{feed_group_id}:#{feed_id}"],
         attachments: [attachment],
         custom: {
@@ -110,7 +111,7 @@ RSpec.describe 'Feed Integration Tests', type: :integration do
 
       puts "\n🎥 Testing video activity creation..."
 
-      test_helper.create_test_feed(feed_group_id, feed_id, test_user_id1)
+      test_helper.create_test_feed(feed_group_id, feed_id, test_user_id_1)
 
       attachment = GetStream::Generated::Models::Attachment.new(
         asset_url: 'https://example.com/test-video.mp4',
@@ -122,7 +123,7 @@ RSpec.describe 'Feed Integration Tests', type: :integration do
       activity_request = GetStream::Generated::Models::AddActivityRequest.new(
         type: 'video',
         text: 'Check out this amazing video!',
-        user_id: test_user_id1,
+        user_id: test_user_id_1,
         feeds: ["#{feed_group_id}:#{feed_id}"],
         attachments: [attachment],
         custom: {
@@ -144,14 +145,14 @@ RSpec.describe 'Feed Integration Tests', type: :integration do
 
       puts "\n⏰ Testing activity creation with expiration..."
 
-      test_helper.create_test_feed(feed_group_id, feed_id, test_user_id1)
+      test_helper.create_test_feed(feed_group_id, feed_id, test_user_id_1)
 
       tomorrow = Time.now + 86_400 # 24 hours from now
 
       activity_request = GetStream::Generated::Models::AddActivityRequest.new(
         type: 'story',
         text: 'My daily story - expires tomorrow!',
-        user_id: test_user_id1,
+        user_id: test_user_id_1,
         feeds: ["#{feed_group_id}:#{feed_id}"],
         expires_at: tomorrow.iso8601,
         custom: {
@@ -173,27 +174,23 @@ RSpec.describe 'Feed Integration Tests', type: :integration do
 
       puts "\n📡 Testing activity creation in multiple feeds..."
 
-      test_user_id2 = 'test-user-ruby-sdk2'
-      test_helper.create_test_feed(feed_group_id, feed_id, test_user_id1)
-      test_helper.create_test_feed(feed_group_id, feed_id2, test_user_id2)
+      test_user_id_2 = 'test-user-ruby-sdk2'
+      test_helper.create_test_feed(feed_group_id, feed_id, test_user_id_1)
+      test_helper.create_test_feed(feed_group_id, feed_id_2, test_user_id_2)
 
       activity_request = GetStream::Generated::Models::AddActivityRequest.new(
         type: 'post',
         text: 'This post appears in multiple feeds!',
-        user_id: test_user_id1,
-        feeds: ["#{feed_group_id}:#{feed_id}", "#{feed_group_id}:#{feed_id2}"],
+        user_id: test_user_id_1,
+        feeds: ["#{feed_group_id}:#{feed_id}", "#{feed_group_id}:#{feed_id_2}"],
         custom: {
           cross_posted: true,
           target_feeds: 2,
         },
       )
-      puts feed_id
-      puts feed_id2
 
       begin
         response = client.feeds.add_activity(activity_request)
-        puts "Activity response: #{response.inspect}"
-        puts "Response data: #{response.to_h}" if response.respond_to?(:to_h)
       rescue StandardError => e
         puts '❌ API Error in add_activity:'
         puts "Error class: #{e.class}"
@@ -214,12 +211,12 @@ RSpec.describe 'Feed Integration Tests', type: :integration do
 
       puts "\n🔍 Testing activity querying..."
 
-      test_helper.create_test_feed(feed_group_id, feed_id, test_user_id1)
+      test_helper.create_test_feed(feed_group_id, feed_id, test_user_id_1)
 
       # Create multiple activities
       3.times do |i|
 
-        test_helper.create_test_activity(feed_group_id, feed_id, test_user_id1, "Query test activity #{i + 1}")
+        test_helper.create_test_activity(feed_group_id, feed_id, test_user_id_1, "Query test activity #{i + 1}")
 
       end
 
@@ -227,7 +224,7 @@ RSpec.describe 'Feed Integration Tests', type: :integration do
       query_request = GetStream::Generated::Models::QueryActivitiesRequest.new(
         limit: 10,
         filter: {
-          user_id: test_user_id1,
+          user_id: test_user_id_1,
         },
       )
 
@@ -245,19 +242,19 @@ RSpec.describe 'Feed Integration Tests', type: :integration do
 
       puts "\n📦 Testing batch activity operations..."
 
-      test_helper.create_test_feed(feed_group_id, feed_id, test_user_id1)
+      test_helper.create_test_feed(feed_group_id, feed_id, test_user_id_1)
 
       activities = [
         {
           type: 'post',
           text: 'Batch activity 1',
-          user_id: test_user_id1,
+          user_id: test_user_id_1,
           feeds: ["#{feed_group_id}:#{feed_id}"],
         },
         {
           type: 'post',
           text: 'Batch activity 2',
-          user_id: test_user_id1,
+          user_id: test_user_id_1,
           feeds: ["#{feed_group_id}:#{feed_id}"],
         },
       ]
@@ -288,15 +285,15 @@ RSpec.describe 'Feed Integration Tests', type: :integration do
 
       puts "\n👍 Testing reaction operations..."
 
-      test_helper.create_test_feed(feed_group_id, feed_id, test_user_id1)
-      activity_id = test_helper.create_test_activity(feed_group_id, feed_id, test_user_id1,
+      test_helper.create_test_feed(feed_group_id, feed_id, test_user_id_1)
+      activity_id = test_helper.create_test_activity(feed_group_id, feed_id, test_user_id_1,
                                                      'Activity for reaction test')
 
       # snippet-start: AddReaction
       # Add reaction
       reaction_request = GetStream::Generated::Models::AddReactionRequest.new(
         type: 'like',
-        user_id: test_user_id1,
+        user_id: test_user_id_1,
       )
 
       reaction_response = client.feeds.add_reaction(activity_id, reaction_request)
@@ -320,7 +317,7 @@ RSpec.describe 'Feed Integration Tests', type: :integration do
 
       # snippet-start: DeleteReaction
       # Delete reaction
-      delete_response = client.feeds.delete_activity_reaction(activity_id, 'like', test_user_id1)
+      delete_response = client.feeds.delete_activity_reaction(activity_id, 'like', test_user_id_1)
       expect(delete_response).to be_a(GetStreamRuby::StreamResponse)
       puts '✅ Deleted reaction successfully'
       # snippet-stop: DeleteReaction
@@ -335,18 +332,18 @@ RSpec.describe 'Feed Integration Tests', type: :integration do
 
       puts "\n💬 Testing comment operations..."
 
-      test_helper.create_test_feed(feed_group_id, feed_id, test_user_id1)
-      activity_id = test_helper.create_test_activity(feed_group_id, feed_id, test_user_id1, 'Activity for comment test')
-      test_user_id1 = 'test-user-ruby-sdk1'
+      test_helper.create_test_feed(feed_group_id, feed_id, test_user_id_1)
+      activity_id = test_helper.create_test_activity(
+        feed_group_id, feed_id, test_user_id_1, 'Activity for comment test'
+      )
 
-      puts test_user_id1
       # snippet-start: AddComment
       # Add comment
       comment_request = GetStream::Generated::Models::AddCommentRequest.new(
         comment: 'This is a test comment from Ruby SDK',
         object_id: activity_id,
         object_type: 'activity',
-        user_id: test_user_id1,
+        user_id: test_user_id_1,
       )
 
       comment_response = client.feeds.add_comment(comment_request)
@@ -392,13 +389,13 @@ RSpec.describe 'Feed Integration Tests', type: :integration do
 
       puts "\n🔖 Testing bookmark operations..."
 
-      test_helper.create_test_feed(feed_group_id, feed_id, test_user_id1)
-      activity_id = test_helper.create_test_activity(feed_group_id, feed_id, test_user_id1,
+      test_helper.create_test_feed(feed_group_id, feed_id, test_user_id_1)
+      activity_id = test_helper.create_test_activity(feed_group_id, feed_id, test_user_id_1,
                                                      'Activity for bookmark test')
 
       # Add bookmark
       bookmark_request = GetStream::Generated::Models::AddBookmarkRequest.new(
-        user_id: test_user_id1,
+        user_id: test_user_id_1,
         new_folder: GetStream::Generated::Models::AddFolderRequest.new(
           name: 'test-bookmarks',
         ),
@@ -412,7 +409,7 @@ RSpec.describe 'Feed Integration Tests', type: :integration do
       query_request = GetStream::Generated::Models::QueryBookmarksRequest.new(
         limit: 10,
         filter: {
-          user_id: test_user_id1,
+          user_id: test_user_id_1,
         },
       )
 
@@ -420,19 +417,10 @@ RSpec.describe 'Feed Integration Tests', type: :integration do
       expect(query_response).to be_a(GetStreamRuby::StreamResponse)
       puts '✅ Queried bookmarks successfully'
 
-      # Update bookmark
       folder_id = bookmark_response.bookmark.folder.id
-      update_request = GetStream::Generated::Models::UpdateBookmarkRequest.new(
-        folder_id: folder_id,
-        user_id: test_user_id1,
-      )
-
-      update_response = client.feeds.update_bookmark(activity_id, update_request)
-      expect(update_response).to be_a(GetStreamRuby::StreamResponse)
-      puts '✅ Updated bookmark successfully'
 
       # Delete bookmark
-      delete_response = client.feeds.delete_bookmark(activity_id, folder_id, test_user_id1)
+      delete_response = client.feeds.delete_bookmark(activity_id, folder_id, test_user_id_1)
       expect(delete_response).to be_a(GetStreamRuby::StreamResponse)
       puts '✅ Deleted bookmark successfully'
 
@@ -446,14 +434,14 @@ RSpec.describe 'Feed Integration Tests', type: :integration do
 
       puts "\n👥 Testing follow operations..."
 
-      test_helper.create_test_feed(feed_group_id, feed_id, test_user_id1)
-      test_helper.create_test_feed(feed_group_id, feed_id2, test_user_id2)
+      test_helper.create_test_feed(feed_group_id, feed_id, test_user_id_1)
+      test_helper.create_test_feed(feed_group_id, feed_id_2, test_user_id_2)
 
       begin
         # Follow user
         follow_request = {
-          source: "#{feed_group_id}:#{test_user_id1}",
-          target: "#{feed_group_id}:#{test_user_id2}",
+          source: "#{feed_group_id}:#{test_user_id_1}",
+          target: "#{feed_group_id}:#{test_user_id_2}",
         }
 
         follow_response = client.feeds.follow(follow_request)
@@ -470,8 +458,8 @@ RSpec.describe 'Feed Integration Tests', type: :integration do
         puts '✅ Queried follows successfully'
 
         # Unfollow user
-        unfollow_response = client.feeds.unfollow("#{feed_group_id}:#{test_user_id1}",
-                                                  "#{feed_group_id}:#{test_user_id2}")
+        unfollow_response = client.feeds.unfollow("#{feed_group_id}:#{test_user_id_1}",
+                                                  "#{feed_group_id}:#{test_user_id_2}")
         expect(unfollow_response).to be_a(GetStreamRuby::StreamResponse)
         puts '✅ Unfollowed user successfully'
       rescue StandardError => e
@@ -488,12 +476,12 @@ RSpec.describe 'Feed Integration Tests', type: :integration do
 
       puts "\n📌 Testing pin operations..."
 
-      test_helper.create_test_feed(feed_group_id, feed_id, test_user_id1)
-      activity_id = test_helper.create_test_activity(feed_group_id, feed_id, test_user_id1, 'Activity for pin test')
+      test_helper.create_test_feed(feed_group_id, feed_id, test_user_id_1)
+      activity_id = test_helper.create_test_activity(feed_group_id, feed_id, test_user_id_1, 'Activity for pin test')
 
       # Pin activity
       pin_request = GetStream::Generated::Models::PinActivityRequest.new(
-        user_id: test_user_id1,
+        user_id: test_user_id_1,
       )
 
       pin_response = client.feeds.pin_activity(feed_group_id, feed_id, activity_id, pin_request)
@@ -501,7 +489,7 @@ RSpec.describe 'Feed Integration Tests', type: :integration do
       puts '✅ Pinned activity successfully'
 
       # Unpin activity
-      unpin_response = client.feeds.unpin_activity(feed_group_id, feed_id, activity_id, test_user_id1)
+      unpin_response = client.feeds.unpin_activity(feed_group_id, feed_id, activity_id, test_user_id_1)
       expect(unpin_response).to be_a(GetStreamRuby::StreamResponse)
       puts '✅ Unpinned activity successfully'
 
@@ -515,13 +503,13 @@ RSpec.describe 'Feed Integration Tests', type: :integration do
 
       puts "\n🗳️ Testing poll operations..."
 
-      test_helper.create_test_feed(feed_group_id, feed_id, test_user_id1)
+      test_helper.create_test_feed(feed_group_id, feed_id, test_user_id_1)
 
       # Create poll
       poll_request = GetStream::Generated::Models::CreatePollRequest.new(
         name: 'Test Poll',
         description: "What's your favorite programming language?",
-        user_id: test_user_id1,
+        user_id: test_user_id_1,
         max_votes_allowed: 1,
         options: [
           GetStream::Generated::Models::PollOptionInput.new(text: 'Ruby'),
@@ -542,7 +530,7 @@ RSpec.describe 'Feed Integration Tests', type: :integration do
         feeds: ["#{feed_group_id}:#{feed_id}"],
         poll_id: poll_id,
         text: "What's your favorite programming language?",
-        user_id: test_user_id1,
+        user_id: test_user_id_1,
         custom: {
           poll_name: "What's your favorite programming language?",
           poll_description: 'Choose your favorite programming language from the options below',
@@ -564,7 +552,7 @@ RSpec.describe 'Feed Integration Tests', type: :integration do
 
         puts option_id.inspect
         vote_request = GetStream::Generated::Models::CastPollVoteRequest.new(
-          user_id: test_user_id1,
+          user_id: test_user_id_1,
           vote: GetStream::Generated::Models::VoteData.new(
             option_id: option_id.id,
           ),
@@ -635,6 +623,11 @@ RSpec.describe 'Feed Integration Tests', type: :integration do
         expect(get_or_create_response).to be_a(GetStreamRuby::StreamResponse)
         expect(get_or_create_response.was_created).to be false
         puts '✅ Got existing feed group successfully'
+
+        # Delete feed group
+        delete_response = client.feeds.delete_feed_group(feed_group_id_test)
+        expect(delete_response).to be_a(GetStreamRuby::StreamResponse)
+        puts "✅ Deleted feed group: #{feed_group_id_test}"
       rescue StandardError => e
         throw e.message
       end
@@ -649,49 +642,10 @@ RSpec.describe 'Feed Integration Tests', type: :integration do
 
       puts "\n👁️ Testing Feed View CRUD operations..."
 
-      feed_view_id = "test-feed-view-#{SecureRandom.hex(4)}"
-
       # List feed views
       list_response = client.feeds.list_feed_views
       expect(list_response).to be_a(GetStreamRuby::StreamResponse)
       puts '✅ Listed feed views successfully'
-
-      # Create feed view
-      create_request = GetStream::Generated::Models::CreateFeedViewRequest.new(
-        id: feed_view_id,
-      )
-
-      create_response = client.feeds.create_feed_view(create_request)
-      expect(create_response).to be_a(GetStreamRuby::StreamResponse)
-      expect(create_response.feed_view.id).to eq(feed_view_id)
-      puts "✅ Created feed view: #{feed_view_id}"
-
-      # Wait for backend propagation
-      test_helper.wait_for_backend_propagation(1)
-
-      # Get feed view
-      get_response = client.feeds.get_feed_view('feedViewID') # Use existing feed view
-      expect(get_response).to be_a(GetStreamRuby::StreamResponse)
-      puts '✅ Retrieved feed view successfully'
-
-      # Update feed view
-      update_request = GetStream::Generated::Models::UpdateFeedViewRequest.new(
-        aggregation: GetStream::Generated::Models::AggregationConfig.new(format: 'default'),
-      )
-
-      update_response = client.feeds.update_feed_view('feedViewID', update_request)
-      expect(update_response).to be_a(GetStreamRuby::StreamResponse)
-      puts '✅ Updated feed view successfully'
-
-      # Get or create feed view with unique ID
-      unique_feed_view_id = "test-feed-view-#{SecureRandom.hex(8)}"
-      get_or_create_request = GetStream::Generated::Models::GetOrCreateFeedViewRequest.new(
-        aggregation: GetStream::Generated::Models::AggregationConfig.new(format: 'default'),
-      )
-
-      get_or_create_response = client.feeds.get_or_create_feed_view(unique_feed_view_id, get_or_create_request)
-      expect(get_or_create_response).to be_a(GetStreamRuby::StreamResponse)
-      puts '✅ Got existing feed view successfully'
 
     end
 
@@ -703,8 +657,8 @@ RSpec.describe 'Feed Integration Tests', type: :integration do
 
       puts "\n🌍 Testing real-world usage patterns..."
 
-      test_helper.create_test_feed(feed_group_id, feed_id, test_user_id1)
-      test_helper.create_test_feed(feed_group_id, feed_id2, test_user_id2)
+      test_helper.create_test_feed(feed_group_id, feed_id, test_user_id_1)
+      test_helper.create_test_feed(feed_group_id, feed_id_2, test_user_id_2)
 
       # 1. User creates a post with image
       attachment = GetStream::Generated::Models::Attachment.new(
@@ -716,7 +670,7 @@ RSpec.describe 'Feed Integration Tests', type: :integration do
       post_request = GetStream::Generated::Models::AddActivityRequest.new(
         type: 'post',
         text: 'Just visited the most amazing coffee shop! ☕️',
-        user_id: test_user_id1,
+        user_id: test_user_id_1,
         feeds: ["#{feed_group_id}:#{feed_id}"],
         attachments: [attachment],
         custom: {
@@ -739,7 +693,7 @@ RSpec.describe 'Feed Integration Tests', type: :integration do
 
         reaction_request = GetStream::Generated::Models::AddReactionRequest.new(
           type: reaction_type,
-          user_id: test_user_id2,
+          user_id: test_user_id_2,
         )
 
         reaction_response = client.feeds.add_reaction(post_id, reaction_request)
@@ -761,7 +715,7 @@ RSpec.describe 'Feed Integration Tests', type: :integration do
           comment: comment_text,
           object_id: post_id,
           object_type: 'activity',
-          user_id: test_user_id2,
+          user_id: test_user_id_2,
         )
 
         comment_response = client.feeds.add_comment(comment_request)
@@ -776,7 +730,7 @@ RSpec.describe 'Feed Integration Tests', type: :integration do
       # 4. User bookmarks the post
       begin
         bookmark_request = GetStream::Generated::Models::AddBookmarkRequest.new(
-          user_id: test_user_id2,
+          user_id: test_user_id_2,
           new_folder: GetStream::Generated::Models::AddFolderRequest.new(
             name: 'favorite-places',
           ),

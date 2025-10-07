@@ -1,0 +1,106 @@
+name: 'Version Bump'
+description: 'Calculate and apply version bump'
+inputs:
+  version_type:
+    description: 'Version bump type (major, minor, patch)'
+    required: true
+  current_version:
+    description: 'Current version'
+    required: true
+  update_files:
+    description: 'Whether to update version files'
+    required: false
+    default: 'true'
+  release_notes:
+    description: 'Release notes for changelog'
+    required: false
+    default: ''
+
+outputs:
+  new_version:
+    description: 'New calculated version'
+    value: ${{ steps.calculate.outputs.new_version }}
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Calculate new version
+      id: calculate
+      shell: bash
+      run: |
+        CURRENT_VERSION="${{ inputs.current_version }}"
+        VERSION_TYPE="${{ inputs.version_type }}"
+        
+        # Parse version components
+        IFS='.' read -r major minor patch <<< "$CURRENT_VERSION"
+        
+        case "$VERSION_TYPE" in
+          "major")
+            NEW_VERSION="$((major + 1)).0.0"
+            ;;
+          "minor")
+            NEW_VERSION="$major.$((minor + 1)).0"
+            ;;
+          "patch")
+            NEW_VERSION="$major.$minor.$((patch + 1))"
+            ;;
+          *)
+            echo "Invalid version type: $VERSION_TYPE"
+            exit 1
+            ;;
+        esac
+        
+        echo "new_version=$NEW_VERSION" >> $GITHUB_OUTPUT
+        echo "New version: $NEW_VERSION"
+
+    - name: Update version files
+      if: inputs.update_files == 'true'
+      shell: bash
+      run: |
+        NEW_VERSION="${{ steps.calculate.outputs.new_version }}"
+        
+        # Update version.rb
+        sed -i "s/VERSION = '[^']*'/VERSION = '$NEW_VERSION'/" "lib/getstream_ruby/version.rb"
+        
+        # Update gemspec
+        sed -i "s/spec.version = '[^']*'/spec.version = '$NEW_VERSION'/" "getstream-ruby.gemspec"
+        
+        echo "Updated version to $NEW_VERSION"
+
+    - name: Update CHANGELOG
+      if: inputs.update_files == 'true'
+      shell: bash
+      run: |
+        NEW_VERSION="${{ steps.calculate.outputs.new_version }}"
+        VERSION_TYPE="${{ inputs.version_type }}"
+        RELEASE_NOTES="${{ inputs.release_notes }}"
+        CHANGELOG_FILE="CHANGELOG.md"
+        
+        # Create CHANGELOG.md if it doesn't exist
+        if [ ! -f "$CHANGELOG_FILE" ]; then
+          echo "# Changelog" > "$CHANGELOG_FILE"
+          echo "" >> "$CHANGELOG_FILE"
+          echo "All notable changes to this project will be documented in this file." >> "$CHANGELOG_FILE"
+          echo "" >> "$CHANGELOG_FILE"
+          echo "The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)," >> "$CHANGELOG_FILE"
+          echo "and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html)." >> "$CHANGELOG_FILE"
+          echo "" >> "$CHANGELOG_FILE"
+        fi
+        
+        # Add new version entry
+        TEMP_FILE=$(mktemp)
+        echo "## [$NEW_VERSION] - $(date +%Y-%m-%d)" >> "$TEMP_FILE"
+        echo "" >> "$TEMP_FILE"
+        
+        if [ -n "$RELEASE_NOTES" ]; then
+          echo "$RELEASE_NOTES" >> "$TEMP_FILE"
+        else
+          echo "### $VERSION_TYPE^2 changes" >> "$TEMP_FILE"
+          echo "- " >> "$TEMP_FILE"
+        fi
+        
+        echo "" >> "$TEMP_FILE"
+        cat "$CHANGELOG_FILE" >> "$TEMP_FILE"
+        mv "$TEMP_FILE" "$CHANGELOG_FILE"
+        
+        echo "Updated CHANGELOG.md"

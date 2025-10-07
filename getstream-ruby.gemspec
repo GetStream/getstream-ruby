@@ -3,7 +3,7 @@
 Gem::Specification.new do |spec|
 
   spec.name          = 'getstream-ruby'
-  spec.version       = '0.1.0'
+  spec.version       = '0.0.0'
   spec.authors       = ['GetStream']
   spec.email         = ['support@getstream.io']
 
@@ -14,6 +14,7 @@ Gem::Specification.new do |spec|
 
   spec.files         = Dir['lib/**/*.rb', 'README.md', 'LICENSE']
   spec.require_paths = ['lib']
+  spec.required_ruby_version = '>= 2.6.0'
 
   spec.add_dependency 'dotenv', '~> 2.0'
   spec.add_dependency 'faraday', '~> 2.0'

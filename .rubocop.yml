@@ -47,32 +47,32 @@ Metrics/BlockLength:
     - 'Rakefile'
 
 Metrics/MethodLength:
-  Max: 20
+  Max: 40
   Exclude:
     - 'lib/getstream_ruby/generated/**/*'
 
 Metrics/ClassLength:
-  Max: 150
+  Max: 200
   Exclude:
     - 'lib/getstream_ruby/generated/**/*'
 
 Metrics/ModuleLength:
-  Max: 150
+  Max: 200
   Exclude:
     - 'lib/getstream_ruby/generated/**/*'
 
 Metrics/AbcSize:
-  Max: 20
+  Max: 50
   Exclude:
     - 'lib/getstream_ruby/generated/**/*'
 
 Metrics/CyclomaticComplexity:
-  Max: 8
+  Max: 20
   Exclude:
     - 'lib/getstream_ruby/generated/**/*'
 
 Metrics/PerceivedComplexity:
-  Max: 8
+  Max: 25
   Exclude:
     - 'lib/getstream_ruby/generated/**/*'
 

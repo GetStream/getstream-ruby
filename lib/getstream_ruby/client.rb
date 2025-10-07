@@ -17,15 +17,14 @@ module GetStreamRuby
 
     attr_reader :configuration
 
-    def initialize(config = nil, api_key: nil, api_secret: nil, app_id: nil, base_url: nil, timeout: nil)
+    def initialize(config = nil, api_key: nil, api_secret: nil, base_url: nil, timeout: nil)
       @configuration = config || GetStreamRuby.configuration
 
       # Create new configuration with overrides if any parameters provided
-      if api_key || api_secret || app_id || base_url || timeout
+      if api_key || api_secret || base_url || timeout
         @configuration = Configuration.with_overrides(
           api_key: api_key,
           api_secret: api_secret,
-          app_id: app_id,
           base_url: base_url,
           timeout: timeout,
         )
@@ -35,8 +34,8 @@ module GetStreamRuby
       @connection = build_connection
     end
 
-    def feed
-      @feed ||= Resources::Feed.new(self)
+    def feed_resource
+      @feed_resource ||= Resources::Feed.new(self)
     end
 
     # Generated API clients
@@ -93,7 +92,7 @@ module GetStreamRuby
         req.headers['Authorization'] = generate_auth_header
         req.headers['Content-Type'] = 'application/json'
         req.headers['stream-auth-type'] = 'jwt'
-        req.headers['X-Stream-Client'] = get_user_agent
+        req.headers['X-Stream-Client'] = user_agent
         req.body = data.to_json
 
       end
@@ -130,7 +129,7 @@ module GetStreamRuby
       )
     end
 
-    def get_user_agent
+    def user_agent
       "getstream-ruby-#{GetStreamRuby::VERSION}"
     end
 
@@ -151,7 +150,8 @@ module GetStreamRuby
                       end
 
         error_message = if parsed_body.is_a?(Hash)
-                          parsed_body['message'] || parsed_body['detail'] || "Request failed with status #{response.status}"
+                          parsed_body['message'] || parsed_body['detail'] ||
+                            "Request failed with status #{response.status}"
                         else
                           "Request failed with status #{response.status}"
                         end

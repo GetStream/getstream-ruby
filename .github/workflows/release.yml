@@ -1,157 +1,214 @@
-name: Automated Release
+name: Release
 
 on:
+  workflow_dispatch:
+    inputs:
+      version_type:
+        description: 'Version type'
+        required: true
+        default: 'patch'
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+      release_notes:
+        description: 'Release notes (optional)'
+        required: false
+        type: string
   push:
-    branches: [ master, main ]
-    paths-ignore:
-      - 'README.md'
-      - 'docs/**'
-      - '*.md'
-
-env:
-  RUBY_VERSION: '2.6.0'
+    branches: [ main, master ]
+    paths:
+      - 'lib/getstream_ruby/version.rb'
+      - 'getstream-ruby.gemspec'
 
 jobs:
+  create-release-pr:
+    name: Create Release PR
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch'
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1.0'
+          bundler-cache: true
+
+      - name: Get current version
+        id: current_version
+        run: |
+          CURRENT_VERSION=$(ruby -r "./lib/getstream_ruby/version.rb" -e "puts GetStreamRuby::VERSION")
+          echo "current_version=$CURRENT_VERSION" >> $GITHUB_OUTPUT
+          echo "Current version: $CURRENT_VERSION"
+
+      - name: Calculate new version
+        id: new_version
+        run: |
+          CURRENT_VERSION="${{ steps.current_version.outputs.current_version }}"
+          IFS='.' read -r major minor patch <<< "$CURRENT_VERSION"
+          
+          case "${{ github.event.inputs.version_type }}" in
+              "major")
+                  NEW_VERSION="$((major + 1)).0.0"
+                  ;;
+              "minor")
+                  NEW_VERSION="$major.$((minor + 1)).0"
+                  ;;
+              "patch")
+                  NEW_VERSION="$major.$minor.$((patch + 1))"
+                  ;;
+          esac
+          
+          echo "new_version=$NEW_VERSION" >> $GITHUB_OUTPUT
+          echo "New version: $NEW_VERSION"
+
+      - name: Create release branch
+        run: |
+          NEW_VERSION="${{ steps.new_version.outputs.new_version }}"
+          RELEASE_BRANCH="release/v$NEW_VERSION"
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git checkout -b "$RELEASE_BRANCH"
+          echo "RELEASE_BRANCH=$RELEASE_BRANCH" >> $GITHUB_ENV
+
+      - name: Update version files
+        run: |
+          NEW_VERSION="${{ steps.new_version.outputs.new_version }}"
+          sed -i "s/VERSION = '[^']*'/VERSION = '$NEW_VERSION'/" "lib/getstream_ruby/version.rb"
+          sed -i "s/spec\.version\s*=\s*'[^']*'/spec.version       = '$NEW_VERSION'/" "getstream-ruby.gemspec"
+
+      - name: Update CHANGELOG
+        run: |
+          NEW_VERSION="${{ steps.new_version.outputs.new_version }}"
+          VERSION_TYPE="${{ github.event.inputs.version_type }}"
+          RELEASE_NOTES="${{ github.event.inputs.release_notes }}"
+          
+          # Create CHANGELOG.md if it doesn't exist
+          if [ ! -f "CHANGELOG.md" ]; then
+            cat > "CHANGELOG.md" << 'EOF'
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+EOF
+          fi
+          
+          # Add new version entry
+          TEMP_FILE=$(mktemp)
+          echo "## [$NEW_VERSION] - $(date +%Y-%m-%d)" >> "$TEMP_FILE"
+          echo "" >> "$TEMP_FILE"
+          
+          if [ -n "$RELEASE_NOTES" ]; then
+            echo "$RELEASE_NOTES" >> "$TEMP_FILE"
+          else
+            echo "### $VERSION_TYPE^2 changes" >> "$TEMP_FILE"
+            echo "- " >> "$TEMP_FILE"
+          fi
+          
+          echo "" >> "$TEMP_FILE"
+          cat "CHANGELOG.md" >> "$TEMP_FILE"
+          mv "$TEMP_FILE" "CHANGELOG.md"
+
+      - name: Commit and push changes
+        run: |
+          NEW_VERSION="${{ steps.new_version.outputs.new_version }}"
+          VERSION_TYPE="${{ github.event.inputs.version_type }}"
+          RELEASE_NOTES="${{ github.event.inputs.release_notes }}"
+          
+          git add lib/getstream_ruby/version.rb getstream-ruby.gemspec CHANGELOG.md
+          git commit -m "Bump version to $NEW_VERSION
+
+          Version type: $VERSION_TYPE
+          Release notes: ${RELEASE_NOTES:-'Standard $VERSION_TYPE release'}"
+          
+          git push -u origin "$RELEASE_BRANCH"
+
+      - name: Create Pull Request
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const NEW_VERSION = '${{ steps.new_version.outputs.new_version }}';
+            const VERSION_TYPE = '${{ github.event.inputs.version_type }}';
+            const RELEASE_NOTES = '${{ github.event.inputs.release_notes }}';
+            const RELEASE_BRANCH = '${{ env.RELEASE_BRANCH }}';
+            
+            const pr = await github.rest.pulls.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `Release v${NEW_VERSION}`,
+              head: RELEASE_BRANCH,
+              base: 'main',
+              body: `## Release v${NEW_VERSION}
+              
+              **Version Type:** ${VERSION_TYPE}
+              
+              **Release Notes:**
+              ${RELEASE_NOTES || 'Standard ' + VERSION_TYPE + ' release'}
+              
+              This PR will automatically create a release when merged.
+              
+              ### Changes
+              - [x] Bumped version to ${NEW_VERSION}
+              - [x] Updated CHANGELOG.md
+              - [x] Updated gemspec
+              
+              **⚠️ Only repository admins should merge this PR**`
+            });
+
   release:
-    name: Automated Release
+    name: Release
     runs-on: ubuntu-latest
     if: github.event_name == 'push'
     
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
-        token: ${{ secrets.GITHUB_TOKEN }}
-        
-    - name: Set up Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: ${{ env.RUBY_VERSION }}
-        bundler-cache: true
-        
-    - name: Install dependencies
-      run: |
-        gem install bundler
-        bundle install --jobs 4 --retry 3
-        
-    - name: Configure Git
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        
-    - name: Check for major release trigger
-      id: check-major
-      run: |
-        if git log --oneline -1 | grep -qi "major"; then
-          echo "trigger=major" >> $GITHUB_OUTPUT
-          echo "should_release=true" >> $GITHUB_OUTPUT
-        else
-          echo "should_release=false" >> $GITHUB_OUTPUT
-        fi
-        
-    - name: Check for minor release trigger
-      id: check-minor
-      run: |
-        if git log --oneline -1 | grep -qi "minor"; then
-          echo "trigger=minor" >> $GITHUB_OUTPUT
-          echo "should_release=true" >> $GITHUB_OUTPUT
-        else
-          echo "should_release=false" >> $GITHUB_OUTPUT
-        fi
-        
-    - name: Check for patch release trigger
-      id: check-patch
-      run: |
-        if git log --oneline -1 | grep -qi "patch"; then
-          echo "trigger=patch" >> $GITHUB_OUTPUT
-          echo "should_release=true" >> $GITHUB_OUTPUT
-        else
-          echo "should_release=false" >> $GITHUB_OUTPUT
-        fi
-        
-    - name: Determine release trigger
-      id: release-trigger
-      run: |
-        if [ "${{ steps.check-major.outputs.should_release }}" = "true" ]; then
-          echo "trigger=major" >> $GITHUB_OUTPUT
-          echo "should_release=true" >> $GITHUB_OUTPUT
-        elif [ "${{ steps.check-minor.outputs.should_release }}" = "true" ]; then
-          echo "trigger=minor" >> $GITHUB_OUTPUT
-          echo "should_release=true" >> $GITHUB_OUTPUT
-        elif [ "${{ steps.check-patch.outputs.should_release }}" = "true" ]; then
-          echo "trigger=patch" >> $GITHUB_OUTPUT
-          echo "should_release=true" >> $GITHUB_OUTPUT
-        else
-          echo "should_release=false" >> $GITHUB_OUTPUT
-        fi
-        
-    - name: Run tests before release
-      if: steps.release-trigger.outputs.should_release == 'true'
-      run: make test-unit
-      
-    - name: Release gem
-      if: steps.release-trigger.outputs.should_release == 'true'
-      env:
-        RUBYGEMS_API_KEY: ${{ secrets.RUBYGEMS_API_KEY }}
-      run: |
-        echo "Releasing ${{ steps.release-trigger.outputs.trigger }} version..."
-        make release-${{ steps.release-trigger.outputs.trigger }}
-        
-    - name: Get version
-      if: steps.release-trigger.outputs.should_release == 'true'
-      id: get-version
-      run: |
-        VERSION=$(ruby -e "require_relative 'lib/getstream_ruby/version'; puts GetStreamRuby::VERSION")
-        echo "version=$VERSION" >> $GITHUB_OUTPUT
-        echo "Released version: $VERSION"
-        
-    - name: Create GitHub Release
-      if: steps.release-trigger.outputs.should_release == 'true'
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: v${{ steps.get-version.outputs.version }}
-        release_name: Release v${{ steps.get-version.outputs.version }}
-        body: |
-          ## Release v${{ steps.get-version.outputs.version }}
-          
-          This is an automated ${{ steps.release-trigger.outputs.trigger }} release triggered by commit message.
-          
-          ### Changes
-          - See commit history for detailed changes
-          
-          ### Installation
-          ```bash
-          gem install getstream-ruby -v ${{ steps.get-version.outputs.version }}
-          ```
-          
-          ### Usage
-          ```ruby
-          require 'getstream_ruby'
-          
-          # Configure the client
-          GetStreamRuby.configure do |config|
-            config.api_key = 'your_api_key'
-            config.api_secret = 'your_api_secret'
-            config.app_id = 'your_app_id'
-          end
-          
-          # Use the client
-          client = GetStreamRuby.client
-          ```
-        draft: false
-        prerelease: false
-        
-    - name: Comment on PR
-      if: github.event_name == 'pull_request' && steps.release-trigger.outputs.should_release == 'true'
-      uses: actions/github-script@v6
-      with:
-        script: |
-          github.rest.issues.createComment({
-            issue_number: context.issue.number,
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            body: '🚀 **Automated Release Triggered!**\n\nA ${{ steps.release-trigger.outputs.trigger }} release has been triggered by the commit message and will be published shortly.'
-          })
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1.0'
+          bundler-cache: true
+
+      - name: Get version
+        id: version
+        run: |
+          VERSION=$(ruby -r "./lib/getstream_ruby/version.rb" -e "puts GetStreamRuby::VERSION")
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "Version: $VERSION"
+
+      - name: Run tests
+        run: make test
+
+      - name: Create GitHub Release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ steps.version.outputs.version }}
+          release_name: Release v${{ steps.version.outputs.version }}
+          body: |
+            ## Changes in v${{ steps.version.outputs.version }}
+            
+            See CHANGELOG.md for details.
+          draft: false
+          prerelease: false
+
+      - name: Build and publish gem
+        env:
+          RUBYGEMS_API_KEY: ${{ secrets.RUBYGEMS_API_KEY }}
+        run: |
+          gem build getstream-ruby.gemspec
+          gem push getstream-ruby-${{ steps.version.outputs.version }}.gem

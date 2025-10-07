@@ -12,11 +12,10 @@ module GetStreamRuby
   class << self
 
     # Method 1: Manual configuration (highest priority)
-    def manual(api_key:, api_secret:, app_id:, base_url: nil, timeout: nil)
+    def manual(api_key:, api_secret:, base_url: nil, timeout: nil)
       config = Configuration.manual(
         api_key: api_key,
         api_secret: api_secret,
-        app_id: app_id,
         base_url: base_url,
         timeout: timeout,
       )
@@ -25,12 +24,12 @@ module GetStreamRuby
 
     # Method 2: .env file
     def env
-      @env_client ||= Client.new(Configuration.from_env)
+      @env ||= Client.new(Configuration.from_env)
     end
 
     # Method 3: Environment variables
     def env_vars
-      @env_vars_client ||= Client.new(Configuration.from_system_env)
+      @env_vars ||= Client.new(Configuration.from_system_env)
     end
 
     # Default: tries .env first, then env vars
