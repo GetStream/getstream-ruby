@@ -78,6 +78,7 @@ node_modules/
 
 # Bundle
 vendor/bundle/
+Gemfile.lock
 
 # Temporary files
 tmp/
