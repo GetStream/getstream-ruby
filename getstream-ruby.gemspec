@@ -3,7 +3,7 @@
 Gem::Specification.new do |spec|
 
   spec.name          = 'getstream-ruby'
-  spec.version       = '0.0.0'
+  spec.version       = '0.1.0'
   spec.authors       = ['GetStream']
   spec.email         = ['support@getstream.io']
 
