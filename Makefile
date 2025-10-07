@@ -42,7 +42,7 @@ format: ## Format code with RuboCop
 	bundle exec rubocop -A
 
 format-check: ## Check if code is properly formatted (CI-friendly)
-	bundle exec rubocop --format json
+	bundle exec rubocop
 
 security: ## Run security audit
 	bundle exec bundler-audit check --update
