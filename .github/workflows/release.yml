@@ -1,4 +1,4 @@
-name: Release
+name: Release PR
 
 on:
   workflow_dispatch:
@@ -145,7 +145,7 @@ jobs:
               repo: context.repo.repo,
               title: `Release v${NEW_VERSION}`,
               head: RELEASE_BRANCH,
-              base: 'main',
+              base: 'master',
               body: `## Release v${NEW_VERSION}
               
               **Version Type:** ${VERSION_TYPE}
