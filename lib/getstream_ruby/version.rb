@@ -2,6 +2,6 @@
 
 module GetStreamRuby
 
-  VERSION = '0.0.0'
+  VERSION = '0.1.1'
 
 end
