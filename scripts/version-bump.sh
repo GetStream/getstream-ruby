@@ -36,15 +36,11 @@ esac
 
 echo "New version: $NEW_VERSION"
 
-# Update version.rb
+# Update version.rb (gemspec loads version dynamically from here)
 if [[ "$OSTYPE" == "darwin"* ]]; then
-    # macOS
     sed -i '' "s/VERSION = '[^']*'/VERSION = '$NEW_VERSION'/" "lib/getstream_ruby/version.rb"
-    sed -i '' "s/spec\.version\s*=\s*'[^']*'/spec.version       = '$NEW_VERSION'/" "getstream-ruby.gemspec"
 else
-    # Linux/CI
     sed -i "s/VERSION = '[^']*'/VERSION = '$NEW_VERSION'/" "lib/getstream_ruby/version.rb"
-    sed -i "s/spec\.version\s*=\s*'[^']*'/spec.version       = '$NEW_VERSION'/" "getstream-ruby.gemspec"
 fi
 
 echo "Updated version files to $NEW_VERSION"
@@ -86,5 +82,6 @@ echo "Updated CHANGELOG.md"
 echo "✅ Version bump complete: $CURRENT_VERSION → $NEW_VERSION"
 echo "Files updated:"
 echo "  - lib/getstream_ruby/version.rb"
-echo "  - getstream-ruby.gemspec"
 echo "  - CHANGELOG.md"
+echo ""
+echo "Note: getstream_ruby.gemspec loads version dynamically from version.rb"

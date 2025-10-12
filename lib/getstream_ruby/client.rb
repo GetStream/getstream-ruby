@@ -130,7 +130,7 @@ module GetStreamRuby
     end
 
     def user_agent
-      "getstream-ruby-#{GetStreamRuby::VERSION}"
+      "getstream_ruby-#{GetStreamRuby::VERSION}"
     end
 
     def handle_response(response)

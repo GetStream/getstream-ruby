@@ -7,7 +7,7 @@ Official Ruby SDK for GetStream's activity feeds and chat APIs.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'getstream-ruby'
+gem 'getstream_ruby'
 ```
 
 And then execute:
@@ -19,7 +19,7 @@ $ bundle install
 Or install it yourself as:
 
 ```bash
-$ gem install getstream-ruby
+$ gem install getstream_ruby
 ```
 
 ## Configuration
@@ -164,7 +164,7 @@ make dev-check
 ### Project Structure
 
 ```
-getstream-ruby/
+getstream_ruby/
 ├── lib/getstream_ruby/          # Main SDK code
 ├── spec/                        # Test files
 │   ├── integration/             # Integration tests
