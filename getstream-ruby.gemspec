@@ -4,7 +4,7 @@ require_relative 'lib/getstream_ruby/version'
 
 Gem::Specification.new do |spec|
 
-  spec.name          = 'getstream_ruby'
+  spec.name          = 'getstream-ruby'
   spec.version       = GetStreamRuby::VERSION
   spec.authors       = ['GetStream']
   spec.email         = ['support@getstream.io']
