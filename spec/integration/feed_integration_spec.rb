@@ -385,19 +385,23 @@ RSpec.describe 'Feed Integration Tests', type: :integration do
       puts "\n🗑️ Testing batch user deletion..."
 
       user_ids = []
-      3.times do |i|
+      3.times do
+
         user_ids << "test-user-delete-#{SecureRandom.hex(4)}"
+
       end
 
       begin
         # Create users first
         users_hash = {}
         user_ids.each_with_index do |user_id, i|
+
           users_hash[user_id] = {
             'id' => user_id,
             'name' => "Delete Test User #{i + 1}",
             'role' => 'user',
           }
+
         end
 
         create_request = GetStream::Generated::Models::UpdateUsersRequest.new(users: users_hash)
