@@ -164,7 +164,7 @@ make dev-check
 ### Project Structure
 
 ```
-getstream-ruby/
+getstream_ruby/
 ├── lib/getstream_ruby/          # Main SDK code
 ├── spec/                        # Test files
 │   ├── integration/             # Integration tests

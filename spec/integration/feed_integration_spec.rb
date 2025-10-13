@@ -279,6 +279,165 @@ RSpec.describe 'Feed Integration Tests', type: :integration do
 
   end
 
+  describe 'User Operations' do
+
+    it 'creates and updates users in batch' do
+
+      puts "\n👥 Testing batch user operations..."
+
+      user_id_1 = "test-user-batch-#{SecureRandom.hex(4)}"
+      user_id_2 = "test-user-batch-#{SecureRandom.hex(4)}"
+
+      begin
+        # snippet-start: UpdateUsers
+        # Create/update users in batch
+        update_request = GetStream::Generated::Models::UpdateUsersRequest.new(
+          users: {
+            user_id_1 => {
+              'id' => user_id_1,
+              'name' => 'Test User 1',
+              'role' => 'user',
+            },
+            user_id_2 => {
+              'id' => user_id_2,
+              'name' => 'Test User 2',
+              'role' => 'user',
+            },
+          },
+        )
+
+        response = client.common.update_users(update_request)
+        expect(response).to be_a(GetStreamRuby::StreamResponse)
+        puts "✅ Created/updated users in batch: #{user_id_1}, #{user_id_2}"
+        # snippet-stop: UpdateUsers
+
+        # Wait for backend propagation
+        test_helper.wait_for_backend_propagation(1)
+      ensure
+        # Cleanup created users
+        begin
+          delete_request = GetStream::Generated::Models::DeleteUsersRequest.new(
+            user_ids: [user_id_1, user_id_2],
+            user: 'hard',
+          )
+          client.common.delete_users(delete_request)
+        rescue StandardError => e
+          puts "⚠️ Cleanup error: #{e.message}"
+        end
+      end
+
+    end
+
+    it 'partially updates users' do
+
+      puts "\n✏️ Testing partial user update..."
+
+      user_id = "test-user-partial-#{SecureRandom.hex(4)}"
+
+      begin
+        # First create a user
+        create_request = GetStream::Generated::Models::UpdateUsersRequest.new(
+          users: {
+            user_id => {
+              'id' => user_id,
+              'name' => 'Original Name',
+              'role' => 'user',
+            },
+          },
+        )
+        client.common.update_users(create_request)
+        test_helper.wait_for_backend_propagation(1)
+
+        # snippet-start: UpdateUsersPartial
+        # Partially update user
+        partial_request = GetStream::Generated::Models::UpdateUsersPartialRequest.new(
+          users: [
+            {
+              'id' => user_id,
+              'set' => {
+                'name' => 'Updated Name',
+              },
+            },
+          ],
+        )
+
+        response = client.common.update_users_partial(partial_request)
+        expect(response).to be_a(GetStreamRuby::StreamResponse)
+        puts "✅ Partially updated user: #{user_id}"
+        # snippet-stop: UpdateUsersPartial
+      ensure
+        # Cleanup
+        begin
+          delete_request = GetStream::Generated::Models::DeleteUsersRequest.new(
+            user_ids: [user_id],
+            user: 'hard',
+          )
+          client.common.delete_users(delete_request)
+        rescue StandardError => e
+          puts "⚠️ Cleanup error: #{e.message}"
+        end
+      end
+
+    end
+
+    it 'deletes users in batch' do
+
+      puts "\n🗑️ Testing batch user deletion..."
+
+      user_ids = []
+      3.times do
+
+        user_ids << "test-user-delete-#{SecureRandom.hex(4)}"
+
+      end
+
+      begin
+        # Create users first
+        users_hash = {}
+        user_ids.each_with_index do |user_id, i|
+
+          users_hash[user_id] = {
+            'id' => user_id,
+            'name' => "Delete Test User #{i + 1}",
+            'role' => 'user',
+          }
+
+        end
+
+        create_request = GetStream::Generated::Models::UpdateUsersRequest.new(users: users_hash)
+        client.common.update_users(create_request)
+        test_helper.wait_for_backend_propagation(1)
+
+        # snippet-start: DeleteUsers
+        # Delete users in batch
+        delete_request = GetStream::Generated::Models::DeleteUsersRequest.new(
+          user_ids: user_ids,
+          user: 'hard',
+        )
+
+        response = client.common.delete_users(delete_request)
+        expect(response).to be_a(GetStreamRuby::StreamResponse)
+        puts "✅ Deleted #{user_ids.length} users in batch"
+        # snippet-stop: DeleteUsers
+      rescue StandardError => e
+        puts "⚠️ Error: #{e.message}"
+        # Try cleanup anyway
+        begin
+          delete_request = GetStream::Generated::Models::DeleteUsersRequest.new(
+            user_ids: user_ids,
+            user: 'hard',
+          )
+          client.common.delete_users(delete_request)
+        rescue StandardError
+          # Ignore cleanup errors
+        end
+        raise e
+      end
+
+    end
+
+  end
+
   describe 'Reaction Operations' do
 
     it 'adds and queries reactions' do
