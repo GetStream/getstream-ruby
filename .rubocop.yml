@@ -183,3 +183,6 @@ Style/ClassVars:
 Style/GlobalVars:
   Exclude:
     - 'lib/getstream_ruby/generated/**/*'
+
+Gemspec/RequireMFA:
+  Enabled: false
