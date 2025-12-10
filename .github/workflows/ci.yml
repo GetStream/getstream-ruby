@@ -32,7 +32,7 @@ jobs:
       run: make test
       
     - name: Run integration tests
-      if: github.event_name == 'push'
+      if: github.event_name == 'push' || github.event_name == 'pull_request'
       run: make test-integration
       
     - name: Run code quality checks
