@@ -12,9 +12,9 @@ module GetStream
         # @!attribute original_text
         #   @return [String]
         attr_accessor :original_text
-        # @!attribute extra
+        # @!attribute Extra
         #   @return [Object]
-        attr_accessor :extra
+        attr_accessor :Extra
         # @!attribute automod
         #   @return [AutomodDetails]
         attr_accessor :automod
@@ -23,7 +23,7 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @original_text = attributes[:original_text] || attributes['original_text']
-          @extra = attributes[:extra] || attributes['Extra']
+          @Extra = attributes[:Extra] || attributes['Extra']
           @automod = attributes[:automod] || attributes['automod'] || nil
         end
 
@@ -31,7 +31,7 @@ module GetStream
         def self.json_field_mappings
           {
             original_text: 'original_text',
-            extra: 'Extra',
+            Extra: 'Extra',
             automod: 'automod'
           }
         end

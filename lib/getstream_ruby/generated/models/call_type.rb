@@ -9,21 +9,21 @@ module GetStream
       class CallType < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute app_pk
+        # @!attribute app
         #   @return [Integer]
-        attr_accessor :app_pk
+        attr_accessor :app
         # @!attribute created_at
         #   @return [DateTime]
         attr_accessor :created_at
-        # @!attribute external_storage
-        #   @return [String]
-        attr_accessor :external_storage
+        # @!attribute id
+        #   @return [Integer]
+        attr_accessor :id
         # @!attribute name
         #   @return [String]
         attr_accessor :name
-        # @!attribute pk
-        #   @return [Integer]
-        attr_accessor :pk
+        # @!attribute recording_external_storage
+        #   @return [String]
+        attr_accessor :recording_external_storage
         # @!attribute updated_at
         #   @return [DateTime]
         attr_accessor :updated_at
@@ -37,27 +37,27 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @app_pk = attributes[:app_pk] || attributes['AppPK']
-          @created_at = attributes[:created_at] || attributes['CreatedAt']
-          @external_storage = attributes[:external_storage] || attributes['ExternalStorage']
-          @name = attributes[:name] || attributes['Name']
-          @pk = attributes[:pk] || attributes['PK']
-          @updated_at = attributes[:updated_at] || attributes['UpdatedAt']
-          @notification_settings = attributes[:notification_settings] || attributes['NotificationSettings'] || nil
-          @settings = attributes[:settings] || attributes['Settings'] || nil
+          @app = attributes[:app] || attributes['app']
+          @created_at = attributes[:created_at] || attributes['created_at']
+          @id = attributes[:id] || attributes['id']
+          @name = attributes[:name] || attributes['name']
+          @recording_external_storage = attributes[:recording_external_storage] || attributes['recording_external_storage']
+          @updated_at = attributes[:updated_at] || attributes['updated_at']
+          @notification_settings = attributes[:notification_settings] || attributes['notification_settings'] || nil
+          @settings = attributes[:settings] || attributes['settings'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            app_pk: 'AppPK',
-            created_at: 'CreatedAt',
-            external_storage: 'ExternalStorage',
-            name: 'Name',
-            pk: 'PK',
-            updated_at: 'UpdatedAt',
-            notification_settings: 'NotificationSettings',
-            settings: 'Settings'
+            app: 'app',
+            created_at: 'created_at',
+            id: 'id',
+            name: 'name',
+            recording_external_storage: 'recording_external_storage',
+            updated_at: 'updated_at',
+            notification_settings: 'notification_settings',
+            settings: 'settings'
           }
         end
       end

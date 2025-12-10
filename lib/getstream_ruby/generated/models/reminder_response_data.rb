@@ -31,10 +31,10 @@ module GetStream
         #   @return [ChannelResponse]
         attr_accessor :channel
         # @!attribute message
-        #   @return [Message]
+        #   @return [MessageResponse]
         attr_accessor :message
         # @!attribute user
-        #   @return [User]
+        #   @return [UserResponse]
         attr_accessor :user
 
         # Initialize with attributes

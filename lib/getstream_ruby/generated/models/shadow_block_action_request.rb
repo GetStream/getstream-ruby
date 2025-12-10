@@ -7,7 +7,24 @@ module GetStream
     module Models
       # 
       class ShadowBlockActionRequest < GetStream::BaseModel
-        # Empty model - inherits all functionality from BaseModel
+
+        # Model attributes
+        # @!attribute reason
+        #   @return [String]
+        attr_accessor :reason
+
+        # Initialize with attributes
+        def initialize(attributes = {})
+          super(attributes)
+          @reason = attributes[:reason] || attributes['reason'] || ""
+        end
+
+        # Override field mappings for JSON serialization
+        def self.json_field_mappings
+          {
+            reason: 'reason'
+          }
+        end
       end
     end
   end

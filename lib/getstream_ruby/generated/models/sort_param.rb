@@ -15,19 +15,24 @@ module GetStream
         # @!attribute field
         #   @return [String]
         attr_accessor :field
+        # @!attribute type
+        #   @return [String]
+        attr_accessor :type
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @direction = attributes[:direction] || attributes['direction'] || 0
           @field = attributes[:field] || attributes['field'] || ""
+          @type = attributes[:type] || attributes['type'] || ""
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
             direction: 'direction',
-            field: 'field'
+            field: 'field',
+            type: 'type'
           }
         end
       end

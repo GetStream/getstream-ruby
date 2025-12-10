@@ -9,25 +9,25 @@ module GetStream
       class StoriesConfig < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute expiration_behaviour
-        #   @return [String] Behavior when stories expire
-        attr_accessor :expiration_behaviour
         # @!attribute skip_watched
         #   @return [Boolean] Whether to skip already watched stories
         attr_accessor :skip_watched
+        # @!attribute track_watched
+        #   @return [Boolean] Whether to track watched status for stories
+        attr_accessor :track_watched
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @expiration_behaviour = attributes[:expiration_behaviour] || attributes['expiration_behaviour'] || ""
           @skip_watched = attributes[:skip_watched] || attributes['skip_watched'] || false
+          @track_watched = attributes[:track_watched] || attributes['track_watched'] || false
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            expiration_behaviour: 'expiration_behaviour',
-            skip_watched: 'skip_watched'
+            skip_watched: 'skip_watched',
+            track_watched: 'track_watched'
           }
         end
       end

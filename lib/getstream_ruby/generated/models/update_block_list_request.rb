@@ -9,6 +9,12 @@ module GetStream
       class UpdateBlockListRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute is_leet_check_enabled
+        #   @return [Boolean]
+        attr_accessor :is_leet_check_enabled
+        # @!attribute is_plural_check_enabled
+        #   @return [Boolean]
+        attr_accessor :is_plural_check_enabled
         # @!attribute team
         #   @return [String]
         attr_accessor :team
@@ -19,6 +25,8 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @is_leet_check_enabled = attributes[:is_leet_check_enabled] || attributes['is_leet_check_enabled'] || false
+          @is_plural_check_enabled = attributes[:is_plural_check_enabled] || attributes['is_plural_check_enabled'] || false
           @team = attributes[:team] || attributes['team'] || ""
           @words = attributes[:words] || attributes['words'] || nil
         end
@@ -26,6 +34,8 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            is_leet_check_enabled: 'is_leet_check_enabled',
+            is_plural_check_enabled: 'is_plural_check_enabled',
             team: 'team',
             words: 'words'
           }

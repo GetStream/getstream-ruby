@@ -13,7 +13,7 @@ module GetStream
         #   @return [String] Event type (message.new, message.updated, reaction.new)
         attr_accessor :event_type
         # @!attribute push_provider_type
-        #   @return [String] Push provider type (firebase, apn)
+        #   @return [String] Push provider type (firebase, apn, huawei, xiaomi)
         attr_accessor :push_provider_type
         # @!attribute enable_push
         #   @return [Boolean] Whether to send push notification for this event

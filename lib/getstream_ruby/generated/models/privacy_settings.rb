@@ -9,6 +9,9 @@ module GetStream
       class PrivacySettings < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute delivery_receipts
+        #   @return [DeliveryReceipts]
+        attr_accessor :delivery_receipts
         # @!attribute read_receipts
         #   @return [ReadReceipts]
         attr_accessor :read_receipts
@@ -19,6 +22,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @delivery_receipts = attributes[:delivery_receipts] || attributes['delivery_receipts'] || nil
           @read_receipts = attributes[:read_receipts] || attributes['read_receipts'] || nil
           @typing_indicators = attributes[:typing_indicators] || attributes['typing_indicators'] || nil
         end
@@ -26,6 +30,7 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            delivery_receipts: 'delivery_receipts',
             read_receipts: 'read_receipts',
             typing_indicators: 'typing_indicators'
           }

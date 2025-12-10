@@ -24,6 +24,9 @@ module GetStream
         # @!attribute product
         #   @return [String]
         attr_accessor :product
+        # @!attribute should_send_custom_events
+        #   @return [Boolean]
+        attr_accessor :should_send_custom_events
         # @!attribute sns_auth_type
         #   @return [String]
         attr_accessor :sns_auth_type
@@ -84,6 +87,7 @@ module GetStream
           @hook_type = attributes[:hook_type] || attributes['hook_type'] || ""
           @id = attributes[:id] || attributes['id'] || ""
           @product = attributes[:product] || attributes['product'] || ""
+          @should_send_custom_events = attributes[:should_send_custom_events] || attributes['should_send_custom_events'] || false
           @sns_auth_type = attributes[:sns_auth_type] || attributes['sns_auth_type'] || ""
           @sns_key = attributes[:sns_key] || attributes['sns_key'] || ""
           @sns_region = attributes[:sns_region] || attributes['sns_region'] || ""
@@ -111,6 +115,7 @@ module GetStream
             hook_type: 'hook_type',
             id: 'id',
             product: 'product',
+            should_send_custom_events: 'should_send_custom_events',
             sns_auth_type: 'sns_auth_type',
             sns_key: 'sns_key',
             sns_region: 'sns_region',

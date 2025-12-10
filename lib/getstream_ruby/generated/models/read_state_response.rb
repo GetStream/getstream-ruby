@@ -18,6 +18,12 @@ module GetStream
         # @!attribute user
         #   @return [UserResponse]
         attr_accessor :user
+        # @!attribute last_delivered_at
+        #   @return [DateTime]
+        attr_accessor :last_delivered_at
+        # @!attribute last_delivered_message_id
+        #   @return [String]
+        attr_accessor :last_delivered_message_id
         # @!attribute last_read_message_id
         #   @return [String]
         attr_accessor :last_read_message_id
@@ -28,6 +34,8 @@ module GetStream
           @last_read = attributes[:last_read] || attributes['last_read']
           @unread_messages = attributes[:unread_messages] || attributes['unread_messages']
           @user = attributes[:user] || attributes['user']
+          @last_delivered_at = attributes[:last_delivered_at] || attributes['last_delivered_at'] || nil
+          @last_delivered_message_id = attributes[:last_delivered_message_id] || attributes['last_delivered_message_id'] || ""
           @last_read_message_id = attributes[:last_read_message_id] || attributes['last_read_message_id'] || ""
         end
 
@@ -37,6 +45,8 @@ module GetStream
             last_read: 'last_read',
             unread_messages: 'unread_messages',
             user: 'user',
+            last_delivered_at: 'last_delivered_at',
+            last_delivered_message_id: 'last_delivered_message_id',
             last_read_message_id: 'last_read_message_id'
           }
         end

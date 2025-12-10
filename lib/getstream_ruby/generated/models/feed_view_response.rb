@@ -15,11 +15,8 @@ module GetStream
         # @!attribute last_used_at
         #   @return [DateTime] When the feed view was last used
         attr_accessor :last_used_at
-        # @!attribute activity_processors
-        #   @return [Array<ActivityProcessorConfig>] Configured activity processors
-        attr_accessor :activity_processors
         # @!attribute activity_selectors
-        #   @return [Array<ActivitySelectorConfig>] Configured activity selectors
+        #   @return [Array<ActivitySelectorConfigResponse>] Configured activity selectors
         attr_accessor :activity_selectors
         # @!attribute aggregation
         #   @return [AggregationConfig]
@@ -33,7 +30,6 @@ module GetStream
           super(attributes)
           @id = attributes[:id] || attributes['id']
           @last_used_at = attributes[:last_used_at] || attributes['last_used_at'] || nil
-          @activity_processors = attributes[:activity_processors] || attributes['activity_processors'] || nil
           @activity_selectors = attributes[:activity_selectors] || attributes['activity_selectors'] || nil
           @aggregation = attributes[:aggregation] || attributes['aggregation'] || nil
           @ranking = attributes[:ranking] || attributes['ranking'] || nil
@@ -44,7 +40,6 @@ module GetStream
           {
             id: 'id',
             last_used_at: 'last_used_at',
-            activity_processors: 'activity_processors',
             activity_selectors: 'activity_selectors',
             aggregation: 'aggregation',
             ranking: 'ranking'

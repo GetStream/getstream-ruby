@@ -13,7 +13,7 @@ fi
 if ! bundle --version &> /dev/null
 then
   echo "cannot find bundle in path, did you setup this repo correctly?";
-  exit 1;
+#  exit 1;
 fi
 
 set -ex

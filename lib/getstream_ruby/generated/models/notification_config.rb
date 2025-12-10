@@ -9,6 +9,9 @@ module GetStream
       class NotificationConfig < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute deduplication_window
+        #   @return [String] Time window for deduplicating notification activities (reactions and follows). Empty or '0' = always deduplicate (default). Examples: '1h', '24h', '7d', '1w'
+        attr_accessor :deduplication_window
         # @!attribute track_read
         #   @return [Boolean] Whether to track read status
         attr_accessor :track_read
@@ -19,6 +22,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @deduplication_window = attributes[:deduplication_window] || attributes['deduplication_window'] || ""
           @track_read = attributes[:track_read] || attributes['track_read'] || false
           @track_seen = attributes[:track_seen] || attributes['track_seen'] || false
         end
@@ -26,6 +30,7 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            deduplication_window: 'deduplication_window',
             track_read: 'track_read',
             track_seen: 'track_seen'
           }

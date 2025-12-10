@@ -215,7 +215,7 @@ module GetStream
       # @param activity_id [String]
       # @param add_reaction_request [AddReactionRequest]
       # @return [Models::AddReactionResponse]
-      def add_reaction(activity_id, add_reaction_request)
+      def add_activity_reaction(activity_id, add_reaction_request)
         path = '/api/v2/feeds/activities/{activity_id}/reactions'
         # Replace path parameters
         path = path.gsub('{activity_id}', activity_id.to_s)
@@ -310,7 +310,7 @@ module GetStream
         )
       end
 
-      # Updates certain fields of the activitySends events:- feeds.activity.updated
+      # Updates certain fields of the activity. Use 'set' to update specific fields and 'unset' to remove fields. This allows you to update only the fields you need without replacing the entire activity. Useful for updating reply restrictions ('restrict_replies'), mentioned users, or custom data.Sends events:- feeds.activity.updated
       #
       # @param _id [String]
       # @param update_activity_partial_request [UpdateActivityPartialRequest]
@@ -330,7 +330,7 @@ module GetStream
         )
       end
 
-      # Replaces an activity with the provided dataSends events:- feeds.activity.updated
+      # Replaces an activity with the provided data. Use this to update text, attachments, reply restrictions ('restrict_replies'), mentioned users, and other activity fields. Note: This is a full update - any fields not provided will be cleared.Sends events:- feeds.activity.updated
       #
       # @param _id [String]
       # @param update_activity_request [UpdateActivityRequest]
@@ -415,6 +415,95 @@ module GetStream
         # Make the API request
         @client.make_request(
           :post,
+          path,
+          body: body
+        )
+      end
+
+      # Delete collections in a batch operation. Users can only delete their own collections.
+      #
+      # @param collection_refs [Array<String>]
+      # @return [Models::DeleteCollectionsResponse]
+      def delete_collections(collection_refs)
+        path = '/api/v2/feeds/collections'
+        # Build query parameters
+        query_params = {}
+        query_params['collection_refs'] = collection_refs unless collection_refs.nil?
+
+        # Make the API request
+        @client.make_request(
+          :delete,
+          path,
+          query_params: query_params
+        )
+      end
+
+      # Read collections with optional filtering by user ID and collection name. By default, users can only read their own collections.
+      #
+      # @param collection_refs [Array<String>]
+      # @param user_id [String]
+      # @return [Models::ReadCollectionsResponse]
+      def read_collections(collection_refs, user_id = nil)
+        path = '/api/v2/feeds/collections'
+        # Build query parameters
+        query_params = {}
+        query_params['collection_refs'] = collection_refs unless collection_refs.nil?
+        query_params['user_id'] = user_id unless user_id.nil?
+
+        # Make the API request
+        @client.make_request(
+          :get,
+          path,
+          query_params: query_params
+        )
+      end
+
+      # Update existing collections in a batch operation. Only the custom data field is updatable. Users can only update their own collections.
+      #
+      # @param update_collections_request [UpdateCollectionsRequest]
+      # @return [Models::UpdateCollectionsResponse]
+      def update_collections(update_collections_request)
+        path = '/api/v2/feeds/collections'
+        # Build request body
+        body = update_collections_request
+
+        # Make the API request
+        @client.make_request(
+          :patch,
+          path,
+          body: body
+        )
+      end
+
+      # Create new collections in a batch operation. Collections are data objects that can be attached to activities for managing shared data across multiple activities.
+      #
+      # @param create_collections_request [CreateCollectionsRequest]
+      # @return [Models::CreateCollectionsResponse]
+      def create_collections(create_collections_request)
+        path = '/api/v2/feeds/collections'
+        # Build request body
+        body = create_collections_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
+      # Insert new collections or update existing ones in a batch operation. Only the custom data field is updatable for existing collections.
+      #
+      # @param upsert_collections_request [UpsertCollectionsRequest]
+      # @return [Models::UpsertCollectionsResponse]
+      def upsert_collections(upsert_collections_request)
+        path = '/api/v2/feeds/collections'
+        # Build request body
+        body = upsert_collections_request
+
+        # Make the API request
+        @client.make_request(
+          :put,
           path,
           body: body
         )
@@ -656,14 +745,19 @@ module GetStream
 
       # List all feed groups for the application
       #
+      # @param include_soft_deleted [Boolean]
       # @return [Models::ListFeedGroupsResponse]
-      def list_feed_groups()
+      def list_feed_groups(include_soft_deleted = nil)
         path = '/api/v2/feeds/feed_groups'
+        # Build query parameters
+        query_params = {}
+        query_params['include_soft_deleted'] = include_soft_deleted unless include_soft_deleted.nil?
 
         # Make the API request
         @client.make_request(
           :get,
-          path
+          path,
+          query_params: query_params
         )
       end
 
@@ -957,16 +1051,21 @@ module GetStream
       # Get a feed group by ID
       #
       # @param _id [String]
+      # @param include_soft_deleted [Boolean]
       # @return [Models::GetFeedGroupResponse]
-      def get_feed_group(_id)
+      def get_feed_group(_id, include_soft_deleted = nil)
         path = '/api/v2/feeds/feed_groups/{id}'
         # Replace path parameters
         path = path.gsub('{id}', _id.to_s)
+        # Build query parameters
+        query_params = {}
+        query_params['include_soft_deleted'] = include_soft_deleted unless include_soft_deleted.nil?
 
         # Make the API request
         @client.make_request(
           :get,
-          path
+          path,
+          query_params: query_params
         )
       end
 
@@ -1141,6 +1240,26 @@ module GetStream
         )
       end
 
+      # Updates an existing predefined feed visibility configuration
+      #
+      # @param name [String]
+      # @param update_feed_visibility_request [UpdateFeedVisibilityRequest]
+      # @return [Models::UpdateFeedVisibilityResponse]
+      def update_feed_visibility(name, update_feed_visibility_request)
+        path = '/api/v2/feeds/feed_visibilities/{name}'
+        # Replace path parameters
+        path = path.gsub('{name}', name.to_s)
+        # Build request body
+        body = update_feed_visibility_request
+
+        # Make the API request
+        @client.make_request(
+          :put,
+          path,
+          body: body
+        )
+      end
+
       # Create multiple feeds at once for a given feed group
       #
       # @param create_feeds_batch_request [CreateFeedsBatchRequest]
@@ -1149,6 +1268,40 @@ module GetStream
         path = '/api/v2/feeds/feeds/batch'
         # Build request body
         body = create_feeds_batch_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
+      # Delete multiple feeds by their IDs. All feeds must exist. This endpoint is server-side only.
+      #
+      # @param delete_feeds_batch_request [DeleteFeedsBatchRequest]
+      # @return [Models::DeleteFeedsBatchResponse]
+      def delete_feeds_batch(delete_feeds_batch_request)
+        path = '/api/v2/feeds/feeds/delete'
+        # Build request body
+        body = delete_feeds_batch_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
+      # Retrieves own_follows, own_capabilities, and/or own_membership for multiple feeds in a single request. If fields are not specified, all three fields are returned.
+      #
+      # @param own_batch_request [OwnBatchRequest]
+      # @return [Models::OwnBatchResponse]
+      def own_batch(own_batch_request)
+        path = '/api/v2/feeds/feeds/own/batch'
+        # Build request body
+        body = own_batch_request
 
         # Make the API request
         @client.make_request(
@@ -1172,6 +1325,32 @@ module GetStream
           :post,
           path,
           body: body
+        )
+      end
+
+      # Retrieve current rate limit status for feeds operations.Returns information about limits, usage, and remaining quota for various feed operations.
+      #
+      # @param endpoints [String]
+      # @param android [Boolean]
+      # @param ios [Boolean]
+      # @param web [Boolean]
+      # @param server_side [Boolean]
+      # @return [Models::GetFeedsRateLimitsResponse]
+      def get_feeds_rate_limits(endpoints = nil, android = nil, ios = nil, web = nil, server_side = nil)
+        path = '/api/v2/feeds/feeds/rate_limits'
+        # Build query parameters
+        query_params = {}
+        query_params['endpoints'] = endpoints unless endpoints.nil?
+        query_params['android'] = android unless android.nil?
+        query_params['ios'] = ios unless ios.nil?
+        query_params['web'] = web unless web.nil?
+        query_params['server_side'] = server_side unless server_side.nil?
+
+        # Make the API request
+        @client.make_request(
+          :get,
+          path,
+          query_params: query_params
         )
       end
 
@@ -1232,6 +1411,23 @@ module GetStream
       # @return [Models::FollowBatchResponse]
       def follow_batch(follow_batch_request)
         path = '/api/v2/feeds/follows/batch'
+        # Build request body
+        body = follow_batch_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
+      # Creates or updates multiple follows at once. Does not return an error if follows already exist. Broadcasts FollowAddedEvent only for newly created follows.
+      #
+      # @param follow_batch_request [FollowBatchRequest]
+      # @return [Models::FollowBatchResponse]
+      def get_or_create_follows(follow_batch_request)
+        path = '/api/v2/feeds/follows/batch/upsert'
         # Build request body
         body = follow_batch_request
 
@@ -1365,6 +1561,23 @@ module GetStream
         )
       end
 
+      # Retrieve usage statistics for feeds including activity count, follow count, and API request count.Returns data aggregated by day with pagination support via from/to date parameters.This endpoint is server-side only.
+      #
+      # @param query_feeds_usage_stats_request [QueryFeedsUsageStatsRequest]
+      # @return [Models::QueryFeedsUsageStatsResponse]
+      def query_feeds_usage_stats(query_feeds_usage_stats_request)
+        path = '/api/v2/feeds/stats/usage'
+        # Build request body
+        body = query_feeds_usage_stats_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
       # Removes multiple follows at once and broadcasts FollowRemovedEvent for each one
       #
       # @param unfollow_batch_request [UnfollowBatchRequest]
@@ -1382,23 +1595,44 @@ module GetStream
         )
       end
 
-      # Delete all activities, reactions, comments, and bookmarks for a user
+      # Removes multiple follows and broadcasts FollowRemovedEvent for each. Does not return an error if follows don't exist.
       #
-      # @param user_id [String]
-      # @return [Models::DeleteFeedUserDataResponse]
-      def delete_feed_user_data(user_id)
-        path = '/api/v2/feeds/users/{user_id}/delete'
-        # Replace path parameters
-        path = path.gsub('{user_id}', user_id.to_s)
+      # @param unfollow_batch_request [UnfollowBatchRequest]
+      # @return [Models::UnfollowBatchResponse]
+      def get_or_create_unfollows(unfollow_batch_request)
+        path = '/api/v2/feeds/unfollow/batch/upsert'
+        # Build request body
+        body = unfollow_batch_request
 
         # Make the API request
         @client.make_request(
-          :delete,
-          path
+          :post,
+          path,
+          body: body
         )
       end
 
-      # Export all activities, reactions, comments, and bookmarks for a user
+      # Delete all feed data for a user including: feeds, activities, follows, comments, feed reactions, bookmark folders, bookmarks, and collections owned by the user
+      #
+      # @param user_id [String]
+      # @param delete_feed_user_data_request [DeleteFeedUserDataRequest]
+      # @return [Models::DeleteFeedUserDataResponse]
+      def delete_feed_user_data(user_id, delete_feed_user_data_request)
+        path = '/api/v2/feeds/users/{user_id}/delete'
+        # Replace path parameters
+        path = path.gsub('{user_id}', user_id.to_s)
+        # Build request body
+        body = delete_feed_user_data_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
+      # Export all feed data for a user including: user profile, feeds, activities, follows, comments, feed reactions, bookmark folders, bookmarks, and collections owned by the user
       #
       # @param user_id [String]
       # @return [Models::ExportFeedUserDataResponse]

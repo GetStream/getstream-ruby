@@ -33,6 +33,9 @@ module GetStream
         # @!attribute custom_events
         #   @return [Boolean]
         attr_accessor :custom_events
+        # @!attribute delivery_events
+        #   @return [Boolean]
+        attr_accessor :delivery_events
         # @!attribute mark_messages_pending
         #   @return [Boolean]
         attr_accessor :mark_messages_pending
@@ -117,6 +120,7 @@ module GetStream
           @connect_events = attributes[:connect_events] || attributes['connect_events'] || false
           @count_messages = attributes[:count_messages] || attributes['count_messages'] || false
           @custom_events = attributes[:custom_events] || attributes['custom_events'] || false
+          @delivery_events = attributes[:delivery_events] || attributes['delivery_events'] || false
           @mark_messages_pending = attributes[:mark_messages_pending] || attributes['mark_messages_pending'] || false
           @mutes = attributes[:mutes] || attributes['mutes'] || false
           @partition_size = attributes[:partition_size] || attributes['partition_size'] || 0
@@ -154,6 +158,7 @@ module GetStream
             connect_events: 'connect_events',
             count_messages: 'count_messages',
             custom_events: 'custom_events',
+            delivery_events: 'delivery_events',
             mark_messages_pending: 'mark_messages_pending',
             mutes: 'mutes',
             partition_size: 'partition_size',

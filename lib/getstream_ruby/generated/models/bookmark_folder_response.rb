@@ -21,6 +21,9 @@ module GetStream
         # @!attribute updated_at
         #   @return [DateTime] When the folder was last updated
         attr_accessor :updated_at
+        # @!attribute user
+        #   @return [UserResponse]
+        attr_accessor :user
         # @!attribute custom
         #   @return [Object] Custom data for the folder
         attr_accessor :custom
@@ -32,6 +35,7 @@ module GetStream
           @id = attributes[:id] || attributes['id']
           @name = attributes[:name] || attributes['name']
           @updated_at = attributes[:updated_at] || attributes['updated_at']
+          @user = attributes[:user] || attributes['user']
           @custom = attributes[:custom] || attributes['custom'] || nil
         end
 
@@ -42,6 +46,7 @@ module GetStream
             id: 'id',
             name: 'name',
             updated_at: 'updated_at',
+            user: 'user',
             custom: 'custom'
           }
         end

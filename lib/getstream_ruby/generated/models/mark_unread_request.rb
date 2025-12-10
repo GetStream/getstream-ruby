@@ -12,8 +12,11 @@ module GetStream
         # @!attribute message_id
         #   @return [String] ID of the message from where the channel is marked unread
         attr_accessor :message_id
+        # @!attribute message_timestamp
+        #   @return [DateTime] Timestamp of the message from where the channel is marked unread
+        attr_accessor :message_timestamp
         # @!attribute thread_id
-        #   @return [String] Mark a thread unread, specify both the thread and message id
+        #   @return [String] Mark a thread unread, specify one of the thread, message timestamp, or message id
         attr_accessor :thread_id
         # @!attribute user_id
         #   @return [String]
@@ -26,6 +29,7 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @message_id = attributes[:message_id] || attributes['message_id'] || ""
+          @message_timestamp = attributes[:message_timestamp] || attributes['message_timestamp'] || nil
           @thread_id = attributes[:thread_id] || attributes['thread_id'] || ""
           @user_id = attributes[:user_id] || attributes['user_id'] || ""
           @user = attributes[:user] || attributes['user'] || nil
@@ -35,6 +39,7 @@ module GetStream
         def self.json_field_mappings
           {
             message_id: 'message_id',
+            message_timestamp: 'message_timestamp',
             thread_id: 'thread_id',
             user_id: 'user_id',
             user: 'user'

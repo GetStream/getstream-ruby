@@ -15,12 +15,12 @@ module GetStream
         # @!attribute title
         #   @return [String]
         attr_accessor :title
-        # @!attribute content_available
+        # @!attribute content-available
         #   @return [Integer]
-        attr_accessor :content_available
-        # @!attribute mutable_content
+        attr_accessor :content-available
+        # @!attribute mutable-content
         #   @return [Integer]
-        attr_accessor :mutable_content
+        attr_accessor :mutable-content
         # @!attribute sound
         #   @return [String]
         attr_accessor :sound
@@ -33,8 +33,8 @@ module GetStream
           super(attributes)
           @body = attributes[:body] || attributes['body']
           @title = attributes[:title] || attributes['title']
-          @content_available = attributes[:content_available] || attributes['content-available'] || 0
-          @mutable_content = attributes[:mutable_content] || attributes['mutable-content'] || 0
+          @content-available = attributes[:content-available] || attributes['content-available'] || 0
+          @mutable-content = attributes[:mutable-content] || attributes['mutable-content'] || 0
           @sound = attributes[:sound] || attributes['sound'] || ""
           @data = attributes[:data] || attributes['data'] || nil
         end
@@ -44,8 +44,8 @@ module GetStream
           {
             body: 'body',
             title: 'title',
-            content_available: 'content-available',
-            mutable_content: 'mutable-content',
+            content-available: 'content-available',
+            mutable-content: 'mutable-content',
             sound: 'sound',
             data: 'data'
           }

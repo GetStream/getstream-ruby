@@ -12,6 +12,9 @@ module GetStream
         # @!attribute filter_conditions
         #   @return [Object] Channel filter conditions
         attr_accessor :filter_conditions
+        # @!attribute force_default_search
+        #   @return [Boolean]
+        attr_accessor :force_default_search
         # @!attribute limit
         #   @return [Integer] Number of messages to return
         attr_accessor :limit
@@ -38,6 +41,7 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @filter_conditions = attributes[:filter_conditions] || attributes['filter_conditions']
+          @force_default_search = attributes[:force_default_search] || attributes['force_default_search'] || false
           @limit = attributes[:limit] || attributes['limit'] || 0
           @next = attributes[:next] || attributes['next'] || ""
           @offset = attributes[:offset] || attributes['offset'] || 0
@@ -51,6 +55,7 @@ module GetStream
         def self.json_field_mappings
           {
             filter_conditions: 'filter_conditions',
+            force_default_search: 'force_default_search',
             limit: 'limit',
             next: 'next',
             offset: 'offset',

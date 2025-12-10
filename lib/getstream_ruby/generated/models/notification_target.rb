@@ -27,6 +27,9 @@ module GetStream
         # @!attribute attachments
         #   @return [Array<Attachment>] Attachments on the target activity (for activity targets)
         attr_accessor :attachments
+        # @!attribute comment
+        #   @return [NotificationComment]
+        attr_accessor :comment
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -37,6 +40,7 @@ module GetStream
           @type = attributes[:type] || attributes['type'] || ""
           @user_id = attributes[:user_id] || attributes['user_id'] || ""
           @attachments = attributes[:attachments] || attributes['attachments'] || nil
+          @comment = attributes[:comment] || attributes['comment'] || nil
         end
 
         # Override field mappings for JSON serialization
@@ -47,7 +51,8 @@ module GetStream
             text: 'text',
             type: 'type',
             user_id: 'user_id',
-            attachments: 'attachments'
+            attachments: 'attachments',
+            comment: 'comment'
           }
         end
       end

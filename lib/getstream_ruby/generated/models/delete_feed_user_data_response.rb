@@ -9,40 +9,25 @@ module GetStream
       class DeleteFeedUserDataResponse < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute deleted_activities
-        #   @return [Integer] Number of activities that were deleted
-        attr_accessor :deleted_activities
-        # @!attribute deleted_bookmarks
-        #   @return [Integer] Number of bookmarks that were deleted
-        attr_accessor :deleted_bookmarks
-        # @!attribute deleted_comments
-        #   @return [Integer] Number of comments that were deleted
-        attr_accessor :deleted_comments
-        # @!attribute deleted_reactions
-        #   @return [Integer] Number of reactions that were deleted
-        attr_accessor :deleted_reactions
         # @!attribute duration
         #   @return [String]
         attr_accessor :duration
+        # @!attribute task_id
+        #   @return [String] The task ID for the deletion task
+        attr_accessor :task_id
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @deleted_activities = attributes[:deleted_activities] || attributes['deleted_activities']
-          @deleted_bookmarks = attributes[:deleted_bookmarks] || attributes['deleted_bookmarks']
-          @deleted_comments = attributes[:deleted_comments] || attributes['deleted_comments']
-          @deleted_reactions = attributes[:deleted_reactions] || attributes['deleted_reactions']
           @duration = attributes[:duration] || attributes['duration']
+          @task_id = attributes[:task_id] || attributes['task_id']
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            deleted_activities: 'deleted_activities',
-            deleted_bookmarks: 'deleted_bookmarks',
-            deleted_comments: 'deleted_comments',
-            deleted_reactions: 'deleted_reactions',
-            duration: 'duration'
+            duration: 'duration',
+            task_id: 'task_id'
           }
         end
       end

@@ -18,6 +18,12 @@ module GetStream
         # @!attribute media_queue_blur_enabled
         #   @return [Boolean]
         attr_accessor :media_queue_blur_enabled
+        # @!attribute allowed_moderation_action_reasons
+        #   @return [Array<String>]
+        attr_accessor :allowed_moderation_action_reasons
+        # @!attribute overview_dashboard
+        #   @return [OverviewDashboardConfig]
+        attr_accessor :overview_dashboard
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -25,6 +31,8 @@ module GetStream
           @disable_flagging_reviewed_entity = attributes[:disable_flagging_reviewed_entity] || attributes['disable_flagging_reviewed_entity'] || false
           @flag_user_on_flagged_content = attributes[:flag_user_on_flagged_content] || attributes['flag_user_on_flagged_content'] || false
           @media_queue_blur_enabled = attributes[:media_queue_blur_enabled] || attributes['media_queue_blur_enabled'] || false
+          @allowed_moderation_action_reasons = attributes[:allowed_moderation_action_reasons] || attributes['allowed_moderation_action_reasons'] || nil
+          @overview_dashboard = attributes[:overview_dashboard] || attributes['overview_dashboard'] || nil
         end
 
         # Override field mappings for JSON serialization
@@ -32,7 +40,9 @@ module GetStream
           {
             disable_flagging_reviewed_entity: 'disable_flagging_reviewed_entity',
             flag_user_on_flagged_content: 'flag_user_on_flagged_content',
-            media_queue_blur_enabled: 'media_queue_blur_enabled'
+            media_queue_blur_enabled: 'media_queue_blur_enabled',
+            allowed_moderation_action_reasons: 'allowed_moderation_action_reasons',
+            overview_dashboard: 'overview_dashboard'
           }
         end
       end

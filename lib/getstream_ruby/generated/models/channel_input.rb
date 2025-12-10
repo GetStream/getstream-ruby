@@ -30,11 +30,14 @@ module GetStream
         # @!attribute truncated_by_id
         #   @return [String]
         attr_accessor :truncated_by_id
+        # @!attribute filter_tags
+        #   @return [Array<String>]
+        attr_accessor :filter_tags
         # @!attribute invites
-        #   @return [Array<ChannelMember>]
+        #   @return [Array<ChannelMemberRequest>]
         attr_accessor :invites
         # @!attribute members
-        #   @return [Array<ChannelMember>]
+        #   @return [Array<ChannelMemberRequest>]
         attr_accessor :members
         # @!attribute config_overrides
         #   @return [ChannelConfig]
@@ -56,6 +59,7 @@ module GetStream
           @frozen = attributes[:frozen] || attributes['frozen'] || false
           @team = attributes[:team] || attributes['team'] || ""
           @truncated_by_id = attributes[:truncated_by_id] || attributes['truncated_by_id'] || ""
+          @filter_tags = attributes[:filter_tags] || attributes['filter_tags'] || nil
           @invites = attributes[:invites] || attributes['invites'] || nil
           @members = attributes[:members] || attributes['members'] || nil
           @config_overrides = attributes[:config_overrides] || attributes['config_overrides'] || nil
@@ -73,6 +77,7 @@ module GetStream
             frozen: 'frozen',
             team: 'team',
             truncated_by_id: 'truncated_by_id',
+            filter_tags: 'filter_tags',
             invites: 'invites',
             members: 'members',
             config_overrides: 'config_overrides',

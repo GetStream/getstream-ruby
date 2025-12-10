@@ -9,70 +9,35 @@ module GetStream
       class SharedLocation < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute channel_cid
-        #   @return [String]
-        attr_accessor :channel_cid
-        # @!attribute created_at
-        #   @return [DateTime]
-        attr_accessor :created_at
-        # @!attribute created_by_device_id
-        #   @return [String]
-        attr_accessor :created_by_device_id
-        # @!attribute message_id
-        #   @return [String]
-        attr_accessor :message_id
-        # @!attribute updated_at
-        #   @return [DateTime]
-        attr_accessor :updated_at
-        # @!attribute user_id
-        #   @return [String]
-        attr_accessor :user_id
-        # @!attribute end_at
-        #   @return [DateTime]
-        attr_accessor :end_at
         # @!attribute latitude
         #   @return [Float]
         attr_accessor :latitude
         # @!attribute longitude
         #   @return [Float]
         attr_accessor :longitude
-        # @!attribute channel
-        #   @return [Channel]
-        attr_accessor :channel
-        # @!attribute message
-        #   @return [Message]
-        attr_accessor :message
+        # @!attribute created_by_device_id
+        #   @return [String]
+        attr_accessor :created_by_device_id
+        # @!attribute end_at
+        #   @return [DateTime]
+        attr_accessor :end_at
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @channel_cid = attributes[:channel_cid] || attributes['channel_cid']
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @created_by_device_id = attributes[:created_by_device_id] || attributes['created_by_device_id']
-          @message_id = attributes[:message_id] || attributes['message_id']
-          @updated_at = attributes[:updated_at] || attributes['updated_at']
-          @user_id = attributes[:user_id] || attributes['user_id']
+          @latitude = attributes[:latitude] || attributes['latitude']
+          @longitude = attributes[:longitude] || attributes['longitude']
+          @created_by_device_id = attributes[:created_by_device_id] || attributes['created_by_device_id'] || ""
           @end_at = attributes[:end_at] || attributes['end_at'] || nil
-          @latitude = attributes[:latitude] || attributes['latitude'] || 0.0
-          @longitude = attributes[:longitude] || attributes['longitude'] || 0.0
-          @channel = attributes[:channel] || attributes['channel'] || nil
-          @message = attributes[:message] || attributes['message'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            channel_cid: 'channel_cid',
-            created_at: 'created_at',
-            created_by_device_id: 'created_by_device_id',
-            message_id: 'message_id',
-            updated_at: 'updated_at',
-            user_id: 'user_id',
-            end_at: 'end_at',
             latitude: 'latitude',
             longitude: 'longitude',
-            channel: 'channel',
-            message: 'message'
+            created_by_device_id: 'created_by_device_id',
+            end_at: 'end_at'
           }
         end
       end

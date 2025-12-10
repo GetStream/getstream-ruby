@@ -9,110 +9,70 @@ module GetStream
       class User < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute banned
-        #   @return [Boolean]
-        attr_accessor :banned
         # @!attribute id
         #   @return [String]
         attr_accessor :id
-        # @!attribute online
-        #   @return [Boolean]
-        attr_accessor :online
-        # @!attribute role
-        #   @return [String]
-        attr_accessor :role
-        # @!attribute custom
-        #   @return [Object]
-        attr_accessor :custom
-        # @!attribute teams_role
-        #   @return [Hash<String, String>]
-        attr_accessor :teams_role
-        # @!attribute avg_response_time
-        #   @return [Integer]
-        attr_accessor :avg_response_time
         # @!attribute ban_expires
         #   @return [DateTime]
         attr_accessor :ban_expires
-        # @!attribute created_at
-        #   @return [DateTime]
-        attr_accessor :created_at
-        # @!attribute deactivated_at
-        #   @return [DateTime]
-        attr_accessor :deactivated_at
-        # @!attribute deleted_at
-        #   @return [DateTime]
-        attr_accessor :deleted_at
+        # @!attribute banned
+        #   @return [Boolean]
+        attr_accessor :banned
         # @!attribute invisible
         #   @return [Boolean]
         attr_accessor :invisible
         # @!attribute language
         #   @return [String]
         attr_accessor :language
-        # @!attribute last_active
-        #   @return [DateTime]
-        attr_accessor :last_active
-        # @!attribute last_engaged_at
-        #   @return [DateTime]
-        attr_accessor :last_engaged_at
         # @!attribute revoke_tokens_issued_before
         #   @return [DateTime]
         attr_accessor :revoke_tokens_issued_before
-        # @!attribute updated_at
-        #   @return [DateTime]
-        attr_accessor :updated_at
+        # @!attribute role
+        #   @return [String]
+        attr_accessor :role
         # @!attribute teams
         #   @return [Array<String>]
         attr_accessor :teams
+        # @!attribute custom
+        #   @return [Object]
+        attr_accessor :custom
         # @!attribute privacy_settings
         #   @return [PrivacySettings]
         attr_accessor :privacy_settings
+        # @!attribute teams_role
+        #   @return [Hash<String, String>]
+        attr_accessor :teams_role
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @banned = attributes[:banned] || attributes['banned']
           @id = attributes[:id] || attributes['id']
-          @online = attributes[:online] || attributes['online']
-          @role = attributes[:role] || attributes['role']
-          @custom = attributes[:custom] || attributes['custom']
-          @teams_role = attributes[:teams_role] || attributes['teams_role']
-          @avg_response_time = attributes[:avg_response_time] || attributes['avg_response_time'] || 0
           @ban_expires = attributes[:ban_expires] || attributes['ban_expires'] || nil
-          @created_at = attributes[:created_at] || attributes['created_at'] || nil
-          @deactivated_at = attributes[:deactivated_at] || attributes['deactivated_at'] || nil
-          @deleted_at = attributes[:deleted_at] || attributes['deleted_at'] || nil
+          @banned = attributes[:banned] || attributes['banned'] || false
           @invisible = attributes[:invisible] || attributes['invisible'] || false
           @language = attributes[:language] || attributes['language'] || ""
-          @last_active = attributes[:last_active] || attributes['last_active'] || nil
-          @last_engaged_at = attributes[:last_engaged_at] || attributes['last_engaged_at'] || nil
           @revoke_tokens_issued_before = attributes[:revoke_tokens_issued_before] || attributes['revoke_tokens_issued_before'] || nil
-          @updated_at = attributes[:updated_at] || attributes['updated_at'] || nil
+          @role = attributes[:role] || attributes['role'] || ""
           @teams = attributes[:teams] || attributes['teams'] || nil
+          @custom = attributes[:custom] || attributes['custom'] || nil
           @privacy_settings = attributes[:privacy_settings] || attributes['privacy_settings'] || nil
+          @teams_role = attributes[:teams_role] || attributes['teams_role'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            banned: 'banned',
             id: 'id',
-            online: 'online',
-            role: 'role',
-            custom: 'custom',
-            teams_role: 'teams_role',
-            avg_response_time: 'avg_response_time',
             ban_expires: 'ban_expires',
-            created_at: 'created_at',
-            deactivated_at: 'deactivated_at',
-            deleted_at: 'deleted_at',
+            banned: 'banned',
             invisible: 'invisible',
             language: 'language',
-            last_active: 'last_active',
-            last_engaged_at: 'last_engaged_at',
             revoke_tokens_issued_before: 'revoke_tokens_issued_before',
-            updated_at: 'updated_at',
+            role: 'role',
             teams: 'teams',
-            privacy_settings: 'privacy_settings'
+            custom: 'custom',
+            privacy_settings: 'privacy_settings',
+            teams_role: 'teams_role'
           }
         end
       end

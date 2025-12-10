@@ -15,6 +15,9 @@ module GetStream
         # @!attribute filename
         #   @return [String]
         attr_accessor :filename
+        # @!attribute recording_type
+        #   @return [String]
+        attr_accessor :recording_type
         # @!attribute session_id
         #   @return [String]
         attr_accessor :session_id
@@ -30,6 +33,7 @@ module GetStream
           super(attributes)
           @end_time = attributes[:end_time] || attributes['end_time']
           @filename = attributes[:filename] || attributes['filename']
+          @recording_type = attributes[:recording_type] || attributes['recording_type']
           @session_id = attributes[:session_id] || attributes['session_id']
           @start_time = attributes[:start_time] || attributes['start_time']
           @url = attributes[:url] || attributes['url']
@@ -40,6 +44,7 @@ module GetStream
           {
             end_time: 'end_time',
             filename: 'filename',
+            recording_type: 'recording_type',
             session_id: 'session_id',
             start_time: 'start_time',
             url: 'url'

@@ -12,17 +12,22 @@ module GetStream
         # @!attribute layers
         #   @return [Array<IngressVideoLayer>]
         attr_accessor :layers
+        # @!attribute source
+        #   @return [IngressSource]
+        attr_accessor :source
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @layers = attributes[:layers] || attributes['layers']
+          @source = attributes[:source] || attributes['source'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            layers: 'layers'
+            layers: 'layers',
+            source: 'source'
           }
         end
       end

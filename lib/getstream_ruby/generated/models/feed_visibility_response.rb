@@ -9,12 +9,12 @@ module GetStream
       class FeedVisibilityResponse < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute description
-        #   @return [String] Description of the feed visibility level
-        attr_accessor :description
         # @!attribute name
         #   @return [String] Name of the feed visibility level
         attr_accessor :name
+        # @!attribute permissions
+        #   @return [Array<Permission>] List of permission policies
+        attr_accessor :permissions
         # @!attribute grants
         #   @return [Hash<String, Array<String>>] Permission grants for each role
         attr_accessor :grants
@@ -22,16 +22,16 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @description = attributes[:description] || attributes['description']
           @name = attributes[:name] || attributes['name']
+          @permissions = attributes[:permissions] || attributes['permissions']
           @grants = attributes[:grants] || attributes['grants']
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            description: 'description',
             name: 'name',
+            permissions: 'permissions',
             grants: 'grants'
           }
         end

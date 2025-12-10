@@ -28,7 +28,7 @@ module GetStream
         #   @return [String]
         attr_accessor :user_id
         # @!attribute members
-        #   @return [Array<ChannelMember>]
+        #   @return [Array<ChannelMemberRequest>]
         attr_accessor :members
         # @!attribute sort
         #   @return [Array<SortParamRequest>]

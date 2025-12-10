@@ -9,40 +9,50 @@ module GetStream
       class ActivitySelectorConfig < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute cutoff_time
-        #   @return [DateTime] Time threshold for activity selection
-        attr_accessor :cutoff_time
-        # @!attribute min_popularity
-        #   @return [Integer] Minimum popularity threshold
-        attr_accessor :min_popularity
         # @!attribute type
         #   @return [String] Type of selector
         attr_accessor :type
+        # @!attribute cutoff_time
+        #   @return [String] Time threshold for activity selection (string). Expected RFC3339 format (e.g., 2006-01-02T15:04:05Z07:00). Cannot be used together with cutoff_window
+        attr_accessor :cutoff_time
+        # @!attribute cutoff_window
+        #   @return [String] Flexible relative time window for activity selection (e.g., '1h', '3d', '1y'). Activities older than this duration will be filtered out. Cannot be used together with cutoff_time
+        attr_accessor :cutoff_window
+        # @!attribute min_popularity
+        #   @return [Integer] Minimum popularity threshold
+        attr_accessor :min_popularity
         # @!attribute sort
-        #   @return [Array<SortParam>] Sort parameters for activity selection
+        #   @return [Array<SortParamRequest>] Sort parameters for activity selection
         attr_accessor :sort
         # @!attribute filter
         #   @return [Object] Filter for activity selection
         attr_accessor :filter
+        # @!attribute params
+        #   @return [Object]
+        attr_accessor :params
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @cutoff_time = attributes[:cutoff_time] || attributes['cutoff_time'] || nil
+          @type = attributes[:type] || attributes['type']
+          @cutoff_time = attributes[:cutoff_time] || attributes['cutoff_time'] || ""
+          @cutoff_window = attributes[:cutoff_window] || attributes['cutoff_window'] || ""
           @min_popularity = attributes[:min_popularity] || attributes['min_popularity'] || 0
-          @type = attributes[:type] || attributes['type'] || ""
           @sort = attributes[:sort] || attributes['sort'] || nil
           @filter = attributes[:filter] || attributes['filter'] || nil
+          @params = attributes[:params] || attributes['params'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            cutoff_time: 'cutoff_time',
-            min_popularity: 'min_popularity',
             type: 'type',
+            cutoff_time: 'cutoff_time',
+            cutoff_window: 'cutoff_window',
+            min_popularity: 'min_popularity',
             sort: 'sort',
-            filter: 'filter'
+            filter: 'filter',
+            params: 'params'
           }
         end
       end

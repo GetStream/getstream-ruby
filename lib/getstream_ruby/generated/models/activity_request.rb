@@ -27,6 +27,12 @@ module GetStream
         # @!attribute poll_id
         #   @return [String] ID of a poll to attach to activity
         attr_accessor :poll_id
+        # @!attribute restrict_replies
+        #   @return [String] Controls who can add comments/replies to this activity. Options: 'everyone' (default - anyone can reply), 'people_i_follow' (only people the activity creator follows can reply), 'nobody' (no one can reply)
+        attr_accessor :restrict_replies
+        # @!attribute skip_enrich_url
+        #   @return [Boolean] Whether to skip URL enrichment for the activity
+        attr_accessor :skip_enrich_url
         # @!attribute text
         #   @return [String] Text content of the activity
         attr_accessor :text
@@ -42,6 +48,9 @@ module GetStream
         # @!attribute attachments
         #   @return [Array<Attachment>] List of attachments for the activity
         attr_accessor :attachments
+        # @!attribute collection_refs
+        #   @return [Array<String>] Collections that this activity references
+        attr_accessor :collection_refs
         # @!attribute filter_tags
         #   @return [Array<String>] Tags for filtering activities
         attr_accessor :filter_tags
@@ -70,11 +79,14 @@ module GetStream
           @id = attributes[:id] || attributes['id'] || ""
           @parent_id = attributes[:parent_id] || attributes['parent_id'] || ""
           @poll_id = attributes[:poll_id] || attributes['poll_id'] || ""
+          @restrict_replies = attributes[:restrict_replies] || attributes['restrict_replies'] || ""
+          @skip_enrich_url = attributes[:skip_enrich_url] || attributes['skip_enrich_url'] || false
           @text = attributes[:text] || attributes['text'] || ""
           @user_id = attributes[:user_id] || attributes['user_id'] || ""
           @visibility = attributes[:visibility] || attributes['visibility'] || ""
           @visibility_tag = attributes[:visibility_tag] || attributes['visibility_tag'] || ""
           @attachments = attributes[:attachments] || attributes['attachments'] || nil
+          @collection_refs = attributes[:collection_refs] || attributes['collection_refs'] || nil
           @filter_tags = attributes[:filter_tags] || attributes['filter_tags'] || nil
           @interest_tags = attributes[:interest_tags] || attributes['interest_tags'] || nil
           @mentioned_user_ids = attributes[:mentioned_user_ids] || attributes['mentioned_user_ids'] || nil
@@ -92,11 +104,14 @@ module GetStream
             id: 'id',
             parent_id: 'parent_id',
             poll_id: 'poll_id',
+            restrict_replies: 'restrict_replies',
+            skip_enrich_url: 'skip_enrich_url',
             text: 'text',
             user_id: 'user_id',
             visibility: 'visibility',
             visibility_tag: 'visibility_tag',
             attachments: 'attachments',
+            collection_refs: 'collection_refs',
             filter_tags: 'filter_tags',
             interest_tags: 'interest_tags',
             mentioned_user_ids: 'mentioned_user_ids',

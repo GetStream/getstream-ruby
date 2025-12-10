@@ -75,8 +75,11 @@ module GetStream
         # @!attribute truncated_at
         #   @return [DateTime] Date of the latest truncation of the channel
         attr_accessor :truncated_at
+        # @!attribute filter_tags
+        #   @return [Array<String>] List of filter tags associated with the channel
+        attr_accessor :filter_tags
         # @!attribute members
-        #   @return [Array<ChannelMember>] List of channel members (max 100)
+        #   @return [Array<ChannelMemberResponse>] List of channel members (max 100)
         attr_accessor :members
         # @!attribute own_capabilities
         #   @return [Array<ChannelOwnCapability>] List of channel capabilities of authenticated user
@@ -116,6 +119,7 @@ module GetStream
           @muted = attributes[:muted] || attributes['muted'] || false
           @team = attributes[:team] || attributes['team'] || ""
           @truncated_at = attributes[:truncated_at] || attributes['truncated_at'] || nil
+          @filter_tags = attributes[:filter_tags] || attributes['filter_tags'] || nil
           @members = attributes[:members] || attributes['members'] || nil
           @own_capabilities = attributes[:own_capabilities] || attributes['own_capabilities'] || nil
           @config = attributes[:config] || attributes['config'] || nil
@@ -148,6 +152,7 @@ module GetStream
             muted: 'muted',
             team: 'team',
             truncated_at: 'truncated_at',
+            filter_tags: 'filter_tags',
             members: 'members',
             own_capabilities: 'own_capabilities',
             config: 'config',

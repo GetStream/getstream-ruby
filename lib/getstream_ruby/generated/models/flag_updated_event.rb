@@ -21,15 +21,15 @@ module GetStream
         # @!attribute received_at
         #   @return [DateTime]
         attr_accessor :received_at
-        # @!attribute created_by
+        # @!attribute CreatedBy
         #   @return [UserResponse]
-        attr_accessor :created_by
-        # @!attribute message
+        attr_accessor :CreatedBy
+        # @!attribute Message
         #   @return [MessageResponse]
-        attr_accessor :message
-        # @!attribute user
+        attr_accessor :Message
+        # @!attribute User
         #   @return [UserResponse]
-        attr_accessor :user
+        attr_accessor :User
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -38,9 +38,9 @@ module GetStream
           @custom = attributes[:custom] || attributes['custom']
           @type = attributes[:type] || attributes['type'] || "flag.updated"
           @received_at = attributes[:received_at] || attributes['received_at'] || nil
-          @created_by = attributes[:created_by] || attributes['CreatedBy'] || nil
-          @message = attributes[:message] || attributes['Message'] || nil
-          @user = attributes[:user] || attributes['User'] || nil
+          @CreatedBy = attributes[:CreatedBy] || attributes['CreatedBy'] || nil
+          @Message = attributes[:Message] || attributes['Message'] || nil
+          @User = attributes[:User] || attributes['User'] || nil
         end
 
         # Override field mappings for JSON serialization
@@ -50,9 +50,9 @@ module GetStream
             custom: 'custom',
             type: 'type',
             received_at: 'received_at',
-            created_by: 'CreatedBy',
-            message: 'Message',
-            user: 'User'
+            CreatedBy: 'CreatedBy',
+            Message: 'Message',
+            User: 'User'
           }
         end
       end

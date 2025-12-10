@@ -10,7 +10,7 @@ module GetStream
 
         # Model attributes
         # @!attribute members
-        #   @return [Array<ChannelMember>] List of channel members
+        #   @return [Array<ChannelMemberResponse>] List of channel members
         attr_accessor :members
         # @!attribute messages
         #   @return [Array<MessageResponse>] List of channel messages
@@ -33,9 +33,6 @@ module GetStream
         # @!attribute active_live_locations
         #   @return [Array<SharedLocationResponseData>] Active live locations in the channel
         attr_accessor :active_live_locations
-        # @!attribute deleted_messages
-        #   @return [Array<String>]
-        attr_accessor :deleted_messages
         # @!attribute pending_messages
         #   @return [Array<PendingMessageResponse>] Pending messages that this user has sent
         attr_accessor :pending_messages
@@ -52,10 +49,10 @@ module GetStream
         #   @return [DraftResponse]
         attr_accessor :draft
         # @!attribute membership
-        #   @return [ChannelMember]
+        #   @return [ChannelMemberResponse]
         attr_accessor :membership
         # @!attribute push_preferences
-        #   @return [ChannelPushPreferences]
+        #   @return [ChannelPushPreferencesResponse]
         attr_accessor :push_preferences
 
         # Initialize with attributes
@@ -69,7 +66,6 @@ module GetStream
           @hide_messages_before = attributes[:hide_messages_before] || attributes['hide_messages_before'] || nil
           @watcher_count = attributes[:watcher_count] || attributes['watcher_count'] || 0
           @active_live_locations = attributes[:active_live_locations] || attributes['active_live_locations'] || nil
-          @deleted_messages = attributes[:deleted_messages] || attributes['deleted_messages'] || nil
           @pending_messages = attributes[:pending_messages] || attributes['pending_messages'] || nil
           @read = attributes[:read] || attributes['read'] || nil
           @watchers = attributes[:watchers] || attributes['watchers'] || nil
@@ -90,7 +86,6 @@ module GetStream
             hide_messages_before: 'hide_messages_before',
             watcher_count: 'watcher_count',
             active_live_locations: 'active_live_locations',
-            deleted_messages: 'deleted_messages',
             pending_messages: 'pending_messages',
             read: 'read',
             watchers: 'watchers',

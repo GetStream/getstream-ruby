@@ -91,7 +91,7 @@ module GetStream
         #   @return [PrivacySettingsResponse]
         attr_accessor :privacy_settings
         # @!attribute push_preferences
-        #   @return [PushPreferences]
+        #   @return [PushPreferencesResponse]
         attr_accessor :push_preferences
         # @!attribute teams_role
         #   @return [Hash<String, String>]

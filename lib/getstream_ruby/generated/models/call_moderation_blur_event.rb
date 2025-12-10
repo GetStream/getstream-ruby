@@ -5,7 +5,7 @@
 module GetStream
   module Generated
     module Models
-      # 
+      # This event is sent when a moderation blur action is applied to a user's video stream
       class CallModerationBlurEvent < GetStream::BaseModel
 
         # Model attributes
@@ -16,13 +16,13 @@ module GetStream
         #   @return [DateTime]
         attr_accessor :created_at
         # @!attribute user_id
-        #   @return [String]
+        #   @return [String] The user ID whose video stream is being blurred
         attr_accessor :user_id
         # @!attribute custom
-        #   @return [Object]
+        #   @return [Object] Custom data associated with the moderation action
         attr_accessor :custom
         # @!attribute type
-        #   @return [String]
+        #   @return [String] The type of event: "call.moderation_blur" in this case
         attr_accessor :type
 
         # Initialize with attributes

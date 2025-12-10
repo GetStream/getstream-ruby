@@ -9,9 +9,6 @@ module GetStream
       class UpdateFeedViewRequest < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute activity_processors
-        #   @return [Array<ActivityProcessorConfig>] Updated activity processors
-        attr_accessor :activity_processors
         # @!attribute activity_selectors
         #   @return [Array<ActivitySelectorConfig>] Updated configuration for selecting activities
         attr_accessor :activity_selectors
@@ -25,7 +22,6 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @activity_processors = attributes[:activity_processors] || attributes['activity_processors'] || nil
           @activity_selectors = attributes[:activity_selectors] || attributes['activity_selectors'] || nil
           @aggregation = attributes[:aggregation] || attributes['aggregation'] || nil
           @ranking = attributes[:ranking] || attributes['ranking'] || nil
@@ -34,7 +30,6 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            activity_processors: 'activity_processors',
             activity_selectors: 'activity_selectors',
             aggregation: 'aggregation',
             ranking: 'ranking'

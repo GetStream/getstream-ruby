@@ -9,6 +9,9 @@ module GetStream
       class GetOrCreateFeedRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute id_around
+        #   @return [String]
+        attr_accessor :id_around
         # @!attribute limit
         #   @return [Integer]
         attr_accessor :limit
@@ -27,12 +30,12 @@ module GetStream
         # @!attribute watch
         #   @return [Boolean]
         attr_accessor :watch
-        # @!attribute activity_selector_options
-        #   @return [Object]
-        attr_accessor :activity_selector_options
         # @!attribute data
         #   @return [FeedInput]
         attr_accessor :data
+        # @!attribute enrichment_options
+        #   @return [EnrichmentOptions]
+        attr_accessor :enrichment_options
         # @!attribute external_ranking
         #   @return [Object]
         attr_accessor :external_ranking
@@ -58,14 +61,15 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @id_around = attributes[:id_around] || attributes['id_around'] || ""
           @limit = attributes[:limit] || attributes['limit'] || 0
           @next = attributes[:next] || attributes['next'] || ""
           @prev = attributes[:prev] || attributes['prev'] || ""
           @user_id = attributes[:user_id] || attributes['user_id'] || ""
           @view = attributes[:view] || attributes['view'] || ""
           @watch = attributes[:watch] || attributes['watch'] || false
-          @activity_selector_options = attributes[:activity_selector_options] || attributes['activity_selector_options'] || nil
           @data = attributes[:data] || attributes['data'] || nil
+          @enrichment_options = attributes[:enrichment_options] || attributes['enrichment_options'] || nil
           @external_ranking = attributes[:external_ranking] || attributes['external_ranking'] || nil
           @filter = attributes[:filter] || attributes['filter'] || nil
           @followers_pagination = attributes[:followers_pagination] || attributes['followers_pagination'] || nil
@@ -78,14 +82,15 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            id_around: 'id_around',
             limit: 'limit',
             next: 'next',
             prev: 'prev',
             user_id: 'user_id',
             view: 'view',
             watch: 'watch',
-            activity_selector_options: 'activity_selector_options',
             data: 'data',
+            enrichment_options: 'enrichment_options',
             external_ranking: 'external_ranking',
             filter: 'filter',
             followers_pagination: 'followers_pagination',

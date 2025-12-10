@@ -67,7 +67,7 @@ module GetStream
         #   @return [OwnUserResponse]
         attr_accessor :me
         # @!attribute member
-        #   @return [ChannelMember]
+        #   @return [ChannelMemberResponse]
         attr_accessor :member
         # @!attribute message
         #   @return [MessageResponse]

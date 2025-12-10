@@ -30,9 +30,15 @@ module GetStream
         # @!attribute connect_events
         #   @return [Boolean] Connect events
         attr_accessor :connect_events
+        # @!attribute count_messages
+        #   @return [Boolean] Count messages in channel.
+        attr_accessor :count_messages
         # @!attribute custom_events
         #   @return [Boolean] Custom events
         attr_accessor :custom_events
+        # @!attribute delivery_events
+        #   @return [Boolean]
+        attr_accessor :delivery_events
         # @!attribute mark_messages_pending
         #   @return [Boolean] Mark messages pending
         attr_accessor :mark_messages_pending
@@ -107,7 +113,9 @@ module GetStream
           @blocklist = attributes[:blocklist] || attributes['blocklist'] || ""
           @blocklist_behavior = attributes[:blocklist_behavior] || attributes['blocklist_behavior'] || ""
           @connect_events = attributes[:connect_events] || attributes['connect_events'] || false
+          @count_messages = attributes[:count_messages] || attributes['count_messages'] || false
           @custom_events = attributes[:custom_events] || attributes['custom_events'] || false
+          @delivery_events = attributes[:delivery_events] || attributes['delivery_events'] || false
           @mark_messages_pending = attributes[:mark_messages_pending] || attributes['mark_messages_pending'] || false
           @message_retention = attributes[:message_retention] || attributes['message_retention'] || ""
           @mutes = attributes[:mutes] || attributes['mutes'] || false
@@ -141,7 +149,9 @@ module GetStream
             blocklist: 'blocklist',
             blocklist_behavior: 'blocklist_behavior',
             connect_events: 'connect_events',
+            count_messages: 'count_messages',
             custom_events: 'custom_events',
+            delivery_events: 'delivery_events',
             mark_messages_pending: 'mark_messages_pending',
             message_retention: 'message_retention',
             mutes: 'mutes',

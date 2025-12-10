@@ -9,9 +9,9 @@ module GetStream
       class HuaweiConfig < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute disabled
+        # @!attribute Disabled
         #   @return [Boolean]
-        attr_accessor :disabled
+        attr_accessor :Disabled
         # @!attribute id
         #   @return [String]
         attr_accessor :id
@@ -22,7 +22,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @disabled = attributes[:disabled] || attributes['Disabled'] || false
+          @Disabled = attributes[:Disabled] || attributes['Disabled'] || false
           @id = attributes[:id] || attributes['id'] || ""
           @secret = attributes[:secret] || attributes['secret'] || ""
         end
@@ -30,7 +30,7 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            disabled: 'Disabled',
+            Disabled: 'Disabled',
             id: 'id',
             secret: 'secret'
           }

@@ -15,6 +15,9 @@ module GetStream
         # @!attribute create_notification_activity
         #   @return [Boolean] Whether to create a notification activity for this reaction
         attr_accessor :create_notification_activity
+        # @!attribute enforce_unique
+        #   @return [Boolean] Whether to enforce unique reactions per user (remove other reaction types from the user when adding this one)
+        attr_accessor :enforce_unique
         # @!attribute skip_push
         #   @return [Boolean]
         attr_accessor :skip_push
@@ -33,6 +36,7 @@ module GetStream
           super(attributes)
           @type = attributes[:type] || attributes['type']
           @create_notification_activity = attributes[:create_notification_activity] || attributes['create_notification_activity'] || false
+          @enforce_unique = attributes[:enforce_unique] || attributes['enforce_unique'] || false
           @skip_push = attributes[:skip_push] || attributes['skip_push'] || false
           @user_id = attributes[:user_id] || attributes['user_id'] || ""
           @custom = attributes[:custom] || attributes['custom'] || nil
@@ -44,6 +48,7 @@ module GetStream
           {
             type: 'type',
             create_notification_activity: 'create_notification_activity',
+            enforce_unique: 'enforce_unique',
             skip_push: 'skip_push',
             user_id: 'user_id',
             custom: 'custom',

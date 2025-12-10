@@ -81,6 +81,9 @@ module GetStream
         # @!attribute huawei_app_secret
         #   @return [String]
         attr_accessor :huawei_app_secret
+        # @!attribute huawei_host
+        #   @return [String]
+        attr_accessor :huawei_host
         # @!attribute xiaomi_app_secret
         #   @return [String]
         attr_accessor :xiaomi_app_secret
@@ -118,6 +121,7 @@ module GetStream
           @firebase_server_key = attributes[:firebase_server_key] || attributes['firebase_server_key'] || ""
           @huawei_app_id = attributes[:huawei_app_id] || attributes['huawei_app_id'] || ""
           @huawei_app_secret = attributes[:huawei_app_secret] || attributes['huawei_app_secret'] || ""
+          @huawei_host = attributes[:huawei_host] || attributes['huawei_host'] || ""
           @xiaomi_app_secret = attributes[:xiaomi_app_secret] || attributes['xiaomi_app_secret'] || ""
           @xiaomi_package_name = attributes[:xiaomi_package_name] || attributes['xiaomi_package_name'] || ""
           @push_templates = attributes[:push_templates] || attributes['push_templates'] || nil
@@ -150,6 +154,7 @@ module GetStream
             firebase_server_key: 'firebase_server_key',
             huawei_app_id: 'huawei_app_id',
             huawei_app_secret: 'huawei_app_secret',
+            huawei_host: 'huawei_host',
             xiaomi_app_secret: 'xiaomi_app_secret',
             xiaomi_package_name: 'xiaomi_package_name',
             push_templates: 'push_templates'

@@ -66,6 +66,9 @@ module GetStream
         # @!attribute active_live_locations
         #   @return [Array<SharedLocation>]
         attr_accessor :active_live_locations
+        # @!attribute filter_tags
+        #   @return [Array<String>]
+        attr_accessor :filter_tags
         # @!attribute invites
         #   @return [Array<ChannelMember>]
         attr_accessor :invites
@@ -110,6 +113,7 @@ module GetStream
           @message_count_updated_at = attributes[:message_count_updated_at] || attributes['message_count_updated_at'] || nil
           @team = attributes[:team] || attributes['team'] || ""
           @active_live_locations = attributes[:active_live_locations] || attributes['active_live_locations'] || nil
+          @filter_tags = attributes[:filter_tags] || attributes['filter_tags'] || nil
           @invites = attributes[:invites] || attributes['invites'] || nil
           @members = attributes[:members] || attributes['members'] || nil
           @config = attributes[:config] || attributes['config'] || nil
@@ -141,6 +145,7 @@ module GetStream
             message_count_updated_at: 'message_count_updated_at',
             team: 'team',
             active_live_locations: 'active_live_locations',
+            filter_tags: 'filter_tags',
             invites: 'invites',
             members: 'members',
             config: 'config',

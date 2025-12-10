@@ -7,7 +7,74 @@ module GetStream
     module Models
       # 
       class MessagePaginationParams < GetStream::BaseModel
-        # Empty model - inherits all functionality from BaseModel
+
+        # Model attributes
+        # @!attribute created_at_after
+        #   @return [DateTime] The timestamp to get messages with a created_at timestamp greater than
+        attr_accessor :created_at_after
+        # @!attribute created_at_after_or_equal
+        #   @return [DateTime] The timestamp to get messages with a created_at timestamp greater than or equal to
+        attr_accessor :created_at_after_or_equal
+        # @!attribute created_at_around
+        #   @return [DateTime] The result will be a set of messages, that are both older and newer than the created_at timestamp provided, distributed evenly around the timestamp
+        attr_accessor :created_at_around
+        # @!attribute created_at_before
+        #   @return [DateTime] The timestamp to get messages with a created_at timestamp smaller than
+        attr_accessor :created_at_before
+        # @!attribute created_at_before_or_equal
+        #   @return [DateTime] The timestamp to get messages with a created_at timestamp smaller than or equal to
+        attr_accessor :created_at_before_or_equal
+        # @!attribute id_around
+        #   @return [String] The result will be a set of messages, that are both older and newer than the message with the provided ID, and the message with the ID provided will be in the middle of the set
+        attr_accessor :id_around
+        # @!attribute id_gt
+        #   @return [String] The ID of the message to get messages with a timestamp greater than
+        attr_accessor :id_gt
+        # @!attribute id_gte
+        #   @return [String] The ID of the message to get messages with a timestamp greater than or equal to
+        attr_accessor :id_gte
+        # @!attribute id_lt
+        #   @return [String] The ID of the message to get messages with a timestamp smaller than
+        attr_accessor :id_lt
+        # @!attribute id_lte
+        #   @return [String] The ID of the message to get messages with a timestamp smaller than or equal to
+        attr_accessor :id_lte
+        # @!attribute limit
+        #   @return [Integer] The maximum number of messages to return (max limit 
+        attr_accessor :limit
+
+        # Initialize with attributes
+        def initialize(attributes = {})
+          super(attributes)
+          @created_at_after = attributes[:created_at_after] || attributes['created_at_after'] || nil
+          @created_at_after_or_equal = attributes[:created_at_after_or_equal] || attributes['created_at_after_or_equal'] || nil
+          @created_at_around = attributes[:created_at_around] || attributes['created_at_around'] || nil
+          @created_at_before = attributes[:created_at_before] || attributes['created_at_before'] || nil
+          @created_at_before_or_equal = attributes[:created_at_before_or_equal] || attributes['created_at_before_or_equal'] || nil
+          @id_around = attributes[:id_around] || attributes['id_around'] || ""
+          @id_gt = attributes[:id_gt] || attributes['id_gt'] || ""
+          @id_gte = attributes[:id_gte] || attributes['id_gte'] || ""
+          @id_lt = attributes[:id_lt] || attributes['id_lt'] || ""
+          @id_lte = attributes[:id_lte] || attributes['id_lte'] || ""
+          @limit = attributes[:limit] || attributes['limit'] || 0
+        end
+
+        # Override field mappings for JSON serialization
+        def self.json_field_mappings
+          {
+            created_at_after: 'created_at_after',
+            created_at_after_or_equal: 'created_at_after_or_equal',
+            created_at_around: 'created_at_around',
+            created_at_before: 'created_at_before',
+            created_at_before_or_equal: 'created_at_before_or_equal',
+            id_around: 'id_around',
+            id_gt: 'id_gt',
+            id_gte: 'id_gte',
+            id_lt: 'id_lt',
+            id_lte: 'id_lte',
+            limit: 'limit'
+          }
+        end
       end
     end
   end

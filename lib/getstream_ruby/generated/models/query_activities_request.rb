@@ -9,6 +9,9 @@ module GetStream
       class QueryActivitiesRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute include_private_activities
+        #   @return [Boolean]
+        attr_accessor :include_private_activities
         # @!attribute limit
         #   @return [Integer]
         attr_accessor :limit
@@ -18,31 +21,43 @@ module GetStream
         # @!attribute prev
         #   @return [String]
         attr_accessor :prev
+        # @!attribute user_id
+        #   @return [String]
+        attr_accessor :user_id
         # @!attribute sort
         #   @return [Array<SortParamRequest>] Sorting parameters for the query
         attr_accessor :sort
         # @!attribute filter
         #   @return [Object] Filters to apply to the query. Supports location-based queries with 'near' and 'within_bounds' operators.
         attr_accessor :filter
+        # @!attribute user
+        #   @return [UserRequest]
+        attr_accessor :user
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @include_private_activities = attributes[:include_private_activities] || attributes['include_private_activities'] || false
           @limit = attributes[:limit] || attributes['limit'] || 0
           @next = attributes[:next] || attributes['next'] || ""
           @prev = attributes[:prev] || attributes['prev'] || ""
+          @user_id = attributes[:user_id] || attributes['user_id'] || ""
           @sort = attributes[:sort] || attributes['sort'] || nil
           @filter = attributes[:filter] || attributes['filter'] || nil
+          @user = attributes[:user] || attributes['user'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            include_private_activities: 'include_private_activities',
             limit: 'limit',
             next: 'next',
             prev: 'prev',
+            user_id: 'user_id',
             sort: 'sort',
-            filter: 'filter'
+            filter: 'filter',
+            user: 'user'
           }
         end
       end

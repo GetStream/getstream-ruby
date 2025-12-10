@@ -15,6 +15,9 @@ module GetStream
         # @!attribute access_request_enabled
         #   @return [Boolean]
         attr_accessor :access_request_enabled
+        # @!attribute hifi_audio_enabled
+        #   @return [Boolean]
+        attr_accessor :hifi_audio_enabled
         # @!attribute mic_default_on
         #   @return [Boolean]
         attr_accessor :mic_default_on
@@ -36,6 +39,7 @@ module GetStream
           super(attributes)
           @default_device = attributes[:default_device] || attributes['default_device']
           @access_request_enabled = attributes[:access_request_enabled] || attributes['access_request_enabled'] || false
+          @hifi_audio_enabled = attributes[:hifi_audio_enabled] || attributes['hifi_audio_enabled'] || false
           @mic_default_on = attributes[:mic_default_on] || attributes['mic_default_on'] || false
           @opus_dtx_enabled = attributes[:opus_dtx_enabled] || attributes['opus_dtx_enabled'] || false
           @redundant_coding_enabled = attributes[:redundant_coding_enabled] || attributes['redundant_coding_enabled'] || false
@@ -48,6 +52,7 @@ module GetStream
           {
             default_device: 'default_device',
             access_request_enabled: 'access_request_enabled',
+            hifi_audio_enabled: 'hifi_audio_enabled',
             mic_default_on: 'mic_default_on',
             opus_dtx_enabled: 'opus_dtx_enabled',
             redundant_coding_enabled: 'redundant_coding_enabled',

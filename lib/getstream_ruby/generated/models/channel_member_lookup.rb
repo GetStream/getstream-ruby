@@ -15,6 +15,9 @@ module GetStream
         # @!attribute banned
         #   @return [Boolean]
         attr_accessor :banned
+        # @!attribute blocked
+        #   @return [Boolean]
+        attr_accessor :blocked
         # @!attribute hidden
         #   @return [Boolean]
         attr_accessor :hidden
@@ -36,6 +39,7 @@ module GetStream
           super(attributes)
           @archived = attributes[:archived] || attributes['archived']
           @banned = attributes[:banned] || attributes['banned']
+          @blocked = attributes[:blocked] || attributes['blocked']
           @hidden = attributes[:hidden] || attributes['hidden']
           @pinned = attributes[:pinned] || attributes['pinned']
           @archived_at = attributes[:archived_at] || attributes['archived_at'] || nil
@@ -48,6 +52,7 @@ module GetStream
           {
             archived: 'archived',
             banned: 'banned',
+            blocked: 'blocked',
             hidden: 'hidden',
             pinned: 'pinned',
             archived_at: 'archived_at',
