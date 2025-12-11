@@ -761,12 +761,10 @@ RSpec.describe 'Feed Integration Tests', type: :integration do
           # Wait for backend propagation
           test_helper.wait_for_backend_propagation(1)
         rescue GetStreamRuby::APIError => e
-          if e.message.include?('maximum number of feed groups')
-            puts "⚠️ Feed group limit reached, skipping feed group creation test"
-            feed_group_id_test = nil # Skip deletion
-          else
-            raise e
-          end
+          raise e unless e.message.include?('maximum number of feed groups')
+
+          puts '⚠️ Feed group limit reached, skipping feed group creation test'
+          feed_group_id_test = nil # Skip deletion
         end
 
         # Get feed group
