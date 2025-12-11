@@ -531,6 +531,7 @@ RSpec.describe 'Feed Integration Tests', type: :integration do
       # Update comment
       update_request = GetStream::Generated::Models::UpdateCommentRequest.new(
         comment: 'Updated comment text from Ruby SDK',
+        user_id: test_user_id_1,
       )
 
       update_response = client.feeds.update_comment(comment_id, update_request)
@@ -871,7 +872,7 @@ RSpec.describe 'Feed Integration Tests', type: :integration do
           user_id: test_user_id_2,
         )
 
-        reaction_response = client.feeds.add_reaction(post_id, reaction_request)
+        reaction_response = client.feeds.add_activity_reaction(post_id, reaction_request)
         expect(reaction_response).to be_a(GetStreamRuby::StreamResponse)
 
       end
