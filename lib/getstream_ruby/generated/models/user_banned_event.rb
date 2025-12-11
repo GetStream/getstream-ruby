@@ -54,8 +54,8 @@ module GetStream
           @created_by = attributes[:created_by] || attributes['created_by']
           @type = attributes[:type] || attributes['type'] || "user.banned"
           @expiration = attributes[:expiration] || attributes['expiration'] || nil
-          @reason = attributes[:reason] || attributes['reason'] || ""
-          @team = attributes[:team] || attributes['team'] || ""
+          @reason = attributes[:reason] || attributes['reason'] || nil
+          @team = attributes[:team] || attributes['team'] || nil
           @user = attributes[:user] || attributes['user'] || nil
         end
 

@@ -25,10 +25,10 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @average_connection_time = attributes[:average_connection_time] || attributes['average_connection_time'] || 0.0
-          @average_jitter = attributes[:average_jitter] || attributes['average_jitter'] || 0.0
-          @average_latency = attributes[:average_latency] || attributes['average_latency'] || 0.0
-          @average_time_to_reconnect = attributes[:average_time_to_reconnect] || attributes['average_time_to_reconnect'] || 0.0
+          @average_connection_time = attributes[:average_connection_time] || attributes['average_connection_time'] || nil
+          @average_jitter = attributes[:average_jitter] || attributes['average_jitter'] || nil
+          @average_latency = attributes[:average_latency] || attributes['average_latency'] || nil
+          @average_time_to_reconnect = attributes[:average_time_to_reconnect] || attributes['average_time_to_reconnect'] || nil
         end
 
         # Override field mappings for JSON serialization

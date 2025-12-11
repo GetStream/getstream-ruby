@@ -93,9 +93,9 @@ module GetStream
           @Custom = attributes[:Custom] || attributes['Custom']
           @latest_votes_by_option = attributes[:latest_votes_by_option] || attributes['latest_votes_by_option']
           @vote_counts_by_option = attributes[:vote_counts_by_option] || attributes['vote_counts_by_option']
-          @is_closed = attributes[:is_closed] || attributes['is_closed'] || false
-          @max_votes_allowed = attributes[:max_votes_allowed] || attributes['max_votes_allowed'] || 0
-          @voting_visibility = attributes[:voting_visibility] || attributes['voting_visibility'] || ""
+          @is_closed = attributes[:is_closed] || attributes['is_closed'] || nil
+          @max_votes_allowed = attributes[:max_votes_allowed] || attributes['max_votes_allowed'] || nil
+          @voting_visibility = attributes[:voting_visibility] || attributes['voting_visibility'] || nil
           @created_by = attributes[:created_by] || attributes['created_by'] || nil
         end
 

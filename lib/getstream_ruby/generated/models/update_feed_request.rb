@@ -19,7 +19,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @created_by_id = attributes[:created_by_id] || attributes['created_by_id'] || ""
+          @created_by_id = attributes[:created_by_id] || attributes['created_by_id'] || nil
           @custom = attributes[:custom] || attributes['custom'] || nil
         end
 

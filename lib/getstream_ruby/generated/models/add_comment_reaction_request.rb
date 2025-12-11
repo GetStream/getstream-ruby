@@ -35,10 +35,10 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @type = attributes[:type] || attributes['type']
-          @create_notification_activity = attributes[:create_notification_activity] || attributes['create_notification_activity'] || false
-          @enforce_unique = attributes[:enforce_unique] || attributes['enforce_unique'] || false
-          @skip_push = attributes[:skip_push] || attributes['skip_push'] || false
-          @user_id = attributes[:user_id] || attributes['user_id'] || ""
+          @create_notification_activity = attributes[:create_notification_activity] || attributes['create_notification_activity'] || nil
+          @enforce_unique = attributes[:enforce_unique] || attributes['enforce_unique'] || nil
+          @skip_push = attributes[:skip_push] || attributes['skip_push'] || nil
+          @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @custom = attributes[:custom] || attributes['custom'] || nil
           @user = attributes[:user] || attributes['user'] || nil
         end

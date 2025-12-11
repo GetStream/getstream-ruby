@@ -28,8 +28,8 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @contains_url = attributes[:contains_url] || attributes['contains_url'] || false
-          @severity = attributes[:severity] || attributes['severity'] || ""
+          @contains_url = attributes[:contains_url] || attributes['contains_url'] || nil
+          @severity = attributes[:severity] || attributes['severity'] || nil
           @blocklist_match = attributes[:blocklist_match] || attributes['blocklist_match'] || nil
           @harm_labels = attributes[:harm_labels] || attributes['harm_labels'] || nil
           @llm_harm_labels = attributes[:llm_harm_labels] || attributes['llm_harm_labels'] || nil

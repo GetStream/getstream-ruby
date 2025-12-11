@@ -42,7 +42,7 @@ module GetStream
           @custom = attributes[:custom] || attributes['custom']
           @member = attributes[:member] || attributes['member']
           @type = attributes[:type] || attributes['type'] || "feeds.feed_member.updated"
-          @feed_visibility = attributes[:feed_visibility] || attributes['feed_visibility'] || ""
+          @feed_visibility = attributes[:feed_visibility] || attributes['feed_visibility'] || nil
           @received_at = attributes[:received_at] || attributes['received_at'] || nil
           @user = attributes[:user] || attributes['user'] || nil
         end

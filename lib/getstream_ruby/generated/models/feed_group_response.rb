@@ -55,7 +55,7 @@ module GetStream
           @created_at = attributes[:created_at] || attributes['created_at']
           @id = attributes[:id] || attributes['id']
           @updated_at = attributes[:updated_at] || attributes['updated_at']
-          @default_visibility = attributes[:default_visibility] || attributes['default_visibility'] || ""
+          @default_visibility = attributes[:default_visibility] || attributes['default_visibility'] || nil
           @deleted_at = attributes[:deleted_at] || attributes['deleted_at'] || nil
           @activity_processors = attributes[:activity_processors] || attributes['activity_processors'] || nil
           @activity_selectors = attributes[:activity_selectors] || attributes['activity_selectors'] || nil

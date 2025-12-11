@@ -96,9 +96,9 @@ module GetStream
           @updated_at = attributes[:updated_at] || attributes['updated_at']
           @created_by = attributes[:created_by] || attributes['created_by']
           @deleted_at = attributes[:deleted_at] || attributes['deleted_at'] || nil
-          @reason = attributes[:reason] || attributes['reason'] || ""
-          @recommendation_score = attributes[:recommendation_score] || attributes['recommendation_score'] || 0.0
-          @visibility = attributes[:visibility] || attributes['visibility'] || ""
+          @reason = attributes[:reason] || attributes['reason'] || nil
+          @recommendation_score = attributes[:recommendation_score] || attributes['recommendation_score'] || nil
+          @visibility = attributes[:visibility] || attributes['visibility'] || nil
           @filter_tags = attributes[:filter_tags] || attributes['filter_tags'] || nil
           @own_capabilities = attributes[:own_capabilities] || attributes['own_capabilities'] || nil
           @own_follows = attributes[:own_follows] || attributes['own_follows'] || nil

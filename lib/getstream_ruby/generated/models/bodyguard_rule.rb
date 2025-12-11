@@ -23,7 +23,7 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @label = attributes[:label] || attributes['label']
-          @action = attributes[:action] || attributes['action'] || ""
+          @action = attributes[:action] || attributes['action'] || nil
           @severity_rules = attributes[:severity_rules] || attributes['severity_rules'] || nil
         end
 

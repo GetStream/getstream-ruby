@@ -44,7 +44,7 @@ module GetStream
           @fid = attributes[:fid] || attributes['fid']
           @custom = attributes[:custom] || attributes['custom']
           @type = attributes[:type] || attributes['type'] || "feeds.stories_feed.updated"
-          @feed_visibility = attributes[:feed_visibility] || attributes['feed_visibility'] || ""
+          @feed_visibility = attributes[:feed_visibility] || attributes['feed_visibility'] || nil
           @received_at = attributes[:received_at] || attributes['received_at'] || nil
           @activities = attributes[:activities] || attributes['activities'] || nil
           @aggregated_activities = attributes[:aggregated_activities] || attributes['aggregated_activities'] || nil

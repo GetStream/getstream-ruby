@@ -113,10 +113,10 @@ module GetStream
           @mutes = attributes[:mutes] || attributes['mutes']
           @custom = attributes[:custom] || attributes['custom']
           @total_unread_count_by_team = attributes[:total_unread_count_by_team] || attributes['total_unread_count_by_team']
-          @avg_response_time = attributes[:avg_response_time] || attributes['avg_response_time'] || 0
+          @avg_response_time = attributes[:avg_response_time] || attributes['avg_response_time'] || nil
           @deactivated_at = attributes[:deactivated_at] || attributes['deactivated_at'] || nil
           @deleted_at = attributes[:deleted_at] || attributes['deleted_at'] || nil
-          @invisible = attributes[:invisible] || attributes['invisible'] || false
+          @invisible = attributes[:invisible] || attributes['invisible'] || nil
           @last_active = attributes[:last_active] || attributes['last_active'] || nil
           @last_engaged_at = attributes[:last_engaged_at] || attributes['last_engaged_at'] || nil
           @blocked_user_ids = attributes[:blocked_user_ids] || attributes['blocked_user_ids'] || nil

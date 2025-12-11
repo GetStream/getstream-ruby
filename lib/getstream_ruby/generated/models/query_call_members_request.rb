@@ -36,9 +36,9 @@ module GetStream
           super(attributes)
           @id = attributes[:id] || attributes['id']
           @type = attributes[:type] || attributes['type']
-          @limit = attributes[:limit] || attributes['limit'] || 0
-          @next = attributes[:next] || attributes['next'] || ""
-          @prev = attributes[:prev] || attributes['prev'] || ""
+          @limit = attributes[:limit] || attributes['limit'] || nil
+          @next = attributes[:next] || attributes['next'] || nil
+          @prev = attributes[:prev] || attributes['prev'] || nil
           @sort = attributes[:sort] || attributes['sort'] || nil
           @filter_conditions = attributes[:filter_conditions] || attributes['filter_conditions'] || nil
         end

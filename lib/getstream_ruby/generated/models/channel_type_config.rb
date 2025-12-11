@@ -150,10 +150,10 @@ module GetStream
           @commands = attributes[:commands] || attributes['commands']
           @permissions = attributes[:permissions] || attributes['permissions']
           @grants = attributes[:grants] || attributes['grants']
-          @blocklist = attributes[:blocklist] || attributes['blocklist'] || ""
-          @blocklist_behavior = attributes[:blocklist_behavior] || attributes['blocklist_behavior'] || ""
-          @partition_size = attributes[:partition_size] || attributes['partition_size'] || 0
-          @partition_ttl = attributes[:partition_ttl] || attributes['partition_ttl'] || ""
+          @blocklist = attributes[:blocklist] || attributes['blocklist'] || nil
+          @blocklist_behavior = attributes[:blocklist_behavior] || attributes['blocklist_behavior'] || nil
+          @partition_size = attributes[:partition_size] || attributes['partition_size'] || nil
+          @partition_ttl = attributes[:partition_ttl] || attributes['partition_ttl'] || nil
           @allowed_flag_reasons = attributes[:allowed_flag_reasons] || attributes['allowed_flag_reasons'] || nil
           @blocklists = attributes[:blocklists] || attributes['blocklists'] || nil
           @automod_thresholds = attributes[:automod_thresholds] || attributes['automod_thresholds'] || nil

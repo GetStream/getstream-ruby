@@ -32,7 +32,7 @@ module GetStream
           @id = attributes[:id] || attributes['id']
           @coordinates = attributes[:coordinates] || attributes['coordinates']
           @location = attributes[:location] || attributes['location']
-          @count = attributes[:count] || attributes['count'] || 0
+          @count = attributes[:count] || attributes['count'] || nil
         end
 
         # Override field mappings for JSON serialization

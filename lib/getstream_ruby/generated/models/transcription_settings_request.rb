@@ -28,9 +28,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @closed_caption_mode = attributes[:closed_caption_mode] || attributes['closed_caption_mode'] || ""
-          @language = attributes[:language] || attributes['language'] || ""
-          @mode = attributes[:mode] || attributes['mode'] || ""
+          @closed_caption_mode = attributes[:closed_caption_mode] || attributes['closed_caption_mode'] || nil
+          @language = attributes[:language] || attributes['language'] || nil
+          @mode = attributes[:mode] || attributes['mode'] || nil
           @speech_segment_config = attributes[:speech_segment_config] || attributes['speech_segment_config'] || nil
           @translation = attributes[:translation] || attributes['translation'] || nil
         end

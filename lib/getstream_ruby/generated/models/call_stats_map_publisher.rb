@@ -38,8 +38,8 @@ module GetStream
           @user_id = attributes[:user_id] || attributes['user_id']
           @user_session_id = attributes[:user_session_id] || attributes['user_session_id']
           @published_tracks = attributes[:published_tracks] || attributes['published_tracks']
-          @name = attributes[:name] || attributes['name'] || ""
-          @publisher_type = attributes[:publisher_type] || attributes['publisher_type'] || ""
+          @name = attributes[:name] || attributes['name'] || nil
+          @publisher_type = attributes[:publisher_type] || attributes['publisher_type'] || nil
           @location = attributes[:location] || attributes['location'] || nil
         end
 

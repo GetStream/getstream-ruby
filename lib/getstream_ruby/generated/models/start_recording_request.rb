@@ -16,7 +16,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @recording_external_storage = attributes[:recording_external_storage] || attributes['recording_external_storage'] || ""
+          @recording_external_storage = attributes[:recording_external_storage] || attributes['recording_external_storage'] || nil
         end
 
         # Override field mappings for JSON serialization

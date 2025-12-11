@@ -28,11 +28,11 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @custom_webhook_url = attributes[:custom_webhook_url] || attributes['custom_webhook_url'] || ""
-          @pin_failed_attempt_prompt = attributes[:pin_failed_attempt_prompt] || attributes['pin_failed_attempt_prompt'] || ""
-          @pin_hangup_prompt = attributes[:pin_hangup_prompt] || attributes['pin_hangup_prompt'] || ""
-          @pin_prompt = attributes[:pin_prompt] || attributes['pin_prompt'] || ""
-          @pin_success_prompt = attributes[:pin_success_prompt] || attributes['pin_success_prompt'] || ""
+          @custom_webhook_url = attributes[:custom_webhook_url] || attributes['custom_webhook_url'] || nil
+          @pin_failed_attempt_prompt = attributes[:pin_failed_attempt_prompt] || attributes['pin_failed_attempt_prompt'] || nil
+          @pin_hangup_prompt = attributes[:pin_hangup_prompt] || attributes['pin_hangup_prompt'] || nil
+          @pin_prompt = attributes[:pin_prompt] || attributes['pin_prompt'] || nil
+          @pin_success_prompt = attributes[:pin_success_prompt] || attributes['pin_success_prompt'] || nil
         end
 
         # Override field mappings for JSON serialization

@@ -75,16 +75,16 @@ module GetStream
           super(attributes)
           @type = attributes[:type] || attributes['type']
           @feeds = attributes[:feeds] || attributes['feeds']
-          @expires_at = attributes[:expires_at] || attributes['expires_at'] || ""
-          @id = attributes[:id] || attributes['id'] || ""
-          @parent_id = attributes[:parent_id] || attributes['parent_id'] || ""
-          @poll_id = attributes[:poll_id] || attributes['poll_id'] || ""
-          @restrict_replies = attributes[:restrict_replies] || attributes['restrict_replies'] || ""
-          @skip_enrich_url = attributes[:skip_enrich_url] || attributes['skip_enrich_url'] || false
-          @text = attributes[:text] || attributes['text'] || ""
-          @user_id = attributes[:user_id] || attributes['user_id'] || ""
-          @visibility = attributes[:visibility] || attributes['visibility'] || ""
-          @visibility_tag = attributes[:visibility_tag] || attributes['visibility_tag'] || ""
+          @expires_at = attributes[:expires_at] || attributes['expires_at'] || nil
+          @id = attributes[:id] || attributes['id'] || nil
+          @parent_id = attributes[:parent_id] || attributes['parent_id'] || nil
+          @poll_id = attributes[:poll_id] || attributes['poll_id'] || nil
+          @restrict_replies = attributes[:restrict_replies] || attributes['restrict_replies'] || nil
+          @skip_enrich_url = attributes[:skip_enrich_url] || attributes['skip_enrich_url'] || nil
+          @text = attributes[:text] || attributes['text'] || nil
+          @user_id = attributes[:user_id] || attributes['user_id'] || nil
+          @visibility = attributes[:visibility] || attributes['visibility'] || nil
+          @visibility_tag = attributes[:visibility_tag] || attributes['visibility_tag'] || nil
           @attachments = attributes[:attachments] || attributes['attachments'] || nil
           @collection_refs = attributes[:collection_refs] || attributes['collection_refs'] || nil
           @filter_tags = attributes[:filter_tags] || attributes['filter_tags'] || nil

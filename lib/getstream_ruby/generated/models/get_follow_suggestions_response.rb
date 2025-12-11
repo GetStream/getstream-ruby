@@ -24,7 +24,7 @@ module GetStream
           super(attributes)
           @duration = attributes[:duration] || attributes['duration']
           @suggestions = attributes[:suggestions] || attributes['suggestions']
-          @algorithm_used = attributes[:algorithm_used] || attributes['algorithm_used'] || ""
+          @algorithm_used = attributes[:algorithm_used] || attributes['algorithm_used'] || nil
         end
 
         # Override field mappings for JSON serialization

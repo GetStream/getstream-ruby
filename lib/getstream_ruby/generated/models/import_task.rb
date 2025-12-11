@@ -44,7 +44,7 @@ module GetStream
           @state = attributes[:state] || attributes['state']
           @updated_at = attributes[:updated_at] || attributes['updated_at']
           @history = attributes[:history] || attributes['history']
-          @size = attributes[:size] || attributes['size'] || 0
+          @size = attributes[:size] || attributes['size'] || nil
         end
 
         # Override field mappings for JSON serialization

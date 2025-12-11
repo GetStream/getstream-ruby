@@ -52,15 +52,15 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @comment = attributes[:comment] || attributes['comment'] || ""
-          @create_notification_activity = attributes[:create_notification_activity] || attributes['create_notification_activity'] || false
-          @id = attributes[:id] || attributes['id'] || ""
-          @object_id = attributes[:object_id] || attributes['object_id'] || ""
-          @object_type = attributes[:object_type] || attributes['object_type'] || ""
-          @parent_id = attributes[:parent_id] || attributes['parent_id'] || ""
-          @skip_enrich_url = attributes[:skip_enrich_url] || attributes['skip_enrich_url'] || false
-          @skip_push = attributes[:skip_push] || attributes['skip_push'] || false
-          @user_id = attributes[:user_id] || attributes['user_id'] || ""
+          @comment = attributes[:comment] || attributes['comment'] || nil
+          @create_notification_activity = attributes[:create_notification_activity] || attributes['create_notification_activity'] || nil
+          @id = attributes[:id] || attributes['id'] || nil
+          @object_id = attributes[:object_id] || attributes['object_id'] || nil
+          @object_type = attributes[:object_type] || attributes['object_type'] || nil
+          @parent_id = attributes[:parent_id] || attributes['parent_id'] || nil
+          @skip_enrich_url = attributes[:skip_enrich_url] || attributes['skip_enrich_url'] || nil
+          @skip_push = attributes[:skip_push] || attributes['skip_push'] || nil
+          @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @attachments = attributes[:attachments] || attributes['attachments'] || nil
           @mentioned_user_ids = attributes[:mentioned_user_ids] || attributes['mentioned_user_ids'] || nil
           @custom = attributes[:custom] || attributes['custom'] || nil

@@ -46,7 +46,7 @@ module GetStream
           @user_id = attributes[:user_id] || attributes['user_id']
           @custom = attributes[:custom] || attributes['custom']
           @type = attributes[:type] || attributes['type'] || "reminder.created"
-          @parent_id = attributes[:parent_id] || attributes['parent_id'] || ""
+          @parent_id = attributes[:parent_id] || attributes['parent_id'] || nil
           @received_at = attributes[:received_at] || attributes['received_at'] || nil
           @reminder = attributes[:reminder] || attributes['reminder'] || nil
         end

@@ -38,10 +38,10 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @duration = attributes[:duration] || attributes['duration']
-          @event_type = attributes[:event_type] || attributes['event_type'] || ""
-          @rendered_apn_template = attributes[:rendered_apn_template] || attributes['rendered_apn_template'] || ""
-          @rendered_firebase_template = attributes[:rendered_firebase_template] || attributes['rendered_firebase_template'] || ""
-          @skip_devices = attributes[:skip_devices] || attributes['skip_devices'] || false
+          @event_type = attributes[:event_type] || attributes['event_type'] || nil
+          @rendered_apn_template = attributes[:rendered_apn_template] || attributes['rendered_apn_template'] || nil
+          @rendered_firebase_template = attributes[:rendered_firebase_template] || attributes['rendered_firebase_template'] || nil
+          @skip_devices = attributes[:skip_devices] || attributes['skip_devices'] || nil
           @general_errors = attributes[:general_errors] || attributes['general_errors'] || nil
           @device_errors = attributes[:device_errors] || attributes['device_errors'] || nil
           @rendered_message = attributes[:rendered_message] || attributes['rendered_message'] || nil

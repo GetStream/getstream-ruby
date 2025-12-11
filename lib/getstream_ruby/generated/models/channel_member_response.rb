@@ -85,12 +85,12 @@ module GetStream
           @deleted_at = attributes[:deleted_at] || attributes['deleted_at'] || nil
           @invite_accepted_at = attributes[:invite_accepted_at] || attributes['invite_accepted_at'] || nil
           @invite_rejected_at = attributes[:invite_rejected_at] || attributes['invite_rejected_at'] || nil
-          @invited = attributes[:invited] || attributes['invited'] || false
-          @is_moderator = attributes[:is_moderator] || attributes['is_moderator'] || false
+          @invited = attributes[:invited] || attributes['invited'] || nil
+          @is_moderator = attributes[:is_moderator] || attributes['is_moderator'] || nil
           @pinned_at = attributes[:pinned_at] || attributes['pinned_at'] || nil
-          @role = attributes[:role] || attributes['role'] || ""
-          @status = attributes[:status] || attributes['status'] || ""
-          @user_id = attributes[:user_id] || attributes['user_id'] || ""
+          @role = attributes[:role] || attributes['role'] || nil
+          @status = attributes[:status] || attributes['status'] || nil
+          @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @deleted_messages = attributes[:deleted_messages] || attributes['deleted_messages'] || nil
           @user = attributes[:user] || attributes['user'] || nil
         end

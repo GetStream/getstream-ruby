@@ -30,8 +30,8 @@ module GetStream
           super(attributes)
           @created_at = attributes[:created_at] || attributes['created_at']
           @type = attributes[:type] || attributes['type'] || "moderation.flagged"
-          @item = attributes[:item] || attributes['item'] || ""
-          @object_id = attributes[:object_id] || attributes['object_id'] || ""
+          @item = attributes[:item] || attributes['item'] || nil
+          @object_id = attributes[:object_id] || attributes['object_id'] || nil
           @user = attributes[:user] || attributes['user'] || nil
         end
 

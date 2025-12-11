@@ -46,16 +46,16 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @created_at = attributes[:created_at] || attributes['created_at'] || ""
-          @created_by_id = attributes[:created_by_id] || attributes['created_by_id'] || ""
-          @disabled = attributes[:disabled] || attributes['disabled'] || false
-          @frozen = attributes[:frozen] || attributes['frozen'] || false
-          @id = attributes[:id] || attributes['id'] || ""
-          @last_message_at = attributes[:last_message_at] || attributes['last_message_at'] || ""
-          @member_count = attributes[:member_count] || attributes['member_count'] || 0
-          @team = attributes[:team] || attributes['team'] || ""
-          @type = attributes[:type] || attributes['type'] || ""
-          @updated_at = attributes[:updated_at] || attributes['updated_at'] || ""
+          @created_at = attributes[:created_at] || attributes['created_at'] || nil
+          @created_by_id = attributes[:created_by_id] || attributes['created_by_id'] || nil
+          @disabled = attributes[:disabled] || attributes['disabled'] || nil
+          @frozen = attributes[:frozen] || attributes['frozen'] || nil
+          @id = attributes[:id] || attributes['id'] || nil
+          @last_message_at = attributes[:last_message_at] || attributes['last_message_at'] || nil
+          @member_count = attributes[:member_count] || attributes['member_count'] || nil
+          @team = attributes[:team] || attributes['team'] || nil
+          @type = attributes[:type] || attributes['type'] || nil
+          @updated_at = attributes[:updated_at] || attributes['updated_at'] || nil
           @custom = attributes[:custom] || attributes['custom'] || nil
         end
 

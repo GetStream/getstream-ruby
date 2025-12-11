@@ -31,8 +31,8 @@ module GetStream
           @duration = attributes[:duration] || attributes['duration']
           @rules = attributes[:rules] || attributes['rules']
           @default_llm_labels = attributes[:default_llm_labels] || attributes['default_llm_labels']
-          @next = attributes[:next] || attributes['next'] || ""
-          @prev = attributes[:prev] || attributes['prev'] || ""
+          @next = attributes[:next] || attributes['next'] || nil
+          @prev = attributes[:prev] || attributes['prev'] || nil
         end
 
         # Override field mappings for JSON serialization

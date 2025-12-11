@@ -28,8 +28,8 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @action = attributes[:action] || attributes['action'] || ""
-          @original_message_type = attributes[:original_message_type] || attributes['original_message_type'] || ""
+          @action = attributes[:action] || attributes['action'] || nil
+          @original_message_type = attributes[:original_message_type] || attributes['original_message_type'] || nil
           @image_labels = attributes[:image_labels] || attributes['image_labels'] || nil
           @message_details = attributes[:message_details] || attributes['message_details'] || nil
           @result = attributes[:result] || attributes['result'] || nil

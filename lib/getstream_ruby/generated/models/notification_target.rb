@@ -35,10 +35,10 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @id = attributes[:id] || attributes['id']
-          @name = attributes[:name] || attributes['name'] || ""
-          @text = attributes[:text] || attributes['text'] || ""
-          @type = attributes[:type] || attributes['type'] || ""
-          @user_id = attributes[:user_id] || attributes['user_id'] || ""
+          @name = attributes[:name] || attributes['name'] || nil
+          @text = attributes[:text] || attributes['text'] || nil
+          @type = attributes[:type] || attributes['type'] || nil
+          @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @attachments = attributes[:attachments] || attributes['attachments'] || nil
           @comment = attributes[:comment] || attributes['comment'] || nil
         end

@@ -126,8 +126,8 @@ module GetStream
           @flags = attributes[:flags] || attributes['flags']
           @languages = attributes[:languages] || attributes['languages']
           @completed_at = attributes[:completed_at] || attributes['completed_at'] || nil
-          @config_key = attributes[:config_key] || attributes['config_key'] || ""
-          @entity_creator_id = attributes[:entity_creator_id] || attributes['entity_creator_id'] || ""
+          @config_key = attributes[:config_key] || attributes['config_key'] || nil
+          @entity_creator_id = attributes[:entity_creator_id] || attributes['entity_creator_id'] || nil
           @reviewed_at = attributes[:reviewed_at] || attributes['reviewed_at'] || nil
           @teams = attributes[:teams] || attributes['teams'] || nil
           @activity = attributes[:activity] || attributes['activity'] || nil

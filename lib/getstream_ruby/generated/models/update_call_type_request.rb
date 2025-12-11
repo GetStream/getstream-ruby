@@ -25,7 +25,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @external_storage = attributes[:external_storage] || attributes['external_storage'] || ""
+          @external_storage = attributes[:external_storage] || attributes['external_storage'] || nil
           @grants = attributes[:grants] || attributes['grants'] || nil
           @notification_settings = attributes[:notification_settings] || attributes['notification_settings'] || nil
           @settings = attributes[:settings] || attributes['settings'] || nil

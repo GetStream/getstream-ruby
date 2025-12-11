@@ -24,7 +24,7 @@ module GetStream
           super(attributes)
           @source = attributes[:source] || attributes['source']
           @target = attributes[:target] || attributes['target']
-          @follower_role = attributes[:follower_role] || attributes['follower_role'] || ""
+          @follower_role = attributes[:follower_role] || attributes['follower_role'] || nil
         end
 
         # Override field mappings for JSON serialization

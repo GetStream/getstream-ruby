@@ -23,7 +23,7 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @id = attributes[:id] || attributes['id']
-          @text = attributes[:text] || attributes['text'] || ""
+          @text = attributes[:text] || attributes['text'] || nil
           @custom = attributes[:custom] || attributes['custom'] || nil
         end
 

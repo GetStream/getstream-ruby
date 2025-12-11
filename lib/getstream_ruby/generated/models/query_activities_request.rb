@@ -37,11 +37,11 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @include_private_activities = attributes[:include_private_activities] || attributes['include_private_activities'] || false
-          @limit = attributes[:limit] || attributes['limit'] || 0
-          @next = attributes[:next] || attributes['next'] || ""
-          @prev = attributes[:prev] || attributes['prev'] || ""
-          @user_id = attributes[:user_id] || attributes['user_id'] || ""
+          @include_private_activities = attributes[:include_private_activities] || attributes['include_private_activities'] || nil
+          @limit = attributes[:limit] || attributes['limit'] || nil
+          @next = attributes[:next] || attributes['next'] || nil
+          @prev = attributes[:prev] || attributes['prev'] || nil
+          @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @sort = attributes[:sort] || attributes['sort'] || nil
           @filter = attributes[:filter] || attributes['filter'] || nil
           @user = attributes[:user] || attributes['user'] || nil

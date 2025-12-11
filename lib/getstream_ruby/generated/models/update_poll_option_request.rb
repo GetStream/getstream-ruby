@@ -30,7 +30,7 @@ module GetStream
           super(attributes)
           @id = attributes[:id] || attributes['id']
           @text = attributes[:text] || attributes['text']
-          @user_id = attributes[:user_id] || attributes['user_id'] || ""
+          @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @Custom = attributes[:Custom] || attributes['Custom'] || nil
           @user = attributes[:user] || attributes['user'] || nil
         end

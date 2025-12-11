@@ -36,9 +36,9 @@ module GetStream
           super(attributes)
           @type = attributes[:type] || attributes['type']
           @created_at = attributes[:created_at] || attributes['created_at'] || nil
-          @score = attributes[:score] || attributes['score'] || 0
+          @score = attributes[:score] || attributes['score'] || nil
           @updated_at = attributes[:updated_at] || attributes['updated_at'] || nil
-          @user_id = attributes[:user_id] || attributes['user_id'] || ""
+          @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @custom = attributes[:custom] || attributes['custom'] || nil
           @user = attributes[:user] || attributes['user'] || nil
         end

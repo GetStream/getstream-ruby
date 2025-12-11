@@ -20,7 +20,7 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @enabled = attributes[:enabled] || attributes['enabled']
-          @join_ahead_time_seconds = attributes[:join_ahead_time_seconds] || attributes['join_ahead_time_seconds'] || 0
+          @join_ahead_time_seconds = attributes[:join_ahead_time_seconds] || attributes['join_ahead_time_seconds'] || nil
         end
 
         # Override field mappings for JSON serialization

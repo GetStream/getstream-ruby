@@ -61,13 +61,13 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @id_around = attributes[:id_around] || attributes['id_around'] || ""
-          @limit = attributes[:limit] || attributes['limit'] || 0
-          @next = attributes[:next] || attributes['next'] || ""
-          @prev = attributes[:prev] || attributes['prev'] || ""
-          @user_id = attributes[:user_id] || attributes['user_id'] || ""
-          @view = attributes[:view] || attributes['view'] || ""
-          @watch = attributes[:watch] || attributes['watch'] || false
+          @id_around = attributes[:id_around] || attributes['id_around'] || nil
+          @limit = attributes[:limit] || attributes['limit'] || nil
+          @next = attributes[:next] || attributes['next'] || nil
+          @prev = attributes[:prev] || attributes['prev'] || nil
+          @user_id = attributes[:user_id] || attributes['user_id'] || nil
+          @view = attributes[:view] || attributes['view'] || nil
+          @watch = attributes[:watch] || attributes['watch'] || nil
           @data = attributes[:data] || attributes['data'] || nil
           @enrichment_options = attributes[:enrichment_options] || attributes['enrichment_options'] || nil
           @external_ranking = attributes[:external_ranking] || attributes['external_ranking'] || nil

@@ -31,7 +31,7 @@ module GetStream
           @user_id = attributes[:user_id] || attributes['user_id']
           @sessions = attributes[:sessions] || attributes['sessions']
           @latest_activity_at = attributes[:latest_activity_at] || attributes['latest_activity_at'] || nil
-          @name = attributes[:name] || attributes['name'] || ""
+          @name = attributes[:name] || attributes['name'] || nil
           @roles = attributes[:roles] || attributes['roles'] || nil
         end
 

@@ -33,8 +33,8 @@ module GetStream
           super(attributes)
           @type = attributes[:type] || attributes['type']
           @custom = attributes[:custom] || attributes['custom']
-          @id = attributes[:id] || attributes['id'] || ""
-          @team = attributes[:team] || attributes['team'] || ""
+          @id = attributes[:id] || attributes['id'] || nil
+          @team = attributes[:team] || attributes['team'] || nil
           @members = attributes[:members] || attributes['members'] || nil
           @members_template = attributes[:members_template] || attributes['members_template'] || nil
         end

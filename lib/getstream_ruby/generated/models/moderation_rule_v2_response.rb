@@ -65,8 +65,8 @@ module GetStream
           @updated_at = attributes[:updated_at] || attributes['updated_at']
           @config_keys = attributes[:config_keys] || attributes['config_keys']
           @action = attributes[:action] || attributes['action']
-          @cooldown_period = attributes[:cooldown_period] || attributes['cooldown_period'] || ""
-          @logic = attributes[:logic] || attributes['logic'] || ""
+          @cooldown_period = attributes[:cooldown_period] || attributes['cooldown_period'] || nil
+          @logic = attributes[:logic] || attributes['logic'] || nil
           @conditions = attributes[:conditions] || attributes['conditions'] || nil
           @groups = attributes[:groups] || attributes['groups'] || nil
         end

@@ -67,13 +67,13 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @accept_invite = attributes[:accept_invite] || attributes['accept_invite'] || false
-          @cooldown = attributes[:cooldown] || attributes['cooldown'] || 0
-          @hide_history = attributes[:hide_history] || attributes['hide_history'] || false
+          @accept_invite = attributes[:accept_invite] || attributes['accept_invite'] || nil
+          @cooldown = attributes[:cooldown] || attributes['cooldown'] || nil
+          @hide_history = attributes[:hide_history] || attributes['hide_history'] || nil
           @hide_history_before = attributes[:hide_history_before] || attributes['hide_history_before'] || nil
-          @reject_invite = attributes[:reject_invite] || attributes['reject_invite'] || false
-          @skip_push = attributes[:skip_push] || attributes['skip_push'] || false
-          @user_id = attributes[:user_id] || attributes['user_id'] || ""
+          @reject_invite = attributes[:reject_invite] || attributes['reject_invite'] || nil
+          @skip_push = attributes[:skip_push] || attributes['skip_push'] || nil
+          @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @add_filter_tags = attributes[:add_filter_tags] || attributes['add_filter_tags'] || nil
           @add_members = attributes[:add_members] || attributes['add_members'] || nil
           @add_moderators = attributes[:add_moderators] || attributes['add_moderators'] || nil

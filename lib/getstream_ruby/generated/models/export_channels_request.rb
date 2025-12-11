@@ -32,11 +32,11 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @channels = attributes[:channels] || attributes['channels']
-          @clear_deleted_message_text = attributes[:clear_deleted_message_text] || attributes['clear_deleted_message_text'] || false
-          @export_users = attributes[:export_users] || attributes['export_users'] || false
-          @include_soft_deleted_channels = attributes[:include_soft_deleted_channels] || attributes['include_soft_deleted_channels'] || false
-          @include_truncated_messages = attributes[:include_truncated_messages] || attributes['include_truncated_messages'] || false
-          @version = attributes[:version] || attributes['version'] || ""
+          @clear_deleted_message_text = attributes[:clear_deleted_message_text] || attributes['clear_deleted_message_text'] || nil
+          @export_users = attributes[:export_users] || attributes['export_users'] || nil
+          @include_soft_deleted_channels = attributes[:include_soft_deleted_channels] || attributes['include_soft_deleted_channels'] || nil
+          @include_truncated_messages = attributes[:include_truncated_messages] || attributes['include_truncated_messages'] || nil
+          @version = attributes[:version] || attributes['version'] || nil
         end
 
         # Override field mappings for JSON serialization

@@ -55,18 +55,18 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @blocklist = attributes[:blocklist] || attributes['blocklist'] || ""
-          @blocklist_behavior = attributes[:blocklist_behavior] || attributes['blocklist_behavior'] || ""
-          @count_messages = attributes[:count_messages] || attributes['count_messages'] || false
-          @max_message_length = attributes[:max_message_length] || attributes['max_message_length'] || 0
-          @quotes = attributes[:quotes] || attributes['quotes'] || false
-          @reactions = attributes[:reactions] || attributes['reactions'] || false
-          @replies = attributes[:replies] || attributes['replies'] || false
-          @shared_locations = attributes[:shared_locations] || attributes['shared_locations'] || false
-          @typing_events = attributes[:typing_events] || attributes['typing_events'] || false
-          @uploads = attributes[:uploads] || attributes['uploads'] || false
-          @url_enrichment = attributes[:url_enrichment] || attributes['url_enrichment'] || false
-          @user_message_reminders = attributes[:user_message_reminders] || attributes['user_message_reminders'] || false
+          @blocklist = attributes[:blocklist] || attributes['blocklist'] || nil
+          @blocklist_behavior = attributes[:blocklist_behavior] || attributes['blocklist_behavior'] || nil
+          @count_messages = attributes[:count_messages] || attributes['count_messages'] || nil
+          @max_message_length = attributes[:max_message_length] || attributes['max_message_length'] || nil
+          @quotes = attributes[:quotes] || attributes['quotes'] || nil
+          @reactions = attributes[:reactions] || attributes['reactions'] || nil
+          @replies = attributes[:replies] || attributes['replies'] || nil
+          @shared_locations = attributes[:shared_locations] || attributes['shared_locations'] || nil
+          @typing_events = attributes[:typing_events] || attributes['typing_events'] || nil
+          @uploads = attributes[:uploads] || attributes['uploads'] || nil
+          @url_enrichment = attributes[:url_enrichment] || attributes['url_enrichment'] || nil
+          @user_message_reminders = attributes[:user_message_reminders] || attributes['user_message_reminders'] || nil
           @commands = attributes[:commands] || attributes['commands'] || nil
           @grants = attributes[:grants] || attributes['grants'] || nil
         end

@@ -28,11 +28,11 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @delete_conversation_channels = attributes[:delete_conversation_channels] || attributes['delete_conversation_channels'] || false
-          @delete_feeds_content = attributes[:delete_feeds_content] || attributes['delete_feeds_content'] || false
-          @hard_delete = attributes[:hard_delete] || attributes['hard_delete'] || false
-          @mark_messages_deleted = attributes[:mark_messages_deleted] || attributes['mark_messages_deleted'] || false
-          @reason = attributes[:reason] || attributes['reason'] || ""
+          @delete_conversation_channels = attributes[:delete_conversation_channels] || attributes['delete_conversation_channels'] || nil
+          @delete_feeds_content = attributes[:delete_feeds_content] || attributes['delete_feeds_content'] || nil
+          @hard_delete = attributes[:hard_delete] || attributes['hard_delete'] || nil
+          @mark_messages_deleted = attributes[:mark_messages_deleted] || attributes['mark_messages_deleted'] || nil
+          @reason = attributes[:reason] || attributes['reason'] || nil
         end
 
         # Override field mappings for JSON serialization

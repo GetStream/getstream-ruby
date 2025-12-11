@@ -44,7 +44,7 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @id = attributes[:id] || attributes['id']
-          @default_visibility = attributes[:default_visibility] || attributes['default_visibility'] || ""
+          @default_visibility = attributes[:default_visibility] || attributes['default_visibility'] || nil
           @activity_processors = attributes[:activity_processors] || attributes['activity_processors'] || nil
           @activity_selectors = attributes[:activity_selectors] || attributes['activity_selectors'] || nil
           @aggregation = attributes[:aggregation] || attributes['aggregation'] || nil

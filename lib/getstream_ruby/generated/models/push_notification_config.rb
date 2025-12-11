@@ -19,7 +19,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @enable_push = attributes[:enable_push] || attributes['enable_push'] || false
+          @enable_push = attributes[:enable_push] || attributes['enable_push'] || nil
           @push_types = attributes[:push_types] || attributes['push_types'] || nil
         end
 

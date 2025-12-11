@@ -53,9 +53,9 @@ module GetStream
           @fid = attributes[:fid] || attributes['fid']
           @custom = attributes[:custom] || attributes['custom']
           @type = attributes[:type] || attributes['type'] || "feeds.activity.marked"
-          @feed_visibility = attributes[:feed_visibility] || attributes['feed_visibility'] || ""
-          @mark_all_read = attributes[:mark_all_read] || attributes['mark_all_read'] || false
-          @mark_all_seen = attributes[:mark_all_seen] || attributes['mark_all_seen'] || false
+          @feed_visibility = attributes[:feed_visibility] || attributes['feed_visibility'] || nil
+          @mark_all_read = attributes[:mark_all_read] || attributes['mark_all_read'] || nil
+          @mark_all_seen = attributes[:mark_all_seen] || attributes['mark_all_seen'] || nil
           @received_at = attributes[:received_at] || attributes['received_at'] || nil
           @mark_read = attributes[:mark_read] || attributes['mark_read'] || nil
           @mark_seen = attributes[:mark_seen] || attributes['mark_seen'] || nil

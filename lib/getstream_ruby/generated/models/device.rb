@@ -41,10 +41,10 @@ module GetStream
           @id = attributes[:id] || attributes['id']
           @push_provider = attributes[:push_provider] || attributes['push_provider']
           @user_id = attributes[:user_id] || attributes['user_id']
-          @disabled = attributes[:disabled] || attributes['disabled'] || false
-          @disabled_reason = attributes[:disabled_reason] || attributes['disabled_reason'] || ""
-          @push_provider_name = attributes[:push_provider_name] || attributes['push_provider_name'] || ""
-          @voip = attributes[:voip] || attributes['voip'] || false
+          @disabled = attributes[:disabled] || attributes['disabled'] || nil
+          @disabled_reason = attributes[:disabled_reason] || attributes['disabled_reason'] || nil
+          @push_provider_name = attributes[:push_provider_name] || attributes['push_provider_name'] || nil
+          @voip = attributes[:voip] || attributes['voip'] || nil
         end
 
         # Override field mappings for JSON serialization

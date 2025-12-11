@@ -38,8 +38,8 @@ module GetStream
           @items = attributes[:items] || attributes['items']
           @action_config = attributes[:action_config] || attributes['action_config']
           @stats = attributes[:stats] || attributes['stats']
-          @next = attributes[:next] || attributes['next'] || ""
-          @prev = attributes[:prev] || attributes['prev'] || ""
+          @next = attributes[:next] || attributes['next'] || nil
+          @prev = attributes[:prev] || attributes['prev'] || nil
           @filter_config = attributes[:filter_config] || attributes['filter_config'] || nil
         end
 

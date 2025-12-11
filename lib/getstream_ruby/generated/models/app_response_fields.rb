@@ -214,7 +214,7 @@ module GetStream
           @image_upload_config = attributes[:image_upload_config] || attributes['image_upload_config']
           @policies = attributes[:policies] || attributes['policies']
           @push_notifications = attributes[:push_notifications] || attributes['push_notifications']
-          @before_message_send_hook_url = attributes[:before_message_send_hook_url] || attributes['before_message_send_hook_url'] || ""
+          @before_message_send_hook_url = attributes[:before_message_send_hook_url] || attributes['before_message_send_hook_url'] || nil
           @revoke_tokens_issued_before = attributes[:revoke_tokens_issued_before] || attributes['revoke_tokens_issued_before'] || nil
           @allowed_flag_reasons = attributes[:allowed_flag_reasons] || attributes['allowed_flag_reasons'] || nil
           @geofences = attributes[:geofences] || attributes['geofences'] || nil

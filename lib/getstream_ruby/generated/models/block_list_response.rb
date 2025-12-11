@@ -46,8 +46,8 @@ module GetStream
           @type = attributes[:type] || attributes['type']
           @words = attributes[:words] || attributes['words']
           @created_at = attributes[:created_at] || attributes['created_at'] || nil
-          @id = attributes[:id] || attributes['id'] || ""
-          @team = attributes[:team] || attributes['team'] || ""
+          @id = attributes[:id] || attributes['id'] || nil
+          @team = attributes[:team] || attributes['team'] || nil
           @updated_at = attributes[:updated_at] || attributes['updated_at'] || nil
         end
 

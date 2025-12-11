@@ -71,9 +71,9 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @key = attributes[:key] || attributes['key']
-          @async = attributes[:async] || attributes['async'] || false
-          @team = attributes[:team] || attributes['team'] || ""
-          @user_id = attributes[:user_id] || attributes['user_id'] || ""
+          @async = attributes[:async] || attributes['async'] || nil
+          @team = attributes[:team] || attributes['team'] || nil
+          @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @ai_image_config = attributes[:ai_image_config] || attributes['ai_image_config'] || nil
           @ai_text_config = attributes[:ai_text_config] || attributes['ai_text_config'] || nil
           @ai_video_config = attributes[:ai_video_config] || attributes['ai_video_config'] || nil

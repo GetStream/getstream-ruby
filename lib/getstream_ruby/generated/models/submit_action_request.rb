@@ -60,7 +60,7 @@ module GetStream
           super(attributes)
           @action_type = attributes[:action_type] || attributes['action_type']
           @item_id = attributes[:item_id] || attributes['item_id']
-          @user_id = attributes[:user_id] || attributes['user_id'] || ""
+          @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @ban = attributes[:ban] || attributes['ban'] || nil
           @block = attributes[:block] || attributes['block'] || nil
           @custom = attributes[:custom] || attributes['custom'] || nil

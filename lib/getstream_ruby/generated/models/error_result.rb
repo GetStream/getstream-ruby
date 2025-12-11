@@ -23,8 +23,8 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @type = attributes[:type] || attributes['type']
-          @stacktrace = attributes[:stacktrace] || attributes['stacktrace'] || ""
-          @version = attributes[:version] || attributes['version'] || ""
+          @stacktrace = attributes[:stacktrace] || attributes['stacktrace'] || nil
+          @version = attributes[:version] || attributes['version'] || nil
         end
 
         # Override field mappings for JSON serialization

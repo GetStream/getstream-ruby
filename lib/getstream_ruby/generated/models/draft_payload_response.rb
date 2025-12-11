@@ -55,14 +55,14 @@ module GetStream
           @id = attributes[:id] || attributes['id']
           @text = attributes[:text] || attributes['text']
           @custom = attributes[:custom] || attributes['custom']
-          @html = attributes[:html] || attributes['html'] || ""
-          @mml = attributes[:mml] || attributes['mml'] || ""
-          @parent_id = attributes[:parent_id] || attributes['parent_id'] || ""
-          @poll_id = attributes[:poll_id] || attributes['poll_id'] || ""
-          @quoted_message_id = attributes[:quoted_message_id] || attributes['quoted_message_id'] || ""
-          @show_in_channel = attributes[:show_in_channel] || attributes['show_in_channel'] || false
-          @silent = attributes[:silent] || attributes['silent'] || false
-          @type = attributes[:type] || attributes['type'] || ""
+          @html = attributes[:html] || attributes['html'] || nil
+          @mml = attributes[:mml] || attributes['mml'] || nil
+          @parent_id = attributes[:parent_id] || attributes['parent_id'] || nil
+          @poll_id = attributes[:poll_id] || attributes['poll_id'] || nil
+          @quoted_message_id = attributes[:quoted_message_id] || attributes['quoted_message_id'] || nil
+          @show_in_channel = attributes[:show_in_channel] || attributes['show_in_channel'] || nil
+          @silent = attributes[:silent] || attributes['silent'] || nil
+          @type = attributes[:type] || attributes['type'] || nil
           @attachments = attributes[:attachments] || attributes['attachments'] || nil
           @mentioned_users = attributes[:mentioned_users] || attributes['mentioned_users'] || nil
         end

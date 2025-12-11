@@ -22,9 +22,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @enable_closed_captions = attributes[:enable_closed_captions] || attributes['enable_closed_captions'] || false
-          @language = attributes[:language] || attributes['language'] || ""
-          @transcription_external_storage = attributes[:transcription_external_storage] || attributes['transcription_external_storage'] || ""
+          @enable_closed_captions = attributes[:enable_closed_captions] || attributes['enable_closed_captions'] || nil
+          @language = attributes[:language] || attributes['language'] || nil
+          @transcription_external_storage = attributes[:transcription_external_storage] || attributes['transcription_external_storage'] || nil
         end
 
         # Override field mappings for JSON serialization

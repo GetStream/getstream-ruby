@@ -44,7 +44,7 @@ module GetStream
           @grants = attributes[:grants] || attributes['grants']
           @notification_settings = attributes[:notification_settings] || attributes['notification_settings']
           @settings = attributes[:settings] || attributes['settings']
-          @external_storage = attributes[:external_storage] || attributes['external_storage'] || ""
+          @external_storage = attributes[:external_storage] || attributes['external_storage'] || nil
         end
 
         # Override field mappings for JSON serialization

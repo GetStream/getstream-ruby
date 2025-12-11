@@ -48,11 +48,11 @@ module GetStream
           super(attributes)
           @id = attributes[:id] || attributes['id']
           @ban_expires = attributes[:ban_expires] || attributes['ban_expires'] || nil
-          @banned = attributes[:banned] || attributes['banned'] || false
-          @invisible = attributes[:invisible] || attributes['invisible'] || false
-          @language = attributes[:language] || attributes['language'] || ""
+          @banned = attributes[:banned] || attributes['banned'] || nil
+          @invisible = attributes[:invisible] || attributes['invisible'] || nil
+          @language = attributes[:language] || attributes['language'] || nil
           @revoke_tokens_issued_before = attributes[:revoke_tokens_issued_before] || attributes['revoke_tokens_issued_before'] || nil
-          @role = attributes[:role] || attributes['role'] || ""
+          @role = attributes[:role] || attributes['role'] || nil
           @teams = attributes[:teams] || attributes['teams'] || nil
           @custom = attributes[:custom] || attributes['custom'] || nil
           @privacy_settings = attributes[:privacy_settings] || attributes['privacy_settings'] || nil

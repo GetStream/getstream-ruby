@@ -167,10 +167,10 @@ module GetStream
           @deleted_at = attributes[:deleted_at] || attributes['deleted_at'] || nil
           @edited_at = attributes[:edited_at] || attributes['edited_at'] || nil
           @expires_at = attributes[:expires_at] || attributes['expires_at'] || nil
-          @is_watched = attributes[:is_watched] || attributes['is_watched'] || false
-          @moderation_action = attributes[:moderation_action] || attributes['moderation_action'] || ""
-          @text = attributes[:text] || attributes['text'] || ""
-          @visibility_tag = attributes[:visibility_tag] || attributes['visibility_tag'] || ""
+          @is_watched = attributes[:is_watched] || attributes['is_watched'] || nil
+          @moderation_action = attributes[:moderation_action] || attributes['moderation_action'] || nil
+          @text = attributes[:text] || attributes['text'] || nil
+          @visibility_tag = attributes[:visibility_tag] || attributes['visibility_tag'] || nil
           @current_feed = attributes[:current_feed] || attributes['current_feed'] || nil
           @location = attributes[:location] || attributes['location'] || nil
           @moderation = attributes[:moderation] || attributes['moderation'] || nil

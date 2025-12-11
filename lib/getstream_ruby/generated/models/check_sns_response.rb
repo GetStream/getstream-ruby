@@ -27,7 +27,7 @@ module GetStream
           super(attributes)
           @duration = attributes[:duration] || attributes['duration']
           @status = attributes[:status] || attributes['status']
-          @error = attributes[:error] || attributes['error'] || ""
+          @error = attributes[:error] || attributes['error'] || nil
           @data = attributes[:data] || attributes['data'] || nil
         end
 

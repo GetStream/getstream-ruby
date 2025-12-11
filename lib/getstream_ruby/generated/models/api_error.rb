@@ -43,7 +43,7 @@ module GetStream
           @message = attributes[:message] || attributes['message']
           @more_info = attributes[:more_info] || attributes['more_info']
           @details = attributes[:details] || attributes['details']
-          @unrecoverable = attributes[:unrecoverable] || attributes['unrecoverable'] || false
+          @unrecoverable = attributes[:unrecoverable] || attributes['unrecoverable'] || nil
           @exception_fields = attributes[:exception_fields] || attributes['exception_fields'] || nil
         end
 

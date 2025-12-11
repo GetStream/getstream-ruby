@@ -34,12 +34,12 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @comment = attributes[:comment] || attributes['comment'] || ""
-          @comment_reaction = attributes[:comment_reaction] || attributes['comment_reaction'] || ""
-          @comment_reply = attributes[:comment_reply] || attributes['comment_reply'] || ""
-          @follow = attributes[:follow] || attributes['follow'] || ""
-          @mention = attributes[:mention] || attributes['mention'] || ""
-          @reaction = attributes[:reaction] || attributes['reaction'] || ""
+          @comment = attributes[:comment] || attributes['comment'] || nil
+          @comment_reaction = attributes[:comment_reaction] || attributes['comment_reaction'] || nil
+          @comment_reply = attributes[:comment_reply] || attributes['comment_reply'] || nil
+          @follow = attributes[:follow] || attributes['follow'] || nil
+          @mention = attributes[:mention] || attributes['mention'] || nil
+          @reaction = attributes[:reaction] || attributes['reaction'] || nil
           @custom_activity_types = attributes[:custom_activity_types] || attributes['custom_activity_types'] || nil
         end
 

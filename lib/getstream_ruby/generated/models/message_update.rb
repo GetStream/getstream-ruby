@@ -19,7 +19,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @old_text = attributes[:old_text] || attributes['old_text'] || ""
+          @old_text = attributes[:old_text] || attributes['old_text'] || nil
           @change_set = attributes[:change_set] || attributes['change_set'] || nil
         end
 

@@ -43,7 +43,7 @@ module GetStream
           @created_at = attributes[:created_at] || attributes['created_at']
           @shadow = attributes[:shadow] || attributes['shadow']
           @type = attributes[:type] || attributes['type'] || "user.unbanned"
-          @team = attributes[:team] || attributes['team'] || ""
+          @team = attributes[:team] || attributes['team'] || nil
           @user = attributes[:user] || attributes['user'] || nil
         end
 

@@ -26,7 +26,7 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @type = attributes[:type] || attributes['type']
-          @score = attributes[:score] || attributes['score'] || ""
+          @score = attributes[:score] || attributes['score'] || nil
           @defaults = attributes[:defaults] || attributes['defaults'] || nil
           @functions = attributes[:functions] || attributes['functions'] || nil
         end

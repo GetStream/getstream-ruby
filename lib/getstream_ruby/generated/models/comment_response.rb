@@ -100,10 +100,10 @@ module GetStream
           @mentioned_users = attributes[:mentioned_users] || attributes['mentioned_users']
           @own_reactions = attributes[:own_reactions] || attributes['own_reactions']
           @user = attributes[:user] || attributes['user']
-          @controversy_score = attributes[:controversy_score] || attributes['controversy_score'] || 0.0
+          @controversy_score = attributes[:controversy_score] || attributes['controversy_score'] || nil
           @deleted_at = attributes[:deleted_at] || attributes['deleted_at'] || nil
-          @parent_id = attributes[:parent_id] || attributes['parent_id'] || ""
-          @text = attributes[:text] || attributes['text'] || ""
+          @parent_id = attributes[:parent_id] || attributes['parent_id'] || nil
+          @text = attributes[:text] || attributes['text'] || nil
           @attachments = attributes[:attachments] || attributes['attachments'] || nil
           @latest_reactions = attributes[:latest_reactions] || attributes['latest_reactions'] || nil
           @custom = attributes[:custom] || attributes['custom'] || nil

@@ -47,7 +47,7 @@ module GetStream
           @feed = attributes[:feed] || attributes['feed']
           @user = attributes[:user] || attributes['user']
           @type = attributes[:type] || attributes['type'] || "feeds.feed.created"
-          @feed_visibility = attributes[:feed_visibility] || attributes['feed_visibility'] || ""
+          @feed_visibility = attributes[:feed_visibility] || attributes['feed_visibility'] || nil
           @received_at = attributes[:received_at] || attributes['received_at'] || nil
         end
 

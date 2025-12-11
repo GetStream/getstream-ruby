@@ -59,12 +59,12 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @expires_at = attributes[:expires_at] || attributes['expires_at'] || nil
-          @poll_id = attributes[:poll_id] || attributes['poll_id'] || ""
-          @restrict_replies = attributes[:restrict_replies] || attributes['restrict_replies'] || ""
-          @skip_enrich_url = attributes[:skip_enrich_url] || attributes['skip_enrich_url'] || false
-          @text = attributes[:text] || attributes['text'] || ""
-          @user_id = attributes[:user_id] || attributes['user_id'] || ""
-          @visibility = attributes[:visibility] || attributes['visibility'] || ""
+          @poll_id = attributes[:poll_id] || attributes['poll_id'] || nil
+          @restrict_replies = attributes[:restrict_replies] || attributes['restrict_replies'] || nil
+          @skip_enrich_url = attributes[:skip_enrich_url] || attributes['skip_enrich_url'] || nil
+          @text = attributes[:text] || attributes['text'] || nil
+          @user_id = attributes[:user_id] || attributes['user_id'] || nil
+          @visibility = attributes[:visibility] || attributes['visibility'] || nil
           @attachments = attributes[:attachments] || attributes['attachments'] || nil
           @collection_refs = attributes[:collection_refs] || attributes['collection_refs'] || nil
           @feeds = attributes[:feeds] || attributes['feeds'] || nil
