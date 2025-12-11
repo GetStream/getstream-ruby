@@ -830,9 +830,11 @@ RSpec.describe 'Feed Integration Tests', type: :integration do
     it 'uploads a file using multipart form data' do
       puts "\n📤 Testing file upload..."
 
-      # Get the path to the test file (relative to project root)
-      test_file_path = File.join(__dir__, '..', '..', 'test', 'upload-test.png')
-      expect(File.exist?(test_file_path)).to be true, "Test file not found: #{test_file_path}"
+      # Get the path to the test file (in the same directory as the spec)
+      test_file_path = File.join(__dir__, 'upload-test.png')
+      unless File.exist?(test_file_path)
+        raise "Test file not found: #{test_file_path}"
+      end
 
       # Create file upload request
       file_upload_request = GetStream::Generated::Models::FileUploadRequest.new(
