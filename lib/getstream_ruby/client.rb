@@ -87,12 +87,10 @@ module GetStreamRuby
     def request(method, path, data = {})
       # Add API key to query parameters
       query_params = { api_key: @configuration.api_key }
-      
+
       # Check if this is a file upload request that needs multipart
-      if multipart_request?(data)
-        return make_multipart_request(method, path, query_params, data)
-      end
-      
+      return make_multipart_request(method, path, query_params, data) if multipart_request?(data)
+
       response = @connection.send(method) do |req|
 
         req.url path, query_params
@@ -169,7 +167,7 @@ module GetStreamRuby
 
     def multipart_request?(data)
       return false if data.nil? || data == {}
-      
+
       # Check if data is a FileUploadRequest or ImageUploadRequest
       data.is_a?(GetStream::Generated::Models::FileUploadRequest) ||
         data.is_a?(GetStream::Generated::Models::ImageUploadRequest)
@@ -178,47 +176,45 @@ module GetStreamRuby
     def make_multipart_request(method, path, query_params, data)
       # Build multipart form data
       payload = {}
-      
+
       # Handle file field
-      if data.file.nil? || data.file.empty?
-        raise APIError, "file name must be provided"
-      end
-      
+      raise APIError, 'file name must be provided' if data.file.nil? || data.file.empty?
+
       file_path = data.file
-      unless File.exist?(file_path)
-        raise APIError, "file not found: #{file_path}"
-      end
-      
+      raise APIError, "file not found: #{file_path}" unless File.exist?(file_path)
+
       # Determine content type
       content_type = detect_content_type(file_path)
-      
+
       # Add file as multipart (FilePart handles file opening/closing)
       payload[:file] = Faraday::Multipart::FilePart.new(
         file_path,
         content_type,
-        File.basename(file_path)
+        File.basename(file_path),
       )
-      
+
       # Add user field if present (as JSON string)
       if data.user
         user_json = data.user.to_json
         payload[:user] = user_json
       end
-      
+
       # Add upload_sizes field for ImageUploadRequest (as JSON string)
       if data.is_a?(GetStream::Generated::Models::ImageUploadRequest) && data.upload_sizes
         upload_sizes_json = data.upload_sizes.to_json
         payload[:upload_sizes] = upload_sizes_json
       end
-      
+
       response = @connection.send(method) do |req|
+
         req.url path, query_params
         req.headers['Authorization'] = generate_auth_header
         req.headers['stream-auth-type'] = 'jwt'
         req.headers['X-Stream-Client'] = user_agent
         req.body = payload
+
       end
-      
+
       handle_response(response)
     rescue Faraday::Error => e
       raise APIError, "Request failed: #{e.message}"
