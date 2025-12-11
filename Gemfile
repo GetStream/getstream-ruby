@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-gemspec
+gemspec name: 'getstream-ruby'
 
 group :development, :test do
 
