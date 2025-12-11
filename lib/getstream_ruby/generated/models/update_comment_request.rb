@@ -12,27 +12,42 @@ module GetStream
         # @!attribute comment
         #   @return [String] Updated text content of the comment
         attr_accessor :comment
+        # @!attribute skip_enrich_url
+        #   @return [Boolean] Whether to skip URL enrichment for this comment
+        attr_accessor :skip_enrich_url
         # @!attribute skip_push
         #   @return [Boolean]
         attr_accessor :skip_push
+        # @!attribute user_id
+        #   @return [String]
+        attr_accessor :user_id
         # @!attribute custom
         #   @return [Object] Updated custom data for the comment
         attr_accessor :custom
+        # @!attribute user
+        #   @return [UserRequest]
+        attr_accessor :user
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @comment = attributes[:comment] || attributes['comment'] || ""
-          @skip_push = attributes[:skip_push] || attributes['skip_push'] || false
+          @comment = attributes[:comment] || attributes['comment'] || nil
+          @skip_enrich_url = attributes[:skip_enrich_url] || attributes['skip_enrich_url'] || nil
+          @skip_push = attributes[:skip_push] || attributes['skip_push'] || nil
+          @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @custom = attributes[:custom] || attributes['custom'] || nil
+          @user = attributes[:user] || attributes['user'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
             comment: 'comment',
+            skip_enrich_url: 'skip_enrich_url',
             skip_push: 'skip_push',
-            custom: 'custom'
+            user_id: 'user_id',
+            custom: 'custom',
+            user: 'user'
           }
         end
       end

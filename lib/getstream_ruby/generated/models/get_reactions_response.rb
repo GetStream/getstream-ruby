@@ -13,7 +13,7 @@ module GetStream
         #   @return [String]
         attr_accessor :duration
         # @!attribute reactions
-        #   @return [Array<Reaction>] List of reactions
+        #   @return [Array<ReactionResponse>] List of reactions
         attr_accessor :reactions
 
         # Initialize with attributes

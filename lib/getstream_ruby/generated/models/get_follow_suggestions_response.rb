@@ -13,21 +13,26 @@ module GetStream
         #   @return [String]
         attr_accessor :duration
         # @!attribute suggestions
-        #   @return [Array<FeedResponse>] List of suggested feeds to follow
+        #   @return [Array<FeedSuggestionResponse>] List of suggested feeds to follow
         attr_accessor :suggestions
+        # @!attribute algorithm_used
+        #   @return [String]
+        attr_accessor :algorithm_used
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @duration = attributes[:duration] || attributes['duration']
           @suggestions = attributes[:suggestions] || attributes['suggestions']
+          @algorithm_used = attributes[:algorithm_used] || attributes['algorithm_used'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
             duration: 'duration',
-            suggestions: 'suggestions'
+            suggestions: 'suggestions',
+            algorithm_used: 'algorithm_used'
           }
         end
       end

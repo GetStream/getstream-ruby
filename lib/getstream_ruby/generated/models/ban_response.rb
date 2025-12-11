@@ -36,8 +36,8 @@ module GetStream
           super(attributes)
           @created_at = attributes[:created_at] || attributes['created_at']
           @expires = attributes[:expires] || attributes['expires'] || nil
-          @reason = attributes[:reason] || attributes['reason'] || ""
-          @shadow = attributes[:shadow] || attributes['shadow'] || false
+          @reason = attributes[:reason] || attributes['reason'] || nil
+          @shadow = attributes[:shadow] || attributes['shadow'] || nil
           @banned_by = attributes[:banned_by] || attributes['banned_by'] || nil
           @channel = attributes[:channel] || attributes['channel'] || nil
           @user = attributes[:user] || attributes['user'] || nil

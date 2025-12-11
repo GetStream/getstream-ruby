@@ -56,14 +56,14 @@ module GetStream
           @custom = attributes[:custom] || attributes['custom']
           @user = attributes[:user] || attributes['user']
           @type = attributes[:type] || attributes['type'] || "user.messages.deleted"
-          @channel_id = attributes[:channel_id] || attributes['channel_id'] || ""
-          @channel_member_count = attributes[:channel_member_count] || attributes['channel_member_count'] || 0
-          @channel_message_count = attributes[:channel_message_count] || attributes['channel_message_count'] || 0
-          @channel_type = attributes[:channel_type] || attributes['channel_type'] || ""
-          @cid = attributes[:cid] || attributes['cid'] || ""
-          @hard_delete = attributes[:hard_delete] || attributes['hard_delete'] || false
+          @channel_id = attributes[:channel_id] || attributes['channel_id'] || nil
+          @channel_member_count = attributes[:channel_member_count] || attributes['channel_member_count'] || nil
+          @channel_message_count = attributes[:channel_message_count] || attributes['channel_message_count'] || nil
+          @channel_type = attributes[:channel_type] || attributes['channel_type'] || nil
+          @cid = attributes[:cid] || attributes['cid'] || nil
+          @hard_delete = attributes[:hard_delete] || attributes['hard_delete'] || nil
           @received_at = attributes[:received_at] || attributes['received_at'] || nil
-          @team = attributes[:team] || attributes['team'] || ""
+          @team = attributes[:team] || attributes['team'] || nil
           @channel_custom = attributes[:channel_custom] || attributes['channel_custom'] || nil
         end
 

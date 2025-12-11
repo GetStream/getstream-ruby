@@ -13,7 +13,7 @@ module GetStream
         #   @return [String] Duration of the request in milliseconds
         attr_accessor :duration
         # @!attribute members
-        #   @return [Array<ChannelMember>] List of found members
+        #   @return [Array<ChannelMemberResponse>] List of found members
         attr_accessor :members
 
         # Initialize with attributes

@@ -25,9 +25,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @message_id = attributes[:message_id] || attributes['message_id'] || ""
-          @thread_id = attributes[:thread_id] || attributes['thread_id'] || ""
-          @user_id = attributes[:user_id] || attributes['user_id'] || ""
+          @message_id = attributes[:message_id] || attributes['message_id'] || nil
+          @thread_id = attributes[:thread_id] || attributes['thread_id'] || nil
+          @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @user = attributes[:user] || attributes['user'] || nil
         end
 

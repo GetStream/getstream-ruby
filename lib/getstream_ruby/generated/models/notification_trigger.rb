@@ -15,19 +15,24 @@ module GetStream
         # @!attribute type
         #   @return [String] The type of notification (mention, reaction, comment, follow, etc.)
         attr_accessor :type
+        # @!attribute comment
+        #   @return [NotificationComment]
+        attr_accessor :comment
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @text = attributes[:text] || attributes['text']
           @type = attributes[:type] || attributes['type']
+          @comment = attributes[:comment] || attributes['comment'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
             text: 'text',
-            type: 'type'
+            type: 'type',
+            comment: 'comment'
           }
         end
       end

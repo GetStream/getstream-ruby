@@ -59,7 +59,7 @@ module GetStream
           @created_by_automod = attributes[:created_by_automod] || attributes['created_by_automod']
           @updated_at = attributes[:updated_at] || attributes['updated_at']
           @approved_at = attributes[:approved_at] || attributes['approved_at'] || nil
-          @reason = attributes[:reason] || attributes['reason'] || ""
+          @reason = attributes[:reason] || attributes['reason'] || nil
           @rejected_at = attributes[:rejected_at] || attributes['rejected_at'] || nil
           @reviewed_at = attributes[:reviewed_at] || attributes['reviewed_at'] || nil
           @custom = attributes[:custom] || attributes['custom'] || nil

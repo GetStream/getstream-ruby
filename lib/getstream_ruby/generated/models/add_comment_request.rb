@@ -12,18 +12,24 @@ module GetStream
         # @!attribute comment
         #   @return [String] Text content of the comment
         attr_accessor :comment
-        # @!attribute object_id
-        #   @return [String] ID of the object to comment on
-        attr_accessor :object_id
-        # @!attribute object_type
-        #   @return [String] Type of the object to comment on
-        attr_accessor :object_type
         # @!attribute create_notification_activity
         #   @return [Boolean] Whether to create a notification activity for this comment
         attr_accessor :create_notification_activity
+        # @!attribute id
+        #   @return [String] Optional custom ID for the comment (max 255 characters). If not provided, a UUID will be generated.
+        attr_accessor :id
+        # @!attribute object_id
+        #   @return [String] ID of the object to comment on. Required for root comments
+        attr_accessor :object_id
+        # @!attribute object_type
+        #   @return [String] Type of the object to comment on. Required for root comments
+        attr_accessor :object_type
         # @!attribute parent_id
-        #   @return [String] ID of parent comment for replies
+        #   @return [String] ID of parent comment for replies. When provided, object_id and object_type are automatically inherited from the parent comment.
         attr_accessor :parent_id
+        # @!attribute skip_enrich_url
+        #   @return [Boolean] Whether to skip URL enrichment for this comment
+        attr_accessor :skip_enrich_url
         # @!attribute skip_push
         #   @return [Boolean]
         attr_accessor :skip_push
@@ -46,13 +52,15 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @comment = attributes[:comment] || attributes['comment']
-          @object_id = attributes[:object_id] || attributes['object_id']
-          @object_type = attributes[:object_type] || attributes['object_type']
-          @create_notification_activity = attributes[:create_notification_activity] || attributes['create_notification_activity'] || false
-          @parent_id = attributes[:parent_id] || attributes['parent_id'] || ""
-          @skip_push = attributes[:skip_push] || attributes['skip_push'] || false
-          @user_id = attributes[:user_id] || attributes['user_id'] || ""
+          @comment = attributes[:comment] || attributes['comment'] || nil
+          @create_notification_activity = attributes[:create_notification_activity] || attributes['create_notification_activity'] || nil
+          @id = attributes[:id] || attributes['id'] || nil
+          @object_id = attributes[:object_id] || attributes['object_id'] || nil
+          @object_type = attributes[:object_type] || attributes['object_type'] || nil
+          @parent_id = attributes[:parent_id] || attributes['parent_id'] || nil
+          @skip_enrich_url = attributes[:skip_enrich_url] || attributes['skip_enrich_url'] || nil
+          @skip_push = attributes[:skip_push] || attributes['skip_push'] || nil
+          @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @attachments = attributes[:attachments] || attributes['attachments'] || nil
           @mentioned_user_ids = attributes[:mentioned_user_ids] || attributes['mentioned_user_ids'] || nil
           @custom = attributes[:custom] || attributes['custom'] || nil
@@ -63,10 +71,12 @@ module GetStream
         def self.json_field_mappings
           {
             comment: 'comment',
+            create_notification_activity: 'create_notification_activity',
+            id: 'id',
             object_id: 'object_id',
             object_type: 'object_type',
-            create_notification_activity: 'create_notification_activity',
             parent_id: 'parent_id',
+            skip_enrich_url: 'skip_enrich_url',
             skip_push: 'skip_push',
             user_id: 'user_id',
             attachments: 'attachments',

@@ -29,9 +29,9 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @operation = attributes[:operation] || attributes['operation']
-          @limit = attributes[:limit] || attributes['limit'] || 0
-          @next = attributes[:next] || attributes['next'] || ""
-          @prev = attributes[:prev] || attributes['prev'] || ""
+          @limit = attributes[:limit] || attributes['limit'] || nil
+          @next = attributes[:next] || attributes['next'] || nil
+          @prev = attributes[:prev] || attributes['prev'] || nil
           @members = attributes[:members] || attributes['members'] || nil
         end
 

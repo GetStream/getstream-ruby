@@ -30,7 +30,7 @@ module GetStream
           super(attributes)
           @created_at = attributes[:created_at] || attributes['created_at']
           @type = attributes[:type] || attributes['type'] || "user.flagged"
-          @target_user = attributes[:target_user] || attributes['target_user'] || ""
+          @target_user = attributes[:target_user] || attributes['target_user'] || nil
           @target_users = attributes[:target_users] || attributes['target_users'] || nil
           @user = attributes[:user] || attributes['user'] || nil
         end

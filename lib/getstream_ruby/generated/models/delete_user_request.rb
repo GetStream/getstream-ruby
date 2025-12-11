@@ -21,14 +21,18 @@ module GetStream
         # @!attribute mark_messages_deleted
         #   @return [Boolean]
         attr_accessor :mark_messages_deleted
+        # @!attribute reason
+        #   @return [String]
+        attr_accessor :reason
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @delete_conversation_channels = attributes[:delete_conversation_channels] || attributes['delete_conversation_channels'] || false
-          @delete_feeds_content = attributes[:delete_feeds_content] || attributes['delete_feeds_content'] || false
-          @hard_delete = attributes[:hard_delete] || attributes['hard_delete'] || false
-          @mark_messages_deleted = attributes[:mark_messages_deleted] || attributes['mark_messages_deleted'] || false
+          @delete_conversation_channels = attributes[:delete_conversation_channels] || attributes['delete_conversation_channels'] || nil
+          @delete_feeds_content = attributes[:delete_feeds_content] || attributes['delete_feeds_content'] || nil
+          @hard_delete = attributes[:hard_delete] || attributes['hard_delete'] || nil
+          @mark_messages_deleted = attributes[:mark_messages_deleted] || attributes['mark_messages_deleted'] || nil
+          @reason = attributes[:reason] || attributes['reason'] || nil
         end
 
         # Override field mappings for JSON serialization
@@ -37,7 +41,8 @@ module GetStream
             delete_conversation_channels: 'delete_conversation_channels',
             delete_feeds_content: 'delete_feeds_content',
             hard_delete: 'hard_delete',
-            mark_messages_deleted: 'mark_messages_deleted'
+            mark_messages_deleted: 'mark_messages_deleted',
+            reason: 'reason'
           }
         end
       end

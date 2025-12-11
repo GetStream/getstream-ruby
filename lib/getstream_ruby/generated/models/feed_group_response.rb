@@ -21,11 +21,14 @@ module GetStream
         # @!attribute default_visibility
         #   @return [String] Default visibility for activities
         attr_accessor :default_visibility
+        # @!attribute deleted_at
+        #   @return [DateTime]
+        attr_accessor :deleted_at
         # @!attribute activity_processors
         #   @return [Array<ActivityProcessorConfig>] Configuration for activity processors
         attr_accessor :activity_processors
         # @!attribute activity_selectors
-        #   @return [Array<ActivitySelectorConfig>] Configuration for activity selectors
+        #   @return [Array<ActivitySelectorConfigResponse>] Configuration for activity selectors
         attr_accessor :activity_selectors
         # @!attribute aggregation
         #   @return [AggregationConfig]
@@ -52,7 +55,8 @@ module GetStream
           @created_at = attributes[:created_at] || attributes['created_at']
           @id = attributes[:id] || attributes['id']
           @updated_at = attributes[:updated_at] || attributes['updated_at']
-          @default_visibility = attributes[:default_visibility] || attributes['default_visibility'] || ""
+          @default_visibility = attributes[:default_visibility] || attributes['default_visibility'] || nil
+          @deleted_at = attributes[:deleted_at] || attributes['deleted_at'] || nil
           @activity_processors = attributes[:activity_processors] || attributes['activity_processors'] || nil
           @activity_selectors = attributes[:activity_selectors] || attributes['activity_selectors'] || nil
           @aggregation = attributes[:aggregation] || attributes['aggregation'] || nil
@@ -70,6 +74,7 @@ module GetStream
             id: 'id',
             updated_at: 'updated_at',
             default_visibility: 'default_visibility',
+            deleted_at: 'deleted_at',
             activity_processors: 'activity_processors',
             activity_selectors: 'activity_selectors',
             aggregation: 'aggregation',

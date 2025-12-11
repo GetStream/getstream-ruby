@@ -18,6 +18,9 @@ module GetStream
         # @!attribute hide_history
         #   @return [Boolean] Set to `true` to hide channel's history when adding new members
         attr_accessor :hide_history
+        # @!attribute hide_history_before
+        #   @return [DateTime] If set, hides channel's history before this time when adding new members. Takes precedence over `hide_history` when both are provided. Must be in RFC3339 format (e.g., "2024-01-01T10:00:00Z") and in the past.
+        attr_accessor :hide_history_before
         # @!attribute reject_invite
         #   @return [Boolean] Set to `true` to reject the invite
         attr_accessor :reject_invite
@@ -27,26 +30,32 @@ module GetStream
         # @!attribute user_id
         #   @return [String]
         attr_accessor :user_id
+        # @!attribute add_filter_tags
+        #   @return [Array<String>] List of filter tags to add to the channel
+        attr_accessor :add_filter_tags
         # @!attribute add_members
-        #   @return [Array<ChannelMember>] List of user IDs to add to the channel
+        #   @return [Array<ChannelMemberRequest>] List of user IDs to add to the channel
         attr_accessor :add_members
         # @!attribute add_moderators
         #   @return [Array<String>] List of user IDs to make channel moderators
         attr_accessor :add_moderators
         # @!attribute assign_roles
-        #   @return [Array<ChannelMember>] List of channel member role assignments. If any specified user is not part of the channel, the request will fail
+        #   @return [Array<ChannelMemberRequest>] List of channel member role assignments. If any specified user is not part of the channel, the request will fail
         attr_accessor :assign_roles
         # @!attribute demote_moderators
         #   @return [Array<String>] List of user IDs to take away moderators status from
         attr_accessor :demote_moderators
         # @!attribute invites
-        #   @return [Array<ChannelMember>] List of user IDs to invite to the channel
+        #   @return [Array<ChannelMemberRequest>] List of user IDs to invite to the channel
         attr_accessor :invites
+        # @!attribute remove_filter_tags
+        #   @return [Array<String>] List of filter tags to remove from the channel
+        attr_accessor :remove_filter_tags
         # @!attribute remove_members
         #   @return [Array<String>] List of user IDs to remove from the channel
         attr_accessor :remove_members
         # @!attribute data
-        #   @return [ChannelInput]
+        #   @return [ChannelInputRequest]
         attr_accessor :data
         # @!attribute message
         #   @return [MessageRequest]
@@ -58,17 +67,20 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @accept_invite = attributes[:accept_invite] || attributes['accept_invite'] || false
-          @cooldown = attributes[:cooldown] || attributes['cooldown'] || 0
-          @hide_history = attributes[:hide_history] || attributes['hide_history'] || false
-          @reject_invite = attributes[:reject_invite] || attributes['reject_invite'] || false
-          @skip_push = attributes[:skip_push] || attributes['skip_push'] || false
-          @user_id = attributes[:user_id] || attributes['user_id'] || ""
+          @accept_invite = attributes[:accept_invite] || attributes['accept_invite'] || nil
+          @cooldown = attributes[:cooldown] || attributes['cooldown'] || nil
+          @hide_history = attributes[:hide_history] || attributes['hide_history'] || nil
+          @hide_history_before = attributes[:hide_history_before] || attributes['hide_history_before'] || nil
+          @reject_invite = attributes[:reject_invite] || attributes['reject_invite'] || nil
+          @skip_push = attributes[:skip_push] || attributes['skip_push'] || nil
+          @user_id = attributes[:user_id] || attributes['user_id'] || nil
+          @add_filter_tags = attributes[:add_filter_tags] || attributes['add_filter_tags'] || nil
           @add_members = attributes[:add_members] || attributes['add_members'] || nil
           @add_moderators = attributes[:add_moderators] || attributes['add_moderators'] || nil
           @assign_roles = attributes[:assign_roles] || attributes['assign_roles'] || nil
           @demote_moderators = attributes[:demote_moderators] || attributes['demote_moderators'] || nil
           @invites = attributes[:invites] || attributes['invites'] || nil
+          @remove_filter_tags = attributes[:remove_filter_tags] || attributes['remove_filter_tags'] || nil
           @remove_members = attributes[:remove_members] || attributes['remove_members'] || nil
           @data = attributes[:data] || attributes['data'] || nil
           @message = attributes[:message] || attributes['message'] || nil
@@ -81,14 +93,17 @@ module GetStream
             accept_invite: 'accept_invite',
             cooldown: 'cooldown',
             hide_history: 'hide_history',
+            hide_history_before: 'hide_history_before',
             reject_invite: 'reject_invite',
             skip_push: 'skip_push',
             user_id: 'user_id',
+            add_filter_tags: 'add_filter_tags',
             add_members: 'add_members',
             add_moderators: 'add_moderators',
             assign_roles: 'assign_roles',
             demote_moderators: 'demote_moderators',
             invites: 'invites',
+            remove_filter_tags: 'remove_filter_tags',
             remove_members: 'remove_members',
             data: 'data',
             message: 'message',

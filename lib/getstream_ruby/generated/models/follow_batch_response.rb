@@ -12,14 +12,18 @@ module GetStream
         # @!attribute duration
         #   @return [String]
         attr_accessor :duration
+        # @!attribute created
+        #   @return [Array<FollowResponse>] List of newly created follow relationships
+        attr_accessor :created
         # @!attribute follows
-        #   @return [Array<FollowResponse>] List of created follow relationships
+        #   @return [Array<FollowResponse>] List of current follow relationships
         attr_accessor :follows
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @duration = attributes[:duration] || attributes['duration']
+          @created = attributes[:created] || attributes['created']
           @follows = attributes[:follows] || attributes['follows']
         end
 
@@ -27,6 +31,7 @@ module GetStream
         def self.json_field_mappings
           {
             duration: 'duration',
+            created: 'created',
             follows: 'follows'
           }
         end

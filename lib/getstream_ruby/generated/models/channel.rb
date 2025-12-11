@@ -66,6 +66,9 @@ module GetStream
         # @!attribute active_live_locations
         #   @return [Array<SharedLocation>]
         attr_accessor :active_live_locations
+        # @!attribute filter_tags
+        #   @return [Array<String>]
+        attr_accessor :filter_tags
         # @!attribute invites
         #   @return [Array<ChannelMember>]
         attr_accessor :invites
@@ -100,16 +103,17 @@ module GetStream
           @type = attributes[:type] || attributes['type']
           @updated_at = attributes[:updated_at] || attributes['updated_at']
           @custom = attributes[:custom] || attributes['custom']
-          @auto_translation_enabled = attributes[:auto_translation_enabled] || attributes['auto_translation_enabled'] || false
-          @cooldown = attributes[:cooldown] || attributes['cooldown'] || 0
+          @auto_translation_enabled = attributes[:auto_translation_enabled] || attributes['auto_translation_enabled'] || nil
+          @cooldown = attributes[:cooldown] || attributes['cooldown'] || nil
           @deleted_at = attributes[:deleted_at] || attributes['deleted_at'] || nil
-          @last_campaigns = attributes[:last_campaigns] || attributes['last_campaigns'] || ""
+          @last_campaigns = attributes[:last_campaigns] || attributes['last_campaigns'] || nil
           @last_message_at = attributes[:last_message_at] || attributes['last_message_at'] || nil
-          @member_count = attributes[:member_count] || attributes['member_count'] || 0
-          @message_count = attributes[:message_count] || attributes['message_count'] || 0
+          @member_count = attributes[:member_count] || attributes['member_count'] || nil
+          @message_count = attributes[:message_count] || attributes['message_count'] || nil
           @message_count_updated_at = attributes[:message_count_updated_at] || attributes['message_count_updated_at'] || nil
-          @team = attributes[:team] || attributes['team'] || ""
+          @team = attributes[:team] || attributes['team'] || nil
           @active_live_locations = attributes[:active_live_locations] || attributes['active_live_locations'] || nil
+          @filter_tags = attributes[:filter_tags] || attributes['filter_tags'] || nil
           @invites = attributes[:invites] || attributes['invites'] || nil
           @members = attributes[:members] || attributes['members'] || nil
           @config = attributes[:config] || attributes['config'] || nil
@@ -141,6 +145,7 @@ module GetStream
             message_count_updated_at: 'message_count_updated_at',
             team: 'team',
             active_live_locations: 'active_live_locations',
+            filter_tags: 'filter_tags',
             invites: 'invites',
             members: 'members',
             config: 'config',

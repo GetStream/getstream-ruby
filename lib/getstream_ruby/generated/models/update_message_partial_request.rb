@@ -28,8 +28,8 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @skip_enrich_url = attributes[:skip_enrich_url] || attributes['skip_enrich_url'] || false
-          @user_id = attributes[:user_id] || attributes['user_id'] || ""
+          @skip_enrich_url = attributes[:skip_enrich_url] || attributes['skip_enrich_url'] || nil
+          @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @unset = attributes[:unset] || attributes['unset'] || nil
           @set = attributes[:set] || attributes['set'] || nil
           @user = attributes[:user] || attributes['user'] || nil

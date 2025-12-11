@@ -9,12 +9,12 @@ module GetStream
       class RankingConfig < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute score
-        #   @return [String] Scoring formula
-        attr_accessor :score
         # @!attribute type
-        #   @return [String] Type of ranking algorithm
+        #   @return [String] Type of ranking algorithm. Required. Must be one of: recency, expression, interest
         attr_accessor :type
+        # @!attribute score
+        #   @return [String] Scoring formula. Required when type is 'expression' or 'interest'
+        attr_accessor :score
         # @!attribute defaults
         #   @return [Object] Default values for ranking
         attr_accessor :defaults
@@ -25,8 +25,8 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @score = attributes[:score] || attributes['score'] || ""
-          @type = attributes[:type] || attributes['type'] || ""
+          @type = attributes[:type] || attributes['type']
+          @score = attributes[:score] || attributes['score'] || nil
           @defaults = attributes[:defaults] || attributes['defaults'] || nil
           @functions = attributes[:functions] || attributes['functions'] || nil
         end
@@ -34,8 +34,8 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            score: 'score',
             type: 'type',
+            score: 'score',
             defaults: 'defaults',
             functions: 'functions'
           }

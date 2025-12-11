@@ -28,11 +28,11 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @continue_closed_caption = attributes[:continue_closed_caption] || attributes['continue_closed_caption'] || false
-          @continue_hls = attributes[:continue_hls] || attributes['continue_hls'] || false
-          @continue_recording = attributes[:continue_recording] || attributes['continue_recording'] || false
-          @continue_rtmp_broadcasts = attributes[:continue_rtmp_broadcasts] || attributes['continue_rtmp_broadcasts'] || false
-          @continue_transcription = attributes[:continue_transcription] || attributes['continue_transcription'] || false
+          @continue_closed_caption = attributes[:continue_closed_caption] || attributes['continue_closed_caption'] || nil
+          @continue_hls = attributes[:continue_hls] || attributes['continue_hls'] || nil
+          @continue_recording = attributes[:continue_recording] || attributes['continue_recording'] || nil
+          @continue_rtmp_broadcasts = attributes[:continue_rtmp_broadcasts] || attributes['continue_rtmp_broadcasts'] || nil
+          @continue_transcription = attributes[:continue_transcription] || attributes['continue_transcription'] || nil
         end
 
         # Override field mappings for JSON serialization

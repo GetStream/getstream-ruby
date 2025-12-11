@@ -49,10 +49,10 @@ module GetStream
           @entity_creator_id = attributes[:entity_creator_id] || attributes['entity_creator_id']
           @entity_id = attributes[:entity_id] || attributes['entity_id']
           @entity_type = attributes[:entity_type] || attributes['entity_type']
-          @config_key = attributes[:config_key] || attributes['config_key'] || ""
-          @config_team = attributes[:config_team] || attributes['config_team'] || ""
-          @test_mode = attributes[:test_mode] || attributes['test_mode'] || false
-          @user_id = attributes[:user_id] || attributes['user_id'] || ""
+          @config_key = attributes[:config_key] || attributes['config_key'] || nil
+          @config_team = attributes[:config_team] || attributes['config_team'] || nil
+          @test_mode = attributes[:test_mode] || attributes['test_mode'] || nil
+          @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @config = attributes[:config] || attributes['config'] || nil
           @moderation_payload = attributes[:moderation_payload] || attributes['moderation_payload'] || nil
           @options = attributes[:options] || attributes['options'] || nil

@@ -82,7 +82,7 @@ module GetStream
           @custom = attributes[:custom] || attributes['custom']
           @deleted_at = attributes[:deleted_at] || attributes['deleted_at'] || nil
           @last_message_at = attributes[:last_message_at] || attributes['last_message_at'] || nil
-          @reply_count = attributes[:reply_count] || attributes['reply_count'] || 0
+          @reply_count = attributes[:reply_count] || attributes['reply_count'] || nil
           @read = attributes[:read] || attributes['read'] || nil
           @thread_participants = attributes[:thread_participants] || attributes['thread_participants'] || nil
           @channel = attributes[:channel] || attributes['channel'] || nil

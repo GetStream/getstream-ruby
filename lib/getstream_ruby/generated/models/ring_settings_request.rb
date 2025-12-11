@@ -24,7 +24,7 @@ module GetStream
           super(attributes)
           @auto_cancel_timeout_ms = attributes[:auto_cancel_timeout_ms] || attributes['auto_cancel_timeout_ms']
           @incoming_call_timeout_ms = attributes[:incoming_call_timeout_ms] || attributes['incoming_call_timeout_ms']
-          @missed_call_timeout_ms = attributes[:missed_call_timeout_ms] || attributes['missed_call_timeout_ms'] || 0
+          @missed_call_timeout_ms = attributes[:missed_call_timeout_ms] || attributes['missed_call_timeout_ms'] || nil
         end
 
         # Override field mappings for JSON serialization

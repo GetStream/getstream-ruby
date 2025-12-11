@@ -42,7 +42,7 @@ module GetStream
           @cid = attributes[:cid] || attributes['cid']
           @created_at = attributes[:created_at] || attributes['created_at']
           @type = attributes[:type] || attributes['type'] || "member.updated"
-          @team = attributes[:team] || attributes['team'] || ""
+          @team = attributes[:team] || attributes['team'] || nil
           @member = attributes[:member] || attributes['member'] || nil
           @user = attributes[:user] || attributes['user'] || nil
         end

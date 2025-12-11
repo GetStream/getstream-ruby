@@ -21,9 +21,9 @@ module GetStream
         # @!attribute default_visibility
         #   @return [String]
         attr_accessor :default_visibility
-        # @!attribute id
+        # @!attribute group_id
         #   @return [String]
-        attr_accessor :id
+        attr_accessor :group_id
         # @!attribute updated_at
         #   @return [DateTime]
         attr_accessor :updated_at
@@ -61,43 +61,43 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @aggregation_version = attributes[:aggregation_version] || attributes['AggregationVersion']
-          @app_pk = attributes[:app_pk] || attributes['AppPK']
+          @aggregation_version = attributes[:aggregation_version] || attributes['aggregation_version']
+          @app_pk = attributes[:app_pk] || attributes['app_pk']
           @created_at = attributes[:created_at] || attributes['created_at']
-          @default_visibility = attributes[:default_visibility] || attributes['DefaultVisibility']
-          @id = attributes[:id] || attributes['ID']
+          @default_visibility = attributes[:default_visibility] || attributes['default_visibility']
+          @group_id = attributes[:group_id] || attributes['group_id']
           @updated_at = attributes[:updated_at] || attributes['updated_at']
-          @activity_processors = attributes[:activity_processors] || attributes['ActivityProcessors']
-          @activity_selectors = attributes[:activity_selectors] || attributes['ActivitySelectors']
-          @custom = attributes[:custom] || attributes['Custom']
-          @deleted_at = attributes[:deleted_at] || attributes['DeletedAt'] || nil
-          @last_feed_get_at = attributes[:last_feed_get_at] || attributes['LastFeedGetAt'] || nil
-          @aggregation = attributes[:aggregation] || attributes['Aggregation'] || nil
-          @notification = attributes[:notification] || attributes['Notification'] || nil
-          @push_notification = attributes[:push_notification] || attributes['PushNotification'] || nil
-          @ranking = attributes[:ranking] || attributes['Ranking'] || nil
-          @stories = attributes[:stories] || attributes['Stories'] || nil
+          @activity_processors = attributes[:activity_processors] || attributes['activity_processors']
+          @activity_selectors = attributes[:activity_selectors] || attributes['activity_selectors']
+          @custom = attributes[:custom] || attributes['custom']
+          @deleted_at = attributes[:deleted_at] || attributes['deleted_at'] || nil
+          @last_feed_get_at = attributes[:last_feed_get_at] || attributes['last_feed_get_at'] || nil
+          @aggregation = attributes[:aggregation] || attributes['aggregation'] || nil
+          @notification = attributes[:notification] || attributes['notification'] || nil
+          @push_notification = attributes[:push_notification] || attributes['push_notification'] || nil
+          @ranking = attributes[:ranking] || attributes['ranking'] || nil
+          @stories = attributes[:stories] || attributes['stories'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            aggregation_version: 'AggregationVersion',
-            app_pk: 'AppPK',
+            aggregation_version: 'aggregation_version',
+            app_pk: 'app_pk',
             created_at: 'created_at',
-            default_visibility: 'DefaultVisibility',
-            id: 'ID',
+            default_visibility: 'default_visibility',
+            group_id: 'group_id',
             updated_at: 'updated_at',
-            activity_processors: 'ActivityProcessors',
-            activity_selectors: 'ActivitySelectors',
-            custom: 'Custom',
-            deleted_at: 'DeletedAt',
-            last_feed_get_at: 'LastFeedGetAt',
-            aggregation: 'Aggregation',
-            notification: 'Notification',
-            push_notification: 'PushNotification',
-            ranking: 'Ranking',
-            stories: 'Stories'
+            activity_processors: 'activity_processors',
+            activity_selectors: 'activity_selectors',
+            custom: 'custom',
+            deleted_at: 'deleted_at',
+            last_feed_get_at: 'last_feed_get_at',
+            aggregation: 'aggregation',
+            notification: 'notification',
+            push_notification: 'push_notification',
+            ranking: 'ranking',
+            stories: 'stories'
           }
         end
       end

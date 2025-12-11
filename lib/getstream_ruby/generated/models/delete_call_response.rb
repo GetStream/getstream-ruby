@@ -24,7 +24,7 @@ module GetStream
           super(attributes)
           @duration = attributes[:duration] || attributes['duration']
           @call = attributes[:call] || attributes['call']
-          @task_id = attributes[:task_id] || attributes['task_id'] || ""
+          @task_id = attributes[:task_id] || attributes['task_id'] || nil
         end
 
         # Override field mappings for JSON serialization

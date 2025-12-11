@@ -12,18 +12,12 @@ module GetStream
         # @!attribute hide
         #   @return [Boolean] Whether to hide this activity
         attr_accessor :hide
-        # @!attribute mute_user
-        #   @return [Boolean] Whether to mute the user who created this activity
-        attr_accessor :mute_user
-        # @!attribute reason
-        #   @return [String] Reason for the feedback (optional)
-        attr_accessor :reason
-        # @!attribute report
-        #   @return [Boolean] Whether to report this activity
-        attr_accessor :report
         # @!attribute show_less
         #   @return [Boolean] Whether to show less content like this
         attr_accessor :show_less
+        # @!attribute show_more
+        #   @return [Boolean] Whether to show more content like this
+        attr_accessor :show_more
         # @!attribute user_id
         #   @return [String]
         attr_accessor :user_id
@@ -34,12 +28,10 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @hide = attributes[:hide] || attributes['hide'] || false
-          @mute_user = attributes[:mute_user] || attributes['mute_user'] || false
-          @reason = attributes[:reason] || attributes['reason'] || ""
-          @report = attributes[:report] || attributes['report'] || false
-          @show_less = attributes[:show_less] || attributes['show_less'] || false
-          @user_id = attributes[:user_id] || attributes['user_id'] || ""
+          @hide = attributes[:hide] || attributes['hide'] || nil
+          @show_less = attributes[:show_less] || attributes['show_less'] || nil
+          @show_more = attributes[:show_more] || attributes['show_more'] || nil
+          @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @user = attributes[:user] || attributes['user'] || nil
         end
 
@@ -47,10 +39,8 @@ module GetStream
         def self.json_field_mappings
           {
             hide: 'hide',
-            mute_user: 'mute_user',
-            reason: 'reason',
-            report: 'report',
             show_less: 'show_less',
+            show_more: 'show_more',
             user_id: 'user_id',
             user: 'user'
           }

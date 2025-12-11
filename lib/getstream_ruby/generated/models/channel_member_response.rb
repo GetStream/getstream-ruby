@@ -9,20 +9,115 @@ module GetStream
       class ChannelMemberResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute banned
+        #   @return [Boolean] Whether member is banned this channel or not
+        attr_accessor :banned
         # @!attribute channel_role
-        #   @return [String]
+        #   @return [String] Role of the member in the channel
         attr_accessor :channel_role
+        # @!attribute created_at
+        #   @return [DateTime] Date/time of creation
+        attr_accessor :created_at
+        # @!attribute notifications_muted
+        #   @return [Boolean]
+        attr_accessor :notifications_muted
+        # @!attribute shadow_banned
+        #   @return [Boolean] Whether member is shadow banned in this channel or not
+        attr_accessor :shadow_banned
+        # @!attribute updated_at
+        #   @return [DateTime] Date/time of the last update
+        attr_accessor :updated_at
+        # @!attribute custom
+        #   @return [Object]
+        attr_accessor :custom
+        # @!attribute archived_at
+        #   @return [DateTime]
+        attr_accessor :archived_at
+        # @!attribute ban_expires
+        #   @return [DateTime] Expiration date of the ban
+        attr_accessor :ban_expires
+        # @!attribute deleted_at
+        #   @return [DateTime]
+        attr_accessor :deleted_at
+        # @!attribute invite_accepted_at
+        #   @return [DateTime] Date when invite was accepted
+        attr_accessor :invite_accepted_at
+        # @!attribute invite_rejected_at
+        #   @return [DateTime] Date when invite was rejected
+        attr_accessor :invite_rejected_at
+        # @!attribute invited
+        #   @return [Boolean] Whether member was invited or not
+        attr_accessor :invited
+        # @!attribute is_moderator
+        #   @return [Boolean] Whether member is channel moderator or not
+        attr_accessor :is_moderator
+        # @!attribute pinned_at
+        #   @return [DateTime]
+        attr_accessor :pinned_at
+        # @!attribute role
+        #   @return [String] Permission level of the member in the channel (DEPRECATED: use channel_role instead)
+        attr_accessor :role
+        # @!attribute status
+        #   @return [String]
+        attr_accessor :status
+        # @!attribute user_id
+        #   @return [String]
+        attr_accessor :user_id
+        # @!attribute deleted_messages
+        #   @return [Array<String>]
+        attr_accessor :deleted_messages
+        # @!attribute user
+        #   @return [UserResponse]
+        attr_accessor :user
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @banned = attributes[:banned] || attributes['banned']
           @channel_role = attributes[:channel_role] || attributes['channel_role']
+          @created_at = attributes[:created_at] || attributes['created_at']
+          @notifications_muted = attributes[:notifications_muted] || attributes['notifications_muted']
+          @shadow_banned = attributes[:shadow_banned] || attributes['shadow_banned']
+          @updated_at = attributes[:updated_at] || attributes['updated_at']
+          @custom = attributes[:custom] || attributes['custom']
+          @archived_at = attributes[:archived_at] || attributes['archived_at'] || nil
+          @ban_expires = attributes[:ban_expires] || attributes['ban_expires'] || nil
+          @deleted_at = attributes[:deleted_at] || attributes['deleted_at'] || nil
+          @invite_accepted_at = attributes[:invite_accepted_at] || attributes['invite_accepted_at'] || nil
+          @invite_rejected_at = attributes[:invite_rejected_at] || attributes['invite_rejected_at'] || nil
+          @invited = attributes[:invited] || attributes['invited'] || nil
+          @is_moderator = attributes[:is_moderator] || attributes['is_moderator'] || nil
+          @pinned_at = attributes[:pinned_at] || attributes['pinned_at'] || nil
+          @role = attributes[:role] || attributes['role'] || nil
+          @status = attributes[:status] || attributes['status'] || nil
+          @user_id = attributes[:user_id] || attributes['user_id'] || nil
+          @deleted_messages = attributes[:deleted_messages] || attributes['deleted_messages'] || nil
+          @user = attributes[:user] || attributes['user'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            channel_role: 'channel_role'
+            banned: 'banned',
+            channel_role: 'channel_role',
+            created_at: 'created_at',
+            notifications_muted: 'notifications_muted',
+            shadow_banned: 'shadow_banned',
+            updated_at: 'updated_at',
+            custom: 'custom',
+            archived_at: 'archived_at',
+            ban_expires: 'ban_expires',
+            deleted_at: 'deleted_at',
+            invite_accepted_at: 'invite_accepted_at',
+            invite_rejected_at: 'invite_rejected_at',
+            invited: 'invited',
+            is_moderator: 'is_moderator',
+            pinned_at: 'pinned_at',
+            role: 'role',
+            status: 'status',
+            user_id: 'user_id',
+            deleted_messages: 'deleted_messages',
+            user: 'user'
           }
         end
       end

@@ -43,7 +43,7 @@ module GetStream
           @cid = attributes[:cid] || attributes['cid']
           @created_at = attributes[:created_at] || attributes['created_at']
           @type = attributes[:type] || attributes['type'] || "channel.deleted"
-          @team = attributes[:team] || attributes['team'] || ""
+          @team = attributes[:team] || attributes['team'] || nil
           @channel = attributes[:channel] || attributes['channel'] || nil
         end
 

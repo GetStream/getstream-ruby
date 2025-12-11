@@ -19,7 +19,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @unbanned_by_id = attributes[:unbanned_by_id] || attributes['unbanned_by_id'] || ""
+          @unbanned_by_id = attributes[:unbanned_by_id] || attributes['unbanned_by_id'] || nil
           @unbanned_by = attributes[:unbanned_by] || attributes['unbanned_by'] || nil
         end
 

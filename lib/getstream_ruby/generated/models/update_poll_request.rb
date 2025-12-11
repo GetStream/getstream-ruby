@@ -42,9 +42,9 @@ module GetStream
         # @!attribute options
         #   @return [Array<PollOptionRequest>] Poll options
         attr_accessor :options
-        # @!attribute custom
+        # @!attribute Custom
         #   @return [Object]
-        attr_accessor :custom
+        attr_accessor :Custom
         # @!attribute user
         #   @return [UserRequest]
         attr_accessor :user
@@ -54,16 +54,16 @@ module GetStream
           super(attributes)
           @id = attributes[:id] || attributes['id']
           @name = attributes[:name] || attributes['name']
-          @allow_answers = attributes[:allow_answers] || attributes['allow_answers'] || false
-          @allow_user_suggested_options = attributes[:allow_user_suggested_options] || attributes['allow_user_suggested_options'] || false
-          @description = attributes[:description] || attributes['description'] || ""
-          @enforce_unique_vote = attributes[:enforce_unique_vote] || attributes['enforce_unique_vote'] || false
-          @is_closed = attributes[:is_closed] || attributes['is_closed'] || false
-          @max_votes_allowed = attributes[:max_votes_allowed] || attributes['max_votes_allowed'] || 0
-          @user_id = attributes[:user_id] || attributes['user_id'] || ""
-          @voting_visibility = attributes[:voting_visibility] || attributes['voting_visibility'] || ""
+          @allow_answers = attributes[:allow_answers] || attributes['allow_answers'] || nil
+          @allow_user_suggested_options = attributes[:allow_user_suggested_options] || attributes['allow_user_suggested_options'] || nil
+          @description = attributes[:description] || attributes['description'] || nil
+          @enforce_unique_vote = attributes[:enforce_unique_vote] || attributes['enforce_unique_vote'] || nil
+          @is_closed = attributes[:is_closed] || attributes['is_closed'] || nil
+          @max_votes_allowed = attributes[:max_votes_allowed] || attributes['max_votes_allowed'] || nil
+          @user_id = attributes[:user_id] || attributes['user_id'] || nil
+          @voting_visibility = attributes[:voting_visibility] || attributes['voting_visibility'] || nil
           @options = attributes[:options] || attributes['options'] || nil
-          @custom = attributes[:custom] || attributes['Custom'] || nil
+          @Custom = attributes[:Custom] || attributes['Custom'] || nil
           @user = attributes[:user] || attributes['user'] || nil
         end
 
@@ -81,7 +81,7 @@ module GetStream
             user_id: 'user_id',
             voting_visibility: 'voting_visibility',
             options: 'options',
-            custom: 'Custom',
+            Custom: 'Custom',
             user: 'user'
           }
         end

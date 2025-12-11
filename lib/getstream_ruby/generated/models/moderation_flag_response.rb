@@ -65,9 +65,9 @@ module GetStream
           @updated_at = attributes[:updated_at] || attributes['updated_at']
           @user_id = attributes[:user_id] || attributes['user_id']
           @result = attributes[:result] || attributes['result']
-          @entity_creator_id = attributes[:entity_creator_id] || attributes['entity_creator_id'] || ""
-          @reason = attributes[:reason] || attributes['reason'] || ""
-          @review_queue_item_id = attributes[:review_queue_item_id] || attributes['review_queue_item_id'] || ""
+          @entity_creator_id = attributes[:entity_creator_id] || attributes['entity_creator_id'] || nil
+          @reason = attributes[:reason] || attributes['reason'] || nil
+          @review_queue_item_id = attributes[:review_queue_item_id] || attributes['review_queue_item_id'] || nil
           @labels = attributes[:labels] || attributes['labels'] || nil
           @custom = attributes[:custom] || attributes['custom'] || nil
           @moderation_payload = attributes[:moderation_payload] || attributes['moderation_payload'] || nil

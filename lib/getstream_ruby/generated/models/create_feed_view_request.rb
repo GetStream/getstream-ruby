@@ -12,9 +12,6 @@ module GetStream
         # @!attribute id
         #   @return [String] Unique identifier for the feed view
         attr_accessor :id
-        # @!attribute activity_processors
-        #   @return [Array<ActivityProcessorConfig>] Configured activity Processors
-        attr_accessor :activity_processors
         # @!attribute activity_selectors
         #   @return [Array<ActivitySelectorConfig>] Configuration for selecting activities
         attr_accessor :activity_selectors
@@ -29,7 +26,6 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @id = attributes[:id] || attributes['id']
-          @activity_processors = attributes[:activity_processors] || attributes['activity_processors'] || nil
           @activity_selectors = attributes[:activity_selectors] || attributes['activity_selectors'] || nil
           @aggregation = attributes[:aggregation] || attributes['aggregation'] || nil
           @ranking = attributes[:ranking] || attributes['ranking'] || nil
@@ -39,7 +35,6 @@ module GetStream
         def self.json_field_mappings
           {
             id: 'id',
-            activity_processors: 'activity_processors',
             activity_selectors: 'activity_selectors',
             aggregation: 'aggregation',
             ranking: 'ranking'

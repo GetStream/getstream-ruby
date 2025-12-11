@@ -73,20 +73,20 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @html = attributes[:html] || attributes['html'] || ""
-          @id = attributes[:id] || attributes['id'] || ""
-          @mml = attributes[:mml] || attributes['mml'] || ""
-          @parent_id = attributes[:parent_id] || attributes['parent_id'] || ""
+          @html = attributes[:html] || attributes['html'] || nil
+          @id = attributes[:id] || attributes['id'] || nil
+          @mml = attributes[:mml] || attributes['mml'] || nil
+          @parent_id = attributes[:parent_id] || attributes['parent_id'] || nil
           @pin_expires = attributes[:pin_expires] || attributes['pin_expires'] || nil
-          @pinned = attributes[:pinned] || attributes['pinned'] || false
+          @pinned = attributes[:pinned] || attributes['pinned'] || nil
           @pinned_at = attributes[:pinned_at] || attributes['pinned_at'] || nil
-          @poll_id = attributes[:poll_id] || attributes['poll_id'] || ""
-          @quoted_message_id = attributes[:quoted_message_id] || attributes['quoted_message_id'] || ""
-          @show_in_channel = attributes[:show_in_channel] || attributes['show_in_channel'] || false
-          @silent = attributes[:silent] || attributes['silent'] || false
-          @text = attributes[:text] || attributes['text'] || ""
-          @type = attributes[:type] || attributes['type'] || ""
-          @user_id = attributes[:user_id] || attributes['user_id'] || ""
+          @poll_id = attributes[:poll_id] || attributes['poll_id'] || nil
+          @quoted_message_id = attributes[:quoted_message_id] || attributes['quoted_message_id'] || nil
+          @show_in_channel = attributes[:show_in_channel] || attributes['show_in_channel'] || nil
+          @silent = attributes[:silent] || attributes['silent'] || nil
+          @text = attributes[:text] || attributes['text'] || nil
+          @type = attributes[:type] || attributes['type'] || nil
+          @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @attachments = attributes[:attachments] || attributes['attachments'] || nil
           @mentioned_users = attributes[:mentioned_users] || attributes['mentioned_users'] || nil
           @restricted_visibility = attributes[:restricted_visibility] || attributes['restricted_visibility'] || nil

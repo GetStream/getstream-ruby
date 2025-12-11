@@ -41,7 +41,7 @@ module GetStream
           @fid = attributes[:fid] || attributes['fid']
           @custom = attributes[:custom] || attributes['custom']
           @type = attributes[:type] || attributes['type'] || "feeds.feed_group.changed"
-          @feed_visibility = attributes[:feed_visibility] || attributes['feed_visibility'] || ""
+          @feed_visibility = attributes[:feed_visibility] || attributes['feed_visibility'] || nil
           @received_at = attributes[:received_at] || attributes['received_at'] || nil
           @feed_group = attributes[:feed_group] || attributes['feed_group'] || nil
           @user = attributes[:user] || attributes['user'] || nil

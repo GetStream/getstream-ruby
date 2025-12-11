@@ -31,9 +31,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @description = attributes[:description] || attributes['description'] || ""
-          @name = attributes[:name] || attributes['name'] || ""
-          @visibility = attributes[:visibility] || attributes['visibility'] || ""
+          @description = attributes[:description] || attributes['description'] || nil
+          @name = attributes[:name] || attributes['name'] || nil
+          @visibility = attributes[:visibility] || attributes['visibility'] || nil
           @filter_tags = attributes[:filter_tags] || attributes['filter_tags'] || nil
           @members = attributes[:members] || attributes['members'] || nil
           @custom = attributes[:custom] || attributes['custom'] || nil

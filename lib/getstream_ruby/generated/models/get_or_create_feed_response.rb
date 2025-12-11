@@ -30,9 +30,6 @@ module GetStream
         # @!attribute members
         #   @return [Array<FeedMemberResponse>]
         attr_accessor :members
-        # @!attribute own_capabilities
-        #   @return [Array<FeedOwnCapability>]
-        attr_accessor :own_capabilities
         # @!attribute pinned_activities
         #   @return [Array<ActivityPinResponse>]
         attr_accessor :pinned_activities
@@ -45,9 +42,6 @@ module GetStream
         # @!attribute prev
         #   @return [String]
         attr_accessor :prev
-        # @!attribute own_follows
-        #   @return [Array<FollowResponse>]
-        attr_accessor :own_follows
         # @!attribute followers_pagination
         #   @return [PagerResponse]
         attr_accessor :followers_pagination
@@ -60,9 +54,6 @@ module GetStream
         # @!attribute notification_status
         #   @return [NotificationStatusResponse]
         attr_accessor :notification_status
-        # @!attribute own_membership
-        #   @return [FeedMemberResponse]
-        attr_accessor :own_membership
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -74,17 +65,14 @@ module GetStream
           @followers = attributes[:followers] || attributes['followers']
           @following = attributes[:following] || attributes['following']
           @members = attributes[:members] || attributes['members']
-          @own_capabilities = attributes[:own_capabilities] || attributes['own_capabilities']
           @pinned_activities = attributes[:pinned_activities] || attributes['pinned_activities']
           @feed = attributes[:feed] || attributes['feed']
-          @next = attributes[:next] || attributes['next'] || ""
-          @prev = attributes[:prev] || attributes['prev'] || ""
-          @own_follows = attributes[:own_follows] || attributes['own_follows'] || nil
+          @next = attributes[:next] || attributes['next'] || nil
+          @prev = attributes[:prev] || attributes['prev'] || nil
           @followers_pagination = attributes[:followers_pagination] || attributes['followers_pagination'] || nil
           @following_pagination = attributes[:following_pagination] || attributes['following_pagination'] || nil
           @member_pagination = attributes[:member_pagination] || attributes['member_pagination'] || nil
           @notification_status = attributes[:notification_status] || attributes['notification_status'] || nil
-          @own_membership = attributes[:own_membership] || attributes['own_membership'] || nil
         end
 
         # Override field mappings for JSON serialization
@@ -97,17 +85,14 @@ module GetStream
             followers: 'followers',
             following: 'following',
             members: 'members',
-            own_capabilities: 'own_capabilities',
             pinned_activities: 'pinned_activities',
             feed: 'feed',
             next: 'next',
             prev: 'prev',
-            own_follows: 'own_follows',
             followers_pagination: 'followers_pagination',
             following_pagination: 'following_pagination',
             member_pagination: 'member_pagination',
-            notification_status: 'notification_status',
-            own_membership: 'own_membership'
+            notification_status: 'notification_status'
           }
         end
       end

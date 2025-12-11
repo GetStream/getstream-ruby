@@ -45,14 +45,14 @@ module GetStream
           super(attributes)
           @development = attributes[:development] || attributes['development']
           @enabled = attributes[:enabled] || attributes['enabled']
-          @auth_key = attributes[:auth_key] || attributes['auth_key'] || ""
-          @auth_type = attributes[:auth_type] || attributes['auth_type'] || ""
-          @bundle_id = attributes[:bundle_id] || attributes['bundle_id'] || ""
-          @host = attributes[:host] || attributes['host'] || ""
-          @key_id = attributes[:key_id] || attributes['key_id'] || ""
-          @notification_template = attributes[:notification_template] || attributes['notification_template'] || ""
-          @p12_cert = attributes[:p12_cert] || attributes['p12_cert'] || ""
-          @team_id = attributes[:team_id] || attributes['team_id'] || ""
+          @auth_key = attributes[:auth_key] || attributes['auth_key'] || nil
+          @auth_type = attributes[:auth_type] || attributes['auth_type'] || nil
+          @bundle_id = attributes[:bundle_id] || attributes['bundle_id'] || nil
+          @host = attributes[:host] || attributes['host'] || nil
+          @key_id = attributes[:key_id] || attributes['key_id'] || nil
+          @notification_template = attributes[:notification_template] || attributes['notification_template'] || nil
+          @p12_cert = attributes[:p12_cert] || attributes['p12_cert'] || nil
+          @team_id = attributes[:team_id] || attributes['team_id'] || nil
         end
 
         # Override field mappings for JSON serialization

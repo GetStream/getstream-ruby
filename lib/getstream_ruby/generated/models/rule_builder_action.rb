@@ -22,7 +22,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @type = attributes[:type] || attributes['type'] || ""
+          @type = attributes[:type] || attributes['type']
           @ban_options = attributes[:ban_options] || attributes['ban_options'] || nil
           @flag_user_options = attributes[:flag_user_options] || attributes['flag_user_options'] || nil
         end

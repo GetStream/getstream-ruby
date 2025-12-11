@@ -9,6 +9,9 @@ module GetStream
       class FeedResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute activity_count
+        #   @return [Integer]
+        attr_accessor :activity_count
         # @!attribute created_at
         #   @return [DateTime] When the feed was created
         attr_accessor :created_at
@@ -54,16 +57,23 @@ module GetStream
         # @!attribute filter_tags
         #   @return [Array<String>] Tags used for filtering feeds
         attr_accessor :filter_tags
+        # @!attribute own_capabilities
+        #   @return [Array<FeedOwnCapability>] Capabilities the current user has for this feed
+        attr_accessor :own_capabilities
         # @!attribute own_follows
         #   @return [Array<FollowResponse>] Follow relationships where the current user's feeds are following this feed
         attr_accessor :own_follows
         # @!attribute custom
         #   @return [Object] Custom data for the feed
         attr_accessor :custom
+        # @!attribute own_membership
+        #   @return [FeedMemberResponse]
+        attr_accessor :own_membership
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @activity_count = attributes[:activity_count] || attributes['activity_count']
           @created_at = attributes[:created_at] || attributes['created_at']
           @description = attributes[:description] || attributes['description']
           @feed = attributes[:feed] || attributes['feed']
@@ -77,15 +87,18 @@ module GetStream
           @updated_at = attributes[:updated_at] || attributes['updated_at']
           @created_by = attributes[:created_by] || attributes['created_by']
           @deleted_at = attributes[:deleted_at] || attributes['deleted_at'] || nil
-          @visibility = attributes[:visibility] || attributes['visibility'] || ""
+          @visibility = attributes[:visibility] || attributes['visibility'] || nil
           @filter_tags = attributes[:filter_tags] || attributes['filter_tags'] || nil
+          @own_capabilities = attributes[:own_capabilities] || attributes['own_capabilities'] || nil
           @own_follows = attributes[:own_follows] || attributes['own_follows'] || nil
           @custom = attributes[:custom] || attributes['custom'] || nil
+          @own_membership = attributes[:own_membership] || attributes['own_membership'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            activity_count: 'activity_count',
             created_at: 'created_at',
             description: 'description',
             feed: 'feed',
@@ -101,8 +114,10 @@ module GetStream
             deleted_at: 'deleted_at',
             visibility: 'visibility',
             filter_tags: 'filter_tags',
+            own_capabilities: 'own_capabilities',
             own_follows: 'own_follows',
-            custom: 'custom'
+            custom: 'custom',
+            own_membership: 'own_membership'
           }
         end
       end

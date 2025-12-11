@@ -15,6 +15,9 @@ module GetStream
         # @!attribute comment_reaction
         #   @return [String] Push notification preference for reactions on comments
         attr_accessor :comment_reaction
+        # @!attribute comment_reply
+        #   @return [String] Push notification preference for replies to comments
+        attr_accessor :comment_reply
         # @!attribute follow
         #   @return [String] Push notification preference for new followers
         attr_accessor :follow
@@ -31,11 +34,12 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @comment = attributes[:comment] || attributes['comment'] || ""
-          @comment_reaction = attributes[:comment_reaction] || attributes['comment_reaction'] || ""
-          @follow = attributes[:follow] || attributes['follow'] || ""
-          @mention = attributes[:mention] || attributes['mention'] || ""
-          @reaction = attributes[:reaction] || attributes['reaction'] || ""
+          @comment = attributes[:comment] || attributes['comment'] || nil
+          @comment_reaction = attributes[:comment_reaction] || attributes['comment_reaction'] || nil
+          @comment_reply = attributes[:comment_reply] || attributes['comment_reply'] || nil
+          @follow = attributes[:follow] || attributes['follow'] || nil
+          @mention = attributes[:mention] || attributes['mention'] || nil
+          @reaction = attributes[:reaction] || attributes['reaction'] || nil
           @custom_activity_types = attributes[:custom_activity_types] || attributes['custom_activity_types'] || nil
         end
 
@@ -44,6 +48,7 @@ module GetStream
           {
             comment: 'comment',
             comment_reaction: 'comment_reaction',
+            comment_reply: 'comment_reply',
             follow: 'follow',
             mention: 'mention',
             reaction: 'reaction',

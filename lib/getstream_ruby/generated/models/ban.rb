@@ -37,7 +37,7 @@ module GetStream
           @created_at = attributes[:created_at] || attributes['created_at']
           @shadow = attributes[:shadow] || attributes['shadow']
           @expires = attributes[:expires] || attributes['expires'] || nil
-          @reason = attributes[:reason] || attributes['reason'] || ""
+          @reason = attributes[:reason] || attributes['reason'] || nil
           @channel = attributes[:channel] || attributes['channel'] || nil
           @created_by = attributes[:created_by] || attributes['created_by'] || nil
           @target = attributes[:target] || attributes['target'] || nil

@@ -18,15 +18,24 @@ module GetStream
         # @!attribute created_at
         #   @return [DateTime] When the activity was created
         attr_accessor :created_at
+        # @!attribute hidden
+        #   @return [Boolean] If this activity is hidden by this user (using activity feedback)
+        attr_accessor :hidden
         # @!attribute id
         #   @return [String] Unique identifier for the activity
         attr_accessor :id
         # @!attribute popularity
         #   @return [Integer] Popularity score of the activity
         attr_accessor :popularity
+        # @!attribute preview
+        #   @return [Boolean] If this activity is obfuscated for this user. For premium content where you want to show a preview
+        attr_accessor :preview
         # @!attribute reaction_count
         #   @return [Integer] Number of reactions to the activity
         attr_accessor :reaction_count
+        # @!attribute restrict_replies
+        #   @return [String] Controls who can reply to this activity. Values: everyone, people_i_follow, nobody
+        attr_accessor :restrict_replies
         # @!attribute score
         #   @return [Float] Ranking score for this activity
         attr_accessor :score
@@ -46,7 +55,7 @@ module GetStream
         #   @return [Array<Attachment>] Media attachments for the activity
         attr_accessor :attachments
         # @!attribute comments
-        #   @return [Array<CommentResponse>] Comments on this activity
+        #   @return [Array<CommentResponse>] Latest 5 comments of this activity (comment replies excluded)
         attr_accessor :comments
         # @!attribute feeds
         #   @return [Array<String>] List of feed IDs containing this activity
@@ -69,6 +78,9 @@ module GetStream
         # @!attribute own_reactions
         #   @return [Array<FeedsReactionResponse>] Current user's reactions to this activity
         attr_accessor :own_reactions
+        # @!attribute collections
+        #   @return [Hash<String, EnrichedCollectionResponse>] Enriched collection data referenced by this activity
+        attr_accessor :collections
         # @!attribute custom
         #   @return [Object] Custom data for the activity
         attr_accessor :custom
@@ -90,9 +102,12 @@ module GetStream
         # @!attribute expires_at
         #   @return [DateTime] When the activity will expire
         attr_accessor :expires_at
-        # @!attribute hidden
-        #   @return [Boolean] If this activity is hidden for this user. For premium content where you want to show a preview
-        attr_accessor :hidden
+        # @!attribute is_watched
+        #   @return [Boolean]
+        attr_accessor :is_watched
+        # @!attribute moderation_action
+        #   @return [String]
+        attr_accessor :moderation_action
         # @!attribute text
         #   @return [String] Text content of the activity
         attr_accessor :text
@@ -124,9 +139,12 @@ module GetStream
           @bookmark_count = attributes[:bookmark_count] || attributes['bookmark_count']
           @comment_count = attributes[:comment_count] || attributes['comment_count']
           @created_at = attributes[:created_at] || attributes['created_at']
+          @hidden = attributes[:hidden] || attributes['hidden']
           @id = attributes[:id] || attributes['id']
           @popularity = attributes[:popularity] || attributes['popularity']
+          @preview = attributes[:preview] || attributes['preview']
           @reaction_count = attributes[:reaction_count] || attributes['reaction_count']
+          @restrict_replies = attributes[:restrict_replies] || attributes['restrict_replies']
           @score = attributes[:score] || attributes['score']
           @share_count = attributes[:share_count] || attributes['share_count']
           @type = attributes[:type] || attributes['type']
@@ -141,6 +159,7 @@ module GetStream
           @mentioned_users = attributes[:mentioned_users] || attributes['mentioned_users']
           @own_bookmarks = attributes[:own_bookmarks] || attributes['own_bookmarks']
           @own_reactions = attributes[:own_reactions] || attributes['own_reactions']
+          @collections = attributes[:collections] || attributes['collections']
           @custom = attributes[:custom] || attributes['custom']
           @reaction_groups = attributes[:reaction_groups] || attributes['reaction_groups']
           @search_data = attributes[:search_data] || attributes['search_data']
@@ -148,9 +167,10 @@ module GetStream
           @deleted_at = attributes[:deleted_at] || attributes['deleted_at'] || nil
           @edited_at = attributes[:edited_at] || attributes['edited_at'] || nil
           @expires_at = attributes[:expires_at] || attributes['expires_at'] || nil
-          @hidden = attributes[:hidden] || attributes['hidden'] || false
-          @text = attributes[:text] || attributes['text'] || ""
-          @visibility_tag = attributes[:visibility_tag] || attributes['visibility_tag'] || ""
+          @is_watched = attributes[:is_watched] || attributes['is_watched'] || nil
+          @moderation_action = attributes[:moderation_action] || attributes['moderation_action'] || nil
+          @text = attributes[:text] || attributes['text'] || nil
+          @visibility_tag = attributes[:visibility_tag] || attributes['visibility_tag'] || nil
           @current_feed = attributes[:current_feed] || attributes['current_feed'] || nil
           @location = attributes[:location] || attributes['location'] || nil
           @moderation = attributes[:moderation] || attributes['moderation'] || nil
@@ -165,9 +185,12 @@ module GetStream
             bookmark_count: 'bookmark_count',
             comment_count: 'comment_count',
             created_at: 'created_at',
+            hidden: 'hidden',
             id: 'id',
             popularity: 'popularity',
+            preview: 'preview',
             reaction_count: 'reaction_count',
+            restrict_replies: 'restrict_replies',
             score: 'score',
             share_count: 'share_count',
             type: 'type',
@@ -182,6 +205,7 @@ module GetStream
             mentioned_users: 'mentioned_users',
             own_bookmarks: 'own_bookmarks',
             own_reactions: 'own_reactions',
+            collections: 'collections',
             custom: 'custom',
             reaction_groups: 'reaction_groups',
             search_data: 'search_data',
@@ -189,7 +213,8 @@ module GetStream
             deleted_at: 'deleted_at',
             edited_at: 'edited_at',
             expires_at: 'expires_at',
-            hidden: 'hidden',
+            is_watched: 'is_watched',
+            moderation_action: 'moderation_action',
             text: 'text',
             visibility_tag: 'visibility_tag',
             current_feed: 'current_feed',

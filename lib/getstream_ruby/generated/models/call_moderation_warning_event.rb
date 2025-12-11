@@ -5,7 +5,7 @@
 module GetStream
   module Generated
     module Models
-      # 
+      # This event is sent when a moderation warning is issued to a user
       class CallModerationWarningEvent < GetStream::BaseModel
 
         # Model attributes
@@ -16,16 +16,16 @@ module GetStream
         #   @return [DateTime]
         attr_accessor :created_at
         # @!attribute message
-        #   @return [String]
+        #   @return [String] The warning message
         attr_accessor :message
         # @!attribute user_id
-        #   @return [String]
+        #   @return [String] The user ID who is receiving the warning
         attr_accessor :user_id
         # @!attribute custom
-        #   @return [Object]
+        #   @return [Object] Custom data associated with the moderation action
         attr_accessor :custom
         # @!attribute type
-        #   @return [String]
+        #   @return [String] The type of event: "call.moderation_warning" in this case
         attr_accessor :type
 
         # Initialize with attributes

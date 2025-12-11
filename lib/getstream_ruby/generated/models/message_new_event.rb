@@ -49,7 +49,7 @@ module GetStream
           @created_at = attributes[:created_at] || attributes['created_at']
           @watcher_count = attributes[:watcher_count] || attributes['watcher_count']
           @type = attributes[:type] || attributes['type'] || "notification.thread_message_new"
-          @team = attributes[:team] || attributes['team'] || ""
+          @team = attributes[:team] || attributes['team'] || nil
           @thread_participants = attributes[:thread_participants] || attributes['thread_participants'] || nil
           @message = attributes[:message] || attributes['message'] || nil
           @user = attributes[:user] || attributes['user'] || nil

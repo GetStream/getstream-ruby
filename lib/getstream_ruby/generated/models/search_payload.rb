@@ -12,6 +12,9 @@ module GetStream
         # @!attribute filter_conditions
         #   @return [Object] Channel filter conditions
         attr_accessor :filter_conditions
+        # @!attribute force_default_search
+        #   @return [Boolean]
+        attr_accessor :force_default_search
         # @!attribute limit
         #   @return [Integer] Number of messages to return
         attr_accessor :limit
@@ -38,10 +41,11 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @filter_conditions = attributes[:filter_conditions] || attributes['filter_conditions']
-          @limit = attributes[:limit] || attributes['limit'] || 0
-          @next = attributes[:next] || attributes['next'] || ""
-          @offset = attributes[:offset] || attributes['offset'] || 0
-          @query = attributes[:query] || attributes['query'] || ""
+          @force_default_search = attributes[:force_default_search] || attributes['force_default_search'] || nil
+          @limit = attributes[:limit] || attributes['limit'] || nil
+          @next = attributes[:next] || attributes['next'] || nil
+          @offset = attributes[:offset] || attributes['offset'] || nil
+          @query = attributes[:query] || attributes['query'] || nil
           @sort = attributes[:sort] || attributes['sort'] || nil
           @message_filter_conditions = attributes[:message_filter_conditions] || attributes['message_filter_conditions'] || nil
           @message_options = attributes[:message_options] || attributes['message_options'] || nil
@@ -51,6 +55,7 @@ module GetStream
         def self.json_field_mappings
           {
             filter_conditions: 'filter_conditions',
+            force_default_search: 'force_default_search',
             limit: 'limit',
             next: 'next',
             offset: 'offset',

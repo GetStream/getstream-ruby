@@ -52,8 +52,8 @@ module GetStream
           @created_at = attributes[:created_at] || attributes['created_at']
           @type = attributes[:type] || attributes['type'] || "message.read"
           @channel_last_message_at = attributes[:channel_last_message_at] || attributes['channel_last_message_at'] || nil
-          @last_read_message_id = attributes[:last_read_message_id] || attributes['last_read_message_id'] || ""
-          @team = attributes[:team] || attributes['team'] || ""
+          @last_read_message_id = attributes[:last_read_message_id] || attributes['last_read_message_id'] || nil
+          @team = attributes[:team] || attributes['team'] || nil
           @channel = attributes[:channel] || attributes['channel'] || nil
           @thread = attributes[:thread] || attributes['thread'] || nil
           @user = attributes[:user] || attributes['user'] || nil

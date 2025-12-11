@@ -80,9 +80,9 @@ module GetStream
           @unread_messages = attributes[:unread_messages] || attributes['unread_messages']
           @unread_threads = attributes[:unread_threads] || attributes['unread_threads']
           @type = attributes[:type] || attributes['type'] || "notification.mark_unread"
-          @last_read_message_id = attributes[:last_read_message_id] || attributes['last_read_message_id'] || ""
-          @team = attributes[:team] || attributes['team'] || ""
-          @thread_id = attributes[:thread_id] || attributes['thread_id'] || ""
+          @last_read_message_id = attributes[:last_read_message_id] || attributes['last_read_message_id'] || nil
+          @team = attributes[:team] || attributes['team'] || nil
+          @thread_id = attributes[:thread_id] || attributes['thread_id'] || nil
           @channel = attributes[:channel] || attributes['channel'] || nil
           @user = attributes[:user] || attributes['user'] || nil
         end

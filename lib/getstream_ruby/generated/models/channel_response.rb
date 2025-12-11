@@ -75,8 +75,11 @@ module GetStream
         # @!attribute truncated_at
         #   @return [DateTime] Date of the latest truncation of the channel
         attr_accessor :truncated_at
+        # @!attribute filter_tags
+        #   @return [Array<String>] List of filter tags associated with the channel
+        attr_accessor :filter_tags
         # @!attribute members
-        #   @return [Array<ChannelMember>] List of channel members (max 100)
+        #   @return [Array<ChannelMemberResponse>] List of channel members (max 100)
         attr_accessor :members
         # @!attribute own_capabilities
         #   @return [Array<ChannelOwnCapability>] List of channel capabilities of authenticated user
@@ -102,20 +105,21 @@ module GetStream
           @type = attributes[:type] || attributes['type']
           @updated_at = attributes[:updated_at] || attributes['updated_at']
           @custom = attributes[:custom] || attributes['custom']
-          @auto_translation_enabled = attributes[:auto_translation_enabled] || attributes['auto_translation_enabled'] || false
-          @auto_translation_language = attributes[:auto_translation_language] || attributes['auto_translation_language'] || ""
-          @blocked = attributes[:blocked] || attributes['blocked'] || false
-          @cooldown = attributes[:cooldown] || attributes['cooldown'] || 0
+          @auto_translation_enabled = attributes[:auto_translation_enabled] || attributes['auto_translation_enabled'] || nil
+          @auto_translation_language = attributes[:auto_translation_language] || attributes['auto_translation_language'] || nil
+          @blocked = attributes[:blocked] || attributes['blocked'] || nil
+          @cooldown = attributes[:cooldown] || attributes['cooldown'] || nil
           @deleted_at = attributes[:deleted_at] || attributes['deleted_at'] || nil
-          @hidden = attributes[:hidden] || attributes['hidden'] || false
+          @hidden = attributes[:hidden] || attributes['hidden'] || nil
           @hide_messages_before = attributes[:hide_messages_before] || attributes['hide_messages_before'] || nil
           @last_message_at = attributes[:last_message_at] || attributes['last_message_at'] || nil
-          @member_count = attributes[:member_count] || attributes['member_count'] || 0
-          @message_count = attributes[:message_count] || attributes['message_count'] || 0
+          @member_count = attributes[:member_count] || attributes['member_count'] || nil
+          @message_count = attributes[:message_count] || attributes['message_count'] || nil
           @mute_expires_at = attributes[:mute_expires_at] || attributes['mute_expires_at'] || nil
-          @muted = attributes[:muted] || attributes['muted'] || false
-          @team = attributes[:team] || attributes['team'] || ""
+          @muted = attributes[:muted] || attributes['muted'] || nil
+          @team = attributes[:team] || attributes['team'] || nil
           @truncated_at = attributes[:truncated_at] || attributes['truncated_at'] || nil
+          @filter_tags = attributes[:filter_tags] || attributes['filter_tags'] || nil
           @members = attributes[:members] || attributes['members'] || nil
           @own_capabilities = attributes[:own_capabilities] || attributes['own_capabilities'] || nil
           @config = attributes[:config] || attributes['config'] || nil
@@ -148,6 +152,7 @@ module GetStream
             muted: 'muted',
             team: 'team',
             truncated_at: 'truncated_at',
+            filter_tags: 'filter_tags',
             members: 'members',
             own_capabilities: 'own_capabilities',
             config: 'config',

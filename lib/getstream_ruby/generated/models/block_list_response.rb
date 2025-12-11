@@ -9,6 +9,12 @@ module GetStream
       class BlockListResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute is_leet_check_enabled
+        #   @return [Boolean]
+        attr_accessor :is_leet_check_enabled
+        # @!attribute is_plural_check_enabled
+        #   @return [Boolean]
+        attr_accessor :is_plural_check_enabled
         # @!attribute name
         #   @return [String] Block list name
         attr_accessor :name
@@ -34,18 +40,22 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @is_leet_check_enabled = attributes[:is_leet_check_enabled] || attributes['is_leet_check_enabled']
+          @is_plural_check_enabled = attributes[:is_plural_check_enabled] || attributes['is_plural_check_enabled']
           @name = attributes[:name] || attributes['name']
           @type = attributes[:type] || attributes['type']
           @words = attributes[:words] || attributes['words']
           @created_at = attributes[:created_at] || attributes['created_at'] || nil
-          @id = attributes[:id] || attributes['id'] || ""
-          @team = attributes[:team] || attributes['team'] || ""
+          @id = attributes[:id] || attributes['id'] || nil
+          @team = attributes[:team] || attributes['team'] || nil
           @updated_at = attributes[:updated_at] || attributes['updated_at'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            is_leet_check_enabled: 'is_leet_check_enabled',
+            is_plural_check_enabled: 'is_plural_check_enabled',
             name: 'name',
             type: 'type',
             words: 'words',

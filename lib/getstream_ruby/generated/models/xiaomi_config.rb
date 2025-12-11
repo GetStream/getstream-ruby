@@ -9,9 +9,9 @@ module GetStream
       class XiaomiConfig < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute disabled
+        # @!attribute Disabled
         #   @return [Boolean]
-        attr_accessor :disabled
+        attr_accessor :Disabled
         # @!attribute package_name
         #   @return [String]
         attr_accessor :package_name
@@ -22,15 +22,15 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @disabled = attributes[:disabled] || attributes['Disabled'] || false
-          @package_name = attributes[:package_name] || attributes['package_name'] || ""
-          @secret = attributes[:secret] || attributes['secret'] || ""
+          @Disabled = attributes[:Disabled] || attributes['Disabled'] || nil
+          @package_name = attributes[:package_name] || attributes['package_name'] || nil
+          @secret = attributes[:secret] || attributes['secret'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            disabled: 'Disabled',
+            Disabled: 'Disabled',
             package_name: 'package_name',
             secret: 'secret'
           }

@@ -18,6 +18,9 @@ module GetStream
         # @!attribute content_count_rule_params
         #   @return [ContentCountRuleParameters]
         attr_accessor :content_count_rule_params
+        # @!attribute content_flag_count_rule_params
+        #   @return [FlagCountRuleParameters]
+        attr_accessor :content_flag_count_rule_params
         # @!attribute image_content_params
         #   @return [ImageContentParameters]
         attr_accessor :image_content_params
@@ -36,6 +39,9 @@ module GetStream
         # @!attribute user_custom_property_params
         #   @return [UserCustomPropertyParameters]
         attr_accessor :user_custom_property_params
+        # @!attribute user_flag_count_rule_params
+        #   @return [FlagCountRuleParameters]
+        attr_accessor :user_flag_count_rule_params
         # @!attribute user_rule_params
         #   @return [UserRuleParameters]
         attr_accessor :user_rule_params
@@ -49,15 +55,17 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @confidence = attributes[:confidence] || attributes['confidence'] || 0.0
-          @type = attributes[:type] || attributes['type'] || ""
+          @confidence = attributes[:confidence] || attributes['confidence'] || nil
+          @type = attributes[:type] || attributes['type'] || nil
           @content_count_rule_params = attributes[:content_count_rule_params] || attributes['content_count_rule_params'] || nil
+          @content_flag_count_rule_params = attributes[:content_flag_count_rule_params] || attributes['content_flag_count_rule_params'] || nil
           @image_content_params = attributes[:image_content_params] || attributes['image_content_params'] || nil
           @image_rule_params = attributes[:image_rule_params] || attributes['image_rule_params'] || nil
           @text_content_params = attributes[:text_content_params] || attributes['text_content_params'] || nil
           @text_rule_params = attributes[:text_rule_params] || attributes['text_rule_params'] || nil
           @user_created_within_params = attributes[:user_created_within_params] || attributes['user_created_within_params'] || nil
           @user_custom_property_params = attributes[:user_custom_property_params] || attributes['user_custom_property_params'] || nil
+          @user_flag_count_rule_params = attributes[:user_flag_count_rule_params] || attributes['user_flag_count_rule_params'] || nil
           @user_rule_params = attributes[:user_rule_params] || attributes['user_rule_params'] || nil
           @video_content_params = attributes[:video_content_params] || attributes['video_content_params'] || nil
           @video_rule_params = attributes[:video_rule_params] || attributes['video_rule_params'] || nil
@@ -69,12 +77,14 @@ module GetStream
             confidence: 'confidence',
             type: 'type',
             content_count_rule_params: 'content_count_rule_params',
+            content_flag_count_rule_params: 'content_flag_count_rule_params',
             image_content_params: 'image_content_params',
             image_rule_params: 'image_rule_params',
             text_content_params: 'text_content_params',
             text_rule_params: 'text_rule_params',
             user_created_within_params: 'user_created_within_params',
             user_custom_property_params: 'user_custom_property_params',
+            user_flag_count_rule_params: 'user_flag_count_rule_params',
             user_rule_params: 'user_rule_params',
             video_content_params: 'video_content_params',
             video_rule_params: 'video_rule_params'

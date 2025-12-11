@@ -27,6 +27,9 @@ module GetStream
         # @!attribute custom_events
         #   @return [Boolean]
         attr_accessor :custom_events
+        # @!attribute delivery_events
+        #   @return [Boolean]
+        attr_accessor :delivery_events
         # @!attribute duration
         #   @return [String] Duration of the request in milliseconds
         attr_accessor :duration
@@ -127,6 +130,7 @@ module GetStream
           @count_messages = attributes[:count_messages] || attributes['count_messages']
           @created_at = attributes[:created_at] || attributes['created_at']
           @custom_events = attributes[:custom_events] || attributes['custom_events']
+          @delivery_events = attributes[:delivery_events] || attributes['delivery_events']
           @duration = attributes[:duration] || attributes['duration']
           @mark_messages_pending = attributes[:mark_messages_pending] || attributes['mark_messages_pending']
           @max_message_length = attributes[:max_message_length] || attributes['max_message_length']
@@ -150,10 +154,10 @@ module GetStream
           @commands = attributes[:commands] || attributes['commands']
           @permissions = attributes[:permissions] || attributes['permissions']
           @grants = attributes[:grants] || attributes['grants']
-          @blocklist = attributes[:blocklist] || attributes['blocklist'] || ""
-          @blocklist_behavior = attributes[:blocklist_behavior] || attributes['blocklist_behavior'] || ""
-          @partition_size = attributes[:partition_size] || attributes['partition_size'] || 0
-          @partition_ttl = attributes[:partition_ttl] || attributes['partition_ttl'] || ""
+          @blocklist = attributes[:blocklist] || attributes['blocklist'] || nil
+          @blocklist_behavior = attributes[:blocklist_behavior] || attributes['blocklist_behavior'] || nil
+          @partition_size = attributes[:partition_size] || attributes['partition_size'] || nil
+          @partition_ttl = attributes[:partition_ttl] || attributes['partition_ttl'] || nil
           @allowed_flag_reasons = attributes[:allowed_flag_reasons] || attributes['allowed_flag_reasons'] || nil
           @blocklists = attributes[:blocklists] || attributes['blocklists'] || nil
           @automod_thresholds = attributes[:automod_thresholds] || attributes['automod_thresholds'] || nil
@@ -168,6 +172,7 @@ module GetStream
             count_messages: 'count_messages',
             created_at: 'created_at',
             custom_events: 'custom_events',
+            delivery_events: 'delivery_events',
             duration: 'duration',
             mark_messages_pending: 'mark_messages_pending',
             max_message_length: 'max_message_length',

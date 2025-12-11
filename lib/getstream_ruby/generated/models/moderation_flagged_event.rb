@@ -5,49 +5,44 @@
 module GetStream
   module Generated
     module Models
-      # This event is sent when content is flagged for moderation
+      # 
       class ModerationFlaggedEvent < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute content_type
-        #   @return [String] The type of content that was flagged
-        attr_accessor :content_type
         # @!attribute created_at
         #   @return [DateTime]
         attr_accessor :created_at
-        # @!attribute object_id
-        #   @return [String] The ID of the flagged content
-        attr_accessor :object_id
-        # @!attribute custom
-        #   @return [Object]
-        attr_accessor :custom
         # @!attribute type
         #   @return [String]
         attr_accessor :type
-        # @!attribute received_at
-        #   @return [DateTime]
-        attr_accessor :received_at
+        # @!attribute item
+        #   @return [String]
+        attr_accessor :item
+        # @!attribute object_id
+        #   @return [String]
+        attr_accessor :object_id
+        # @!attribute user
+        #   @return [User]
+        attr_accessor :user
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @content_type = attributes[:content_type] || attributes['content_type']
           @created_at = attributes[:created_at] || attributes['created_at']
-          @object_id = attributes[:object_id] || attributes['object_id']
-          @custom = attributes[:custom] || attributes['custom']
           @type = attributes[:type] || attributes['type'] || "moderation.flagged"
-          @received_at = attributes[:received_at] || attributes['received_at'] || nil
+          @item = attributes[:item] || attributes['item'] || nil
+          @object_id = attributes[:object_id] || attributes['object_id'] || nil
+          @user = attributes[:user] || attributes['user'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            content_type: 'content_type',
             created_at: 'created_at',
-            object_id: 'object_id',
-            custom: 'custom',
             type: 'type',
-            received_at: 'received_at'
+            item: 'item',
+            object_id: 'object_id',
+            user: 'user'
           }
         end
       end

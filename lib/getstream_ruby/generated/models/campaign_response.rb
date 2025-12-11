@@ -30,6 +30,9 @@ module GetStream
         # @!attribute sender_mode
         #   @return [String]
         attr_accessor :sender_mode
+        # @!attribute sender_visibility
+        #   @return [String]
+        attr_accessor :sender_visibility
         # @!attribute show_channels
         #   @return [Boolean]
         attr_accessor :show_channels
@@ -86,6 +89,7 @@ module GetStream
           @name = attributes[:name] || attributes['name']
           @sender_id = attributes[:sender_id] || attributes['sender_id']
           @sender_mode = attributes[:sender_mode] || attributes['sender_mode']
+          @sender_visibility = attributes[:sender_visibility] || attributes['sender_visibility']
           @show_channels = attributes[:show_channels] || attributes['show_channels']
           @skip_push = attributes[:skip_push] || attributes['skip_push']
           @skip_webhook = attributes[:skip_webhook] || attributes['skip_webhook']
@@ -113,6 +117,7 @@ module GetStream
             name: 'name',
             sender_id: 'sender_id',
             sender_mode: 'sender_mode',
+            sender_visibility: 'sender_visibility',
             show_channels: 'show_channels',
             skip_push: 'skip_push',
             skip_webhook: 'skip_webhook',

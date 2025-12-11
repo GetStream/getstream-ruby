@@ -47,7 +47,7 @@ module GetStream
           @message = attributes[:message] || attributes['message']
           @reaction = attributes[:reaction] || attributes['reaction']
           @type = attributes[:type] || attributes['type'] || "reaction.updated"
-          @team = attributes[:team] || attributes['team'] || ""
+          @team = attributes[:team] || attributes['team'] || nil
           @user = attributes[:user] || attributes['user'] || nil
         end
 

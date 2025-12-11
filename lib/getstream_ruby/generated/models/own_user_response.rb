@@ -91,7 +91,7 @@ module GetStream
         #   @return [PrivacySettingsResponse]
         attr_accessor :privacy_settings
         # @!attribute push_preferences
-        #   @return [PushPreferences]
+        #   @return [PushPreferencesResponse]
         attr_accessor :push_preferences
         # @!attribute teams_role
         #   @return [Hash<String, String>]
@@ -120,12 +120,12 @@ module GetStream
           @mutes = attributes[:mutes] || attributes['mutes']
           @teams = attributes[:teams] || attributes['teams']
           @custom = attributes[:custom] || attributes['custom']
-          @avg_response_time = attributes[:avg_response_time] || attributes['avg_response_time'] || 0
+          @avg_response_time = attributes[:avg_response_time] || attributes['avg_response_time'] || nil
           @deactivated_at = attributes[:deactivated_at] || attributes['deactivated_at'] || nil
           @deleted_at = attributes[:deleted_at] || attributes['deleted_at'] || nil
-          @image = attributes[:image] || attributes['image'] || ""
+          @image = attributes[:image] || attributes['image'] || nil
           @last_active = attributes[:last_active] || attributes['last_active'] || nil
-          @name = attributes[:name] || attributes['name'] || ""
+          @name = attributes[:name] || attributes['name'] || nil
           @revoke_tokens_issued_before = attributes[:revoke_tokens_issued_before] || attributes['revoke_tokens_issued_before'] || nil
           @blocked_user_ids = attributes[:blocked_user_ids] || attributes['blocked_user_ids'] || nil
           @latest_hidden_channels = attributes[:latest_hidden_channels] || attributes['latest_hidden_channels'] || nil

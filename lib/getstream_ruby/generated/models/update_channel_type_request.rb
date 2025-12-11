@@ -33,6 +33,9 @@ module GetStream
         # @!attribute custom_events
         #   @return [Boolean]
         attr_accessor :custom_events
+        # @!attribute delivery_events
+        #   @return [Boolean]
+        attr_accessor :delivery_events
         # @!attribute mark_messages_pending
         #   @return [Boolean]
         attr_accessor :mark_messages_pending
@@ -112,29 +115,30 @@ module GetStream
           @automod = attributes[:automod] || attributes['automod']
           @automod_behavior = attributes[:automod_behavior] || attributes['automod_behavior']
           @max_message_length = attributes[:max_message_length] || attributes['max_message_length']
-          @blocklist = attributes[:blocklist] || attributes['blocklist'] || ""
-          @blocklist_behavior = attributes[:blocklist_behavior] || attributes['blocklist_behavior'] || ""
-          @connect_events = attributes[:connect_events] || attributes['connect_events'] || false
-          @count_messages = attributes[:count_messages] || attributes['count_messages'] || false
-          @custom_events = attributes[:custom_events] || attributes['custom_events'] || false
-          @mark_messages_pending = attributes[:mark_messages_pending] || attributes['mark_messages_pending'] || false
-          @mutes = attributes[:mutes] || attributes['mutes'] || false
-          @partition_size = attributes[:partition_size] || attributes['partition_size'] || 0
-          @partition_ttl = attributes[:partition_ttl] || attributes['partition_ttl'] || ""
-          @polls = attributes[:polls] || attributes['polls'] || false
-          @push_notifications = attributes[:push_notifications] || attributes['push_notifications'] || false
-          @quotes = attributes[:quotes] || attributes['quotes'] || false
-          @reactions = attributes[:reactions] || attributes['reactions'] || false
-          @read_events = attributes[:read_events] || attributes['read_events'] || false
-          @reminders = attributes[:reminders] || attributes['reminders'] || false
-          @replies = attributes[:replies] || attributes['replies'] || false
-          @search = attributes[:search] || attributes['search'] || false
-          @shared_locations = attributes[:shared_locations] || attributes['shared_locations'] || false
-          @skip_last_msg_update_for_system_msgs = attributes[:skip_last_msg_update_for_system_msgs] || attributes['skip_last_msg_update_for_system_msgs'] || false
-          @typing_events = attributes[:typing_events] || attributes['typing_events'] || false
-          @uploads = attributes[:uploads] || attributes['uploads'] || false
-          @url_enrichment = attributes[:url_enrichment] || attributes['url_enrichment'] || false
-          @user_message_reminders = attributes[:user_message_reminders] || attributes['user_message_reminders'] || false
+          @blocklist = attributes[:blocklist] || attributes['blocklist'] || nil
+          @blocklist_behavior = attributes[:blocklist_behavior] || attributes['blocklist_behavior'] || nil
+          @connect_events = attributes[:connect_events] || attributes['connect_events'] || nil
+          @count_messages = attributes[:count_messages] || attributes['count_messages'] || nil
+          @custom_events = attributes[:custom_events] || attributes['custom_events'] || nil
+          @delivery_events = attributes[:delivery_events] || attributes['delivery_events'] || nil
+          @mark_messages_pending = attributes[:mark_messages_pending] || attributes['mark_messages_pending'] || nil
+          @mutes = attributes[:mutes] || attributes['mutes'] || nil
+          @partition_size = attributes[:partition_size] || attributes['partition_size'] || nil
+          @partition_ttl = attributes[:partition_ttl] || attributes['partition_ttl'] || nil
+          @polls = attributes[:polls] || attributes['polls'] || nil
+          @push_notifications = attributes[:push_notifications] || attributes['push_notifications'] || nil
+          @quotes = attributes[:quotes] || attributes['quotes'] || nil
+          @reactions = attributes[:reactions] || attributes['reactions'] || nil
+          @read_events = attributes[:read_events] || attributes['read_events'] || nil
+          @reminders = attributes[:reminders] || attributes['reminders'] || nil
+          @replies = attributes[:replies] || attributes['replies'] || nil
+          @search = attributes[:search] || attributes['search'] || nil
+          @shared_locations = attributes[:shared_locations] || attributes['shared_locations'] || nil
+          @skip_last_msg_update_for_system_msgs = attributes[:skip_last_msg_update_for_system_msgs] || attributes['skip_last_msg_update_for_system_msgs'] || nil
+          @typing_events = attributes[:typing_events] || attributes['typing_events'] || nil
+          @uploads = attributes[:uploads] || attributes['uploads'] || nil
+          @url_enrichment = attributes[:url_enrichment] || attributes['url_enrichment'] || nil
+          @user_message_reminders = attributes[:user_message_reminders] || attributes['user_message_reminders'] || nil
           @allowed_flag_reasons = attributes[:allowed_flag_reasons] || attributes['allowed_flag_reasons'] || nil
           @blocklists = attributes[:blocklists] || attributes['blocklists'] || nil
           @commands = attributes[:commands] || attributes['commands'] || nil
@@ -154,6 +158,7 @@ module GetStream
             connect_events: 'connect_events',
             count_messages: 'count_messages',
             custom_events: 'custom_events',
+            delivery_events: 'delivery_events',
             mark_messages_pending: 'mark_messages_pending',
             mutes: 'mutes',
             partition_size: 'partition_size',

@@ -43,8 +43,8 @@ module GetStream
           @call_status = attributes[:call_status] || attributes['call_status']
           @first_stats_time = attributes[:first_stats_time] || attributes['first_stats_time']
           @created_at = attributes[:created_at] || attributes['created_at'] || nil
-          @min_user_rating = attributes[:min_user_rating] || attributes['min_user_rating'] || 0
-          @quality_score = attributes[:quality_score] || attributes['quality_score'] || 0
+          @min_user_rating = attributes[:min_user_rating] || attributes['min_user_rating'] || nil
+          @quality_score = attributes[:quality_score] || attributes['quality_score'] || nil
         end
 
         # Override field mappings for JSON serialization

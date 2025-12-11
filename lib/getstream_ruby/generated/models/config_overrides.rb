@@ -9,12 +9,6 @@ module GetStream
       class ConfigOverrides < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute commands
-        #   @return [Array<String>]
-        attr_accessor :commands
-        # @!attribute grants
-        #   @return [Hash<String, Array<String>>]
-        attr_accessor :grants
         # @!attribute blocklist
         #   @return [String]
         attr_accessor :blocklist
@@ -51,31 +45,35 @@ module GetStream
         # @!attribute user_message_reminders
         #   @return [Boolean]
         attr_accessor :user_message_reminders
+        # @!attribute commands
+        #   @return [Array<String>]
+        attr_accessor :commands
+        # @!attribute grants
+        #   @return [Hash<String, Array<String>>]
+        attr_accessor :grants
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @commands = attributes[:commands] || attributes['commands']
-          @grants = attributes[:grants] || attributes['grants']
-          @blocklist = attributes[:blocklist] || attributes['blocklist'] || ""
-          @blocklist_behavior = attributes[:blocklist_behavior] || attributes['blocklist_behavior'] || ""
-          @count_messages = attributes[:count_messages] || attributes['count_messages'] || false
-          @max_message_length = attributes[:max_message_length] || attributes['max_message_length'] || 0
-          @quotes = attributes[:quotes] || attributes['quotes'] || false
-          @reactions = attributes[:reactions] || attributes['reactions'] || false
-          @replies = attributes[:replies] || attributes['replies'] || false
-          @shared_locations = attributes[:shared_locations] || attributes['shared_locations'] || false
-          @typing_events = attributes[:typing_events] || attributes['typing_events'] || false
-          @uploads = attributes[:uploads] || attributes['uploads'] || false
-          @url_enrichment = attributes[:url_enrichment] || attributes['url_enrichment'] || false
-          @user_message_reminders = attributes[:user_message_reminders] || attributes['user_message_reminders'] || false
+          @blocklist = attributes[:blocklist] || attributes['blocklist'] || nil
+          @blocklist_behavior = attributes[:blocklist_behavior] || attributes['blocklist_behavior'] || nil
+          @count_messages = attributes[:count_messages] || attributes['count_messages'] || nil
+          @max_message_length = attributes[:max_message_length] || attributes['max_message_length'] || nil
+          @quotes = attributes[:quotes] || attributes['quotes'] || nil
+          @reactions = attributes[:reactions] || attributes['reactions'] || nil
+          @replies = attributes[:replies] || attributes['replies'] || nil
+          @shared_locations = attributes[:shared_locations] || attributes['shared_locations'] || nil
+          @typing_events = attributes[:typing_events] || attributes['typing_events'] || nil
+          @uploads = attributes[:uploads] || attributes['uploads'] || nil
+          @url_enrichment = attributes[:url_enrichment] || attributes['url_enrichment'] || nil
+          @user_message_reminders = attributes[:user_message_reminders] || attributes['user_message_reminders'] || nil
+          @commands = attributes[:commands] || attributes['commands'] || nil
+          @grants = attributes[:grants] || attributes['grants'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            commands: 'commands',
-            grants: 'grants',
             blocklist: 'blocklist',
             blocklist_behavior: 'blocklist_behavior',
             count_messages: 'count_messages',
@@ -87,7 +85,9 @@ module GetStream
             typing_events: 'typing_events',
             uploads: 'uploads',
             url_enrichment: 'url_enrichment',
-            user_message_reminders: 'user_message_reminders'
+            user_message_reminders: 'user_message_reminders',
+            commands: 'commands',
+            grants: 'grants'
           }
         end
       end

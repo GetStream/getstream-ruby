@@ -51,9 +51,9 @@ module GetStream
         # @!attribute own_votes
         #   @return [Array<PollVote>]
         attr_accessor :own_votes
-        # @!attribute custom
+        # @!attribute Custom
         #   @return [Object]
-        attr_accessor :custom
+        attr_accessor :Custom
         # @!attribute latest_votes_by_option
         #   @return [Hash<String, Array<PollVote>>]
         attr_accessor :latest_votes_by_option
@@ -90,12 +90,12 @@ module GetStream
           @latest_answers = attributes[:latest_answers] || attributes['latest_answers']
           @options = attributes[:options] || attributes['options']
           @own_votes = attributes[:own_votes] || attributes['own_votes']
-          @custom = attributes[:custom] || attributes['Custom']
+          @Custom = attributes[:Custom] || attributes['Custom']
           @latest_votes_by_option = attributes[:latest_votes_by_option] || attributes['latest_votes_by_option']
           @vote_counts_by_option = attributes[:vote_counts_by_option] || attributes['vote_counts_by_option']
-          @is_closed = attributes[:is_closed] || attributes['is_closed'] || false
-          @max_votes_allowed = attributes[:max_votes_allowed] || attributes['max_votes_allowed'] || 0
-          @voting_visibility = attributes[:voting_visibility] || attributes['voting_visibility'] || ""
+          @is_closed = attributes[:is_closed] || attributes['is_closed'] || nil
+          @max_votes_allowed = attributes[:max_votes_allowed] || attributes['max_votes_allowed'] || nil
+          @voting_visibility = attributes[:voting_visibility] || attributes['voting_visibility'] || nil
           @created_by = attributes[:created_by] || attributes['created_by'] || nil
         end
 
@@ -116,7 +116,7 @@ module GetStream
             latest_answers: 'latest_answers',
             options: 'options',
             own_votes: 'own_votes',
-            custom: 'Custom',
+            Custom: 'Custom',
             latest_votes_by_option: 'latest_votes_by_option',
             vote_counts_by_option: 'vote_counts_by_option',
             is_closed: 'is_closed',

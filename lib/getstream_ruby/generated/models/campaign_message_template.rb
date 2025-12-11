@@ -12,6 +12,9 @@ module GetStream
         # @!attribute poll_id
         #   @return [String]
         attr_accessor :poll_id
+        # @!attribute searchable
+        #   @return [Boolean]
+        attr_accessor :searchable
         # @!attribute text
         #   @return [String]
         attr_accessor :text
@@ -26,6 +29,7 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @poll_id = attributes[:poll_id] || attributes['poll_id']
+          @searchable = attributes[:searchable] || attributes['searchable']
           @text = attributes[:text] || attributes['text']
           @attachments = attributes[:attachments] || attributes['attachments']
           @custom = attributes[:custom] || attributes['custom']
@@ -35,6 +39,7 @@ module GetStream
         def self.json_field_mappings
           {
             poll_id: 'poll_id',
+            searchable: 'searchable',
             text: 'text',
             attachments: 'attachments',
             custom: 'custom'

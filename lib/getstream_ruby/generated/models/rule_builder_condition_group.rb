@@ -19,7 +19,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @logic = attributes[:logic] || attributes['logic'] || ""
+          @logic = attributes[:logic] || attributes['logic'] || nil
           @conditions = attributes[:conditions] || attributes['conditions'] || nil
         end
 

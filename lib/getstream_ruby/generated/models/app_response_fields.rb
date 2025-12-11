@@ -9,6 +9,9 @@ module GetStream
       class AppResponseFields < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute allow_multi_user_devices
+        #   @return [Boolean]
+        attr_accessor :allow_multi_user_devices
         # @!attribute async_url_enrich_enabled
         #   @return [Boolean]
         attr_accessor :async_url_enrich_enabled
@@ -36,9 +39,15 @@ module GetStream
         # @!attribute guest_user_creation_disabled
         #   @return [Boolean]
         attr_accessor :guest_user_creation_disabled
+        # @!attribute id
+        #   @return [Integer]
+        attr_accessor :id
         # @!attribute image_moderation_enabled
         #   @return [Boolean]
         attr_accessor :image_moderation_enabled
+        # @!attribute max_aggregated_activities_length
+        #   @return [Integer]
+        attr_accessor :max_aggregated_activities_length
         # @!attribute moderation_bulk_submit_action_enabled
         #   @return [Boolean]
         attr_accessor :moderation_bulk_submit_action_enabled
@@ -66,6 +75,9 @@ module GetStream
         # @!attribute permission_version
         #   @return [String]
         attr_accessor :permission_version
+        # @!attribute placement
+        #   @return [String]
+        attr_accessor :placement
         # @!attribute reminders_interval
         #   @return [Integer]
         attr_accessor :reminders_interval
@@ -157,6 +169,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @allow_multi_user_devices = attributes[:allow_multi_user_devices] || attributes['allow_multi_user_devices']
           @async_url_enrich_enabled = attributes[:async_url_enrich_enabled] || attributes['async_url_enrich_enabled']
           @auto_translation_enabled = attributes[:auto_translation_enabled] || attributes['auto_translation_enabled']
           @campaign_enabled = attributes[:campaign_enabled] || attributes['campaign_enabled']
@@ -166,7 +179,9 @@ module GetStream
           @disable_permissions_checks = attributes[:disable_permissions_checks] || attributes['disable_permissions_checks']
           @enforce_unique_usernames = attributes[:enforce_unique_usernames] || attributes['enforce_unique_usernames']
           @guest_user_creation_disabled = attributes[:guest_user_creation_disabled] || attributes['guest_user_creation_disabled']
+          @id = attributes[:id] || attributes['id']
           @image_moderation_enabled = attributes[:image_moderation_enabled] || attributes['image_moderation_enabled']
+          @max_aggregated_activities_length = attributes[:max_aggregated_activities_length] || attributes['max_aggregated_activities_length']
           @moderation_bulk_submit_action_enabled = attributes[:moderation_bulk_submit_action_enabled] || attributes['moderation_bulk_submit_action_enabled']
           @moderation_enabled = attributes[:moderation_enabled] || attributes['moderation_enabled']
           @moderation_llm_configurability_enabled = attributes[:moderation_llm_configurability_enabled] || attributes['moderation_llm_configurability_enabled']
@@ -176,6 +191,7 @@ module GetStream
           @name = attributes[:name] || attributes['name']
           @organization = attributes[:organization] || attributes['organization']
           @permission_version = attributes[:permission_version] || attributes['permission_version']
+          @placement = attributes[:placement] || attributes['placement']
           @reminders_interval = attributes[:reminders_interval] || attributes['reminders_interval']
           @sns_key = attributes[:sns_key] || attributes['sns_key']
           @sns_secret = attributes[:sns_secret] || attributes['sns_secret']
@@ -198,7 +214,7 @@ module GetStream
           @image_upload_config = attributes[:image_upload_config] || attributes['image_upload_config']
           @policies = attributes[:policies] || attributes['policies']
           @push_notifications = attributes[:push_notifications] || attributes['push_notifications']
-          @before_message_send_hook_url = attributes[:before_message_send_hook_url] || attributes['before_message_send_hook_url'] || ""
+          @before_message_send_hook_url = attributes[:before_message_send_hook_url] || attributes['before_message_send_hook_url'] || nil
           @revoke_tokens_issued_before = attributes[:revoke_tokens_issued_before] || attributes['revoke_tokens_issued_before'] || nil
           @allowed_flag_reasons = attributes[:allowed_flag_reasons] || attributes['allowed_flag_reasons'] || nil
           @geofences = attributes[:geofences] || attributes['geofences'] || nil
@@ -210,6 +226,7 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            allow_multi_user_devices: 'allow_multi_user_devices',
             async_url_enrich_enabled: 'async_url_enrich_enabled',
             auto_translation_enabled: 'auto_translation_enabled',
             campaign_enabled: 'campaign_enabled',
@@ -219,7 +236,9 @@ module GetStream
             disable_permissions_checks: 'disable_permissions_checks',
             enforce_unique_usernames: 'enforce_unique_usernames',
             guest_user_creation_disabled: 'guest_user_creation_disabled',
+            id: 'id',
             image_moderation_enabled: 'image_moderation_enabled',
+            max_aggregated_activities_length: 'max_aggregated_activities_length',
             moderation_bulk_submit_action_enabled: 'moderation_bulk_submit_action_enabled',
             moderation_enabled: 'moderation_enabled',
             moderation_llm_configurability_enabled: 'moderation_llm_configurability_enabled',
@@ -229,6 +248,7 @@ module GetStream
             name: 'name',
             organization: 'organization',
             permission_version: 'permission_version',
+            placement: 'placement',
             reminders_interval: 'reminders_interval',
             sns_key: 'sns_key',
             sns_secret: 'sns_secret',

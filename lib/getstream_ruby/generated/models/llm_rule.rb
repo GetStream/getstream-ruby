@@ -27,7 +27,7 @@ module GetStream
           super(attributes)
           @description = attributes[:description] || attributes['description']
           @label = attributes[:label] || attributes['label']
-          @action = attributes[:action] || attributes['action'] || ""
+          @action = attributes[:action] || attributes['action'] || nil
           @severity_rules = attributes[:severity_rules] || attributes['severity_rules'] || nil
         end
 

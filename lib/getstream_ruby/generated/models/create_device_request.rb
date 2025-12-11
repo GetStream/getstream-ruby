@@ -33,9 +33,9 @@ module GetStream
           super(attributes)
           @id = attributes[:id] || attributes['id']
           @push_provider = attributes[:push_provider] || attributes['push_provider']
-          @push_provider_name = attributes[:push_provider_name] || attributes['push_provider_name'] || ""
-          @user_id = attributes[:user_id] || attributes['user_id'] || ""
-          @voip_token = attributes[:voip_token] || attributes['voip_token'] || false
+          @push_provider_name = attributes[:push_provider_name] || attributes['push_provider_name'] || nil
+          @user_id = attributes[:user_id] || attributes['user_id'] || nil
+          @voip_token = attributes[:voip_token] || attributes['voip_token'] || nil
           @user = attributes[:user] || attributes['user'] || nil
         end
 

@@ -15,6 +15,12 @@ module GetStream
         # @!attribute words
         #   @return [Array<String>] List of words to block
         attr_accessor :words
+        # @!attribute is_leet_check_enabled
+        #   @return [Boolean]
+        attr_accessor :is_leet_check_enabled
+        # @!attribute is_plural_check_enabled
+        #   @return [Boolean]
+        attr_accessor :is_plural_check_enabled
         # @!attribute team
         #   @return [String]
         attr_accessor :team
@@ -27,8 +33,10 @@ module GetStream
           super(attributes)
           @name = attributes[:name] || attributes['name']
           @words = attributes[:words] || attributes['words']
-          @team = attributes[:team] || attributes['team'] || ""
-          @type = attributes[:type] || attributes['type'] || ""
+          @is_leet_check_enabled = attributes[:is_leet_check_enabled] || attributes['is_leet_check_enabled'] || nil
+          @is_plural_check_enabled = attributes[:is_plural_check_enabled] || attributes['is_plural_check_enabled'] || nil
+          @team = attributes[:team] || attributes['team'] || nil
+          @type = attributes[:type] || attributes['type'] || nil
         end
 
         # Override field mappings for JSON serialization
@@ -36,6 +44,8 @@ module GetStream
           {
             name: 'name',
             words: 'words',
+            is_leet_check_enabled: 'is_leet_check_enabled',
+            is_plural_check_enabled: 'is_plural_check_enabled',
             team: 'team',
             type: 'type'
           }

@@ -27,6 +27,9 @@ module GetStream
         # @!attribute prev
         #   @return [String]
         attr_accessor :prev
+        # @!attribute filter_config
+        #   @return [FilterConfigResponse]
+        attr_accessor :filter_config
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -35,8 +38,9 @@ module GetStream
           @items = attributes[:items] || attributes['items']
           @action_config = attributes[:action_config] || attributes['action_config']
           @stats = attributes[:stats] || attributes['stats']
-          @next = attributes[:next] || attributes['next'] || ""
-          @prev = attributes[:prev] || attributes['prev'] || ""
+          @next = attributes[:next] || attributes['next'] || nil
+          @prev = attributes[:prev] || attributes['prev'] || nil
+          @filter_config = attributes[:filter_config] || attributes['filter_config'] || nil
         end
 
         # Override field mappings for JSON serialization
@@ -47,7 +51,8 @@ module GetStream
             action_config: 'action_config',
             stats: 'stats',
             next: 'next',
-            prev: 'prev'
+            prev: 'prev',
+            filter_config: 'filter_config'
           }
         end
       end

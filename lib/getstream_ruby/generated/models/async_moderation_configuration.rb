@@ -19,7 +19,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @timeout_ms = attributes[:timeout_ms] || attributes['timeout_ms'] || 0
+          @timeout_ms = attributes[:timeout_ms] || attributes['timeout_ms'] || nil
           @callback = attributes[:callback] || attributes['callback'] || nil
         end
 

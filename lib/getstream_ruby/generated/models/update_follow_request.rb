@@ -36,10 +36,10 @@ module GetStream
           super(attributes)
           @source = attributes[:source] || attributes['source']
           @target = attributes[:target] || attributes['target']
-          @create_notification_activity = attributes[:create_notification_activity] || attributes['create_notification_activity'] || false
-          @follower_role = attributes[:follower_role] || attributes['follower_role'] || ""
-          @push_preference = attributes[:push_preference] || attributes['push_preference'] || ""
-          @skip_push = attributes[:skip_push] || attributes['skip_push'] || false
+          @create_notification_activity = attributes[:create_notification_activity] || attributes['create_notification_activity'] || nil
+          @follower_role = attributes[:follower_role] || attributes['follower_role'] || nil
+          @push_preference = attributes[:push_preference] || attributes['push_preference'] || nil
+          @skip_push = attributes[:skip_push] || attributes['skip_push'] || nil
           @custom = attributes[:custom] || attributes['custom'] || nil
         end
 

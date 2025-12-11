@@ -30,11 +30,14 @@ module GetStream
         # @!attribute truncated_by_id
         #   @return [String]
         attr_accessor :truncated_by_id
+        # @!attribute filter_tags
+        #   @return [Array<String>]
+        attr_accessor :filter_tags
         # @!attribute invites
-        #   @return [Array<ChannelMember>]
+        #   @return [Array<ChannelMemberRequest>]
         attr_accessor :invites
         # @!attribute members
-        #   @return [Array<ChannelMember>]
+        #   @return [Array<ChannelMemberRequest>]
         attr_accessor :members
         # @!attribute config_overrides
         #   @return [ChannelConfig]
@@ -49,13 +52,14 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @auto_translation_enabled = attributes[:auto_translation_enabled] || attributes['auto_translation_enabled'] || false
-          @auto_translation_language = attributes[:auto_translation_language] || attributes['auto_translation_language'] || ""
-          @created_by_id = attributes[:created_by_id] || attributes['created_by_id'] || ""
-          @disabled = attributes[:disabled] || attributes['disabled'] || false
-          @frozen = attributes[:frozen] || attributes['frozen'] || false
-          @team = attributes[:team] || attributes['team'] || ""
-          @truncated_by_id = attributes[:truncated_by_id] || attributes['truncated_by_id'] || ""
+          @auto_translation_enabled = attributes[:auto_translation_enabled] || attributes['auto_translation_enabled'] || nil
+          @auto_translation_language = attributes[:auto_translation_language] || attributes['auto_translation_language'] || nil
+          @created_by_id = attributes[:created_by_id] || attributes['created_by_id'] || nil
+          @disabled = attributes[:disabled] || attributes['disabled'] || nil
+          @frozen = attributes[:frozen] || attributes['frozen'] || nil
+          @team = attributes[:team] || attributes['team'] || nil
+          @truncated_by_id = attributes[:truncated_by_id] || attributes['truncated_by_id'] || nil
+          @filter_tags = attributes[:filter_tags] || attributes['filter_tags'] || nil
           @invites = attributes[:invites] || attributes['invites'] || nil
           @members = attributes[:members] || attributes['members'] || nil
           @config_overrides = attributes[:config_overrides] || attributes['config_overrides'] || nil
@@ -73,6 +77,7 @@ module GetStream
             frozen: 'frozen',
             team: 'team',
             truncated_by_id: 'truncated_by_id',
+            filter_tags: 'filter_tags',
             invites: 'invites',
             members: 'members',
             config_overrides: 'config_overrides',

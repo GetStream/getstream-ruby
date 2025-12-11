@@ -43,13 +43,13 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @limit = attributes[:limit] || attributes['limit'] || 0
-          @member_limit = attributes[:member_limit] || attributes['member_limit'] || 0
-          @next = attributes[:next] || attributes['next'] || ""
-          @participant_limit = attributes[:participant_limit] || attributes['participant_limit'] || 0
-          @prev = attributes[:prev] || attributes['prev'] || ""
-          @reply_limit = attributes[:reply_limit] || attributes['reply_limit'] || 0
-          @user_id = attributes[:user_id] || attributes['user_id'] || ""
+          @limit = attributes[:limit] || attributes['limit'] || nil
+          @member_limit = attributes[:member_limit] || attributes['member_limit'] || nil
+          @next = attributes[:next] || attributes['next'] || nil
+          @participant_limit = attributes[:participant_limit] || attributes['participant_limit'] || nil
+          @prev = attributes[:prev] || attributes['prev'] || nil
+          @reply_limit = attributes[:reply_limit] || attributes['reply_limit'] || nil
+          @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @sort = attributes[:sort] || attributes['sort'] || nil
           @filter = attributes[:filter] || attributes['filter'] || nil
           @user = attributes[:user] || attributes['user'] || nil

@@ -31,12 +31,12 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @recording_storage_name = attributes[:recording_storage_name] || attributes['recording_storage_name'] || ""
-          @start_closed_caption = attributes[:start_closed_caption] || attributes['start_closed_caption'] || false
-          @start_hls = attributes[:start_hls] || attributes['start_hls'] || false
-          @start_recording = attributes[:start_recording] || attributes['start_recording'] || false
-          @start_transcription = attributes[:start_transcription] || attributes['start_transcription'] || false
-          @transcription_storage_name = attributes[:transcription_storage_name] || attributes['transcription_storage_name'] || ""
+          @recording_storage_name = attributes[:recording_storage_name] || attributes['recording_storage_name'] || nil
+          @start_closed_caption = attributes[:start_closed_caption] || attributes['start_closed_caption'] || nil
+          @start_hls = attributes[:start_hls] || attributes['start_hls'] || nil
+          @start_recording = attributes[:start_recording] || attributes['start_recording'] || nil
+          @start_transcription = attributes[:start_transcription] || attributes['start_transcription'] || nil
+          @transcription_storage_name = attributes[:transcription_storage_name] || attributes['transcription_storage_name'] || nil
         end
 
         # Override field mappings for JSON serialization

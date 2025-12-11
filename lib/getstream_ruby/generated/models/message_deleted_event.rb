@@ -52,8 +52,8 @@ module GetStream
           @created_at = attributes[:created_at] || attributes['created_at']
           @hard_delete = attributes[:hard_delete] || attributes['hard_delete']
           @type = attributes[:type] || attributes['type'] || "message.deleted"
-          @deleted_for_me = attributes[:deleted_for_me] || attributes['deleted_for_me'] || false
-          @team = attributes[:team] || attributes['team'] || ""
+          @deleted_for_me = attributes[:deleted_for_me] || attributes['deleted_for_me'] || nil
+          @team = attributes[:team] || attributes['team'] || nil
           @thread_participants = attributes[:thread_participants] || attributes['thread_participants'] || nil
           @message = attributes[:message] || attributes['message'] || nil
           @user = attributes[:user] || attributes['user'] || nil

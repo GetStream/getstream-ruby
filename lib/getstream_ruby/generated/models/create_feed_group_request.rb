@@ -16,10 +16,10 @@ module GetStream
         #   @return [String] Default visibility for the feed group, can be 'public', 'visible', 'followers', 'members', or 'private'. Defaults to 'visible' if not provided. 
         attr_accessor :default_visibility
         # @!attribute activity_processors
-        #   @return [Array<ActivityProcessorConfig>] Configuration for activity processors (max 10)
+        #   @return [Array<ActivityProcessorConfig>] Configuration for activity processors
         attr_accessor :activity_processors
         # @!attribute activity_selectors
-        #   @return [Array<ActivitySelectorConfig>] Configuration for activity selectors (max 10)
+        #   @return [Array<ActivitySelectorConfig>] Configuration for activity selectors
         attr_accessor :activity_selectors
         # @!attribute aggregation
         #   @return [AggregationConfig]
@@ -36,12 +36,15 @@ module GetStream
         # @!attribute ranking
         #   @return [RankingConfig]
         attr_accessor :ranking
+        # @!attribute stories
+        #   @return [StoriesConfig]
+        attr_accessor :stories
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @id = attributes[:id] || attributes['id']
-          @default_visibility = attributes[:default_visibility] || attributes['default_visibility'] || ""
+          @default_visibility = attributes[:default_visibility] || attributes['default_visibility'] || nil
           @activity_processors = attributes[:activity_processors] || attributes['activity_processors'] || nil
           @activity_selectors = attributes[:activity_selectors] || attributes['activity_selectors'] || nil
           @aggregation = attributes[:aggregation] || attributes['aggregation'] || nil
@@ -49,6 +52,7 @@ module GetStream
           @notification = attributes[:notification] || attributes['notification'] || nil
           @push_notification = attributes[:push_notification] || attributes['push_notification'] || nil
           @ranking = attributes[:ranking] || attributes['ranking'] || nil
+          @stories = attributes[:stories] || attributes['stories'] || nil
         end
 
         # Override field mappings for JSON serialization
@@ -62,7 +66,8 @@ module GetStream
             custom: 'custom',
             notification: 'notification',
             push_notification: 'push_notification',
-            ranking: 'ranking'
+            ranking: 'ranking',
+            stories: 'stories'
           }
         end
       end

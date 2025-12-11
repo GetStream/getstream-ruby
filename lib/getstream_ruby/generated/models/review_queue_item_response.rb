@@ -27,6 +27,9 @@ module GetStream
         # @!attribute id
         #   @return [String] Unique identifier of the review queue item
         attr_accessor :id
+        # @!attribute latest_moderator_action
+        #   @return [String]
+        attr_accessor :latest_moderator_action
         # @!attribute recommended_action
         #   @return [String] Suggested moderation action
         attr_accessor :recommended_action
@@ -87,6 +90,12 @@ module GetStream
         # @!attribute feeds_v2_reaction
         #   @return [Reaction]
         attr_accessor :feeds_v2_reaction
+        # @!attribute feeds_v3_activity
+        #   @return [ActivityResponse]
+        attr_accessor :feeds_v3_activity
+        # @!attribute feeds_v3_comment
+        #   @return [CommentResponse]
+        attr_accessor :feeds_v3_comment
         # @!attribute message
         #   @return [MessageResponse]
         attr_accessor :message
@@ -106,6 +115,7 @@ module GetStream
           @entity_type = attributes[:entity_type] || attributes['entity_type']
           @flags_count = attributes[:flags_count] || attributes['flags_count']
           @id = attributes[:id] || attributes['id']
+          @latest_moderator_action = attributes[:latest_moderator_action] || attributes['latest_moderator_action']
           @recommended_action = attributes[:recommended_action] || attributes['recommended_action']
           @reviewed_by = attributes[:reviewed_by] || attributes['reviewed_by']
           @severity = attributes[:severity] || attributes['severity']
@@ -116,8 +126,8 @@ module GetStream
           @flags = attributes[:flags] || attributes['flags']
           @languages = attributes[:languages] || attributes['languages']
           @completed_at = attributes[:completed_at] || attributes['completed_at'] || nil
-          @config_key = attributes[:config_key] || attributes['config_key'] || ""
-          @entity_creator_id = attributes[:entity_creator_id] || attributes['entity_creator_id'] || ""
+          @config_key = attributes[:config_key] || attributes['config_key'] || nil
+          @entity_creator_id = attributes[:entity_creator_id] || attributes['entity_creator_id'] || nil
           @reviewed_at = attributes[:reviewed_at] || attributes['reviewed_at'] || nil
           @teams = attributes[:teams] || attributes['teams'] || nil
           @activity = attributes[:activity] || attributes['activity'] || nil
@@ -126,6 +136,8 @@ module GetStream
           @entity_creator = attributes[:entity_creator] || attributes['entity_creator'] || nil
           @feeds_v2_activity = attributes[:feeds_v2_activity] || attributes['feeds_v2_activity'] || nil
           @feeds_v2_reaction = attributes[:feeds_v2_reaction] || attributes['feeds_v2_reaction'] || nil
+          @feeds_v3_activity = attributes[:feeds_v3_activity] || attributes['feeds_v3_activity'] || nil
+          @feeds_v3_comment = attributes[:feeds_v3_comment] || attributes['feeds_v3_comment'] || nil
           @message = attributes[:message] || attributes['message'] || nil
           @moderation_payload = attributes[:moderation_payload] || attributes['moderation_payload'] || nil
           @reaction = attributes[:reaction] || attributes['reaction'] || nil
@@ -140,6 +152,7 @@ module GetStream
             entity_type: 'entity_type',
             flags_count: 'flags_count',
             id: 'id',
+            latest_moderator_action: 'latest_moderator_action',
             recommended_action: 'recommended_action',
             reviewed_by: 'reviewed_by',
             severity: 'severity',
@@ -160,6 +173,8 @@ module GetStream
             entity_creator: 'entity_creator',
             feeds_v2_activity: 'feeds_v2_activity',
             feeds_v2_reaction: 'feeds_v2_reaction',
+            feeds_v3_activity: 'feeds_v3_activity',
+            feeds_v3_comment: 'feeds_v3_comment',
             message: 'message',
             moderation_payload: 'moderation_payload',
             reaction: 'reaction'

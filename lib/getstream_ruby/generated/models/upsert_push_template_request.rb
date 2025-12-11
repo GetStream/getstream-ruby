@@ -13,7 +13,7 @@ module GetStream
         #   @return [String] Event type (message.new, message.updated, reaction.new)
         attr_accessor :event_type
         # @!attribute push_provider_type
-        #   @return [String] Push provider type (firebase, apn)
+        #   @return [String] Push provider type (firebase, apn, huawei, xiaomi)
         attr_accessor :push_provider_type
         # @!attribute enable_push
         #   @return [Boolean] Whether to send push notification for this event
@@ -30,9 +30,9 @@ module GetStream
           super(attributes)
           @event_type = attributes[:event_type] || attributes['event_type']
           @push_provider_type = attributes[:push_provider_type] || attributes['push_provider_type']
-          @enable_push = attributes[:enable_push] || attributes['enable_push'] || false
-          @push_provider_name = attributes[:push_provider_name] || attributes['push_provider_name'] || ""
-          @template = attributes[:template] || attributes['template'] || ""
+          @enable_push = attributes[:enable_push] || attributes['enable_push'] || nil
+          @push_provider_name = attributes[:push_provider_name] || attributes['push_provider_name'] || nil
+          @template = attributes[:template] || attributes['template'] || nil
         end
 
         # Override field mappings for JSON serialization

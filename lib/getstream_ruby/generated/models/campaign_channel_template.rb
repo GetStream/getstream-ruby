@@ -24,15 +24,19 @@ module GetStream
         # @!attribute members
         #   @return [Array<String>]
         attr_accessor :members
+        # @!attribute members_template
+        #   @return [Array<CampaignChannelMember>]
+        attr_accessor :members_template
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @type = attributes[:type] || attributes['type']
           @custom = attributes[:custom] || attributes['custom']
-          @id = attributes[:id] || attributes['id'] || ""
-          @team = attributes[:team] || attributes['team'] || ""
+          @id = attributes[:id] || attributes['id'] || nil
+          @team = attributes[:team] || attributes['team'] || nil
           @members = attributes[:members] || attributes['members'] || nil
+          @members_template = attributes[:members_template] || attributes['members_template'] || nil
         end
 
         # Override field mappings for JSON serialization
@@ -42,7 +46,8 @@ module GetStream
             custom: 'custom',
             id: 'id',
             team: 'team',
-            members: 'members'
+            members: 'members',
+            members_template: 'members_template'
           }
         end
       end

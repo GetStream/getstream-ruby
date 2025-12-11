@@ -27,6 +27,9 @@ module GetStream
         # @!attribute user_id
         #   @return [String] ID of the user who performed the action
         attr_accessor :user_id
+        # @!attribute ai_providers
+        #   @return [Array<String>]
+        attr_accessor :ai_providers
         # @!attribute custom
         #   @return [Object] Additional metadata about the action
         attr_accessor :custom
@@ -49,6 +52,7 @@ module GetStream
           @target_user_id = attributes[:target_user_id] || attributes['target_user_id']
           @type = attributes[:type] || attributes['type']
           @user_id = attributes[:user_id] || attributes['user_id']
+          @ai_providers = attributes[:ai_providers] || attributes['ai_providers']
           @custom = attributes[:custom] || attributes['custom']
           @review_queue_item = attributes[:review_queue_item] || attributes['review_queue_item'] || nil
           @target_user = attributes[:target_user] || attributes['target_user'] || nil
@@ -64,6 +68,7 @@ module GetStream
             target_user_id: 'target_user_id',
             type: 'type',
             user_id: 'user_id',
+            ai_providers: 'ai_providers',
             custom: 'custom',
             review_queue_item: 'review_queue_item',
             target_user: 'target_user',

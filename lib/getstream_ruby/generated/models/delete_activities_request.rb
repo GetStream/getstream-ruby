@@ -26,8 +26,8 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @ids = attributes[:ids] || attributes['ids']
-          @hard_delete = attributes[:hard_delete] || attributes['hard_delete'] || false
-          @user_id = attributes[:user_id] || attributes['user_id'] || ""
+          @hard_delete = attributes[:hard_delete] || attributes['hard_delete'] || nil
+          @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @user = attributes[:user] || attributes['user'] || nil
         end
 

@@ -21,12 +21,18 @@ module GetStream
         # @!attribute ban
         #   @return [BanActionRequest]
         attr_accessor :ban
+        # @!attribute block
+        #   @return [BlockActionRequest]
+        attr_accessor :block
         # @!attribute custom
         #   @return [CustomActionRequest]
         attr_accessor :custom
         # @!attribute delete_activity
         #   @return [DeleteActivityRequest]
         attr_accessor :delete_activity
+        # @!attribute delete_comment
+        #   @return [DeleteCommentRequest]
+        attr_accessor :delete_comment
         # @!attribute delete_message
         #   @return [DeleteMessageRequest]
         attr_accessor :delete_message
@@ -39,6 +45,9 @@ module GetStream
         # @!attribute mark_reviewed
         #   @return [MarkReviewedRequest]
         attr_accessor :mark_reviewed
+        # @!attribute shadow_block
+        #   @return [ShadowBlockActionRequest]
+        attr_accessor :shadow_block
         # @!attribute unban
         #   @return [UnbanActionRequest]
         attr_accessor :unban
@@ -51,14 +60,17 @@ module GetStream
           super(attributes)
           @action_type = attributes[:action_type] || attributes['action_type']
           @item_id = attributes[:item_id] || attributes['item_id']
-          @user_id = attributes[:user_id] || attributes['user_id'] || ""
+          @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @ban = attributes[:ban] || attributes['ban'] || nil
+          @block = attributes[:block] || attributes['block'] || nil
           @custom = attributes[:custom] || attributes['custom'] || nil
           @delete_activity = attributes[:delete_activity] || attributes['delete_activity'] || nil
+          @delete_comment = attributes[:delete_comment] || attributes['delete_comment'] || nil
           @delete_message = attributes[:delete_message] || attributes['delete_message'] || nil
           @delete_reaction = attributes[:delete_reaction] || attributes['delete_reaction'] || nil
           @delete_user = attributes[:delete_user] || attributes['delete_user'] || nil
           @mark_reviewed = attributes[:mark_reviewed] || attributes['mark_reviewed'] || nil
+          @shadow_block = attributes[:shadow_block] || attributes['shadow_block'] || nil
           @unban = attributes[:unban] || attributes['unban'] || nil
           @user = attributes[:user] || attributes['user'] || nil
         end
@@ -70,12 +82,15 @@ module GetStream
             item_id: 'item_id',
             user_id: 'user_id',
             ban: 'ban',
+            block: 'block',
             custom: 'custom',
             delete_activity: 'delete_activity',
+            delete_comment: 'delete_comment',
             delete_message: 'delete_message',
             delete_reaction: 'delete_reaction',
             delete_user: 'delete_user',
             mark_reviewed: 'mark_reviewed',
+            shadow_block: 'shadow_block',
             unban: 'unban',
             user: 'user'
           }

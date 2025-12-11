@@ -9,20 +9,20 @@ module GetStream
       class ChatActivityStatsResponse < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute messages
+        # @!attribute Messages
         #   @return [MessageStatsResponse]
-        attr_accessor :messages
+        attr_accessor :Messages
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @messages = attributes[:messages] || attributes['Messages'] || nil
+          @Messages = attributes[:Messages] || attributes['Messages'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            messages: 'Messages'
+            Messages: 'Messages'
           }
         end
       end

@@ -24,6 +24,9 @@ module GetStream
         # @!attribute product
         #   @return [String]
         attr_accessor :product
+        # @!attribute should_send_custom_events
+        #   @return [Boolean]
+        attr_accessor :should_send_custom_events
         # @!attribute sns_auth_type
         #   @return [String]
         attr_accessor :sns_auth_type
@@ -80,25 +83,26 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @created_at = attributes[:created_at] || attributes['created_at'] || nil
-          @enabled = attributes[:enabled] || attributes['enabled'] || false
-          @hook_type = attributes[:hook_type] || attributes['hook_type'] || ""
-          @id = attributes[:id] || attributes['id'] || ""
-          @product = attributes[:product] || attributes['product'] || ""
-          @sns_auth_type = attributes[:sns_auth_type] || attributes['sns_auth_type'] || ""
-          @sns_key = attributes[:sns_key] || attributes['sns_key'] || ""
-          @sns_region = attributes[:sns_region] || attributes['sns_region'] || ""
-          @sns_role_arn = attributes[:sns_role_arn] || attributes['sns_role_arn'] || ""
-          @sns_secret = attributes[:sns_secret] || attributes['sns_secret'] || ""
-          @sns_topic_arn = attributes[:sns_topic_arn] || attributes['sns_topic_arn'] || ""
-          @sqs_auth_type = attributes[:sqs_auth_type] || attributes['sqs_auth_type'] || ""
-          @sqs_key = attributes[:sqs_key] || attributes['sqs_key'] || ""
-          @sqs_queue_url = attributes[:sqs_queue_url] || attributes['sqs_queue_url'] || ""
-          @sqs_region = attributes[:sqs_region] || attributes['sqs_region'] || ""
-          @sqs_role_arn = attributes[:sqs_role_arn] || attributes['sqs_role_arn'] || ""
-          @sqs_secret = attributes[:sqs_secret] || attributes['sqs_secret'] || ""
-          @timeout_ms = attributes[:timeout_ms] || attributes['timeout_ms'] || 0
+          @enabled = attributes[:enabled] || attributes['enabled'] || nil
+          @hook_type = attributes[:hook_type] || attributes['hook_type'] || nil
+          @id = attributes[:id] || attributes['id'] || nil
+          @product = attributes[:product] || attributes['product'] || nil
+          @should_send_custom_events = attributes[:should_send_custom_events] || attributes['should_send_custom_events'] || nil
+          @sns_auth_type = attributes[:sns_auth_type] || attributes['sns_auth_type'] || nil
+          @sns_key = attributes[:sns_key] || attributes['sns_key'] || nil
+          @sns_region = attributes[:sns_region] || attributes['sns_region'] || nil
+          @sns_role_arn = attributes[:sns_role_arn] || attributes['sns_role_arn'] || nil
+          @sns_secret = attributes[:sns_secret] || attributes['sns_secret'] || nil
+          @sns_topic_arn = attributes[:sns_topic_arn] || attributes['sns_topic_arn'] || nil
+          @sqs_auth_type = attributes[:sqs_auth_type] || attributes['sqs_auth_type'] || nil
+          @sqs_key = attributes[:sqs_key] || attributes['sqs_key'] || nil
+          @sqs_queue_url = attributes[:sqs_queue_url] || attributes['sqs_queue_url'] || nil
+          @sqs_region = attributes[:sqs_region] || attributes['sqs_region'] || nil
+          @sqs_role_arn = attributes[:sqs_role_arn] || attributes['sqs_role_arn'] || nil
+          @sqs_secret = attributes[:sqs_secret] || attributes['sqs_secret'] || nil
+          @timeout_ms = attributes[:timeout_ms] || attributes['timeout_ms'] || nil
           @updated_at = attributes[:updated_at] || attributes['updated_at'] || nil
-          @webhook_url = attributes[:webhook_url] || attributes['webhook_url'] || ""
+          @webhook_url = attributes[:webhook_url] || attributes['webhook_url'] || nil
           @event_types = attributes[:event_types] || attributes['event_types'] || nil
           @callback = attributes[:callback] || attributes['callback'] || nil
         end
@@ -111,6 +115,7 @@ module GetStream
             hook_type: 'hook_type',
             id: 'id',
             product: 'product',
+            should_send_custom_events: 'should_send_custom_events',
             sns_auth_type: 'sns_auth_type',
             sns_key: 'sns_key',
             sns_region: 'sns_region',

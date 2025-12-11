@@ -28,7 +28,7 @@ module GetStream
         #   @return [String]
         attr_accessor :user_id
         # @!attribute members
-        #   @return [Array<ChannelMember>]
+        #   @return [Array<ChannelMemberRequest>]
         attr_accessor :members
         # @!attribute sort
         #   @return [Array<SortParamRequest>]
@@ -42,10 +42,10 @@ module GetStream
           super(attributes)
           @type = attributes[:type] || attributes['type']
           @filter_conditions = attributes[:filter_conditions] || attributes['filter_conditions']
-          @id = attributes[:id] || attributes['id'] || ""
-          @limit = attributes[:limit] || attributes['limit'] || 0
-          @offset = attributes[:offset] || attributes['offset'] || 0
-          @user_id = attributes[:user_id] || attributes['user_id'] || ""
+          @id = attributes[:id] || attributes['id'] || nil
+          @limit = attributes[:limit] || attributes['limit'] || nil
+          @offset = attributes[:offset] || attributes['offset'] || nil
+          @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @members = attributes[:members] || attributes['members'] || nil
           @sort = attributes[:sort] || attributes['sort'] || nil
           @user = attributes[:user] || attributes['user'] || nil

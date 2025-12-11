@@ -40,7 +40,7 @@ module GetStream
           @session_id = attributes[:session_id] || attributes['session_id']
           @participant = attributes[:participant] || attributes['participant']
           @type = attributes[:type] || attributes['type'] || "call.session_participant_left"
-          @reason = attributes[:reason] || attributes['reason'] || ""
+          @reason = attributes[:reason] || attributes['reason'] || nil
         end
 
         # Override field mappings for JSON serialization

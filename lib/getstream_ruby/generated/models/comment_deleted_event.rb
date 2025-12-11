@@ -42,7 +42,7 @@ module GetStream
           @comment = attributes[:comment] || attributes['comment']
           @custom = attributes[:custom] || attributes['custom']
           @type = attributes[:type] || attributes['type'] || "feeds.comment.deleted"
-          @feed_visibility = attributes[:feed_visibility] || attributes['feed_visibility'] || ""
+          @feed_visibility = attributes[:feed_visibility] || attributes['feed_visibility'] || nil
           @received_at = attributes[:received_at] || attributes['received_at'] || nil
           @user = attributes[:user] || attributes['user'] || nil
         end

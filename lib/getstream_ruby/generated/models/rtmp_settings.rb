@@ -26,7 +26,7 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @enabled = attributes[:enabled] || attributes['enabled']
-          @quality_name = attributes[:quality_name] || attributes['quality_name'] || ""
+          @quality_name = attributes[:quality_name] || attributes['quality_name'] || nil
           @layout = attributes[:layout] || attributes['layout'] || nil
           @location = attributes[:location] || attributes['location'] || nil
         end

@@ -58,8 +58,8 @@ module GetStream
           @type = attributes[:type] || attributes['type']
           @updated_at = attributes[:updated_at] || attributes['updated_at']
           @deleted_at = attributes[:deleted_at] || attributes['deleted_at'] || nil
-          @description = attributes[:description] || attributes['description'] || ""
-          @task_id = attributes[:task_id] || attributes['task_id'] || ""
+          @description = attributes[:description] || attributes['description'] || nil
+          @task_id = attributes[:task_id] || attributes['task_id'] || nil
           @filter = attributes[:filter] || attributes['filter'] || nil
         end
 

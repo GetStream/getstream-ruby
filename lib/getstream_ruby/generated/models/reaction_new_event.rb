@@ -48,7 +48,7 @@ module GetStream
           @cid = attributes[:cid] || attributes['cid']
           @created_at = attributes[:created_at] || attributes['created_at']
           @type = attributes[:type] || attributes['type'] || "reaction.new"
-          @team = attributes[:team] || attributes['team'] || ""
+          @team = attributes[:team] || attributes['team'] || nil
           @thread_participants = attributes[:thread_participants] || attributes['thread_participants'] || nil
           @message = attributes[:message] || attributes['message'] || nil
           @reaction = attributes[:reaction] || attributes['reaction'] || nil
