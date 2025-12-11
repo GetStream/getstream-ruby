@@ -825,6 +825,39 @@ RSpec.describe 'Feed Integration Tests', type: :integration do
 
   end
 
+  describe 'File Upload' do
+
+    it 'uploads a file using multipart form data' do
+      puts "\n📤 Testing file upload..."
+
+      # Get the path to the test file (relative to project root)
+      test_file_path = File.join(__dir__, '..', '..', 'test', 'upload-test.png')
+      expect(File.exist?(test_file_path)).to be true, "Test file not found: #{test_file_path}"
+
+      # Create file upload request
+      file_upload_request = GetStream::Generated::Models::FileUploadRequest.new(
+        file: test_file_path,
+        user: GetStream::Generated::Models::OnlyUserID.new(id: test_user_id_1)
+      )
+
+      # Upload the file
+      upload_response = client.common.upload_file(file_upload_request)
+      
+      expect(upload_response).to be_a(GetStreamRuby::StreamResponse)
+      expect(upload_response.file).not_to be_nil
+      expect(upload_response.file).to be_a(String)
+      expect(upload_response.file).not_to be_empty
+      
+      puts "✅ File uploaded successfully"
+      puts "   File URL: #{upload_response.file}"
+      puts "   Thumbnail URL: #{upload_response.thumb_url}" if upload_response.thumb_url
+
+      # Verify the URL is a valid URL
+      expect(upload_response.file).to match(/^https?:\/\//)
+    end
+
+  end
+
   describe 'Real World Usage Demo' do
 
     it 'demonstrates real-world usage patterns' do
