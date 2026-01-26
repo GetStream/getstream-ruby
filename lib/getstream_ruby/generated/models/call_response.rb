@@ -69,6 +69,9 @@ module GetStream
         # @!attribute join_ahead_time_seconds
         #   @return [Integer]
         attr_accessor :join_ahead_time_seconds
+        # @!attribute routing_number
+        #   @return [String] 10-digit routing number for SIP routing
+        attr_accessor :routing_number
         # @!attribute starts_at
         #   @return [DateTime] Date/time when the call will start
         attr_accessor :starts_at
@@ -105,6 +108,7 @@ module GetStream
           @channel_cid = attributes[:channel_cid] || attributes['channel_cid'] || nil
           @ended_at = attributes[:ended_at] || attributes['ended_at'] || nil
           @join_ahead_time_seconds = attributes[:join_ahead_time_seconds] || attributes['join_ahead_time_seconds'] || nil
+          @routing_number = attributes[:routing_number] || attributes['routing_number'] || nil
           @starts_at = attributes[:starts_at] || attributes['starts_at'] || nil
           @team = attributes[:team] || attributes['team'] || nil
           @session = attributes[:session] || attributes['session'] || nil
@@ -134,6 +138,7 @@ module GetStream
             channel_cid: 'channel_cid',
             ended_at: 'ended_at',
             join_ahead_time_seconds: 'join_ahead_time_seconds',
+            routing_number: 'routing_number',
             starts_at: 'starts_at',
             team: 'team',
             session: 'session',

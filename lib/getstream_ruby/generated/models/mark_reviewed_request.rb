@@ -12,6 +12,9 @@ module GetStream
         # @!attribute content_to_mark_as_reviewed_limit
         #   @return [Integer]
         attr_accessor :content_to_mark_as_reviewed_limit
+        # @!attribute decision_reason
+        #   @return [String]
+        attr_accessor :decision_reason
         # @!attribute disable_marking_content_as_reviewed
         #   @return [Boolean]
         attr_accessor :disable_marking_content_as_reviewed
@@ -20,6 +23,7 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @content_to_mark_as_reviewed_limit = attributes[:content_to_mark_as_reviewed_limit] || attributes['content_to_mark_as_reviewed_limit'] || nil
+          @decision_reason = attributes[:decision_reason] || attributes['decision_reason'] || nil
           @disable_marking_content_as_reviewed = attributes[:disable_marking_content_as_reviewed] || attributes['disable_marking_content_as_reviewed'] || nil
         end
 
@@ -27,6 +31,7 @@ module GetStream
         def self.json_field_mappings
           {
             content_to_mark_as_reviewed_limit: 'content_to_mark_as_reviewed_limit',
+            decision_reason: 'decision_reason',
             disable_marking_content_as_reviewed: 'disable_marking_content_as_reviewed'
           }
         end

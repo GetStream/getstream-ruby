@@ -30,6 +30,9 @@ module GetStream
         # @!attribute visibility
         #   @return [String] Visibility setting for the activity
         attr_accessor :visibility
+        # @!attribute visibility_tag
+        #   @return [String] If visibility is 'tag', this is the tag name and is required
+        attr_accessor :visibility_tag
         # @!attribute attachments
         #   @return [Array<Attachment>] List of attachments for the activity
         attr_accessor :attachments
@@ -45,6 +48,9 @@ module GetStream
         # @!attribute interest_tags
         #   @return [Array<String>] Tags indicating interest categories
         attr_accessor :interest_tags
+        # @!attribute mentioned_user_ids
+        #   @return [Array<String>] List of user IDs mentioned in the activity
+        attr_accessor :mentioned_user_ids
         # @!attribute custom
         #   @return [Object] Custom data for the activity
         attr_accessor :custom
@@ -65,11 +71,13 @@ module GetStream
           @text = attributes[:text] || attributes['text'] || nil
           @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @visibility = attributes[:visibility] || attributes['visibility'] || nil
+          @visibility_tag = attributes[:visibility_tag] || attributes['visibility_tag'] || nil
           @attachments = attributes[:attachments] || attributes['attachments'] || nil
           @collection_refs = attributes[:collection_refs] || attributes['collection_refs'] || nil
           @feeds = attributes[:feeds] || attributes['feeds'] || nil
           @filter_tags = attributes[:filter_tags] || attributes['filter_tags'] || nil
           @interest_tags = attributes[:interest_tags] || attributes['interest_tags'] || nil
+          @mentioned_user_ids = attributes[:mentioned_user_ids] || attributes['mentioned_user_ids'] || nil
           @custom = attributes[:custom] || attributes['custom'] || nil
           @location = attributes[:location] || attributes['location'] || nil
           @user = attributes[:user] || attributes['user'] || nil
@@ -85,11 +93,13 @@ module GetStream
             text: 'text',
             user_id: 'user_id',
             visibility: 'visibility',
+            visibility_tag: 'visibility_tag',
             attachments: 'attachments',
             collection_refs: 'collection_refs',
             feeds: 'feeds',
             filter_tags: 'filter_tags',
             interest_tags: 'interest_tags',
+            mentioned_user_ids: 'mentioned_user_ids',
             custom: 'custom',
             location: 'location',
             user: 'user'

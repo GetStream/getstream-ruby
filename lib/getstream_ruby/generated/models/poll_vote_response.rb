@@ -12,6 +12,9 @@ module GetStream
         # @!attribute duration
         #   @return [String] Duration of the request in milliseconds
         attr_accessor :duration
+        # @!attribute poll
+        #   @return [PollResponseData]
+        attr_accessor :poll
         # @!attribute vote
         #   @return [PollVoteResponseData]
         attr_accessor :vote
@@ -20,6 +23,7 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @duration = attributes[:duration] || attributes['duration']
+          @poll = attributes[:poll] || attributes['poll'] || nil
           @vote = attributes[:vote] || attributes['vote'] || nil
         end
 
@@ -27,6 +31,7 @@ module GetStream
         def self.json_field_mappings
           {
             duration: 'duration',
+            poll: 'poll',
             vote: 'vote'
           }
         end

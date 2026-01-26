@@ -408,6 +408,73 @@ module GetStream
         )
       end
 
+      # Lists all import v2 tasks for the app
+      #
+      # @param state [Integer]
+      # @return [Models::ListImportV2TasksResponse]
+      def list_import_v2_tasks(state = nil)
+        path = '/api/v2/imports/v2'
+        # Build query parameters
+        query_params = {}
+        query_params['state'] = state unless state.nil?
+
+        # Make the API request
+        @client.make_request(
+          :get,
+          path,
+          query_params: query_params
+        )
+      end
+
+      # Creates a new import v2 task
+      #
+      # @param create_import_v2_task_request [CreateImportV2TaskRequest]
+      # @return [Models::CreateImportV2TaskResponse]
+      def create_import_v2_task(create_import_v2_task_request)
+        path = '/api/v2/imports/v2'
+        # Build request body
+        body = create_import_v2_task_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
+      # Deletes an import v2 task. Can only delete tasks in queued state.
+      #
+      # @param _id [String]
+      # @return [Models::DeleteImportV2TaskResponse]
+      def delete_import_v2_task(_id)
+        path = '/api/v2/imports/v2/{id}'
+        # Replace path parameters
+        path = path.gsub('{id}', _id.to_s)
+
+        # Make the API request
+        @client.make_request(
+          :delete,
+          path
+        )
+      end
+
+      # Gets a single import v2 task by ID
+      #
+      # @param _id [String]
+      # @return [Models::GetImportV2TaskResponse]
+      def get_import_v2_task(_id)
+        path = '/api/v2/imports/v2/{id}'
+        # Replace path parameters
+        path = path.gsub('{id}', _id.to_s)
+
+        # Make the API request
+        @client.make_request(
+          :get,
+          path
+        )
+      end
+
       # Gets an import
       #
       # @param _id [String]

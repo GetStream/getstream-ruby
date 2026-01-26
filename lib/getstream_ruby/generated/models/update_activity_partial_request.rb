@@ -13,10 +13,10 @@ module GetStream
         #   @return [String]
         attr_accessor :user_id
         # @!attribute unset
-        #   @return [Array<String>] List of field names to remove. Supported fields: 'custom', 'location', 'expires_at', 'filter_tags', 'interest_tags', 'attachments', 'poll_id', 'mentioned_users'. Use dot-notation for nested custom fields (e.g., 'custom.field_name')
+        #   @return [Array<String>] List of field names to remove. Supported fields: 'custom', 'location', 'expires_at', 'filter_tags', 'interest_tags', 'attachments', 'poll_id', 'mentioned_user_ids'. Use dot-notation for nested custom fields (e.g., 'custom.field_name')
         attr_accessor :unset
         # @!attribute set
-        #   @return [Object] Map of field names to new values. Supported fields: 'text', 'attachments', 'custom', 'visibility', 'restrict_replies' (values: 'everyone', 'people_i_follow', 'nobody'), 'location', 'expires_at', 'filter_tags', 'interest_tags', 'poll_id', 'feeds', 'mentioned_users'. For custom fields, use dot-notation (e.g., 'custom.field_name')
+        #   @return [Object] Map of field names to new values. Supported fields: 'text', 'attachments', 'custom', 'visibility', 'visibility_tag', 'restrict_replies' (values: 'everyone', 'people_i_follow', 'nobody'), 'location', 'expires_at', 'filter_tags', 'interest_tags', 'poll_id', 'feeds', 'mentioned_user_ids'. For custom fields, use dot-notation (e.g., 'custom.field_name')
         attr_accessor :set
         # @!attribute user
         #   @return [UserRequest]

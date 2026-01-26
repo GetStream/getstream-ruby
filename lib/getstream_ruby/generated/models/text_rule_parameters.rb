@@ -12,6 +12,9 @@ module GetStream
         # @!attribute contains_url
         #   @return [Boolean]
         attr_accessor :contains_url
+        # @!attribute semantic_filter_min_threshold
+        #   @return [Float]
+        attr_accessor :semantic_filter_min_threshold
         # @!attribute severity
         #   @return [String]
         attr_accessor :severity
@@ -27,6 +30,9 @@ module GetStream
         # @!attribute harm_labels
         #   @return [Array<String>]
         attr_accessor :harm_labels
+        # @!attribute semantic_filter_names
+        #   @return [Array<String>]
+        attr_accessor :semantic_filter_names
         # @!attribute llm_harm_labels
         #   @return [Hash<String, String>]
         attr_accessor :llm_harm_labels
@@ -35,11 +41,13 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @contains_url = attributes[:contains_url] || attributes['contains_url'] || nil
+          @semantic_filter_min_threshold = attributes[:semantic_filter_min_threshold] || attributes['semantic_filter_min_threshold'] || nil
           @severity = attributes[:severity] || attributes['severity'] || nil
           @threshold = attributes[:threshold] || attributes['threshold'] || nil
           @time_window = attributes[:time_window] || attributes['time_window'] || nil
           @blocklist_match = attributes[:blocklist_match] || attributes['blocklist_match'] || nil
           @harm_labels = attributes[:harm_labels] || attributes['harm_labels'] || nil
+          @semantic_filter_names = attributes[:semantic_filter_names] || attributes['semantic_filter_names'] || nil
           @llm_harm_labels = attributes[:llm_harm_labels] || attributes['llm_harm_labels'] || nil
         end
 
@@ -47,11 +55,13 @@ module GetStream
         def self.json_field_mappings
           {
             contains_url: 'contains_url',
+            semantic_filter_min_threshold: 'semantic_filter_min_threshold',
             severity: 'severity',
             threshold: 'threshold',
             time_window: 'time_window',
             blocklist_match: 'blocklist_match',
             harm_labels: 'harm_labels',
+            semantic_filter_names: 'semantic_filter_names',
             llm_harm_labels: 'llm_harm_labels'
           }
         end

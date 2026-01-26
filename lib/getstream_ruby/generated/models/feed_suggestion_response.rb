@@ -66,6 +66,9 @@ module GetStream
         # @!attribute own_capabilities
         #   @return [Array<FeedOwnCapability>] Capabilities the current user has for this feed
         attr_accessor :own_capabilities
+        # @!attribute own_followings
+        #   @return [Array<FollowResponse>] Follow relationships where the feed owner’s feeds are following the current user's feeds
+        attr_accessor :own_followings
         # @!attribute own_follows
         #   @return [Array<FollowResponse>] Follow relationships where the current user's feeds are following this feed
         attr_accessor :own_follows
@@ -101,6 +104,7 @@ module GetStream
           @visibility = attributes[:visibility] || attributes['visibility'] || nil
           @filter_tags = attributes[:filter_tags] || attributes['filter_tags'] || nil
           @own_capabilities = attributes[:own_capabilities] || attributes['own_capabilities'] || nil
+          @own_followings = attributes[:own_followings] || attributes['own_followings'] || nil
           @own_follows = attributes[:own_follows] || attributes['own_follows'] || nil
           @algorithm_scores = attributes[:algorithm_scores] || attributes['algorithm_scores'] || nil
           @custom = attributes[:custom] || attributes['custom'] || nil
@@ -129,6 +133,7 @@ module GetStream
             visibility: 'visibility',
             filter_tags: 'filter_tags',
             own_capabilities: 'own_capabilities',
+            own_followings: 'own_followings',
             own_follows: 'own_follows',
             algorithm_scores: 'algorithm_scores',
             custom: 'custom',

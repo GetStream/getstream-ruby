@@ -15,9 +15,18 @@ module GetStream
         # @!attribute start_closed_caption
         #   @return [Boolean]
         attr_accessor :start_closed_caption
+        # @!attribute start_composite_recording
+        #   @return [Boolean]
+        attr_accessor :start_composite_recording
         # @!attribute start_hls
         #   @return [Boolean]
         attr_accessor :start_hls
+        # @!attribute start_individual_recording
+        #   @return [Boolean]
+        attr_accessor :start_individual_recording
+        # @!attribute start_raw_recording
+        #   @return [Boolean]
+        attr_accessor :start_raw_recording
         # @!attribute start_recording
         #   @return [Boolean]
         attr_accessor :start_recording
@@ -33,7 +42,10 @@ module GetStream
           super(attributes)
           @recording_storage_name = attributes[:recording_storage_name] || attributes['recording_storage_name'] || nil
           @start_closed_caption = attributes[:start_closed_caption] || attributes['start_closed_caption'] || nil
+          @start_composite_recording = attributes[:start_composite_recording] || attributes['start_composite_recording'] || nil
           @start_hls = attributes[:start_hls] || attributes['start_hls'] || nil
+          @start_individual_recording = attributes[:start_individual_recording] || attributes['start_individual_recording'] || nil
+          @start_raw_recording = attributes[:start_raw_recording] || attributes['start_raw_recording'] || nil
           @start_recording = attributes[:start_recording] || attributes['start_recording'] || nil
           @start_transcription = attributes[:start_transcription] || attributes['start_transcription'] || nil
           @transcription_storage_name = attributes[:transcription_storage_name] || attributes['transcription_storage_name'] || nil
@@ -44,7 +56,10 @@ module GetStream
           {
             recording_storage_name: 'recording_storage_name',
             start_closed_caption: 'start_closed_caption',
+            start_composite_recording: 'start_composite_recording',
             start_hls: 'start_hls',
+            start_individual_recording: 'start_individual_recording',
+            start_raw_recording: 'start_raw_recording',
             start_recording: 'start_recording',
             start_transcription: 'start_transcription',
             transcription_storage_name: 'transcription_storage_name'

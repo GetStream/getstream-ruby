@@ -13,8 +13,11 @@ module GetStream
         #   @return [String] Type of activity
         attr_accessor :type
         # @!attribute feeds
-        #   @return [Array<String>] List of feed IDs to add the activity to
+        #   @return [Array<String>] List of feeds to add the activity to with a default max limit of 25 feeds
         attr_accessor :feeds
+        # @!attribute create_notification_activity
+        #   @return [Boolean] Whether to create notification activities for mentioned users
+        attr_accessor :create_notification_activity
         # @!attribute expires_at
         #   @return [String] Expiration time for the activity
         attr_accessor :expires_at
@@ -33,6 +36,9 @@ module GetStream
         # @!attribute skip_enrich_url
         #   @return [Boolean] Whether to skip URL enrichment for the activity
         attr_accessor :skip_enrich_url
+        # @!attribute skip_push
+        #   @return [Boolean] Whether to skip push notifications
+        attr_accessor :skip_push
         # @!attribute text
         #   @return [String] Text content of the activity
         attr_accessor :text
@@ -75,12 +81,14 @@ module GetStream
           super(attributes)
           @type = attributes[:type] || attributes['type']
           @feeds = attributes[:feeds] || attributes['feeds']
+          @create_notification_activity = attributes[:create_notification_activity] || attributes['create_notification_activity'] || nil
           @expires_at = attributes[:expires_at] || attributes['expires_at'] || nil
           @id = attributes[:id] || attributes['id'] || nil
           @parent_id = attributes[:parent_id] || attributes['parent_id'] || nil
           @poll_id = attributes[:poll_id] || attributes['poll_id'] || nil
           @restrict_replies = attributes[:restrict_replies] || attributes['restrict_replies'] || nil
           @skip_enrich_url = attributes[:skip_enrich_url] || attributes['skip_enrich_url'] || nil
+          @skip_push = attributes[:skip_push] || attributes['skip_push'] || nil
           @text = attributes[:text] || attributes['text'] || nil
           @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @visibility = attributes[:visibility] || attributes['visibility'] || nil
@@ -100,12 +108,14 @@ module GetStream
           {
             type: 'type',
             feeds: 'feeds',
+            create_notification_activity: 'create_notification_activity',
             expires_at: 'expires_at',
             id: 'id',
             parent_id: 'parent_id',
             poll_id: 'poll_id',
             restrict_replies: 'restrict_replies',
             skip_enrich_url: 'skip_enrich_url',
+            skip_push: 'skip_push',
             text: 'text',
             user_id: 'user_id',
             visibility: 'visibility',

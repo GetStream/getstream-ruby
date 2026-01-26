@@ -15,19 +15,29 @@ module GetStream
         # @!attribute comment
         #   @return [CommentResponse]
         attr_accessor :comment
+        # @!attribute mention_notifications_created
+        #   @return [Integer] Number of mention notification activities created for mentioned users
+        attr_accessor :mention_notifications_created
+        # @!attribute notification_created
+        #   @return [Boolean] Whether a notification activity was successfully created
+        attr_accessor :notification_created
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @duration = attributes[:duration] || attributes['duration']
           @comment = attributes[:comment] || attributes['comment']
+          @mention_notifications_created = attributes[:mention_notifications_created] || attributes['mention_notifications_created'] || nil
+          @notification_created = attributes[:notification_created] || attributes['notification_created'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
             duration: 'duration',
-            comment: 'comment'
+            comment: 'comment',
+            mention_notifications_created: 'mention_notifications_created',
+            notification_created: 'notification_created'
           }
         end
       end

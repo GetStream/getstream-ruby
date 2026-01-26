@@ -24,9 +24,15 @@ module GetStream
         # @!attribute geofencing
         #   @return [GeofenceSettingsResponse]
         attr_accessor :geofencing
+        # @!attribute individual_recording
+        #   @return [IndividualRecordingSettingsResponse]
+        attr_accessor :individual_recording
         # @!attribute limits
         #   @return [LimitsSettingsResponse]
         attr_accessor :limits
+        # @!attribute raw_recording
+        #   @return [RawRecordingSettingsResponse]
+        attr_accessor :raw_recording
         # @!attribute recording
         #   @return [RecordSettingsResponse]
         attr_accessor :recording
@@ -60,7 +66,9 @@ module GetStream
           @broadcasting = attributes[:broadcasting] || attributes['broadcasting']
           @frame_recording = attributes[:frame_recording] || attributes['frame_recording']
           @geofencing = attributes[:geofencing] || attributes['geofencing']
+          @individual_recording = attributes[:individual_recording] || attributes['individual_recording']
           @limits = attributes[:limits] || attributes['limits']
+          @raw_recording = attributes[:raw_recording] || attributes['raw_recording']
           @recording = attributes[:recording] || attributes['recording']
           @ring = attributes[:ring] || attributes['ring']
           @screensharing = attributes[:screensharing] || attributes['screensharing']
@@ -79,7 +87,9 @@ module GetStream
             broadcasting: 'broadcasting',
             frame_recording: 'frame_recording',
             geofencing: 'geofencing',
+            individual_recording: 'individual_recording',
             limits: 'limits',
+            raw_recording: 'raw_recording',
             recording: 'recording',
             ring: 'ring',
             screensharing: 'screensharing',

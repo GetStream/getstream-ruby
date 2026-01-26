@@ -30,6 +30,9 @@ module GetStream
         # @!attribute sns_auth_type
         #   @return [String]
         attr_accessor :sns_auth_type
+        # @!attribute sns_event_based_message_group_id_enabled
+        #   @return [Boolean]
+        attr_accessor :sns_event_based_message_group_id_enabled
         # @!attribute sns_key
         #   @return [String]
         attr_accessor :sns_key
@@ -89,6 +92,7 @@ module GetStream
           @product = attributes[:product] || attributes['product'] || nil
           @should_send_custom_events = attributes[:should_send_custom_events] || attributes['should_send_custom_events'] || nil
           @sns_auth_type = attributes[:sns_auth_type] || attributes['sns_auth_type'] || nil
+          @sns_event_based_message_group_id_enabled = attributes[:sns_event_based_message_group_id_enabled] || attributes['sns_event_based_message_group_id_enabled'] || nil
           @sns_key = attributes[:sns_key] || attributes['sns_key'] || nil
           @sns_region = attributes[:sns_region] || attributes['sns_region'] || nil
           @sns_role_arn = attributes[:sns_role_arn] || attributes['sns_role_arn'] || nil
@@ -117,6 +121,7 @@ module GetStream
             product: 'product',
             should_send_custom_events: 'should_send_custom_events',
             sns_auth_type: 'sns_auth_type',
+            sns_event_based_message_group_id_enabled: 'sns_event_based_message_group_id_enabled',
             sns_key: 'sns_key',
             sns_region: 'sns_region',
             sns_role_arn: 'sns_role_arn',

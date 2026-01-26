@@ -108,6 +108,9 @@ module GetStream
         # @!attribute moderation_action
         #   @return [String]
         attr_accessor :moderation_action
+        # @!attribute selector_source
+        #   @return [String] Which activity selector provided this activity (e.g., 'following', 'popular', 'interest'). Only set when using multiple activity selectors with ranking.
+        attr_accessor :selector_source
         # @!attribute text
         #   @return [String] Text content of the activity
         attr_accessor :text
@@ -169,6 +172,7 @@ module GetStream
           @expires_at = attributes[:expires_at] || attributes['expires_at'] || nil
           @is_watched = attributes[:is_watched] || attributes['is_watched'] || nil
           @moderation_action = attributes[:moderation_action] || attributes['moderation_action'] || nil
+          @selector_source = attributes[:selector_source] || attributes['selector_source'] || nil
           @text = attributes[:text] || attributes['text'] || nil
           @visibility_tag = attributes[:visibility_tag] || attributes['visibility_tag'] || nil
           @current_feed = attributes[:current_feed] || attributes['current_feed'] || nil
@@ -215,6 +219,7 @@ module GetStream
             expires_at: 'expires_at',
             is_watched: 'is_watched',
             moderation_action: 'moderation_action',
+            selector_source: 'selector_source',
             text: 'text',
             visibility_tag: 'visibility_tag',
             current_feed: 'current_feed',

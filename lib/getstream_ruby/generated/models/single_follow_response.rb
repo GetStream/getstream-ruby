@@ -15,19 +15,24 @@ module GetStream
         # @!attribute follow
         #   @return [FollowResponse]
         attr_accessor :follow
+        # @!attribute notification_created
+        #   @return [Boolean] Whether a notification activity was successfully created
+        attr_accessor :notification_created
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @duration = attributes[:duration] || attributes['duration']
           @follow = attributes[:follow] || attributes['follow']
+          @notification_created = attributes[:notification_created] || attributes['notification_created'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
             duration: 'duration',
-            follow: 'follow'
+            follow: 'follow',
+            notification_created: 'notification_created'
           }
         end
       end

@@ -60,6 +60,9 @@ module GetStream
         # @!attribute deleted_at
         #   @return [DateTime]
         attr_accessor :deleted_at
+        # @!attribute edited_at
+        #   @return [DateTime]
+        attr_accessor :edited_at
         # @!attribute parent_id
         #   @return [String]
         attr_accessor :parent_id
@@ -108,6 +111,7 @@ module GetStream
           @user = attributes[:user] || attributes['user']
           @controversy_score = attributes[:controversy_score] || attributes['controversy_score'] || nil
           @deleted_at = attributes[:deleted_at] || attributes['deleted_at'] || nil
+          @edited_at = attributes[:edited_at] || attributes['edited_at'] || nil
           @parent_id = attributes[:parent_id] || attributes['parent_id'] || nil
           @text = attributes[:text] || attributes['text'] || nil
           @attachments = attributes[:attachments] || attributes['attachments'] || nil
@@ -139,6 +143,7 @@ module GetStream
             user: 'user',
             controversy_score: 'controversy_score',
             deleted_at: 'deleted_at',
+            edited_at: 'edited_at',
             parent_id: 'parent_id',
             text: 'text',
             attachments: 'attachments',

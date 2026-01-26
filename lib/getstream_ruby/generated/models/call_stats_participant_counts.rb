@@ -27,6 +27,9 @@ module GetStream
         # @!attribute sessions
         #   @return [Integer]
         attr_accessor :sessions
+        # @!attribute total_participant_duration
+        #   @return [Integer]
+        attr_accessor :total_participant_duration
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -37,6 +40,7 @@ module GetStream
           @peak_concurrent_users = attributes[:peak_concurrent_users] || attributes['peak_concurrent_users']
           @publishers = attributes[:publishers] || attributes['publishers']
           @sessions = attributes[:sessions] || attributes['sessions']
+          @total_participant_duration = attributes[:total_participant_duration] || attributes['total_participant_duration'] || nil
         end
 
         # Override field mappings for JSON serialization
@@ -47,7 +51,8 @@ module GetStream
             peak_concurrent_sessions: 'peak_concurrent_sessions',
             peak_concurrent_users: 'peak_concurrent_users',
             publishers: 'publishers',
-            sessions: 'sessions'
+            sessions: 'sessions',
+            total_participant_duration: 'total_participant_duration'
           }
         end
       end

@@ -15,6 +15,9 @@ module GetStream
         # @!attribute force_default_search
         #   @return [Boolean]
         attr_accessor :force_default_search
+        # @!attribute force_sql_v2_backend
+        #   @return [Boolean]
+        attr_accessor :force_sql_v2_backend
         # @!attribute limit
         #   @return [Integer] Number of messages to return
         attr_accessor :limit
@@ -42,6 +45,7 @@ module GetStream
           super(attributes)
           @filter_conditions = attributes[:filter_conditions] || attributes['filter_conditions']
           @force_default_search = attributes[:force_default_search] || attributes['force_default_search'] || nil
+          @force_sql_v2_backend = attributes[:force_sql_v2_backend] || attributes['force_sql_v2_backend'] || nil
           @limit = attributes[:limit] || attributes['limit'] || nil
           @next = attributes[:next] || attributes['next'] || nil
           @offset = attributes[:offset] || attributes['offset'] || nil
@@ -56,6 +60,7 @@ module GetStream
           {
             filter_conditions: 'filter_conditions',
             force_default_search: 'force_default_search',
+            force_sql_v2_backend: 'force_sql_v2_backend',
             limit: 'limit',
             next: 'next',
             offset: 'offset',

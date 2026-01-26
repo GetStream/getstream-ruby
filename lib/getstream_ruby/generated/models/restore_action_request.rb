@@ -7,7 +7,24 @@ module GetStream
     module Models
       # 
       class RestoreActionRequest < GetStream::BaseModel
-        # Empty model - inherits all functionality from BaseModel
+
+        # Model attributes
+        # @!attribute decision_reason
+        #   @return [String]
+        attr_accessor :decision_reason
+
+        # Initialize with attributes
+        def initialize(attributes = {})
+          super(attributes)
+          @decision_reason = attributes[:decision_reason] || attributes['decision_reason'] || nil
+        end
+
+        # Override field mappings for JSON serialization
+        def self.json_field_mappings
+          {
+            decision_reason: 'decision_reason'
+          }
+        end
       end
     end
   end

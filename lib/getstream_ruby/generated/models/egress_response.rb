@@ -15,20 +15,32 @@ module GetStream
         # @!attribute rtmps
         #   @return [Array<EgressRTMPResponse>]
         attr_accessor :rtmps
+        # @!attribute composite_recording
+        #   @return [CompositeRecordingResponse]
+        attr_accessor :composite_recording
         # @!attribute frame_recording
         #   @return [FrameRecordingResponse]
         attr_accessor :frame_recording
         # @!attribute hls
         #   @return [EgressHLSResponse]
         attr_accessor :hls
+        # @!attribute individual_recording
+        #   @return [IndividualRecordingResponse]
+        attr_accessor :individual_recording
+        # @!attribute raw_recording
+        #   @return [RawRecordingResponse]
+        attr_accessor :raw_recording
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @broadcasting = attributes[:broadcasting] || attributes['broadcasting']
           @rtmps = attributes[:rtmps] || attributes['rtmps']
+          @composite_recording = attributes[:composite_recording] || attributes['composite_recording'] || nil
           @frame_recording = attributes[:frame_recording] || attributes['frame_recording'] || nil
           @hls = attributes[:hls] || attributes['hls'] || nil
+          @individual_recording = attributes[:individual_recording] || attributes['individual_recording'] || nil
+          @raw_recording = attributes[:raw_recording] || attributes['raw_recording'] || nil
         end
 
         # Override field mappings for JSON serialization
@@ -36,8 +48,11 @@ module GetStream
           {
             broadcasting: 'broadcasting',
             rtmps: 'rtmps',
+            composite_recording: 'composite_recording',
             frame_recording: 'frame_recording',
-            hls: 'hls'
+            hls: 'hls',
+            individual_recording: 'individual_recording',
+            raw_recording: 'raw_recording'
           }
         end
       end
