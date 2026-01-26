@@ -15,19 +15,24 @@ module GetStream
         # @!attribute activities
         #   @return [Array<ActivityResponse>] List of created or updated activities
         attr_accessor :activities
+        # @!attribute mention_notifications_created
+        #   @return [Integer] Total number of mention notification activities created for mentioned users across all activities
+        attr_accessor :mention_notifications_created
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @duration = attributes[:duration] || attributes['duration']
           @activities = attributes[:activities] || attributes['activities']
+          @mention_notifications_created = attributes[:mention_notifications_created] || attributes['mention_notifications_created'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
             duration: 'duration',
-            activities: 'activities'
+            activities: 'activities',
+            mention_notifications_created: 'mention_notifications_created'
           }
         end
       end

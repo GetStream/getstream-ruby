@@ -75,6 +75,9 @@ module GetStream
         # @!attribute activity
         #   @return [EnrichedActivity]
         attr_accessor :activity
+        # @!attribute appeal
+        #   @return [AppealItemResponse]
+        attr_accessor :appeal
         # @!attribute assigned_to
         #   @return [UserResponse]
         attr_accessor :assigned_to
@@ -131,6 +134,7 @@ module GetStream
           @reviewed_at = attributes[:reviewed_at] || attributes['reviewed_at'] || nil
           @teams = attributes[:teams] || attributes['teams'] || nil
           @activity = attributes[:activity] || attributes['activity'] || nil
+          @appeal = attributes[:appeal] || attributes['appeal'] || nil
           @assigned_to = attributes[:assigned_to] || attributes['assigned_to'] || nil
           @call = attributes[:call] || attributes['call'] || nil
           @entity_creator = attributes[:entity_creator] || attributes['entity_creator'] || nil
@@ -168,6 +172,7 @@ module GetStream
             reviewed_at: 'reviewed_at',
             teams: 'teams',
             activity: 'activity',
+            appeal: 'appeal',
             assigned_to: 'assigned_to',
             call: 'call',
             entity_creator: 'entity_creator',

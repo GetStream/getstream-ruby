@@ -12,9 +12,18 @@ module GetStream
         # @!attribute continue_closed_caption
         #   @return [Boolean]
         attr_accessor :continue_closed_caption
+        # @!attribute continue_composite_recording
+        #   @return [Boolean]
+        attr_accessor :continue_composite_recording
         # @!attribute continue_hls
         #   @return [Boolean]
         attr_accessor :continue_hls
+        # @!attribute continue_individual_recording
+        #   @return [Boolean]
+        attr_accessor :continue_individual_recording
+        # @!attribute continue_raw_recording
+        #   @return [Boolean]
+        attr_accessor :continue_raw_recording
         # @!attribute continue_recording
         #   @return [Boolean]
         attr_accessor :continue_recording
@@ -29,7 +38,10 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @continue_closed_caption = attributes[:continue_closed_caption] || attributes['continue_closed_caption'] || nil
+          @continue_composite_recording = attributes[:continue_composite_recording] || attributes['continue_composite_recording'] || nil
           @continue_hls = attributes[:continue_hls] || attributes['continue_hls'] || nil
+          @continue_individual_recording = attributes[:continue_individual_recording] || attributes['continue_individual_recording'] || nil
+          @continue_raw_recording = attributes[:continue_raw_recording] || attributes['continue_raw_recording'] || nil
           @continue_recording = attributes[:continue_recording] || attributes['continue_recording'] || nil
           @continue_rtmp_broadcasts = attributes[:continue_rtmp_broadcasts] || attributes['continue_rtmp_broadcasts'] || nil
           @continue_transcription = attributes[:continue_transcription] || attributes['continue_transcription'] || nil
@@ -39,7 +51,10 @@ module GetStream
         def self.json_field_mappings
           {
             continue_closed_caption: 'continue_closed_caption',
+            continue_composite_recording: 'continue_composite_recording',
             continue_hls: 'continue_hls',
+            continue_individual_recording: 'continue_individual_recording',
+            continue_raw_recording: 'continue_raw_recording',
             continue_recording: 'continue_recording',
             continue_rtmp_broadcasts: 'continue_rtmp_broadcasts',
             continue_transcription: 'continue_transcription'

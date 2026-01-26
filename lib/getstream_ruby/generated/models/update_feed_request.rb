@@ -12,6 +12,15 @@ module GetStream
         # @!attribute created_by_id
         #   @return [String] ID of the new feed creator (owner)
         attr_accessor :created_by_id
+        # @!attribute description
+        #   @return [String] Description of the feed
+        attr_accessor :description
+        # @!attribute name
+        #   @return [String] Name of the feed
+        attr_accessor :name
+        # @!attribute filter_tags
+        #   @return [Array<String>] Tags used for filtering feeds
+        attr_accessor :filter_tags
         # @!attribute custom
         #   @return [Object] Custom data for the feed
         attr_accessor :custom
@@ -20,6 +29,9 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @created_by_id = attributes[:created_by_id] || attributes['created_by_id'] || nil
+          @description = attributes[:description] || attributes['description'] || nil
+          @name = attributes[:name] || attributes['name'] || nil
+          @filter_tags = attributes[:filter_tags] || attributes['filter_tags'] || nil
           @custom = attributes[:custom] || attributes['custom'] || nil
         end
 
@@ -27,6 +39,9 @@ module GetStream
         def self.json_field_mappings
           {
             created_by_id: 'created_by_id',
+            description: 'description',
+            name: 'name',
+            filter_tags: 'filter_tags',
             custom: 'custom'
           }
         end

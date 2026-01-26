@@ -18,6 +18,9 @@ module GetStream
         # @!attribute challenge
         #   @return [SIPChallenge]
         attr_accessor :challenge
+        # @!attribute routing_number
+        #   @return [String] Optional routing number for routing number-based call routing (10 digits)
+        attr_accessor :routing_number
         # @!attribute sip_headers
         #   @return [Hash<String, String>] Optional SIP headers as key-value pairs
         attr_accessor :sip_headers
@@ -28,6 +31,7 @@ module GetStream
           @sip_caller_number = attributes[:sip_caller_number] || attributes['sip_caller_number']
           @sip_trunk_number = attributes[:sip_trunk_number] || attributes['sip_trunk_number']
           @challenge = attributes[:challenge] || attributes['challenge']
+          @routing_number = attributes[:routing_number] || attributes['routing_number'] || nil
           @sip_headers = attributes[:sip_headers] || attributes['sip_headers'] || nil
         end
 
@@ -37,6 +41,7 @@ module GetStream
             sip_caller_number: 'sip_caller_number',
             sip_trunk_number: 'sip_trunk_number',
             challenge: 'challenge',
+            routing_number: 'routing_number',
             sip_headers: 'sip_headers'
           }
         end

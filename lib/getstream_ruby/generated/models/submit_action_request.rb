@@ -12,6 +12,9 @@ module GetStream
         # @!attribute action_type
         #   @return [String] Type of moderation action to perform (mark_reviewed, delete_message, etc.)
         attr_accessor :action_type
+        # @!attribute appeal_id
+        #   @return [String] UUID of the appeal to act on (required for reject_appeal, optional for other actions)
+        attr_accessor :appeal_id
         # @!attribute item_id
         #   @return [String] UUID of the review queue item to act on
         attr_accessor :item_id
@@ -45,12 +48,21 @@ module GetStream
         # @!attribute mark_reviewed
         #   @return [MarkReviewedRequest]
         attr_accessor :mark_reviewed
+        # @!attribute reject_appeal
+        #   @return [RejectAppealRequest]
+        attr_accessor :reject_appeal
+        # @!attribute restore
+        #   @return [RestoreActionRequest]
+        attr_accessor :restore
         # @!attribute shadow_block
         #   @return [ShadowBlockActionRequest]
         attr_accessor :shadow_block
         # @!attribute unban
         #   @return [UnbanActionRequest]
         attr_accessor :unban
+        # @!attribute unblock
+        #   @return [UnblockActionRequest]
+        attr_accessor :unblock
         # @!attribute user
         #   @return [UserRequest]
         attr_accessor :user
@@ -59,7 +71,8 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @action_type = attributes[:action_type] || attributes['action_type']
-          @item_id = attributes[:item_id] || attributes['item_id']
+          @appeal_id = attributes[:appeal_id] || attributes['appeal_id'] || nil
+          @item_id = attributes[:item_id] || attributes['item_id'] || nil
           @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @ban = attributes[:ban] || attributes['ban'] || nil
           @block = attributes[:block] || attributes['block'] || nil
@@ -70,8 +83,11 @@ module GetStream
           @delete_reaction = attributes[:delete_reaction] || attributes['delete_reaction'] || nil
           @delete_user = attributes[:delete_user] || attributes['delete_user'] || nil
           @mark_reviewed = attributes[:mark_reviewed] || attributes['mark_reviewed'] || nil
+          @reject_appeal = attributes[:reject_appeal] || attributes['reject_appeal'] || nil
+          @restore = attributes[:restore] || attributes['restore'] || nil
           @shadow_block = attributes[:shadow_block] || attributes['shadow_block'] || nil
           @unban = attributes[:unban] || attributes['unban'] || nil
+          @unblock = attributes[:unblock] || attributes['unblock'] || nil
           @user = attributes[:user] || attributes['user'] || nil
         end
 
@@ -79,6 +95,7 @@ module GetStream
         def self.json_field_mappings
           {
             action_type: 'action_type',
+            appeal_id: 'appeal_id',
             item_id: 'item_id',
             user_id: 'user_id',
             ban: 'ban',
@@ -90,8 +107,11 @@ module GetStream
             delete_reaction: 'delete_reaction',
             delete_user: 'delete_user',
             mark_reviewed: 'mark_reviewed',
+            reject_appeal: 'reject_appeal',
+            restore: 'restore',
             shadow_block: 'shadow_block',
             unban: 'unban',
+            unblock: 'unblock',
             user: 'user'
           }
         end

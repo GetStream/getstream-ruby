@@ -12,6 +12,9 @@ module GetStream
         # @!attribute duration
         #   @return [String]
         attr_accessor :duration
+        # @!attribute appeal_item
+        #   @return [AppealItemResponse]
+        attr_accessor :appeal_item
         # @!attribute item
         #   @return [ReviewQueueItemResponse]
         attr_accessor :item
@@ -20,6 +23,7 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @duration = attributes[:duration] || attributes['duration']
+          @appeal_item = attributes[:appeal_item] || attributes['appeal_item'] || nil
           @item = attributes[:item] || attributes['item'] || nil
         end
 
@@ -27,6 +31,7 @@ module GetStream
         def self.json_field_mappings
           {
             duration: 'duration',
+            appeal_item: 'appeal_item',
             item: 'item'
           }
         end

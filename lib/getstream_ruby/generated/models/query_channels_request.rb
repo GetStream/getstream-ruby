@@ -21,6 +21,9 @@ module GetStream
         # @!attribute offset
         #   @return [Integer] Channel pagination offset
         attr_accessor :offset
+        # @!attribute predefined_filter
+        #   @return [String] ID of a predefined filter to use instead of filter_conditions
+        attr_accessor :predefined_filter
         # @!attribute state
         #   @return [Boolean] Whether to update channel state or not
         attr_accessor :state
@@ -33,6 +36,12 @@ module GetStream
         # @!attribute filter_conditions
         #   @return [Object]
         attr_accessor :filter_conditions
+        # @!attribute filter_values
+        #   @return [Object] Values to interpolate into the predefined filter template
+        attr_accessor :filter_values
+        # @!attribute sort_values
+        #   @return [Object]
+        attr_accessor :sort_values
         # @!attribute user
         #   @return [UserRequest]
         attr_accessor :user
@@ -44,10 +53,13 @@ module GetStream
           @member_limit = attributes[:member_limit] || attributes['member_limit'] || nil
           @message_limit = attributes[:message_limit] || attributes['message_limit'] || nil
           @offset = attributes[:offset] || attributes['offset'] || nil
+          @predefined_filter = attributes[:predefined_filter] || attributes['predefined_filter'] || nil
           @state = attributes[:state] || attributes['state'] || nil
           @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @sort = attributes[:sort] || attributes['sort'] || nil
           @filter_conditions = attributes[:filter_conditions] || attributes['filter_conditions'] || nil
+          @filter_values = attributes[:filter_values] || attributes['filter_values'] || nil
+          @sort_values = attributes[:sort_values] || attributes['sort_values'] || nil
           @user = attributes[:user] || attributes['user'] || nil
         end
 
@@ -58,10 +70,13 @@ module GetStream
             member_limit: 'member_limit',
             message_limit: 'message_limit',
             offset: 'offset',
+            predefined_filter: 'predefined_filter',
             state: 'state',
             user_id: 'user_id',
             sort: 'sort',
             filter_conditions: 'filter_conditions',
+            filter_values: 'filter_values',
+            sort_values: 'sort_values',
             user: 'user'
           }
         end

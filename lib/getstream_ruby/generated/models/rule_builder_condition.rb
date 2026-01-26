@@ -42,6 +42,12 @@ module GetStream
         # @!attribute user_flag_count_rule_params
         #   @return [FlagCountRuleParameters]
         attr_accessor :user_flag_count_rule_params
+        # @!attribute user_identical_content_count_params
+        #   @return [UserIdenticalContentCountParameters]
+        attr_accessor :user_identical_content_count_params
+        # @!attribute user_role_params
+        #   @return [UserRoleParameters]
+        attr_accessor :user_role_params
         # @!attribute user_rule_params
         #   @return [UserRuleParameters]
         attr_accessor :user_rule_params
@@ -66,6 +72,8 @@ module GetStream
           @user_created_within_params = attributes[:user_created_within_params] || attributes['user_created_within_params'] || nil
           @user_custom_property_params = attributes[:user_custom_property_params] || attributes['user_custom_property_params'] || nil
           @user_flag_count_rule_params = attributes[:user_flag_count_rule_params] || attributes['user_flag_count_rule_params'] || nil
+          @user_identical_content_count_params = attributes[:user_identical_content_count_params] || attributes['user_identical_content_count_params'] || nil
+          @user_role_params = attributes[:user_role_params] || attributes['user_role_params'] || nil
           @user_rule_params = attributes[:user_rule_params] || attributes['user_rule_params'] || nil
           @video_content_params = attributes[:video_content_params] || attributes['video_content_params'] || nil
           @video_rule_params = attributes[:video_rule_params] || attributes['video_rule_params'] || nil
@@ -85,6 +93,8 @@ module GetStream
             user_created_within_params: 'user_created_within_params',
             user_custom_property_params: 'user_custom_property_params',
             user_flag_count_rule_params: 'user_flag_count_rule_params',
+            user_identical_content_count_params: 'user_identical_content_count_params',
+            user_role_params: 'user_role_params',
             user_rule_params: 'user_rule_params',
             video_content_params: 'video_content_params',
             video_rule_params: 'video_rule_params'

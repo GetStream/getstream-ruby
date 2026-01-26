@@ -12,6 +12,56 @@ module GetStream
       def initialize(client)
         @client = client
       end
+      # Appeal against the moderation decision
+      #
+      # @param appeal_request [AppealRequest]
+      # @return [Models::AppealResponse]
+      def appeal(appeal_request)
+        path = '/api/v2/moderation/appeal'
+        # Build request body
+        body = appeal_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
+      # Retrieve a specific appeal item by its ID
+      #
+      # @param _id [String]
+      # @return [Models::GetAppealResponse]
+      def get_appeal(_id)
+        path = '/api/v2/moderation/appeal/{id}'
+        # Replace path parameters
+        path = path.gsub('{id}', _id.to_s)
+
+        # Make the API request
+        @client.make_request(
+          :get,
+          path
+        )
+      end
+
+      # Query Appeals
+      #
+      # @param query_appeals_request [QueryAppealsRequest]
+      # @return [Models::QueryAppealsResponse]
+      def query_appeals(query_appeals_request)
+        path = '/api/v2/moderation/appeals'
+        # Build request body
+        body = query_appeals_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
       # Ban a user from a channel or the entire app
       #
       # @param ban_request [BanRequest]

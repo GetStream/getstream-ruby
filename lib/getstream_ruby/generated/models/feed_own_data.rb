@@ -12,6 +12,9 @@ module GetStream
         # @!attribute own_capabilities
         #   @return [Array<FeedOwnCapability>] Capabilities the current user has for this feed
         attr_accessor :own_capabilities
+        # @!attribute own_followings
+        #   @return [Array<FollowResponse>] Follow relationships where the feed owner's feeds are following the current user's feeds (up to 5 total)
+        attr_accessor :own_followings
         # @!attribute own_follows
         #   @return [Array<FollowResponse>] Follow relationships where the current user's feeds are following this feed
         attr_accessor :own_follows
@@ -23,6 +26,7 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @own_capabilities = attributes[:own_capabilities] || attributes['own_capabilities'] || nil
+          @own_followings = attributes[:own_followings] || attributes['own_followings'] || nil
           @own_follows = attributes[:own_follows] || attributes['own_follows'] || nil
           @own_membership = attributes[:own_membership] || attributes['own_membership'] || nil
         end
@@ -31,6 +35,7 @@ module GetStream
         def self.json_field_mappings
           {
             own_capabilities: 'own_capabilities',
+            own_followings: 'own_followings',
             own_follows: 'own_follows',
             own_membership: 'own_membership'
           }

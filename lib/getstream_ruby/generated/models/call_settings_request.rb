@@ -24,12 +24,18 @@ module GetStream
         # @!attribute geofencing
         #   @return [GeofenceSettingsRequest]
         attr_accessor :geofencing
+        # @!attribute individual_recording
+        #   @return [IndividualRecordingSettingsRequest]
+        attr_accessor :individual_recording
         # @!attribute ingress
         #   @return [IngressSettingsRequest]
         attr_accessor :ingress
         # @!attribute limits
         #   @return [LimitsSettingsRequest]
         attr_accessor :limits
+        # @!attribute raw_recording
+        #   @return [RawRecordingSettingsRequest]
+        attr_accessor :raw_recording
         # @!attribute recording
         #   @return [RecordSettingsRequest]
         attr_accessor :recording
@@ -60,8 +66,10 @@ module GetStream
           @broadcasting = attributes[:broadcasting] || attributes['broadcasting'] || nil
           @frame_recording = attributes[:frame_recording] || attributes['frame_recording'] || nil
           @geofencing = attributes[:geofencing] || attributes['geofencing'] || nil
+          @individual_recording = attributes[:individual_recording] || attributes['individual_recording'] || nil
           @ingress = attributes[:ingress] || attributes['ingress'] || nil
           @limits = attributes[:limits] || attributes['limits'] || nil
+          @raw_recording = attributes[:raw_recording] || attributes['raw_recording'] || nil
           @recording = attributes[:recording] || attributes['recording'] || nil
           @ring = attributes[:ring] || attributes['ring'] || nil
           @screensharing = attributes[:screensharing] || attributes['screensharing'] || nil
@@ -79,8 +87,10 @@ module GetStream
             broadcasting: 'broadcasting',
             frame_recording: 'frame_recording',
             geofencing: 'geofencing',
+            individual_recording: 'individual_recording',
             ingress: 'ingress',
             limits: 'limits',
+            raw_recording: 'raw_recording',
             recording: 'recording',
             ring: 'ring',
             screensharing: 'screensharing',

@@ -21,6 +21,9 @@ module GetStream
         # @!attribute user_id
         #   @return [String]
         attr_accessor :user_id
+        # @!attribute attachments
+        #   @return [Array<Attachment>] Updated media attachments for the comment. Providing this field will replace all existing attachments.
+        attr_accessor :attachments
         # @!attribute custom
         #   @return [Object] Updated custom data for the comment
         attr_accessor :custom
@@ -35,6 +38,7 @@ module GetStream
           @skip_enrich_url = attributes[:skip_enrich_url] || attributes['skip_enrich_url'] || nil
           @skip_push = attributes[:skip_push] || attributes['skip_push'] || nil
           @user_id = attributes[:user_id] || attributes['user_id'] || nil
+          @attachments = attributes[:attachments] || attributes['attachments'] || nil
           @custom = attributes[:custom] || attributes['custom'] || nil
           @user = attributes[:user] || attributes['user'] || nil
         end
@@ -46,6 +50,7 @@ module GetStream
             skip_enrich_url: 'skip_enrich_url',
             skip_push: 'skip_push',
             user_id: 'user_id',
+            attachments: 'attachments',
             custom: 'custom',
             user: 'user'
           }

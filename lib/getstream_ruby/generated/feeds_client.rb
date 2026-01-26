@@ -516,11 +516,12 @@ module GetStream
       # @param depth [Integer]
       # @param sort [String]
       # @param replies_limit [Integer]
+      # @param user_id [String]
       # @param limit [Integer]
       # @param prev [String]
       # @param _next [String]
       # @return [Models::GetCommentsResponse]
-      def get_comments(object_id, object_type, depth = nil, sort = nil, replies_limit = nil, limit = nil, prev = nil, _next = nil)
+      def get_comments(object_id, object_type, depth = nil, sort = nil, replies_limit = nil, user_id = nil, limit = nil, prev = nil, _next = nil)
         path = '/api/v2/feeds/comments'
         # Build query parameters
         query_params = {}
@@ -529,6 +530,7 @@ module GetStream
         query_params['depth'] = depth unless depth.nil?
         query_params['sort'] = sort unless sort.nil?
         query_params['replies_limit'] = replies_limit unless replies_limit.nil?
+        query_params['user_id'] = user_id unless user_id.nil?
         query_params['limit'] = limit unless limit.nil?
         query_params['prev'] = prev unless prev.nil?
         query_params['next'] = _next unless _next.nil?
@@ -718,11 +720,12 @@ module GetStream
       # @param depth [Integer]
       # @param sort [String]
       # @param replies_limit [Integer]
+      # @param user_id [String]
       # @param limit [Integer]
       # @param prev [String]
       # @param _next [String]
       # @return [Models::GetCommentRepliesResponse]
-      def get_comment_replies(_id, depth = nil, sort = nil, replies_limit = nil, limit = nil, prev = nil, _next = nil)
+      def get_comment_replies(_id, depth = nil, sort = nil, replies_limit = nil, user_id = nil, limit = nil, prev = nil, _next = nil)
         path = '/api/v2/feeds/comments/{id}/replies'
         # Replace path parameters
         path = path.gsub('{id}', _id.to_s)
@@ -731,6 +734,7 @@ module GetStream
         query_params['depth'] = depth unless depth.nil?
         query_params['sort'] = sort unless sort.nil?
         query_params['replies_limit'] = replies_limit unless replies_limit.nil?
+        query_params['user_id'] = user_id unless user_id.nil?
         query_params['limit'] = limit unless limit.nil?
         query_params['prev'] = prev unless prev.nil?
         query_params['next'] = _next unless _next.nil?

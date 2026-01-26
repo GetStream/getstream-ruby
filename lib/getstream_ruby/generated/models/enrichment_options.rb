@@ -5,65 +5,69 @@
 module GetStream
   module Generated
     module Models
-      # 
+      # Options to skip specific enrichments to improve performance. Default is false (enrichments are included). Setting a field to true skips that enrichment.
       class EnrichmentOptions < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute enrich_own_followings
+        #   @return [Boolean] Default: false. When true, includes fetching and enriching own_followings (follows where activity author's feeds follow current user's feeds).
+        attr_accessor :enrich_own_followings
         # @!attribute skip_activity
-        #   @return [Boolean]
+        #   @return [Boolean] Default: false. When true, skips all activity enrichments.
         attr_accessor :skip_activity
         # @!attribute skip_activity_collections
-        #   @return [Boolean]
+        #   @return [Boolean] Default: false. When true, skips enriching collections on activities.
         attr_accessor :skip_activity_collections
         # @!attribute skip_activity_comments
-        #   @return [Boolean]
+        #   @return [Boolean] Default: false. When true, skips enriching comments on activities.
         attr_accessor :skip_activity_comments
         # @!attribute skip_activity_current_feed
-        #   @return [Boolean]
+        #   @return [Boolean] Default: false. When true, skips enriching current_feed on activities. Note: CurrentFeed is still computed for permission checks, but enrichment is skipped.
         attr_accessor :skip_activity_current_feed
         # @!attribute skip_activity_mentioned_users
-        #   @return [Boolean]
+        #   @return [Boolean] Default: false. When true, skips enriching mentioned users on activities.
         attr_accessor :skip_activity_mentioned_users
         # @!attribute skip_activity_own_bookmarks
-        #   @return [Boolean]
+        #   @return [Boolean] Default: false. When true, skips enriching own bookmarks on activities.
         attr_accessor :skip_activity_own_bookmarks
         # @!attribute skip_activity_parents
-        #   @return [Boolean]
+        #   @return [Boolean] Default: false. When true, skips enriching parent activities.
         attr_accessor :skip_activity_parents
         # @!attribute skip_activity_poll
-        #   @return [Boolean]
+        #   @return [Boolean] Default: false. When true, skips enriching poll data on activities.
         attr_accessor :skip_activity_poll
         # @!attribute skip_activity_reactions
-        #   @return [Boolean]
+        #   @return [Boolean] Default: false. When true, skips fetching and enriching latest and own reactions on activities. Note: If reactions are already denormalized in the database, they will still be included.
         attr_accessor :skip_activity_reactions
         # @!attribute skip_activity_refresh_image_urls
-        #   @return [Boolean]
+        #   @return [Boolean] Default: false. When true, skips refreshing image URLs on activities.
         attr_accessor :skip_activity_refresh_image_urls
         # @!attribute skip_all
-        #   @return [Boolean]
+        #   @return [Boolean] Default: false. When true, skips all enrichments.
         attr_accessor :skip_all
         # @!attribute skip_feed_member_user
-        #   @return [Boolean]
+        #   @return [Boolean] Default: false. When true, skips enriching user data on feed members.
         attr_accessor :skip_feed_member_user
         # @!attribute skip_followers
-        #   @return [Boolean]
+        #   @return [Boolean] Default: false. When true, skips fetching and enriching followers. Note: If followers_pagination is explicitly provided, followers will be fetched regardless of this setting.
         attr_accessor :skip_followers
         # @!attribute skip_following
-        #   @return [Boolean]
+        #   @return [Boolean] Default: false. When true, skips fetching and enriching following. Note: If following_pagination is explicitly provided, following will be fetched regardless of this setting.
         attr_accessor :skip_following
         # @!attribute skip_own_capabilities
-        #   @return [Boolean]
+        #   @return [Boolean] Default: false. When true, skips computing and including capabilities for feeds.
         attr_accessor :skip_own_capabilities
         # @!attribute skip_own_follows
-        #   @return [Boolean]
+        #   @return [Boolean] Default: false. When true, skips fetching and enriching own_follows (follows where user's feeds follow target feeds).
         attr_accessor :skip_own_follows
         # @!attribute skip_pins
-        #   @return [Boolean]
+        #   @return [Boolean] Default: false. When true, skips enriching pinned activities.
         attr_accessor :skip_pins
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @enrich_own_followings = attributes[:enrich_own_followings] || attributes['enrich_own_followings'] || nil
           @skip_activity = attributes[:skip_activity] || attributes['skip_activity'] || nil
           @skip_activity_collections = attributes[:skip_activity_collections] || attributes['skip_activity_collections'] || nil
           @skip_activity_comments = attributes[:skip_activity_comments] || attributes['skip_activity_comments'] || nil
@@ -86,6 +90,7 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            enrich_own_followings: 'enrich_own_followings',
             skip_activity: 'skip_activity',
             skip_activity_collections: 'skip_activity_collections',
             skip_activity_comments: 'skip_activity_comments',

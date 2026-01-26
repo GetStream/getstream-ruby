@@ -18,6 +18,9 @@ module GetStream
         # @!attribute reaction
         #   @return [FeedsReactionResponse]
         attr_accessor :reaction
+        # @!attribute notification_created
+        #   @return [Boolean] Whether a notification activity was successfully created
+        attr_accessor :notification_created
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -25,6 +28,7 @@ module GetStream
           @duration = attributes[:duration] || attributes['duration']
           @activity = attributes[:activity] || attributes['activity']
           @reaction = attributes[:reaction] || attributes['reaction']
+          @notification_created = attributes[:notification_created] || attributes['notification_created'] || nil
         end
 
         # Override field mappings for JSON serialization
@@ -32,7 +36,8 @@ module GetStream
           {
             duration: 'duration',
             activity: 'activity',
-            reaction: 'reaction'
+            reaction: 'reaction',
+            notification_created: 'notification_created'
           }
         end
       end

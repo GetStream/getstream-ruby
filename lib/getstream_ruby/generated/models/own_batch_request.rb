@@ -5,7 +5,7 @@
 module GetStream
   module Generated
     module Models
-      # Request to get own_follows, own_capabilities, and/or own_membership for multiple feeds. If fields is not specified, all three fields are returned.
+      # Request to get own_follows, own_followings, own_capabilities, and/or own_membership for multiple feeds. If fields is not specified, all fields are returned.
       class OwnBatchRequest < GetStream::BaseModel
 
         # Model attributes
@@ -16,7 +16,7 @@ module GetStream
         #   @return [String]
         attr_accessor :user_id
         # @!attribute fields
-        #   @return [Array<String>] Optional list of specific fields to return. If not specified, all fields (own_follows, own_capabilities, own_membership) are returned
+        #   @return [Array<String>] Optional list of specific fields to return. If not specified, all fields (own_follows, own_followings, own_capabilities, own_membership) are returned
         attr_accessor :fields
         # @!attribute user
         #   @return [UserRequest]

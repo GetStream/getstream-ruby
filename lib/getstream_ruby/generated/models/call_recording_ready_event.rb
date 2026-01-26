@@ -18,6 +18,9 @@ module GetStream
         # @!attribute egress_id
         #   @return [String]
         attr_accessor :egress_id
+        # @!attribute recording_type
+        #   @return [String] The type of recording
+        attr_accessor :recording_type
         # @!attribute call_recording
         #   @return [CallRecording]
         attr_accessor :call_recording
@@ -31,6 +34,7 @@ module GetStream
           @call_cid = attributes[:call_cid] || attributes['call_cid']
           @created_at = attributes[:created_at] || attributes['created_at']
           @egress_id = attributes[:egress_id] || attributes['egress_id']
+          @recording_type = attributes[:recording_type] || attributes['recording_type']
           @call_recording = attributes[:call_recording] || attributes['call_recording']
           @type = attributes[:type] || attributes['type'] || "call.recording_ready"
         end
@@ -41,6 +45,7 @@ module GetStream
             call_cid: 'call_cid',
             created_at: 'created_at',
             egress_id: 'egress_id',
+            recording_type: 'recording_type',
             call_recording: 'call_recording',
             type: 'type'
           }
