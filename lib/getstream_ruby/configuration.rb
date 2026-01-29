@@ -16,7 +16,7 @@ module GetStreamRuby
         # Manual configuration only - no environment variables
         @api_key = api_key
         @api_secret = api_secret
-        @base_url = base_url || 'https://api.getstream.io/api/v1.0'
+        @base_url = base_url || 'https://chat.stream-io-api.com'
         @timeout = timeout || 30
       end
 
