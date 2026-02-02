@@ -12,6 +12,9 @@ module GetStream
         # @!attribute ids
         #   @return [Array<String>] List of activity IDs to delete
         attr_accessor :ids
+        # @!attribute delete_notification_activity
+        #   @return [Boolean] Whether to also delete any notification activities created from mentions in these activities
+        attr_accessor :delete_notification_activity
         # @!attribute hard_delete
         #   @return [Boolean] Whether to permanently delete the activities
         attr_accessor :hard_delete
@@ -26,6 +29,7 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @ids = attributes[:ids] || attributes['ids']
+          @delete_notification_activity = attributes[:delete_notification_activity] || attributes['delete_notification_activity'] || nil
           @hard_delete = attributes[:hard_delete] || attributes['hard_delete'] || nil
           @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @user = attributes[:user] || attributes['user'] || nil
@@ -35,6 +39,7 @@ module GetStream
         def self.json_field_mappings
           {
             ids: 'ids',
+            delete_notification_activity: 'delete_notification_activity',
             hard_delete: 'hard_delete',
             user_id: 'user_id',
             user: 'user'

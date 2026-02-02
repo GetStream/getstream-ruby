@@ -9,6 +9,12 @@ module GetStream
       class ImportV2TaskSettings < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute mode
+        #   @return [String]
+        attr_accessor :mode
+        # @!attribute path
+        #   @return [String]
+        attr_accessor :path
         # @!attribute skip_references_check
         #   @return [Boolean]
         attr_accessor :skip_references_check
@@ -19,6 +25,8 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @mode = attributes[:mode] || attributes['mode'] || nil
+          @path = attributes[:path] || attributes['path'] || nil
           @skip_references_check = attributes[:skip_references_check] || attributes['skip_references_check'] || nil
           @s3 = attributes[:s3] || attributes['s3'] || nil
         end
@@ -26,6 +34,8 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            mode: 'mode',
+            path: 'path',
             skip_references_check: 'skip_references_check',
             s3: 's3'
           }

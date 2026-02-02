@@ -25,8 +25,11 @@ module GetStream
         #   @return [String] Push preference for the follow relationship
         attr_accessor :push_preference
         # @!attribute skip_push
-        #   @return [Boolean]
+        #   @return [Boolean] Whether to skip push for this follow
         attr_accessor :skip_push
+        # @!attribute status
+        #   @return [String] Status of the follow relationship
+        attr_accessor :status
         # @!attribute custom
         #   @return [Object] Custom data for the follow relationship
         attr_accessor :custom
@@ -40,6 +43,7 @@ module GetStream
           @follower_role = attributes[:follower_role] || attributes['follower_role'] || nil
           @push_preference = attributes[:push_preference] || attributes['push_preference'] || nil
           @skip_push = attributes[:skip_push] || attributes['skip_push'] || nil
+          @status = attributes[:status] || attributes['status'] || nil
           @custom = attributes[:custom] || attributes['custom'] || nil
         end
 
@@ -52,6 +56,7 @@ module GetStream
             follower_role: 'follower_role',
             push_preference: 'push_preference',
             skip_push: 'skip_push',
+            status: 'status',
             custom: 'custom'
           }
         end

@@ -254,15 +254,17 @@ module GetStream
       #
       # @param activity_id [String]
       # @param _type [String]
+      # @param delete_notification_activity [Boolean]
       # @param user_id [String]
       # @return [Models::DeleteActivityReactionResponse]
-      def delete_activity_reaction(activity_id, _type, user_id = nil)
+      def delete_activity_reaction(activity_id, _type, delete_notification_activity = nil, user_id = nil)
         path = '/api/v2/feeds/activities/{activity_id}/reactions/{type}'
         # Replace path parameters
         path = path.gsub('{activity_id}', activity_id.to_s)
         path = path.gsub('{type}', _type.to_s)
         # Build query parameters
         query_params = {}
+        query_params['delete_notification_activity'] = delete_notification_activity unless delete_notification_activity.nil?
         query_params['user_id'] = user_id unless user_id.nil?
 
         # Make the API request
@@ -277,14 +279,16 @@ module GetStream
       #
       # @param _id [String]
       # @param hard_delete [Boolean]
+      # @param delete_notification_activity [Boolean]
       # @return [Models::DeleteActivityResponse]
-      def delete_activity(_id, hard_delete = nil)
+      def delete_activity(_id, hard_delete = nil, delete_notification_activity = nil)
         path = '/api/v2/feeds/activities/{id}'
         # Replace path parameters
         path = path.gsub('{id}', _id.to_s)
         # Build query parameters
         query_params = {}
         query_params['hard_delete'] = hard_delete unless hard_delete.nil?
+        query_params['delete_notification_activity'] = delete_notification_activity unless delete_notification_activity.nil?
 
         # Make the API request
         @client.make_request(
@@ -345,6 +349,26 @@ module GetStream
         # Make the API request
         @client.make_request(
           :put,
+          path,
+          body: body
+        )
+      end
+
+      # Restores a soft-deleted activity by its ID. Only the activity owner can restore their own activities.
+      #
+      # @param _id [String]
+      # @param restore_activity_request [RestoreActivityRequest]
+      # @return [Models::RestoreActivityResponse]
+      def restore_activity(_id, restore_activity_request)
+        path = '/api/v2/feeds/activities/{id}/restore'
+        # Replace path parameters
+        path = path.gsub('{id}', _id.to_s)
+        # Build request body
+        body = restore_activity_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
           path,
           body: body
         )
@@ -598,14 +622,16 @@ module GetStream
       #
       # @param _id [String]
       # @param hard_delete [Boolean]
+      # @param delete_notification_activity [Boolean]
       # @return [Models::DeleteCommentResponse]
-      def delete_comment(_id, hard_delete = nil)
+      def delete_comment(_id, hard_delete = nil, delete_notification_activity = nil)
         path = '/api/v2/feeds/comments/{id}'
         # Replace path parameters
         path = path.gsub('{id}', _id.to_s)
         # Build query parameters
         query_params = {}
         query_params['hard_delete'] = hard_delete unless hard_delete.nil?
+        query_params['delete_notification_activity'] = delete_notification_activity unless delete_notification_activity.nil?
 
         # Make the API request
         @client.make_request(
@@ -695,15 +721,17 @@ module GetStream
       #
       # @param _id [String]
       # @param _type [String]
+      # @param delete_notification_activity [Boolean]
       # @param user_id [String]
       # @return [Models::DeleteCommentReactionResponse]
-      def delete_comment_reaction(_id, _type, user_id = nil)
+      def delete_comment_reaction(_id, _type, delete_notification_activity = nil, user_id = nil)
         path = '/api/v2/feeds/comments/{id}/reactions/{type}'
         # Replace path parameters
         path = path.gsub('{id}', _id.to_s)
         path = path.gsub('{type}', _type.to_s)
         # Build query parameters
         query_params = {}
+        query_params['delete_notification_activity'] = delete_notification_activity unless delete_notification_activity.nil?
         query_params['user_id'] = user_id unless user_id.nil?
 
         # Make the API request
@@ -1481,17 +1509,22 @@ module GetStream
       #
       # @param source [String]
       # @param target [String]
+      # @param delete_notification_activity [Boolean]
       # @return [Models::UnfollowResponse]
-      def unfollow(source, target)
+      def unfollow(source, target, delete_notification_activity = nil)
         path = '/api/v2/feeds/follows/{source}/{target}'
         # Replace path parameters
         path = path.gsub('{source}', source.to_s)
         path = path.gsub('{target}', target.to_s)
+        # Build query parameters
+        query_params = {}
+        query_params['delete_notification_activity'] = delete_notification_activity unless delete_notification_activity.nil?
 
         # Make the API request
         @client.make_request(
           :delete,
-          path
+          path,
+          query_params: query_params
         )
       end
 

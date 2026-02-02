@@ -12,6 +12,9 @@ module GetStream
         # @!attribute comment
         #   @return [String] Updated text content of the comment
         attr_accessor :comment
+        # @!attribute handle_mention_notifications
+        #   @return [Boolean] If true, creates notification activities for newly mentioned users and deletes notifications for users no longer mentioned
+        attr_accessor :handle_mention_notifications
         # @!attribute skip_enrich_url
         #   @return [Boolean] Whether to skip URL enrichment for this comment
         attr_accessor :skip_enrich_url
@@ -24,6 +27,9 @@ module GetStream
         # @!attribute attachments
         #   @return [Array<Attachment>] Updated media attachments for the comment. Providing this field will replace all existing attachments.
         attr_accessor :attachments
+        # @!attribute mentioned_user_ids
+        #   @return [Array<String>] List of user IDs mentioned in the comment
+        attr_accessor :mentioned_user_ids
         # @!attribute custom
         #   @return [Object] Updated custom data for the comment
         attr_accessor :custom
@@ -35,10 +41,12 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @comment = attributes[:comment] || attributes['comment'] || nil
+          @handle_mention_notifications = attributes[:handle_mention_notifications] || attributes['handle_mention_notifications'] || nil
           @skip_enrich_url = attributes[:skip_enrich_url] || attributes['skip_enrich_url'] || nil
           @skip_push = attributes[:skip_push] || attributes['skip_push'] || nil
           @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @attachments = attributes[:attachments] || attributes['attachments'] || nil
+          @mentioned_user_ids = attributes[:mentioned_user_ids] || attributes['mentioned_user_ids'] || nil
           @custom = attributes[:custom] || attributes['custom'] || nil
           @user = attributes[:user] || attributes['user'] || nil
         end
@@ -47,10 +55,12 @@ module GetStream
         def self.json_field_mappings
           {
             comment: 'comment',
+            handle_mention_notifications: 'handle_mention_notifications',
             skip_enrich_url: 'skip_enrich_url',
             skip_push: 'skip_push',
             user_id: 'user_id',
             attachments: 'attachments',
+            mentioned_user_ids: 'mentioned_user_ids',
             custom: 'custom',
             user: 'user'
           }

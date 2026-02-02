@@ -15,19 +15,24 @@ module GetStream
         # @!attribute channels
         #   @return [Array<ChannelStateResponseFields>] List of channels
         attr_accessor :channels
+        # @!attribute predefined_filter
+        #   @return [ParsedPredefinedFilterResponse]
+        attr_accessor :predefined_filter
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @duration = attributes[:duration] || attributes['duration']
           @channels = attributes[:channels] || attributes['channels']
+          @predefined_filter = attributes[:predefined_filter] || attributes['predefined_filter'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
             duration: 'duration',
-            channels: 'channels'
+            channels: 'channels',
+            predefined_filter: 'predefined_filter'
           }
         end
       end
