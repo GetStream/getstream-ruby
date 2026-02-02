@@ -9,6 +9,9 @@ module GetStream
       class UpdateActivityPartialRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute handle_mention_notifications
+        #   @return [Boolean] If true, creates notification activities for newly mentioned users and deletes notifications for users no longer mentioned
+        attr_accessor :handle_mention_notifications
         # @!attribute user_id
         #   @return [String]
         attr_accessor :user_id
@@ -25,6 +28,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @handle_mention_notifications = attributes[:handle_mention_notifications] || attributes['handle_mention_notifications'] || nil
           @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @unset = attributes[:unset] || attributes['unset'] || nil
           @set = attributes[:set] || attributes['set'] || nil
@@ -34,6 +38,7 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            handle_mention_notifications: 'handle_mention_notifications',
             user_id: 'user_id',
             unset: 'unset',
             set: 'set',

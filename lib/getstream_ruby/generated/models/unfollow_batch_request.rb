@@ -12,17 +12,22 @@ module GetStream
         # @!attribute follows
         #   @return [Array<FollowPair>] List of follow relationships to remove
         attr_accessor :follows
+        # @!attribute delete_notification_activity
+        #   @return [Boolean] Whether to delete the corresponding notification activity (default: false)
+        attr_accessor :delete_notification_activity
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @follows = attributes[:follows] || attributes['follows']
+          @delete_notification_activity = attributes[:delete_notification_activity] || attributes['delete_notification_activity'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            follows: 'follows'
+            follows: 'follows',
+            delete_notification_activity: 'delete_notification_activity'
           }
         end
       end

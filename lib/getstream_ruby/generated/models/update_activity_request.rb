@@ -12,6 +12,9 @@ module GetStream
         # @!attribute expires_at
         #   @return [DateTime] Time when the activity will expire
         attr_accessor :expires_at
+        # @!attribute handle_mention_notifications
+        #   @return [Boolean] If true, creates notification activities for newly mentioned users and deletes notifications for users no longer mentioned
+        attr_accessor :handle_mention_notifications
         # @!attribute poll_id
         #   @return [String] Poll ID
         attr_accessor :poll_id
@@ -65,6 +68,7 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @expires_at = attributes[:expires_at] || attributes['expires_at'] || nil
+          @handle_mention_notifications = attributes[:handle_mention_notifications] || attributes['handle_mention_notifications'] || nil
           @poll_id = attributes[:poll_id] || attributes['poll_id'] || nil
           @restrict_replies = attributes[:restrict_replies] || attributes['restrict_replies'] || nil
           @skip_enrich_url = attributes[:skip_enrich_url] || attributes['skip_enrich_url'] || nil
@@ -87,6 +91,7 @@ module GetStream
         def self.json_field_mappings
           {
             expires_at: 'expires_at',
+            handle_mention_notifications: 'handle_mention_notifications',
             poll_id: 'poll_id',
             restrict_replies: 'restrict_replies',
             skip_enrich_url: 'skip_enrich_url',
