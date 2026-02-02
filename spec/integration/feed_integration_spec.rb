@@ -476,7 +476,7 @@ RSpec.describe 'Feed Integration Tests', type: :integration do
 
       # snippet-start: DeleteReaction
       # Delete reaction
-      delete_response = client.feeds.delete_activity_reaction(activity_id, 'like', test_user_id_1)
+      delete_response = client.feeds.delete_activity_reaction(activity_id, 'like', nil, test_user_id_1)
       expect(delete_response).to be_a(GetStreamRuby::StreamResponse)
       puts '✅ Deleted reaction successfully'
       # snippet-stop: DeleteReaction
@@ -772,9 +772,10 @@ RSpec.describe 'Feed Integration Tests', type: :integration do
         expect(get_response).to be_a(GetStreamRuby::StreamResponse)
         puts '✅ Retrieved feed group successfully'
 
-        # Update feed group
+        # Update feed group - only update allowed fields for built-in groups
+        # Built-in groups can only have [activity_selectors, custom_ranking] updated
         update_request = GetStream::Generated::Models::UpdateFeedGroupRequest.new(
-          aggregation: GetStream::Generated::Models::AggregationConfig.new(format: 'default'),
+          custom_ranking: {},
         )
 
         update_response = client.feeds.update_feed_group('foryou', update_request)
