@@ -40,11 +40,11 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @contains_url = attributes[:contains_url] || attributes['contains_url'] || nil
-          @semantic_filter_min_threshold = attributes[:semantic_filter_min_threshold] || attributes['semantic_filter_min_threshold'] || nil
-          @severity = attributes[:severity] || attributes['severity'] || nil
-          @threshold = attributes[:threshold] || attributes['threshold'] || nil
-          @time_window = attributes[:time_window] || attributes['time_window'] || nil
+          @contains_url = attributes[:contains_url] || attributes['contains_url'] || false
+          @semantic_filter_min_threshold = attributes[:semantic_filter_min_threshold] || attributes['semantic_filter_min_threshold'] || 0.0
+          @severity = attributes[:severity] || attributes['severity'] || ""
+          @threshold = attributes[:threshold] || attributes['threshold'] || 0
+          @time_window = attributes[:time_window] || attributes['time_window'] || ""
           @blocklist_match = attributes[:blocklist_match] || attributes['blocklist_match'] || nil
           @harm_labels = attributes[:harm_labels] || attributes['harm_labels'] || nil
           @semantic_filter_names = attributes[:semantic_filter_names] || attributes['semantic_filter_names'] || nil

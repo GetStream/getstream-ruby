@@ -31,8 +31,8 @@ module GetStream
           @level = attributes[:level] || attributes['level']
           @operator = attributes[:operator] || attributes['operator']
           @value = attributes[:value] || attributes['value']
-          @value_unit = attributes[:value_unit] || attributes['value_unit'] || nil
-          @window_seconds = attributes[:window_seconds] || attributes['window_seconds'] || nil
+          @value_unit = attributes[:value_unit] || attributes['value_unit'] || ""
+          @window_seconds = attributes[:window_seconds] || attributes['window_seconds'] || 0
         end
 
         # Override field mappings for JSON serialization

@@ -10,7 +10,7 @@ module GetStream
 
         # Model attributes
         # @!attribute operation
-        #   @return [String] Type of update operation to perform
+        #   @return [String] Type of update operation to perform. One of: upsert, remove, set
         attr_accessor :operation
         # @!attribute limit
         #   @return [Integer]
@@ -29,9 +29,9 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @operation = attributes[:operation] || attributes['operation']
-          @limit = attributes[:limit] || attributes['limit'] || nil
-          @next = attributes[:next] || attributes['next'] || nil
-          @prev = attributes[:prev] || attributes['prev'] || nil
+          @limit = attributes[:limit] || attributes['limit'] || 0
+          @next = attributes[:next] || attributes['next'] || ""
+          @prev = attributes[:prev] || attributes['prev'] || ""
           @members = attributes[:members] || attributes['members'] || nil
         end
 

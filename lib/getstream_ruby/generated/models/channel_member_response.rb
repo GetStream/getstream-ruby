@@ -55,7 +55,7 @@ module GetStream
         #   @return [DateTime]
         attr_accessor :pinned_at
         # @!attribute role
-        #   @return [String] Permission level of the member in the channel (DEPRECATED: use channel_role instead)
+        #   @return [String] Permission level of the member in the channel (DEPRECATED: use channel_role instead). One of: member, moderator, admin, owner
         attr_accessor :role
         # @!attribute status
         #   @return [String]
@@ -85,12 +85,12 @@ module GetStream
           @deleted_at = attributes[:deleted_at] || attributes['deleted_at'] || nil
           @invite_accepted_at = attributes[:invite_accepted_at] || attributes['invite_accepted_at'] || nil
           @invite_rejected_at = attributes[:invite_rejected_at] || attributes['invite_rejected_at'] || nil
-          @invited = attributes[:invited] || attributes['invited'] || nil
-          @is_moderator = attributes[:is_moderator] || attributes['is_moderator'] || nil
+          @invited = attributes[:invited] || attributes['invited'] || false
+          @is_moderator = attributes[:is_moderator] || attributes['is_moderator'] || false
           @pinned_at = attributes[:pinned_at] || attributes['pinned_at'] || nil
-          @role = attributes[:role] || attributes['role'] || nil
-          @status = attributes[:status] || attributes['status'] || nil
-          @user_id = attributes[:user_id] || attributes['user_id'] || nil
+          @role = attributes[:role] || attributes['role'] || ""
+          @status = attributes[:status] || attributes['status'] || ""
+          @user_id = attributes[:user_id] || attributes['user_id'] || ""
           @deleted_messages = attributes[:deleted_messages] || attributes['deleted_messages'] || nil
           @user = attributes[:user] || attributes['user'] || nil
         end

@@ -67,8 +67,8 @@ module GetStream
           @members = attributes[:members] || attributes['members']
           @pinned_activities = attributes[:pinned_activities] || attributes['pinned_activities']
           @feed = attributes[:feed] || attributes['feed']
-          @next = attributes[:next] || attributes['next'] || nil
-          @prev = attributes[:prev] || attributes['prev'] || nil
+          @next = attributes[:next] || attributes['next'] || ""
+          @prev = attributes[:prev] || attributes['prev'] || ""
           @followers_pagination = attributes[:followers_pagination] || attributes['followers_pagination'] || nil
           @following_pagination = attributes[:following_pagination] || attributes['following_pagination'] || nil
           @member_pagination = attributes[:member_pagination] || attributes['member_pagination'] || nil

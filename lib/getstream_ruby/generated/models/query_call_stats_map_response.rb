@@ -62,7 +62,7 @@ module GetStream
           @counts = attributes[:counts] || attributes['counts']
           @call_ended_at = attributes[:call_ended_at] || attributes['call_ended_at'] || nil
           @call_started_at = attributes[:call_started_at] || attributes['call_started_at'] || nil
-          @data_source = attributes[:data_source] || attributes['data_source'] || nil
+          @data_source = attributes[:data_source] || attributes['data_source'] || ""
           @end_time = attributes[:end_time] || attributes['end_time'] || nil
           @generated_at = attributes[:generated_at] || attributes['generated_at'] || nil
           @start_time = attributes[:start_time] || attributes['start_time'] || nil

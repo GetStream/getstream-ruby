@@ -13,7 +13,7 @@ module GetStream
         #   @return [String]
         attr_accessor :duration
         # @!attribute status
-        #   @return [String] Validation result
+        #   @return [String] Validation result. One of: ok, error
         attr_accessor :status
         # @!attribute error
         #   @return [String] Error text
@@ -27,7 +27,7 @@ module GetStream
           super(attributes)
           @duration = attributes[:duration] || attributes['duration']
           @status = attributes[:status] || attributes['status']
-          @error = attributes[:error] || attributes['error'] || nil
+          @error = attributes[:error] || attributes['error'] || ""
           @data = attributes[:data] || attributes['data'] || nil
         end
 

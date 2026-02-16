@@ -67,24 +67,24 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @enrich_own_followings = attributes[:enrich_own_followings] || attributes['enrich_own_followings'] || nil
-          @skip_activity = attributes[:skip_activity] || attributes['skip_activity'] || nil
-          @skip_activity_collections = attributes[:skip_activity_collections] || attributes['skip_activity_collections'] || nil
-          @skip_activity_comments = attributes[:skip_activity_comments] || attributes['skip_activity_comments'] || nil
-          @skip_activity_current_feed = attributes[:skip_activity_current_feed] || attributes['skip_activity_current_feed'] || nil
-          @skip_activity_mentioned_users = attributes[:skip_activity_mentioned_users] || attributes['skip_activity_mentioned_users'] || nil
-          @skip_activity_own_bookmarks = attributes[:skip_activity_own_bookmarks] || attributes['skip_activity_own_bookmarks'] || nil
-          @skip_activity_parents = attributes[:skip_activity_parents] || attributes['skip_activity_parents'] || nil
-          @skip_activity_poll = attributes[:skip_activity_poll] || attributes['skip_activity_poll'] || nil
-          @skip_activity_reactions = attributes[:skip_activity_reactions] || attributes['skip_activity_reactions'] || nil
-          @skip_activity_refresh_image_urls = attributes[:skip_activity_refresh_image_urls] || attributes['skip_activity_refresh_image_urls'] || nil
-          @skip_all = attributes[:skip_all] || attributes['skip_all'] || nil
-          @skip_feed_member_user = attributes[:skip_feed_member_user] || attributes['skip_feed_member_user'] || nil
-          @skip_followers = attributes[:skip_followers] || attributes['skip_followers'] || nil
-          @skip_following = attributes[:skip_following] || attributes['skip_following'] || nil
-          @skip_own_capabilities = attributes[:skip_own_capabilities] || attributes['skip_own_capabilities'] || nil
-          @skip_own_follows = attributes[:skip_own_follows] || attributes['skip_own_follows'] || nil
-          @skip_pins = attributes[:skip_pins] || attributes['skip_pins'] || nil
+          @enrich_own_followings = attributes[:enrich_own_followings] || attributes['enrich_own_followings'] || false
+          @skip_activity = attributes[:skip_activity] || attributes['skip_activity'] || false
+          @skip_activity_collections = attributes[:skip_activity_collections] || attributes['skip_activity_collections'] || false
+          @skip_activity_comments = attributes[:skip_activity_comments] || attributes['skip_activity_comments'] || false
+          @skip_activity_current_feed = attributes[:skip_activity_current_feed] || attributes['skip_activity_current_feed'] || false
+          @skip_activity_mentioned_users = attributes[:skip_activity_mentioned_users] || attributes['skip_activity_mentioned_users'] || false
+          @skip_activity_own_bookmarks = attributes[:skip_activity_own_bookmarks] || attributes['skip_activity_own_bookmarks'] || false
+          @skip_activity_parents = attributes[:skip_activity_parents] || attributes['skip_activity_parents'] || false
+          @skip_activity_poll = attributes[:skip_activity_poll] || attributes['skip_activity_poll'] || false
+          @skip_activity_reactions = attributes[:skip_activity_reactions] || attributes['skip_activity_reactions'] || false
+          @skip_activity_refresh_image_urls = attributes[:skip_activity_refresh_image_urls] || attributes['skip_activity_refresh_image_urls'] || false
+          @skip_all = attributes[:skip_all] || attributes['skip_all'] || false
+          @skip_feed_member_user = attributes[:skip_feed_member_user] || attributes['skip_feed_member_user'] || false
+          @skip_followers = attributes[:skip_followers] || attributes['skip_followers'] || false
+          @skip_following = attributes[:skip_following] || attributes['skip_following'] || false
+          @skip_own_capabilities = attributes[:skip_own_capabilities] || attributes['skip_own_capabilities'] || false
+          @skip_own_follows = attributes[:skip_own_follows] || attributes['skip_own_follows'] || false
+          @skip_pins = attributes[:skip_pins] || attributes['skip_pins'] || false
         end
 
         # Override field mappings for JSON serialization

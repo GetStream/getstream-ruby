@@ -46,7 +46,7 @@ module GetStream
         #   @return [Object]
         attr_accessor :custom
         # @!attribute moderation_payload
-        #   @return [ModerationPayload]
+        #   @return [ModerationPayloadResponse]
         attr_accessor :moderation_payload
         # @!attribute review_queue_item
         #   @return [ReviewQueueItemResponse]
@@ -65,9 +65,9 @@ module GetStream
           @updated_at = attributes[:updated_at] || attributes['updated_at']
           @user_id = attributes[:user_id] || attributes['user_id']
           @result = attributes[:result] || attributes['result']
-          @entity_creator_id = attributes[:entity_creator_id] || attributes['entity_creator_id'] || nil
-          @reason = attributes[:reason] || attributes['reason'] || nil
-          @review_queue_item_id = attributes[:review_queue_item_id] || attributes['review_queue_item_id'] || nil
+          @entity_creator_id = attributes[:entity_creator_id] || attributes['entity_creator_id'] || ""
+          @reason = attributes[:reason] || attributes['reason'] || ""
+          @review_queue_item_id = attributes[:review_queue_item_id] || attributes['review_queue_item_id'] || ""
           @labels = attributes[:labels] || attributes['labels'] || nil
           @custom = attributes[:custom] || attributes['custom'] || nil
           @moderation_payload = attributes[:moderation_payload] || attributes['moderation_payload'] || nil

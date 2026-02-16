@@ -5,44 +5,54 @@
 module GetStream
   module Generated
     module Models
-      # 
+      # This event is sent when a user gets muted. The event contains information about the user that was muted.
       class UserMutedEvent < GetStream::BaseModel
 
         # Model attributes
         # @!attribute created_at
-        #   @return [DateTime]
+        #   @return [DateTime] Date/time of creation
         attr_accessor :created_at
-        # @!attribute type
-        #   @return [String]
-        attr_accessor :type
-        # @!attribute target_user
-        #   @return [String]
-        attr_accessor :target_user
-        # @!attribute target_users
-        #   @return [Array<String>]
-        attr_accessor :target_users
+        # @!attribute custom
+        #   @return [Object]
+        attr_accessor :custom
         # @!attribute user
-        #   @return [User]
+        #   @return [UserResponseCommonFields]
         attr_accessor :user
+        # @!attribute type
+        #   @return [String] The type of event: "user.muted" in this case
+        attr_accessor :type
+        # @!attribute received_at
+        #   @return [DateTime]
+        attr_accessor :received_at
+        # @!attribute target_users
+        #   @return [Array<UserResponseCommonFields>] The target users that were muted
+        attr_accessor :target_users
+        # @!attribute target_user
+        #   @return [UserResponseCommonFields]
+        attr_accessor :target_user
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @created_at = attributes[:created_at] || attributes['created_at']
+          @custom = attributes[:custom] || attributes['custom']
+          @user = attributes[:user] || attributes['user']
           @type = attributes[:type] || attributes['type'] || "user.muted"
-          @target_user = attributes[:target_user] || attributes['target_user'] || nil
+          @received_at = attributes[:received_at] || attributes['received_at'] || nil
           @target_users = attributes[:target_users] || attributes['target_users'] || nil
-          @user = attributes[:user] || attributes['user'] || nil
+          @target_user = attributes[:target_user] || attributes['target_user'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
             created_at: 'created_at',
+            custom: 'custom',
+            user: 'user',
             type: 'type',
-            target_user: 'target_user',
+            received_at: 'received_at',
             target_users: 'target_users',
-            user: 'user'
+            target_user: 'target_user'
           }
         end
       end

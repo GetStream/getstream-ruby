@@ -31,7 +31,7 @@ module GetStream
           @external_app_url = attributes[:external_app_url] || attributes['external_app_url']
           @external_css_url = attributes[:external_css_url] || attributes['external_css_url']
           @name = attributes[:name] || attributes['name']
-          @detect_orientation = attributes[:detect_orientation] || attributes['detect_orientation'] || nil
+          @detect_orientation = attributes[:detect_orientation] || attributes['detect_orientation'] || false
           @options = attributes[:options] || attributes['options'] || nil
         end
 

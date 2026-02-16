@@ -31,10 +31,10 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @limit = attributes[:limit] || attributes['limit'] || nil
-          @next = attributes[:next] || attributes['next'] || nil
-          @prev = attributes[:prev] || attributes['prev'] || nil
-          @watch = attributes[:watch] || attributes['watch'] || nil
+          @limit = attributes[:limit] || attributes['limit'] || 0
+          @next = attributes[:next] || attributes['next'] || ""
+          @prev = attributes[:prev] || attributes['prev'] || ""
+          @watch = attributes[:watch] || attributes['watch'] || false
           @sort = attributes[:sort] || attributes['sort'] || nil
           @filter = attributes[:filter] || attributes['filter'] || nil
         end

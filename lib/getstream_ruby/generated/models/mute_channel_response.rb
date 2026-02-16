@@ -19,7 +19,7 @@ module GetStream
         #   @return [ChannelMute]
         attr_accessor :channel_mute
         # @!attribute own_user
-        #   @return [OwnUser]
+        #   @return [OwnUserResponse]
         attr_accessor :own_user
 
         # Initialize with attributes

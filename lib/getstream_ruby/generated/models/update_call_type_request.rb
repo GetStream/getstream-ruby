@@ -16,7 +16,7 @@ module GetStream
         #   @return [Hash<String, Array<String>>]
         attr_accessor :grants
         # @!attribute notification_settings
-        #   @return [NotificationSettings]
+        #   @return [NotificationSettingsRequest]
         attr_accessor :notification_settings
         # @!attribute settings
         #   @return [CallSettingsRequest]
@@ -25,7 +25,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @external_storage = attributes[:external_storage] || attributes['external_storage'] || nil
+          @external_storage = attributes[:external_storage] || attributes['external_storage'] || ""
           @grants = attributes[:grants] || attributes['grants'] || nil
           @notification_settings = attributes[:notification_settings] || attributes['notification_settings'] || nil
           @settings = attributes[:settings] || attributes['settings'] || nil

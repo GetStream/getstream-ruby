@@ -29,8 +29,8 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @type = attributes[:type] || attributes['type']
-          @parent_id = attributes[:parent_id] || attributes['parent_id'] || nil
-          @user_id = attributes[:user_id] || attributes['user_id'] || nil
+          @parent_id = attributes[:parent_id] || attributes['parent_id'] || ""
+          @user_id = attributes[:user_id] || attributes['user_id'] || ""
           @custom = attributes[:custom] || attributes['custom'] || nil
           @user = attributes[:user] || attributes['user'] || nil
         end

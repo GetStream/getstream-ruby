@@ -54,9 +54,9 @@ module GetStream
           @counts = attributes[:counts] || attributes['counts']
           @call_ended_at = attributes[:call_ended_at] || attributes['call_ended_at'] || nil
           @call_started_at = attributes[:call_started_at] || attributes['call_started_at'] || nil
-          @next = attributes[:next] || attributes['next'] || nil
-          @prev = attributes[:prev] || attributes['prev'] || nil
-          @tmp_data_source = attributes[:tmp_data_source] || attributes['tmp_data_source'] || nil
+          @next = attributes[:next] || attributes['next'] || ""
+          @prev = attributes[:prev] || attributes['prev'] || ""
+          @tmp_data_source = attributes[:tmp_data_source] || attributes['tmp_data_source'] || ""
         end
 
         # Override field mappings for JSON serialization

@@ -19,8 +19,8 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @name = attributes[:name] || attributes['name'] || nil
-          @version = attributes[:version] || attributes['version'] || nil
+          @name = attributes[:name] || attributes['name'] || ""
+          @version = attributes[:version] || attributes['version'] || ""
         end
 
         # Override field mappings for JSON serialization

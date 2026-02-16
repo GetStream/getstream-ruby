@@ -45,7 +45,7 @@ module GetStream
           super(attributes)
           @sum = attributes[:sum] || attributes['sum']
           @unique = attributes[:unique] || attributes['unique']
-          @max_concurrent = attributes[:max_concurrent] || attributes['max_concurrent'] || nil
+          @max_concurrent = attributes[:max_concurrent] || attributes['max_concurrent'] || 0
           @by_browser = attributes[:by_browser] || attributes['by_browser'] || nil
           @by_country = attributes[:by_country] || attributes['by_country'] || nil
           @by_device = attributes[:by_device] || attributes['by_device'] || nil

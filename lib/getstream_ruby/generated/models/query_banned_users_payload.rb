@@ -35,10 +35,10 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @filter_conditions = attributes[:filter_conditions] || attributes['filter_conditions']
-          @exclude_expired_bans = attributes[:exclude_expired_bans] || attributes['exclude_expired_bans'] || nil
-          @limit = attributes[:limit] || attributes['limit'] || nil
-          @offset = attributes[:offset] || attributes['offset'] || nil
-          @user_id = attributes[:user_id] || attributes['user_id'] || nil
+          @exclude_expired_bans = attributes[:exclude_expired_bans] || attributes['exclude_expired_bans'] || false
+          @limit = attributes[:limit] || attributes['limit'] || 0
+          @offset = attributes[:offset] || attributes['offset'] || 0
+          @user_id = attributes[:user_id] || attributes['user_id'] || ""
           @sort = attributes[:sort] || attributes['sort'] || nil
           @user = attributes[:user] || attributes['user'] || nil
         end

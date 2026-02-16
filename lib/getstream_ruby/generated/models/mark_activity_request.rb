@@ -34,9 +34,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @mark_all_read = attributes[:mark_all_read] || attributes['mark_all_read'] || nil
-          @mark_all_seen = attributes[:mark_all_seen] || attributes['mark_all_seen'] || nil
-          @user_id = attributes[:user_id] || attributes['user_id'] || nil
+          @mark_all_read = attributes[:mark_all_read] || attributes['mark_all_read'] || false
+          @mark_all_seen = attributes[:mark_all_seen] || attributes['mark_all_seen'] || false
+          @user_id = attributes[:user_id] || attributes['user_id'] || ""
           @mark_read = attributes[:mark_read] || attributes['mark_read'] || nil
           @mark_seen = attributes[:mark_seen] || attributes['mark_seen'] || nil
           @mark_watched = attributes[:mark_watched] || attributes['mark_watched'] || nil

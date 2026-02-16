@@ -23,7 +23,7 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @duration = attributes[:duration] || attributes['duration']
-          @task_id = attributes[:task_id] || attributes['task_id'] || nil
+          @task_id = attributes[:task_id] || attributes['task_id'] || ""
           @result = attributes[:result] || attributes['result'] || nil
         end
 

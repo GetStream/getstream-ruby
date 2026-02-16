@@ -23,7 +23,7 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @user_id = attributes[:user_id] || attributes['user_id']
-          @channel_role = attributes[:channel_role] || attributes['channel_role'] || nil
+          @channel_role = attributes[:channel_role] || attributes['channel_role'] || ""
           @custom = attributes[:custom] || attributes['custom'] || nil
         end
 

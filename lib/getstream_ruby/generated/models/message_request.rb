@@ -5,60 +5,63 @@
 module GetStream
   module Generated
     module Models
-      # 
+      # Message data for creating or updating a message
       class MessageRequest < GetStream::BaseModel
 
         # Model attributes
         # @!attribute html
-        #   @return [String]
+        #   @return [String] Contains HTML markup of the message. Can only be set when using server-side API
         attr_accessor :html
         # @!attribute id
-        #   @return [String]
+        #   @return [String] Message ID is unique string identifier of the message
         attr_accessor :id
+        # @!attribute mentioned_channel
+        #   @return [Boolean]
+        attr_accessor :mentioned_channel
         # @!attribute mml
-        #   @return [String]
+        #   @return [String] Should be empty if `text` is provided. Can only be set when using server-side API
         attr_accessor :mml
         # @!attribute parent_id
-        #   @return [String]
+        #   @return [String] ID of parent message (thread)
         attr_accessor :parent_id
         # @!attribute pin_expires
-        #   @return [DateTime]
+        #   @return [DateTime] Date when pinned message expires
         attr_accessor :pin_expires
         # @!attribute pinned
-        #   @return [Boolean]
+        #   @return [Boolean] Whether message is pinned or not
         attr_accessor :pinned
         # @!attribute pinned_at
-        #   @return [DateTime]
+        #   @return [DateTime] Date when message got pinned
         attr_accessor :pinned_at
         # @!attribute poll_id
-        #   @return [String]
+        #   @return [String] Identifier of the poll to include in the message
         attr_accessor :poll_id
         # @!attribute quoted_message_id
         #   @return [String]
         attr_accessor :quoted_message_id
         # @!attribute show_in_channel
-        #   @return [Boolean]
+        #   @return [Boolean] Whether thread reply should be shown in the channel as well
         attr_accessor :show_in_channel
         # @!attribute silent
-        #   @return [Boolean]
+        #   @return [Boolean] Whether message is silent or not
         attr_accessor :silent
         # @!attribute text
-        #   @return [String]
+        #   @return [String] Text of the message. Should be empty if `mml` is provided
         attr_accessor :text
         # @!attribute type
-        #   @return [String]
+        #   @return [String] Contains type of the message. One of: regular, system
         attr_accessor :type
         # @!attribute user_id
         #   @return [String]
         attr_accessor :user_id
         # @!attribute attachments
-        #   @return [Array<Attachment>]
+        #   @return [Array<Attachment>] Array of message attachments
         attr_accessor :attachments
         # @!attribute mentioned_users
-        #   @return [Array<String>]
+        #   @return [Array<String>] Array of user IDs to mention
         attr_accessor :mentioned_users
         # @!attribute restricted_visibility
-        #   @return [Array<String>]
+        #   @return [Array<String>] A list of user ids that have restricted visibility to the message
         attr_accessor :restricted_visibility
         # @!attribute custom
         #   @return [Object]
@@ -73,20 +76,21 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @html = attributes[:html] || attributes['html'] || nil
-          @id = attributes[:id] || attributes['id'] || nil
-          @mml = attributes[:mml] || attributes['mml'] || nil
-          @parent_id = attributes[:parent_id] || attributes['parent_id'] || nil
+          @html = attributes[:html] || attributes['html'] || ""
+          @id = attributes[:id] || attributes['id'] || ""
+          @mentioned_channel = attributes[:mentioned_channel] || attributes['mentioned_channel'] || false
+          @mml = attributes[:mml] || attributes['mml'] || ""
+          @parent_id = attributes[:parent_id] || attributes['parent_id'] || ""
           @pin_expires = attributes[:pin_expires] || attributes['pin_expires'] || nil
-          @pinned = attributes[:pinned] || attributes['pinned'] || nil
+          @pinned = attributes[:pinned] || attributes['pinned'] || false
           @pinned_at = attributes[:pinned_at] || attributes['pinned_at'] || nil
-          @poll_id = attributes[:poll_id] || attributes['poll_id'] || nil
-          @quoted_message_id = attributes[:quoted_message_id] || attributes['quoted_message_id'] || nil
-          @show_in_channel = attributes[:show_in_channel] || attributes['show_in_channel'] || nil
-          @silent = attributes[:silent] || attributes['silent'] || nil
-          @text = attributes[:text] || attributes['text'] || nil
-          @type = attributes[:type] || attributes['type'] || nil
-          @user_id = attributes[:user_id] || attributes['user_id'] || nil
+          @poll_id = attributes[:poll_id] || attributes['poll_id'] || ""
+          @quoted_message_id = attributes[:quoted_message_id] || attributes['quoted_message_id'] || ""
+          @show_in_channel = attributes[:show_in_channel] || attributes['show_in_channel'] || false
+          @silent = attributes[:silent] || attributes['silent'] || false
+          @text = attributes[:text] || attributes['text'] || ""
+          @type = attributes[:type] || attributes['type'] || ""
+          @user_id = attributes[:user_id] || attributes['user_id'] || ""
           @attachments = attributes[:attachments] || attributes['attachments'] || nil
           @mentioned_users = attributes[:mentioned_users] || attributes['mentioned_users'] || nil
           @restricted_visibility = attributes[:restricted_visibility] || attributes['restricted_visibility'] || nil
@@ -100,6 +104,7 @@ module GetStream
           {
             html: 'html',
             id: 'id',
+            mentioned_channel: 'mentioned_channel',
             mml: 'mml',
             parent_id: 'parent_id',
             pin_expires: 'pin_expires',

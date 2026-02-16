@@ -24,6 +24,9 @@ module GetStream
         # @!attribute id
         #   @return [String]
         attr_accessor :id
+        # @!attribute mentioned_channel
+        #   @return [Boolean]
+        attr_accessor :mentioned_channel
         # @!attribute pinned
         #   @return [Boolean]
         attr_accessor :pinned
@@ -153,6 +156,7 @@ module GetStream
           @deleted_reply_count = attributes[:deleted_reply_count] || attributes['deleted_reply_count']
           @html = attributes[:html] || attributes['html']
           @id = attributes[:id] || attributes['id']
+          @mentioned_channel = attributes[:mentioned_channel] || attributes['mentioned_channel']
           @pinned = attributes[:pinned] || attributes['pinned']
           @reply_count = attributes[:reply_count] || attributes['reply_count']
           @shadowed = attributes[:shadowed] || attributes['shadowed']
@@ -169,17 +173,17 @@ module GetStream
           @reaction_counts = attributes[:reaction_counts] || attributes['reaction_counts']
           @reaction_scores = attributes[:reaction_scores] || attributes['reaction_scores']
           @user = attributes[:user] || attributes['user']
-          @command = attributes[:command] || attributes['command'] || nil
+          @command = attributes[:command] || attributes['command'] || ""
           @deleted_at = attributes[:deleted_at] || attributes['deleted_at'] || nil
-          @deleted_for_me = attributes[:deleted_for_me] || attributes['deleted_for_me'] || nil
+          @deleted_for_me = attributes[:deleted_for_me] || attributes['deleted_for_me'] || false
           @message_text_updated_at = attributes[:message_text_updated_at] || attributes['message_text_updated_at'] || nil
-          @mml = attributes[:mml] || attributes['mml'] || nil
-          @parent_id = attributes[:parent_id] || attributes['parent_id'] || nil
+          @mml = attributes[:mml] || attributes['mml'] || ""
+          @parent_id = attributes[:parent_id] || attributes['parent_id'] || ""
           @pin_expires = attributes[:pin_expires] || attributes['pin_expires'] || nil
           @pinned_at = attributes[:pinned_at] || attributes['pinned_at'] || nil
-          @poll_id = attributes[:poll_id] || attributes['poll_id'] || nil
-          @quoted_message_id = attributes[:quoted_message_id] || attributes['quoted_message_id'] || nil
-          @show_in_channel = attributes[:show_in_channel] || attributes['show_in_channel'] || nil
+          @poll_id = attributes[:poll_id] || attributes['poll_id'] || ""
+          @quoted_message_id = attributes[:quoted_message_id] || attributes['quoted_message_id'] || ""
+          @show_in_channel = attributes[:show_in_channel] || attributes['show_in_channel'] || false
           @thread_participants = attributes[:thread_participants] || attributes['thread_participants'] || nil
           @channel = attributes[:channel] || attributes['channel'] || nil
           @draft = attributes[:draft] || attributes['draft'] || nil
@@ -203,6 +207,7 @@ module GetStream
             deleted_reply_count: 'deleted_reply_count',
             html: 'html',
             id: 'id',
+            mentioned_channel: 'mentioned_channel',
             pinned: 'pinned',
             reply_count: 'reply_count',
             shadowed: 'shadowed',

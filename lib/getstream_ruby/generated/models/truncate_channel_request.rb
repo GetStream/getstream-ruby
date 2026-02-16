@@ -34,10 +34,10 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @hard_delete = attributes[:hard_delete] || attributes['hard_delete'] || nil
-          @skip_push = attributes[:skip_push] || attributes['skip_push'] || nil
+          @hard_delete = attributes[:hard_delete] || attributes['hard_delete'] || false
+          @skip_push = attributes[:skip_push] || attributes['skip_push'] || false
           @truncated_at = attributes[:truncated_at] || attributes['truncated_at'] || nil
-          @user_id = attributes[:user_id] || attributes['user_id'] || nil
+          @user_id = attributes[:user_id] || attributes['user_id'] || ""
           @member_ids = attributes[:member_ids] || attributes['member_ids'] || nil
           @message = attributes[:message] || attributes['message'] || nil
           @user = attributes[:user] || attributes['user'] || nil

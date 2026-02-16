@@ -10,7 +10,7 @@ module GetStream
 
         # Model attributes
         # @!attribute push_provider
-        #   @return [PushProvider]
+        #   @return [PushProviderRequest]
         attr_accessor :push_provider
 
         # Initialize with attributes

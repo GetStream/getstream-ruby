@@ -5,53 +5,108 @@
 module GetStream
   module Generated
     module Models
-      # 
+      # This event is sent when a message gets flagged. The event contains information about the message that was flagged.
       class MessageFlaggedEvent < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute cid
-        #   @return [String]
-        attr_accessor :cid
         # @!attribute created_at
-        #   @return [DateTime]
+        #   @return [DateTime] Date/time of creation
         attr_accessor :created_at
-        # @!attribute type
+        # @!attribute message_id
         #   @return [String]
-        attr_accessor :type
-        # @!attribute thread_participants
-        #   @return [Array<User>]
-        attr_accessor :thread_participants
-        # @!attribute flag
-        #   @return [Flag]
-        attr_accessor :flag
+        attr_accessor :message_id
         # @!attribute message
-        #   @return [Message]
+        #   @return [MessageResponse]
         attr_accessor :message
+        # @!attribute type
+        #   @return [String] The type of event: "message.flagged" in this case
+        attr_accessor :type
+        # @!attribute channel_id
+        #   @return [String] The ID of the channel where the message was sent
+        attr_accessor :channel_id
+        # @!attribute channel_member_count
+        #   @return [Integer] The number of members in the channel
+        attr_accessor :channel_member_count
+        # @!attribute channel_message_count
+        #   @return [Integer] The number of messages in the channel
+        attr_accessor :channel_message_count
+        # @!attribute channel_type
+        #   @return [String] The type of the channel where the message was sent
+        attr_accessor :channel_type
+        # @!attribute cid
+        #   @return [String] The CID of the channel where the message was sent
+        attr_accessor :cid
+        # @!attribute reason
+        #   @return [String] The reason for the flag
+        attr_accessor :reason
+        # @!attribute received_at
+        #   @return [DateTime]
+        attr_accessor :received_at
+        # @!attribute team
+        #   @return [String] The team ID
+        attr_accessor :team
+        # @!attribute total_flags
+        #   @return [Integer] The total number of flags for the user
+        attr_accessor :total_flags
+        # @!attribute channel_custom
+        #   @return [Object]
+        attr_accessor :channel_custom
+        # @!attribute custom
+        #   @return [Object] Custom data
+        attr_accessor :custom
+        # @!attribute details
+        #   @return [MessageModerationResult]
+        attr_accessor :details
+        # @!attribute flag
+        #   @return [FlagResponse]
+        attr_accessor :flag
         # @!attribute user
-        #   @return [User]
+        #   @return [UserResponseCommonFields]
         attr_accessor :user
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @cid = attributes[:cid] || attributes['cid']
           @created_at = attributes[:created_at] || attributes['created_at']
+          @message_id = attributes[:message_id] || attributes['message_id']
+          @message = attributes[:message] || attributes['message']
           @type = attributes[:type] || attributes['type'] || "message.flagged"
-          @thread_participants = attributes[:thread_participants] || attributes['thread_participants'] || nil
+          @channel_id = attributes[:channel_id] || attributes['channel_id'] || ""
+          @channel_member_count = attributes[:channel_member_count] || attributes['channel_member_count'] || 0
+          @channel_message_count = attributes[:channel_message_count] || attributes['channel_message_count'] || 0
+          @channel_type = attributes[:channel_type] || attributes['channel_type'] || ""
+          @cid = attributes[:cid] || attributes['cid'] || ""
+          @reason = attributes[:reason] || attributes['reason'] || ""
+          @received_at = attributes[:received_at] || attributes['received_at'] || nil
+          @team = attributes[:team] || attributes['team'] || ""
+          @total_flags = attributes[:total_flags] || attributes['total_flags'] || 0
+          @channel_custom = attributes[:channel_custom] || attributes['channel_custom'] || nil
+          @custom = attributes[:custom] || attributes['custom'] || nil
+          @details = attributes[:details] || attributes['details'] || nil
           @flag = attributes[:flag] || attributes['flag'] || nil
-          @message = attributes[:message] || attributes['message'] || nil
           @user = attributes[:user] || attributes['user'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            cid: 'cid',
             created_at: 'created_at',
-            type: 'type',
-            thread_participants: 'thread_participants',
-            flag: 'flag',
+            message_id: 'message_id',
             message: 'message',
+            type: 'type',
+            channel_id: 'channel_id',
+            channel_member_count: 'channel_member_count',
+            channel_message_count: 'channel_message_count',
+            channel_type: 'channel_type',
+            cid: 'cid',
+            reason: 'reason',
+            received_at: 'received_at',
+            team: 'team',
+            total_flags: 'total_flags',
+            channel_custom: 'channel_custom',
+            custom: 'custom',
+            details: 'details',
+            flag: 'flag',
             user: 'user'
           }
         end

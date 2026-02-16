@@ -53,15 +53,15 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @name = attributes[:name] || attributes['name']
-          @allow_answers = attributes[:allow_answers] || attributes['allow_answers'] || nil
-          @allow_user_suggested_options = attributes[:allow_user_suggested_options] || attributes['allow_user_suggested_options'] || nil
-          @description = attributes[:description] || attributes['description'] || nil
-          @enforce_unique_vote = attributes[:enforce_unique_vote] || attributes['enforce_unique_vote'] || nil
-          @id = attributes[:id] || attributes['id'] || nil
-          @is_closed = attributes[:is_closed] || attributes['is_closed'] || nil
-          @max_votes_allowed = attributes[:max_votes_allowed] || attributes['max_votes_allowed'] || nil
-          @user_id = attributes[:user_id] || attributes['user_id'] || nil
-          @voting_visibility = attributes[:voting_visibility] || attributes['voting_visibility'] || nil
+          @allow_answers = attributes[:allow_answers] || attributes['allow_answers'] || false
+          @allow_user_suggested_options = attributes[:allow_user_suggested_options] || attributes['allow_user_suggested_options'] || false
+          @description = attributes[:description] || attributes['description'] || ""
+          @enforce_unique_vote = attributes[:enforce_unique_vote] || attributes['enforce_unique_vote'] || false
+          @id = attributes[:id] || attributes['id'] || ""
+          @is_closed = attributes[:is_closed] || attributes['is_closed'] || false
+          @max_votes_allowed = attributes[:max_votes_allowed] || attributes['max_votes_allowed'] || 0
+          @user_id = attributes[:user_id] || attributes['user_id'] || ""
+          @voting_visibility = attributes[:voting_visibility] || attributes['voting_visibility'] || ""
           @options = attributes[:options] || attributes['options'] || nil
           @Custom = attributes[:Custom] || attributes['Custom'] || nil
           @user = attributes[:user] || attributes['user'] || nil

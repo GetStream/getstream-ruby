@@ -26,9 +26,9 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @s3_region = attributes[:s3_region] || attributes['s3_region']
-          @s3_api_key = attributes[:s3_api_key] || attributes['s3_api_key'] || nil
-          @s3_custom_endpoint_url = attributes[:s3_custom_endpoint_url] || attributes['s3_custom_endpoint_url'] || nil
-          @s3_secret = attributes[:s3_secret] || attributes['s3_secret'] || nil
+          @s3_api_key = attributes[:s3_api_key] || attributes['s3_api_key'] || ""
+          @s3_custom_endpoint_url = attributes[:s3_custom_endpoint_url] || attributes['s3_custom_endpoint_url'] || ""
+          @s3_secret = attributes[:s3_secret] || attributes['s3_secret'] || ""
         end
 
         # Override field mappings for JSON serialization

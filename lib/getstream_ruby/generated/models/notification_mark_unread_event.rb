@@ -5,108 +5,133 @@
 module GetStream
   module Generated
     module Models
-      # 
+      # Emitted when a channel/thread is marked as unread.
       class NotificationMarkUnreadEvent < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute created_at
+        #   @return [DateTime] Date/time of creation
+        attr_accessor :created_at
+        # @!attribute custom
+        #   @return [Object]
+        attr_accessor :custom
+        # @!attribute type
+        #   @return [String] The type of event: "notification.mark_unread" in this case
+        attr_accessor :type
         # @!attribute channel_id
-        #   @return [String]
+        #   @return [String] The ID of the channel which was marked as unread
         attr_accessor :channel_id
         # @!attribute channel_member_count
-        #   @return [Integer]
+        #   @return [Integer] The number of members in the channel
         attr_accessor :channel_member_count
+        # @!attribute channel_message_count
+        #   @return [Integer]
+        attr_accessor :channel_message_count
         # @!attribute channel_type
-        #   @return [String]
+        #   @return [String] The type of the channel which was marked as unread
         attr_accessor :channel_type
         # @!attribute cid
-        #   @return [String]
+        #   @return [String] The CID of the channel which was marked as unread
         attr_accessor :cid
-        # @!attribute created_at
-        #   @return [DateTime]
-        attr_accessor :created_at
         # @!attribute first_unread_message_id
-        #   @return [String]
+        #   @return [String] The ID of the first unread message
         attr_accessor :first_unread_message_id
         # @!attribute last_read_at
-        #   @return [DateTime]
+        #   @return [DateTime] The time when the channel/thread was marked as unread
         attr_accessor :last_read_at
-        # @!attribute total_unread_count
-        #   @return [Integer]
-        attr_accessor :total_unread_count
-        # @!attribute unread_channels
-        #   @return [Integer]
-        attr_accessor :unread_channels
-        # @!attribute unread_count
-        #   @return [Integer]
-        attr_accessor :unread_count
-        # @!attribute unread_messages
-        #   @return [Integer]
-        attr_accessor :unread_messages
-        # @!attribute unread_threads
-        #   @return [Integer]
-        attr_accessor :unread_threads
-        # @!attribute type
-        #   @return [String]
-        attr_accessor :type
         # @!attribute last_read_message_id
-        #   @return [String]
+        #   @return [String] The ID of the last read message
         attr_accessor :last_read_message_id
+        # @!attribute received_at
+        #   @return [DateTime]
+        attr_accessor :received_at
         # @!attribute team
-        #   @return [String]
+        #   @return [String] The team ID
         attr_accessor :team
         # @!attribute thread_id
-        #   @return [String]
+        #   @return [String] The ID of the thread which was marked as unread
         attr_accessor :thread_id
+        # @!attribute total_unread_count
+        #   @return [Integer] The total number of unread messages
+        attr_accessor :total_unread_count
+        # @!attribute unread_channels
+        #   @return [Integer] The number of channels with unread messages
+        attr_accessor :unread_channels
+        # @!attribute unread_count
+        #   @return [Integer] The total number of unread messages
+        attr_accessor :unread_count
+        # @!attribute unread_messages
+        #   @return [Integer] The number of unread messages in the channel/thread after first_unread_message_id
+        attr_accessor :unread_messages
+        # @!attribute unread_thread_messages
+        #   @return [Integer] The total number of unread messages in the threads
+        attr_accessor :unread_thread_messages
+        # @!attribute unread_threads
+        #   @return [Integer] The number of unread threads
+        attr_accessor :unread_threads
         # @!attribute channel
         #   @return [ChannelResponse]
         attr_accessor :channel
+        # @!attribute channel_custom
+        #   @return [Object]
+        attr_accessor :channel_custom
         # @!attribute user
-        #   @return [User]
+        #   @return [UserResponseCommonFields]
         attr_accessor :user
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @channel_id = attributes[:channel_id] || attributes['channel_id']
-          @channel_member_count = attributes[:channel_member_count] || attributes['channel_member_count']
-          @channel_type = attributes[:channel_type] || attributes['channel_type']
-          @cid = attributes[:cid] || attributes['cid']
           @created_at = attributes[:created_at] || attributes['created_at']
-          @first_unread_message_id = attributes[:first_unread_message_id] || attributes['first_unread_message_id']
-          @last_read_at = attributes[:last_read_at] || attributes['last_read_at']
-          @total_unread_count = attributes[:total_unread_count] || attributes['total_unread_count']
-          @unread_channels = attributes[:unread_channels] || attributes['unread_channels']
-          @unread_count = attributes[:unread_count] || attributes['unread_count']
-          @unread_messages = attributes[:unread_messages] || attributes['unread_messages']
-          @unread_threads = attributes[:unread_threads] || attributes['unread_threads']
+          @custom = attributes[:custom] || attributes['custom']
           @type = attributes[:type] || attributes['type'] || "notification.mark_unread"
-          @last_read_message_id = attributes[:last_read_message_id] || attributes['last_read_message_id'] || nil
-          @team = attributes[:team] || attributes['team'] || nil
-          @thread_id = attributes[:thread_id] || attributes['thread_id'] || nil
+          @channel_id = attributes[:channel_id] || attributes['channel_id'] || ""
+          @channel_member_count = attributes[:channel_member_count] || attributes['channel_member_count'] || 0
+          @channel_message_count = attributes[:channel_message_count] || attributes['channel_message_count'] || 0
+          @channel_type = attributes[:channel_type] || attributes['channel_type'] || ""
+          @cid = attributes[:cid] || attributes['cid'] || ""
+          @first_unread_message_id = attributes[:first_unread_message_id] || attributes['first_unread_message_id'] || ""
+          @last_read_at = attributes[:last_read_at] || attributes['last_read_at'] || nil
+          @last_read_message_id = attributes[:last_read_message_id] || attributes['last_read_message_id'] || ""
+          @received_at = attributes[:received_at] || attributes['received_at'] || nil
+          @team = attributes[:team] || attributes['team'] || ""
+          @thread_id = attributes[:thread_id] || attributes['thread_id'] || ""
+          @total_unread_count = attributes[:total_unread_count] || attributes['total_unread_count'] || 0
+          @unread_channels = attributes[:unread_channels] || attributes['unread_channels'] || 0
+          @unread_count = attributes[:unread_count] || attributes['unread_count'] || 0
+          @unread_messages = attributes[:unread_messages] || attributes['unread_messages'] || 0
+          @unread_thread_messages = attributes[:unread_thread_messages] || attributes['unread_thread_messages'] || 0
+          @unread_threads = attributes[:unread_threads] || attributes['unread_threads'] || 0
           @channel = attributes[:channel] || attributes['channel'] || nil
+          @channel_custom = attributes[:channel_custom] || attributes['channel_custom'] || nil
           @user = attributes[:user] || attributes['user'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            created_at: 'created_at',
+            custom: 'custom',
+            type: 'type',
             channel_id: 'channel_id',
             channel_member_count: 'channel_member_count',
+            channel_message_count: 'channel_message_count',
             channel_type: 'channel_type',
             cid: 'cid',
-            created_at: 'created_at',
             first_unread_message_id: 'first_unread_message_id',
             last_read_at: 'last_read_at',
+            last_read_message_id: 'last_read_message_id',
+            received_at: 'received_at',
+            team: 'team',
+            thread_id: 'thread_id',
             total_unread_count: 'total_unread_count',
             unread_channels: 'unread_channels',
             unread_count: 'unread_count',
             unread_messages: 'unread_messages',
+            unread_thread_messages: 'unread_thread_messages',
             unread_threads: 'unread_threads',
-            type: 'type',
-            last_read_message_id: 'last_read_message_id',
-            team: 'team',
-            thread_id: 'thread_id',
             channel: 'channel',
+            channel_custom: 'channel_custom',
             user: 'user'
           }
         end

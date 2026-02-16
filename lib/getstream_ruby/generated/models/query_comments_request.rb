@@ -22,17 +22,17 @@ module GetStream
         #   @return [String]
         attr_accessor :prev
         # @!attribute sort
-        #   @return [String] first (oldest), last (newest) or top
+        #   @return [String] first (oldest), last (newest) or top. One of: first, last, top, best, controversial
         attr_accessor :sort
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @filter = attributes[:filter] || attributes['filter']
-          @limit = attributes[:limit] || attributes['limit'] || nil
-          @next = attributes[:next] || attributes['next'] || nil
-          @prev = attributes[:prev] || attributes['prev'] || nil
-          @sort = attributes[:sort] || attributes['sort'] || nil
+          @limit = attributes[:limit] || attributes['limit'] || 0
+          @next = attributes[:next] || attributes['next'] || ""
+          @prev = attributes[:prev] || attributes['prev'] || ""
+          @sort = attributes[:sort] || attributes['sort'] || ""
         end
 
         # Override field mappings for JSON serialization

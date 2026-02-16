@@ -13,16 +13,16 @@ module GetStream
         #   @return [String]
         attr_accessor :duration
         # @!attribute android
-        #   @return [Hash<String, LimitInfo>] Rate limits for Android platform (endpoint name -> limit info)
+        #   @return [Hash<String, LimitInfoResponse>] Rate limits for Android platform (endpoint name -> limit info)
         attr_accessor :android
         # @!attribute ios
-        #   @return [Hash<String, LimitInfo>] Rate limits for iOS platform (endpoint name -> limit info)
+        #   @return [Hash<String, LimitInfoResponse>] Rate limits for iOS platform (endpoint name -> limit info)
         attr_accessor :ios
         # @!attribute server_side
-        #   @return [Hash<String, LimitInfo>] Rate limits for server-side platform (endpoint name -> limit info)
+        #   @return [Hash<String, LimitInfoResponse>] Rate limits for server-side platform (endpoint name -> limit info)
         attr_accessor :server_side
         # @!attribute web
-        #   @return [Hash<String, LimitInfo>] Rate limits for Web platform (endpoint name -> limit info)
+        #   @return [Hash<String, LimitInfoResponse>] Rate limits for Web platform (endpoint name -> limit info)
         attr_accessor :web
 
         # Initialize with attributes

@@ -31,8 +31,8 @@ module GetStream
           @name = attributes[:name] || attributes['name']
           @text = attributes[:text] || attributes['text']
           @type = attributes[:type] || attributes['type']
-          @style = attributes[:style] || attributes['style'] || nil
-          @value = attributes[:value] || attributes['value'] || nil
+          @style = attributes[:style] || attributes['style'] || ""
+          @value = attributes[:value] || attributes['value'] || ""
         end
 
         # Override field mappings for JSON serialization

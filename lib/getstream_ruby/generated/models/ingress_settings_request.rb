@@ -22,7 +22,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @enabled = attributes[:enabled] || attributes['enabled'] || nil
+          @enabled = attributes[:enabled] || attributes['enabled'] || false
           @audio_encoding_options = attributes[:audio_encoding_options] || attributes['audio_encoding_options'] || nil
           @video_encoding_options = attributes[:video_encoding_options] || attributes['video_encoding_options'] || nil
         end

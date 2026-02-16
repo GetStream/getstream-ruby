@@ -5,7 +5,7 @@
 module GetStream
   module Generated
     module Models
-      # 
+      # Client request
       class QueryUsersPayload < GetStream::BaseModel
 
         # Model attributes
@@ -38,11 +38,11 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @filter_conditions = attributes[:filter_conditions] || attributes['filter_conditions']
-          @include_deactivated_users = attributes[:include_deactivated_users] || attributes['include_deactivated_users'] || nil
-          @limit = attributes[:limit] || attributes['limit'] || nil
-          @offset = attributes[:offset] || attributes['offset'] || nil
-          @presence = attributes[:presence] || attributes['presence'] || nil
-          @user_id = attributes[:user_id] || attributes['user_id'] || nil
+          @include_deactivated_users = attributes[:include_deactivated_users] || attributes['include_deactivated_users'] || false
+          @limit = attributes[:limit] || attributes['limit'] || 0
+          @offset = attributes[:offset] || attributes['offset'] || 0
+          @presence = attributes[:presence] || attributes['presence'] || false
+          @user_id = attributes[:user_id] || attributes['user_id'] || ""
           @sort = attributes[:sort] || attributes['sort'] || nil
           @user = attributes[:user] || attributes['user'] || nil
         end

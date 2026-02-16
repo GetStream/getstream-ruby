@@ -9,17 +9,23 @@ module GetStream
       class UpdateActivityPartialRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute copy_custom_to_notification
+        #   @return [Boolean] Whether to copy custom data to the notification activity (only applies when handle_mention_notifications creates notifications)
+        attr_accessor :copy_custom_to_notification
         # @!attribute handle_mention_notifications
         #   @return [Boolean] If true, creates notification activities for newly mentioned users and deletes notifications for users no longer mentioned
         attr_accessor :handle_mention_notifications
+        # @!attribute run_activity_processors
+        #   @return [Boolean] If true, runs activity processors on the updated activity. Processors will only run if the activity text and/or attachments are changed. Defaults to false.
+        attr_accessor :run_activity_processors
         # @!attribute user_id
         #   @return [String]
         attr_accessor :user_id
         # @!attribute unset
-        #   @return [Array<String>] List of field names to remove. Supported fields: 'custom', 'location', 'expires_at', 'filter_tags', 'interest_tags', 'attachments', 'poll_id', 'mentioned_user_ids'. Use dot-notation for nested custom fields (e.g., 'custom.field_name')
+        #   @return [Array<String>] List of field names to remove. Supported fields: 'custom', 'visibility_tag', 'location', 'expires_at', 'filter_tags', 'interest_tags', 'attachments', 'poll_id', 'mentioned_user_ids', 'search_data'. Use dot-notation for nested custom fields (e.g., 'custom.field_name')
         attr_accessor :unset
         # @!attribute set
-        #   @return [Object] Map of field names to new values. Supported fields: 'text', 'attachments', 'custom', 'visibility', 'visibility_tag', 'restrict_replies' (values: 'everyone', 'people_i_follow', 'nobody'), 'location', 'expires_at', 'filter_tags', 'interest_tags', 'poll_id', 'feeds', 'mentioned_user_ids'. For custom fields, use dot-notation (e.g., 'custom.field_name')
+        #   @return [Object] Map of field names to new values. Supported fields: 'text', 'attachments', 'custom', 'visibility', 'visibility_tag', 'restrict_replies' (values: 'everyone', 'people_i_follow', 'nobody'), 'location', 'expires_at', 'filter_tags', 'interest_tags', 'poll_id', 'feeds', 'mentioned_user_ids', 'search_data'. For custom fields, use dot-notation (e.g., 'custom.field_name')
         attr_accessor :set
         # @!attribute user
         #   @return [UserRequest]
@@ -28,8 +34,10 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @handle_mention_notifications = attributes[:handle_mention_notifications] || attributes['handle_mention_notifications'] || nil
-          @user_id = attributes[:user_id] || attributes['user_id'] || nil
+          @copy_custom_to_notification = attributes[:copy_custom_to_notification] || attributes['copy_custom_to_notification'] || false
+          @handle_mention_notifications = attributes[:handle_mention_notifications] || attributes['handle_mention_notifications'] || false
+          @run_activity_processors = attributes[:run_activity_processors] || attributes['run_activity_processors'] || false
+          @user_id = attributes[:user_id] || attributes['user_id'] || ""
           @unset = attributes[:unset] || attributes['unset'] || nil
           @set = attributes[:set] || attributes['set'] || nil
           @user = attributes[:user] || attributes['user'] || nil
@@ -38,7 +46,9 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            copy_custom_to_notification: 'copy_custom_to_notification',
             handle_mention_notifications: 'handle_mention_notifications',
+            run_activity_processors: 'run_activity_processors',
             user_id: 'user_id',
             unset: 'unset',
             set: 'set',

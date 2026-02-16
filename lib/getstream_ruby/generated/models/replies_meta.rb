@@ -28,7 +28,7 @@ module GetStream
           @depth_truncated = attributes[:depth_truncated] || attributes['depth_truncated']
           @has_more = attributes[:has_more] || attributes['has_more']
           @remaining = attributes[:remaining] || attributes['remaining']
-          @next_cursor = attributes[:next_cursor] || attributes['next_cursor'] || nil
+          @next_cursor = attributes[:next_cursor] || attributes['next_cursor'] || ""
         end
 
         # Override field mappings for JSON serialization

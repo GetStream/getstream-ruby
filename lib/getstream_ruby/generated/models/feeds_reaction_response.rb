@@ -39,7 +39,7 @@ module GetStream
           @type = attributes[:type] || attributes['type']
           @updated_at = attributes[:updated_at] || attributes['updated_at']
           @user = attributes[:user] || attributes['user']
-          @comment_id = attributes[:comment_id] || attributes['comment_id'] || nil
+          @comment_id = attributes[:comment_id] || attributes['comment_id'] || ""
           @custom = attributes[:custom] || attributes['custom'] || nil
         end
 

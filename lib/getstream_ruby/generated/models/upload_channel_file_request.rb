@@ -19,7 +19,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @file = attributes[:file] || attributes['file'] || nil
+          @file = attributes[:file] || attributes['file'] || ""
           @user = attributes[:user] || attributes['user'] || nil
         end
 

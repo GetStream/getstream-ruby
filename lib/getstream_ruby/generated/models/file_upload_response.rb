@@ -23,8 +23,8 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @duration = attributes[:duration] || attributes['duration']
-          @file = attributes[:file] || attributes['file'] || nil
-          @thumb_url = attributes[:thumb_url] || attributes['thumb_url'] || nil
+          @file = attributes[:file] || attributes['file'] || ""
+          @thumb_url = attributes[:thumb_url] || attributes['thumb_url'] || ""
         end
 
         # Override field mappings for JSON serialization

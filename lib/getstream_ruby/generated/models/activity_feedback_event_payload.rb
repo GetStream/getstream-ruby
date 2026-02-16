@@ -10,7 +10,7 @@ module GetStream
 
         # Model attributes
         # @!attribute action
-        #   @return [String] The type of feedback action
+        #   @return [String] The type of feedback action. One of: hide, show_more, show_less
         attr_accessor :action
         # @!attribute activity_id
         #   @return [String] The activity that received feedback

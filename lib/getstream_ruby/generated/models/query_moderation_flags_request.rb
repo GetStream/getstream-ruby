@@ -19,7 +19,7 @@ module GetStream
         #   @return [String]
         attr_accessor :prev
         # @!attribute sort
-        #   @return [Array<SortParam>]
+        #   @return [Array<SortParamRequest>]
         attr_accessor :sort
         # @!attribute filter
         #   @return [Object]
@@ -28,9 +28,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @limit = attributes[:limit] || attributes['limit'] || nil
-          @next = attributes[:next] || attributes['next'] || nil
-          @prev = attributes[:prev] || attributes['prev'] || nil
+          @limit = attributes[:limit] || attributes['limit'] || 0
+          @next = attributes[:next] || attributes['next'] || ""
+          @prev = attributes[:prev] || attributes['prev'] || ""
           @sort = attributes[:sort] || attributes['sort'] || nil
           @filter = attributes[:filter] || attributes['filter'] || nil
         end

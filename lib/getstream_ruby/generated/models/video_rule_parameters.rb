@@ -22,8 +22,8 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @threshold = attributes[:threshold] || attributes['threshold'] || nil
-          @time_window = attributes[:time_window] || attributes['time_window'] || nil
+          @threshold = attributes[:threshold] || attributes['threshold'] || 0
+          @time_window = attributes[:time_window] || attributes['time_window'] || ""
           @harm_labels = attributes[:harm_labels] || attributes['harm_labels'] || nil
         end
 

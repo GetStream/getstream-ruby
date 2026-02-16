@@ -5,74 +5,104 @@
 module GetStream
   module Generated
     module Models
-      # 
+      # This event is sent when a user gets banned. The event contains information about the user that was banned.
       class UserBannedEvent < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute created_at
+        #   @return [DateTime] Date/time of creation
+        attr_accessor :created_at
+        # @!attribute custom
+        #   @return [Object]
+        attr_accessor :custom
+        # @!attribute user
+        #   @return [UserResponseCommonFields]
+        attr_accessor :user
+        # @!attribute type
+        #   @return [String] The type of event: "user.banned" in this case
+        attr_accessor :type
         # @!attribute channel_id
-        #   @return [String]
+        #   @return [String] The ID of the channel where the target user was banned
         attr_accessor :channel_id
+        # @!attribute channel_member_count
+        #   @return [Integer]
+        attr_accessor :channel_member_count
+        # @!attribute channel_message_count
+        #   @return [Integer]
+        attr_accessor :channel_message_count
         # @!attribute channel_type
-        #   @return [String]
+        #   @return [String] The type of the channel where the target user was banned
         attr_accessor :channel_type
         # @!attribute cid
-        #   @return [String]
+        #   @return [String] The CID of the channel where the target user was banned
         attr_accessor :cid
-        # @!attribute created_at
-        #   @return [DateTime]
-        attr_accessor :created_at
-        # @!attribute shadow
-        #   @return [Boolean]
-        attr_accessor :shadow
-        # @!attribute created_by
-        #   @return [User]
-        attr_accessor :created_by
-        # @!attribute type
-        #   @return [String]
-        attr_accessor :type
         # @!attribute expiration
-        #   @return [DateTime]
+        #   @return [DateTime] The expiration date of the ban
         attr_accessor :expiration
         # @!attribute reason
-        #   @return [String]
+        #   @return [String] The reason for the ban
         attr_accessor :reason
+        # @!attribute received_at
+        #   @return [DateTime]
+        attr_accessor :received_at
+        # @!attribute shadow
+        #   @return [Boolean] Whether the user was shadow banned
+        attr_accessor :shadow
         # @!attribute team
-        #   @return [String]
+        #   @return [String] The team of the channel where the target user was banned
         attr_accessor :team
-        # @!attribute user
-        #   @return [User]
-        attr_accessor :user
+        # @!attribute total_bans
+        #   @return [Integer]
+        attr_accessor :total_bans
+        # @!attribute channel_custom
+        #   @return [Object]
+        attr_accessor :channel_custom
+        # @!attribute created_by
+        #   @return [UserResponseCommonFields]
+        attr_accessor :created_by
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @channel_id = attributes[:channel_id] || attributes['channel_id']
-          @channel_type = attributes[:channel_type] || attributes['channel_type']
-          @cid = attributes[:cid] || attributes['cid']
           @created_at = attributes[:created_at] || attributes['created_at']
-          @shadow = attributes[:shadow] || attributes['shadow']
-          @created_by = attributes[:created_by] || attributes['created_by']
+          @custom = attributes[:custom] || attributes['custom']
+          @user = attributes[:user] || attributes['user']
           @type = attributes[:type] || attributes['type'] || "user.banned"
+          @channel_id = attributes[:channel_id] || attributes['channel_id'] || ""
+          @channel_member_count = attributes[:channel_member_count] || attributes['channel_member_count'] || 0
+          @channel_message_count = attributes[:channel_message_count] || attributes['channel_message_count'] || 0
+          @channel_type = attributes[:channel_type] || attributes['channel_type'] || ""
+          @cid = attributes[:cid] || attributes['cid'] || ""
           @expiration = attributes[:expiration] || attributes['expiration'] || nil
-          @reason = attributes[:reason] || attributes['reason'] || nil
-          @team = attributes[:team] || attributes['team'] || nil
-          @user = attributes[:user] || attributes['user'] || nil
+          @reason = attributes[:reason] || attributes['reason'] || ""
+          @received_at = attributes[:received_at] || attributes['received_at'] || nil
+          @shadow = attributes[:shadow] || attributes['shadow'] || false
+          @team = attributes[:team] || attributes['team'] || ""
+          @total_bans = attributes[:total_bans] || attributes['total_bans'] || 0
+          @channel_custom = attributes[:channel_custom] || attributes['channel_custom'] || nil
+          @created_by = attributes[:created_by] || attributes['created_by'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            created_at: 'created_at',
+            custom: 'custom',
+            user: 'user',
+            type: 'type',
             channel_id: 'channel_id',
+            channel_member_count: 'channel_member_count',
+            channel_message_count: 'channel_message_count',
             channel_type: 'channel_type',
             cid: 'cid',
-            created_at: 'created_at',
-            shadow: 'shadow',
-            created_by: 'created_by',
-            type: 'type',
             expiration: 'expiration',
             reason: 'reason',
+            received_at: 'received_at',
+            shadow: 'shadow',
             team: 'team',
-            user: 'user'
+            total_bans: 'total_bans',
+            channel_custom: 'channel_custom',
+            created_by: 'created_by'
           }
         end
       end

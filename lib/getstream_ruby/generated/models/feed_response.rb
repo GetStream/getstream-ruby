@@ -90,7 +90,7 @@ module GetStream
           @updated_at = attributes[:updated_at] || attributes['updated_at']
           @created_by = attributes[:created_by] || attributes['created_by']
           @deleted_at = attributes[:deleted_at] || attributes['deleted_at'] || nil
-          @visibility = attributes[:visibility] || attributes['visibility'] || nil
+          @visibility = attributes[:visibility] || attributes['visibility'] || ""
           @filter_tags = attributes[:filter_tags] || attributes['filter_tags'] || nil
           @own_capabilities = attributes[:own_capabilities] || attributes['own_capabilities'] || nil
           @own_followings = attributes[:own_followings] || attributes['own_followings'] || nil

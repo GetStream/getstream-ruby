@@ -45,9 +45,9 @@ module GetStream
           @option_id = attributes[:option_id] || attributes['option_id']
           @poll_id = attributes[:poll_id] || attributes['poll_id']
           @updated_at = attributes[:updated_at] || attributes['updated_at']
-          @answer_text = attributes[:answer_text] || attributes['answer_text'] || nil
-          @is_answer = attributes[:is_answer] || attributes['is_answer'] || nil
-          @user_id = attributes[:user_id] || attributes['user_id'] || nil
+          @answer_text = attributes[:answer_text] || attributes['answer_text'] || ""
+          @is_answer = attributes[:is_answer] || attributes['is_answer'] || false
+          @user_id = attributes[:user_id] || attributes['user_id'] || ""
           @user = attributes[:user] || attributes['user'] || nil
         end
 

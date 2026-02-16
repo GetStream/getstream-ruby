@@ -26,8 +26,8 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @user_id = attributes[:user_id] || attributes['user_id']
-          @block = attributes[:block] || attributes['block'] || nil
-          @kicked_by_id = attributes[:kicked_by_id] || attributes['kicked_by_id'] || nil
+          @block = attributes[:block] || attributes['block'] || false
+          @kicked_by_id = attributes[:kicked_by_id] || attributes['kicked_by_id'] || ""
           @kicked_by = attributes[:kicked_by] || attributes['kicked_by'] || nil
         end
 

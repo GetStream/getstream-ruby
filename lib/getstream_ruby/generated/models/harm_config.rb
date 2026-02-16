@@ -28,9 +28,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @cooldown_period = attributes[:cooldown_period] || attributes['cooldown_period'] || nil
-          @severity = attributes[:severity] || attributes['severity'] || nil
-          @threshold = attributes[:threshold] || attributes['threshold'] || nil
+          @cooldown_period = attributes[:cooldown_period] || attributes['cooldown_period'] || 0
+          @severity = attributes[:severity] || attributes['severity'] || 0
+          @threshold = attributes[:threshold] || attributes['threshold'] || 0
           @action_sequences = attributes[:action_sequences] || attributes['action_sequences'] || nil
           @harm_types = attributes[:harm_types] || attributes['harm_types'] || nil
         end

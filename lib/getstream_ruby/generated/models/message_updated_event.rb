@@ -5,63 +5,93 @@
 module GetStream
   module Generated
     module Models
-      # 
+      # Emitted when a BaseEvent is updated with translation data or when a message is updated.
       class MessageUpdatedEvent < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute created_at
+        #   @return [DateTime] Date/time of creation
+        attr_accessor :created_at
+        # @!attribute message_id
+        #   @return [String]
+        attr_accessor :message_id
+        # @!attribute custom
+        #   @return [Object]
+        attr_accessor :custom
+        # @!attribute message
+        #   @return [MessageResponse]
+        attr_accessor :message
+        # @!attribute type
+        #   @return [String] The type of event: "message.updated" in this case
+        attr_accessor :type
         # @!attribute channel_id
-        #   @return [String]
+        #   @return [String] The ID of the channel where the message was sent
         attr_accessor :channel_id
+        # @!attribute channel_member_count
+        #   @return [Integer] The number of members in the channel
+        attr_accessor :channel_member_count
+        # @!attribute channel_message_count
+        #   @return [Integer] The number of messages in the channel
+        attr_accessor :channel_message_count
         # @!attribute channel_type
-        #   @return [String]
+        #   @return [String] The type of the channel where the message was sent
         attr_accessor :channel_type
         # @!attribute cid
-        #   @return [String]
+        #   @return [String] The CID of the channel where the message was sent
         attr_accessor :cid
-        # @!attribute created_at
+        # @!attribute received_at
         #   @return [DateTime]
-        attr_accessor :created_at
-        # @!attribute type
-        #   @return [String]
-        attr_accessor :type
+        attr_accessor :received_at
         # @!attribute team
-        #   @return [String]
+        #   @return [String] The team ID
         attr_accessor :team
-        # @!attribute thread_participants
-        #   @return [Array<User>]
-        attr_accessor :thread_participants
-        # @!attribute message
-        #   @return [Message]
-        attr_accessor :message
+        # @!attribute channel_custom
+        #   @return [Object]
+        attr_accessor :channel_custom
+        # @!attribute message_update
+        #   @return [MessageUpdate]
+        attr_accessor :message_update
         # @!attribute user
-        #   @return [User]
+        #   @return [UserResponseCommonFields]
         attr_accessor :user
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @channel_id = attributes[:channel_id] || attributes['channel_id']
-          @channel_type = attributes[:channel_type] || attributes['channel_type']
-          @cid = attributes[:cid] || attributes['cid']
           @created_at = attributes[:created_at] || attributes['created_at']
+          @message_id = attributes[:message_id] || attributes['message_id']
+          @custom = attributes[:custom] || attributes['custom']
+          @message = attributes[:message] || attributes['message']
           @type = attributes[:type] || attributes['type'] || "message.updated"
-          @team = attributes[:team] || attributes['team'] || nil
-          @thread_participants = attributes[:thread_participants] || attributes['thread_participants'] || nil
-          @message = attributes[:message] || attributes['message'] || nil
+          @channel_id = attributes[:channel_id] || attributes['channel_id'] || ""
+          @channel_member_count = attributes[:channel_member_count] || attributes['channel_member_count'] || 0
+          @channel_message_count = attributes[:channel_message_count] || attributes['channel_message_count'] || 0
+          @channel_type = attributes[:channel_type] || attributes['channel_type'] || ""
+          @cid = attributes[:cid] || attributes['cid'] || ""
+          @received_at = attributes[:received_at] || attributes['received_at'] || nil
+          @team = attributes[:team] || attributes['team'] || ""
+          @channel_custom = attributes[:channel_custom] || attributes['channel_custom'] || nil
+          @message_update = attributes[:message_update] || attributes['message_update'] || nil
           @user = attributes[:user] || attributes['user'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            created_at: 'created_at',
+            message_id: 'message_id',
+            custom: 'custom',
+            message: 'message',
+            type: 'type',
             channel_id: 'channel_id',
+            channel_member_count: 'channel_member_count',
+            channel_message_count: 'channel_message_count',
             channel_type: 'channel_type',
             cid: 'cid',
-            created_at: 'created_at',
-            type: 'type',
+            received_at: 'received_at',
             team: 'team',
-            thread_participants: 'thread_participants',
-            message: 'message',
+            channel_custom: 'channel_custom',
+            message_update: 'message_update',
             user: 'user'
           }
         end

@@ -52,9 +52,9 @@ module GetStream
           @updated_at = attributes[:updated_at] || attributes['updated_at']
           @user_bad_karma = attributes[:user_bad_karma] || attributes['user_bad_karma']
           @user_karma = attributes[:user_karma] || attributes['user_karma']
-          @blocked_word = attributes[:blocked_word] || attributes['blocked_word'] || nil
-          @blocklist_name = attributes[:blocklist_name] || attributes['blocklist_name'] || nil
-          @moderated_by = attributes[:moderated_by] || attributes['moderated_by'] || nil
+          @blocked_word = attributes[:blocked_word] || attributes['blocked_word'] || ""
+          @blocklist_name = attributes[:blocklist_name] || attributes['blocklist_name'] || ""
+          @moderated_by = attributes[:moderated_by] || attributes['moderated_by'] || ""
           @ai_moderation_response = attributes[:ai_moderation_response] || attributes['ai_moderation_response'] || nil
           @moderation_thresholds = attributes[:moderation_thresholds] || attributes['moderation_thresholds'] || nil
         end

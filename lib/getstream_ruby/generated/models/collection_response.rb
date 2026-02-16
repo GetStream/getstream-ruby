@@ -35,7 +35,7 @@ module GetStream
           @name = attributes[:name] || attributes['name']
           @created_at = attributes[:created_at] || attributes['created_at'] || nil
           @updated_at = attributes[:updated_at] || attributes['updated_at'] || nil
-          @user_id = attributes[:user_id] || attributes['user_id'] || nil
+          @user_id = attributes[:user_id] || attributes['user_id'] || ""
           @custom = attributes[:custom] || attributes['custom'] || nil
         end
 

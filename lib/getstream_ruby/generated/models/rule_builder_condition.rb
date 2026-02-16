@@ -61,8 +61,8 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @confidence = attributes[:confidence] || attributes['confidence'] || nil
-          @type = attributes[:type] || attributes['type'] || nil
+          @confidence = attributes[:confidence] || attributes['confidence'] || 0.0
+          @type = attributes[:type] || attributes['type'] || ""
           @content_count_rule_params = attributes[:content_count_rule_params] || attributes['content_count_rule_params'] || nil
           @content_flag_count_rule_params = attributes[:content_flag_count_rule_params] || attributes['content_flag_count_rule_params'] || nil
           @image_content_params = attributes[:image_content_params] || attributes['image_content_params'] || nil

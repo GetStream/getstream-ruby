@@ -44,11 +44,11 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @id = attributes[:id] || attributes['id']
-          @image = attributes[:image] || attributes['image'] || nil
-          @invisible = attributes[:invisible] || attributes['invisible'] || nil
-          @language = attributes[:language] || attributes['language'] || nil
-          @name = attributes[:name] || attributes['name'] || nil
-          @role = attributes[:role] || attributes['role'] || nil
+          @image = attributes[:image] || attributes['image'] || ""
+          @invisible = attributes[:invisible] || attributes['invisible'] || false
+          @language = attributes[:language] || attributes['language'] || ""
+          @name = attributes[:name] || attributes['name'] || ""
+          @role = attributes[:role] || attributes['role'] || ""
           @teams = attributes[:teams] || attributes['teams'] || nil
           @custom = attributes[:custom] || attributes['custom'] || nil
           @privacy_settings = attributes[:privacy_settings] || attributes['privacy_settings'] || nil

@@ -43,7 +43,7 @@ module GetStream
           @priority = attributes[:priority] || attributes['priority']
           @updated_at = attributes[:updated_at] || attributes['updated_at']
           @tags = attributes[:tags] || attributes['tags']
-          @description = attributes[:description] || attributes['description'] || nil
+          @description = attributes[:description] || attributes['description'] || ""
           @custom = attributes[:custom] || attributes['custom'] || nil
         end
 

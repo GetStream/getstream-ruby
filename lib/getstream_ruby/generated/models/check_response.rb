@@ -31,7 +31,7 @@ module GetStream
           @duration = attributes[:duration] || attributes['duration']
           @recommended_action = attributes[:recommended_action] || attributes['recommended_action']
           @status = attributes[:status] || attributes['status']
-          @task_id = attributes[:task_id] || attributes['task_id'] || nil
+          @task_id = attributes[:task_id] || attributes['task_id'] || ""
           @item = attributes[:item] || attributes['item'] || nil
         end
 

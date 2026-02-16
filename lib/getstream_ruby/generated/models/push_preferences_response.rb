@@ -28,10 +28,10 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @call_level = attributes[:call_level] || attributes['call_level'] || nil
-          @chat_level = attributes[:chat_level] || attributes['chat_level'] || nil
+          @call_level = attributes[:call_level] || attributes['call_level'] || ""
+          @chat_level = attributes[:chat_level] || attributes['chat_level'] || ""
           @disabled_until = attributes[:disabled_until] || attributes['disabled_until'] || nil
-          @feeds_level = attributes[:feeds_level] || attributes['feeds_level'] || nil
+          @feeds_level = attributes[:feeds_level] || attributes['feeds_level'] || ""
           @feeds_preferences = attributes[:feeds_preferences] || attributes['feeds_preferences'] || nil
         end
 

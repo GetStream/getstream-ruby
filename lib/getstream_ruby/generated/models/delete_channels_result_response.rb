@@ -20,7 +20,7 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @status = attributes[:status] || attributes['status']
-          @error = attributes[:error] || attributes['error'] || nil
+          @error = attributes[:error] || attributes['error'] || ""
         end
 
         # Override field mappings for JSON serialization

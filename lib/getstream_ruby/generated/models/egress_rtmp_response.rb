@@ -27,8 +27,8 @@ module GetStream
           super(attributes)
           @name = attributes[:name] || attributes['name']
           @started_at = attributes[:started_at] || attributes['started_at']
-          @stream_key = attributes[:stream_key] || attributes['stream_key'] || nil
-          @stream_url = attributes[:stream_url] || attributes['stream_url'] || nil
+          @stream_key = attributes[:stream_key] || attributes['stream_key'] || ""
+          @stream_url = attributes[:stream_url] || attributes['stream_url'] || ""
         end
 
         # Override field mappings for JSON serialization

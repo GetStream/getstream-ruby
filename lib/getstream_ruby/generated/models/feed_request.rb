@@ -25,7 +25,7 @@ module GetStream
         #   @return [String] Name of the feed
         attr_accessor :name
         # @!attribute visibility
-        #   @return [String] Visibility setting for the feed
+        #   @return [String] Visibility setting for the feed. One of: public, visible, followers, members, private
         attr_accessor :visibility
         # @!attribute filter_tags
         #   @return [Array<String>] Tags used for filtering feeds
@@ -42,10 +42,10 @@ module GetStream
           super(attributes)
           @feed_group_id = attributes[:feed_group_id] || attributes['feed_group_id']
           @feed_id = attributes[:feed_id] || attributes['feed_id']
-          @created_by_id = attributes[:created_by_id] || attributes['created_by_id'] || nil
-          @description = attributes[:description] || attributes['description'] || nil
-          @name = attributes[:name] || attributes['name'] || nil
-          @visibility = attributes[:visibility] || attributes['visibility'] || nil
+          @created_by_id = attributes[:created_by_id] || attributes['created_by_id'] || ""
+          @description = attributes[:description] || attributes['description'] || ""
+          @name = attributes[:name] || attributes['name'] || ""
+          @visibility = attributes[:visibility] || attributes['visibility'] || ""
           @filter_tags = attributes[:filter_tags] || attributes['filter_tags'] || nil
           @members = attributes[:members] || attributes['members'] || nil
           @custom = attributes[:custom] || attributes['custom'] || nil

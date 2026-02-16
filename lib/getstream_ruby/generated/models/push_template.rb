@@ -32,7 +32,7 @@ module GetStream
           @enable_push = attributes[:enable_push] || attributes['enable_push']
           @event_type = attributes[:event_type] || attributes['event_type']
           @updated_at = attributes[:updated_at] || attributes['updated_at']
-          @template = attributes[:template] || attributes['template'] || nil
+          @template = attributes[:template] || attributes['template'] || ""
         end
 
         # Override field mappings for JSON serialization

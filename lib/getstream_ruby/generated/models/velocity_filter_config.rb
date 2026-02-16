@@ -34,12 +34,12 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @advanced_filters = attributes[:advanced_filters] || attributes['advanced_filters'] || nil
-          @async = attributes[:async] || attributes['async'] || nil
-          @cascading_actions = attributes[:cascading_actions] || attributes['cascading_actions'] || nil
-          @cids_per_user = attributes[:cids_per_user] || attributes['cids_per_user'] || nil
-          @enabled = attributes[:enabled] || attributes['enabled'] || nil
-          @first_message_only = attributes[:first_message_only] || attributes['first_message_only'] || nil
+          @advanced_filters = attributes[:advanced_filters] || attributes['advanced_filters'] || false
+          @async = attributes[:async] || attributes['async'] || false
+          @cascading_actions = attributes[:cascading_actions] || attributes['cascading_actions'] || false
+          @cids_per_user = attributes[:cids_per_user] || attributes['cids_per_user'] || 0
+          @enabled = attributes[:enabled] || attributes['enabled'] || false
+          @first_message_only = attributes[:first_message_only] || attributes['first_message_only'] || false
           @rules = attributes[:rules] || attributes['rules'] || nil
         end
 

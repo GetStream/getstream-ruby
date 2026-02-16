@@ -5,48 +5,48 @@
 module GetStream
   module Generated
     module Models
-      # 
+      # Contains the draft message content
       class DraftPayloadResponse < GetStream::BaseModel
 
         # Model attributes
         # @!attribute id
-        #   @return [String]
+        #   @return [String] Message ID is unique string identifier of the message
         attr_accessor :id
         # @!attribute text
-        #   @return [String]
+        #   @return [String] Text of the message
         attr_accessor :text
         # @!attribute custom
         #   @return [Object]
         attr_accessor :custom
         # @!attribute html
-        #   @return [String]
+        #   @return [String] Contains HTML markup of the message
         attr_accessor :html
         # @!attribute mml
-        #   @return [String]
+        #   @return [String] MML content of the message
         attr_accessor :mml
         # @!attribute parent_id
-        #   @return [String]
+        #   @return [String] ID of parent message (thread)
         attr_accessor :parent_id
         # @!attribute poll_id
-        #   @return [String]
+        #   @return [String] Identifier of the poll to include in the message
         attr_accessor :poll_id
         # @!attribute quoted_message_id
         #   @return [String]
         attr_accessor :quoted_message_id
         # @!attribute show_in_channel
-        #   @return [Boolean]
+        #   @return [Boolean] Whether thread reply should be shown in the channel as well
         attr_accessor :show_in_channel
         # @!attribute silent
-        #   @return [Boolean]
+        #   @return [Boolean] Whether message is silent or not
         attr_accessor :silent
         # @!attribute type
-        #   @return [String]
+        #   @return [String] Contains type of the message. One of: regular, system
         attr_accessor :type
         # @!attribute attachments
-        #   @return [Array<Attachment>]
+        #   @return [Array<Attachment>] Array of message attachments
         attr_accessor :attachments
         # @!attribute mentioned_users
-        #   @return [Array<UserResponse>]
+        #   @return [Array<UserResponse>] List of mentioned users
         attr_accessor :mentioned_users
 
         # Initialize with attributes
@@ -55,14 +55,14 @@ module GetStream
           @id = attributes[:id] || attributes['id']
           @text = attributes[:text] || attributes['text']
           @custom = attributes[:custom] || attributes['custom']
-          @html = attributes[:html] || attributes['html'] || nil
-          @mml = attributes[:mml] || attributes['mml'] || nil
-          @parent_id = attributes[:parent_id] || attributes['parent_id'] || nil
-          @poll_id = attributes[:poll_id] || attributes['poll_id'] || nil
-          @quoted_message_id = attributes[:quoted_message_id] || attributes['quoted_message_id'] || nil
-          @show_in_channel = attributes[:show_in_channel] || attributes['show_in_channel'] || nil
-          @silent = attributes[:silent] || attributes['silent'] || nil
-          @type = attributes[:type] || attributes['type'] || nil
+          @html = attributes[:html] || attributes['html'] || ""
+          @mml = attributes[:mml] || attributes['mml'] || ""
+          @parent_id = attributes[:parent_id] || attributes['parent_id'] || ""
+          @poll_id = attributes[:poll_id] || attributes['poll_id'] || ""
+          @quoted_message_id = attributes[:quoted_message_id] || attributes['quoted_message_id'] || ""
+          @show_in_channel = attributes[:show_in_channel] || attributes['show_in_channel'] || false
+          @silent = attributes[:silent] || attributes['silent'] || false
+          @type = attributes[:type] || attributes['type'] || ""
           @attachments = attributes[:attachments] || attributes['attachments'] || nil
           @mentioned_users = attributes[:mentioned_users] || attributes['mentioned_users'] || nil
         end

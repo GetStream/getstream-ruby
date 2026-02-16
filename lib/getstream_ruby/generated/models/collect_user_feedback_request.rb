@@ -34,8 +34,8 @@ module GetStream
           @rating = attributes[:rating] || attributes['rating']
           @sdk = attributes[:sdk] || attributes['sdk']
           @sdk_version = attributes[:sdk_version] || attributes['sdk_version']
-          @reason = attributes[:reason] || attributes['reason'] || nil
-          @user_session_id = attributes[:user_session_id] || attributes['user_session_id'] || nil
+          @reason = attributes[:reason] || attributes['reason'] || ""
+          @user_session_id = attributes[:user_session_id] || attributes['user_session_id'] || ""
           @custom = attributes[:custom] || attributes['custom'] || nil
         end
 

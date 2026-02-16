@@ -15,6 +15,9 @@ module GetStream
         # @!attribute target
         #   @return [String] Fully qualified ID of the target feed
         attr_accessor :target
+        # @!attribute copy_custom_to_notification
+        #   @return [Boolean] Whether to copy custom data to the notification activity (only applies when create_notification_activity is true)
+        attr_accessor :copy_custom_to_notification
         # @!attribute create_notification_activity
         #   @return [Boolean] Whether to create a notification activity for this follow
         attr_accessor :create_notification_activity
@@ -28,7 +31,7 @@ module GetStream
         #   @return [Boolean] Whether to skip push for this follow
         attr_accessor :skip_push
         # @!attribute status
-        #   @return [String] Status of the follow relationship
+        #   @return [String] Status of the follow relationship. One of: accepted, pending, rejected
         attr_accessor :status
         # @!attribute custom
         #   @return [Object] Custom data for the follow relationship
@@ -39,11 +42,12 @@ module GetStream
           super(attributes)
           @source = attributes[:source] || attributes['source']
           @target = attributes[:target] || attributes['target']
-          @create_notification_activity = attributes[:create_notification_activity] || attributes['create_notification_activity'] || nil
-          @follower_role = attributes[:follower_role] || attributes['follower_role'] || nil
-          @push_preference = attributes[:push_preference] || attributes['push_preference'] || nil
-          @skip_push = attributes[:skip_push] || attributes['skip_push'] || nil
-          @status = attributes[:status] || attributes['status'] || nil
+          @copy_custom_to_notification = attributes[:copy_custom_to_notification] || attributes['copy_custom_to_notification'] || false
+          @create_notification_activity = attributes[:create_notification_activity] || attributes['create_notification_activity'] || false
+          @follower_role = attributes[:follower_role] || attributes['follower_role'] || ""
+          @push_preference = attributes[:push_preference] || attributes['push_preference'] || ""
+          @skip_push = attributes[:skip_push] || attributes['skip_push'] || false
+          @status = attributes[:status] || attributes['status'] || ""
           @custom = attributes[:custom] || attributes['custom'] || nil
         end
 
@@ -52,6 +56,7 @@ module GetStream
           {
             source: 'source',
             target: 'target',
+            copy_custom_to_notification: 'copy_custom_to_notification',
             create_notification_activity: 'create_notification_activity',
             follower_role: 'follower_role',
             push_preference: 'push_preference',

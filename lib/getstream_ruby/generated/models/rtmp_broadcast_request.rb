@@ -16,7 +16,7 @@ module GetStream
         #   @return [String] URL for the RTMP server to send the call to
         attr_accessor :stream_url
         # @!attribute quality
-        #   @return [String] If provided, will override the call's RTMP settings quality
+        #   @return [String] If provided, will override the call's RTMP settings quality. One of: 360p, 480p, 720p, 1080p, 1440p, portrait-360x640, portrait-480x854, portrait-720x1280, portrait-1080x1920, portrait-1440x2560
         attr_accessor :quality
         # @!attribute stream_key
         #   @return [String] If provided, will be appended at the end of stream_url
@@ -30,8 +30,8 @@ module GetStream
           super(attributes)
           @name = attributes[:name] || attributes['name']
           @stream_url = attributes[:stream_url] || attributes['stream_url']
-          @quality = attributes[:quality] || attributes['quality'] || nil
-          @stream_key = attributes[:stream_key] || attributes['stream_key'] || nil
+          @quality = attributes[:quality] || attributes['quality'] || ""
+          @stream_key = attributes[:stream_key] || attributes['stream_key'] || ""
           @layout = attributes[:layout] || attributes['layout'] || nil
         end
 

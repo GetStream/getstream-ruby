@@ -22,7 +22,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @flag_all_labels = attributes[:flag_all_labels] || attributes['flag_all_labels'] || nil
+          @flag_all_labels = attributes[:flag_all_labels] || attributes['flag_all_labels'] || false
           @flagged_labels = attributes[:flagged_labels] || attributes['flagged_labels'] || nil
           @rules = attributes[:rules] || attributes['rules'] || nil
         end

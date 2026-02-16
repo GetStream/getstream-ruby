@@ -48,6 +48,9 @@ module GetStream
         # @!attribute following_pagination
         #   @return [PagerRequest]
         attr_accessor :following_pagination
+        # @!attribute friend_reactions_options
+        #   @return [FriendReactionsOptions]
+        attr_accessor :friend_reactions_options
         # @!attribute interest_weights
         #   @return [Hash<String, Float>]
         attr_accessor :interest_weights
@@ -61,19 +64,20 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @id_around = attributes[:id_around] || attributes['id_around'] || nil
-          @limit = attributes[:limit] || attributes['limit'] || nil
-          @next = attributes[:next] || attributes['next'] || nil
-          @prev = attributes[:prev] || attributes['prev'] || nil
-          @user_id = attributes[:user_id] || attributes['user_id'] || nil
-          @view = attributes[:view] || attributes['view'] || nil
-          @watch = attributes[:watch] || attributes['watch'] || nil
+          @id_around = attributes[:id_around] || attributes['id_around'] || ""
+          @limit = attributes[:limit] || attributes['limit'] || 0
+          @next = attributes[:next] || attributes['next'] || ""
+          @prev = attributes[:prev] || attributes['prev'] || ""
+          @user_id = attributes[:user_id] || attributes['user_id'] || ""
+          @view = attributes[:view] || attributes['view'] || ""
+          @watch = attributes[:watch] || attributes['watch'] || false
           @data = attributes[:data] || attributes['data'] || nil
           @enrichment_options = attributes[:enrichment_options] || attributes['enrichment_options'] || nil
           @external_ranking = attributes[:external_ranking] || attributes['external_ranking'] || nil
           @filter = attributes[:filter] || attributes['filter'] || nil
           @followers_pagination = attributes[:followers_pagination] || attributes['followers_pagination'] || nil
           @following_pagination = attributes[:following_pagination] || attributes['following_pagination'] || nil
+          @friend_reactions_options = attributes[:friend_reactions_options] || attributes['friend_reactions_options'] || nil
           @interest_weights = attributes[:interest_weights] || attributes['interest_weights'] || nil
           @member_pagination = attributes[:member_pagination] || attributes['member_pagination'] || nil
           @user = attributes[:user] || attributes['user'] || nil
@@ -95,6 +99,7 @@ module GetStream
             filter: 'filter',
             followers_pagination: 'followers_pagination',
             following_pagination: 'following_pagination',
+            friend_reactions_options: 'friend_reactions_options',
             interest_weights: 'interest_weights',
             member_pagination: 'member_pagination',
             user: 'user'

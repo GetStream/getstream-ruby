@@ -44,7 +44,7 @@ module GetStream
           @fid = attributes[:fid] || attributes['fid']
           @custom = attributes[:custom] || attributes['custom']
           @type = attributes[:type] || attributes['type'] || "feeds.notification_feed.updated"
-          @feed_visibility = attributes[:feed_visibility] || attributes['feed_visibility'] || nil
+          @feed_visibility = attributes[:feed_visibility] || attributes['feed_visibility'] || ""
           @received_at = attributes[:received_at] || attributes['received_at'] || nil
           @aggregated_activities = attributes[:aggregated_activities] || attributes['aggregated_activities'] || nil
           @notification_status = attributes[:notification_status] || attributes['notification_status'] || nil

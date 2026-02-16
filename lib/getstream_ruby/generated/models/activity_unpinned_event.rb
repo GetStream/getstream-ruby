@@ -42,7 +42,7 @@ module GetStream
           @custom = attributes[:custom] || attributes['custom']
           @pinned_activity = attributes[:pinned_activity] || attributes['pinned_activity']
           @type = attributes[:type] || attributes['type'] || "feeds.activity.unpinned"
-          @feed_visibility = attributes[:feed_visibility] || attributes['feed_visibility'] || nil
+          @feed_visibility = attributes[:feed_visibility] || attributes['feed_visibility'] || ""
           @received_at = attributes[:received_at] || attributes['received_at'] || nil
           @user = attributes[:user] || attributes['user'] || nil
         end

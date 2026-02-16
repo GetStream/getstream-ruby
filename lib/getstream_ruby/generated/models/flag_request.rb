@@ -39,9 +39,9 @@ module GetStream
           super(attributes)
           @entity_id = attributes[:entity_id] || attributes['entity_id']
           @entity_type = attributes[:entity_type] || attributes['entity_type']
-          @entity_creator_id = attributes[:entity_creator_id] || attributes['entity_creator_id'] || nil
-          @reason = attributes[:reason] || attributes['reason'] || nil
-          @user_id = attributes[:user_id] || attributes['user_id'] || nil
+          @entity_creator_id = attributes[:entity_creator_id] || attributes['entity_creator_id'] || ""
+          @reason = attributes[:reason] || attributes['reason'] || ""
+          @user_id = attributes[:user_id] || attributes['user_id'] || ""
           @custom = attributes[:custom] || attributes['custom'] || nil
           @moderation_payload = attributes[:moderation_payload] || attributes['moderation_payload'] || nil
           @user = attributes[:user] || attributes['user'] || nil

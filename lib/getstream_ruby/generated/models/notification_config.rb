@@ -22,9 +22,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @deduplication_window = attributes[:deduplication_window] || attributes['deduplication_window'] || nil
-          @track_read = attributes[:track_read] || attributes['track_read'] || nil
-          @track_seen = attributes[:track_seen] || attributes['track_seen'] || nil
+          @deduplication_window = attributes[:deduplication_window] || attributes['deduplication_window'] || ""
+          @track_read = attributes[:track_read] || attributes['track_read'] || false
+          @track_seen = attributes[:track_seen] || attributes['track_seen'] || false
         end
 
         # Override field mappings for JSON serialization

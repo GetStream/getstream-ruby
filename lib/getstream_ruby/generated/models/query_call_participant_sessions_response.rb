@@ -50,8 +50,8 @@ module GetStream
           @total_participant_duration = attributes[:total_participant_duration] || attributes['total_participant_duration']
           @total_participant_sessions = attributes[:total_participant_sessions] || attributes['total_participant_sessions']
           @participants_sessions = attributes[:participants_sessions] || attributes['participants_sessions']
-          @next = attributes[:next] || attributes['next'] || nil
-          @prev = attributes[:prev] || attributes['prev'] || nil
+          @next = attributes[:next] || attributes['next'] || ""
+          @prev = attributes[:prev] || attributes['prev'] || ""
           @session = attributes[:session] || attributes['session'] || nil
         end
 

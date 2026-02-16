@@ -16,7 +16,7 @@ module GetStream
         #   @return [String] Name/type of the collection
         attr_accessor :name
         # @!attribute status
-        #   @return [String] Enrichment status of the collection
+        #   @return [String] Enrichment status of the collection. One of: ok, notfound
         attr_accessor :status
         # @!attribute created_at
         #   @return [DateTime] When the collection was created
@@ -39,7 +39,7 @@ module GetStream
           @status = attributes[:status] || attributes['status']
           @created_at = attributes[:created_at] || attributes['created_at'] || nil
           @updated_at = attributes[:updated_at] || attributes['updated_at'] || nil
-          @user_id = attributes[:user_id] || attributes['user_id'] || nil
+          @user_id = attributes[:user_id] || attributes['user_id'] || ""
           @custom = attributes[:custom] || attributes['custom'] || nil
         end
 

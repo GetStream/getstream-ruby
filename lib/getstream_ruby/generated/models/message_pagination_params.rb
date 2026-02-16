@@ -51,12 +51,12 @@ module GetStream
           @created_at_around = attributes[:created_at_around] || attributes['created_at_around'] || nil
           @created_at_before = attributes[:created_at_before] || attributes['created_at_before'] || nil
           @created_at_before_or_equal = attributes[:created_at_before_or_equal] || attributes['created_at_before_or_equal'] || nil
-          @id_around = attributes[:id_around] || attributes['id_around'] || nil
-          @id_gt = attributes[:id_gt] || attributes['id_gt'] || nil
-          @id_gte = attributes[:id_gte] || attributes['id_gte'] || nil
-          @id_lt = attributes[:id_lt] || attributes['id_lt'] || nil
-          @id_lte = attributes[:id_lte] || attributes['id_lte'] || nil
-          @limit = attributes[:limit] || attributes['limit'] || nil
+          @id_around = attributes[:id_around] || attributes['id_around'] || ""
+          @id_gt = attributes[:id_gt] || attributes['id_gt'] || ""
+          @id_gte = attributes[:id_gte] || attributes['id_gte'] || ""
+          @id_lt = attributes[:id_lt] || attributes['id_lt'] || ""
+          @id_lte = attributes[:id_lte] || attributes['id_lte'] || ""
+          @limit = attributes[:limit] || attributes['limit'] || 0
         end
 
         # Override field mappings for JSON serialization

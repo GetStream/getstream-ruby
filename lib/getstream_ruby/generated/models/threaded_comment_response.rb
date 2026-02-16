@@ -37,7 +37,7 @@ module GetStream
         #   @return [Integer]
         attr_accessor :score
         # @!attribute status
-        #   @return [String]
+        #   @return [String] Status of the comment. One of: active, deleted, removed, hidden
         attr_accessor :status
         # @!attribute updated_at
         #   @return [DateTime]
@@ -88,7 +88,7 @@ module GetStream
         #   @return [ModerationV2Response]
         attr_accessor :moderation
         # @!attribute reaction_groups
-        #   @return [Hash<String, ReactionGroupResponse>]
+        #   @return [Hash<String, FeedsReactionGroupResponse>]
         attr_accessor :reaction_groups
 
         # Initialize with attributes
@@ -109,11 +109,11 @@ module GetStream
           @mentioned_users = attributes[:mentioned_users] || attributes['mentioned_users']
           @own_reactions = attributes[:own_reactions] || attributes['own_reactions']
           @user = attributes[:user] || attributes['user']
-          @controversy_score = attributes[:controversy_score] || attributes['controversy_score'] || nil
+          @controversy_score = attributes[:controversy_score] || attributes['controversy_score'] || 0.0
           @deleted_at = attributes[:deleted_at] || attributes['deleted_at'] || nil
           @edited_at = attributes[:edited_at] || attributes['edited_at'] || nil
-          @parent_id = attributes[:parent_id] || attributes['parent_id'] || nil
-          @text = attributes[:text] || attributes['text'] || nil
+          @parent_id = attributes[:parent_id] || attributes['parent_id'] || ""
+          @text = attributes[:text] || attributes['text'] || ""
           @attachments = attributes[:attachments] || attributes['attachments'] || nil
           @latest_reactions = attributes[:latest_reactions] || attributes['latest_reactions'] || nil
           @replies = attributes[:replies] || attributes['replies'] || nil

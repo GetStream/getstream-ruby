@@ -16,7 +16,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @stop_closed_captions = attributes[:stop_closed_captions] || attributes['stop_closed_captions'] || nil
+          @stop_closed_captions = attributes[:stop_closed_captions] || attributes['stop_closed_captions'] || false
         end
 
         # Override field mappings for JSON serialization

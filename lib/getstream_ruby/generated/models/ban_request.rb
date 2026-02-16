@@ -41,13 +41,13 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @target_user_id = attributes[:target_user_id] || attributes['target_user_id']
-          @banned_by_id = attributes[:banned_by_id] || attributes['banned_by_id'] || nil
-          @channel_cid = attributes[:channel_cid] || attributes['channel_cid'] || nil
-          @delete_messages = attributes[:delete_messages] || attributes['delete_messages'] || nil
-          @ip_ban = attributes[:ip_ban] || attributes['ip_ban'] || nil
-          @reason = attributes[:reason] || attributes['reason'] || nil
-          @shadow = attributes[:shadow] || attributes['shadow'] || nil
-          @timeout = attributes[:timeout] || attributes['timeout'] || nil
+          @banned_by_id = attributes[:banned_by_id] || attributes['banned_by_id'] || ""
+          @channel_cid = attributes[:channel_cid] || attributes['channel_cid'] || ""
+          @delete_messages = attributes[:delete_messages] || attributes['delete_messages'] || ""
+          @ip_ban = attributes[:ip_ban] || attributes['ip_ban'] || false
+          @reason = attributes[:reason] || attributes['reason'] || ""
+          @shadow = attributes[:shadow] || attributes['shadow'] || false
+          @timeout = attributes[:timeout] || attributes['timeout'] || 0
           @banned_by = attributes[:banned_by] || attributes['banned_by'] || nil
         end
 

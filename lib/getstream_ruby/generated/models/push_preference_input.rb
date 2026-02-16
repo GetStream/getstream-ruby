@@ -10,19 +10,19 @@ module GetStream
 
         # Model attributes
         # @!attribute call_level
-        #   @return [String] Set the level of call push notifications for the user. One of all, none, default
+        #   @return [String] Set the level of call push notifications for the user. One of: all, none, default
         attr_accessor :call_level
         # @!attribute channel_cid
         #   @return [String] Set the push preferences for a specific channel. If empty it sets the default for the user
         attr_accessor :channel_cid
         # @!attribute chat_level
-        #   @return [String] Set the level of chat push notifications for the user. One of all, mentions, none, default
+        #   @return [String] Set the level of chat push notifications for the user. Note: "mentions" is deprecated in favor of "direct_mentions". One of: all, mentions, direct_mentions, all_mentions, none, default
         attr_accessor :chat_level
         # @!attribute disabled_until
         #   @return [DateTime] Disable push notifications till a certain time
         attr_accessor :disabled_until
         # @!attribute feeds_level
-        #   @return [String] Set the level of feeds push notifications for the user. One of all, none, default
+        #   @return [String] Set the level of feeds push notifications for the user. One of: all, none, default
         attr_accessor :feeds_level
         # @!attribute remove_disable
         #   @return [Boolean] Remove the disabled until time. (IE stop snoozing notifications)
@@ -37,13 +37,13 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @call_level = attributes[:call_level] || attributes['call_level'] || nil
-          @channel_cid = attributes[:channel_cid] || attributes['channel_cid'] || nil
-          @chat_level = attributes[:chat_level] || attributes['chat_level'] || nil
+          @call_level = attributes[:call_level] || attributes['call_level'] || ""
+          @channel_cid = attributes[:channel_cid] || attributes['channel_cid'] || ""
+          @chat_level = attributes[:chat_level] || attributes['chat_level'] || ""
           @disabled_until = attributes[:disabled_until] || attributes['disabled_until'] || nil
-          @feeds_level = attributes[:feeds_level] || attributes['feeds_level'] || nil
-          @remove_disable = attributes[:remove_disable] || attributes['remove_disable'] || nil
-          @user_id = attributes[:user_id] || attributes['user_id'] || nil
+          @feeds_level = attributes[:feeds_level] || attributes['feeds_level'] || ""
+          @remove_disable = attributes[:remove_disable] || attributes['remove_disable'] || false
+          @user_id = attributes[:user_id] || attributes['user_id'] || ""
           @feeds_preferences = attributes[:feeds_preferences] || attributes['feeds_preferences'] || nil
         end
 

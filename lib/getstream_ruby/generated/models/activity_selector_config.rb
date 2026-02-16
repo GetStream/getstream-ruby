@@ -10,7 +10,7 @@ module GetStream
 
         # Model attributes
         # @!attribute type
-        #   @return [String] Type of selector
+        #   @return [String] Type of selector. One of: popular, proximity, following, current_feed, query, interest, follow_suggestion
         attr_accessor :type
         # @!attribute cutoff_time
         #   @return [String] Time threshold for activity selection (string). Expected RFC3339 format (e.g., 2006-01-02T15:04:05Z07:00). Cannot be used together with cutoff_window
@@ -35,9 +35,9 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @type = attributes[:type] || attributes['type']
-          @cutoff_time = attributes[:cutoff_time] || attributes['cutoff_time'] || nil
-          @cutoff_window = attributes[:cutoff_window] || attributes['cutoff_window'] || nil
-          @min_popularity = attributes[:min_popularity] || attributes['min_popularity'] || nil
+          @cutoff_time = attributes[:cutoff_time] || attributes['cutoff_time'] || ""
+          @cutoff_window = attributes[:cutoff_window] || attributes['cutoff_window'] || ""
+          @min_popularity = attributes[:min_popularity] || attributes['min_popularity'] || 0
           @sort = attributes[:sort] || attributes['sort'] || nil
           @filter = attributes[:filter] || attributes['filter'] || nil
           @params = attributes[:params] || attributes['params'] || nil

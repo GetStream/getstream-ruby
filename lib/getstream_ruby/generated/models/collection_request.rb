@@ -27,8 +27,8 @@ module GetStream
           super(attributes)
           @name = attributes[:name] || attributes['name']
           @custom = attributes[:custom] || attributes['custom']
-          @id = attributes[:id] || attributes['id'] || nil
-          @user_id = attributes[:user_id] || attributes['user_id'] || nil
+          @id = attributes[:id] || attributes['id'] || ""
+          @user_id = attributes[:user_id] || attributes['user_id'] || ""
         end
 
         # Override field mappings for JSON serialization

@@ -23,8 +23,8 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @description = attributes[:description] || attributes['description']
-          @args = attributes[:args] || attributes['args'] || nil
-          @set = attributes[:set] || attributes['set'] || nil
+          @args = attributes[:args] || attributes['args'] || ""
+          @set = attributes[:set] || attributes['set'] || ""
         end
 
         # Override field mappings for JSON serialization

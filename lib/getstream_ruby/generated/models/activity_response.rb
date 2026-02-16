@@ -34,7 +34,7 @@ module GetStream
         #   @return [Integer] Number of reactions to the activity
         attr_accessor :reaction_count
         # @!attribute restrict_replies
-        #   @return [String] Controls who can reply to this activity. Values: everyone, people_i_follow, nobody
+        #   @return [String] Controls who can add comments/replies to this activity. One of: everyone, people_i_follow, nobody
         attr_accessor :restrict_replies
         # @!attribute score
         #   @return [Float] Ranking score for this activity
@@ -49,7 +49,7 @@ module GetStream
         #   @return [DateTime] When the activity was last updated
         attr_accessor :updated_at
         # @!attribute visibility
-        #   @return [String] Visibility setting for the activity
+        #   @return [String] Visibility setting for the activity. One of: public, private, tag
         attr_accessor :visibility
         # @!attribute attachments
         #   @return [Array<Attachment>] Media attachments for the activity
@@ -85,7 +85,7 @@ module GetStream
         #   @return [Object] Custom data for the activity
         attr_accessor :custom
         # @!attribute reaction_groups
-        #   @return [Hash<String, ReactionGroupResponse>] Grouped reactions by type
+        #   @return [Hash<String, FeedsReactionGroupResponse>] Grouped reactions by type
         attr_accessor :reaction_groups
         # @!attribute search_data
         #   @return [Object] Data for search indexing
@@ -102,6 +102,9 @@ module GetStream
         # @!attribute expires_at
         #   @return [DateTime] When the activity will expire
         attr_accessor :expires_at
+        # @!attribute friend_reaction_count
+        #   @return [Integer] Total count of reactions from friends on this activity
+        attr_accessor :friend_reaction_count
         # @!attribute is_watched
         #   @return [Boolean]
         attr_accessor :is_watched
@@ -117,6 +120,9 @@ module GetStream
         # @!attribute visibility_tag
         #   @return [String] If visibility is 'tag', this is the tag name
         attr_accessor :visibility_tag
+        # @!attribute friend_reactions
+        #   @return [Array<FeedsReactionResponse>] Reactions from users the current user follows or has mutual follows with
+        attr_accessor :friend_reactions
         # @!attribute current_feed
         #   @return [FeedResponse]
         attr_accessor :current_feed
@@ -170,11 +176,13 @@ module GetStream
           @deleted_at = attributes[:deleted_at] || attributes['deleted_at'] || nil
           @edited_at = attributes[:edited_at] || attributes['edited_at'] || nil
           @expires_at = attributes[:expires_at] || attributes['expires_at'] || nil
-          @is_watched = attributes[:is_watched] || attributes['is_watched'] || nil
-          @moderation_action = attributes[:moderation_action] || attributes['moderation_action'] || nil
-          @selector_source = attributes[:selector_source] || attributes['selector_source'] || nil
-          @text = attributes[:text] || attributes['text'] || nil
-          @visibility_tag = attributes[:visibility_tag] || attributes['visibility_tag'] || nil
+          @friend_reaction_count = attributes[:friend_reaction_count] || attributes['friend_reaction_count'] || 0
+          @is_watched = attributes[:is_watched] || attributes['is_watched'] || false
+          @moderation_action = attributes[:moderation_action] || attributes['moderation_action'] || ""
+          @selector_source = attributes[:selector_source] || attributes['selector_source'] || ""
+          @text = attributes[:text] || attributes['text'] || ""
+          @visibility_tag = attributes[:visibility_tag] || attributes['visibility_tag'] || ""
+          @friend_reactions = attributes[:friend_reactions] || attributes['friend_reactions'] || nil
           @current_feed = attributes[:current_feed] || attributes['current_feed'] || nil
           @location = attributes[:location] || attributes['location'] || nil
           @moderation = attributes[:moderation] || attributes['moderation'] || nil
@@ -217,11 +225,13 @@ module GetStream
             deleted_at: 'deleted_at',
             edited_at: 'edited_at',
             expires_at: 'expires_at',
+            friend_reaction_count: 'friend_reaction_count',
             is_watched: 'is_watched',
             moderation_action: 'moderation_action',
             selector_source: 'selector_source',
             text: 'text',
             visibility_tag: 'visibility_tag',
+            friend_reactions: 'friend_reactions',
             current_feed: 'current_feed',
             location: 'location',
             moderation: 'moderation',

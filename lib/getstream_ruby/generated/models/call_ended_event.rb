@@ -35,7 +35,7 @@ module GetStream
           @created_at = attributes[:created_at] || attributes['created_at']
           @call = attributes[:call] || attributes['call']
           @type = attributes[:type] || attributes['type'] || "call.ended"
-          @reason = attributes[:reason] || attributes['reason'] || nil
+          @reason = attributes[:reason] || attributes['reason'] || ""
           @user = attributes[:user] || attributes['user'] || nil
         end
 

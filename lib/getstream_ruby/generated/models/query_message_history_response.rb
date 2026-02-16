@@ -27,8 +27,8 @@ module GetStream
           super(attributes)
           @duration = attributes[:duration] || attributes['duration']
           @message_history = attributes[:message_history] || attributes['message_history']
-          @next = attributes[:next] || attributes['next'] || nil
-          @prev = attributes[:prev] || attributes['prev'] || nil
+          @next = attributes[:next] || attributes['next'] || ""
+          @prev = attributes[:prev] || attributes['prev'] || ""
         end
 
         # Override field mappings for JSON serialization

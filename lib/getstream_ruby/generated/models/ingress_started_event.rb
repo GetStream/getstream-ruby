@@ -46,9 +46,9 @@ module GetStream
           @publisher_type = attributes[:publisher_type] || attributes['publisher_type']
           @user_id = attributes[:user_id] || attributes['user_id']
           @type = attributes[:type] || attributes['type'] || "ingress.started"
-          @client_ip = attributes[:client_ip] || attributes['client_ip'] || nil
-          @client_name = attributes[:client_name] || attributes['client_name'] || nil
-          @version = attributes[:version] || attributes['version'] || nil
+          @client_ip = attributes[:client_ip] || attributes['client_ip'] || ""
+          @client_name = attributes[:client_name] || attributes['client_name'] || ""
+          @version = attributes[:version] || attributes['version'] || ""
         end
 
         # Override field mappings for JSON serialization

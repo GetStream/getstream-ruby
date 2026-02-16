@@ -34,7 +34,7 @@ module GetStream
           @appeal_reason = attributes[:appeal_reason] || attributes['appeal_reason']
           @entity_id = attributes[:entity_id] || attributes['entity_id']
           @entity_type = attributes[:entity_type] || attributes['entity_type']
-          @user_id = attributes[:user_id] || attributes['user_id'] || nil
+          @user_id = attributes[:user_id] || attributes['user_id'] || ""
           @attachments = attributes[:attachments] || attributes['attachments'] || nil
           @user = attributes[:user] || attributes['user'] || nil
         end

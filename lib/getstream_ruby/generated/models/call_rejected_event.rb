@@ -36,7 +36,7 @@ module GetStream
           @call = attributes[:call] || attributes['call']
           @user = attributes[:user] || attributes['user']
           @type = attributes[:type] || attributes['type'] || "call.rejected"
-          @reason = attributes[:reason] || attributes['reason'] || nil
+          @reason = attributes[:reason] || attributes['reason'] || ""
         end
 
         # Override field mappings for JSON serialization

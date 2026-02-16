@@ -40,7 +40,7 @@ module GetStream
           @peak_concurrent_users = attributes[:peak_concurrent_users] || attributes['peak_concurrent_users']
           @publishers = attributes[:publishers] || attributes['publishers']
           @sessions = attributes[:sessions] || attributes['sessions']
-          @total_participant_duration = attributes[:total_participant_duration] || attributes['total_participant_duration'] || nil
+          @total_participant_duration = attributes[:total_participant_duration] || attributes['total_participant_duration'] || 0
         end
 
         # Override field mappings for JSON serialization

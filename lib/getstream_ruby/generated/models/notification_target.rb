@@ -30,17 +30,21 @@ module GetStream
         # @!attribute comment
         #   @return [NotificationComment]
         attr_accessor :comment
+        # @!attribute parent_activity
+        #   @return [NotificationParentActivity]
+        attr_accessor :parent_activity
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @id = attributes[:id] || attributes['id']
-          @name = attributes[:name] || attributes['name'] || nil
-          @text = attributes[:text] || attributes['text'] || nil
-          @type = attributes[:type] || attributes['type'] || nil
-          @user_id = attributes[:user_id] || attributes['user_id'] || nil
+          @name = attributes[:name] || attributes['name'] || ""
+          @text = attributes[:text] || attributes['text'] || ""
+          @type = attributes[:type] || attributes['type'] || ""
+          @user_id = attributes[:user_id] || attributes['user_id'] || ""
           @attachments = attributes[:attachments] || attributes['attachments'] || nil
           @comment = attributes[:comment] || attributes['comment'] || nil
+          @parent_activity = attributes[:parent_activity] || attributes['parent_activity'] || nil
         end
 
         # Override field mappings for JSON serialization
@@ -52,7 +56,8 @@ module GetStream
             type: 'type',
             user_id: 'user_id',
             attachments: 'attachments',
-            comment: 'comment'
+            comment: 'comment',
+            parent_activity: 'parent_activity'
           }
         end
       end

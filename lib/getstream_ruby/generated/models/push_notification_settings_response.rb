@@ -19,7 +19,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @disabled = attributes[:disabled] || attributes['disabled'] || nil
+          @disabled = attributes[:disabled] || attributes['disabled'] || false
           @disabled_until = attributes[:disabled_until] || attributes['disabled_until'] || nil
         end
 

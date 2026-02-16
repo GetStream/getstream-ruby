@@ -37,7 +37,7 @@ module GetStream
           @channel_cid = attributes[:channel_cid] || attributes['channel_cid']
           @created_at = attributes[:created_at] || attributes['created_at']
           @message = attributes[:message] || attributes['message']
-          @parent_id = attributes[:parent_id] || attributes['parent_id'] || nil
+          @parent_id = attributes[:parent_id] || attributes['parent_id'] || ""
           @channel = attributes[:channel] || attributes['channel'] || nil
           @parent_message = attributes[:parent_message] || attributes['parent_message'] || nil
           @quoted_message = attributes[:quoted_message] || attributes['quoted_message'] || nil

@@ -46,6 +46,23 @@ module GetStream
         )
       end
 
+      # Updates certain fields of multiple activities in a batch. Use 'set' to update specific fields and 'unset' to remove fields. Activities that fail due to not found, permission denied, or no changes detected are silently skipped and not included in the response. However, validation errors (e.g., updating reserved fields, invalid field values) will fail the entire batch request.Sends events:- feeds.activity.updated
+      #
+      # @param update_activities_partial_batch_request [UpdateActivitiesPartialBatchRequest]
+      # @return [Models::UpdateActivitiesPartialBatchResponse]
+      def update_activities_partial_batch(update_activities_partial_batch_request)
+        path = '/api/v2/feeds/activities/batch/partial'
+        # Build request body
+        body = update_activities_partial_batch_request
+
+        # Make the API request
+        @client.make_request(
+          :patch,
+          path,
+          body: body
+        )
+      end
+
       # Delete one or more activities by their IDs
       #
       # @param delete_activities_request [DeleteActivitiesRequest]

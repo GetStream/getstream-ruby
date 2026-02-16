@@ -49,7 +49,7 @@ module GetStream
         #   @return [Array<ActionLogResponse>] Moderation actions taken
         attr_accessor :actions
         # @!attribute bans
-        #   @return [Array<Ban>] Associated ban records
+        #   @return [Array<BanInfoResponse>] Associated ban records
         attr_accessor :bans
         # @!attribute flags
         #   @return [Array<ModerationFlagResponse>] Associated flag records
@@ -103,7 +103,7 @@ module GetStream
         #   @return [MessageResponse]
         attr_accessor :message
         # @!attribute moderation_payload
-        #   @return [ModerationPayload]
+        #   @return [ModerationPayloadResponse]
         attr_accessor :moderation_payload
         # @!attribute reaction
         #   @return [Reaction]
@@ -129,8 +129,8 @@ module GetStream
           @flags = attributes[:flags] || attributes['flags']
           @languages = attributes[:languages] || attributes['languages']
           @completed_at = attributes[:completed_at] || attributes['completed_at'] || nil
-          @config_key = attributes[:config_key] || attributes['config_key'] || nil
-          @entity_creator_id = attributes[:entity_creator_id] || attributes['entity_creator_id'] || nil
+          @config_key = attributes[:config_key] || attributes['config_key'] || ""
+          @entity_creator_id = attributes[:entity_creator_id] || attributes['entity_creator_id'] || ""
           @reviewed_at = attributes[:reviewed_at] || attributes['reviewed_at'] || nil
           @teams = attributes[:teams] || attributes['teams'] || nil
           @activity = attributes[:activity] || attributes['activity'] || nil

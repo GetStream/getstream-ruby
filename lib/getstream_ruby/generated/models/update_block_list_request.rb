@@ -25,9 +25,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @is_leet_check_enabled = attributes[:is_leet_check_enabled] || attributes['is_leet_check_enabled'] || nil
-          @is_plural_check_enabled = attributes[:is_plural_check_enabled] || attributes['is_plural_check_enabled'] || nil
-          @team = attributes[:team] || attributes['team'] || nil
+          @is_leet_check_enabled = attributes[:is_leet_check_enabled] || attributes['is_leet_check_enabled'] || false
+          @is_plural_check_enabled = attributes[:is_plural_check_enabled] || attributes['is_plural_check_enabled'] || false
+          @team = attributes[:team] || attributes['team'] || ""
           @words = attributes[:words] || attributes['words'] || nil
         end
 

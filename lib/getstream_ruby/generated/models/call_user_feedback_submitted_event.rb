@@ -49,9 +49,9 @@ module GetStream
           @session_id = attributes[:session_id] || attributes['session_id']
           @user = attributes[:user] || attributes['user']
           @type = attributes[:type] || attributes['type'] || "call.user_feedback_submitted"
-          @reason = attributes[:reason] || attributes['reason'] || nil
-          @sdk = attributes[:sdk] || attributes['sdk'] || nil
-          @sdk_version = attributes[:sdk_version] || attributes['sdk_version'] || nil
+          @reason = attributes[:reason] || attributes['reason'] || ""
+          @sdk = attributes[:sdk] || attributes['sdk'] || ""
+          @sdk_version = attributes[:sdk_version] || attributes['sdk_version'] || ""
           @custom = attributes[:custom] || attributes['custom'] || nil
         end
 

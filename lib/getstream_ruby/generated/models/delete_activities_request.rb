@@ -29,9 +29,9 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @ids = attributes[:ids] || attributes['ids']
-          @delete_notification_activity = attributes[:delete_notification_activity] || attributes['delete_notification_activity'] || nil
-          @hard_delete = attributes[:hard_delete] || attributes['hard_delete'] || nil
-          @user_id = attributes[:user_id] || attributes['user_id'] || nil
+          @delete_notification_activity = attributes[:delete_notification_activity] || attributes['delete_notification_activity'] || false
+          @hard_delete = attributes[:hard_delete] || attributes['hard_delete'] || false
+          @user_id = attributes[:user_id] || attributes['user_id'] || ""
           @user = attributes[:user] || attributes['user'] || nil
         end
 

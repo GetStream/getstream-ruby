@@ -12,6 +12,9 @@ module GetStream
         # @!attribute type
         #   @return [String] The type of reaction, eg upvote, like, ...
         attr_accessor :type
+        # @!attribute copy_custom_to_notification
+        #   @return [Boolean] Whether to copy custom data to the notification activity (only applies when create_notification_activity is true)
+        attr_accessor :copy_custom_to_notification
         # @!attribute create_notification_activity
         #   @return [Boolean] Whether to create a notification activity for this reaction
         attr_accessor :create_notification_activity
@@ -35,10 +38,11 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @type = attributes[:type] || attributes['type']
-          @create_notification_activity = attributes[:create_notification_activity] || attributes['create_notification_activity'] || nil
-          @enforce_unique = attributes[:enforce_unique] || attributes['enforce_unique'] || nil
-          @skip_push = attributes[:skip_push] || attributes['skip_push'] || nil
-          @user_id = attributes[:user_id] || attributes['user_id'] || nil
+          @copy_custom_to_notification = attributes[:copy_custom_to_notification] || attributes['copy_custom_to_notification'] || false
+          @create_notification_activity = attributes[:create_notification_activity] || attributes['create_notification_activity'] || false
+          @enforce_unique = attributes[:enforce_unique] || attributes['enforce_unique'] || false
+          @skip_push = attributes[:skip_push] || attributes['skip_push'] || false
+          @user_id = attributes[:user_id] || attributes['user_id'] || ""
           @custom = attributes[:custom] || attributes['custom'] || nil
           @user = attributes[:user] || attributes['user'] || nil
         end
@@ -47,6 +51,7 @@ module GetStream
         def self.json_field_mappings
           {
             type: 'type',
+            copy_custom_to_notification: 'copy_custom_to_notification',
             create_notification_activity: 'create_notification_activity',
             enforce_unique: 'enforce_unique',
             skip_push: 'skip_push',

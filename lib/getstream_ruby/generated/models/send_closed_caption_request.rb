@@ -43,11 +43,11 @@ module GetStream
           @speaker_id = attributes[:speaker_id] || attributes['speaker_id']
           @text = attributes[:text] || attributes['text']
           @end_time = attributes[:end_time] || attributes['end_time'] || nil
-          @language = attributes[:language] || attributes['language'] || nil
-          @service = attributes[:service] || attributes['service'] || nil
+          @language = attributes[:language] || attributes['language'] || ""
+          @service = attributes[:service] || attributes['service'] || ""
           @start_time = attributes[:start_time] || attributes['start_time'] || nil
-          @translated = attributes[:translated] || attributes['translated'] || nil
-          @user_id = attributes[:user_id] || attributes['user_id'] || nil
+          @translated = attributes[:translated] || attributes['translated'] || false
+          @user_id = attributes[:user_id] || attributes['user_id'] || ""
           @user = attributes[:user] || attributes['user'] || nil
         end
 

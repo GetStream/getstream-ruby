@@ -9,27 +9,54 @@ module GetStream
       class Reaction < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute activity_id
+        #   @return [String]
+        attr_accessor :activity_id
         # @!attribute created_at
         #   @return [DateTime]
         attr_accessor :created_at
-        # @!attribute message_id
+        # @!attribute kind
         #   @return [String]
-        attr_accessor :message_id
-        # @!attribute score
-        #   @return [Integer]
-        attr_accessor :score
-        # @!attribute type
-        #   @return [String]
-        attr_accessor :type
+        attr_accessor :kind
         # @!attribute updated_at
         #   @return [DateTime]
         attr_accessor :updated_at
-        # @!attribute custom
-        #   @return [Object]
-        attr_accessor :custom
         # @!attribute user_id
         #   @return [String]
         attr_accessor :user_id
+        # @!attribute deleted_at
+        #   @return [DateTime]
+        attr_accessor :deleted_at
+        # @!attribute id
+        #   @return [String]
+        attr_accessor :id
+        # @!attribute parent
+        #   @return [String]
+        attr_accessor :parent
+        # @!attribute score
+        #   @return [Float]
+        attr_accessor :score
+        # @!attribute target_feeds
+        #   @return [Array<String>]
+        attr_accessor :target_feeds
+        # @!attribute children_counts
+        #   @return [Object]
+        attr_accessor :children_counts
+        # @!attribute data
+        #   @return [Object]
+        attr_accessor :data
+        # @!attribute latest_children
+        #   @return [Hash<String, Array<Reaction>>]
+        attr_accessor :latest_children
+        # @!attribute moderation
+        #   @return [Object]
+        attr_accessor :moderation
+        # @!attribute own_children
+        #   @return [Hash<String, Array<Reaction>>]
+        attr_accessor :own_children
+        # @!attribute target_feeds_extra_data
+        #   @return [Object]
+        attr_accessor :target_feeds_extra_data
         # @!attribute user
         #   @return [User]
         attr_accessor :user
@@ -37,26 +64,44 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @activity_id = attributes[:activity_id] || attributes['activity_id']
           @created_at = attributes[:created_at] || attributes['created_at']
-          @message_id = attributes[:message_id] || attributes['message_id']
-          @score = attributes[:score] || attributes['score']
-          @type = attributes[:type] || attributes['type']
+          @kind = attributes[:kind] || attributes['kind']
           @updated_at = attributes[:updated_at] || attributes['updated_at']
-          @custom = attributes[:custom] || attributes['custom']
-          @user_id = attributes[:user_id] || attributes['user_id'] || nil
+          @user_id = attributes[:user_id] || attributes['user_id']
+          @deleted_at = attributes[:deleted_at] || attributes['deleted_at'] || nil
+          @id = attributes[:id] || attributes['id'] || ""
+          @parent = attributes[:parent] || attributes['parent'] || ""
+          @score = attributes[:score] || attributes['score'] || 0.0
+          @target_feeds = attributes[:target_feeds] || attributes['target_feeds'] || nil
+          @children_counts = attributes[:children_counts] || attributes['children_counts'] || nil
+          @data = attributes[:data] || attributes['data'] || nil
+          @latest_children = attributes[:latest_children] || attributes['latest_children'] || nil
+          @moderation = attributes[:moderation] || attributes['moderation'] || nil
+          @own_children = attributes[:own_children] || attributes['own_children'] || nil
+          @target_feeds_extra_data = attributes[:target_feeds_extra_data] || attributes['target_feeds_extra_data'] || nil
           @user = attributes[:user] || attributes['user'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            activity_id: 'activity_id',
             created_at: 'created_at',
-            message_id: 'message_id',
-            score: 'score',
-            type: 'type',
+            kind: 'kind',
             updated_at: 'updated_at',
-            custom: 'custom',
             user_id: 'user_id',
+            deleted_at: 'deleted_at',
+            id: 'id',
+            parent: 'parent',
+            score: 'score',
+            target_feeds: 'target_feeds',
+            children_counts: 'children_counts',
+            data: 'data',
+            latest_children: 'latest_children',
+            moderation: 'moderation',
+            own_children: 'own_children',
+            target_feeds_extra_data: 'target_feeds_extra_data',
             user: 'user'
           }
         end

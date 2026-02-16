@@ -25,7 +25,7 @@ module GetStream
         #   @return [String]
         attr_accessor :team
         # @!attribute type
-        #   @return [String] Block list type.
+        #   @return [String] Block list type. One of: regex, domain, domain_allowlist, email, email_allowlist, word
         attr_accessor :type
 
         # Initialize with attributes
@@ -33,10 +33,10 @@ module GetStream
           super(attributes)
           @name = attributes[:name] || attributes['name']
           @words = attributes[:words] || attributes['words']
-          @is_leet_check_enabled = attributes[:is_leet_check_enabled] || attributes['is_leet_check_enabled'] || nil
-          @is_plural_check_enabled = attributes[:is_plural_check_enabled] || attributes['is_plural_check_enabled'] || nil
-          @team = attributes[:team] || attributes['team'] || nil
-          @type = attributes[:type] || attributes['type'] || nil
+          @is_leet_check_enabled = attributes[:is_leet_check_enabled] || attributes['is_leet_check_enabled'] || false
+          @is_plural_check_enabled = attributes[:is_plural_check_enabled] || attributes['is_plural_check_enabled'] || false
+          @team = attributes[:team] || attributes['team'] || ""
+          @type = attributes[:type] || attributes['type'] || ""
         end
 
         # Override field mappings for JSON serialization

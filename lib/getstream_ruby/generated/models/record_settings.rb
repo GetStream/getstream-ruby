@@ -26,8 +26,8 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @mode = attributes[:mode] || attributes['mode']
-          @audio_only = attributes[:audio_only] || attributes['audio_only'] || nil
-          @quality = attributes[:quality] || attributes['quality'] || nil
+          @audio_only = attributes[:audio_only] || attributes['audio_only'] || false
+          @quality = attributes[:quality] || attributes['quality'] || ""
           @layout = attributes[:layout] || attributes['layout'] || nil
         end
 

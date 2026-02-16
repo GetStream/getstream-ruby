@@ -19,7 +19,7 @@ module GetStream
         #   @return [String] Block list name
         attr_accessor :name
         # @!attribute type
-        #   @return [String] Block list type.
+        #   @return [String] Block list type. One of: regex, domain, domain_allowlist, email, email_allowlist, word
         attr_accessor :type
         # @!attribute words
         #   @return [Array<String>] List of words to block
@@ -46,8 +46,8 @@ module GetStream
           @type = attributes[:type] || attributes['type']
           @words = attributes[:words] || attributes['words']
           @created_at = attributes[:created_at] || attributes['created_at'] || nil
-          @id = attributes[:id] || attributes['id'] || nil
-          @team = attributes[:team] || attributes['team'] || nil
+          @id = attributes[:id] || attributes['id'] || ""
+          @team = attributes[:team] || attributes['team'] || ""
           @updated_at = attributes[:updated_at] || attributes['updated_at'] || nil
         end
 

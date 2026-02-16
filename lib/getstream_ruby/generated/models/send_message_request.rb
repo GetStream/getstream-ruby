@@ -35,11 +35,11 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @message = attributes[:message] || attributes['message']
-          @force_moderation = attributes[:force_moderation] || attributes['force_moderation'] || nil
-          @keep_channel_hidden = attributes[:keep_channel_hidden] || attributes['keep_channel_hidden'] || nil
-          @pending = attributes[:pending] || attributes['pending'] || nil
-          @skip_enrich_url = attributes[:skip_enrich_url] || attributes['skip_enrich_url'] || nil
-          @skip_push = attributes[:skip_push] || attributes['skip_push'] || nil
+          @force_moderation = attributes[:force_moderation] || attributes['force_moderation'] || false
+          @keep_channel_hidden = attributes[:keep_channel_hidden] || attributes['keep_channel_hidden'] || false
+          @pending = attributes[:pending] || attributes['pending'] || false
+          @skip_enrich_url = attributes[:skip_enrich_url] || attributes['skip_enrich_url'] || false
+          @skip_push = attributes[:skip_push] || attributes['skip_push'] || false
           @pending_message_metadata = attributes[:pending_message_metadata] || attributes['pending_message_metadata'] || nil
         end
 

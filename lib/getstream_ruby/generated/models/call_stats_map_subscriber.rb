@@ -31,7 +31,7 @@ module GetStream
           @is_live = attributes[:is_live] || attributes['is_live']
           @user_id = attributes[:user_id] || attributes['user_id']
           @user_session_id = attributes[:user_session_id] || attributes['user_session_id']
-          @name = attributes[:name] || attributes['name'] || nil
+          @name = attributes[:name] || attributes['name'] || ""
           @location = attributes[:location] || attributes['location'] || nil
         end
 

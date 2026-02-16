@@ -25,8 +25,8 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @expiration = attributes[:expiration] || attributes['expiration'] || nil
-          @user_id = attributes[:user_id] || attributes['user_id'] || nil
+          @expiration = attributes[:expiration] || attributes['expiration'] || 0
+          @user_id = attributes[:user_id] || attributes['user_id'] || ""
           @channel_cids = attributes[:channel_cids] || attributes['channel_cids'] || nil
           @user = attributes[:user] || attributes['user'] || nil
         end

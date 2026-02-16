@@ -120,12 +120,12 @@ module GetStream
           @mutes = attributes[:mutes] || attributes['mutes']
           @teams = attributes[:teams] || attributes['teams']
           @custom = attributes[:custom] || attributes['custom']
-          @avg_response_time = attributes[:avg_response_time] || attributes['avg_response_time'] || nil
+          @avg_response_time = attributes[:avg_response_time] || attributes['avg_response_time'] || 0
           @deactivated_at = attributes[:deactivated_at] || attributes['deactivated_at'] || nil
           @deleted_at = attributes[:deleted_at] || attributes['deleted_at'] || nil
-          @image = attributes[:image] || attributes['image'] || nil
+          @image = attributes[:image] || attributes['image'] || ""
           @last_active = attributes[:last_active] || attributes['last_active'] || nil
-          @name = attributes[:name] || attributes['name'] || nil
+          @name = attributes[:name] || attributes['name'] || ""
           @revoke_tokens_issued_before = attributes[:revoke_tokens_issued_before] || attributes['revoke_tokens_issued_before'] || nil
           @blocked_user_ids = attributes[:blocked_user_ids] || attributes['blocked_user_ids'] || nil
           @latest_hidden_channels = attributes[:latest_hidden_channels] || attributes['latest_hidden_channels'] || nil

@@ -49,10 +49,10 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @foreign_id = attributes[:foreign_id] || attributes['foreign_id'] || nil
-          @id = attributes[:id] || attributes['id'] || nil
-          @score = attributes[:score] || attributes['score'] || nil
-          @verb = attributes[:verb] || attributes['verb'] || nil
+          @foreign_id = attributes[:foreign_id] || attributes['foreign_id'] || ""
+          @id = attributes[:id] || attributes['id'] || ""
+          @score = attributes[:score] || attributes['score'] || 0.0
+          @verb = attributes[:verb] || attributes['verb'] || ""
           @to = attributes[:to] || attributes['to'] || nil
           @actor = attributes[:actor] || attributes['actor'] || nil
           @latest_reactions = attributes[:latest_reactions] || attributes['latest_reactions'] || nil

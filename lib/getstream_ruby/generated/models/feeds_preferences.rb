@@ -10,22 +10,22 @@ module GetStream
 
         # Model attributes
         # @!attribute comment
-        #   @return [String] Push notification preference for comments on user's activities
+        #   @return [String] Push notification preference for comments on user's activities. One of: all, none
         attr_accessor :comment
         # @!attribute comment_reaction
-        #   @return [String] Push notification preference for reactions on comments
+        #   @return [String] Push notification preference for reactions on comments. One of: all, none
         attr_accessor :comment_reaction
         # @!attribute comment_reply
-        #   @return [String] Push notification preference for replies to comments
+        #   @return [String] Push notification preference for replies to comments. One of: all, none
         attr_accessor :comment_reply
         # @!attribute follow
-        #   @return [String] Push notification preference for new followers
+        #   @return [String] Push notification preference for new followers. One of: all, none
         attr_accessor :follow
         # @!attribute mention
-        #   @return [String] Push notification preference for mentions in activities or comments
+        #   @return [String] Push notification preference for mentions in activities or comments. One of: all, none
         attr_accessor :mention
         # @!attribute reaction
-        #   @return [String] Push notification preference for reactions on user's activities or comments
+        #   @return [String] Push notification preference for reactions on user's activities or comments. One of: all, none
         attr_accessor :reaction
         # @!attribute custom_activity_types
         #   @return [Hash<String, String>] Push notification preferences for custom activity types. Map of activity type to preference (all or none)
@@ -34,12 +34,12 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @comment = attributes[:comment] || attributes['comment'] || nil
-          @comment_reaction = attributes[:comment_reaction] || attributes['comment_reaction'] || nil
-          @comment_reply = attributes[:comment_reply] || attributes['comment_reply'] || nil
-          @follow = attributes[:follow] || attributes['follow'] || nil
-          @mention = attributes[:mention] || attributes['mention'] || nil
-          @reaction = attributes[:reaction] || attributes['reaction'] || nil
+          @comment = attributes[:comment] || attributes['comment'] || ""
+          @comment_reaction = attributes[:comment_reaction] || attributes['comment_reaction'] || ""
+          @comment_reply = attributes[:comment_reply] || attributes['comment_reply'] || ""
+          @follow = attributes[:follow] || attributes['follow'] || ""
+          @mention = attributes[:mention] || attributes['mention'] || ""
+          @reaction = attributes[:reaction] || attributes['reaction'] || ""
           @custom_activity_types = attributes[:custom_activity_types] || attributes['custom_activity_types'] || nil
         end
 

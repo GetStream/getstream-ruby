@@ -40,7 +40,7 @@ module GetStream
           @custom = attributes[:custom] || attributes['custom']
           @user = attributes[:user] || attributes['user']
           @deleted_at = attributes[:deleted_at] || attributes['deleted_at'] || nil
-          @role = attributes[:role] || attributes['role'] || nil
+          @role = attributes[:role] || attributes['role'] || ""
         end
 
         # Override field mappings for JSON serialization

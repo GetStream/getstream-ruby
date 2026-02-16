@@ -25,16 +25,16 @@ module GetStream
         #   @return [String]
         attr_accessor :team
         # @!attribute invites
-        #   @return [Array<ChannelMember>]
+        #   @return [Array<ChannelMemberRequest>]
         attr_accessor :invites
         # @!attribute members
-        #   @return [Array<ChannelMember>]
+        #   @return [Array<ChannelMemberRequest>]
         attr_accessor :members
         # @!attribute config_overrides
-        #   @return [ConfigOverrides]
+        #   @return [ConfigOverridesRequest]
         attr_accessor :config_overrides
         # @!attribute created_by
-        #   @return [User]
+        #   @return [UserRequest]
         attr_accessor :created_by
         # @!attribute custom
         #   @return [Object]
@@ -43,11 +43,11 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @auto_translation_enabled = attributes[:auto_translation_enabled] || attributes['auto_translation_enabled'] || nil
-          @auto_translation_language = attributes[:auto_translation_language] || attributes['auto_translation_language'] || nil
-          @disabled = attributes[:disabled] || attributes['disabled'] || nil
-          @frozen = attributes[:frozen] || attributes['frozen'] || nil
-          @team = attributes[:team] || attributes['team'] || nil
+          @auto_translation_enabled = attributes[:auto_translation_enabled] || attributes['auto_translation_enabled'] || false
+          @auto_translation_language = attributes[:auto_translation_language] || attributes['auto_translation_language'] || ""
+          @disabled = attributes[:disabled] || attributes['disabled'] || false
+          @frozen = attributes[:frozen] || attributes['frozen'] || false
+          @team = attributes[:team] || attributes['team'] || ""
           @invites = attributes[:invites] || attributes['invites'] || nil
           @members = attributes[:members] || attributes['members'] || nil
           @config_overrides = attributes[:config_overrides] || attributes['config_overrides'] || nil

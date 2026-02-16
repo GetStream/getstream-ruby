@@ -40,7 +40,7 @@ module GetStream
           @ingress_stream_id = attributes[:ingress_stream_id] || attributes['ingress_stream_id']
           @user_id = attributes[:user_id] || attributes['user_id']
           @type = attributes[:type] || attributes['type'] || "ingress.error"
-          @code = attributes[:code] || attributes['code'] || nil
+          @code = attributes[:code] || attributes['code'] || ""
         end
 
         # Override field mappings for JSON serialization

@@ -48,7 +48,7 @@ module GetStream
           @user_count = attributes[:user_count] || attributes['user_count']
           @user_count_truncated = attributes[:user_count_truncated] || attributes['user_count_truncated']
           @activities = attributes[:activities] || attributes['activities']
-          @is_watched = attributes[:is_watched] || attributes['is_watched'] || nil
+          @is_watched = attributes[:is_watched] || attributes['is_watched'] || false
         end
 
         # Override field mappings for JSON serialization

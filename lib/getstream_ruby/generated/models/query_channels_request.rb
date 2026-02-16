@@ -49,13 +49,13 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @limit = attributes[:limit] || attributes['limit'] || nil
-          @member_limit = attributes[:member_limit] || attributes['member_limit'] || nil
-          @message_limit = attributes[:message_limit] || attributes['message_limit'] || nil
-          @offset = attributes[:offset] || attributes['offset'] || nil
-          @predefined_filter = attributes[:predefined_filter] || attributes['predefined_filter'] || nil
-          @state = attributes[:state] || attributes['state'] || nil
-          @user_id = attributes[:user_id] || attributes['user_id'] || nil
+          @limit = attributes[:limit] || attributes['limit'] || 0
+          @member_limit = attributes[:member_limit] || attributes['member_limit'] || 0
+          @message_limit = attributes[:message_limit] || attributes['message_limit'] || 0
+          @offset = attributes[:offset] || attributes['offset'] || 0
+          @predefined_filter = attributes[:predefined_filter] || attributes['predefined_filter'] || ""
+          @state = attributes[:state] || attributes['state'] || false
+          @user_id = attributes[:user_id] || attributes['user_id'] || ""
           @sort = attributes[:sort] || attributes['sort'] || nil
           @filter_conditions = attributes[:filter_conditions] || attributes['filter_conditions'] || nil
           @filter_values = attributes[:filter_values] || attributes['filter_values'] || nil

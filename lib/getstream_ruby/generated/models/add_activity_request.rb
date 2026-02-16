@@ -15,6 +15,9 @@ module GetStream
         # @!attribute feeds
         #   @return [Array<String>] List of feeds to add the activity to with a default max limit of 25 feeds
         attr_accessor :feeds
+        # @!attribute copy_custom_to_notification
+        #   @return [Boolean] Whether to copy custom data to the notification activity (only applies when create_notification_activity is true)
+        attr_accessor :copy_custom_to_notification
         # @!attribute create_notification_activity
         #   @return [Boolean] Whether to create notification activities for mentioned users
         attr_accessor :create_notification_activity
@@ -31,7 +34,7 @@ module GetStream
         #   @return [String] ID of a poll to attach to activity
         attr_accessor :poll_id
         # @!attribute restrict_replies
-        #   @return [String] Controls who can add comments/replies to this activity. Options: 'everyone' (default - anyone can reply), 'people_i_follow' (only people the activity creator follows can reply), 'nobody' (no one can reply)
+        #   @return [String] Controls who can add comments/replies to this activity. One of: everyone, people_i_follow, nobody
         attr_accessor :restrict_replies
         # @!attribute skip_enrich_url
         #   @return [Boolean] Whether to skip URL enrichment for the activity
@@ -46,7 +49,7 @@ module GetStream
         #   @return [String] ID of the user creating the activity
         attr_accessor :user_id
         # @!attribute visibility
-        #   @return [String] Visibility setting for the activity
+        #   @return [String] Visibility setting for the activity. One of: public, private, tag
         attr_accessor :visibility
         # @!attribute visibility_tag
         #   @return [String] If visibility is 'tag', this is the tag name and is required
@@ -81,18 +84,19 @@ module GetStream
           super(attributes)
           @type = attributes[:type] || attributes['type']
           @feeds = attributes[:feeds] || attributes['feeds']
-          @create_notification_activity = attributes[:create_notification_activity] || attributes['create_notification_activity'] || nil
-          @expires_at = attributes[:expires_at] || attributes['expires_at'] || nil
-          @id = attributes[:id] || attributes['id'] || nil
-          @parent_id = attributes[:parent_id] || attributes['parent_id'] || nil
-          @poll_id = attributes[:poll_id] || attributes['poll_id'] || nil
-          @restrict_replies = attributes[:restrict_replies] || attributes['restrict_replies'] || nil
-          @skip_enrich_url = attributes[:skip_enrich_url] || attributes['skip_enrich_url'] || nil
-          @skip_push = attributes[:skip_push] || attributes['skip_push'] || nil
-          @text = attributes[:text] || attributes['text'] || nil
-          @user_id = attributes[:user_id] || attributes['user_id'] || nil
-          @visibility = attributes[:visibility] || attributes['visibility'] || nil
-          @visibility_tag = attributes[:visibility_tag] || attributes['visibility_tag'] || nil
+          @copy_custom_to_notification = attributes[:copy_custom_to_notification] || attributes['copy_custom_to_notification'] || false
+          @create_notification_activity = attributes[:create_notification_activity] || attributes['create_notification_activity'] || false
+          @expires_at = attributes[:expires_at] || attributes['expires_at'] || ""
+          @id = attributes[:id] || attributes['id'] || ""
+          @parent_id = attributes[:parent_id] || attributes['parent_id'] || ""
+          @poll_id = attributes[:poll_id] || attributes['poll_id'] || ""
+          @restrict_replies = attributes[:restrict_replies] || attributes['restrict_replies'] || ""
+          @skip_enrich_url = attributes[:skip_enrich_url] || attributes['skip_enrich_url'] || false
+          @skip_push = attributes[:skip_push] || attributes['skip_push'] || false
+          @text = attributes[:text] || attributes['text'] || ""
+          @user_id = attributes[:user_id] || attributes['user_id'] || ""
+          @visibility = attributes[:visibility] || attributes['visibility'] || ""
+          @visibility_tag = attributes[:visibility_tag] || attributes['visibility_tag'] || ""
           @attachments = attributes[:attachments] || attributes['attachments'] || nil
           @collection_refs = attributes[:collection_refs] || attributes['collection_refs'] || nil
           @filter_tags = attributes[:filter_tags] || attributes['filter_tags'] || nil
@@ -108,6 +112,7 @@ module GetStream
           {
             type: 'type',
             feeds: 'feeds',
+            copy_custom_to_notification: 'copy_custom_to_notification',
             create_notification_activity: 'create_notification_activity',
             expires_at: 'expires_at',
             id: 'id',

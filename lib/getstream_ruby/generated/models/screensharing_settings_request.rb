@@ -22,8 +22,8 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @access_request_enabled = attributes[:access_request_enabled] || attributes['access_request_enabled'] || nil
-          @enabled = attributes[:enabled] || attributes['enabled'] || nil
+          @access_request_enabled = attributes[:access_request_enabled] || attributes['access_request_enabled'] || false
+          @enabled = attributes[:enabled] || attributes['enabled'] || false
           @target_resolution = attributes[:target_resolution] || attributes['target_resolution'] || nil
         end
 

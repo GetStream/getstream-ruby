@@ -5,48 +5,83 @@
 module GetStream
   module Generated
     module Models
-      # 
+      # Emitted when a channel is successfully shown.
       class ChannelVisibleEvent < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute created_at
+        #   @return [DateTime] Date/time of creation
+        attr_accessor :created_at
+        # @!attribute channel
+        #   @return [ChannelResponse]
+        attr_accessor :channel
+        # @!attribute custom
+        #   @return [Object]
+        attr_accessor :custom
+        # @!attribute type
+        #   @return [String] The type of event: "channel.visible" in this case
+        attr_accessor :type
         # @!attribute channel_id
-        #   @return [String]
+        #   @return [String] The ID of the channel which was shown
         attr_accessor :channel_id
+        # @!attribute channel_member_count
+        #   @return [Integer] The number of members in the channel
+        attr_accessor :channel_member_count
+        # @!attribute channel_message_count
+        #   @return [Integer]
+        attr_accessor :channel_message_count
         # @!attribute channel_type
-        #   @return [String]
+        #   @return [String] The type of the channel which was shown
         attr_accessor :channel_type
         # @!attribute cid
-        #   @return [String]
+        #   @return [String] The CID of the channel which was shown
         attr_accessor :cid
-        # @!attribute created_at
+        # @!attribute received_at
         #   @return [DateTime]
-        attr_accessor :created_at
-        # @!attribute type
-        #   @return [String]
-        attr_accessor :type
+        attr_accessor :received_at
+        # @!attribute team
+        #   @return [String] The team ID
+        attr_accessor :team
+        # @!attribute channel_custom
+        #   @return [Object]
+        attr_accessor :channel_custom
         # @!attribute user
-        #   @return [User]
+        #   @return [UserResponseCommonFields]
         attr_accessor :user
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @channel_id = attributes[:channel_id] || attributes['channel_id']
-          @channel_type = attributes[:channel_type] || attributes['channel_type']
-          @cid = attributes[:cid] || attributes['cid']
           @created_at = attributes[:created_at] || attributes['created_at']
+          @channel = attributes[:channel] || attributes['channel']
+          @custom = attributes[:custom] || attributes['custom']
           @type = attributes[:type] || attributes['type'] || "channel.visible"
+          @channel_id = attributes[:channel_id] || attributes['channel_id'] || ""
+          @channel_member_count = attributes[:channel_member_count] || attributes['channel_member_count'] || 0
+          @channel_message_count = attributes[:channel_message_count] || attributes['channel_message_count'] || 0
+          @channel_type = attributes[:channel_type] || attributes['channel_type'] || ""
+          @cid = attributes[:cid] || attributes['cid'] || ""
+          @received_at = attributes[:received_at] || attributes['received_at'] || nil
+          @team = attributes[:team] || attributes['team'] || ""
+          @channel_custom = attributes[:channel_custom] || attributes['channel_custom'] || nil
           @user = attributes[:user] || attributes['user'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            created_at: 'created_at',
+            channel: 'channel',
+            custom: 'custom',
+            type: 'type',
             channel_id: 'channel_id',
+            channel_member_count: 'channel_member_count',
+            channel_message_count: 'channel_message_count',
             channel_type: 'channel_type',
             cid: 'cid',
-            created_at: 'created_at',
-            type: 'type',
+            received_at: 'received_at',
+            team: 'team',
+            channel_custom: 'channel_custom',
             user: 'user'
           }
         end

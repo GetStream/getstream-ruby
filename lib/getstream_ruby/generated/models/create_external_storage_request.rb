@@ -37,8 +37,8 @@ module GetStream
           @bucket = attributes[:bucket] || attributes['bucket']
           @name = attributes[:name] || attributes['name']
           @storage_type = attributes[:storage_type] || attributes['storage_type']
-          @gcs_credentials = attributes[:gcs_credentials] || attributes['gcs_credentials'] || nil
-          @path = attributes[:path] || attributes['path'] || nil
+          @gcs_credentials = attributes[:gcs_credentials] || attributes['gcs_credentials'] || ""
+          @path = attributes[:path] || attributes['path'] || ""
           @aws_s3 = attributes[:aws_s3] || attributes['aws_s3'] || nil
           @azure_blob = attributes[:azure_blob] || attributes['azure_blob'] || nil
         end

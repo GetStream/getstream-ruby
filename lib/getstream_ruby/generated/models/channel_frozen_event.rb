@@ -5,44 +5,54 @@
 module GetStream
   module Generated
     module Models
-      # 
+      # Emitted when a channel is successfully frozen.
       class ChannelFrozenEvent < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute created_at
+        #   @return [DateTime] Date/time of creation
+        attr_accessor :created_at
+        # @!attribute custom
+        #   @return [Object]
+        attr_accessor :custom
+        # @!attribute type
+        #   @return [String] The type of event: "channel.frozen" in this case
+        attr_accessor :type
         # @!attribute channel_id
-        #   @return [String]
+        #   @return [String] The ID of the channel which was frozen
         attr_accessor :channel_id
         # @!attribute channel_type
-        #   @return [String]
+        #   @return [String] The type of the channel which was frozen
         attr_accessor :channel_type
         # @!attribute cid
-        #   @return [String]
+        #   @return [String] The CID of the channel which was frozen
         attr_accessor :cid
-        # @!attribute created_at
+        # @!attribute received_at
         #   @return [DateTime]
-        attr_accessor :created_at
-        # @!attribute type
-        #   @return [String]
-        attr_accessor :type
+        attr_accessor :received_at
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @channel_id = attributes[:channel_id] || attributes['channel_id']
-          @channel_type = attributes[:channel_type] || attributes['channel_type']
-          @cid = attributes[:cid] || attributes['cid']
           @created_at = attributes[:created_at] || attributes['created_at']
+          @custom = attributes[:custom] || attributes['custom']
           @type = attributes[:type] || attributes['type'] || "channel.frozen"
+          @channel_id = attributes[:channel_id] || attributes['channel_id'] || ""
+          @channel_type = attributes[:channel_type] || attributes['channel_type'] || ""
+          @cid = attributes[:cid] || attributes['cid'] || ""
+          @received_at = attributes[:received_at] || attributes['received_at'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            created_at: 'created_at',
+            custom: 'custom',
+            type: 'type',
             channel_id: 'channel_id',
             channel_type: 'channel_type',
             cid: 'cid',
-            created_at: 'created_at',
-            type: 'type'
+            received_at: 'received_at'
           }
         end
       end

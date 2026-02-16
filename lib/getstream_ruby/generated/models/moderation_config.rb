@@ -67,10 +67,10 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @async = attributes[:async] || attributes['async'] || nil
+          @async = attributes[:async] || attributes['async'] || false
           @created_at = attributes[:created_at] || attributes['created_at'] || nil
-          @key = attributes[:key] || attributes['key'] || nil
-          @team = attributes[:team] || attributes['team'] || nil
+          @key = attributes[:key] || attributes['key'] || ""
+          @team = attributes[:team] || attributes['team'] || ""
           @updated_at = attributes[:updated_at] || attributes['updated_at'] || nil
           @supported_video_call_harm_types = attributes[:supported_video_call_harm_types] || attributes['supported_video_call_harm_types'] || nil
           @ai_image_config = attributes[:ai_image_config] || attributes['ai_image_config'] || nil

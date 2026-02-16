@@ -41,10 +41,10 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @track_id = attributes[:track_id] || attributes['track_id']
-          @codec = attributes[:codec] || attributes['codec'] || nil
-          @label = attributes[:label] || attributes['label'] || nil
-          @rid = attributes[:rid] || attributes['rid'] || nil
-          @track_type = attributes[:track_type] || attributes['track_type'] || nil
+          @codec = attributes[:codec] || attributes['codec'] || ""
+          @label = attributes[:label] || attributes['label'] || ""
+          @rid = attributes[:rid] || attributes['rid'] || ""
+          @track_type = attributes[:track_type] || attributes['track_type'] || ""
           @metrics_order = attributes[:metrics_order] || attributes['metrics_order'] || nil
           @metrics = attributes[:metrics] || attributes['metrics'] || nil
           @metrics_meta = attributes[:metrics_meta] || attributes['metrics_meta'] || nil

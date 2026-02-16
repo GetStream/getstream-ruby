@@ -36,9 +36,9 @@ module GetStream
           super(attributes)
           @rule_type = attributes[:rule_type] || attributes['rule_type']
           @action = attributes[:action] || attributes['action']
-          @cooldown_period = attributes[:cooldown_period] || attributes['cooldown_period'] || nil
-          @id = attributes[:id] || attributes['id'] || nil
-          @logic = attributes[:logic] || attributes['logic'] || nil
+          @cooldown_period = attributes[:cooldown_period] || attributes['cooldown_period'] || ""
+          @id = attributes[:id] || attributes['id'] || ""
+          @logic = attributes[:logic] || attributes['logic'] || ""
           @conditions = attributes[:conditions] || attributes['conditions'] || nil
           @groups = attributes[:groups] || attributes['groups'] || nil
         end

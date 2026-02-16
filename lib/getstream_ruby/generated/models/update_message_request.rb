@@ -23,8 +23,8 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @message = attributes[:message] || attributes['message']
-          @skip_enrich_url = attributes[:skip_enrich_url] || attributes['skip_enrich_url'] || nil
-          @skip_push = attributes[:skip_push] || attributes['skip_push'] || nil
+          @skip_enrich_url = attributes[:skip_enrich_url] || attributes['skip_enrich_url'] || false
+          @skip_push = attributes[:skip_push] || attributes['skip_push'] || false
         end
 
         # Override field mappings for JSON serialization

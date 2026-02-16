@@ -30,8 +30,8 @@ module GetStream
           super(attributes)
           @duration = attributes[:duration] || attributes['duration']
           @results = attributes[:results] || attributes['results']
-          @next = attributes[:next] || attributes['next'] || nil
-          @previous = attributes[:previous] || attributes['previous'] || nil
+          @next = attributes[:next] || attributes['next'] || ""
+          @previous = attributes[:previous] || attributes['previous'] || ""
           @results_warning = attributes[:results_warning] || attributes['results_warning'] || nil
         end
 

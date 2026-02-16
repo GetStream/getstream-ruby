@@ -22,7 +22,7 @@ module GetStream
         #   @return [Hash<String, Array<String>>] the permissions granted to each role
         attr_accessor :grants
         # @!attribute notification_settings
-        #   @return [NotificationSettings]
+        #   @return [NotificationSettingsResponse]
         attr_accessor :notification_settings
         # @!attribute settings
         #   @return [CallSettingsResponse]
@@ -40,7 +40,7 @@ module GetStream
           @grants = attributes[:grants] || attributes['grants']
           @notification_settings = attributes[:notification_settings] || attributes['notification_settings']
           @settings = attributes[:settings] || attributes['settings']
-          @external_storage = attributes[:external_storage] || attributes['external_storage'] || nil
+          @external_storage = attributes[:external_storage] || attributes['external_storage'] || ""
         end
 
         # Override field mappings for JSON serialization

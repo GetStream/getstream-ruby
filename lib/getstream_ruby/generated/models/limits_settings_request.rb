@@ -25,9 +25,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @max_duration_seconds = attributes[:max_duration_seconds] || attributes['max_duration_seconds'] || nil
-          @max_participants = attributes[:max_participants] || attributes['max_participants'] || nil
-          @max_participants_exclude_owner = attributes[:max_participants_exclude_owner] || attributes['max_participants_exclude_owner'] || nil
+          @max_duration_seconds = attributes[:max_duration_seconds] || attributes['max_duration_seconds'] || 0
+          @max_participants = attributes[:max_participants] || attributes['max_participants'] || 0
+          @max_participants_exclude_owner = attributes[:max_participants_exclude_owner] || attributes['max_participants_exclude_owner'] || false
           @max_participants_exclude_roles = attributes[:max_participants_exclude_roles] || attributes['max_participants_exclude_roles'] || nil
         end
 

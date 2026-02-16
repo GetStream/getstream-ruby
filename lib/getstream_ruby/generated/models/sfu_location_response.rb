@@ -16,10 +16,10 @@ module GetStream
         #   @return [String]
         attr_accessor :id
         # @!attribute coordinates
-        #   @return [Coordinates]
+        #   @return [CoordinatesResponse]
         attr_accessor :coordinates
         # @!attribute location
-        #   @return [Location]
+        #   @return [LocationResponse]
         attr_accessor :location
         # @!attribute count
         #   @return [Integer]
@@ -32,7 +32,7 @@ module GetStream
           @id = attributes[:id] || attributes['id']
           @coordinates = attributes[:coordinates] || attributes['coordinates']
           @location = attributes[:location] || attributes['location']
-          @count = attributes[:count] || attributes['count'] || nil
+          @count = attributes[:count] || attributes['count'] || 0
         end
 
         # Override field mappings for JSON serialization

@@ -34,10 +34,10 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @limit = attributes[:limit] || attributes['limit'] || nil
-          @offset = attributes[:offset] || attributes['offset'] || nil
-          @show_deleted_messages = attributes[:show_deleted_messages] || attributes['show_deleted_messages'] || nil
-          @user_id = attributes[:user_id] || attributes['user_id'] || nil
+          @limit = attributes[:limit] || attributes['limit'] || 0
+          @offset = attributes[:offset] || attributes['offset'] || 0
+          @show_deleted_messages = attributes[:show_deleted_messages] || attributes['show_deleted_messages'] || false
+          @user_id = attributes[:user_id] || attributes['user_id'] || ""
           @sort = attributes[:sort] || attributes['sort'] || nil
           @filter_conditions = attributes[:filter_conditions] || attributes['filter_conditions'] || nil
           @user = attributes[:user] || attributes['user'] || nil

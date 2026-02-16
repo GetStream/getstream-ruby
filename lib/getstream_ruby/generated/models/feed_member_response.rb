@@ -16,7 +16,7 @@ module GetStream
         #   @return [String] Role of the member in the feed
         attr_accessor :role
         # @!attribute status
-        #   @return [String] Status of the membership
+        #   @return [String] Status of the membership. One of: member, pending, rejected
         attr_accessor :status
         # @!attribute updated_at
         #   @return [DateTime] When the membership was last updated

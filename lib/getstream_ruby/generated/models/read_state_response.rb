@@ -35,8 +35,8 @@ module GetStream
           @unread_messages = attributes[:unread_messages] || attributes['unread_messages']
           @user = attributes[:user] || attributes['user']
           @last_delivered_at = attributes[:last_delivered_at] || attributes['last_delivered_at'] || nil
-          @last_delivered_message_id = attributes[:last_delivered_message_id] || attributes['last_delivered_message_id'] || nil
-          @last_read_message_id = attributes[:last_read_message_id] || attributes['last_read_message_id'] || nil
+          @last_delivered_message_id = attributes[:last_delivered_message_id] || attributes['last_delivered_message_id'] || ""
+          @last_read_message_id = attributes[:last_read_message_id] || attributes['last_read_message_id'] || ""
         end
 
         # Override field mappings for JSON serialization

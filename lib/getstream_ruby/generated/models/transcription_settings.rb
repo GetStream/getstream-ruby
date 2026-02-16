@@ -10,7 +10,7 @@ module GetStream
 
         # Model attributes
         # @!attribute closed_caption_mode
-        #   @return [String]
+        #   @return [String] One of: available, disabled, auto-on
         attr_accessor :closed_caption_mode
         # @!attribute language
         #   @return [String] The language used in this call as a two letter code

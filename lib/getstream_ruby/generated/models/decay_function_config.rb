@@ -31,12 +31,12 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @base = attributes[:base] || attributes['base'] || nil
-          @decay = attributes[:decay] || attributes['decay'] || nil
-          @direction = attributes[:direction] || attributes['direction'] || nil
-          @offset = attributes[:offset] || attributes['offset'] || nil
-          @origin = attributes[:origin] || attributes['origin'] || nil
-          @scale = attributes[:scale] || attributes['scale'] || nil
+          @base = attributes[:base] || attributes['base'] || ""
+          @decay = attributes[:decay] || attributes['decay'] || ""
+          @direction = attributes[:direction] || attributes['direction'] || ""
+          @offset = attributes[:offset] || attributes['offset'] || ""
+          @origin = attributes[:origin] || attributes['origin'] || ""
+          @scale = attributes[:scale] || attributes['scale'] || ""
         end
 
         # Override field mappings for JSON serialization

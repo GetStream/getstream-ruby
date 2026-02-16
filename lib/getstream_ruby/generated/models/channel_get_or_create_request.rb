@@ -34,9 +34,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @hide_for_creator = attributes[:hide_for_creator] || attributes['hide_for_creator'] || nil
-          @state = attributes[:state] || attributes['state'] || nil
-          @thread_unread_counts = attributes[:thread_unread_counts] || attributes['thread_unread_counts'] || nil
+          @hide_for_creator = attributes[:hide_for_creator] || attributes['hide_for_creator'] || false
+          @state = attributes[:state] || attributes['state'] || false
+          @thread_unread_counts = attributes[:thread_unread_counts] || attributes['thread_unread_counts'] || false
           @data = attributes[:data] || attributes['data'] || nil
           @members = attributes[:members] || attributes['members'] || nil
           @messages = attributes[:messages] || attributes['messages'] || nil

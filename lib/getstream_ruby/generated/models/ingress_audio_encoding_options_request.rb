@@ -24,7 +24,7 @@ module GetStream
           super(attributes)
           @bitrate = attributes[:bitrate] || attributes['bitrate']
           @channels = attributes[:channels] || attributes['channels']
-          @enable_dtx = attributes[:enable_dtx] || attributes['enable_dtx'] || nil
+          @enable_dtx = attributes[:enable_dtx] || attributes['enable_dtx'] || false
         end
 
         # Override field mappings for JSON serialization

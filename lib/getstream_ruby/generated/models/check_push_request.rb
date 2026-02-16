@@ -13,7 +13,7 @@ module GetStream
         #   @return [String] Push message template for APN
         attr_accessor :apn_template
         # @!attribute event_type
-        #   @return [String] Type of event for push templates (default: message.new)
+        #   @return [String] Type of event for push templates (default: message.new). One of: message.new, message.updated, reaction.new, reaction.updated, notification.reminder_due
         attr_accessor :event_type
         # @!attribute firebase_data_template
         #   @return [String] Push message data template for Firebase
@@ -28,7 +28,7 @@ module GetStream
         #   @return [String] Name of push provider
         attr_accessor :push_provider_name
         # @!attribute push_provider_type
-        #   @return [String] Push provider type
+        #   @return [String] Push provider type. One of: firebase, apn, huawei, xiaomi
         attr_accessor :push_provider_type
         # @!attribute skip_devices
         #   @return [Boolean] Don't require existing devices to render templates
@@ -43,15 +43,15 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @apn_template = attributes[:apn_template] || attributes['apn_template'] || nil
-          @event_type = attributes[:event_type] || attributes['event_type'] || nil
-          @firebase_data_template = attributes[:firebase_data_template] || attributes['firebase_data_template'] || nil
-          @firebase_template = attributes[:firebase_template] || attributes['firebase_template'] || nil
-          @message_id = attributes[:message_id] || attributes['message_id'] || nil
-          @push_provider_name = attributes[:push_provider_name] || attributes['push_provider_name'] || nil
-          @push_provider_type = attributes[:push_provider_type] || attributes['push_provider_type'] || nil
-          @skip_devices = attributes[:skip_devices] || attributes['skip_devices'] || nil
-          @user_id = attributes[:user_id] || attributes['user_id'] || nil
+          @apn_template = attributes[:apn_template] || attributes['apn_template'] || ""
+          @event_type = attributes[:event_type] || attributes['event_type'] || ""
+          @firebase_data_template = attributes[:firebase_data_template] || attributes['firebase_data_template'] || ""
+          @firebase_template = attributes[:firebase_template] || attributes['firebase_template'] || ""
+          @message_id = attributes[:message_id] || attributes['message_id'] || ""
+          @push_provider_name = attributes[:push_provider_name] || attributes['push_provider_name'] || ""
+          @push_provider_type = attributes[:push_provider_type] || attributes['push_provider_type'] || ""
+          @skip_devices = attributes[:skip_devices] || attributes['skip_devices'] || false
+          @user_id = attributes[:user_id] || attributes['user_id'] || ""
           @user = attributes[:user] || attributes['user'] || nil
         end
 

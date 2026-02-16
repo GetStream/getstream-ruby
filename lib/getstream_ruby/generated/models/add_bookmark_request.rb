@@ -28,8 +28,8 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @folder_id = attributes[:folder_id] || attributes['folder_id'] || nil
-          @user_id = attributes[:user_id] || attributes['user_id'] || nil
+          @folder_id = attributes[:folder_id] || attributes['folder_id'] || ""
+          @user_id = attributes[:user_id] || attributes['user_id'] || ""
           @custom = attributes[:custom] || attributes['custom'] || nil
           @new_folder = attributes[:new_folder] || attributes['new_folder'] || nil
           @user = attributes[:user] || attributes['user'] || nil

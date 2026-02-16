@@ -36,8 +36,8 @@ module GetStream
           super(attributes)
           @type = attributes[:type] || attributes['type']
           @cutoff_time = attributes[:cutoff_time] || attributes['cutoff_time'] || nil
-          @cutoff_window = attributes[:cutoff_window] || attributes['cutoff_window'] || nil
-          @min_popularity = attributes[:min_popularity] || attributes['min_popularity'] || nil
+          @cutoff_window = attributes[:cutoff_window] || attributes['cutoff_window'] || ""
+          @min_popularity = attributes[:min_popularity] || attributes['min_popularity'] || 0
           @sort = attributes[:sort] || attributes['sort'] || nil
           @filter = attributes[:filter] || attributes['filter'] || nil
           @params = attributes[:params] || attributes['params'] || nil

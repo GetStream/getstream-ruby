@@ -40,11 +40,11 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @channel_cid = attributes[:channel_cid] || attributes['channel_cid'] || nil
-          @created_by_id = attributes[:created_by_id] || attributes['created_by_id'] || nil
+          @channel_cid = attributes[:channel_cid] || attributes['channel_cid'] || ""
+          @created_by_id = attributes[:created_by_id] || attributes['created_by_id'] || ""
           @starts_at = attributes[:starts_at] || attributes['starts_at'] || nil
-          @team = attributes[:team] || attributes['team'] || nil
-          @video = attributes[:video] || attributes['video'] || nil
+          @team = attributes[:team] || attributes['team'] || ""
+          @video = attributes[:video] || attributes['video'] || false
           @members = attributes[:members] || attributes['members'] || nil
           @created_by = attributes[:created_by] || attributes['created_by'] || nil
           @custom = attributes[:custom] || attributes['custom'] || nil

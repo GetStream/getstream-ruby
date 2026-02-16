@@ -28,10 +28,10 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @members_limit = attributes[:members_limit] || attributes['members_limit'] || nil
-          @notify = attributes[:notify] || attributes['notify'] || nil
-          @ring = attributes[:ring] || attributes['ring'] || nil
-          @video = attributes[:video] || attributes['video'] || nil
+          @members_limit = attributes[:members_limit] || attributes['members_limit'] || 0
+          @notify = attributes[:notify] || attributes['notify'] || false
+          @ring = attributes[:ring] || attributes['ring'] || false
+          @video = attributes[:video] || attributes['video'] || false
           @data = attributes[:data] || attributes['data'] || nil
         end
 

@@ -26,7 +26,7 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @feeds = attributes[:feeds] || attributes['feeds']
-          @user_id = attributes[:user_id] || attributes['user_id'] || nil
+          @user_id = attributes[:user_id] || attributes['user_id'] || ""
           @fields = attributes[:fields] || attributes['fields'] || nil
           @user = attributes[:user] || attributes['user'] || nil
         end

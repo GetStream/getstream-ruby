@@ -27,7 +27,7 @@ module GetStream
           super(attributes)
           @product = attributes[:product] || attributes['product']
           @settings = attributes[:settings] || attributes['settings']
-          @user_id = attributes[:user_id] || attributes['user_id'] || nil
+          @user_id = attributes[:user_id] || attributes['user_id'] || ""
           @user = attributes[:user] || attributes['user'] || nil
         end
 

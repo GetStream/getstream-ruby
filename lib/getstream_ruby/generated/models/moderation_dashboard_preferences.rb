@@ -9,6 +9,12 @@ module GetStream
       class ModerationDashboardPreferences < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute async_review_queue_upsert
+        #   @return [Boolean]
+        attr_accessor :async_review_queue_upsert
+        # @!attribute disable_audit_logs
+        #   @return [Boolean]
+        attr_accessor :disable_audit_logs
         # @!attribute disable_flagging_reviewed_entity
         #   @return [Boolean]
         attr_accessor :disable_flagging_reviewed_entity
@@ -28,9 +34,11 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @disable_flagging_reviewed_entity = attributes[:disable_flagging_reviewed_entity] || attributes['disable_flagging_reviewed_entity'] || nil
-          @flag_user_on_flagged_content = attributes[:flag_user_on_flagged_content] || attributes['flag_user_on_flagged_content'] || nil
-          @media_queue_blur_enabled = attributes[:media_queue_blur_enabled] || attributes['media_queue_blur_enabled'] || nil
+          @async_review_queue_upsert = attributes[:async_review_queue_upsert] || attributes['async_review_queue_upsert'] || false
+          @disable_audit_logs = attributes[:disable_audit_logs] || attributes['disable_audit_logs'] || false
+          @disable_flagging_reviewed_entity = attributes[:disable_flagging_reviewed_entity] || attributes['disable_flagging_reviewed_entity'] || false
+          @flag_user_on_flagged_content = attributes[:flag_user_on_flagged_content] || attributes['flag_user_on_flagged_content'] || false
+          @media_queue_blur_enabled = attributes[:media_queue_blur_enabled] || attributes['media_queue_blur_enabled'] || false
           @allowed_moderation_action_reasons = attributes[:allowed_moderation_action_reasons] || attributes['allowed_moderation_action_reasons'] || nil
           @overview_dashboard = attributes[:overview_dashboard] || attributes['overview_dashboard'] || nil
         end
@@ -38,6 +46,8 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            async_review_queue_upsert: 'async_review_queue_upsert',
+            disable_audit_logs: 'disable_audit_logs',
             disable_flagging_reviewed_entity: 'disable_flagging_reviewed_entity',
             flag_user_on_flagged_content: 'flag_user_on_flagged_content',
             media_queue_blur_enabled: 'media_queue_blur_enabled',

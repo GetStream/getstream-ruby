@@ -46,7 +46,7 @@ module GetStream
           @comment = attributes[:comment] || attributes['comment']
           @custom = attributes[:custom] || attributes['custom']
           @type = attributes[:type] || attributes['type'] || "feeds.comment.added"
-          @feed_visibility = attributes[:feed_visibility] || attributes['feed_visibility'] || nil
+          @feed_visibility = attributes[:feed_visibility] || attributes['feed_visibility'] || ""
           @received_at = attributes[:received_at] || attributes['received_at'] || nil
           @user = attributes[:user] || attributes['user'] || nil
         end

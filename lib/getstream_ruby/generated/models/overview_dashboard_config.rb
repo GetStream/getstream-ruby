@@ -19,7 +19,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @default_date_range_days = attributes[:default_date_range_days] || attributes['default_date_range_days'] || nil
+          @default_date_range_days = attributes[:default_date_range_days] || attributes['default_date_range_days'] || 0
           @visible_charts = attributes[:visible_charts] || attributes['visible_charts'] || nil
         end
 

@@ -44,12 +44,12 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @filter_conditions = attributes[:filter_conditions] || attributes['filter_conditions']
-          @force_default_search = attributes[:force_default_search] || attributes['force_default_search'] || nil
-          @force_sql_v2_backend = attributes[:force_sql_v2_backend] || attributes['force_sql_v2_backend'] || nil
-          @limit = attributes[:limit] || attributes['limit'] || nil
-          @next = attributes[:next] || attributes['next'] || nil
-          @offset = attributes[:offset] || attributes['offset'] || nil
-          @query = attributes[:query] || attributes['query'] || nil
+          @force_default_search = attributes[:force_default_search] || attributes['force_default_search'] || false
+          @force_sql_v2_backend = attributes[:force_sql_v2_backend] || attributes['force_sql_v2_backend'] || false
+          @limit = attributes[:limit] || attributes['limit'] || 0
+          @next = attributes[:next] || attributes['next'] || ""
+          @offset = attributes[:offset] || attributes['offset'] || 0
+          @query = attributes[:query] || attributes['query'] || ""
           @sort = attributes[:sort] || attributes['sort'] || nil
           @message_filter_conditions = attributes[:message_filter_conditions] || attributes['message_filter_conditions'] || nil
           @message_options = attributes[:message_options] || attributes['message_options'] || nil

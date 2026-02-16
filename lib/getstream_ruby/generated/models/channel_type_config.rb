@@ -108,6 +108,9 @@ module GetStream
         # @!attribute partition_ttl
         #   @return [String]
         attr_accessor :partition_ttl
+        # @!attribute push_level
+        #   @return [String]
+        attr_accessor :push_level
         # @!attribute allowed_flag_reasons
         #   @return [Array<String>]
         attr_accessor :allowed_flag_reasons
@@ -150,10 +153,11 @@ module GetStream
           @commands = attributes[:commands] || attributes['commands']
           @permissions = attributes[:permissions] || attributes['permissions']
           @grants = attributes[:grants] || attributes['grants']
-          @blocklist = attributes[:blocklist] || attributes['blocklist'] || nil
-          @blocklist_behavior = attributes[:blocklist_behavior] || attributes['blocklist_behavior'] || nil
-          @partition_size = attributes[:partition_size] || attributes['partition_size'] || nil
-          @partition_ttl = attributes[:partition_ttl] || attributes['partition_ttl'] || nil
+          @blocklist = attributes[:blocklist] || attributes['blocklist'] || ""
+          @blocklist_behavior = attributes[:blocklist_behavior] || attributes['blocklist_behavior'] || ""
+          @partition_size = attributes[:partition_size] || attributes['partition_size'] || 0
+          @partition_ttl = attributes[:partition_ttl] || attributes['partition_ttl'] || ""
+          @push_level = attributes[:push_level] || attributes['push_level'] || ""
           @allowed_flag_reasons = attributes[:allowed_flag_reasons] || attributes['allowed_flag_reasons'] || nil
           @blocklists = attributes[:blocklists] || attributes['blocklists'] || nil
           @automod_thresholds = attributes[:automod_thresholds] || attributes['automod_thresholds'] || nil
@@ -195,6 +199,7 @@ module GetStream
             blocklist_behavior: 'blocklist_behavior',
             partition_size: 'partition_size',
             partition_ttl: 'partition_ttl',
+            push_level: 'push_level',
             allowed_flag_reasons: 'allowed_flag_reasons',
             blocklists: 'blocklists',
             automod_thresholds: 'automod_thresholds'

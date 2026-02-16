@@ -26,9 +26,9 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @enabled = attributes[:enabled] || attributes['enabled']
-          @default_pin = attributes[:default_pin] || attributes['default_pin'] || nil
-          @max_attempts = attributes[:max_attempts] || attributes['max_attempts'] || nil
-          @required_pin_digits = attributes[:required_pin_digits] || attributes['required_pin_digits'] || nil
+          @default_pin = attributes[:default_pin] || attributes['default_pin'] || ""
+          @max_attempts = attributes[:max_attempts] || attributes['max_attempts'] || 0
+          @required_pin_digits = attributes[:required_pin_digits] || attributes['required_pin_digits'] || 0
         end
 
         # Override field mappings for JSON serialization

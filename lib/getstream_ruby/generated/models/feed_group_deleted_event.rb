@@ -39,7 +39,7 @@ module GetStream
           @group_id = attributes[:group_id] || attributes['group_id']
           @custom = attributes[:custom] || attributes['custom']
           @type = attributes[:type] || attributes['type'] || "feeds.feed_group.deleted"
-          @feed_visibility = attributes[:feed_visibility] || attributes['feed_visibility'] || nil
+          @feed_visibility = attributes[:feed_visibility] || attributes['feed_visibility'] || ""
           @received_at = attributes[:received_at] || attributes['received_at'] || nil
         end
 

@@ -24,7 +24,7 @@ module GetStream
           super(attributes)
           @capture_interval_in_seconds = attributes[:capture_interval_in_seconds] || attributes['capture_interval_in_seconds']
           @mode = attributes[:mode] || attributes['mode']
-          @quality = attributes[:quality] || attributes['quality'] || nil
+          @quality = attributes[:quality] || attributes['quality'] || ""
         end
 
         # Override field mappings for JSON serialization

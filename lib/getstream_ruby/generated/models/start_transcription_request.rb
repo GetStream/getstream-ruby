@@ -13,7 +13,7 @@ module GetStream
         #   @return [Boolean] Enable closed captions along with transcriptions
         attr_accessor :enable_closed_captions
         # @!attribute language
-        #   @return [String] The spoken language in the call, if not provided the language defined in the transcription settings will be used
+        #   @return [String] The spoken language in the call, if not provided the language defined in the transcription settings will be used. One of: auto, ar, bg, ca, cs, da, de, el, en, es, et, fi, fr, he, hi, hr, hu, id, it, ja, ko, ms, nl, no, pl, pt, ro, ru, sk, sl, sv, ta, th, tl, tr, uk, zh
         attr_accessor :language
         # @!attribute transcription_external_storage
         #   @return [String] Store transcriptions in this external storage
@@ -22,9 +22,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @enable_closed_captions = attributes[:enable_closed_captions] || attributes['enable_closed_captions'] || nil
-          @language = attributes[:language] || attributes['language'] || nil
-          @transcription_external_storage = attributes[:transcription_external_storage] || attributes['transcription_external_storage'] || nil
+          @enable_closed_captions = attributes[:enable_closed_captions] || attributes['enable_closed_captions'] || false
+          @language = attributes[:language] || attributes['language'] || ""
+          @transcription_external_storage = attributes[:transcription_external_storage] || attributes['transcription_external_storage'] || ""
         end
 
         # Override field mappings for JSON serialization

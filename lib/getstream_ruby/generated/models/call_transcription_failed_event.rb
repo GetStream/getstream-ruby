@@ -32,7 +32,7 @@ module GetStream
           @created_at = attributes[:created_at] || attributes['created_at']
           @egress_id = attributes[:egress_id] || attributes['egress_id']
           @type = attributes[:type] || attributes['type'] || "call.transcription_failed"
-          @error = attributes[:error] || attributes['error'] || nil
+          @error = attributes[:error] || attributes['error'] || ""
         end
 
         # Override field mappings for JSON serialization

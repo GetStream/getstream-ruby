@@ -16,7 +16,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @include_thread_participants = attributes[:include_thread_participants] || attributes['include_thread_participants'] || nil
+          @include_thread_participants = attributes[:include_thread_participants] || attributes['include_thread_participants'] || false
         end
 
         # Override field mappings for JSON serialization

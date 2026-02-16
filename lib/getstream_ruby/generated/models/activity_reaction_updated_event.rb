@@ -46,7 +46,7 @@ module GetStream
           @custom = attributes[:custom] || attributes['custom']
           @reaction = attributes[:reaction] || attributes['reaction']
           @type = attributes[:type] || attributes['type'] || "feeds.activity.reaction.updated"
-          @feed_visibility = attributes[:feed_visibility] || attributes['feed_visibility'] || nil
+          @feed_visibility = attributes[:feed_visibility] || attributes['feed_visibility'] || ""
           @received_at = attributes[:received_at] || attributes['received_at'] || nil
           @user = attributes[:user] || attributes['user'] || nil
         end

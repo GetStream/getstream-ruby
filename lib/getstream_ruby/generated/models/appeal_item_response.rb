@@ -53,7 +53,7 @@ module GetStream
           @id = attributes[:id] || attributes['id']
           @status = attributes[:status] || attributes['status']
           @updated_at = attributes[:updated_at] || attributes['updated_at']
-          @decision_reason = attributes[:decision_reason] || attributes['decision_reason'] || nil
+          @decision_reason = attributes[:decision_reason] || attributes['decision_reason'] || ""
           @attachments = attributes[:attachments] || attributes['attachments'] || nil
           @entity_content = attributes[:entity_content] || attributes['entity_content'] || nil
           @user = attributes[:user] || attributes['user'] || nil

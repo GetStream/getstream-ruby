@@ -105,12 +105,12 @@ module GetStream
           @egress = attributes[:egress] || attributes['egress']
           @ingress = attributes[:ingress] || attributes['ingress']
           @settings = attributes[:settings] || attributes['settings']
-          @channel_cid = attributes[:channel_cid] || attributes['channel_cid'] || nil
+          @channel_cid = attributes[:channel_cid] || attributes['channel_cid'] || ""
           @ended_at = attributes[:ended_at] || attributes['ended_at'] || nil
-          @join_ahead_time_seconds = attributes[:join_ahead_time_seconds] || attributes['join_ahead_time_seconds'] || nil
-          @routing_number = attributes[:routing_number] || attributes['routing_number'] || nil
+          @join_ahead_time_seconds = attributes[:join_ahead_time_seconds] || attributes['join_ahead_time_seconds'] || 0
+          @routing_number = attributes[:routing_number] || attributes['routing_number'] || ""
           @starts_at = attributes[:starts_at] || attributes['starts_at'] || nil
-          @team = attributes[:team] || attributes['team'] || nil
+          @team = attributes[:team] || attributes['team'] || ""
           @session = attributes[:session] || attributes['session'] || nil
           @thumbnails = attributes[:thumbnails] || attributes['thumbnails'] || nil
         end

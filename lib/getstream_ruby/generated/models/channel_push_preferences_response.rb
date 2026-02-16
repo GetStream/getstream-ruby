@@ -19,7 +19,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @chat_level = attributes[:chat_level] || attributes['chat_level'] || nil
+          @chat_level = attributes[:chat_level] || attributes['chat_level'] || ""
           @disabled_until = attributes[:disabled_until] || attributes['disabled_until'] || nil
         end
 
