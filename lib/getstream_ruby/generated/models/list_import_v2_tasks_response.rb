@@ -15,9 +15,9 @@ module GetStream
         # @!attribute import_tasks
         #   @return [Array<ImportV2TaskItem>]
         attr_accessor :import_tasks
-        # @!attribute _next
+        # @!attribute next
         #   @return [String]
-        attr_accessor :_next
+        attr_accessor :next
         # @!attribute prev
         #   @return [String]
         attr_accessor :prev
@@ -27,8 +27,8 @@ module GetStream
           super(attributes)
           @duration = attributes[:duration] || attributes['duration']
           @import_tasks = attributes[:import_tasks] || attributes['import_tasks']
-          @_next = attributes[:_next] || attributes['next'] || ""
-          @prev = attributes[:prev] || attributes['prev'] || ""
+          @next = attributes[:next] || attributes['next'] || nil
+          @prev = attributes[:prev] || attributes['prev'] || nil
         end
 
         # Override field mappings for JSON serialization
@@ -36,7 +36,7 @@ module GetStream
           {
             duration: 'duration',
             import_tasks: 'import_tasks',
-            _next: 'next',
+            next: 'next',
             prev: 'prev'
           }
         end

@@ -9,9 +9,6 @@ module GetStream
       class QueryReviewQueueRequest < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute _next
-        #   @return [String]
-        attr_accessor :_next
         # @!attribute limit
         #   @return [Integer]
         attr_accessor :limit
@@ -24,6 +21,9 @@ module GetStream
         # @!attribute lock_items
         #   @return [Boolean] Whether to lock items for review (true), unlock items (false), or just fetch (nil)
         attr_accessor :lock_items
+        # @!attribute next
+        #   @return [String]
+        attr_accessor :next
         # @!attribute prev
         #   @return [String]
         attr_accessor :prev
@@ -46,14 +46,14 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @_next = attributes[:_next] || attributes['next'] || ""
-          @limit = attributes[:limit] || attributes['limit'] || 0
-          @lock_count = attributes[:lock_count] || attributes['lock_count'] || 0
-          @lock_duration = attributes[:lock_duration] || attributes['lock_duration'] || 0
-          @lock_items = attributes[:lock_items] || attributes['lock_items'] || false
-          @prev = attributes[:prev] || attributes['prev'] || ""
-          @stats_only = attributes[:stats_only] || attributes['stats_only'] || false
-          @user_id = attributes[:user_id] || attributes['user_id'] || ""
+          @limit = attributes[:limit] || attributes['limit'] || nil
+          @lock_count = attributes[:lock_count] || attributes['lock_count'] || nil
+          @lock_duration = attributes[:lock_duration] || attributes['lock_duration'] || nil
+          @lock_items = attributes[:lock_items] || attributes['lock_items'] || nil
+          @next = attributes[:next] || attributes['next'] || nil
+          @prev = attributes[:prev] || attributes['prev'] || nil
+          @stats_only = attributes[:stats_only] || attributes['stats_only'] || nil
+          @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @sort = attributes[:sort] || attributes['sort'] || nil
           @filter = attributes[:filter] || attributes['filter'] || nil
           @user = attributes[:user] || attributes['user'] || nil
@@ -62,11 +62,11 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            _next: 'next',
             limit: 'limit',
             lock_count: 'lock_count',
             lock_duration: 'lock_duration',
             lock_items: 'lock_items',
+            next: 'next',
             prev: 'prev',
             stats_only: 'stats_only',
             user_id: 'user_id',

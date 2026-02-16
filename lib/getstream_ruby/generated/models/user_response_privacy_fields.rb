@@ -9,15 +9,15 @@ module GetStream
       class UserResponsePrivacyFields < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute _id
-        #   @return [String]
-        attr_accessor :_id
         # @!attribute banned
         #   @return [Boolean]
         attr_accessor :banned
         # @!attribute created_at
         #   @return [DateTime]
         attr_accessor :created_at
+        # @!attribute id
+        #   @return [String]
+        attr_accessor :id
         # @!attribute language
         #   @return [String]
         attr_accessor :language
@@ -73,9 +73,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @_id = attributes[:_id] || attributes['id']
           @banned = attributes[:banned] || attributes['banned']
           @created_at = attributes[:created_at] || attributes['created_at']
+          @id = attributes[:id] || attributes['id']
           @language = attributes[:language] || attributes['language']
           @online = attributes[:online] || attributes['online']
           @role = attributes[:role] || attributes['role']
@@ -83,13 +83,13 @@ module GetStream
           @blocked_user_ids = attributes[:blocked_user_ids] || attributes['blocked_user_ids']
           @teams = attributes[:teams] || attributes['teams']
           @custom = attributes[:custom] || attributes['custom']
-          @avg_response_time = attributes[:avg_response_time] || attributes['avg_response_time'] || 0
+          @avg_response_time = attributes[:avg_response_time] || attributes['avg_response_time'] || nil
           @deactivated_at = attributes[:deactivated_at] || attributes['deactivated_at'] || nil
           @deleted_at = attributes[:deleted_at] || attributes['deleted_at'] || nil
-          @image = attributes[:image] || attributes['image'] || ""
-          @invisible = attributes[:invisible] || attributes['invisible'] || false
+          @image = attributes[:image] || attributes['image'] || nil
+          @invisible = attributes[:invisible] || attributes['invisible'] || nil
           @last_active = attributes[:last_active] || attributes['last_active'] || nil
-          @name = attributes[:name] || attributes['name'] || ""
+          @name = attributes[:name] || attributes['name'] || nil
           @revoke_tokens_issued_before = attributes[:revoke_tokens_issued_before] || attributes['revoke_tokens_issued_before'] || nil
           @privacy_settings = attributes[:privacy_settings] || attributes['privacy_settings'] || nil
           @teams_role = attributes[:teams_role] || attributes['teams_role'] || nil
@@ -98,9 +98,9 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            _id: 'id',
             banned: 'banned',
             created_at: 'created_at',
+            id: 'id',
             language: 'language',
             online: 'online',
             role: 'role',

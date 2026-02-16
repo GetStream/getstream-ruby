@@ -43,15 +43,15 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @apn_template = attributes[:apn_template] || attributes['apn_template'] || ""
-          @event_type = attributes[:event_type] || attributes['event_type'] || ""
-          @firebase_data_template = attributes[:firebase_data_template] || attributes['firebase_data_template'] || ""
-          @firebase_template = attributes[:firebase_template] || attributes['firebase_template'] || ""
-          @message_id = attributes[:message_id] || attributes['message_id'] || ""
-          @push_provider_name = attributes[:push_provider_name] || attributes['push_provider_name'] || ""
-          @push_provider_type = attributes[:push_provider_type] || attributes['push_provider_type'] || ""
-          @skip_devices = attributes[:skip_devices] || attributes['skip_devices'] || false
-          @user_id = attributes[:user_id] || attributes['user_id'] || ""
+          @apn_template = attributes[:apn_template] || attributes['apn_template'] || nil
+          @event_type = attributes[:event_type] || attributes['event_type'] || nil
+          @firebase_data_template = attributes[:firebase_data_template] || attributes['firebase_data_template'] || nil
+          @firebase_template = attributes[:firebase_template] || attributes['firebase_template'] || nil
+          @message_id = attributes[:message_id] || attributes['message_id'] || nil
+          @push_provider_name = attributes[:push_provider_name] || attributes['push_provider_name'] || nil
+          @push_provider_type = attributes[:push_provider_type] || attributes['push_provider_type'] || nil
+          @skip_devices = attributes[:skip_devices] || attributes['skip_devices'] || nil
+          @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @user = attributes[:user] || attributes['user'] || nil
         end
 

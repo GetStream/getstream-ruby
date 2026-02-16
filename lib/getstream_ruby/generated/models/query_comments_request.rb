@@ -12,12 +12,12 @@ module GetStream
         # @!attribute filter
         #   @return [Object] MongoDB-style filter for querying comments
         attr_accessor :filter
-        # @!attribute _next
-        #   @return [String]
-        attr_accessor :_next
         # @!attribute limit
         #   @return [Integer] Maximum number of comments to return
         attr_accessor :limit
+        # @!attribute next
+        #   @return [String]
+        attr_accessor :next
         # @!attribute prev
         #   @return [String]
         attr_accessor :prev
@@ -29,18 +29,18 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @filter = attributes[:filter] || attributes['filter']
-          @_next = attributes[:_next] || attributes['next'] || ""
-          @limit = attributes[:limit] || attributes['limit'] || 0
-          @prev = attributes[:prev] || attributes['prev'] || ""
-          @sort = attributes[:sort] || attributes['sort'] || ""
+          @limit = attributes[:limit] || attributes['limit'] || nil
+          @next = attributes[:next] || attributes['next'] || nil
+          @prev = attributes[:prev] || attributes['prev'] || nil
+          @sort = attributes[:sort] || attributes['sort'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
             filter: 'filter',
-            _next: 'next',
             limit: 'limit',
+            next: 'next',
             prev: 'prev',
             sort: 'sort'
           }

@@ -9,9 +9,9 @@ module GetStream
       class UpdateCollectionRequest < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute _id
+        # @!attribute id
         #   @return [String] Unique identifier for the collection within its name
-        attr_accessor :_id
+        attr_accessor :id
         # @!attribute name
         #   @return [String] Name/type of the collection
         attr_accessor :name
@@ -22,7 +22,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @_id = attributes[:_id] || attributes['id']
+          @id = attributes[:id] || attributes['id']
           @name = attributes[:name] || attributes['name']
           @custom = attributes[:custom] || attributes['custom']
         end
@@ -30,7 +30,7 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            _id: 'id',
+            id: 'id',
             name: 'name',
             custom: 'custom'
           }

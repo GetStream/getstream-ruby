@@ -41,12 +41,12 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @duration = attributes[:duration] || attributes['duration']
-          @is_publisher = attributes[:is_publisher] || attributes['is_publisher'] || false
-          @is_subscriber = attributes[:is_subscriber] || attributes['is_subscriber'] || false
+          @is_publisher = attributes[:is_publisher] || attributes['is_publisher'] || nil
+          @is_subscriber = attributes[:is_subscriber] || attributes['is_subscriber'] || nil
           @joined_at = attributes[:joined_at] || attributes['joined_at'] || nil
-          @publisher_type = attributes[:publisher_type] || attributes['publisher_type'] || ""
-          @user_id = attributes[:user_id] || attributes['user_id'] || ""
-          @user_session_id = attributes[:user_session_id] || attributes['user_session_id'] || ""
+          @publisher_type = attributes[:publisher_type] || attributes['publisher_type'] || nil
+          @user_id = attributes[:user_id] || attributes['user_id'] || nil
+          @user_session_id = attributes[:user_session_id] || attributes['user_session_id'] || nil
           @published_tracks = attributes[:published_tracks] || attributes['published_tracks'] || nil
           @client = attributes[:client] || attributes['client'] || nil
         end

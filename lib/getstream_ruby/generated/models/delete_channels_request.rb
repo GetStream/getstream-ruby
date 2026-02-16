@@ -20,7 +20,7 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @cids = attributes[:cids] || attributes['cids']
-          @hard_delete = attributes[:hard_delete] || attributes['hard_delete'] || false
+          @hard_delete = attributes[:hard_delete] || attributes['hard_delete'] || nil
         end
 
         # Override field mappings for JSON serialization

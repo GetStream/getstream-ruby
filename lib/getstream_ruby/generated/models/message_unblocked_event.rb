@@ -21,9 +21,9 @@ module GetStream
         # @!attribute message
         #   @return [MessageResponse]
         attr_accessor :message
-        # @!attribute _type
+        # @!attribute type
         #   @return [String] The type of event: "message.unblocked" in this case
-        attr_accessor :_type
+        attr_accessor :type
         # @!attribute cid
         #   @return [String] The CID of the channel where the message was unblocked
         attr_accessor :cid
@@ -41,8 +41,8 @@ module GetStream
           @message_id = attributes[:message_id] || attributes['message_id']
           @custom = attributes[:custom] || attributes['custom']
           @message = attributes[:message] || attributes['message']
-          @_type = attributes[:_type] || attributes['type'] || "message.unblocked"
-          @cid = attributes[:cid] || attributes['cid'] || ""
+          @type = attributes[:type] || attributes['type'] || "message.unblocked"
+          @cid = attributes[:cid] || attributes['cid'] || nil
           @received_at = attributes[:received_at] || attributes['received_at'] || nil
           @user = attributes[:user] || attributes['user'] || nil
         end
@@ -54,7 +54,7 @@ module GetStream
             message_id: 'message_id',
             custom: 'custom',
             message: 'message',
-            _type: 'type',
+            type: 'type',
             cid: 'cid',
             received_at: 'received_at',
             user: 'user'

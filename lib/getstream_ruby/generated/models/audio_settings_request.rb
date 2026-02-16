@@ -38,12 +38,12 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @default_device = attributes[:default_device] || attributes['default_device']
-          @access_request_enabled = attributes[:access_request_enabled] || attributes['access_request_enabled'] || false
-          @hifi_audio_enabled = attributes[:hifi_audio_enabled] || attributes['hifi_audio_enabled'] || false
-          @mic_default_on = attributes[:mic_default_on] || attributes['mic_default_on'] || false
-          @opus_dtx_enabled = attributes[:opus_dtx_enabled] || attributes['opus_dtx_enabled'] || false
-          @redundant_coding_enabled = attributes[:redundant_coding_enabled] || attributes['redundant_coding_enabled'] || false
-          @speaker_default_on = attributes[:speaker_default_on] || attributes['speaker_default_on'] || false
+          @access_request_enabled = attributes[:access_request_enabled] || attributes['access_request_enabled'] || nil
+          @hifi_audio_enabled = attributes[:hifi_audio_enabled] || attributes['hifi_audio_enabled'] || nil
+          @mic_default_on = attributes[:mic_default_on] || attributes['mic_default_on'] || nil
+          @opus_dtx_enabled = attributes[:opus_dtx_enabled] || attributes['opus_dtx_enabled'] || nil
+          @redundant_coding_enabled = attributes[:redundant_coding_enabled] || attributes['redundant_coding_enabled'] || nil
+          @speaker_default_on = attributes[:speaker_default_on] || attributes['speaker_default_on'] || nil
           @noise_cancellation = attributes[:noise_cancellation] || attributes['noise_cancellation'] || nil
         end
 

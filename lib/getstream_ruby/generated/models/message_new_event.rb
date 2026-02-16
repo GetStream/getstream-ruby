@@ -24,9 +24,9 @@ module GetStream
         # @!attribute message
         #   @return [MessageResponse]
         attr_accessor :message
-        # @!attribute _type
+        # @!attribute type
         #   @return [String] The type of event: "message.new" in this case
-        attr_accessor :_type
+        attr_accessor :type
         # @!attribute channel_id
         #   @return [String] The ID of the channel where the message was sent
         attr_accessor :channel_id
@@ -81,18 +81,18 @@ module GetStream
           @watcher_count = attributes[:watcher_count] || attributes['watcher_count']
           @custom = attributes[:custom] || attributes['custom']
           @message = attributes[:message] || attributes['message']
-          @_type = attributes[:_type] || attributes['type'] || "message.new"
-          @channel_id = attributes[:channel_id] || attributes['channel_id'] || ""
-          @channel_member_count = attributes[:channel_member_count] || attributes['channel_member_count'] || 0
-          @channel_message_count = attributes[:channel_message_count] || attributes['channel_message_count'] || 0
-          @channel_type = attributes[:channel_type] || attributes['channel_type'] || ""
-          @cid = attributes[:cid] || attributes['cid'] || ""
-          @parent_author = attributes[:parent_author] || attributes['parent_author'] || ""
+          @type = attributes[:type] || attributes['type'] || "message.new"
+          @channel_id = attributes[:channel_id] || attributes['channel_id'] || nil
+          @channel_member_count = attributes[:channel_member_count] || attributes['channel_member_count'] || nil
+          @channel_message_count = attributes[:channel_message_count] || attributes['channel_message_count'] || nil
+          @channel_type = attributes[:channel_type] || attributes['channel_type'] || nil
+          @cid = attributes[:cid] || attributes['cid'] || nil
+          @parent_author = attributes[:parent_author] || attributes['parent_author'] || nil
           @received_at = attributes[:received_at] || attributes['received_at'] || nil
-          @team = attributes[:team] || attributes['team'] || ""
-          @total_unread_count = attributes[:total_unread_count] || attributes['total_unread_count'] || 0
-          @unread_channels = attributes[:unread_channels] || attributes['unread_channels'] || 0
-          @unread_count = attributes[:unread_count] || attributes['unread_count'] || 0
+          @team = attributes[:team] || attributes['team'] || nil
+          @total_unread_count = attributes[:total_unread_count] || attributes['total_unread_count'] || nil
+          @unread_channels = attributes[:unread_channels] || attributes['unread_channels'] || nil
+          @unread_count = attributes[:unread_count] || attributes['unread_count'] || nil
           @thread_participants = attributes[:thread_participants] || attributes['thread_participants'] || nil
           @channel = attributes[:channel] || attributes['channel'] || nil
           @channel_custom = attributes[:channel_custom] || attributes['channel_custom'] || nil
@@ -107,7 +107,7 @@ module GetStream
             watcher_count: 'watcher_count',
             custom: 'custom',
             message: 'message',
-            _type: 'type',
+            type: 'type',
             channel_id: 'channel_id',
             channel_member_count: 'channel_member_count',
             channel_message_count: 'channel_message_count',

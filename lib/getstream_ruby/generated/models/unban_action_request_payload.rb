@@ -19,8 +19,8 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @channel_cid = attributes[:channel_cid] || attributes['channel_cid'] || ""
-          @decision_reason = attributes[:decision_reason] || attributes['decision_reason'] || ""
+          @channel_cid = attributes[:channel_cid] || attributes['channel_cid'] || nil
+          @decision_reason = attributes[:decision_reason] || attributes['decision_reason'] || nil
         end
 
         # Override field mappings for JSON serialization

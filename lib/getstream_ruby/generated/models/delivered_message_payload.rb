@@ -9,25 +9,25 @@ module GetStream
       class DeliveredMessagePayload < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute _id
-        #   @return [String]
-        attr_accessor :_id
         # @!attribute cid
         #   @return [String]
         attr_accessor :cid
+        # @!attribute id
+        #   @return [String]
+        attr_accessor :id
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @_id = attributes[:_id] || attributes['id'] || ""
-          @cid = attributes[:cid] || attributes['cid'] || ""
+          @cid = attributes[:cid] || attributes['cid'] || nil
+          @id = attributes[:id] || attributes['id'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            _id: 'id',
-            cid: 'cid'
+            cid: 'cid',
+            id: 'id'
           }
         end
       end

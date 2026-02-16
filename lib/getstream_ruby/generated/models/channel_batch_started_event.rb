@@ -36,9 +36,9 @@ module GetStream
         # @!attribute custom
         #   @return [Object]
         attr_accessor :custom
-        # @!attribute _type
+        # @!attribute type
         #   @return [String]
-        attr_accessor :_type
+        attr_accessor :type
         # @!attribute received_at
         #   @return [DateTime]
         attr_accessor :received_at
@@ -55,7 +55,7 @@ module GetStream
           @task_id = attributes[:task_id] || attributes['task_id']
           @failed_channels = attributes[:failed_channels] || attributes['failed_channels']
           @custom = attributes[:custom] || attributes['custom']
-          @_type = attributes[:_type] || attributes['type'] || "channel_batch_update.started"
+          @type = attributes[:type] || attributes['type'] || "channel_batch_update.started"
           @received_at = attributes[:received_at] || attributes['received_at'] || nil
         end
 
@@ -71,7 +71,7 @@ module GetStream
             task_id: 'task_id',
             failed_channels: 'failed_channels',
             custom: 'custom',
-            _type: 'type',
+            type: 'type',
             received_at: 'received_at'
           }
         end

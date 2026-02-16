@@ -33,8 +33,8 @@ module GetStream
           super(attributes)
           @created_at = attributes[:created_at] || attributes['created_at']
           @expires = attributes[:expires] || attributes['expires'] || nil
-          @reason = attributes[:reason] || attributes['reason'] || ""
-          @shadow = attributes[:shadow] || attributes['shadow'] || false
+          @reason = attributes[:reason] || attributes['reason'] || nil
+          @shadow = attributes[:shadow] || attributes['shadow'] || nil
           @created_by = attributes[:created_by] || attributes['created_by'] || nil
           @user = attributes[:user] || attributes['user'] || nil
         end

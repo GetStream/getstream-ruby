@@ -22,9 +22,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @bucket = attributes[:bucket] || attributes['bucket'] || ""
-          @dir = attributes[:dir] || attributes['dir'] || ""
-          @region = attributes[:region] || attributes['region'] || ""
+          @bucket = attributes[:bucket] || attributes['bucket'] || nil
+          @dir = attributes[:dir] || attributes['dir'] || nil
+          @region = attributes[:region] || attributes['region'] || nil
         end
 
         # Override field mappings for JSON serialization

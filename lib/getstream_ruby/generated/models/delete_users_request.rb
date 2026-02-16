@@ -38,13 +38,13 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @user_ids = attributes[:user_ids] || attributes['user_ids']
-          @calls = attributes[:calls] || attributes['calls'] || ""
-          @conversations = attributes[:conversations] || attributes['conversations'] || ""
-          @files = attributes[:files] || attributes['files'] || false
-          @messages = attributes[:messages] || attributes['messages'] || ""
-          @new_call_owner_id = attributes[:new_call_owner_id] || attributes['new_call_owner_id'] || ""
-          @new_channel_owner_id = attributes[:new_channel_owner_id] || attributes['new_channel_owner_id'] || ""
-          @user = attributes[:user] || attributes['user'] || ""
+          @calls = attributes[:calls] || attributes['calls'] || nil
+          @conversations = attributes[:conversations] || attributes['conversations'] || nil
+          @files = attributes[:files] || attributes['files'] || nil
+          @messages = attributes[:messages] || attributes['messages'] || nil
+          @new_call_owner_id = attributes[:new_call_owner_id] || attributes['new_call_owner_id'] || nil
+          @new_channel_owner_id = attributes[:new_channel_owner_id] || attributes['new_channel_owner_id'] || nil
+          @user = attributes[:user] || attributes['user'] || nil
         end
 
         # Override field mappings for JSON serialization

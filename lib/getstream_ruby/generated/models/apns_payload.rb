@@ -31,11 +31,11 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @body = attributes[:body] || attributes['body'] || ""
-          @content_available = attributes[:content_available] || attributes['content-available'] || 0
-          @mutable_content = attributes[:mutable_content] || attributes['mutable-content'] || 0
-          @sound = attributes[:sound] || attributes['sound'] || ""
-          @title = attributes[:title] || attributes['title'] || ""
+          @body = attributes[:body] || attributes['body'] || nil
+          @content_available = attributes[:content_available] || attributes['content-available'] || nil
+          @mutable_content = attributes[:mutable_content] || attributes['mutable-content'] || nil
+          @sound = attributes[:sound] || attributes['sound'] || nil
+          @title = attributes[:title] || attributes['title'] || nil
           @data = attributes[:data] || attributes['data'] || nil
         end
 

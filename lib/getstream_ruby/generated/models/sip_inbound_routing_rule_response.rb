@@ -9,15 +9,15 @@ module GetStream
       class SIPInboundRoutingRuleResponse < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute _id
-        #   @return [String] Unique identifier of the SIP Inbound Routing Rule
-        attr_accessor :_id
         # @!attribute created_at
         #   @return [DateTime] Creation timestamp
         attr_accessor :created_at
         # @!attribute duration
         #   @return [String]
         attr_accessor :duration
+        # @!attribute id
+        #   @return [String] Unique identifier of the SIP Inbound Routing Rule
+        attr_accessor :id
         # @!attribute name
         #   @return [String] Name of the SIP Inbound Routing Rule
         attr_accessor :name
@@ -52,9 +52,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @_id = attributes[:_id] || attributes['id']
           @created_at = attributes[:created_at] || attributes['created_at']
           @duration = attributes[:duration] || attributes['duration']
+          @id = attributes[:id] || attributes['id']
           @name = attributes[:name] || attributes['name']
           @updated_at = attributes[:updated_at] || attributes['updated_at']
           @called_numbers = attributes[:called_numbers] || attributes['called_numbers']
@@ -70,9 +70,9 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            _id: 'id',
             created_at: 'created_at',
             duration: 'duration',
+            id: 'id',
             name: 'name',
             updated_at: 'updated_at',
             called_numbers: 'called_numbers',

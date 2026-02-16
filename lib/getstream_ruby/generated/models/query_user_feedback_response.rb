@@ -15,9 +15,9 @@ module GetStream
         # @!attribute user_feedback
         #   @return [Array<UserFeedbackResponse>]
         attr_accessor :user_feedback
-        # @!attribute _next
+        # @!attribute next
         #   @return [String]
-        attr_accessor :_next
+        attr_accessor :next
         # @!attribute prev
         #   @return [String]
         attr_accessor :prev
@@ -27,8 +27,8 @@ module GetStream
           super(attributes)
           @duration = attributes[:duration] || attributes['duration']
           @user_feedback = attributes[:user_feedback] || attributes['user_feedback']
-          @_next = attributes[:_next] || attributes['next'] || ""
-          @prev = attributes[:prev] || attributes['prev'] || ""
+          @next = attributes[:next] || attributes['next'] || nil
+          @prev = attributes[:prev] || attributes['prev'] || nil
         end
 
         # Override field mappings for JSON serialization
@@ -36,7 +36,7 @@ module GetStream
           {
             duration: 'duration',
             user_feedback: 'user_feedback',
-            _next: 'next',
+            next: 'next',
             prev: 'prev'
           }
         end

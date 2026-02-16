@@ -37,8 +37,8 @@ module GetStream
           @entity_id = attributes[:entity_id] || attributes['entity_id']
           @entity_type = attributes[:entity_type] || attributes['entity_type']
           @flags = attributes[:flags] || attributes['flags']
-          @entity_creator_id = attributes[:entity_creator_id] || attributes['entity_creator_id'] || ""
-          @user_id = attributes[:user_id] || attributes['user_id'] || ""
+          @entity_creator_id = attributes[:entity_creator_id] || attributes['entity_creator_id'] || nil
+          @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @moderation_payload = attributes[:moderation_payload] || attributes['moderation_payload'] || nil
           @user = attributes[:user] || attributes['user'] || nil
         end

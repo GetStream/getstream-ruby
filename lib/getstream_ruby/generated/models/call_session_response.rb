@@ -9,12 +9,12 @@ module GetStream
       class CallSessionResponse < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute _id
-        #   @return [String]
-        attr_accessor :_id
         # @!attribute anonymous_participant_count
         #   @return [Integer]
         attr_accessor :anonymous_participant_count
+        # @!attribute id
+        #   @return [String]
+        attr_accessor :id
         # @!attribute participants
         #   @return [Array<CallParticipantResponse>]
         attr_accessor :participants
@@ -49,8 +49,8 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @_id = attributes[:_id] || attributes['id']
           @anonymous_participant_count = attributes[:anonymous_participant_count] || attributes['anonymous_participant_count']
+          @id = attributes[:id] || attributes['id']
           @participants = attributes[:participants] || attributes['participants']
           @accepted_by = attributes[:accepted_by] || attributes['accepted_by']
           @missed_by = attributes[:missed_by] || attributes['missed_by']
@@ -66,8 +66,8 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            _id: 'id',
             anonymous_participant_count: 'anonymous_participant_count',
+            id: 'id',
             participants: 'participants',
             accepted_by: 'accepted_by',
             missed_by: 'missed_by',

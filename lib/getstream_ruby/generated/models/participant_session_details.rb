@@ -38,7 +38,7 @@ module GetStream
           @user_id = attributes[:user_id] || attributes['user_id']
           @user_session_id = attributes[:user_session_id] || attributes['user_session_id']
           @roles = attributes[:roles] || attributes['roles']
-          @duration_in_seconds = attributes[:duration_in_seconds] || attributes['duration_in_seconds'] || 0
+          @duration_in_seconds = attributes[:duration_in_seconds] || attributes['duration_in_seconds'] || nil
           @joined_at = attributes[:joined_at] || attributes['joined_at'] || nil
           @left_at = attributes[:left_at] || attributes['left_at'] || nil
         end

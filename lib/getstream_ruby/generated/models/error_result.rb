@@ -9,9 +9,9 @@ module GetStream
       class ErrorResult < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute _type
+        # @!attribute type
         #   @return [String]
-        attr_accessor :_type
+        attr_accessor :type
         # @!attribute stacktrace
         #   @return [String]
         attr_accessor :stacktrace
@@ -22,15 +22,15 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @_type = attributes[:_type] || attributes['type']
-          @stacktrace = attributes[:stacktrace] || attributes['stacktrace'] || ""
-          @version = attributes[:version] || attributes['version'] || ""
+          @type = attributes[:type] || attributes['type']
+          @stacktrace = attributes[:stacktrace] || attributes['stacktrace'] || nil
+          @version = attributes[:version] || attributes['version'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            _type: 'type',
+            type: 'type',
             stacktrace: 'stacktrace',
             version: 'version'
           }

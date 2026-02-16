@@ -9,9 +9,6 @@ module GetStream
       class EntityCreatorResponse < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute _id
-        #   @return [String]
-        attr_accessor :_id
         # @!attribute ban_count
         #   @return [Integer] Number of minor actions performed on the user
         attr_accessor :ban_count
@@ -27,6 +24,9 @@ module GetStream
         # @!attribute flagged_count
         #   @return [Integer] Number of flag actions performed on the user
         attr_accessor :flagged_count
+        # @!attribute id
+        #   @return [String]
+        attr_accessor :id
         # @!attribute invisible
         #   @return [Boolean]
         attr_accessor :invisible
@@ -94,12 +94,12 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @_id = attributes[:_id] || attributes['id']
           @ban_count = attributes[:ban_count] || attributes['ban_count']
           @banned = attributes[:banned] || attributes['banned']
           @created_at = attributes[:created_at] || attributes['created_at']
           @deleted_content_count = attributes[:deleted_content_count] || attributes['deleted_content_count']
           @flagged_count = attributes[:flagged_count] || attributes['flagged_count']
+          @id = attributes[:id] || attributes['id']
           @invisible = attributes[:invisible] || attributes['invisible']
           @language = attributes[:language] || attributes['language']
           @online = attributes[:online] || attributes['online']
@@ -109,13 +109,13 @@ module GetStream
           @blocked_user_ids = attributes[:blocked_user_ids] || attributes['blocked_user_ids']
           @teams = attributes[:teams] || attributes['teams']
           @custom = attributes[:custom] || attributes['custom']
-          @avg_response_time = attributes[:avg_response_time] || attributes['avg_response_time'] || 0
+          @avg_response_time = attributes[:avg_response_time] || attributes['avg_response_time'] || nil
           @ban_expires = attributes[:ban_expires] || attributes['ban_expires'] || nil
           @deactivated_at = attributes[:deactivated_at] || attributes['deactivated_at'] || nil
           @deleted_at = attributes[:deleted_at] || attributes['deleted_at'] || nil
-          @image = attributes[:image] || attributes['image'] || ""
+          @image = attributes[:image] || attributes['image'] || nil
           @last_active = attributes[:last_active] || attributes['last_active'] || nil
-          @name = attributes[:name] || attributes['name'] || ""
+          @name = attributes[:name] || attributes['name'] || nil
           @revoke_tokens_issued_before = attributes[:revoke_tokens_issued_before] || attributes['revoke_tokens_issued_before'] || nil
           @devices = attributes[:devices] || attributes['devices'] || nil
           @privacy_settings = attributes[:privacy_settings] || attributes['privacy_settings'] || nil
@@ -126,12 +126,12 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            _id: 'id',
             ban_count: 'ban_count',
             banned: 'banned',
             created_at: 'created_at',
             deleted_content_count: 'deleted_content_count',
             flagged_count: 'flagged_count',
+            id: 'id',
             invisible: 'invisible',
             language: 'language',
             online: 'online',

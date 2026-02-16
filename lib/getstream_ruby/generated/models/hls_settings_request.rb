@@ -26,8 +26,8 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @quality_tracks = attributes[:quality_tracks] || attributes['quality_tracks']
-          @auto_on = attributes[:auto_on] || attributes['auto_on'] || false
-          @enabled = attributes[:enabled] || attributes['enabled'] || false
+          @auto_on = attributes[:auto_on] || attributes['auto_on'] || nil
+          @enabled = attributes[:enabled] || attributes['enabled'] || nil
           @layout = attributes[:layout] || attributes['layout'] || nil
         end
 

@@ -9,9 +9,9 @@ module GetStream
       class UpdateUserPartialRequest < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute _id
+        # @!attribute id
         #   @return [String] User ID to update
-        attr_accessor :_id
+        attr_accessor :id
         # @!attribute unset
         #   @return [Array<String>]
         attr_accessor :unset
@@ -22,7 +22,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @_id = attributes[:_id] || attributes['id']
+          @id = attributes[:id] || attributes['id']
           @unset = attributes[:unset] || attributes['unset'] || nil
           @set = attributes[:set] || attributes['set'] || nil
         end
@@ -30,7 +30,7 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            _id: 'id',
+            id: 'id',
             unset: 'unset',
             set: 'set'
           }

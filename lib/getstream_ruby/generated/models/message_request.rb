@@ -9,15 +9,12 @@ module GetStream
       class MessageRequest < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute _id
-        #   @return [String] Message ID is unique string identifier of the message
-        attr_accessor :_id
-        # @!attribute _type
-        #   @return [String] Contains type of the message. One of: regular, system
-        attr_accessor :_type
         # @!attribute html
         #   @return [String] Contains HTML markup of the message. Can only be set when using server-side API
         attr_accessor :html
+        # @!attribute id
+        #   @return [String] Message ID is unique string identifier of the message
+        attr_accessor :id
         # @!attribute mentioned_channel
         #   @return [Boolean]
         attr_accessor :mentioned_channel
@@ -51,6 +48,9 @@ module GetStream
         # @!attribute text
         #   @return [String] Text of the message. Should be empty if `mml` is provided
         attr_accessor :text
+        # @!attribute type
+        #   @return [String] Contains type of the message. One of: regular, system
+        attr_accessor :type
         # @!attribute user_id
         #   @return [String]
         attr_accessor :user_id
@@ -76,21 +76,21 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @_id = attributes[:_id] || attributes['id'] || ""
-          @_type = attributes[:_type] || attributes['type'] || ""
-          @html = attributes[:html] || attributes['html'] || ""
-          @mentioned_channel = attributes[:mentioned_channel] || attributes['mentioned_channel'] || false
-          @mml = attributes[:mml] || attributes['mml'] || ""
-          @parent_id = attributes[:parent_id] || attributes['parent_id'] || ""
+          @html = attributes[:html] || attributes['html'] || nil
+          @id = attributes[:id] || attributes['id'] || nil
+          @mentioned_channel = attributes[:mentioned_channel] || attributes['mentioned_channel'] || nil
+          @mml = attributes[:mml] || attributes['mml'] || nil
+          @parent_id = attributes[:parent_id] || attributes['parent_id'] || nil
           @pin_expires = attributes[:pin_expires] || attributes['pin_expires'] || nil
-          @pinned = attributes[:pinned] || attributes['pinned'] || false
+          @pinned = attributes[:pinned] || attributes['pinned'] || nil
           @pinned_at = attributes[:pinned_at] || attributes['pinned_at'] || nil
-          @poll_id = attributes[:poll_id] || attributes['poll_id'] || ""
-          @quoted_message_id = attributes[:quoted_message_id] || attributes['quoted_message_id'] || ""
-          @show_in_channel = attributes[:show_in_channel] || attributes['show_in_channel'] || false
-          @silent = attributes[:silent] || attributes['silent'] || false
-          @text = attributes[:text] || attributes['text'] || ""
-          @user_id = attributes[:user_id] || attributes['user_id'] || ""
+          @poll_id = attributes[:poll_id] || attributes['poll_id'] || nil
+          @quoted_message_id = attributes[:quoted_message_id] || attributes['quoted_message_id'] || nil
+          @show_in_channel = attributes[:show_in_channel] || attributes['show_in_channel'] || nil
+          @silent = attributes[:silent] || attributes['silent'] || nil
+          @text = attributes[:text] || attributes['text'] || nil
+          @type = attributes[:type] || attributes['type'] || nil
+          @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @attachments = attributes[:attachments] || attributes['attachments'] || nil
           @mentioned_users = attributes[:mentioned_users] || attributes['mentioned_users'] || nil
           @restricted_visibility = attributes[:restricted_visibility] || attributes['restricted_visibility'] || nil
@@ -102,9 +102,8 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            _id: 'id',
-            _type: 'type',
             html: 'html',
+            id: 'id',
             mentioned_channel: 'mentioned_channel',
             mml: 'mml',
             parent_id: 'parent_id',
@@ -116,6 +115,7 @@ module GetStream
             show_in_channel: 'show_in_channel',
             silent: 'silent',
             text: 'text',
+            type: 'type',
             user_id: 'user_id',
             attachments: 'attachments',
             mentioned_users: 'mentioned_users',

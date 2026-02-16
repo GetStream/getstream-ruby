@@ -15,9 +15,9 @@ module GetStream
         # @!attribute custom
         #   @return [Object]
         attr_accessor :custom
-        # @!attribute _type
+        # @!attribute type
         #   @return [String] The type of event: "channel.frozen" in this case
-        attr_accessor :_type
+        attr_accessor :type
         # @!attribute channel_id
         #   @return [String] The ID of the channel which was frozen
         attr_accessor :channel_id
@@ -36,10 +36,10 @@ module GetStream
           super(attributes)
           @created_at = attributes[:created_at] || attributes['created_at']
           @custom = attributes[:custom] || attributes['custom']
-          @_type = attributes[:_type] || attributes['type'] || "channel.frozen"
-          @channel_id = attributes[:channel_id] || attributes['channel_id'] || ""
-          @channel_type = attributes[:channel_type] || attributes['channel_type'] || ""
-          @cid = attributes[:cid] || attributes['cid'] || ""
+          @type = attributes[:type] || attributes['type'] || "channel.frozen"
+          @channel_id = attributes[:channel_id] || attributes['channel_id'] || nil
+          @channel_type = attributes[:channel_type] || attributes['channel_type'] || nil
+          @cid = attributes[:cid] || attributes['cid'] || nil
           @received_at = attributes[:received_at] || attributes['received_at'] || nil
         end
 
@@ -48,7 +48,7 @@ module GetStream
           {
             created_at: 'created_at',
             custom: 'custom',
-            _type: 'type',
+            type: 'type',
             channel_id: 'channel_id',
             channel_type: 'channel_type',
             cid: 'cid',

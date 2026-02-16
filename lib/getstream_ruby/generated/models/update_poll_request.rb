@@ -9,9 +9,9 @@ module GetStream
       class UpdatePollRequest < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute _id
+        # @!attribute id
         #   @return [String] Poll ID
-        attr_accessor :_id
+        attr_accessor :id
         # @!attribute name
         #   @return [String] Poll name
         attr_accessor :name
@@ -52,16 +52,16 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @_id = attributes[:_id] || attributes['id']
+          @id = attributes[:id] || attributes['id']
           @name = attributes[:name] || attributes['name']
-          @allow_answers = attributes[:allow_answers] || attributes['allow_answers'] || false
-          @allow_user_suggested_options = attributes[:allow_user_suggested_options] || attributes['allow_user_suggested_options'] || false
-          @description = attributes[:description] || attributes['description'] || ""
-          @enforce_unique_vote = attributes[:enforce_unique_vote] || attributes['enforce_unique_vote'] || false
-          @is_closed = attributes[:is_closed] || attributes['is_closed'] || false
-          @max_votes_allowed = attributes[:max_votes_allowed] || attributes['max_votes_allowed'] || 0
-          @user_id = attributes[:user_id] || attributes['user_id'] || ""
-          @voting_visibility = attributes[:voting_visibility] || attributes['voting_visibility'] || ""
+          @allow_answers = attributes[:allow_answers] || attributes['allow_answers'] || nil
+          @allow_user_suggested_options = attributes[:allow_user_suggested_options] || attributes['allow_user_suggested_options'] || nil
+          @description = attributes[:description] || attributes['description'] || nil
+          @enforce_unique_vote = attributes[:enforce_unique_vote] || attributes['enforce_unique_vote'] || nil
+          @is_closed = attributes[:is_closed] || attributes['is_closed'] || nil
+          @max_votes_allowed = attributes[:max_votes_allowed] || attributes['max_votes_allowed'] || nil
+          @user_id = attributes[:user_id] || attributes['user_id'] || nil
+          @voting_visibility = attributes[:voting_visibility] || attributes['voting_visibility'] || nil
           @options = attributes[:options] || attributes['options'] || nil
           @custom = attributes[:custom] || attributes['Custom'] || nil
           @user = attributes[:user] || attributes['user'] || nil
@@ -70,7 +70,7 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            _id: 'id',
+            id: 'id',
             name: 'name',
             allow_answers: 'allow_answers',
             allow_user_suggested_options: 'allow_user_suggested_options',

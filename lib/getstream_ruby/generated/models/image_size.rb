@@ -25,10 +25,10 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @crop = attributes[:crop] || attributes['crop'] || ""
-          @height = attributes[:height] || attributes['height'] || 0
-          @resize = attributes[:resize] || attributes['resize'] || ""
-          @width = attributes[:width] || attributes['width'] || 0
+          @crop = attributes[:crop] || attributes['crop'] || nil
+          @height = attributes[:height] || attributes['height'] || nil
+          @resize = attributes[:resize] || attributes['resize'] || nil
+          @width = attributes[:width] || attributes['width'] || nil
         end
 
         # Override field mappings for JSON serialization

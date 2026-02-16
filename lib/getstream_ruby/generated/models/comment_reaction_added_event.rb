@@ -27,9 +27,9 @@ module GetStream
         # @!attribute reaction
         #   @return [FeedsReactionResponse]
         attr_accessor :reaction
-        # @!attribute _type
+        # @!attribute type
         #   @return [String] The type of event: "feeds.comment.reaction.added" in this case
-        attr_accessor :_type
+        attr_accessor :type
         # @!attribute feed_visibility
         #   @return [String]
         attr_accessor :feed_visibility
@@ -49,8 +49,8 @@ module GetStream
           @comment = attributes[:comment] || attributes['comment']
           @custom = attributes[:custom] || attributes['custom']
           @reaction = attributes[:reaction] || attributes['reaction']
-          @_type = attributes[:_type] || attributes['type'] || "feeds.comment.reaction.added"
-          @feed_visibility = attributes[:feed_visibility] || attributes['feed_visibility'] || ""
+          @type = attributes[:type] || attributes['type'] || "feeds.comment.reaction.added"
+          @feed_visibility = attributes[:feed_visibility] || attributes['feed_visibility'] || nil
           @received_at = attributes[:received_at] || attributes['received_at'] || nil
           @user = attributes[:user] || attributes['user'] || nil
         end
@@ -64,7 +64,7 @@ module GetStream
             comment: 'comment',
             custom: 'custom',
             reaction: 'reaction',
-            _type: 'type',
+            type: 'type',
             feed_visibility: 'feed_visibility',
             received_at: 'received_at',
             user: 'user'

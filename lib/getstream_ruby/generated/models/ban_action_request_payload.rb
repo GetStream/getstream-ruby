@@ -34,13 +34,13 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @channel_ban_only = attributes[:channel_ban_only] || attributes['channel_ban_only'] || false
-          @delete_messages = attributes[:delete_messages] || attributes['delete_messages'] || ""
-          @ip_ban = attributes[:ip_ban] || attributes['ip_ban'] || false
-          @reason = attributes[:reason] || attributes['reason'] || ""
-          @shadow = attributes[:shadow] || attributes['shadow'] || false
-          @target_user_id = attributes[:target_user_id] || attributes['target_user_id'] || ""
-          @timeout = attributes[:timeout] || attributes['timeout'] || 0
+          @channel_ban_only = attributes[:channel_ban_only] || attributes['channel_ban_only'] || nil
+          @delete_messages = attributes[:delete_messages] || attributes['delete_messages'] || nil
+          @ip_ban = attributes[:ip_ban] || attributes['ip_ban'] || nil
+          @reason = attributes[:reason] || attributes['reason'] || nil
+          @shadow = attributes[:shadow] || attributes['shadow'] || nil
+          @target_user_id = attributes[:target_user_id] || attributes['target_user_id'] || nil
+          @timeout = attributes[:timeout] || attributes['timeout'] || nil
         end
 
         # Override field mappings for JSON serialization

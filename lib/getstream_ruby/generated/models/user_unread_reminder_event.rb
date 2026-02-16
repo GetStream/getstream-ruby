@@ -21,9 +21,9 @@ module GetStream
         # @!attribute user
         #   @return [UserResponseCommonFields]
         attr_accessor :user
-        # @!attribute _type
+        # @!attribute type
         #   @return [String] The type of event: "user.unread_message_reminder" in this case
-        attr_accessor :_type
+        attr_accessor :type
         # @!attribute received_at
         #   @return [DateTime]
         attr_accessor :received_at
@@ -35,7 +35,7 @@ module GetStream
           @channels = attributes[:channels] || attributes['channels']
           @custom = attributes[:custom] || attributes['custom']
           @user = attributes[:user] || attributes['user']
-          @_type = attributes[:_type] || attributes['type'] || "user.unread_message_reminder"
+          @type = attributes[:type] || attributes['type'] || "user.unread_message_reminder"
           @received_at = attributes[:received_at] || attributes['received_at'] || nil
         end
 
@@ -46,7 +46,7 @@ module GetStream
             channels: 'channels',
             custom: 'custom',
             user: 'user',
-            _type: 'type',
+            type: 'type',
             received_at: 'received_at'
           }
         end

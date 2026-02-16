@@ -9,12 +9,12 @@ module GetStream
       class MembershipLevelResponse < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute _id
-        #   @return [String] Unique identifier for the membership level
-        attr_accessor :_id
         # @!attribute created_at
         #   @return [DateTime] When the membership level was created
         attr_accessor :created_at
+        # @!attribute id
+        #   @return [String] Unique identifier for the membership level
+        attr_accessor :id
         # @!attribute name
         #   @return [String] Display name for the membership level
         attr_accessor :name
@@ -37,21 +37,21 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @_id = attributes[:_id] || attributes['id']
           @created_at = attributes[:created_at] || attributes['created_at']
+          @id = attributes[:id] || attributes['id']
           @name = attributes[:name] || attributes['name']
           @priority = attributes[:priority] || attributes['priority']
           @updated_at = attributes[:updated_at] || attributes['updated_at']
           @tags = attributes[:tags] || attributes['tags']
-          @description = attributes[:description] || attributes['description'] || ""
+          @description = attributes[:description] || attributes['description'] || nil
           @custom = attributes[:custom] || attributes['custom'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            _id: 'id',
             created_at: 'created_at',
+            id: 'id',
             name: 'name',
             priority: 'priority',
             updated_at: 'updated_at',

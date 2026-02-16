@@ -30,9 +30,9 @@ module GetStream
           super(attributes)
           @event_type = attributes[:event_type] || attributes['event_type']
           @push_provider_type = attributes[:push_provider_type] || attributes['push_provider_type']
-          @enable_push = attributes[:enable_push] || attributes['enable_push'] || false
-          @push_provider_name = attributes[:push_provider_name] || attributes['push_provider_name'] || ""
-          @template = attributes[:template] || attributes['template'] || ""
+          @enable_push = attributes[:enable_push] || attributes['enable_push'] || nil
+          @push_provider_name = attributes[:push_provider_name] || attributes['push_provider_name'] || nil
+          @template = attributes[:template] || attributes['template'] || nil
         end
 
         # Override field mappings for JSON serialization

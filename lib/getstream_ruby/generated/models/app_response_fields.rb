@@ -9,9 +9,6 @@ module GetStream
       class AppResponseFields < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute _id
-        #   @return [Integer]
-        attr_accessor :_id
         # @!attribute allow_multi_user_devices
         #   @return [Boolean]
         attr_accessor :allow_multi_user_devices
@@ -42,6 +39,9 @@ module GetStream
         # @!attribute guest_user_creation_disabled
         #   @return [Boolean]
         attr_accessor :guest_user_creation_disabled
+        # @!attribute id
+        #   @return [Integer]
+        attr_accessor :id
         # @!attribute image_moderation_enabled
         #   @return [Boolean]
         attr_accessor :image_moderation_enabled
@@ -166,7 +166,6 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @_id = attributes[:_id] || attributes['id']
           @allow_multi_user_devices = attributes[:allow_multi_user_devices] || attributes['allow_multi_user_devices']
           @async_url_enrich_enabled = attributes[:async_url_enrich_enabled] || attributes['async_url_enrich_enabled']
           @auto_translation_enabled = attributes[:auto_translation_enabled] || attributes['auto_translation_enabled']
@@ -177,6 +176,7 @@ module GetStream
           @disable_permissions_checks = attributes[:disable_permissions_checks] || attributes['disable_permissions_checks']
           @enforce_unique_usernames = attributes[:enforce_unique_usernames] || attributes['enforce_unique_usernames']
           @guest_user_creation_disabled = attributes[:guest_user_creation_disabled] || attributes['guest_user_creation_disabled']
+          @id = attributes[:id] || attributes['id']
           @image_moderation_enabled = attributes[:image_moderation_enabled] || attributes['image_moderation_enabled']
           @max_aggregated_activities_length = attributes[:max_aggregated_activities_length] || attributes['max_aggregated_activities_length']
           @moderation_enabled = attributes[:moderation_enabled] || attributes['moderation_enabled']
@@ -210,7 +210,7 @@ module GetStream
           @image_upload_config = attributes[:image_upload_config] || attributes['image_upload_config']
           @policies = attributes[:policies] || attributes['policies']
           @push_notifications = attributes[:push_notifications] || attributes['push_notifications']
-          @before_message_send_hook_url = attributes[:before_message_send_hook_url] || attributes['before_message_send_hook_url'] || ""
+          @before_message_send_hook_url = attributes[:before_message_send_hook_url] || attributes['before_message_send_hook_url'] || nil
           @revoke_tokens_issued_before = attributes[:revoke_tokens_issued_before] || attributes['revoke_tokens_issued_before'] || nil
           @allowed_flag_reasons = attributes[:allowed_flag_reasons] || attributes['allowed_flag_reasons'] || nil
           @geofences = attributes[:geofences] || attributes['geofences'] || nil
@@ -222,7 +222,6 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            _id: 'id',
             allow_multi_user_devices: 'allow_multi_user_devices',
             async_url_enrich_enabled: 'async_url_enrich_enabled',
             auto_translation_enabled: 'auto_translation_enabled',
@@ -233,6 +232,7 @@ module GetStream
             disable_permissions_checks: 'disable_permissions_checks',
             enforce_unique_usernames: 'enforce_unique_usernames',
             guest_user_creation_disabled: 'guest_user_creation_disabled',
+            id: 'id',
             image_moderation_enabled: 'image_moderation_enabled',
             max_aggregated_activities_length: 'max_aggregated_activities_length',
             moderation_enabled: 'moderation_enabled',

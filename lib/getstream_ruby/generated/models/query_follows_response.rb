@@ -15,9 +15,9 @@ module GetStream
         # @!attribute follows
         #   @return [Array<FollowResponse>] List of follow relationships matching the query
         attr_accessor :follows
-        # @!attribute _next
+        # @!attribute next
         #   @return [String] Cursor for next page
-        attr_accessor :_next
+        attr_accessor :next
         # @!attribute prev
         #   @return [String] Cursor for previous page
         attr_accessor :prev
@@ -27,8 +27,8 @@ module GetStream
           super(attributes)
           @duration = attributes[:duration] || attributes['duration']
           @follows = attributes[:follows] || attributes['follows']
-          @_next = attributes[:_next] || attributes['next'] || ""
-          @prev = attributes[:prev] || attributes['prev'] || ""
+          @next = attributes[:next] || attributes['next'] || nil
+          @prev = attributes[:prev] || attributes['prev'] || nil
         end
 
         # Override field mappings for JSON serialization
@@ -36,7 +36,7 @@ module GetStream
           {
             duration: 'duration',
             follows: 'follows',
-            _next: 'next',
+            next: 'next',
             prev: 'prev'
           }
         end

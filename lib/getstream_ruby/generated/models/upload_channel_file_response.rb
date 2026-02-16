@@ -26,9 +26,9 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @duration = attributes[:duration] || attributes['duration']
-          @file = attributes[:file] || attributes['file'] || ""
-          @moderation_action = attributes[:moderation_action] || attributes['moderation_action'] || ""
-          @thumb_url = attributes[:thumb_url] || attributes['thumb_url'] || ""
+          @file = attributes[:file] || attributes['file'] || nil
+          @moderation_action = attributes[:moderation_action] || attributes['moderation_action'] || nil
+          @thumb_url = attributes[:thumb_url] || attributes['thumb_url'] || nil
         end
 
         # Override field mappings for JSON serialization

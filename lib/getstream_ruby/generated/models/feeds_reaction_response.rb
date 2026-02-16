@@ -9,15 +9,15 @@ module GetStream
       class FeedsReactionResponse < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute _type
-        #   @return [String] Type of reaction
-        attr_accessor :_type
         # @!attribute activity_id
         #   @return [String] ID of the activity that was reacted to
         attr_accessor :activity_id
         # @!attribute created_at
         #   @return [DateTime] When the reaction was created
         attr_accessor :created_at
+        # @!attribute type
+        #   @return [String] Type of reaction
+        attr_accessor :type
         # @!attribute updated_at
         #   @return [DateTime] When the reaction was last updated
         attr_accessor :updated_at
@@ -34,21 +34,21 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @_type = attributes[:_type] || attributes['type']
           @activity_id = attributes[:activity_id] || attributes['activity_id']
           @created_at = attributes[:created_at] || attributes['created_at']
+          @type = attributes[:type] || attributes['type']
           @updated_at = attributes[:updated_at] || attributes['updated_at']
           @user = attributes[:user] || attributes['user']
-          @comment_id = attributes[:comment_id] || attributes['comment_id'] || ""
+          @comment_id = attributes[:comment_id] || attributes['comment_id'] || nil
           @custom = attributes[:custom] || attributes['custom'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            _type: 'type',
             activity_id: 'activity_id',
             created_at: 'created_at',
+            type: 'type',
             updated_at: 'updated_at',
             user: 'user',
             comment_id: 'comment_id',

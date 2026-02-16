@@ -28,10 +28,10 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @ip = attributes[:ip] || attributes['ip'] || ""
-          @name = attributes[:name] || attributes['name'] || ""
-          @network_type = attributes[:network_type] || attributes['network_type'] || ""
-          @version = attributes[:version] || attributes['version'] || ""
+          @ip = attributes[:ip] || attributes['ip'] || nil
+          @name = attributes[:name] || attributes['name'] || nil
+          @network_type = attributes[:network_type] || attributes['network_type'] || nil
+          @version = attributes[:version] || attributes['version'] || nil
           @location = attributes[:location] || attributes['location'] || nil
         end
 

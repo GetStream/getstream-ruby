@@ -9,15 +9,15 @@ module GetStream
       class QueryThreadsRequest < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute _next
-        #   @return [String]
-        attr_accessor :_next
         # @!attribute limit
         #   @return [Integer]
         attr_accessor :limit
         # @!attribute member_limit
         #   @return [Integer]
         attr_accessor :member_limit
+        # @!attribute next
+        #   @return [String]
+        attr_accessor :next
         # @!attribute participant_limit
         #   @return [Integer] Limit the number of participants returned per each thread
         attr_accessor :participant_limit
@@ -43,13 +43,13 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @_next = attributes[:_next] || attributes['next'] || ""
-          @limit = attributes[:limit] || attributes['limit'] || 0
-          @member_limit = attributes[:member_limit] || attributes['member_limit'] || 0
-          @participant_limit = attributes[:participant_limit] || attributes['participant_limit'] || 0
-          @prev = attributes[:prev] || attributes['prev'] || ""
-          @reply_limit = attributes[:reply_limit] || attributes['reply_limit'] || 0
-          @user_id = attributes[:user_id] || attributes['user_id'] || ""
+          @limit = attributes[:limit] || attributes['limit'] || nil
+          @member_limit = attributes[:member_limit] || attributes['member_limit'] || nil
+          @next = attributes[:next] || attributes['next'] || nil
+          @participant_limit = attributes[:participant_limit] || attributes['participant_limit'] || nil
+          @prev = attributes[:prev] || attributes['prev'] || nil
+          @reply_limit = attributes[:reply_limit] || attributes['reply_limit'] || nil
+          @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @sort = attributes[:sort] || attributes['sort'] || nil
           @filter = attributes[:filter] || attributes['filter'] || nil
           @user = attributes[:user] || attributes['user'] || nil
@@ -58,9 +58,9 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            _next: 'next',
             limit: 'limit',
             member_limit: 'member_limit',
+            next: 'next',
             participant_limit: 'participant_limit',
             prev: 'prev',
             reply_limit: 'reply_limit',

@@ -21,9 +21,9 @@ module GetStream
         # @!attribute custom
         #   @return [Object] Custom data associated with the moderation action
         attr_accessor :custom
-        # @!attribute _type
+        # @!attribute type
         #   @return [String] The type of event: "call.moderation_blur" in this case
-        attr_accessor :_type
+        attr_accessor :type
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -32,7 +32,7 @@ module GetStream
           @created_at = attributes[:created_at] || attributes['created_at']
           @user_id = attributes[:user_id] || attributes['user_id']
           @custom = attributes[:custom] || attributes['custom']
-          @_type = attributes[:_type] || attributes['type'] || "call.moderation_blur"
+          @type = attributes[:type] || attributes['type'] || "call.moderation_blur"
         end
 
         # Override field mappings for JSON serialization
@@ -42,7 +42,7 @@ module GetStream
             created_at: 'created_at',
             user_id: 'user_id',
             custom: 'custom',
-            _type: 'type'
+            type: 'type'
           }
         end
       end

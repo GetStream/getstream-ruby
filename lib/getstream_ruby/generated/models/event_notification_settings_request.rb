@@ -22,7 +22,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @enabled = attributes[:enabled] || attributes['enabled'] || false
+          @enabled = attributes[:enabled] || attributes['enabled'] || nil
           @apns = attributes[:apns] || attributes['apns'] || nil
           @fcm = attributes[:fcm] || attributes['fcm'] || nil
         end

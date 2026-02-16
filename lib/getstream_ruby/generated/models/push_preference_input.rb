@@ -37,13 +37,13 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @call_level = attributes[:call_level] || attributes['call_level'] || ""
-          @channel_cid = attributes[:channel_cid] || attributes['channel_cid'] || ""
-          @chat_level = attributes[:chat_level] || attributes['chat_level'] || ""
+          @call_level = attributes[:call_level] || attributes['call_level'] || nil
+          @channel_cid = attributes[:channel_cid] || attributes['channel_cid'] || nil
+          @chat_level = attributes[:chat_level] || attributes['chat_level'] || nil
           @disabled_until = attributes[:disabled_until] || attributes['disabled_until'] || nil
-          @feeds_level = attributes[:feeds_level] || attributes['feeds_level'] || ""
-          @remove_disable = attributes[:remove_disable] || attributes['remove_disable'] || false
-          @user_id = attributes[:user_id] || attributes['user_id'] || ""
+          @feeds_level = attributes[:feeds_level] || attributes['feeds_level'] || nil
+          @remove_disable = attributes[:remove_disable] || attributes['remove_disable'] || nil
+          @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @feeds_preferences = attributes[:feeds_preferences] || attributes['feeds_preferences'] || nil
         end
 

@@ -9,9 +9,9 @@ module GetStream
       class UserRequest < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute _id
+        # @!attribute id
         #   @return [String] User ID
-        attr_accessor :_id
+        attr_accessor :id
         # @!attribute image
         #   @return [String] User's profile image URL
         attr_accessor :image
@@ -43,12 +43,12 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @_id = attributes[:_id] || attributes['id']
-          @image = attributes[:image] || attributes['image'] || ""
-          @invisible = attributes[:invisible] || attributes['invisible'] || false
-          @language = attributes[:language] || attributes['language'] || ""
-          @name = attributes[:name] || attributes['name'] || ""
-          @role = attributes[:role] || attributes['role'] || ""
+          @id = attributes[:id] || attributes['id']
+          @image = attributes[:image] || attributes['image'] || nil
+          @invisible = attributes[:invisible] || attributes['invisible'] || nil
+          @language = attributes[:language] || attributes['language'] || nil
+          @name = attributes[:name] || attributes['name'] || nil
+          @role = attributes[:role] || attributes['role'] || nil
           @teams = attributes[:teams] || attributes['teams'] || nil
           @custom = attributes[:custom] || attributes['custom'] || nil
           @privacy_settings = attributes[:privacy_settings] || attributes['privacy_settings'] || nil
@@ -58,7 +58,7 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            _id: 'id',
+            id: 'id',
             image: 'image',
             invisible: 'invisible',
             language: 'language',

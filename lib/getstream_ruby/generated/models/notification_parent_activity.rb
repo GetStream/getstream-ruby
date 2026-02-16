@@ -9,15 +9,15 @@ module GetStream
       class NotificationParentActivity < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute _id
+        # @!attribute id
         #   @return [String]
-        attr_accessor :_id
-        # @!attribute _type
-        #   @return [String]
-        attr_accessor :_type
+        attr_accessor :id
         # @!attribute text
         #   @return [String]
         attr_accessor :text
+        # @!attribute type
+        #   @return [String]
+        attr_accessor :type
         # @!attribute user_id
         #   @return [String]
         attr_accessor :user_id
@@ -28,19 +28,19 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @_id = attributes[:_id] || attributes['id']
-          @_type = attributes[:_type] || attributes['type'] || ""
-          @text = attributes[:text] || attributes['text'] || ""
-          @user_id = attributes[:user_id] || attributes['user_id'] || ""
+          @id = attributes[:id] || attributes['id']
+          @text = attributes[:text] || attributes['text'] || nil
+          @type = attributes[:type] || attributes['type'] || nil
+          @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @attachments = attributes[:attachments] || attributes['attachments'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            _id: 'id',
-            _type: 'type',
+            id: 'id',
             text: 'text',
+            type: 'type',
             user_id: 'user_id',
             attachments: 'attachments'
           }

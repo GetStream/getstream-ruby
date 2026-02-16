@@ -26,8 +26,8 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @target_ids = attributes[:target_ids] || attributes['target_ids']
-          @timeout = attributes[:timeout] || attributes['timeout'] || 0
-          @user_id = attributes[:user_id] || attributes['user_id'] || ""
+          @timeout = attributes[:timeout] || attributes['timeout'] || nil
+          @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @user = attributes[:user] || attributes['user'] || nil
         end
 

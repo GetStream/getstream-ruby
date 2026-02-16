@@ -49,11 +49,11 @@ module GetStream
           @name = attributes[:name] || attributes['name']
           @rule_type = attributes[:rule_type] || attributes['rule_type']
           @action = attributes[:action] || attributes['action']
-          @cooldown_period = attributes[:cooldown_period] || attributes['cooldown_period'] || ""
-          @description = attributes[:description] || attributes['description'] || ""
-          @enabled = attributes[:enabled] || attributes['enabled'] || false
-          @logic = attributes[:logic] || attributes['logic'] || ""
-          @team = attributes[:team] || attributes['team'] || ""
+          @cooldown_period = attributes[:cooldown_period] || attributes['cooldown_period'] || nil
+          @description = attributes[:description] || attributes['description'] || nil
+          @enabled = attributes[:enabled] || attributes['enabled'] || nil
+          @logic = attributes[:logic] || attributes['logic'] || nil
+          @team = attributes[:team] || attributes['team'] || nil
           @conditions = attributes[:conditions] || attributes['conditions'] || nil
           @config_keys = attributes[:config_keys] || attributes['config_keys'] || nil
           @groups = attributes[:groups] || attributes['groups'] || nil

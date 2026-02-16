@@ -9,12 +9,12 @@ module GetStream
       class WSEvent < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute _type
-        #   @return [String]
-        attr_accessor :_type
         # @!attribute created_at
         #   @return [DateTime]
         attr_accessor :created_at
+        # @!attribute type
+        #   @return [String]
+        attr_accessor :type
         # @!attribute custom
         #   @return [Object]
         attr_accessor :custom
@@ -94,21 +94,21 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @_type = attributes[:_type] || attributes['type']
           @created_at = attributes[:created_at] || attributes['created_at']
+          @type = attributes[:type] || attributes['type']
           @custom = attributes[:custom] || attributes['custom']
-          @automoderation = attributes[:automoderation] || attributes['automoderation'] || false
-          @channel_id = attributes[:channel_id] || attributes['channel_id'] || ""
+          @automoderation = attributes[:automoderation] || attributes['automoderation'] || nil
+          @channel_id = attributes[:channel_id] || attributes['channel_id'] || nil
           @channel_last_message_at = attributes[:channel_last_message_at] || attributes['channel_last_message_at'] || nil
-          @channel_type = attributes[:channel_type] || attributes['channel_type'] || ""
-          @cid = attributes[:cid] || attributes['cid'] || ""
-          @connection_id = attributes[:connection_id] || attributes['connection_id'] || ""
-          @parent_id = attributes[:parent_id] || attributes['parent_id'] || ""
-          @reason = attributes[:reason] || attributes['reason'] || ""
-          @team = attributes[:team] || attributes['team'] || ""
-          @thread_id = attributes[:thread_id] || attributes['thread_id'] || ""
-          @user_id = attributes[:user_id] || attributes['user_id'] || ""
-          @watcher_count = attributes[:watcher_count] || attributes['watcher_count'] || 0
+          @channel_type = attributes[:channel_type] || attributes['channel_type'] || nil
+          @cid = attributes[:cid] || attributes['cid'] || nil
+          @connection_id = attributes[:connection_id] || attributes['connection_id'] || nil
+          @parent_id = attributes[:parent_id] || attributes['parent_id'] || nil
+          @reason = attributes[:reason] || attributes['reason'] || nil
+          @team = attributes[:team] || attributes['team'] || nil
+          @thread_id = attributes[:thread_id] || attributes['thread_id'] || nil
+          @user_id = attributes[:user_id] || attributes['user_id'] || nil
+          @watcher_count = attributes[:watcher_count] || attributes['watcher_count'] || nil
           @automoderation_scores = attributes[:automoderation_scores] || attributes['automoderation_scores'] || nil
           @channel = attributes[:channel] || attributes['channel'] || nil
           @created_by = attributes[:created_by] || attributes['created_by'] || nil
@@ -126,8 +126,8 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            _type: 'type',
             created_at: 'created_at',
+            type: 'type',
             custom: 'custom',
             automoderation: 'automoderation',
             channel_id: 'channel_id',

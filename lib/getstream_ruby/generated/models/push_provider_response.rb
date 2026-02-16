@@ -9,15 +9,15 @@ module GetStream
       class PushProviderResponse < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute _type
-        #   @return [String]
-        attr_accessor :_type
         # @!attribute created_at
         #   @return [DateTime]
         attr_accessor :created_at
         # @!attribute name
         #   @return [String]
         attr_accessor :name
+        # @!attribute type
+        #   @return [String]
+        attr_accessor :type
         # @!attribute updated_at
         #   @return [DateTime]
         attr_accessor :updated_at
@@ -97,42 +97,42 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @_type = attributes[:_type] || attributes['type']
           @created_at = attributes[:created_at] || attributes['created_at']
           @name = attributes[:name] || attributes['name']
+          @type = attributes[:type] || attributes['type']
           @updated_at = attributes[:updated_at] || attributes['updated_at']
-          @apn_auth_key = attributes[:apn_auth_key] || attributes['apn_auth_key'] || ""
-          @apn_auth_type = attributes[:apn_auth_type] || attributes['apn_auth_type'] || ""
-          @apn_development = attributes[:apn_development] || attributes['apn_development'] || false
-          @apn_host = attributes[:apn_host] || attributes['apn_host'] || ""
-          @apn_key_id = attributes[:apn_key_id] || attributes['apn_key_id'] || ""
-          @apn_p12_cert = attributes[:apn_p12_cert] || attributes['apn_p12_cert'] || ""
-          @apn_sandbox_certificate = attributes[:apn_sandbox_certificate] || attributes['apn_sandbox_certificate'] || false
-          @apn_supports_remote_notifications = attributes[:apn_supports_remote_notifications] || attributes['apn_supports_remote_notifications'] || false
-          @apn_supports_voip_notifications = attributes[:apn_supports_voip_notifications] || attributes['apn_supports_voip_notifications'] || false
-          @apn_team_id = attributes[:apn_team_id] || attributes['apn_team_id'] || ""
-          @apn_topic = attributes[:apn_topic] || attributes['apn_topic'] || ""
-          @description = attributes[:description] || attributes['description'] || ""
+          @apn_auth_key = attributes[:apn_auth_key] || attributes['apn_auth_key'] || nil
+          @apn_auth_type = attributes[:apn_auth_type] || attributes['apn_auth_type'] || nil
+          @apn_development = attributes[:apn_development] || attributes['apn_development'] || nil
+          @apn_host = attributes[:apn_host] || attributes['apn_host'] || nil
+          @apn_key_id = attributes[:apn_key_id] || attributes['apn_key_id'] || nil
+          @apn_p12_cert = attributes[:apn_p12_cert] || attributes['apn_p12_cert'] || nil
+          @apn_sandbox_certificate = attributes[:apn_sandbox_certificate] || attributes['apn_sandbox_certificate'] || nil
+          @apn_supports_remote_notifications = attributes[:apn_supports_remote_notifications] || attributes['apn_supports_remote_notifications'] || nil
+          @apn_supports_voip_notifications = attributes[:apn_supports_voip_notifications] || attributes['apn_supports_voip_notifications'] || nil
+          @apn_team_id = attributes[:apn_team_id] || attributes['apn_team_id'] || nil
+          @apn_topic = attributes[:apn_topic] || attributes['apn_topic'] || nil
+          @description = attributes[:description] || attributes['description'] || nil
           @disabled_at = attributes[:disabled_at] || attributes['disabled_at'] || nil
-          @disabled_reason = attributes[:disabled_reason] || attributes['disabled_reason'] || ""
-          @firebase_apn_template = attributes[:firebase_apn_template] || attributes['firebase_apn_template'] || ""
-          @firebase_credentials = attributes[:firebase_credentials] || attributes['firebase_credentials'] || ""
-          @firebase_data_template = attributes[:firebase_data_template] || attributes['firebase_data_template'] || ""
-          @firebase_host = attributes[:firebase_host] || attributes['firebase_host'] || ""
-          @firebase_notification_template = attributes[:firebase_notification_template] || attributes['firebase_notification_template'] || ""
-          @firebase_server_key = attributes[:firebase_server_key] || attributes['firebase_server_key'] || ""
-          @huawei_app_id = attributes[:huawei_app_id] || attributes['huawei_app_id'] || ""
-          @huawei_app_secret = attributes[:huawei_app_secret] || attributes['huawei_app_secret'] || ""
-          @xiaomi_app_secret = attributes[:xiaomi_app_secret] || attributes['xiaomi_app_secret'] || ""
-          @xiaomi_package_name = attributes[:xiaomi_package_name] || attributes['xiaomi_package_name'] || ""
+          @disabled_reason = attributes[:disabled_reason] || attributes['disabled_reason'] || nil
+          @firebase_apn_template = attributes[:firebase_apn_template] || attributes['firebase_apn_template'] || nil
+          @firebase_credentials = attributes[:firebase_credentials] || attributes['firebase_credentials'] || nil
+          @firebase_data_template = attributes[:firebase_data_template] || attributes['firebase_data_template'] || nil
+          @firebase_host = attributes[:firebase_host] || attributes['firebase_host'] || nil
+          @firebase_notification_template = attributes[:firebase_notification_template] || attributes['firebase_notification_template'] || nil
+          @firebase_server_key = attributes[:firebase_server_key] || attributes['firebase_server_key'] || nil
+          @huawei_app_id = attributes[:huawei_app_id] || attributes['huawei_app_id'] || nil
+          @huawei_app_secret = attributes[:huawei_app_secret] || attributes['huawei_app_secret'] || nil
+          @xiaomi_app_secret = attributes[:xiaomi_app_secret] || attributes['xiaomi_app_secret'] || nil
+          @xiaomi_package_name = attributes[:xiaomi_package_name] || attributes['xiaomi_package_name'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            _type: 'type',
             created_at: 'created_at',
             name: 'name',
+            type: 'type',
             updated_at: 'updated_at',
             apn_auth_key: 'apn_auth_key',
             apn_auth_type: 'apn_auth_type',

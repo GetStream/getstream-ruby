@@ -28,7 +28,7 @@ module GetStream
           @duration = attributes[:duration] || attributes['duration']
           @comment = attributes[:comment] || attributes['comment']
           @reaction = attributes[:reaction] || attributes['reaction']
-          @notification_created = attributes[:notification_created] || attributes['notification_created'] || false
+          @notification_created = attributes[:notification_created] || attributes['notification_created'] || nil
         end
 
         # Override field mappings for JSON serialization

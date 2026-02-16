@@ -30,9 +30,9 @@ module GetStream
         # @!attribute participants_sessions
         #   @return [Array<ParticipantSessionDetails>]
         attr_accessor :participants_sessions
-        # @!attribute _next
+        # @!attribute next
         #   @return [String]
-        attr_accessor :_next
+        attr_accessor :next
         # @!attribute prev
         #   @return [String]
         attr_accessor :prev
@@ -50,8 +50,8 @@ module GetStream
           @total_participant_duration = attributes[:total_participant_duration] || attributes['total_participant_duration']
           @total_participant_sessions = attributes[:total_participant_sessions] || attributes['total_participant_sessions']
           @participants_sessions = attributes[:participants_sessions] || attributes['participants_sessions']
-          @_next = attributes[:_next] || attributes['next'] || ""
-          @prev = attributes[:prev] || attributes['prev'] || ""
+          @next = attributes[:next] || attributes['next'] || nil
+          @prev = attributes[:prev] || attributes['prev'] || nil
           @session = attributes[:session] || attributes['session'] || nil
         end
 
@@ -65,7 +65,7 @@ module GetStream
             total_participant_duration: 'total_participant_duration',
             total_participant_sessions: 'total_participant_sessions',
             participants_sessions: 'participants_sessions',
-            _next: 'next',
+            next: 'next',
             prev: 'prev',
             session: 'session'
           }

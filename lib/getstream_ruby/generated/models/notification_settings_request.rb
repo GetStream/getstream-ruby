@@ -31,7 +31,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @enabled = attributes[:enabled] || attributes['enabled'] || false
+          @enabled = attributes[:enabled] || attributes['enabled'] || nil
           @call_live_started = attributes[:call_live_started] || attributes['call_live_started'] || nil
           @call_missed = attributes[:call_missed] || attributes['call_missed'] || nil
           @call_notification = attributes[:call_notification] || attributes['call_notification'] || nil

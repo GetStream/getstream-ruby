@@ -12,12 +12,12 @@ module GetStream
         # @!attribute operation
         #   @return [String] Type of update operation to perform. One of: upsert, remove, set
         attr_accessor :operation
-        # @!attribute _next
-        #   @return [String]
-        attr_accessor :_next
         # @!attribute limit
         #   @return [Integer]
         attr_accessor :limit
+        # @!attribute next
+        #   @return [String]
+        attr_accessor :next
         # @!attribute prev
         #   @return [String]
         attr_accessor :prev
@@ -29,9 +29,9 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @operation = attributes[:operation] || attributes['operation']
-          @_next = attributes[:_next] || attributes['next'] || ""
-          @limit = attributes[:limit] || attributes['limit'] || 0
-          @prev = attributes[:prev] || attributes['prev'] || ""
+          @limit = attributes[:limit] || attributes['limit'] || nil
+          @next = attributes[:next] || attributes['next'] || nil
+          @prev = attributes[:prev] || attributes['prev'] || nil
           @members = attributes[:members] || attributes['members'] || nil
         end
 
@@ -39,8 +39,8 @@ module GetStream
         def self.json_field_mappings
           {
             operation: 'operation',
-            _next: 'next',
             limit: 'limit',
+            next: 'next',
             prev: 'prev',
             members: 'members'
           }

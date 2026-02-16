@@ -29,9 +29,9 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @user_id = attributes[:user_id] || attributes['user_id']
-          @invite = attributes[:invite] || attributes['invite'] || false
-          @membership_level = attributes[:membership_level] || attributes['membership_level'] || ""
-          @role = attributes[:role] || attributes['role'] || ""
+          @invite = attributes[:invite] || attributes['invite'] || nil
+          @membership_level = attributes[:membership_level] || attributes['membership_level'] || nil
+          @role = attributes[:role] || attributes['role'] || nil
           @custom = attributes[:custom] || attributes['custom'] || nil
         end
 

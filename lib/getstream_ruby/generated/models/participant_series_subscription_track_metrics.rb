@@ -26,8 +26,8 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @publisher_user_id = attributes[:publisher_user_id] || attributes['publisher_user_id']
-          @publisher_name = attributes[:publisher_name] || attributes['publisher_name'] || ""
-          @publisher_user_session_id = attributes[:publisher_user_session_id] || attributes['publisher_user_session_id'] || ""
+          @publisher_name = attributes[:publisher_name] || attributes['publisher_name'] || nil
+          @publisher_user_session_id = attributes[:publisher_user_session_id] || attributes['publisher_user_session_id'] || nil
           @tracks = attributes[:tracks] || attributes['tracks'] || nil
         end
 

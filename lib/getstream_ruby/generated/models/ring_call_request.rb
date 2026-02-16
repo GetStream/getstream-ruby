@@ -19,7 +19,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @video = attributes[:video] || attributes['video'] || false
+          @video = attributes[:video] || attributes['video'] || nil
           @members_ids = attributes[:members_ids] || attributes['members_ids'] || nil
         end
 

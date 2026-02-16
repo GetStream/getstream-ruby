@@ -9,9 +9,9 @@ module GetStream
       class VideoReactionResponse < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute _type
+        # @!attribute type
         #   @return [String]
-        attr_accessor :_type
+        attr_accessor :type
         # @!attribute user
         #   @return [UserResponse]
         attr_accessor :user
@@ -25,16 +25,16 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @_type = attributes[:_type] || attributes['type']
+          @type = attributes[:type] || attributes['type']
           @user = attributes[:user] || attributes['user']
-          @emoji_code = attributes[:emoji_code] || attributes['emoji_code'] || ""
+          @emoji_code = attributes[:emoji_code] || attributes['emoji_code'] || nil
           @custom = attributes[:custom] || attributes['custom'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            _type: 'type',
+            type: 'type',
             user: 'user',
             emoji_code: 'emoji_code',
             custom: 'custom'

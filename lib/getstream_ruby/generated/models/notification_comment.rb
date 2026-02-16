@@ -9,12 +9,12 @@ module GetStream
       class NotificationComment < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute _id
-        #   @return [String]
-        attr_accessor :_id
         # @!attribute comment
         #   @return [String]
         attr_accessor :comment
+        # @!attribute id
+        #   @return [String]
+        attr_accessor :id
         # @!attribute user_id
         #   @return [String]
         attr_accessor :user_id
@@ -25,8 +25,8 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @_id = attributes[:_id] || attributes['id']
           @comment = attributes[:comment] || attributes['comment']
+          @id = attributes[:id] || attributes['id']
           @user_id = attributes[:user_id] || attributes['user_id']
           @attachments = attributes[:attachments] || attributes['attachments'] || nil
         end
@@ -34,8 +34,8 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            _id: 'id',
             comment: 'comment',
+            id: 'id',
             user_id: 'user_id',
             attachments: 'attachments'
           }

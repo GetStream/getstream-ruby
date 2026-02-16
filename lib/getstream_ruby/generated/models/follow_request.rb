@@ -39,11 +39,11 @@ module GetStream
           super(attributes)
           @source = attributes[:source] || attributes['source']
           @target = attributes[:target] || attributes['target']
-          @copy_custom_to_notification = attributes[:copy_custom_to_notification] || attributes['copy_custom_to_notification'] || false
-          @create_notification_activity = attributes[:create_notification_activity] || attributes['create_notification_activity'] || false
-          @push_preference = attributes[:push_preference] || attributes['push_preference'] || ""
-          @skip_push = attributes[:skip_push] || attributes['skip_push'] || false
-          @status = attributes[:status] || attributes['status'] || ""
+          @copy_custom_to_notification = attributes[:copy_custom_to_notification] || attributes['copy_custom_to_notification'] || nil
+          @create_notification_activity = attributes[:create_notification_activity] || attributes['create_notification_activity'] || nil
+          @push_preference = attributes[:push_preference] || attributes['push_preference'] || nil
+          @skip_push = attributes[:skip_push] || attributes['skip_push'] || nil
+          @status = attributes[:status] || attributes['status'] || nil
           @custom = attributes[:custom] || attributes['custom'] || nil
         end
 

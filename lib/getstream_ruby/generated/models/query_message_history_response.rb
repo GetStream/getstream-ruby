@@ -15,9 +15,9 @@ module GetStream
         # @!attribute message_history
         #   @return [Array<MessageHistoryEntryResponse>] Message history entries
         attr_accessor :message_history
-        # @!attribute _next
+        # @!attribute next
         #   @return [String]
-        attr_accessor :_next
+        attr_accessor :next
         # @!attribute prev
         #   @return [String]
         attr_accessor :prev
@@ -27,8 +27,8 @@ module GetStream
           super(attributes)
           @duration = attributes[:duration] || attributes['duration']
           @message_history = attributes[:message_history] || attributes['message_history']
-          @_next = attributes[:_next] || attributes['next'] || ""
-          @prev = attributes[:prev] || attributes['prev'] || ""
+          @next = attributes[:next] || attributes['next'] || nil
+          @prev = attributes[:prev] || attributes['prev'] || nil
         end
 
         # Override field mappings for JSON serialization
@@ -36,7 +36,7 @@ module GetStream
           {
             duration: 'duration',
             message_history: 'message_history',
-            _next: 'next',
+            next: 'next',
             prev: 'prev'
           }
         end

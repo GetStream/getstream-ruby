@@ -15,9 +15,9 @@ module GetStream
         # @!attribute custom
         #   @return [Object]
         attr_accessor :custom
-        # @!attribute _type
+        # @!attribute type
         #   @return [String]
-        attr_accessor :_type
+        attr_accessor :type
         # @!attribute received_at
         #   @return [DateTime]
         attr_accessor :received_at
@@ -30,7 +30,7 @@ module GetStream
           super(attributes)
           @created_at = attributes[:created_at] || attributes['created_at']
           @custom = attributes[:custom] || attributes['custom']
-          @_type = attributes[:_type] || attributes['type'] || "appeal.accepted"
+          @type = attributes[:type] || attributes['type'] || "appeal.accepted"
           @received_at = attributes[:received_at] || attributes['received_at'] || nil
           @appeal = attributes[:appeal] || attributes['appeal'] || nil
         end
@@ -40,7 +40,7 @@ module GetStream
           {
             created_at: 'created_at',
             custom: 'custom',
-            _type: 'type',
+            type: 'type',
             received_at: 'received_at',
             appeal: 'appeal'
           }

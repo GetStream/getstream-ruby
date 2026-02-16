@@ -16,7 +16,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @filename = attributes[:filename] || attributes['filename'] || ""
+          @filename = attributes[:filename] || attributes['filename'] || nil
         end
 
         # Override field mappings for JSON serialization

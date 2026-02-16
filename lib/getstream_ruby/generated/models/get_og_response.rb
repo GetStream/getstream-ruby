@@ -15,9 +15,6 @@ module GetStream
         # @!attribute custom
         #   @return [Object]
         attr_accessor :custom
-        # @!attribute _type
-        #   @return [String] Attachment type, could be empty, image, audio or video
-        attr_accessor :_type
         # @!attribute asset_url
         #   @return [String] URL of detected video or audio
         attr_accessor :asset_url
@@ -69,6 +66,9 @@ module GetStream
         # @!attribute title_link
         #   @return [String] og:url
         attr_accessor :title_link
+        # @!attribute type
+        #   @return [String] Attachment type, could be empty, image, audio or video
+        attr_accessor :type
         # @!attribute actions
         #   @return [Array<Action>]
         attr_accessor :actions
@@ -84,24 +84,24 @@ module GetStream
           super(attributes)
           @duration = attributes[:duration] || attributes['duration']
           @custom = attributes[:custom] || attributes['custom']
-          @_type = attributes[:_type] || attributes['type'] || ""
-          @asset_url = attributes[:asset_url] || attributes['asset_url'] || ""
-          @author_icon = attributes[:author_icon] || attributes['author_icon'] || ""
-          @author_link = attributes[:author_link] || attributes['author_link'] || ""
-          @author_name = attributes[:author_name] || attributes['author_name'] || ""
-          @color = attributes[:color] || attributes['color'] || ""
-          @fallback = attributes[:fallback] || attributes['fallback'] || ""
-          @footer = attributes[:footer] || attributes['footer'] || ""
-          @footer_icon = attributes[:footer_icon] || attributes['footer_icon'] || ""
-          @image_url = attributes[:image_url] || attributes['image_url'] || ""
-          @og_scrape_url = attributes[:og_scrape_url] || attributes['og_scrape_url'] || ""
-          @original_height = attributes[:original_height] || attributes['original_height'] || 0
-          @original_width = attributes[:original_width] || attributes['original_width'] || 0
-          @pretext = attributes[:pretext] || attributes['pretext'] || ""
-          @text = attributes[:text] || attributes['text'] || ""
-          @thumb_url = attributes[:thumb_url] || attributes['thumb_url'] || ""
-          @title = attributes[:title] || attributes['title'] || ""
-          @title_link = attributes[:title_link] || attributes['title_link'] || ""
+          @asset_url = attributes[:asset_url] || attributes['asset_url'] || nil
+          @author_icon = attributes[:author_icon] || attributes['author_icon'] || nil
+          @author_link = attributes[:author_link] || attributes['author_link'] || nil
+          @author_name = attributes[:author_name] || attributes['author_name'] || nil
+          @color = attributes[:color] || attributes['color'] || nil
+          @fallback = attributes[:fallback] || attributes['fallback'] || nil
+          @footer = attributes[:footer] || attributes['footer'] || nil
+          @footer_icon = attributes[:footer_icon] || attributes['footer_icon'] || nil
+          @image_url = attributes[:image_url] || attributes['image_url'] || nil
+          @og_scrape_url = attributes[:og_scrape_url] || attributes['og_scrape_url'] || nil
+          @original_height = attributes[:original_height] || attributes['original_height'] || nil
+          @original_width = attributes[:original_width] || attributes['original_width'] || nil
+          @pretext = attributes[:pretext] || attributes['pretext'] || nil
+          @text = attributes[:text] || attributes['text'] || nil
+          @thumb_url = attributes[:thumb_url] || attributes['thumb_url'] || nil
+          @title = attributes[:title] || attributes['title'] || nil
+          @title_link = attributes[:title_link] || attributes['title_link'] || nil
+          @type = attributes[:type] || attributes['type'] || nil
           @actions = attributes[:actions] || attributes['actions'] || nil
           @fields = attributes[:fields] || attributes['fields'] || nil
           @giphy = attributes[:giphy] || attributes['giphy'] || nil
@@ -112,7 +112,6 @@ module GetStream
           {
             duration: 'duration',
             custom: 'custom',
-            _type: 'type',
             asset_url: 'asset_url',
             author_icon: 'author_icon',
             author_link: 'author_link',
@@ -130,6 +129,7 @@ module GetStream
             thumb_url: 'thumb_url',
             title: 'title',
             title_link: 'title_link',
+            type: 'type',
             actions: 'actions',
             fields: 'fields',
             giphy: 'giphy'

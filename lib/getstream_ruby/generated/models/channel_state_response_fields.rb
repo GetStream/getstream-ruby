@@ -62,9 +62,9 @@ module GetStream
           @messages = attributes[:messages] || attributes['messages']
           @pinned_messages = attributes[:pinned_messages] || attributes['pinned_messages']
           @threads = attributes[:threads] || attributes['threads']
-          @hidden = attributes[:hidden] || attributes['hidden'] || false
+          @hidden = attributes[:hidden] || attributes['hidden'] || nil
           @hide_messages_before = attributes[:hide_messages_before] || attributes['hide_messages_before'] || nil
-          @watcher_count = attributes[:watcher_count] || attributes['watcher_count'] || 0
+          @watcher_count = attributes[:watcher_count] || attributes['watcher_count'] || nil
           @active_live_locations = attributes[:active_live_locations] || attributes['active_live_locations'] || nil
           @pending_messages = attributes[:pending_messages] || attributes['pending_messages'] || nil
           @read = attributes[:read] || attributes['read'] || nil

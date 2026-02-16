@@ -9,21 +9,21 @@ module GetStream
       class ActionLogResponse < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute _id
-        #   @return [String] Unique identifier of the action log
-        attr_accessor :_id
-        # @!attribute _type
-        #   @return [String] Type of moderation action
-        attr_accessor :_type
         # @!attribute created_at
         #   @return [DateTime] Timestamp when the action was taken
         attr_accessor :created_at
+        # @!attribute id
+        #   @return [String] Unique identifier of the action log
+        attr_accessor :id
         # @!attribute reason
         #   @return [String] Reason for the moderation action
         attr_accessor :reason
         # @!attribute target_user_id
         #   @return [String] ID of the user who was the target of the action
         attr_accessor :target_user_id
+        # @!attribute type
+        #   @return [String] Type of moderation action
+        attr_accessor :type
         # @!attribute user_id
         #   @return [String] ID of the user who performed the action
         attr_accessor :user_id
@@ -46,11 +46,11 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @_id = attributes[:_id] || attributes['id']
-          @_type = attributes[:_type] || attributes['type']
           @created_at = attributes[:created_at] || attributes['created_at']
+          @id = attributes[:id] || attributes['id']
           @reason = attributes[:reason] || attributes['reason']
           @target_user_id = attributes[:target_user_id] || attributes['target_user_id']
+          @type = attributes[:type] || attributes['type']
           @user_id = attributes[:user_id] || attributes['user_id']
           @ai_providers = attributes[:ai_providers] || attributes['ai_providers']
           @custom = attributes[:custom] || attributes['custom']
@@ -62,11 +62,11 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            _id: 'id',
-            _type: 'type',
             created_at: 'created_at',
+            id: 'id',
             reason: 'reason',
             target_user_id: 'target_user_id',
+            type: 'type',
             user_id: 'user_id',
             ai_providers: 'ai_providers',
             custom: 'custom',

@@ -30,8 +30,8 @@ module GetStream
           super(attributes)
           @name = attributes[:name] || attributes['name']
           @stream_url = attributes[:stream_url] || attributes['stream_url']
-          @quality = attributes[:quality] || attributes['quality'] || ""
-          @stream_key = attributes[:stream_key] || attributes['stream_key'] || ""
+          @quality = attributes[:quality] || attributes['quality'] || nil
+          @stream_key = attributes[:stream_key] || attributes['stream_key'] || nil
           @layout = attributes[:layout] || attributes['layout'] || nil
         end
 

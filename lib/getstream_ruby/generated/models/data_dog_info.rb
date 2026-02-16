@@ -22,9 +22,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @api_key = attributes[:api_key] || attributes['api_key'] || ""
-          @enabled = attributes[:enabled] || attributes['enabled'] || false
-          @site = attributes[:site] || attributes['site'] || ""
+          @api_key = attributes[:api_key] || attributes['api_key'] || nil
+          @enabled = attributes[:enabled] || attributes['enabled'] || nil
+          @site = attributes[:site] || attributes['site'] || nil
         end
 
         # Override field mappings for JSON serialization

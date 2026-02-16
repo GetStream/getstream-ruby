@@ -25,9 +25,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @enable_transcription = attributes[:enable_transcription] || attributes['enable_transcription'] || false
-          @external_storage = attributes[:external_storage] || attributes['external_storage'] || ""
-          @language = attributes[:language] || attributes['language'] || ""
+          @enable_transcription = attributes[:enable_transcription] || attributes['enable_transcription'] || nil
+          @external_storage = attributes[:external_storage] || attributes['external_storage'] || nil
+          @language = attributes[:language] || attributes['language'] || nil
           @speech_segment_config = attributes[:speech_segment_config] || attributes['speech_segment_config'] || nil
         end
 

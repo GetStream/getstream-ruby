@@ -28,10 +28,10 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @hide = attributes[:hide] || attributes['hide'] || false
-          @show_less = attributes[:show_less] || attributes['show_less'] || false
-          @show_more = attributes[:show_more] || attributes['show_more'] || false
-          @user_id = attributes[:user_id] || attributes['user_id'] || ""
+          @hide = attributes[:hide] || attributes['hide'] || nil
+          @show_less = attributes[:show_less] || attributes['show_less'] || nil
+          @show_more = attributes[:show_more] || attributes['show_more'] || nil
+          @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @user = attributes[:user] || attributes['user'] || nil
         end
 

@@ -36,9 +36,9 @@ module GetStream
         # @!attribute user
         #   @return [UserResponseCommonFields]
         attr_accessor :user
-        # @!attribute _type
+        # @!attribute type
         #   @return [String] The type of event: "user.deleted" in this case
-        attr_accessor :_type
+        attr_accessor :type
         # @!attribute received_at
         #   @return [DateTime]
         attr_accessor :received_at
@@ -55,7 +55,7 @@ module GetStream
           @mark_messages_deleted = attributes[:mark_messages_deleted] || attributes['mark_messages_deleted']
           @custom = attributes[:custom] || attributes['custom']
           @user = attributes[:user] || attributes['user']
-          @_type = attributes[:_type] || attributes['type'] || "user.deleted"
+          @type = attributes[:type] || attributes['type'] || "user.deleted"
           @received_at = attributes[:received_at] || attributes['received_at'] || nil
         end
 
@@ -71,7 +71,7 @@ module GetStream
             mark_messages_deleted: 'mark_messages_deleted',
             custom: 'custom',
             user: 'user',
-            _type: 'type',
+            type: 'type',
             received_at: 'received_at'
           }
         end

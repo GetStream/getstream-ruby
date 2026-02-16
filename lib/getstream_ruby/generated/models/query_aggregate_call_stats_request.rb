@@ -22,8 +22,8 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @from = attributes[:from] || attributes['from'] || ""
-          @to = attributes[:to] || attributes['to'] || ""
+          @from = attributes[:from] || attributes['from'] || nil
+          @to = attributes[:to] || attributes['to'] || nil
           @report_types = attributes[:report_types] || attributes['report_types'] || nil
         end
 

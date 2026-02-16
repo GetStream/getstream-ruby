@@ -37,14 +37,14 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @continue_closed_caption = attributes[:continue_closed_caption] || attributes['continue_closed_caption'] || false
-          @continue_composite_recording = attributes[:continue_composite_recording] || attributes['continue_composite_recording'] || false
-          @continue_hls = attributes[:continue_hls] || attributes['continue_hls'] || false
-          @continue_individual_recording = attributes[:continue_individual_recording] || attributes['continue_individual_recording'] || false
-          @continue_raw_recording = attributes[:continue_raw_recording] || attributes['continue_raw_recording'] || false
-          @continue_recording = attributes[:continue_recording] || attributes['continue_recording'] || false
-          @continue_rtmp_broadcasts = attributes[:continue_rtmp_broadcasts] || attributes['continue_rtmp_broadcasts'] || false
-          @continue_transcription = attributes[:continue_transcription] || attributes['continue_transcription'] || false
+          @continue_closed_caption = attributes[:continue_closed_caption] || attributes['continue_closed_caption'] || nil
+          @continue_composite_recording = attributes[:continue_composite_recording] || attributes['continue_composite_recording'] || nil
+          @continue_hls = attributes[:continue_hls] || attributes['continue_hls'] || nil
+          @continue_individual_recording = attributes[:continue_individual_recording] || attributes['continue_individual_recording'] || nil
+          @continue_raw_recording = attributes[:continue_raw_recording] || attributes['continue_raw_recording'] || nil
+          @continue_recording = attributes[:continue_recording] || attributes['continue_recording'] || nil
+          @continue_rtmp_broadcasts = attributes[:continue_rtmp_broadcasts] || attributes['continue_rtmp_broadcasts'] || nil
+          @continue_transcription = attributes[:continue_transcription] || attributes['continue_transcription'] || nil
         end
 
         # Override field mappings for JSON serialization

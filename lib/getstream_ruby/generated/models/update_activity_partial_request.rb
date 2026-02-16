@@ -34,10 +34,10 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @copy_custom_to_notification = attributes[:copy_custom_to_notification] || attributes['copy_custom_to_notification'] || false
-          @handle_mention_notifications = attributes[:handle_mention_notifications] || attributes['handle_mention_notifications'] || false
-          @run_activity_processors = attributes[:run_activity_processors] || attributes['run_activity_processors'] || false
-          @user_id = attributes[:user_id] || attributes['user_id'] || ""
+          @copy_custom_to_notification = attributes[:copy_custom_to_notification] || attributes['copy_custom_to_notification'] || nil
+          @handle_mention_notifications = attributes[:handle_mention_notifications] || attributes['handle_mention_notifications'] || nil
+          @run_activity_processors = attributes[:run_activity_processors] || attributes['run_activity_processors'] || nil
+          @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @unset = attributes[:unset] || attributes['unset'] || nil
           @set = attributes[:set] || attributes['set'] || nil
           @user = attributes[:user] || attributes['user'] || nil

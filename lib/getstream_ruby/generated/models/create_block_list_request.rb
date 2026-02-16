@@ -15,9 +15,6 @@ module GetStream
         # @!attribute words
         #   @return [Array<String>] List of words to block
         attr_accessor :words
-        # @!attribute _type
-        #   @return [String] Block list type. One of: regex, domain, domain_allowlist, email, email_allowlist, word
-        attr_accessor :_type
         # @!attribute is_leet_check_enabled
         #   @return [Boolean]
         attr_accessor :is_leet_check_enabled
@@ -27,16 +24,19 @@ module GetStream
         # @!attribute team
         #   @return [String]
         attr_accessor :team
+        # @!attribute type
+        #   @return [String] Block list type. One of: regex, domain, domain_allowlist, email, email_allowlist, word
+        attr_accessor :type
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @name = attributes[:name] || attributes['name']
           @words = attributes[:words] || attributes['words']
-          @_type = attributes[:_type] || attributes['type'] || ""
-          @is_leet_check_enabled = attributes[:is_leet_check_enabled] || attributes['is_leet_check_enabled'] || false
-          @is_plural_check_enabled = attributes[:is_plural_check_enabled] || attributes['is_plural_check_enabled'] || false
-          @team = attributes[:team] || attributes['team'] || ""
+          @is_leet_check_enabled = attributes[:is_leet_check_enabled] || attributes['is_leet_check_enabled'] || nil
+          @is_plural_check_enabled = attributes[:is_plural_check_enabled] || attributes['is_plural_check_enabled'] || nil
+          @team = attributes[:team] || attributes['team'] || nil
+          @type = attributes[:type] || attributes['type'] || nil
         end
 
         # Override field mappings for JSON serialization
@@ -44,10 +44,10 @@ module GetStream
           {
             name: 'name',
             words: 'words',
-            _type: 'type',
             is_leet_check_enabled: 'is_leet_check_enabled',
             is_plural_check_enabled: 'is_plural_check_enabled',
-            team: 'team'
+            team: 'team',
+            type: 'type'
           }
         end
       end

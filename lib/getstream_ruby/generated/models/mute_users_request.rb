@@ -37,12 +37,12 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @audio = attributes[:audio] || attributes['audio'] || false
-          @mute_all_users = attributes[:mute_all_users] || attributes['mute_all_users'] || false
-          @muted_by_id = attributes[:muted_by_id] || attributes['muted_by_id'] || ""
-          @screenshare = attributes[:screenshare] || attributes['screenshare'] || false
-          @screenshare_audio = attributes[:screenshare_audio] || attributes['screenshare_audio'] || false
-          @video = attributes[:video] || attributes['video'] || false
+          @audio = attributes[:audio] || attributes['audio'] || nil
+          @mute_all_users = attributes[:mute_all_users] || attributes['mute_all_users'] || nil
+          @muted_by_id = attributes[:muted_by_id] || attributes['muted_by_id'] || nil
+          @screenshare = attributes[:screenshare] || attributes['screenshare'] || nil
+          @screenshare_audio = attributes[:screenshare_audio] || attributes['screenshare_audio'] || nil
+          @video = attributes[:video] || attributes['video'] || nil
           @user_ids = attributes[:user_ids] || attributes['user_ids'] || nil
           @muted_by = attributes[:muted_by] || attributes['muted_by'] || nil
         end

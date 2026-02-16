@@ -24,9 +24,9 @@ module GetStream
         # @!attribute message
         #   @return [MessageResponse]
         attr_accessor :message
-        # @!attribute _type
+        # @!attribute type
         #   @return [String] The type of event: "reaction.updated" in this case
-        attr_accessor :_type
+        attr_accessor :type
         # @!attribute channel_id
         #   @return [String] The ID of the channel containing the message
         attr_accessor :channel_id
@@ -66,14 +66,14 @@ module GetStream
           @channel = attributes[:channel] || attributes['channel']
           @custom = attributes[:custom] || attributes['custom']
           @message = attributes[:message] || attributes['message']
-          @_type = attributes[:_type] || attributes['type'] || "reaction.updated"
-          @channel_id = attributes[:channel_id] || attributes['channel_id'] || ""
-          @channel_member_count = attributes[:channel_member_count] || attributes['channel_member_count'] || 0
-          @channel_message_count = attributes[:channel_message_count] || attributes['channel_message_count'] || 0
-          @channel_type = attributes[:channel_type] || attributes['channel_type'] || ""
-          @cid = attributes[:cid] || attributes['cid'] || ""
+          @type = attributes[:type] || attributes['type'] || "reaction.updated"
+          @channel_id = attributes[:channel_id] || attributes['channel_id'] || nil
+          @channel_member_count = attributes[:channel_member_count] || attributes['channel_member_count'] || nil
+          @channel_message_count = attributes[:channel_message_count] || attributes['channel_message_count'] || nil
+          @channel_type = attributes[:channel_type] || attributes['channel_type'] || nil
+          @cid = attributes[:cid] || attributes['cid'] || nil
           @received_at = attributes[:received_at] || attributes['received_at'] || nil
-          @team = attributes[:team] || attributes['team'] || ""
+          @team = attributes[:team] || attributes['team'] || nil
           @channel_custom = attributes[:channel_custom] || attributes['channel_custom'] || nil
           @reaction = attributes[:reaction] || attributes['reaction'] || nil
           @user = attributes[:user] || attributes['user'] || nil
@@ -87,7 +87,7 @@ module GetStream
             channel: 'channel',
             custom: 'custom',
             message: 'message',
-            _type: 'type',
+            type: 'type',
             channel_id: 'channel_id',
             channel_member_count: 'channel_member_count',
             channel_message_count: 'channel_message_count',

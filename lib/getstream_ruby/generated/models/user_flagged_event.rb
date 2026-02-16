@@ -21,9 +21,9 @@ module GetStream
         # @!attribute user
         #   @return [UserResponseCommonFields]
         attr_accessor :user
-        # @!attribute _type
+        # @!attribute type
         #   @return [String] The type of event: "user.flagged" in this case
-        attr_accessor :_type
+        attr_accessor :type
         # @!attribute received_at
         #   @return [DateTime]
         attr_accessor :received_at
@@ -41,7 +41,7 @@ module GetStream
           @reason = attributes[:reason] || attributes['reason']
           @total_flags = attributes[:total_flags] || attributes['total_flags']
           @user = attributes[:user] || attributes['user']
-          @_type = attributes[:_type] || attributes['type'] || "user.flagged"
+          @type = attributes[:type] || attributes['type'] || "user.flagged"
           @received_at = attributes[:received_at] || attributes['received_at'] || nil
           @custom = attributes[:custom] || attributes['custom'] || nil
           @target_user = attributes[:target_user] || attributes['target_user'] || nil
@@ -54,7 +54,7 @@ module GetStream
             reason: 'reason',
             total_flags: 'total_flags',
             user: 'user',
-            _type: 'type',
+            type: 'type',
             received_at: 'received_at',
             custom: 'custom',
             target_user: 'target_user'

@@ -40,15 +40,15 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @recording_storage_name = attributes[:recording_storage_name] || attributes['recording_storage_name'] || ""
-          @start_closed_caption = attributes[:start_closed_caption] || attributes['start_closed_caption'] || false
-          @start_composite_recording = attributes[:start_composite_recording] || attributes['start_composite_recording'] || false
-          @start_hls = attributes[:start_hls] || attributes['start_hls'] || false
-          @start_individual_recording = attributes[:start_individual_recording] || attributes['start_individual_recording'] || false
-          @start_raw_recording = attributes[:start_raw_recording] || attributes['start_raw_recording'] || false
-          @start_recording = attributes[:start_recording] || attributes['start_recording'] || false
-          @start_transcription = attributes[:start_transcription] || attributes['start_transcription'] || false
-          @transcription_storage_name = attributes[:transcription_storage_name] || attributes['transcription_storage_name'] || ""
+          @recording_storage_name = attributes[:recording_storage_name] || attributes['recording_storage_name'] || nil
+          @start_closed_caption = attributes[:start_closed_caption] || attributes['start_closed_caption'] || nil
+          @start_composite_recording = attributes[:start_composite_recording] || attributes['start_composite_recording'] || nil
+          @start_hls = attributes[:start_hls] || attributes['start_hls'] || nil
+          @start_individual_recording = attributes[:start_individual_recording] || attributes['start_individual_recording'] || nil
+          @start_raw_recording = attributes[:start_raw_recording] || attributes['start_raw_recording'] || nil
+          @start_recording = attributes[:start_recording] || attributes['start_recording'] || nil
+          @start_transcription = attributes[:start_transcription] || attributes['start_transcription'] || nil
+          @transcription_storage_name = attributes[:transcription_storage_name] || attributes['transcription_storage_name'] || nil
         end
 
         # Override field mappings for JSON serialization

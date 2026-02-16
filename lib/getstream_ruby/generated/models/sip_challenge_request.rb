@@ -9,9 +9,6 @@ module GetStream
       class SIPChallengeRequest < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute _method
-        #   @return [String] SIP method (e.g., INVITE)
-        attr_accessor :_method
         # @!attribute a1
         #   @return [String] Deprecated: A1 hash for backward compatibility
         attr_accessor :a1
@@ -24,6 +21,9 @@ module GetStream
         # @!attribute cnonce
         #   @return [String] Client nonce for qop=auth
         attr_accessor :cnonce
+        # @!attribute method
+        #   @return [String] SIP method (e.g., INVITE)
+        attr_accessor :method
         # @!attribute nc
         #   @return [String] Nonce count for qop=auth
         attr_accessor :nc
@@ -61,20 +61,20 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @_method = attributes[:_method] || attributes['method'] || ""
-          @a1 = attributes[:a1] || attributes['a1'] || ""
-          @algorithm = attributes[:algorithm] || attributes['algorithm'] || ""
-          @charset = attributes[:charset] || attributes['charset'] || ""
-          @cnonce = attributes[:cnonce] || attributes['cnonce'] || ""
-          @nc = attributes[:nc] || attributes['nc'] || ""
-          @nonce = attributes[:nonce] || attributes['nonce'] || ""
-          @opaque = attributes[:opaque] || attributes['opaque'] || ""
-          @realm = attributes[:realm] || attributes['realm'] || ""
-          @response = attributes[:response] || attributes['response'] || ""
-          @stale = attributes[:stale] || attributes['stale'] || false
-          @uri = attributes[:uri] || attributes['uri'] || ""
-          @userhash = attributes[:userhash] || attributes['userhash'] || false
-          @username = attributes[:username] || attributes['username'] || ""
+          @a1 = attributes[:a1] || attributes['a1'] || nil
+          @algorithm = attributes[:algorithm] || attributes['algorithm'] || nil
+          @charset = attributes[:charset] || attributes['charset'] || nil
+          @cnonce = attributes[:cnonce] || attributes['cnonce'] || nil
+          @method = attributes[:method] || attributes['method'] || nil
+          @nc = attributes[:nc] || attributes['nc'] || nil
+          @nonce = attributes[:nonce] || attributes['nonce'] || nil
+          @opaque = attributes[:opaque] || attributes['opaque'] || nil
+          @realm = attributes[:realm] || attributes['realm'] || nil
+          @response = attributes[:response] || attributes['response'] || nil
+          @stale = attributes[:stale] || attributes['stale'] || nil
+          @uri = attributes[:uri] || attributes['uri'] || nil
+          @userhash = attributes[:userhash] || attributes['userhash'] || nil
+          @username = attributes[:username] || attributes['username'] || nil
           @domain = attributes[:domain] || attributes['domain'] || nil
           @qop = attributes[:qop] || attributes['qop'] || nil
         end
@@ -82,11 +82,11 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            _method: 'method',
             a1: 'a1',
             algorithm: 'algorithm',
             charset: 'charset',
             cnonce: 'cnonce',
+            method: 'method',
             nc: 'nc',
             nonce: 'nonce',
             opaque: 'opaque',

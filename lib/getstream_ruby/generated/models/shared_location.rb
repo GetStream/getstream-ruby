@@ -27,7 +27,7 @@ module GetStream
           super(attributes)
           @latitude = attributes[:latitude] || attributes['latitude']
           @longitude = attributes[:longitude] || attributes['longitude']
-          @created_by_device_id = attributes[:created_by_device_id] || attributes['created_by_device_id'] || ""
+          @created_by_device_id = attributes[:created_by_device_id] || attributes['created_by_device_id'] || nil
           @end_at = attributes[:end_at] || attributes['end_at'] || nil
         end
 

@@ -74,9 +74,9 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @action_type = attributes[:action_type] || attributes['action_type']
-          @appeal_id = attributes[:appeal_id] || attributes['appeal_id'] || ""
-          @item_id = attributes[:item_id] || attributes['item_id'] || ""
-          @user_id = attributes[:user_id] || attributes['user_id'] || ""
+          @appeal_id = attributes[:appeal_id] || attributes['appeal_id'] || nil
+          @item_id = attributes[:item_id] || attributes['item_id'] || nil
+          @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @ban = attributes[:ban] || attributes['ban'] || nil
           @block = attributes[:block] || attributes['block'] || nil
           @custom = attributes[:custom] || attributes['custom'] || nil

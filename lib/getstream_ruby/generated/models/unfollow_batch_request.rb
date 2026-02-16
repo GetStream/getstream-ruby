@@ -20,7 +20,7 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @follows = attributes[:follows] || attributes['follows']
-          @delete_notification_activity = attributes[:delete_notification_activity] || attributes['delete_notification_activity'] || false
+          @delete_notification_activity = attributes[:delete_notification_activity] || attributes['delete_notification_activity'] || nil
         end
 
         # Override field mappings for JSON serialization

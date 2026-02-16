@@ -9,12 +9,12 @@ module GetStream
       class DeviceResponse < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute _id
-        #   @return [String] Device ID
-        attr_accessor :_id
         # @!attribute created_at
         #   @return [DateTime] Date/time of creation
         attr_accessor :created_at
+        # @!attribute id
+        #   @return [String] Device ID
+        attr_accessor :id
         # @!attribute push_provider
         #   @return [String] Push provider
         attr_accessor :push_provider
@@ -37,21 +37,21 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @_id = attributes[:_id] || attributes['id']
           @created_at = attributes[:created_at] || attributes['created_at']
+          @id = attributes[:id] || attributes['id']
           @push_provider = attributes[:push_provider] || attributes['push_provider']
           @user_id = attributes[:user_id] || attributes['user_id']
-          @disabled = attributes[:disabled] || attributes['disabled'] || false
-          @disabled_reason = attributes[:disabled_reason] || attributes['disabled_reason'] || ""
-          @push_provider_name = attributes[:push_provider_name] || attributes['push_provider_name'] || ""
-          @voip = attributes[:voip] || attributes['voip'] || false
+          @disabled = attributes[:disabled] || attributes['disabled'] || nil
+          @disabled_reason = attributes[:disabled_reason] || attributes['disabled_reason'] || nil
+          @push_provider_name = attributes[:push_provider_name] || attributes['push_provider_name'] || nil
+          @voip = attributes[:voip] || attributes['voip'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            _id: 'id',
             created_at: 'created_at',
+            id: 'id',
             push_provider: 'push_provider',
             user_id: 'user_id',
             disabled: 'disabled',

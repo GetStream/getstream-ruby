@@ -9,15 +9,15 @@ module GetStream
       class Action < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute _type
-        #   @return [String]
-        attr_accessor :_type
         # @!attribute name
         #   @return [String]
         attr_accessor :name
         # @!attribute text
         #   @return [String]
         attr_accessor :text
+        # @!attribute type
+        #   @return [String]
+        attr_accessor :type
         # @!attribute style
         #   @return [String]
         attr_accessor :style
@@ -28,19 +28,19 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @_type = attributes[:_type] || attributes['type']
           @name = attributes[:name] || attributes['name']
           @text = attributes[:text] || attributes['text']
-          @style = attributes[:style] || attributes['style'] || ""
-          @value = attributes[:value] || attributes['value'] || ""
+          @type = attributes[:type] || attributes['type']
+          @style = attributes[:style] || attributes['style'] || nil
+          @value = attributes[:value] || attributes['value'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            _type: 'type',
             name: 'name',
             text: 'text',
+            type: 'type',
             style: 'style',
             value: 'value'
           }

@@ -9,9 +9,6 @@ module GetStream
       class UpdateExternalStorageResponse < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute _type
-        #   @return [String]
-        attr_accessor :_type
         # @!attribute bucket
         #   @return [String]
         attr_accessor :bucket
@@ -24,25 +21,28 @@ module GetStream
         # @!attribute path
         #   @return [String]
         attr_accessor :path
+        # @!attribute type
+        #   @return [String]
+        attr_accessor :type
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @_type = attributes[:_type] || attributes['type']
           @bucket = attributes[:bucket] || attributes['bucket']
           @duration = attributes[:duration] || attributes['duration']
           @name = attributes[:name] || attributes['name']
           @path = attributes[:path] || attributes['path']
+          @type = attributes[:type] || attributes['type']
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            _type: 'type',
             bucket: 'bucket',
             duration: 'duration',
             name: 'name',
-            path: 'path'
+            path: 'path',
+            type: 'type'
           }
         end
       end

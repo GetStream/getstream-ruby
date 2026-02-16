@@ -9,12 +9,12 @@ module GetStream
       class SIPTrunkResponse < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute _id
-        #   @return [String] Unique identifier for the SIP trunk
-        attr_accessor :_id
         # @!attribute created_at
         #   @return [DateTime] Creation timestamp
         attr_accessor :created_at
+        # @!attribute id
+        #   @return [String] Unique identifier for the SIP trunk
+        attr_accessor :id
         # @!attribute name
         #   @return [String] Name of the SIP trunk
         attr_accessor :name
@@ -37,8 +37,8 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @_id = attributes[:_id] || attributes['id']
           @created_at = attributes[:created_at] || attributes['created_at']
+          @id = attributes[:id] || attributes['id']
           @name = attributes[:name] || attributes['name']
           @password = attributes[:password] || attributes['password']
           @updated_at = attributes[:updated_at] || attributes['updated_at']
@@ -50,8 +50,8 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            _id: 'id',
             created_at: 'created_at',
+            id: 'id',
             name: 'name',
             password: 'password',
             updated_at: 'updated_at',

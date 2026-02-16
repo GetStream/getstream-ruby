@@ -9,15 +9,12 @@ module GetStream
       class AddActivityRequest < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute _type
+        # @!attribute type
         #   @return [String] Type of activity
-        attr_accessor :_type
+        attr_accessor :type
         # @!attribute feeds
         #   @return [Array<String>] List of feeds to add the activity to with a default max limit of 25 feeds
         attr_accessor :feeds
-        # @!attribute _id
-        #   @return [String] Optional ID for the activity
-        attr_accessor :_id
         # @!attribute copy_custom_to_notification
         #   @return [Boolean] Whether to copy custom data to the notification activity (only applies when create_notification_activity is true)
         attr_accessor :copy_custom_to_notification
@@ -27,6 +24,9 @@ module GetStream
         # @!attribute expires_at
         #   @return [String] Expiration time for the activity
         attr_accessor :expires_at
+        # @!attribute id
+        #   @return [String] Optional ID for the activity
+        attr_accessor :id
         # @!attribute parent_id
         #   @return [String] ID of parent activity for replies/comments
         attr_accessor :parent_id
@@ -82,21 +82,21 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @_type = attributes[:_type] || attributes['type']
+          @type = attributes[:type] || attributes['type']
           @feeds = attributes[:feeds] || attributes['feeds']
-          @_id = attributes[:_id] || attributes['id'] || ""
-          @copy_custom_to_notification = attributes[:copy_custom_to_notification] || attributes['copy_custom_to_notification'] || false
-          @create_notification_activity = attributes[:create_notification_activity] || attributes['create_notification_activity'] || false
-          @expires_at = attributes[:expires_at] || attributes['expires_at'] || ""
-          @parent_id = attributes[:parent_id] || attributes['parent_id'] || ""
-          @poll_id = attributes[:poll_id] || attributes['poll_id'] || ""
-          @restrict_replies = attributes[:restrict_replies] || attributes['restrict_replies'] || ""
-          @skip_enrich_url = attributes[:skip_enrich_url] || attributes['skip_enrich_url'] || false
-          @skip_push = attributes[:skip_push] || attributes['skip_push'] || false
-          @text = attributes[:text] || attributes['text'] || ""
-          @user_id = attributes[:user_id] || attributes['user_id'] || ""
-          @visibility = attributes[:visibility] || attributes['visibility'] || ""
-          @visibility_tag = attributes[:visibility_tag] || attributes['visibility_tag'] || ""
+          @copy_custom_to_notification = attributes[:copy_custom_to_notification] || attributes['copy_custom_to_notification'] || nil
+          @create_notification_activity = attributes[:create_notification_activity] || attributes['create_notification_activity'] || nil
+          @expires_at = attributes[:expires_at] || attributes['expires_at'] || nil
+          @id = attributes[:id] || attributes['id'] || nil
+          @parent_id = attributes[:parent_id] || attributes['parent_id'] || nil
+          @poll_id = attributes[:poll_id] || attributes['poll_id'] || nil
+          @restrict_replies = attributes[:restrict_replies] || attributes['restrict_replies'] || nil
+          @skip_enrich_url = attributes[:skip_enrich_url] || attributes['skip_enrich_url'] || nil
+          @skip_push = attributes[:skip_push] || attributes['skip_push'] || nil
+          @text = attributes[:text] || attributes['text'] || nil
+          @user_id = attributes[:user_id] || attributes['user_id'] || nil
+          @visibility = attributes[:visibility] || attributes['visibility'] || nil
+          @visibility_tag = attributes[:visibility_tag] || attributes['visibility_tag'] || nil
           @attachments = attributes[:attachments] || attributes['attachments'] || nil
           @collection_refs = attributes[:collection_refs] || attributes['collection_refs'] || nil
           @filter_tags = attributes[:filter_tags] || attributes['filter_tags'] || nil
@@ -110,12 +110,12 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            _type: 'type',
+            type: 'type',
             feeds: 'feeds',
-            _id: 'id',
             copy_custom_to_notification: 'copy_custom_to_notification',
             create_notification_activity: 'create_notification_activity',
             expires_at: 'expires_at',
+            id: 'id',
             parent_id: 'parent_id',
             poll_id: 'poll_id',
             restrict_replies: 'restrict_replies',

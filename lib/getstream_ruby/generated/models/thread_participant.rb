@@ -50,8 +50,8 @@ module GetStream
           @custom = attributes[:custom] || attributes['custom']
           @last_thread_message_at = attributes[:last_thread_message_at] || attributes['last_thread_message_at'] || nil
           @left_thread_at = attributes[:left_thread_at] || attributes['left_thread_at'] || nil
-          @thread_id = attributes[:thread_id] || attributes['thread_id'] || ""
-          @user_id = attributes[:user_id] || attributes['user_id'] || ""
+          @thread_id = attributes[:thread_id] || attributes['thread_id'] || nil
+          @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @user = attributes[:user] || attributes['user'] || nil
         end
 

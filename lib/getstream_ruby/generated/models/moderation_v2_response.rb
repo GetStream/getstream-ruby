@@ -39,9 +39,9 @@ module GetStream
           super(attributes)
           @action = attributes[:action] || attributes['action']
           @original_text = attributes[:original_text] || attributes['original_text']
-          @blocklist_matched = attributes[:blocklist_matched] || attributes['blocklist_matched'] || ""
-          @platform_circumvented = attributes[:platform_circumvented] || attributes['platform_circumvented'] || false
-          @semantic_filter_matched = attributes[:semantic_filter_matched] || attributes['semantic_filter_matched'] || ""
+          @blocklist_matched = attributes[:blocklist_matched] || attributes['blocklist_matched'] || nil
+          @platform_circumvented = attributes[:platform_circumvented] || attributes['platform_circumvented'] || nil
+          @semantic_filter_matched = attributes[:semantic_filter_matched] || attributes['semantic_filter_matched'] || nil
           @blocklists_matched = attributes[:blocklists_matched] || attributes['blocklists_matched'] || nil
           @image_harms = attributes[:image_harms] || attributes['image_harms'] || nil
           @text_harms = attributes[:text_harms] || attributes['text_harms'] || nil

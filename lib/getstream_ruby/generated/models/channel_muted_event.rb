@@ -15,9 +15,9 @@ module GetStream
         # @!attribute custom
         #   @return [Object]
         attr_accessor :custom
-        # @!attribute _type
+        # @!attribute type
         #   @return [String] The type of event: "channel.muted" in this case
-        attr_accessor :_type
+        attr_accessor :type
         # @!attribute received_at
         #   @return [DateTime]
         attr_accessor :received_at
@@ -36,7 +36,7 @@ module GetStream
           super(attributes)
           @created_at = attributes[:created_at] || attributes['created_at']
           @custom = attributes[:custom] || attributes['custom']
-          @_type = attributes[:_type] || attributes['type'] || "channel.muted"
+          @type = attributes[:type] || attributes['type'] || "channel.muted"
           @received_at = attributes[:received_at] || attributes['received_at'] || nil
           @mutes = attributes[:mutes] || attributes['mutes'] || nil
           @mute = attributes[:mute] || attributes['mute'] || nil
@@ -48,7 +48,7 @@ module GetStream
           {
             created_at: 'created_at',
             custom: 'custom',
-            _type: 'type',
+            type: 'type',
             received_at: 'received_at',
             mutes: 'mutes',
             mute: 'mute',

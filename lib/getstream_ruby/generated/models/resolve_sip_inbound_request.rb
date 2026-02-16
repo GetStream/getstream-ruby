@@ -31,7 +31,7 @@ module GetStream
           @sip_caller_number = attributes[:sip_caller_number] || attributes['sip_caller_number']
           @sip_trunk_number = attributes[:sip_trunk_number] || attributes['sip_trunk_number']
           @challenge = attributes[:challenge] || attributes['challenge']
-          @routing_number = attributes[:routing_number] || attributes['routing_number'] || ""
+          @routing_number = attributes[:routing_number] || attributes['routing_number'] || nil
           @sip_headers = attributes[:sip_headers] || attributes['sip_headers'] || nil
         end
 

@@ -27,7 +27,7 @@ module GetStream
           super(attributes)
           @warning_code = attributes[:warning_code] || attributes['warning_code']
           @warning_description = attributes[:warning_description] || attributes['warning_description']
-          @channel_search_count = attributes[:channel_search_count] || attributes['channel_search_count'] || 0
+          @channel_search_count = attributes[:channel_search_count] || attributes['channel_search_count'] || nil
           @channel_search_cids = attributes[:channel_search_cids] || attributes['channel_search_cids'] || nil
         end
 

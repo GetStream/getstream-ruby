@@ -9,12 +9,6 @@ module GetStream
       class CallResponse < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute _id
-        #   @return [String] Call ID
-        attr_accessor :_id
-        # @!attribute _type
-        #   @return [String] The type of call
-        attr_accessor :_type
         # @!attribute backstage
         #   @return [Boolean]
         attr_accessor :backstage
@@ -30,6 +24,9 @@ module GetStream
         # @!attribute current_session_id
         #   @return [String]
         attr_accessor :current_session_id
+        # @!attribute id
+        #   @return [String] Call ID
+        attr_accessor :id
         # @!attribute recording
         #   @return [Boolean]
         attr_accessor :recording
@@ -39,6 +36,9 @@ module GetStream
         # @!attribute translating
         #   @return [Boolean]
         attr_accessor :translating
+        # @!attribute type
+        #   @return [String] The type of call
+        attr_accessor :type
         # @!attribute updated_at
         #   @return [DateTime] Date/time of the last update
         attr_accessor :updated_at
@@ -88,16 +88,16 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @_id = attributes[:_id] || attributes['id']
-          @_type = attributes[:_type] || attributes['type']
           @backstage = attributes[:backstage] || attributes['backstage']
           @captioning = attributes[:captioning] || attributes['captioning']
           @cid = attributes[:cid] || attributes['cid']
           @created_at = attributes[:created_at] || attributes['created_at']
           @current_session_id = attributes[:current_session_id] || attributes['current_session_id']
+          @id = attributes[:id] || attributes['id']
           @recording = attributes[:recording] || attributes['recording']
           @transcribing = attributes[:transcribing] || attributes['transcribing']
           @translating = attributes[:translating] || attributes['translating']
+          @type = attributes[:type] || attributes['type']
           @updated_at = attributes[:updated_at] || attributes['updated_at']
           @blocked_user_ids = attributes[:blocked_user_ids] || attributes['blocked_user_ids']
           @created_by = attributes[:created_by] || attributes['created_by']
@@ -105,12 +105,12 @@ module GetStream
           @egress = attributes[:egress] || attributes['egress']
           @ingress = attributes[:ingress] || attributes['ingress']
           @settings = attributes[:settings] || attributes['settings']
-          @channel_cid = attributes[:channel_cid] || attributes['channel_cid'] || ""
+          @channel_cid = attributes[:channel_cid] || attributes['channel_cid'] || nil
           @ended_at = attributes[:ended_at] || attributes['ended_at'] || nil
-          @join_ahead_time_seconds = attributes[:join_ahead_time_seconds] || attributes['join_ahead_time_seconds'] || 0
-          @routing_number = attributes[:routing_number] || attributes['routing_number'] || ""
+          @join_ahead_time_seconds = attributes[:join_ahead_time_seconds] || attributes['join_ahead_time_seconds'] || nil
+          @routing_number = attributes[:routing_number] || attributes['routing_number'] || nil
           @starts_at = attributes[:starts_at] || attributes['starts_at'] || nil
-          @team = attributes[:team] || attributes['team'] || ""
+          @team = attributes[:team] || attributes['team'] || nil
           @session = attributes[:session] || attributes['session'] || nil
           @thumbnails = attributes[:thumbnails] || attributes['thumbnails'] || nil
         end
@@ -118,16 +118,16 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            _id: 'id',
-            _type: 'type',
             backstage: 'backstage',
             captioning: 'captioning',
             cid: 'cid',
             created_at: 'created_at',
             current_session_id: 'current_session_id',
+            id: 'id',
             recording: 'recording',
             transcribing: 'transcribing',
             translating: 'translating',
+            type: 'type',
             updated_at: 'updated_at',
             blocked_user_ids: 'blocked_user_ids',
             created_by: 'created_by',

@@ -22,8 +22,8 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @async = attributes[:async] || attributes['async'] || false
-          @enabled = attributes[:enabled] || attributes['enabled'] || false
+          @async = attributes[:async] || attributes['async'] || nil
+          @enabled = attributes[:enabled] || attributes['enabled'] || nil
           @rules = attributes[:rules] || attributes['rules'] || nil
         end
 

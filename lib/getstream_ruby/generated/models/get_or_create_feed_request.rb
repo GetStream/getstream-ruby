@@ -9,15 +9,15 @@ module GetStream
       class GetOrCreateFeedRequest < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute _next
-        #   @return [String]
-        attr_accessor :_next
         # @!attribute id_around
         #   @return [String]
         attr_accessor :id_around
         # @!attribute limit
         #   @return [Integer]
         attr_accessor :limit
+        # @!attribute next
+        #   @return [String]
+        attr_accessor :next
         # @!attribute prev
         #   @return [String]
         attr_accessor :prev
@@ -64,13 +64,13 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @_next = attributes[:_next] || attributes['next'] || ""
-          @id_around = attributes[:id_around] || attributes['id_around'] || ""
-          @limit = attributes[:limit] || attributes['limit'] || 0
-          @prev = attributes[:prev] || attributes['prev'] || ""
-          @user_id = attributes[:user_id] || attributes['user_id'] || ""
-          @view = attributes[:view] || attributes['view'] || ""
-          @watch = attributes[:watch] || attributes['watch'] || false
+          @id_around = attributes[:id_around] || attributes['id_around'] || nil
+          @limit = attributes[:limit] || attributes['limit'] || nil
+          @next = attributes[:next] || attributes['next'] || nil
+          @prev = attributes[:prev] || attributes['prev'] || nil
+          @user_id = attributes[:user_id] || attributes['user_id'] || nil
+          @view = attributes[:view] || attributes['view'] || nil
+          @watch = attributes[:watch] || attributes['watch'] || nil
           @data = attributes[:data] || attributes['data'] || nil
           @enrichment_options = attributes[:enrichment_options] || attributes['enrichment_options'] || nil
           @external_ranking = attributes[:external_ranking] || attributes['external_ranking'] || nil
@@ -86,9 +86,9 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            _next: 'next',
             id_around: 'id_around',
             limit: 'limit',
+            next: 'next',
             prev: 'prev',
             user_id: 'user_id',
             view: 'view',

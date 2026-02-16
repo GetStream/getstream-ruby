@@ -9,12 +9,12 @@ module GetStream
       class SFULocationResponse < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute _id
-        #   @return [String]
-        attr_accessor :_id
         # @!attribute datacenter
         #   @return [String]
         attr_accessor :datacenter
+        # @!attribute id
+        #   @return [String]
+        attr_accessor :id
         # @!attribute coordinates
         #   @return [CoordinatesResponse]
         attr_accessor :coordinates
@@ -28,18 +28,18 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @_id = attributes[:_id] || attributes['id']
           @datacenter = attributes[:datacenter] || attributes['datacenter']
+          @id = attributes[:id] || attributes['id']
           @coordinates = attributes[:coordinates] || attributes['coordinates']
           @location = attributes[:location] || attributes['location']
-          @count = attributes[:count] || attributes['count'] || 0
+          @count = attributes[:count] || attributes['count'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            _id: 'id',
             datacenter: 'datacenter',
+            id: 'id',
             coordinates: 'coordinates',
             location: 'location',
             count: 'count'

@@ -22,7 +22,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @file = attributes[:file] || attributes['file'] || ""
+          @file = attributes[:file] || attributes['file'] || nil
           @upload_sizes = attributes[:upload_sizes] || attributes['upload_sizes'] || nil
           @user = attributes[:user] || attributes['user'] || nil
         end

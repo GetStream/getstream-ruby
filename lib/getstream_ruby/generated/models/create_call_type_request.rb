@@ -29,7 +29,7 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @name = attributes[:name] || attributes['name']
-          @external_storage = attributes[:external_storage] || attributes['external_storage'] || ""
+          @external_storage = attributes[:external_storage] || attributes['external_storage'] || nil
           @grants = attributes[:grants] || attributes['grants'] || nil
           @notification_settings = attributes[:notification_settings] || attributes['notification_settings'] || nil
           @settings = attributes[:settings] || attributes['settings'] || nil

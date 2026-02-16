@@ -18,9 +18,9 @@ module GetStream
         # @!attribute custom
         #   @return [Object]
         attr_accessor :custom
-        # @!attribute _type
+        # @!attribute type
         #   @return [String] The type of event: "feeds.stories_feed.updated" in this case
-        attr_accessor :_type
+        attr_accessor :type
         # @!attribute feed_visibility
         #   @return [String]
         attr_accessor :feed_visibility
@@ -43,8 +43,8 @@ module GetStream
           @created_at = attributes[:created_at] || attributes['created_at']
           @fid = attributes[:fid] || attributes['fid']
           @custom = attributes[:custom] || attributes['custom']
-          @_type = attributes[:_type] || attributes['type'] || "feeds.stories_feed.updated"
-          @feed_visibility = attributes[:feed_visibility] || attributes['feed_visibility'] || ""
+          @type = attributes[:type] || attributes['type'] || "feeds.stories_feed.updated"
+          @feed_visibility = attributes[:feed_visibility] || attributes['feed_visibility'] || nil
           @received_at = attributes[:received_at] || attributes['received_at'] || nil
           @activities = attributes[:activities] || attributes['activities'] || nil
           @aggregated_activities = attributes[:aggregated_activities] || attributes['aggregated_activities'] || nil
@@ -57,7 +57,7 @@ module GetStream
             created_at: 'created_at',
             fid: 'fid',
             custom: 'custom',
-            _type: 'type',
+            type: 'type',
             feed_visibility: 'feed_visibility',
             received_at: 'received_at',
             activities: 'activities',

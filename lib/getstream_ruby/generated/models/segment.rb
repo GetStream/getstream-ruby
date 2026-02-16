@@ -9,12 +9,6 @@ module GetStream
       class Segment < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute _id
-        #   @return [String]
-        attr_accessor :_id
-        # @!attribute _type
-        #   @return [String]
-        attr_accessor :_type
         # @!attribute all_sender_channels
         #   @return [Boolean]
         attr_accessor :all_sender_channels
@@ -24,12 +18,18 @@ module GetStream
         # @!attribute created_at
         #   @return [DateTime]
         attr_accessor :created_at
+        # @!attribute id
+        #   @return [String]
+        attr_accessor :id
         # @!attribute name
         #   @return [String]
         attr_accessor :name
         # @!attribute size
         #   @return [Integer]
         attr_accessor :size
+        # @!attribute type
+        #   @return [String]
+        attr_accessor :type
         # @!attribute updated_at
         #   @return [DateTime]
         attr_accessor :updated_at
@@ -49,30 +49,30 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @_id = attributes[:_id] || attributes['id']
-          @_type = attributes[:_type] || attributes['type']
           @all_sender_channels = attributes[:all_sender_channels] || attributes['all_sender_channels']
           @all_users = attributes[:all_users] || attributes['all_users']
           @created_at = attributes[:created_at] || attributes['created_at']
+          @id = attributes[:id] || attributes['id']
           @name = attributes[:name] || attributes['name']
           @size = attributes[:size] || attributes['size']
+          @type = attributes[:type] || attributes['type']
           @updated_at = attributes[:updated_at] || attributes['updated_at']
           @deleted_at = attributes[:deleted_at] || attributes['deleted_at'] || nil
-          @description = attributes[:description] || attributes['description'] || ""
-          @task_id = attributes[:task_id] || attributes['task_id'] || ""
+          @description = attributes[:description] || attributes['description'] || nil
+          @task_id = attributes[:task_id] || attributes['task_id'] || nil
           @filter = attributes[:filter] || attributes['filter'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            _id: 'id',
-            _type: 'type',
             all_sender_channels: 'all_sender_channels',
             all_users: 'all_users',
             created_at: 'created_at',
+            id: 'id',
             name: 'name',
             size: 'size',
+            type: 'type',
             updated_at: 'updated_at',
             deleted_at: 'deleted_at',
             description: 'description',

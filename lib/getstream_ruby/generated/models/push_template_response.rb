@@ -36,7 +36,7 @@ module GetStream
           @event_type = attributes[:event_type] || attributes['event_type']
           @push_provider_internal_id = attributes[:push_provider_internal_id] || attributes['push_provider_internal_id']
           @updated_at = attributes[:updated_at] || attributes['updated_at']
-          @template = attributes[:template] || attributes['template'] || ""
+          @template = attributes[:template] || attributes['template'] || nil
         end
 
         # Override field mappings for JSON serialization

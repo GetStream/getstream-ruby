@@ -18,9 +18,9 @@ module GetStream
         # @!attribute user
         #   @return [UserResponseCommonFields]
         attr_accessor :user
-        # @!attribute _type
+        # @!attribute type
         #   @return [String] The type of event: "user.unbanned" in this case
-        attr_accessor :_type
+        attr_accessor :type
         # @!attribute channel_id
         #   @return [String] The ID of the channel where the target user was unbanned
         attr_accessor :channel_id
@@ -58,15 +58,15 @@ module GetStream
           @created_at = attributes[:created_at] || attributes['created_at']
           @custom = attributes[:custom] || attributes['custom']
           @user = attributes[:user] || attributes['user']
-          @_type = attributes[:_type] || attributes['type'] || "user.unbanned"
-          @channel_id = attributes[:channel_id] || attributes['channel_id'] || ""
-          @channel_member_count = attributes[:channel_member_count] || attributes['channel_member_count'] || 0
-          @channel_message_count = attributes[:channel_message_count] || attributes['channel_message_count'] || 0
-          @channel_type = attributes[:channel_type] || attributes['channel_type'] || ""
-          @cid = attributes[:cid] || attributes['cid'] || ""
+          @type = attributes[:type] || attributes['type'] || "user.unbanned"
+          @channel_id = attributes[:channel_id] || attributes['channel_id'] || nil
+          @channel_member_count = attributes[:channel_member_count] || attributes['channel_member_count'] || nil
+          @channel_message_count = attributes[:channel_message_count] || attributes['channel_message_count'] || nil
+          @channel_type = attributes[:channel_type] || attributes['channel_type'] || nil
+          @cid = attributes[:cid] || attributes['cid'] || nil
           @received_at = attributes[:received_at] || attributes['received_at'] || nil
-          @shadow = attributes[:shadow] || attributes['shadow'] || false
-          @team = attributes[:team] || attributes['team'] || ""
+          @shadow = attributes[:shadow] || attributes['shadow'] || nil
+          @team = attributes[:team] || attributes['team'] || nil
           @channel_custom = attributes[:channel_custom] || attributes['channel_custom'] || nil
           @created_by = attributes[:created_by] || attributes['created_by'] || nil
         end
@@ -77,7 +77,7 @@ module GetStream
             created_at: 'created_at',
             custom: 'custom',
             user: 'user',
-            _type: 'type',
+            type: 'type',
             channel_id: 'channel_id',
             channel_member_count: 'channel_member_count',
             channel_message_count: 'channel_message_count',

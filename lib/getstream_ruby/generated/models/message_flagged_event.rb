@@ -18,9 +18,9 @@ module GetStream
         # @!attribute message
         #   @return [MessageResponse]
         attr_accessor :message
-        # @!attribute _type
+        # @!attribute type
         #   @return [String] The type of event: "message.flagged" in this case
-        attr_accessor :_type
+        attr_accessor :type
         # @!attribute channel_id
         #   @return [String] The ID of the channel where the message was sent
         attr_accessor :channel_id
@@ -70,16 +70,16 @@ module GetStream
           @created_at = attributes[:created_at] || attributes['created_at']
           @message_id = attributes[:message_id] || attributes['message_id']
           @message = attributes[:message] || attributes['message']
-          @_type = attributes[:_type] || attributes['type'] || "message.flagged"
-          @channel_id = attributes[:channel_id] || attributes['channel_id'] || ""
-          @channel_member_count = attributes[:channel_member_count] || attributes['channel_member_count'] || 0
-          @channel_message_count = attributes[:channel_message_count] || attributes['channel_message_count'] || 0
-          @channel_type = attributes[:channel_type] || attributes['channel_type'] || ""
-          @cid = attributes[:cid] || attributes['cid'] || ""
-          @reason = attributes[:reason] || attributes['reason'] || ""
+          @type = attributes[:type] || attributes['type'] || "message.flagged"
+          @channel_id = attributes[:channel_id] || attributes['channel_id'] || nil
+          @channel_member_count = attributes[:channel_member_count] || attributes['channel_member_count'] || nil
+          @channel_message_count = attributes[:channel_message_count] || attributes['channel_message_count'] || nil
+          @channel_type = attributes[:channel_type] || attributes['channel_type'] || nil
+          @cid = attributes[:cid] || attributes['cid'] || nil
+          @reason = attributes[:reason] || attributes['reason'] || nil
           @received_at = attributes[:received_at] || attributes['received_at'] || nil
-          @team = attributes[:team] || attributes['team'] || ""
-          @total_flags = attributes[:total_flags] || attributes['total_flags'] || 0
+          @team = attributes[:team] || attributes['team'] || nil
+          @total_flags = attributes[:total_flags] || attributes['total_flags'] || nil
           @channel_custom = attributes[:channel_custom] || attributes['channel_custom'] || nil
           @custom = attributes[:custom] || attributes['custom'] || nil
           @details = attributes[:details] || attributes['details'] || nil
@@ -93,7 +93,7 @@ module GetStream
             created_at: 'created_at',
             message_id: 'message_id',
             message: 'message',
-            _type: 'type',
+            type: 'type',
             channel_id: 'channel_id',
             channel_member_count: 'channel_member_count',
             channel_message_count: 'channel_message_count',

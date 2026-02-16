@@ -26,9 +26,9 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @user_ids = attributes[:user_ids] || attributes['user_ids']
-          @created_by_id = attributes[:created_by_id] || attributes['created_by_id'] || ""
-          @mark_channels_deleted = attributes[:mark_channels_deleted] || attributes['mark_channels_deleted'] || false
-          @mark_messages_deleted = attributes[:mark_messages_deleted] || attributes['mark_messages_deleted'] || false
+          @created_by_id = attributes[:created_by_id] || attributes['created_by_id'] || nil
+          @mark_channels_deleted = attributes[:mark_channels_deleted] || attributes['mark_channels_deleted'] || nil
+          @mark_messages_deleted = attributes[:mark_messages_deleted] || attributes['mark_messages_deleted'] || nil
         end
 
         # Override field mappings for JSON serialization

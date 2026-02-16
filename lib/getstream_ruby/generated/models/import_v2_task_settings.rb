@@ -25,9 +25,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @mode = attributes[:mode] || attributes['mode'] || ""
-          @path = attributes[:path] || attributes['path'] || ""
-          @skip_references_check = attributes[:skip_references_check] || attributes['skip_references_check'] || false
+          @mode = attributes[:mode] || attributes['mode'] || nil
+          @path = attributes[:path] || attributes['path'] || nil
+          @skip_references_check = attributes[:skip_references_check] || attributes['skip_references_check'] || nil
           @s3 = attributes[:s3] || attributes['s3'] || nil
         end
 

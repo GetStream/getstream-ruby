@@ -9,18 +9,18 @@ module GetStream
       class PendingMessageEvent < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute _method
-        #   @return [String] The method used for the pending message
-        attr_accessor :_method
         # @!attribute created_at
         #   @return [DateTime] Date/time of creation
         attr_accessor :created_at
+        # @!attribute method
+        #   @return [String] The method used for the pending message
+        attr_accessor :method
         # @!attribute custom
         #   @return [Object]
         attr_accessor :custom
-        # @!attribute _type
+        # @!attribute type
         #   @return [String] The type of event: "message.pending" in this case
-        attr_accessor :_type
+        attr_accessor :type
         # @!attribute received_at
         #   @return [DateTime]
         attr_accessor :received_at
@@ -40,10 +40,10 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @_method = attributes[:_method] || attributes['method']
           @created_at = attributes[:created_at] || attributes['created_at']
+          @method = attributes[:method] || attributes['method']
           @custom = attributes[:custom] || attributes['custom']
-          @_type = attributes[:_type] || attributes['type'] || "message.pending"
+          @type = attributes[:type] || attributes['type'] || "message.pending"
           @received_at = attributes[:received_at] || attributes['received_at'] || nil
           @channel = attributes[:channel] || attributes['channel'] || nil
           @message = attributes[:message] || attributes['message'] || nil
@@ -54,10 +54,10 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            _method: 'method',
             created_at: 'created_at',
+            method: 'method',
             custom: 'custom',
-            _type: 'type',
+            type: 'type',
             received_at: 'received_at',
             channel: 'channel',
             message: 'message',

@@ -9,18 +9,18 @@ module GetStream
       class NotificationTarget < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute _id
+        # @!attribute id
         #   @return [String] The ID of the target (activity ID or user ID)
-        attr_accessor :_id
-        # @!attribute _type
-        #   @return [String] The type of the target activity (for activity targets)
-        attr_accessor :_type
+        attr_accessor :id
         # @!attribute name
         #   @return [String] The name of the target user (for user targets like follows)
         attr_accessor :name
         # @!attribute text
         #   @return [String] The text content of the target activity (for activity targets)
         attr_accessor :text
+        # @!attribute type
+        #   @return [String] The type of the target activity (for activity targets)
+        attr_accessor :type
         # @!attribute user_id
         #   @return [String] The ID of the user who created the target activity (for activity targets)
         attr_accessor :user_id
@@ -37,11 +37,11 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @_id = attributes[:_id] || attributes['id']
-          @_type = attributes[:_type] || attributes['type'] || ""
-          @name = attributes[:name] || attributes['name'] || ""
-          @text = attributes[:text] || attributes['text'] || ""
-          @user_id = attributes[:user_id] || attributes['user_id'] || ""
+          @id = attributes[:id] || attributes['id']
+          @name = attributes[:name] || attributes['name'] || nil
+          @text = attributes[:text] || attributes['text'] || nil
+          @type = attributes[:type] || attributes['type'] || nil
+          @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @attachments = attributes[:attachments] || attributes['attachments'] || nil
           @comment = attributes[:comment] || attributes['comment'] || nil
           @parent_activity = attributes[:parent_activity] || attributes['parent_activity'] || nil
@@ -50,10 +50,10 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            _id: 'id',
-            _type: 'type',
+            id: 'id',
             name: 'name',
             text: 'text',
+            type: 'type',
             user_id: 'user_id',
             attachments: 'attachments',
             comment: 'comment',

@@ -76,17 +76,17 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @copy_custom_to_notification = attributes[:copy_custom_to_notification] || attributes['copy_custom_to_notification'] || false
+          @copy_custom_to_notification = attributes[:copy_custom_to_notification] || attributes['copy_custom_to_notification'] || nil
           @expires_at = attributes[:expires_at] || attributes['expires_at'] || nil
-          @handle_mention_notifications = attributes[:handle_mention_notifications] || attributes['handle_mention_notifications'] || false
-          @poll_id = attributes[:poll_id] || attributes['poll_id'] || ""
-          @restrict_replies = attributes[:restrict_replies] || attributes['restrict_replies'] || ""
-          @run_activity_processors = attributes[:run_activity_processors] || attributes['run_activity_processors'] || false
-          @skip_enrich_url = attributes[:skip_enrich_url] || attributes['skip_enrich_url'] || false
-          @text = attributes[:text] || attributes['text'] || ""
-          @user_id = attributes[:user_id] || attributes['user_id'] || ""
-          @visibility = attributes[:visibility] || attributes['visibility'] || ""
-          @visibility_tag = attributes[:visibility_tag] || attributes['visibility_tag'] || ""
+          @handle_mention_notifications = attributes[:handle_mention_notifications] || attributes['handle_mention_notifications'] || nil
+          @poll_id = attributes[:poll_id] || attributes['poll_id'] || nil
+          @restrict_replies = attributes[:restrict_replies] || attributes['restrict_replies'] || nil
+          @run_activity_processors = attributes[:run_activity_processors] || attributes['run_activity_processors'] || nil
+          @skip_enrich_url = attributes[:skip_enrich_url] || attributes['skip_enrich_url'] || nil
+          @text = attributes[:text] || attributes['text'] || nil
+          @user_id = attributes[:user_id] || attributes['user_id'] || nil
+          @visibility = attributes[:visibility] || attributes['visibility'] || nil
+          @visibility_tag = attributes[:visibility_tag] || attributes['visibility_tag'] || nil
           @attachments = attributes[:attachments] || attributes['attachments'] || nil
           @collection_refs = attributes[:collection_refs] || attributes['collection_refs'] || nil
           @feeds = attributes[:feeds] || attributes['feeds'] || nil

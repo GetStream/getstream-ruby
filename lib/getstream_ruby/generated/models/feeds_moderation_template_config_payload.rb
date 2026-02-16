@@ -20,7 +20,7 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @data_types = attributes[:data_types] || attributes['data_types']
-          @config_key = attributes[:config_key] || attributes['config_key'] || ""
+          @config_key = attributes[:config_key] || attributes['config_key'] || nil
         end
 
         # Override field mappings for JSON serialization

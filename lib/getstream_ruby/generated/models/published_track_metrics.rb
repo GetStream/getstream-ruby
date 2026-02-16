@@ -34,9 +34,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @codec = attributes[:codec] || attributes['codec'] || ""
-          @track_id = attributes[:track_id] || attributes['track_id'] || ""
-          @track_type = attributes[:track_type] || attributes['track_type'] || ""
+          @codec = attributes[:codec] || attributes['codec'] || nil
+          @track_id = attributes[:track_id] || attributes['track_id'] || nil
+          @track_type = attributes[:track_type] || attributes['track_type'] || nil
           @warnings = attributes[:warnings] || attributes['warnings'] || nil
           @bitrate = attributes[:bitrate] || attributes['bitrate'] || nil
           @framerate = attributes[:framerate] || attributes['framerate'] || nil

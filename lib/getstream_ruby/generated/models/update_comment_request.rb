@@ -43,12 +43,12 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @comment = attributes[:comment] || attributes['comment'] || ""
-          @copy_custom_to_notification = attributes[:copy_custom_to_notification] || attributes['copy_custom_to_notification'] || false
-          @handle_mention_notifications = attributes[:handle_mention_notifications] || attributes['handle_mention_notifications'] || false
-          @skip_enrich_url = attributes[:skip_enrich_url] || attributes['skip_enrich_url'] || false
-          @skip_push = attributes[:skip_push] || attributes['skip_push'] || false
-          @user_id = attributes[:user_id] || attributes['user_id'] || ""
+          @comment = attributes[:comment] || attributes['comment'] || nil
+          @copy_custom_to_notification = attributes[:copy_custom_to_notification] || attributes['copy_custom_to_notification'] || nil
+          @handle_mention_notifications = attributes[:handle_mention_notifications] || attributes['handle_mention_notifications'] || nil
+          @skip_enrich_url = attributes[:skip_enrich_url] || attributes['skip_enrich_url'] || nil
+          @skip_push = attributes[:skip_push] || attributes['skip_push'] || nil
+          @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @attachments = attributes[:attachments] || attributes['attachments'] || nil
           @mentioned_user_ids = attributes[:mentioned_user_ids] || attributes['mentioned_user_ids'] || nil
           @custom = attributes[:custom] || attributes['custom'] || nil

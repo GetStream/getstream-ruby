@@ -9,9 +9,6 @@ module GetStream
       class ReactionResponse < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute _type
-        #   @return [String] Type of reaction
-        attr_accessor :_type
         # @!attribute created_at
         #   @return [DateTime] Date/time of creation
         attr_accessor :created_at
@@ -21,6 +18,9 @@ module GetStream
         # @!attribute score
         #   @return [Integer] Score of the reaction
         attr_accessor :score
+        # @!attribute type
+        #   @return [String] Type of reaction
+        attr_accessor :type
         # @!attribute updated_at
         #   @return [DateTime] Date/time of the last update
         attr_accessor :updated_at
@@ -37,10 +37,10 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @_type = attributes[:_type] || attributes['type']
           @created_at = attributes[:created_at] || attributes['created_at']
           @message_id = attributes[:message_id] || attributes['message_id']
           @score = attributes[:score] || attributes['score']
+          @type = attributes[:type] || attributes['type']
           @updated_at = attributes[:updated_at] || attributes['updated_at']
           @user_id = attributes[:user_id] || attributes['user_id']
           @custom = attributes[:custom] || attributes['custom']
@@ -50,10 +50,10 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            _type: 'type',
             created_at: 'created_at',
             message_id: 'message_id',
             score: 'score',
+            type: 'type',
             updated_at: 'updated_at',
             user_id: 'user_id',
             custom: 'custom',

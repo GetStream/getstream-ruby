@@ -70,20 +70,20 @@ module GetStream
           @is_live = attributes[:is_live] || attributes['is_live']
           @user_session_id = attributes[:user_session_id] || attributes['user_session_id']
           @published_tracks = attributes[:published_tracks] || attributes['published_tracks']
-          @browser = attributes[:browser] || attributes['browser'] || ""
-          @browser_version = attributes[:browser_version] || attributes['browser_version'] || ""
-          @cq_score = attributes[:cq_score] || attributes['cq_score'] || 0
-          @current_ip = attributes[:current_ip] || attributes['current_ip'] || ""
-          @current_sfu = attributes[:current_sfu] || attributes['current_sfu'] || ""
-          @distance_to_sfu_kilometers = attributes[:distance_to_sfu_kilometers] || attributes['distance_to_sfu_kilometers'] || 0.0
+          @browser = attributes[:browser] || attributes['browser'] || nil
+          @browser_version = attributes[:browser_version] || attributes['browser_version'] || nil
+          @cq_score = attributes[:cq_score] || attributes['cq_score'] || nil
+          @current_ip = attributes[:current_ip] || attributes['current_ip'] || nil
+          @current_sfu = attributes[:current_sfu] || attributes['current_sfu'] || nil
+          @distance_to_sfu_kilometers = attributes[:distance_to_sfu_kilometers] || attributes['distance_to_sfu_kilometers'] || nil
           @ended_at = attributes[:ended_at] || attributes['ended_at'] || nil
-          @os = attributes[:os] || attributes['os'] || ""
-          @publisher_type = attributes[:publisher_type] || attributes['publisher_type'] || ""
-          @sdk = attributes[:sdk] || attributes['sdk'] || ""
-          @sdk_version = attributes[:sdk_version] || attributes['sdk_version'] || ""
+          @os = attributes[:os] || attributes['os'] || nil
+          @publisher_type = attributes[:publisher_type] || attributes['publisher_type'] || nil
+          @sdk = attributes[:sdk] || attributes['sdk'] || nil
+          @sdk_version = attributes[:sdk_version] || attributes['sdk_version'] || nil
           @started_at = attributes[:started_at] || attributes['started_at'] || nil
-          @unified_session_id = attributes[:unified_session_id] || attributes['unified_session_id'] || ""
-          @webrtc_version = attributes[:webrtc_version] || attributes['webrtc_version'] || ""
+          @unified_session_id = attributes[:unified_session_id] || attributes['unified_session_id'] || nil
+          @webrtc_version = attributes[:webrtc_version] || attributes['webrtc_version'] || nil
           @location = attributes[:location] || attributes['location'] || nil
         end
 

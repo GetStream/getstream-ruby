@@ -31,12 +31,12 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @apn_template = attributes[:apn_template] || attributes['apn_template'] || ""
-          @credentials_json = attributes[:credentials_json] || attributes['credentials_json'] || ""
-          @data_template = attributes[:data_template] || attributes['data_template'] || ""
-          @disabled = attributes[:disabled] || attributes['Disabled'] || false
-          @notification_template = attributes[:notification_template] || attributes['notification_template'] || ""
-          @server_key = attributes[:server_key] || attributes['server_key'] || ""
+          @apn_template = attributes[:apn_template] || attributes['apn_template'] || nil
+          @credentials_json = attributes[:credentials_json] || attributes['credentials_json'] || nil
+          @data_template = attributes[:data_template] || attributes['data_template'] || nil
+          @disabled = attributes[:disabled] || attributes['Disabled'] || nil
+          @notification_template = attributes[:notification_template] || attributes['notification_template'] || nil
+          @server_key = attributes[:server_key] || attributes['server_key'] || nil
         end
 
         # Override field mappings for JSON serialization

@@ -28,10 +28,10 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @access_request_enabled = attributes[:access_request_enabled] || attributes['access_request_enabled'] || false
-          @camera_default_on = attributes[:camera_default_on] || attributes['camera_default_on'] || false
-          @camera_facing = attributes[:camera_facing] || attributes['camera_facing'] || ""
-          @enabled = attributes[:enabled] || attributes['enabled'] || false
+          @access_request_enabled = attributes[:access_request_enabled] || attributes['access_request_enabled'] || nil
+          @camera_default_on = attributes[:camera_default_on] || attributes['camera_default_on'] || nil
+          @camera_facing = attributes[:camera_facing] || attributes['camera_facing'] || nil
+          @enabled = attributes[:enabled] || attributes['enabled'] || nil
           @target_resolution = attributes[:target_resolution] || attributes['target_resolution'] || nil
         end
 

@@ -22,9 +22,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @created_by_id = attributes[:created_by_id] || attributes['created_by_id'] || ""
-          @name = attributes[:name] || attributes['name'] || ""
-          @restore_messages = attributes[:restore_messages] || attributes['restore_messages'] || false
+          @created_by_id = attributes[:created_by_id] || attributes['created_by_id'] || nil
+          @name = attributes[:name] || attributes['name'] || nil
+          @restore_messages = attributes[:restore_messages] || attributes['restore_messages'] || nil
         end
 
         # Override field mappings for JSON serialization

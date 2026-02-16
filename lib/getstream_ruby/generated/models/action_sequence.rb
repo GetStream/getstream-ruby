@@ -34,13 +34,13 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @action = attributes[:action] || attributes['action'] || ""
-          @blur = attributes[:blur] || attributes['blur'] || false
-          @cooldown_period = attributes[:cooldown_period] || attributes['cooldown_period'] || 0
-          @threshold = attributes[:threshold] || attributes['threshold'] || 0
-          @time_window = attributes[:time_window] || attributes['time_window'] || 0
-          @warning = attributes[:warning] || attributes['warning'] || false
-          @warning_text = attributes[:warning_text] || attributes['warning_text'] || ""
+          @action = attributes[:action] || attributes['action'] || nil
+          @blur = attributes[:blur] || attributes['blur'] || nil
+          @cooldown_period = attributes[:cooldown_period] || attributes['cooldown_period'] || nil
+          @threshold = attributes[:threshold] || attributes['threshold'] || nil
+          @time_window = attributes[:time_window] || attributes['time_window'] || nil
+          @warning = attributes[:warning] || attributes['warning'] || nil
+          @warning_text = attributes[:warning_text] || attributes['warning_text'] || nil
         end
 
         # Override field mappings for JSON serialization

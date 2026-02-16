@@ -18,9 +18,9 @@ module GetStream
         # @!attribute default_llm_labels
         #   @return [Hash<String, String>] Default LLM label descriptions
         attr_accessor :default_llm_labels
-        # @!attribute _next
+        # @!attribute next
         #   @return [String]
-        attr_accessor :_next
+        attr_accessor :next
         # @!attribute prev
         #   @return [String]
         attr_accessor :prev
@@ -31,8 +31,8 @@ module GetStream
           @duration = attributes[:duration] || attributes['duration']
           @rules = attributes[:rules] || attributes['rules']
           @default_llm_labels = attributes[:default_llm_labels] || attributes['default_llm_labels']
-          @_next = attributes[:_next] || attributes['next'] || ""
-          @prev = attributes[:prev] || attributes['prev'] || ""
+          @next = attributes[:next] || attributes['next'] || nil
+          @prev = attributes[:prev] || attributes['prev'] || nil
         end
 
         # Override field mappings for JSON serialization
@@ -41,7 +41,7 @@ module GetStream
             duration: 'duration',
             rules: 'rules',
             default_llm_labels: 'default_llm_labels',
-            _next: 'next',
+            next: 'next',
             prev: 'prev'
           }
         end

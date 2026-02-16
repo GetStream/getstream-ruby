@@ -15,9 +15,9 @@ module GetStream
         # @!attribute results
         #   @return [Array<SearchResult>] Search results
         attr_accessor :results
-        # @!attribute _next
+        # @!attribute next
         #   @return [String] Value to pass to the next search query in order to paginate
-        attr_accessor :_next
+        attr_accessor :next
         # @!attribute previous
         #   @return [String] Value that points to the previous page. Pass as the next value in a search query to paginate backwards
         attr_accessor :previous
@@ -30,8 +30,8 @@ module GetStream
           super(attributes)
           @duration = attributes[:duration] || attributes['duration']
           @results = attributes[:results] || attributes['results']
-          @_next = attributes[:_next] || attributes['next'] || ""
-          @previous = attributes[:previous] || attributes['previous'] || ""
+          @next = attributes[:next] || attributes['next'] || nil
+          @previous = attributes[:previous] || attributes['previous'] || nil
           @results_warning = attributes[:results_warning] || attributes['results_warning'] || nil
         end
 
@@ -40,7 +40,7 @@ module GetStream
           {
             duration: 'duration',
             results: 'results',
-            _next: 'next',
+            next: 'next',
             previous: 'previous',
             results_warning: 'results_warning'
           }

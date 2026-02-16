@@ -9,12 +9,6 @@ module GetStream
       class MessageWithChannelResponse < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute _id
-        #   @return [String] Message ID is unique string identifier of the message
-        attr_accessor :_id
-        # @!attribute _type
-        #   @return [String] Contains type of the message. One of: regular, ephemeral, error, reply, system, deleted
-        attr_accessor :_type
         # @!attribute cid
         #   @return [String] Channel unique identifier in <type>:<id> format
         attr_accessor :cid
@@ -27,6 +21,9 @@ module GetStream
         # @!attribute html
         #   @return [String] Contains HTML markup of the message. Can only be set when using server-side API
         attr_accessor :html
+        # @!attribute id
+        #   @return [String] Message ID is unique string identifier of the message
+        attr_accessor :id
         # @!attribute mentioned_channel
         #   @return [Boolean] Whether the message mentioned the channel tag
         attr_accessor :mentioned_channel
@@ -45,6 +42,9 @@ module GetStream
         # @!attribute text
         #   @return [String] Text of the message. Should be empty if `mml` is provided
         attr_accessor :text
+        # @!attribute type
+        #   @return [String] Contains type of the message. One of: regular, ephemeral, error, reply, system, deleted
+        attr_accessor :type
         # @!attribute updated_at
         #   @return [DateTime] Date/time of the last update
         attr_accessor :updated_at
@@ -151,18 +151,18 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @_id = attributes[:_id] || attributes['id']
-          @_type = attributes[:_type] || attributes['type']
           @cid = attributes[:cid] || attributes['cid']
           @created_at = attributes[:created_at] || attributes['created_at']
           @deleted_reply_count = attributes[:deleted_reply_count] || attributes['deleted_reply_count']
           @html = attributes[:html] || attributes['html']
+          @id = attributes[:id] || attributes['id']
           @mentioned_channel = attributes[:mentioned_channel] || attributes['mentioned_channel']
           @pinned = attributes[:pinned] || attributes['pinned']
           @reply_count = attributes[:reply_count] || attributes['reply_count']
           @shadowed = attributes[:shadowed] || attributes['shadowed']
           @silent = attributes[:silent] || attributes['silent']
           @text = attributes[:text] || attributes['text']
+          @type = attributes[:type] || attributes['type']
           @updated_at = attributes[:updated_at] || attributes['updated_at']
           @attachments = attributes[:attachments] || attributes['attachments']
           @latest_reactions = attributes[:latest_reactions] || attributes['latest_reactions']
@@ -174,17 +174,17 @@ module GetStream
           @reaction_counts = attributes[:reaction_counts] || attributes['reaction_counts']
           @reaction_scores = attributes[:reaction_scores] || attributes['reaction_scores']
           @user = attributes[:user] || attributes['user']
-          @command = attributes[:command] || attributes['command'] || ""
+          @command = attributes[:command] || attributes['command'] || nil
           @deleted_at = attributes[:deleted_at] || attributes['deleted_at'] || nil
-          @deleted_for_me = attributes[:deleted_for_me] || attributes['deleted_for_me'] || false
+          @deleted_for_me = attributes[:deleted_for_me] || attributes['deleted_for_me'] || nil
           @message_text_updated_at = attributes[:message_text_updated_at] || attributes['message_text_updated_at'] || nil
-          @mml = attributes[:mml] || attributes['mml'] || ""
-          @parent_id = attributes[:parent_id] || attributes['parent_id'] || ""
+          @mml = attributes[:mml] || attributes['mml'] || nil
+          @parent_id = attributes[:parent_id] || attributes['parent_id'] || nil
           @pin_expires = attributes[:pin_expires] || attributes['pin_expires'] || nil
           @pinned_at = attributes[:pinned_at] || attributes['pinned_at'] || nil
-          @poll_id = attributes[:poll_id] || attributes['poll_id'] || ""
-          @quoted_message_id = attributes[:quoted_message_id] || attributes['quoted_message_id'] || ""
-          @show_in_channel = attributes[:show_in_channel] || attributes['show_in_channel'] || false
+          @poll_id = attributes[:poll_id] || attributes['poll_id'] || nil
+          @quoted_message_id = attributes[:quoted_message_id] || attributes['quoted_message_id'] || nil
+          @show_in_channel = attributes[:show_in_channel] || attributes['show_in_channel'] || nil
           @thread_participants = attributes[:thread_participants] || attributes['thread_participants'] || nil
           @draft = attributes[:draft] || attributes['draft'] || nil
           @i18n = attributes[:i18n] || attributes['i18n'] || nil
@@ -202,18 +202,18 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            _id: 'id',
-            _type: 'type',
             cid: 'cid',
             created_at: 'created_at',
             deleted_reply_count: 'deleted_reply_count',
             html: 'html',
+            id: 'id',
             mentioned_channel: 'mentioned_channel',
             pinned: 'pinned',
             reply_count: 'reply_count',
             shadowed: 'shadowed',
             silent: 'silent',
             text: 'text',
+            type: 'type',
             updated_at: 'updated_at',
             attachments: 'attachments',
             latest_reactions: 'latest_reactions',

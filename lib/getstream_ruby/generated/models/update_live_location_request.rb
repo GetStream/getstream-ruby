@@ -27,8 +27,8 @@ module GetStream
           super(attributes)
           @message_id = attributes[:message_id] || attributes['message_id']
           @end_at = attributes[:end_at] || attributes['end_at'] || nil
-          @latitude = attributes[:latitude] || attributes['latitude'] || 0.0
-          @longitude = attributes[:longitude] || attributes['longitude'] || 0.0
+          @latitude = attributes[:latitude] || attributes['latitude'] || nil
+          @longitude = attributes[:longitude] || attributes['longitude'] || nil
         end
 
         # Override field mappings for JSON serialization

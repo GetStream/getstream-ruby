@@ -21,9 +21,9 @@ module GetStream
         # @!attribute user_id
         #   @return [String] User who was streaming
         attr_accessor :user_id
-        # @!attribute _type
+        # @!attribute type
         #   @return [String] The type of event: "ingress.stopped" in this case
-        attr_accessor :_type
+        attr_accessor :type
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -32,7 +32,7 @@ module GetStream
           @created_at = attributes[:created_at] || attributes['created_at']
           @ingress_stream_id = attributes[:ingress_stream_id] || attributes['ingress_stream_id']
           @user_id = attributes[:user_id] || attributes['user_id']
-          @_type = attributes[:_type] || attributes['type'] || "ingress.stopped"
+          @type = attributes[:type] || attributes['type'] || "ingress.stopped"
         end
 
         # Override field mappings for JSON serialization
@@ -42,7 +42,7 @@ module GetStream
             created_at: 'created_at',
             ingress_stream_id: 'ingress_stream_id',
             user_id: 'user_id',
-            _type: 'type'
+            type: 'type'
           }
         end
       end

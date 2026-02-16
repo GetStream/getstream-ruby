@@ -9,9 +9,6 @@ module GetStream
       class FeedResponse < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute _id
-        #   @return [String] Unique identifier for the feed
-        attr_accessor :_id
         # @!attribute activity_count
         #   @return [Integer]
         attr_accessor :activity_count
@@ -33,6 +30,9 @@ module GetStream
         # @!attribute group_id
         #   @return [String] Group this feed belongs to
         attr_accessor :group_id
+        # @!attribute id
+        #   @return [String] Unique identifier for the feed
+        attr_accessor :id
         # @!attribute member_count
         #   @return [Integer] Number of members in this feed
         attr_accessor :member_count
@@ -76,7 +76,6 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @_id = attributes[:_id] || attributes['id']
           @activity_count = attributes[:activity_count] || attributes['activity_count']
           @created_at = attributes[:created_at] || attributes['created_at']
           @description = attributes[:description] || attributes['description']
@@ -84,13 +83,14 @@ module GetStream
           @follower_count = attributes[:follower_count] || attributes['follower_count']
           @following_count = attributes[:following_count] || attributes['following_count']
           @group_id = attributes[:group_id] || attributes['group_id']
+          @id = attributes[:id] || attributes['id']
           @member_count = attributes[:member_count] || attributes['member_count']
           @name = attributes[:name] || attributes['name']
           @pin_count = attributes[:pin_count] || attributes['pin_count']
           @updated_at = attributes[:updated_at] || attributes['updated_at']
           @created_by = attributes[:created_by] || attributes['created_by']
           @deleted_at = attributes[:deleted_at] || attributes['deleted_at'] || nil
-          @visibility = attributes[:visibility] || attributes['visibility'] || ""
+          @visibility = attributes[:visibility] || attributes['visibility'] || nil
           @filter_tags = attributes[:filter_tags] || attributes['filter_tags'] || nil
           @own_capabilities = attributes[:own_capabilities] || attributes['own_capabilities'] || nil
           @own_followings = attributes[:own_followings] || attributes['own_followings'] || nil
@@ -102,7 +102,6 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            _id: 'id',
             activity_count: 'activity_count',
             created_at: 'created_at',
             description: 'description',
@@ -110,6 +109,7 @@ module GetStream
             follower_count: 'follower_count',
             following_count: 'following_count',
             group_id: 'group_id',
+            id: 'id',
             member_count: 'member_count',
             name: 'name',
             pin_count: 'pin_count',

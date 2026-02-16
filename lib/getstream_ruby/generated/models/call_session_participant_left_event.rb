@@ -24,9 +24,9 @@ module GetStream
         # @!attribute participant
         #   @return [CallParticipantResponse]
         attr_accessor :participant
-        # @!attribute _type
+        # @!attribute type
         #   @return [String] The type of event: "call.session_participant_left" in this case
-        attr_accessor :_type
+        attr_accessor :type
         # @!attribute reason
         #   @return [String] The reason why the participant left the session
         attr_accessor :reason
@@ -39,8 +39,8 @@ module GetStream
           @duration_seconds = attributes[:duration_seconds] || attributes['duration_seconds']
           @session_id = attributes[:session_id] || attributes['session_id']
           @participant = attributes[:participant] || attributes['participant']
-          @_type = attributes[:_type] || attributes['type'] || "call.session_participant_left"
-          @reason = attributes[:reason] || attributes['reason'] || ""
+          @type = attributes[:type] || attributes['type'] || "call.session_participant_left"
+          @reason = attributes[:reason] || attributes['reason'] || nil
         end
 
         # Override field mappings for JSON serialization
@@ -51,7 +51,7 @@ module GetStream
             duration_seconds: 'duration_seconds',
             session_id: 'session_id',
             participant: 'participant',
-            _type: 'type',
+            type: 'type',
             reason: 'reason'
           }
         end

@@ -43,11 +43,11 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @auto_translation_enabled = attributes[:auto_translation_enabled] || attributes['auto_translation_enabled'] || false
-          @auto_translation_language = attributes[:auto_translation_language] || attributes['auto_translation_language'] || ""
-          @disabled = attributes[:disabled] || attributes['disabled'] || false
-          @frozen = attributes[:frozen] || attributes['frozen'] || false
-          @team = attributes[:team] || attributes['team'] || ""
+          @auto_translation_enabled = attributes[:auto_translation_enabled] || attributes['auto_translation_enabled'] || nil
+          @auto_translation_language = attributes[:auto_translation_language] || attributes['auto_translation_language'] || nil
+          @disabled = attributes[:disabled] || attributes['disabled'] || nil
+          @frozen = attributes[:frozen] || attributes['frozen'] || nil
+          @team = attributes[:team] || attributes['team'] || nil
           @invites = attributes[:invites] || attributes['invites'] || nil
           @members = attributes[:members] || attributes['members'] || nil
           @config_overrides = attributes[:config_overrides] || attributes['config_overrides'] || nil
