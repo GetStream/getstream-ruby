@@ -9,9 +9,9 @@ module GetStream
       class CustomCheckFlag < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute type
+        # @!attribute _type
         #   @return [String] Type of check (custom_check_text, custom_check_image, custom_check_video)
-        attr_accessor :type
+        attr_accessor :_type
         # @!attribute reason
         #   @return [String] Optional explanation for the flag
         attr_accessor :reason
@@ -25,7 +25,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @type = attributes[:type] || attributes['type']
+          @_type = attributes[:_type] || attributes['type']
           @reason = attributes[:reason] || attributes['reason'] || ""
           @labels = attributes[:labels] || attributes['labels'] || nil
           @custom = attributes[:custom] || attributes['custom'] || nil
@@ -34,7 +34,7 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            type: 'type',
+            _type: 'type',
             reason: 'reason',
             labels: 'labels',
             custom: 'custom'

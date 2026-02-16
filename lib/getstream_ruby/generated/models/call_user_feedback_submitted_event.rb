@@ -24,9 +24,9 @@ module GetStream
         # @!attribute user
         #   @return [UserResponse]
         attr_accessor :user
-        # @!attribute type
+        # @!attribute _type
         #   @return [String] The type of event, "call.user_feedback" in this case
-        attr_accessor :type
+        attr_accessor :_type
         # @!attribute reason
         #   @return [String] The reason provided by the user for the rating
         attr_accessor :reason
@@ -48,7 +48,7 @@ module GetStream
           @rating = attributes[:rating] || attributes['rating']
           @session_id = attributes[:session_id] || attributes['session_id']
           @user = attributes[:user] || attributes['user']
-          @type = attributes[:type] || attributes['type'] || "call.user_feedback_submitted"
+          @_type = attributes[:_type] || attributes['type'] || "call.user_feedback_submitted"
           @reason = attributes[:reason] || attributes['reason'] || ""
           @sdk = attributes[:sdk] || attributes['sdk'] || ""
           @sdk_version = attributes[:sdk_version] || attributes['sdk_version'] || ""
@@ -63,7 +63,7 @@ module GetStream
             rating: 'rating',
             session_id: 'session_id',
             user: 'user',
-            type: 'type',
+            _type: 'type',
             reason: 'reason',
             sdk: 'sdk',
             sdk_version: 'sdk_version',

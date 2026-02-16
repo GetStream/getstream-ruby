@@ -9,15 +9,15 @@ module GetStream
       class CallType < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _id
+        #   @return [Integer]
+        attr_accessor :_id
         # @!attribute app
         #   @return [Integer]
         attr_accessor :app
         # @!attribute created_at
         #   @return [DateTime]
         attr_accessor :created_at
-        # @!attribute id
-        #   @return [Integer]
-        attr_accessor :id
         # @!attribute name
         #   @return [String]
         attr_accessor :name
@@ -37,9 +37,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @_id = attributes[:_id] || attributes['id']
           @app = attributes[:app] || attributes['app']
           @created_at = attributes[:created_at] || attributes['created_at']
-          @id = attributes[:id] || attributes['id']
           @name = attributes[:name] || attributes['name']
           @recording_external_storage = attributes[:recording_external_storage] || attributes['recording_external_storage']
           @updated_at = attributes[:updated_at] || attributes['updated_at']
@@ -50,9 +50,9 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            _id: 'id',
             app: 'app',
             created_at: 'created_at',
-            id: 'id',
             name: 'name',
             recording_external_storage: 'recording_external_storage',
             updated_at: 'updated_at',

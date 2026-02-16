@@ -9,6 +9,9 @@ module GetStream
       class EdgeResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _id
+        #   @return [String]
+        attr_accessor :_id
         # @!attribute continent_code
         #   @return [String]
         attr_accessor :continent_code
@@ -18,9 +21,6 @@ module GetStream
         # @!attribute green
         #   @return [Integer]
         attr_accessor :green
-        # @!attribute id
-        #   @return [String]
-        attr_accessor :id
         # @!attribute latency_test_url
         #   @return [String]
         attr_accessor :latency_test_url
@@ -43,10 +43,10 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @_id = attributes[:_id] || attributes['id']
           @continent_code = attributes[:continent_code] || attributes['continent_code']
           @country_iso_code = attributes[:country_iso_code] || attributes['country_iso_code']
           @green = attributes[:green] || attributes['green']
-          @id = attributes[:id] || attributes['id']
           @latency_test_url = attributes[:latency_test_url] || attributes['latency_test_url']
           @latitude = attributes[:latitude] || attributes['latitude']
           @longitude = attributes[:longitude] || attributes['longitude']
@@ -58,10 +58,10 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            _id: 'id',
             continent_code: 'continent_code',
             country_iso_code: 'country_iso_code',
             green: 'green',
-            id: 'id',
             latency_test_url: 'latency_test_url',
             latitude: 'latitude',
             longitude: 'longitude',

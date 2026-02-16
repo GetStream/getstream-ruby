@@ -9,30 +9,30 @@ module GetStream
       class SortParamRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _type
+        #   @return [String] Type of field to sort by. Empty string or omitted means string type (default). One of: number, boolean
+        attr_accessor :_type
         # @!attribute direction
         #   @return [Integer] Direction of sorting, 1 for Ascending, -1 for Descending, default is 1. One of: -1, 1
         attr_accessor :direction
         # @!attribute field
         #   @return [String] Name of field to sort by
         attr_accessor :field
-        # @!attribute type
-        #   @return [String] Type of field to sort by. Empty string or omitted means string type (default). One of: number, boolean
-        attr_accessor :type
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @_type = attributes[:_type] || attributes['type'] || ""
           @direction = attributes[:direction] || attributes['direction'] || 0
           @field = attributes[:field] || attributes['field'] || ""
-          @type = attributes[:type] || attributes['type'] || ""
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            _type: 'type',
             direction: 'direction',
-            field: 'field',
-            type: 'type'
+            field: 'field'
           }
         end
       end

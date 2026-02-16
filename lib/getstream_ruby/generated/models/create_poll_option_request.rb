@@ -15,9 +15,9 @@ module GetStream
         # @!attribute user_id
         #   @return [String]
         attr_accessor :user_id
-        # @!attribute Custom
+        # @!attribute custom
         #   @return [Object]
-        attr_accessor :Custom
+        attr_accessor :custom
         # @!attribute user
         #   @return [UserRequest]
         attr_accessor :user
@@ -27,7 +27,7 @@ module GetStream
           super(attributes)
           @text = attributes[:text] || attributes['text']
           @user_id = attributes[:user_id] || attributes['user_id'] || ""
-          @Custom = attributes[:Custom] || attributes['Custom'] || nil
+          @custom = attributes[:custom] || attributes['Custom'] || nil
           @user = attributes[:user] || attributes['user'] || nil
         end
 
@@ -36,7 +36,7 @@ module GetStream
           {
             text: 'text',
             user_id: 'user_id',
-            Custom: 'Custom',
+            custom: 'Custom',
             user: 'user'
           }
         end

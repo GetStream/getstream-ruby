@@ -24,9 +24,9 @@ module GetStream
         # @!attribute user_id
         #   @return [String] User who started the stream
         attr_accessor :user_id
-        # @!attribute type
+        # @!attribute _type
         #   @return [String] The type of event: "ingress.started" in this case
-        attr_accessor :type
+        attr_accessor :_type
         # @!attribute client_ip
         #   @return [String] Client IP address
         attr_accessor :client_ip
@@ -45,7 +45,7 @@ module GetStream
           @ingress_stream_id = attributes[:ingress_stream_id] || attributes['ingress_stream_id']
           @publisher_type = attributes[:publisher_type] || attributes['publisher_type']
           @user_id = attributes[:user_id] || attributes['user_id']
-          @type = attributes[:type] || attributes['type'] || "ingress.started"
+          @_type = attributes[:_type] || attributes['type'] || "ingress.started"
           @client_ip = attributes[:client_ip] || attributes['client_ip'] || ""
           @client_name = attributes[:client_name] || attributes['client_name'] || ""
           @version = attributes[:version] || attributes['version'] || ""
@@ -59,7 +59,7 @@ module GetStream
             ingress_stream_id: 'ingress_stream_id',
             publisher_type: 'publisher_type',
             user_id: 'user_id',
-            type: 'type',
+            _type: 'type',
             client_ip: 'client_ip',
             client_name: 'client_name',
             version: 'version'

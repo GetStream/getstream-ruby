@@ -9,6 +9,9 @@ module GetStream
       class Permission < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _id
+        #   @return [String] Unique permission ID
+        attr_accessor :_id
         # @!attribute action
         #   @return [String] Action name this permission is for (e.g. SendMessage)
         attr_accessor :action
@@ -18,9 +21,6 @@ module GetStream
         # @!attribute description
         #   @return [String] Description of the permission
         attr_accessor :description
-        # @!attribute id
-        #   @return [String] Unique permission ID
-        attr_accessor :id
         # @!attribute level
         #   @return [String] Level at which permission could be applied (app or channel). One of: app, channel
         attr_accessor :level
@@ -43,10 +43,10 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @_id = attributes[:_id] || attributes['id']
           @action = attributes[:action] || attributes['action']
           @custom = attributes[:custom] || attributes['custom']
           @description = attributes[:description] || attributes['description']
-          @id = attributes[:id] || attributes['id']
           @level = attributes[:level] || attributes['level']
           @name = attributes[:name] || attributes['name']
           @owner = attributes[:owner] || attributes['owner']
@@ -58,10 +58,10 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            _id: 'id',
             action: 'action',
             custom: 'custom',
             description: 'description',
-            id: 'id',
             level: 'level',
             name: 'name',
             owner: 'owner',

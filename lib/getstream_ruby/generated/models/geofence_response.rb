@@ -12,12 +12,12 @@ module GetStream
         # @!attribute name
         #   @return [String]
         attr_accessor :name
+        # @!attribute _type
+        #   @return [String]
+        attr_accessor :_type
         # @!attribute description
         #   @return [String]
         attr_accessor :description
-        # @!attribute type
-        #   @return [String]
-        attr_accessor :type
         # @!attribute country_codes
         #   @return [Array<String>]
         attr_accessor :country_codes
@@ -26,8 +26,8 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @name = attributes[:name] || attributes['name']
+          @_type = attributes[:_type] || attributes['type'] || ""
           @description = attributes[:description] || attributes['description'] || ""
-          @type = attributes[:type] || attributes['type'] || ""
           @country_codes = attributes[:country_codes] || attributes['country_codes'] || nil
         end
 
@@ -35,8 +35,8 @@ module GetStream
         def self.json_field_mappings
           {
             name: 'name',
+            _type: 'type',
             description: 'description',
-            type: 'type',
             country_codes: 'country_codes'
           }
         end

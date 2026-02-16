@@ -15,9 +15,9 @@ module GetStream
         # @!attribute comments
         #   @return [Array<CommentResponse>] List of comments matching the query
         attr_accessor :comments
-        # @!attribute next
+        # @!attribute _next
         #   @return [String] Cursor for next page
-        attr_accessor :next
+        attr_accessor :_next
         # @!attribute prev
         #   @return [String] Cursor for previous page
         attr_accessor :prev
@@ -27,7 +27,7 @@ module GetStream
           super(attributes)
           @duration = attributes[:duration] || attributes['duration']
           @comments = attributes[:comments] || attributes['comments']
-          @next = attributes[:next] || attributes['next'] || ""
+          @_next = attributes[:_next] || attributes['next'] || ""
           @prev = attributes[:prev] || attributes['prev'] || ""
         end
 
@@ -36,7 +36,7 @@ module GetStream
           {
             duration: 'duration',
             comments: 'comments',
-            next: 'next',
+            _next: 'next',
             prev: 'prev'
           }
         end

@@ -18,9 +18,9 @@ module GetStream
         # @!attribute user
         #   @return [UserResponseCommonFields]
         attr_accessor :user
-        # @!attribute type
+        # @!attribute _type
         #   @return [String] The type of event: "user.muted" in this case
-        attr_accessor :type
+        attr_accessor :_type
         # @!attribute received_at
         #   @return [DateTime]
         attr_accessor :received_at
@@ -37,7 +37,7 @@ module GetStream
           @created_at = attributes[:created_at] || attributes['created_at']
           @custom = attributes[:custom] || attributes['custom']
           @user = attributes[:user] || attributes['user']
-          @type = attributes[:type] || attributes['type'] || "user.muted"
+          @_type = attributes[:_type] || attributes['type'] || "user.muted"
           @received_at = attributes[:received_at] || attributes['received_at'] || nil
           @target_users = attributes[:target_users] || attributes['target_users'] || nil
           @target_user = attributes[:target_user] || attributes['target_user'] || nil
@@ -49,7 +49,7 @@ module GetStream
             created_at: 'created_at',
             custom: 'custom',
             user: 'user',
-            type: 'type',
+            _type: 'type',
             received_at: 'received_at',
             target_users: 'target_users',
             target_user: 'target_user'

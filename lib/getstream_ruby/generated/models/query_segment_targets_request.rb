@@ -9,40 +9,40 @@ module GetStream
       class QuerySegmentTargetsRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _next
+        #   @return [String] Next
+        attr_accessor :_next
         # @!attribute limit
         #   @return [Integer] Limit
         attr_accessor :limit
-        # @!attribute next
-        #   @return [String] Next
-        attr_accessor :next
         # @!attribute prev
         #   @return [String] Prev
         attr_accessor :prev
-        # @!attribute Sort
+        # @!attribute sort
         #   @return [Array<SortParamRequest>]
-        attr_accessor :Sort
-        # @!attribute Filter
+        attr_accessor :sort
+        # @!attribute filter
         #   @return [Object]
-        attr_accessor :Filter
+        attr_accessor :filter
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @_next = attributes[:_next] || attributes['next'] || ""
           @limit = attributes[:limit] || attributes['limit'] || 0
-          @next = attributes[:next] || attributes['next'] || ""
           @prev = attributes[:prev] || attributes['prev'] || ""
-          @Sort = attributes[:Sort] || attributes['Sort'] || nil
-          @Filter = attributes[:Filter] || attributes['Filter'] || nil
+          @sort = attributes[:sort] || attributes['Sort'] || nil
+          @filter = attributes[:filter] || attributes['Filter'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            _next: 'next',
             limit: 'limit',
-            next: 'next',
             prev: 'prev',
-            Sort: 'Sort',
-            Filter: 'Filter'
+            sort: 'Sort',
+            filter: 'Filter'
           }
         end
       end

@@ -9,6 +9,9 @@ module GetStream
       class ParticipantSeriesTimeframe < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _until
+        #   @return [DateTime]
+        attr_accessor :_until
         # @!attribute max_points
         #   @return [Integer]
         attr_accessor :max_points
@@ -18,26 +21,23 @@ module GetStream
         # @!attribute step_seconds
         #   @return [Integer]
         attr_accessor :step_seconds
-        # @!attribute until
-        #   @return [DateTime]
-        attr_accessor :until
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @_until = attributes[:_until] || attributes['until']
           @max_points = attributes[:max_points] || attributes['max_points']
           @since = attributes[:since] || attributes['since']
           @step_seconds = attributes[:step_seconds] || attributes['step_seconds']
-          @until = attributes[:until] || attributes['until']
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            _until: 'until',
             max_points: 'max_points',
             since: 'since',
-            step_seconds: 'step_seconds',
-            until: 'until'
+            step_seconds: 'step_seconds'
           }
         end
       end

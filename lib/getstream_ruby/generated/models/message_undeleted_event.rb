@@ -21,9 +21,9 @@ module GetStream
         # @!attribute message
         #   @return [MessageResponse]
         attr_accessor :message
-        # @!attribute type
+        # @!attribute _type
         #   @return [String] The type of event: "message.undeleted" in this case
-        attr_accessor :type
+        attr_accessor :_type
         # @!attribute channel_id
         #   @return [String] The ID of the channel where the message was sent
         attr_accessor :channel_id
@@ -56,7 +56,7 @@ module GetStream
           @message_id = attributes[:message_id] || attributes['message_id']
           @custom = attributes[:custom] || attributes['custom']
           @message = attributes[:message] || attributes['message']
-          @type = attributes[:type] || attributes['type'] || "message.undeleted"
+          @_type = attributes[:_type] || attributes['type'] || "message.undeleted"
           @channel_id = attributes[:channel_id] || attributes['channel_id'] || ""
           @channel_member_count = attributes[:channel_member_count] || attributes['channel_member_count'] || 0
           @channel_message_count = attributes[:channel_message_count] || attributes['channel_message_count'] || 0
@@ -74,7 +74,7 @@ module GetStream
             message_id: 'message_id',
             custom: 'custom',
             message: 'message',
-            type: 'type',
+            _type: 'type',
             channel_id: 'channel_id',
             channel_member_count: 'channel_member_count',
             channel_message_count: 'channel_message_count',

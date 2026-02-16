@@ -9,9 +9,6 @@ module GetStream
       class APIError < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute StatusCode
-        #   @return [Integer] Response HTTP status code
-        attr_accessor :StatusCode
         # @!attribute code
         #   @return [Integer] API error code
         attr_accessor :code
@@ -24,6 +21,9 @@ module GetStream
         # @!attribute more_info
         #   @return [String] URL with additional information
         attr_accessor :more_info
+        # @!attribute status_code
+        #   @return [Integer] Response HTTP status code
+        attr_accessor :status_code
         # @!attribute details
         #   @return [Array<Integer>] Additional error-specific information
         attr_accessor :details
@@ -37,11 +37,11 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @StatusCode = attributes[:StatusCode] || attributes['StatusCode']
           @code = attributes[:code] || attributes['code']
           @duration = attributes[:duration] || attributes['duration']
           @message = attributes[:message] || attributes['message']
           @more_info = attributes[:more_info] || attributes['more_info']
+          @status_code = attributes[:status_code] || attributes['StatusCode']
           @details = attributes[:details] || attributes['details']
           @unrecoverable = attributes[:unrecoverable] || attributes['unrecoverable'] || false
           @exception_fields = attributes[:exception_fields] || attributes['exception_fields'] || nil
@@ -50,11 +50,11 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            StatusCode: 'StatusCode',
             code: 'code',
             duration: 'duration',
             message: 'message',
             more_info: 'more_info',
+            status_code: 'StatusCode',
             details: 'details',
             unrecoverable: 'unrecoverable',
             exception_fields: 'exception_fields'

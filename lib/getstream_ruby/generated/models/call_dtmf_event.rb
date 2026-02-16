@@ -30,9 +30,9 @@ module GetStream
         # @!attribute user
         #   @return [UserResponse]
         attr_accessor :user
-        # @!attribute type
+        # @!attribute _type
         #   @return [String] The type of event: "call.dtmf" in this case
-        attr_accessor :type
+        attr_accessor :_type
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -44,7 +44,7 @@ module GetStream
           @seq_number = attributes[:seq_number] || attributes['seq_number']
           @timestamp = attributes[:timestamp] || attributes['timestamp']
           @user = attributes[:user] || attributes['user']
-          @type = attributes[:type] || attributes['type'] || "call.dtmf"
+          @_type = attributes[:_type] || attributes['type'] || "call.dtmf"
         end
 
         # Override field mappings for JSON serialization
@@ -57,7 +57,7 @@ module GetStream
             seq_number: 'seq_number',
             timestamp: 'timestamp',
             user: 'user',
-            type: 'type'
+            _type: 'type'
           }
         end
       end

@@ -9,40 +9,40 @@ module GetStream
       class ChannelExport < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _id
+        #   @return [String] Channel ID
+        attr_accessor :_id
+        # @!attribute _type
+        #   @return [String] Channel type
+        attr_accessor :_type
         # @!attribute cid
         #   @return [String]
         attr_accessor :cid
-        # @!attribute id
-        #   @return [String] Channel ID
-        attr_accessor :id
         # @!attribute messages_since
         #   @return [DateTime] Date to export messages since
         attr_accessor :messages_since
         # @!attribute messages_until
         #   @return [DateTime] Date to export messages until
         attr_accessor :messages_until
-        # @!attribute type
-        #   @return [String] Channel type
-        attr_accessor :type
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @_id = attributes[:_id] || attributes['id'] || ""
+          @_type = attributes[:_type] || attributes['type'] || ""
           @cid = attributes[:cid] || attributes['cid'] || ""
-          @id = attributes[:id] || attributes['id'] || ""
           @messages_since = attributes[:messages_since] || attributes['messages_since'] || nil
           @messages_until = attributes[:messages_until] || attributes['messages_until'] || nil
-          @type = attributes[:type] || attributes['type'] || ""
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            _id: 'id',
+            _type: 'type',
             cid: 'cid',
-            id: 'id',
             messages_since: 'messages_since',
-            messages_until: 'messages_until',
-            type: 'type'
+            messages_until: 'messages_until'
           }
         end
       end

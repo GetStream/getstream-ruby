@@ -9,15 +9,15 @@ module GetStream
       class ImportV2TaskItem < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _id
+        #   @return [String]
+        attr_accessor :_id
         # @!attribute app_pk
         #   @return [Integer]
         attr_accessor :app_pk
         # @!attribute created_at
         #   @return [DateTime]
         attr_accessor :created_at
-        # @!attribute id
-        #   @return [String]
-        attr_accessor :id
         # @!attribute product
         #   @return [String]
         attr_accessor :product
@@ -34,9 +34,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @_id = attributes[:_id] || attributes['id']
           @app_pk = attributes[:app_pk] || attributes['app_pk']
           @created_at = attributes[:created_at] || attributes['created_at']
-          @id = attributes[:id] || attributes['id']
           @product = attributes[:product] || attributes['product']
           @state = attributes[:state] || attributes['state']
           @updated_at = attributes[:updated_at] || attributes['updated_at']
@@ -46,9 +46,9 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            _id: 'id',
             app_pk: 'app_pk',
             created_at: 'created_at',
-            id: 'id',
             product: 'product',
             state: 'state',
             updated_at: 'updated_at',

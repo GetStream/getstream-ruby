@@ -21,9 +21,9 @@ module GetStream
         # @!attribute feed
         #   @return [FeedResponse]
         attr_accessor :feed
-        # @!attribute type
+        # @!attribute _type
         #   @return [String] The type of event: "feeds.feed.updated" in this case
-        attr_accessor :type
+        attr_accessor :_type
         # @!attribute feed_visibility
         #   @return [String]
         attr_accessor :feed_visibility
@@ -41,7 +41,7 @@ module GetStream
           @fid = attributes[:fid] || attributes['fid']
           @custom = attributes[:custom] || attributes['custom']
           @feed = attributes[:feed] || attributes['feed']
-          @type = attributes[:type] || attributes['type'] || "feeds.feed.updated"
+          @_type = attributes[:_type] || attributes['type'] || "feeds.feed.updated"
           @feed_visibility = attributes[:feed_visibility] || attributes['feed_visibility'] || ""
           @received_at = attributes[:received_at] || attributes['received_at'] || nil
           @user = attributes[:user] || attributes['user'] || nil
@@ -54,7 +54,7 @@ module GetStream
             fid: 'fid',
             custom: 'custom',
             feed: 'feed',
-            type: 'type',
+            _type: 'type',
             feed_visibility: 'feed_visibility',
             received_at: 'received_at',
             user: 'user'

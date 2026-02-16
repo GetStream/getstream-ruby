@@ -18,9 +18,9 @@ module GetStream
         # @!attribute reaction
         #   @return [VideoReactionResponse]
         attr_accessor :reaction
-        # @!attribute type
+        # @!attribute _type
         #   @return [String] The type of event: "call.reaction_new" in this case
-        attr_accessor :type
+        attr_accessor :_type
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -28,7 +28,7 @@ module GetStream
           @call_cid = attributes[:call_cid] || attributes['call_cid']
           @created_at = attributes[:created_at] || attributes['created_at']
           @reaction = attributes[:reaction] || attributes['reaction']
-          @type = attributes[:type] || attributes['type'] || "call.reaction_new"
+          @_type = attributes[:_type] || attributes['type'] || "call.reaction_new"
         end
 
         # Override field mappings for JSON serialization
@@ -37,7 +37,7 @@ module GetStream
             call_cid: 'call_cid',
             created_at: 'created_at',
             reaction: 'reaction',
-            type: 'type'
+            _type: 'type'
           }
         end
       end

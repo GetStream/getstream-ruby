@@ -9,6 +9,9 @@ module GetStream
       class CampaignResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _id
+        #   @return [String]
+        attr_accessor :_id
         # @!attribute create_channels
         #   @return [Boolean]
         attr_accessor :create_channels
@@ -18,9 +21,6 @@ module GetStream
         # @!attribute description
         #   @return [String]
         attr_accessor :description
-        # @!attribute id
-        #   @return [String]
-        attr_accessor :id
         # @!attribute name
         #   @return [String]
         attr_accessor :name
@@ -82,10 +82,10 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @_id = attributes[:_id] || attributes['id']
           @create_channels = attributes[:create_channels] || attributes['create_channels']
           @created_at = attributes[:created_at] || attributes['created_at']
           @description = attributes[:description] || attributes['description']
-          @id = attributes[:id] || attributes['id']
           @name = attributes[:name] || attributes['name']
           @sender_id = attributes[:sender_id] || attributes['sender_id']
           @sender_mode = attributes[:sender_mode] || attributes['sender_mode']
@@ -110,10 +110,10 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            _id: 'id',
             create_channels: 'create_channels',
             created_at: 'created_at',
             description: 'description',
-            id: 'id',
             name: 'name',
             sender_id: 'sender_id',
             sender_mode: 'sender_mode',

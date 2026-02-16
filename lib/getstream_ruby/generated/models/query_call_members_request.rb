@@ -9,18 +9,18 @@ module GetStream
       class QueryCallMembersRequest < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute id
+        # @!attribute _id
         #   @return [String]
-        attr_accessor :id
-        # @!attribute type
+        attr_accessor :_id
+        # @!attribute _type
         #   @return [String]
-        attr_accessor :type
+        attr_accessor :_type
+        # @!attribute _next
+        #   @return [String]
+        attr_accessor :_next
         # @!attribute limit
         #   @return [Integer]
         attr_accessor :limit
-        # @!attribute next
-        #   @return [String]
-        attr_accessor :next
         # @!attribute prev
         #   @return [String]
         attr_accessor :prev
@@ -34,10 +34,10 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @id = attributes[:id] || attributes['id']
-          @type = attributes[:type] || attributes['type']
+          @_id = attributes[:_id] || attributes['id']
+          @_type = attributes[:_type] || attributes['type']
+          @_next = attributes[:_next] || attributes['next'] || ""
           @limit = attributes[:limit] || attributes['limit'] || 0
-          @next = attributes[:next] || attributes['next'] || ""
           @prev = attributes[:prev] || attributes['prev'] || ""
           @sort = attributes[:sort] || attributes['sort'] || nil
           @filter_conditions = attributes[:filter_conditions] || attributes['filter_conditions'] || nil
@@ -46,10 +46,10 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            id: 'id',
-            type: 'type',
+            _id: 'id',
+            _type: 'type',
+            _next: 'next',
             limit: 'limit',
-            next: 'next',
             prev: 'prev',
             sort: 'sort',
             filter_conditions: 'filter_conditions'

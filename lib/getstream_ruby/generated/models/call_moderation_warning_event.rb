@@ -24,9 +24,9 @@ module GetStream
         # @!attribute custom
         #   @return [Object] Custom data associated with the moderation action
         attr_accessor :custom
-        # @!attribute type
+        # @!attribute _type
         #   @return [String] The type of event: "call.moderation_warning" in this case
-        attr_accessor :type
+        attr_accessor :_type
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -36,7 +36,7 @@ module GetStream
           @message = attributes[:message] || attributes['message']
           @user_id = attributes[:user_id] || attributes['user_id']
           @custom = attributes[:custom] || attributes['custom']
-          @type = attributes[:type] || attributes['type'] || "call.moderation_warning"
+          @_type = attributes[:_type] || attributes['type'] || "call.moderation_warning"
         end
 
         # Override field mappings for JSON serialization
@@ -47,7 +47,7 @@ module GetStream
             message: 'message',
             user_id: 'user_id',
             custom: 'custom',
-            type: 'type'
+            _type: 'type'
           }
         end
       end

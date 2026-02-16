@@ -9,12 +9,12 @@ module GetStream
       class RuleBuilderCondition < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _type
+        #   @return [String]
+        attr_accessor :_type
         # @!attribute confidence
         #   @return [Float]
         attr_accessor :confidence
-        # @!attribute type
-        #   @return [String]
-        attr_accessor :type
         # @!attribute content_count_rule_params
         #   @return [ContentCountRuleParameters]
         attr_accessor :content_count_rule_params
@@ -61,8 +61,8 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @_type = attributes[:_type] || attributes['type'] || ""
           @confidence = attributes[:confidence] || attributes['confidence'] || 0.0
-          @type = attributes[:type] || attributes['type'] || ""
           @content_count_rule_params = attributes[:content_count_rule_params] || attributes['content_count_rule_params'] || nil
           @content_flag_count_rule_params = attributes[:content_flag_count_rule_params] || attributes['content_flag_count_rule_params'] || nil
           @image_content_params = attributes[:image_content_params] || attributes['image_content_params'] || nil
@@ -82,8 +82,8 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            _type: 'type',
             confidence: 'confidence',
-            type: 'type',
             content_count_rule_params: 'content_count_rule_params',
             content_flag_count_rule_params: 'content_flag_count_rule_params',
             image_content_params: 'image_content_params',

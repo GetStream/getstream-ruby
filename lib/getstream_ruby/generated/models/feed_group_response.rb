@@ -9,12 +9,12 @@ module GetStream
       class FeedGroupResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _id
+        #   @return [String] Identifier within the group
+        attr_accessor :_id
         # @!attribute created_at
         #   @return [DateTime] When the feed group was created
         attr_accessor :created_at
-        # @!attribute id
-        #   @return [String] Identifier within the group
-        attr_accessor :id
         # @!attribute updated_at
         #   @return [DateTime] When the feed group was last updated
         attr_accessor :updated_at
@@ -52,8 +52,8 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @_id = attributes[:_id] || attributes['id']
           @created_at = attributes[:created_at] || attributes['created_at']
-          @id = attributes[:id] || attributes['id']
           @updated_at = attributes[:updated_at] || attributes['updated_at']
           @default_visibility = attributes[:default_visibility] || attributes['default_visibility'] || ""
           @deleted_at = attributes[:deleted_at] || attributes['deleted_at'] || nil
@@ -70,8 +70,8 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            _id: 'id',
             created_at: 'created_at',
-            id: 'id',
             updated_at: 'updated_at',
             default_visibility: 'default_visibility',
             deleted_at: 'deleted_at',

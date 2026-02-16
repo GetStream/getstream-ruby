@@ -18,9 +18,9 @@ module GetStream
         # @!attribute message
         #   @return [MessageResponse]
         attr_accessor :message
-        # @!attribute type
+        # @!attribute _type
         #   @return [String] The type of event: "message.flagged" in this case
-        attr_accessor :type
+        attr_accessor :_type
         # @!attribute channel_id
         #   @return [String] The ID of the channel where the message was sent
         attr_accessor :channel_id
@@ -70,7 +70,7 @@ module GetStream
           @created_at = attributes[:created_at] || attributes['created_at']
           @message_id = attributes[:message_id] || attributes['message_id']
           @message = attributes[:message] || attributes['message']
-          @type = attributes[:type] || attributes['type'] || "message.flagged"
+          @_type = attributes[:_type] || attributes['type'] || "message.flagged"
           @channel_id = attributes[:channel_id] || attributes['channel_id'] || ""
           @channel_member_count = attributes[:channel_member_count] || attributes['channel_member_count'] || 0
           @channel_message_count = attributes[:channel_message_count] || attributes['channel_message_count'] || 0
@@ -93,7 +93,7 @@ module GetStream
             created_at: 'created_at',
             message_id: 'message_id',
             message: 'message',
-            type: 'type',
+            _type: 'type',
             channel_id: 'channel_id',
             channel_member_count: 'channel_member_count',
             channel_message_count: 'channel_message_count',

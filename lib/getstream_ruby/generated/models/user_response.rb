@@ -9,15 +9,15 @@ module GetStream
       class UserResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _id
+        #   @return [String] Unique user identifier
+        attr_accessor :_id
         # @!attribute banned
         #   @return [Boolean] Whether a user is banned or not
         attr_accessor :banned
         # @!attribute created_at
         #   @return [DateTime] Date/time of creation
         attr_accessor :created_at
-        # @!attribute id
-        #   @return [String] Unique user identifier
-        attr_accessor :id
         # @!attribute invisible
         #   @return [Boolean]
         attr_accessor :invisible
@@ -85,9 +85,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @_id = attributes[:_id] || attributes['id']
           @banned = attributes[:banned] || attributes['banned']
           @created_at = attributes[:created_at] || attributes['created_at']
-          @id = attributes[:id] || attributes['id']
           @invisible = attributes[:invisible] || attributes['invisible']
           @language = attributes[:language] || attributes['language']
           @online = attributes[:online] || attributes['online']
@@ -114,9 +114,9 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            _id: 'id',
             banned: 'banned',
             created_at: 'created_at',
-            id: 'id',
             invisible: 'invisible',
             language: 'language',
             online: 'online',

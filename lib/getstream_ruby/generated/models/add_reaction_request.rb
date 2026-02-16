@@ -9,9 +9,9 @@ module GetStream
       class AddReactionRequest < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute type
+        # @!attribute _type
         #   @return [String] Type of reaction
-        attr_accessor :type
+        attr_accessor :_type
         # @!attribute copy_custom_to_notification
         #   @return [Boolean] Whether to copy custom data to the notification activity (only applies when create_notification_activity is true)
         attr_accessor :copy_custom_to_notification
@@ -37,7 +37,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @type = attributes[:type] || attributes['type']
+          @_type = attributes[:_type] || attributes['type']
           @copy_custom_to_notification = attributes[:copy_custom_to_notification] || attributes['copy_custom_to_notification'] || false
           @create_notification_activity = attributes[:create_notification_activity] || attributes['create_notification_activity'] || false
           @enforce_unique = attributes[:enforce_unique] || attributes['enforce_unique'] || false
@@ -50,7 +50,7 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            type: 'type',
+            _type: 'type',
             copy_custom_to_notification: 'copy_custom_to_notification',
             create_notification_activity: 'create_notification_activity',
             enforce_unique: 'enforce_unique',

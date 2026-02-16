@@ -15,16 +15,16 @@ module GetStream
         # @!attribute created_at
         #   @return [DateTime]
         attr_accessor :created_at
-        # @!attribute type
+        # @!attribute _type
         #   @return [String] The type of event: "call.closed_captions_failed" in this case
-        attr_accessor :type
+        attr_accessor :_type
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @call_cid = attributes[:call_cid] || attributes['call_cid']
           @created_at = attributes[:created_at] || attributes['created_at']
-          @type = attributes[:type] || attributes['type'] || "call.closed_captions_failed"
+          @_type = attributes[:_type] || attributes['type'] || "call.closed_captions_failed"
         end
 
         # Override field mappings for JSON serialization
@@ -32,7 +32,7 @@ module GetStream
           {
             call_cid: 'call_cid',
             created_at: 'created_at',
-            type: 'type'
+            _type: 'type'
           }
         end
       end

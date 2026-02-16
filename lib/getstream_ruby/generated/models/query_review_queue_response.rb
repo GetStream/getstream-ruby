@@ -21,9 +21,9 @@ module GetStream
         # @!attribute stats
         #   @return [Object] Statistics about the review queue
         attr_accessor :stats
-        # @!attribute next
+        # @!attribute _next
         #   @return [String]
-        attr_accessor :next
+        attr_accessor :_next
         # @!attribute prev
         #   @return [String]
         attr_accessor :prev
@@ -38,7 +38,7 @@ module GetStream
           @items = attributes[:items] || attributes['items']
           @action_config = attributes[:action_config] || attributes['action_config']
           @stats = attributes[:stats] || attributes['stats']
-          @next = attributes[:next] || attributes['next'] || ""
+          @_next = attributes[:_next] || attributes['next'] || ""
           @prev = attributes[:prev] || attributes['prev'] || ""
           @filter_config = attributes[:filter_config] || attributes['filter_config'] || nil
         end
@@ -50,7 +50,7 @@ module GetStream
             items: 'items',
             action_config: 'action_config',
             stats: 'stats',
-            next: 'next',
+            _next: 'next',
             prev: 'prev',
             filter_config: 'filter_config'
           }

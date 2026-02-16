@@ -9,30 +9,30 @@ module GetStream
       class FriendReactionsOptions < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _type
+        #   @return [String] Default: 'following'. The type of friend relationship to use. 'following' = users you follow, 'mutual' = users with mutual follows. One of: following, mutual
+        attr_accessor :_type
         # @!attribute enabled
         #   @return [Boolean] Default: false. When true, fetches friend reactions for activities.
         attr_accessor :enabled
         # @!attribute limit
         #   @return [Integer] Default: 3, Max: 10. The maximum number of friend reactions to return per activity.
         attr_accessor :limit
-        # @!attribute type
-        #   @return [String] Default: 'following'. The type of friend relationship to use. 'following' = users you follow, 'mutual' = users with mutual follows. One of: following, mutual
-        attr_accessor :type
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @_type = attributes[:_type] || attributes['type'] || ""
           @enabled = attributes[:enabled] || attributes['enabled'] || false
           @limit = attributes[:limit] || attributes['limit'] || 0
-          @type = attributes[:type] || attributes['type'] || ""
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            _type: 'type',
             enabled: 'enabled',
-            limit: 'limit',
-            type: 'type'
+            limit: 'limit'
           }
         end
       end

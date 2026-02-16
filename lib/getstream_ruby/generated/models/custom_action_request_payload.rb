@@ -9,9 +9,9 @@ module GetStream
       class CustomActionRequestPayload < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute id
+        # @!attribute _id
         #   @return [String] Custom action identifier
-        attr_accessor :id
+        attr_accessor :_id
         # @!attribute options
         #   @return [Object] Custom action options
         attr_accessor :options
@@ -19,14 +19,14 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @id = attributes[:id] || attributes['id'] || ""
+          @_id = attributes[:_id] || attributes['id'] || ""
           @options = attributes[:options] || attributes['options'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            id: 'id',
+            _id: 'id',
             options: 'options'
           }
         end

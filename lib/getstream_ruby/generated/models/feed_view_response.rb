@@ -9,9 +9,9 @@ module GetStream
       class FeedViewResponse < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute id
+        # @!attribute _id
         #   @return [String] Unique identifier for the custom feed view
-        attr_accessor :id
+        attr_accessor :_id
         # @!attribute last_used_at
         #   @return [DateTime] When the feed view was last used
         attr_accessor :last_used_at
@@ -28,7 +28,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @id = attributes[:id] || attributes['id']
+          @_id = attributes[:_id] || attributes['id']
           @last_used_at = attributes[:last_used_at] || attributes['last_used_at'] || nil
           @activity_selectors = attributes[:activity_selectors] || attributes['activity_selectors'] || nil
           @aggregation = attributes[:aggregation] || attributes['aggregation'] || nil
@@ -38,7 +38,7 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            id: 'id',
+            _id: 'id',
             last_used_at: 'last_used_at',
             activity_selectors: 'activity_selectors',
             aggregation: 'aggregation',

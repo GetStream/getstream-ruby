@@ -21,9 +21,9 @@ module GetStream
         # @!attribute call_transcription
         #   @return [CallTranscription]
         attr_accessor :call_transcription
-        # @!attribute type
+        # @!attribute _type
         #   @return [String] The type of event: "call.transcription_ready" in this case
-        attr_accessor :type
+        attr_accessor :_type
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -32,7 +32,7 @@ module GetStream
           @created_at = attributes[:created_at] || attributes['created_at']
           @egress_id = attributes[:egress_id] || attributes['egress_id']
           @call_transcription = attributes[:call_transcription] || attributes['call_transcription']
-          @type = attributes[:type] || attributes['type'] || "call.transcription_ready"
+          @_type = attributes[:_type] || attributes['type'] || "call.transcription_ready"
         end
 
         # Override field mappings for JSON serialization
@@ -42,7 +42,7 @@ module GetStream
             created_at: 'created_at',
             egress_id: 'egress_id',
             call_transcription: 'call_transcription',
-            type: 'type'
+            _type: 'type'
           }
         end
       end

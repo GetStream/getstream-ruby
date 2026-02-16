@@ -24,12 +24,12 @@ module GetStream
         # @!attribute user_id
         #   @return [String]
         attr_accessor :user_id
+        # @!attribute _id
+        #   @return [String]
+        attr_accessor :_id
         # @!attribute deleted_at
         #   @return [DateTime]
         attr_accessor :deleted_at
-        # @!attribute id
-        #   @return [String]
-        attr_accessor :id
         # @!attribute parent
         #   @return [String]
         attr_accessor :parent
@@ -69,8 +69,8 @@ module GetStream
           @kind = attributes[:kind] || attributes['kind']
           @updated_at = attributes[:updated_at] || attributes['updated_at']
           @user_id = attributes[:user_id] || attributes['user_id']
+          @_id = attributes[:_id] || attributes['id'] || ""
           @deleted_at = attributes[:deleted_at] || attributes['deleted_at'] || nil
-          @id = attributes[:id] || attributes['id'] || ""
           @parent = attributes[:parent] || attributes['parent'] || ""
           @score = attributes[:score] || attributes['score'] || 0.0
           @target_feeds = attributes[:target_feeds] || attributes['target_feeds'] || nil
@@ -91,8 +91,8 @@ module GetStream
             kind: 'kind',
             updated_at: 'updated_at',
             user_id: 'user_id',
+            _id: 'id',
             deleted_at: 'deleted_at',
-            id: 'id',
             parent: 'parent',
             score: 'score',
             target_feeds: 'target_feeds',

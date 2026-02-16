@@ -9,9 +9,9 @@ module GetStream
       class CreateFeedGroupRequest < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute id
+        # @!attribute _id
         #   @return [String] Unique identifier for the feed group
-        attr_accessor :id
+        attr_accessor :_id
         # @!attribute default_visibility
         #   @return [String] Default visibility for the feed group, can be 'public', 'visible', 'followers', 'members', or 'private'. Defaults to 'visible' if not provided. 
         attr_accessor :default_visibility
@@ -43,7 +43,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @id = attributes[:id] || attributes['id']
+          @_id = attributes[:_id] || attributes['id']
           @default_visibility = attributes[:default_visibility] || attributes['default_visibility'] || ""
           @activity_processors = attributes[:activity_processors] || attributes['activity_processors'] || nil
           @activity_selectors = attributes[:activity_selectors] || attributes['activity_selectors'] || nil
@@ -58,7 +58,7 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            id: 'id',
+            _id: 'id',
             default_visibility: 'default_visibility',
             activity_processors: 'activity_processors',
             activity_selectors: 'activity_selectors',

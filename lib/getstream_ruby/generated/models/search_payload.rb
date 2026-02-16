@@ -12,6 +12,9 @@ module GetStream
         # @!attribute filter_conditions
         #   @return [Object] Channel filter conditions
         attr_accessor :filter_conditions
+        # @!attribute _next
+        #   @return [String] Pagination parameter. Cannot be used with non-zero offset.
+        attr_accessor :_next
         # @!attribute force_default_search
         #   @return [Boolean]
         attr_accessor :force_default_search
@@ -21,9 +24,6 @@ module GetStream
         # @!attribute limit
         #   @return [Integer] Number of messages to return
         attr_accessor :limit
-        # @!attribute next
-        #   @return [String] Pagination parameter. Cannot be used with non-zero offset.
-        attr_accessor :next
         # @!attribute offset
         #   @return [Integer] Pagination offset. Cannot be used with sort or next.
         attr_accessor :offset
@@ -44,10 +44,10 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @filter_conditions = attributes[:filter_conditions] || attributes['filter_conditions']
+          @_next = attributes[:_next] || attributes['next'] || ""
           @force_default_search = attributes[:force_default_search] || attributes['force_default_search'] || false
           @force_sql_v2_backend = attributes[:force_sql_v2_backend] || attributes['force_sql_v2_backend'] || false
           @limit = attributes[:limit] || attributes['limit'] || 0
-          @next = attributes[:next] || attributes['next'] || ""
           @offset = attributes[:offset] || attributes['offset'] || 0
           @query = attributes[:query] || attributes['query'] || ""
           @sort = attributes[:sort] || attributes['sort'] || nil
@@ -59,10 +59,10 @@ module GetStream
         def self.json_field_mappings
           {
             filter_conditions: 'filter_conditions',
+            _next: 'next',
             force_default_search: 'force_default_search',
             force_sql_v2_backend: 'force_sql_v2_backend',
             limit: 'limit',
-            next: 'next',
             offset: 'offset',
             query: 'query',
             sort: 'sort',

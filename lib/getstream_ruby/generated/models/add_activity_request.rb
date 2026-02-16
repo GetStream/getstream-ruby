@@ -9,12 +9,15 @@ module GetStream
       class AddActivityRequest < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute type
+        # @!attribute _type
         #   @return [String] Type of activity
-        attr_accessor :type
+        attr_accessor :_type
         # @!attribute feeds
         #   @return [Array<String>] List of feeds to add the activity to with a default max limit of 25 feeds
         attr_accessor :feeds
+        # @!attribute _id
+        #   @return [String] Optional ID for the activity
+        attr_accessor :_id
         # @!attribute copy_custom_to_notification
         #   @return [Boolean] Whether to copy custom data to the notification activity (only applies when create_notification_activity is true)
         attr_accessor :copy_custom_to_notification
@@ -24,9 +27,6 @@ module GetStream
         # @!attribute expires_at
         #   @return [String] Expiration time for the activity
         attr_accessor :expires_at
-        # @!attribute id
-        #   @return [String] Optional ID for the activity
-        attr_accessor :id
         # @!attribute parent_id
         #   @return [String] ID of parent activity for replies/comments
         attr_accessor :parent_id
@@ -82,12 +82,12 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @type = attributes[:type] || attributes['type']
+          @_type = attributes[:_type] || attributes['type']
           @feeds = attributes[:feeds] || attributes['feeds']
+          @_id = attributes[:_id] || attributes['id'] || ""
           @copy_custom_to_notification = attributes[:copy_custom_to_notification] || attributes['copy_custom_to_notification'] || false
           @create_notification_activity = attributes[:create_notification_activity] || attributes['create_notification_activity'] || false
           @expires_at = attributes[:expires_at] || attributes['expires_at'] || ""
-          @id = attributes[:id] || attributes['id'] || ""
           @parent_id = attributes[:parent_id] || attributes['parent_id'] || ""
           @poll_id = attributes[:poll_id] || attributes['poll_id'] || ""
           @restrict_replies = attributes[:restrict_replies] || attributes['restrict_replies'] || ""
@@ -110,12 +110,12 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            type: 'type',
+            _type: 'type',
             feeds: 'feeds',
+            _id: 'id',
             copy_custom_to_notification: 'copy_custom_to_notification',
             create_notification_activity: 'create_notification_activity',
             expires_at: 'expires_at',
-            id: 'id',
             parent_id: 'parent_id',
             poll_id: 'poll_id',
             restrict_replies: 'restrict_replies',

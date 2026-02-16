@@ -15,9 +15,9 @@ module GetStream
         # @!attribute message_history
         #   @return [Array<MessageHistoryEntryResponse>] Message history entries
         attr_accessor :message_history
-        # @!attribute next
+        # @!attribute _next
         #   @return [String]
-        attr_accessor :next
+        attr_accessor :_next
         # @!attribute prev
         #   @return [String]
         attr_accessor :prev
@@ -27,7 +27,7 @@ module GetStream
           super(attributes)
           @duration = attributes[:duration] || attributes['duration']
           @message_history = attributes[:message_history] || attributes['message_history']
-          @next = attributes[:next] || attributes['next'] || ""
+          @_next = attributes[:_next] || attributes['next'] || ""
           @prev = attributes[:prev] || attributes['prev'] || ""
         end
 
@@ -36,7 +36,7 @@ module GetStream
           {
             duration: 'duration',
             message_history: 'message_history',
-            next: 'next',
+            _next: 'next',
             prev: 'prev'
           }
         end

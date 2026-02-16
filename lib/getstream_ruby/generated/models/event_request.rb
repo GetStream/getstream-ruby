@@ -9,9 +9,9 @@ module GetStream
       class EventRequest < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute type
+        # @!attribute _type
         #   @return [String]
-        attr_accessor :type
+        attr_accessor :_type
         # @!attribute parent_id
         #   @return [String]
         attr_accessor :parent_id
@@ -28,7 +28,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @type = attributes[:type] || attributes['type']
+          @_type = attributes[:_type] || attributes['type']
           @parent_id = attributes[:parent_id] || attributes['parent_id'] || ""
           @user_id = attributes[:user_id] || attributes['user_id'] || ""
           @custom = attributes[:custom] || attributes['custom'] || nil
@@ -38,7 +38,7 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            type: 'type',
+            _type: 'type',
             parent_id: 'parent_id',
             user_id: 'user_id',
             custom: 'custom',

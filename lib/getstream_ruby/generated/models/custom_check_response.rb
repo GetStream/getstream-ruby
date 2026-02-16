@@ -9,12 +9,12 @@ module GetStream
       class CustomCheckResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _id
+        #   @return [String] Unique identifier of the custom check
+        attr_accessor :_id
         # @!attribute duration
         #   @return [String]
         attr_accessor :duration
-        # @!attribute id
-        #   @return [String] Unique identifier of the custom check
-        attr_accessor :id
         # @!attribute status
         #   @return [String] Status of the custom check
         attr_accessor :status
@@ -25,8 +25,8 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @_id = attributes[:_id] || attributes['id']
           @duration = attributes[:duration] || attributes['duration']
-          @id = attributes[:id] || attributes['id']
           @status = attributes[:status] || attributes['status']
           @item = attributes[:item] || attributes['item'] || nil
         end
@@ -34,8 +34,8 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            _id: 'id',
             duration: 'duration',
-            id: 'id',
             status: 'status',
             item: 'item'
           }

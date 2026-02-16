@@ -9,9 +9,9 @@ module GetStream
       class UpdatePollRequest < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute id
+        # @!attribute _id
         #   @return [String] Poll ID
-        attr_accessor :id
+        attr_accessor :_id
         # @!attribute name
         #   @return [String] Poll name
         attr_accessor :name
@@ -42,9 +42,9 @@ module GetStream
         # @!attribute options
         #   @return [Array<PollOptionRequest>] Poll options
         attr_accessor :options
-        # @!attribute Custom
+        # @!attribute custom
         #   @return [Object]
-        attr_accessor :Custom
+        attr_accessor :custom
         # @!attribute user
         #   @return [UserRequest]
         attr_accessor :user
@@ -52,7 +52,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @id = attributes[:id] || attributes['id']
+          @_id = attributes[:_id] || attributes['id']
           @name = attributes[:name] || attributes['name']
           @allow_answers = attributes[:allow_answers] || attributes['allow_answers'] || false
           @allow_user_suggested_options = attributes[:allow_user_suggested_options] || attributes['allow_user_suggested_options'] || false
@@ -63,14 +63,14 @@ module GetStream
           @user_id = attributes[:user_id] || attributes['user_id'] || ""
           @voting_visibility = attributes[:voting_visibility] || attributes['voting_visibility'] || ""
           @options = attributes[:options] || attributes['options'] || nil
-          @Custom = attributes[:Custom] || attributes['Custom'] || nil
+          @custom = attributes[:custom] || attributes['Custom'] || nil
           @user = attributes[:user] || attributes['user'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            id: 'id',
+            _id: 'id',
             name: 'name',
             allow_answers: 'allow_answers',
             allow_user_suggested_options: 'allow_user_suggested_options',
@@ -81,7 +81,7 @@ module GetStream
             user_id: 'user_id',
             voting_visibility: 'voting_visibility',
             options: 'options',
-            Custom: 'Custom',
+            custom: 'Custom',
             user: 'user'
           }
         end

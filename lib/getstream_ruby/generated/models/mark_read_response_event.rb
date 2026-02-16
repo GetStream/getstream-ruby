@@ -9,6 +9,9 @@ module GetStream
       class MarkReadResponseEvent < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _type
+        #   @return [String]
+        attr_accessor :_type
         # @!attribute channel_id
         #   @return [String]
         attr_accessor :channel_id
@@ -21,9 +24,6 @@ module GetStream
         # @!attribute created_at
         #   @return [DateTime]
         attr_accessor :created_at
-        # @!attribute type
-        #   @return [String]
-        attr_accessor :type
         # @!attribute channel_last_message_at
         #   @return [DateTime]
         attr_accessor :channel_last_message_at
@@ -46,11 +46,11 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @_type = attributes[:_type] || attributes['type']
           @channel_id = attributes[:channel_id] || attributes['channel_id']
           @channel_type = attributes[:channel_type] || attributes['channel_type']
           @cid = attributes[:cid] || attributes['cid']
           @created_at = attributes[:created_at] || attributes['created_at']
-          @type = attributes[:type] || attributes['type']
           @channel_last_message_at = attributes[:channel_last_message_at] || attributes['channel_last_message_at'] || nil
           @last_read_message_id = attributes[:last_read_message_id] || attributes['last_read_message_id'] || ""
           @team = attributes[:team] || attributes['team'] || ""
@@ -62,11 +62,11 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            _type: 'type',
             channel_id: 'channel_id',
             channel_type: 'channel_type',
             cid: 'cid',
             created_at: 'created_at',
-            type: 'type',
             channel_last_message_at: 'channel_last_message_at',
             last_read_message_id: 'last_read_message_id',
             team: 'team',

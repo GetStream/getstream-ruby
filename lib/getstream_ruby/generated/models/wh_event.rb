@@ -9,20 +9,20 @@ module GetStream
       class WHEvent < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute type
+        # @!attribute _type
         #   @return [String]
-        attr_accessor :type
+        attr_accessor :_type
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @type = attributes[:type] || attributes['type']
+          @_type = attributes[:_type] || attributes['type']
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            type: 'type'
+            _type: 'type'
           }
         end
       end

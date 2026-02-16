@@ -15,32 +15,32 @@ module GetStream
         # @!attribute custom
         #   @return [Object]
         attr_accessor :custom
-        # @!attribute type
+        # @!attribute _type
         #   @return [String]
-        attr_accessor :type
+        attr_accessor :_type
         # @!attribute received_at
         #   @return [DateTime]
         attr_accessor :received_at
-        # @!attribute CreatedBy
+        # @!attribute created_by
         #   @return [UserResponse]
-        attr_accessor :CreatedBy
-        # @!attribute Message
+        attr_accessor :created_by
+        # @!attribute message
         #   @return [MessageResponse]
-        attr_accessor :Message
-        # @!attribute User
+        attr_accessor :message
+        # @!attribute user
         #   @return [UserResponse]
-        attr_accessor :User
+        attr_accessor :user
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @created_at = attributes[:created_at] || attributes['created_at']
           @custom = attributes[:custom] || attributes['custom']
-          @type = attributes[:type] || attributes['type'] || "flag.updated"
+          @_type = attributes[:_type] || attributes['type'] || "flag.updated"
           @received_at = attributes[:received_at] || attributes['received_at'] || nil
-          @CreatedBy = attributes[:CreatedBy] || attributes['CreatedBy'] || nil
-          @Message = attributes[:Message] || attributes['Message'] || nil
-          @User = attributes[:User] || attributes['User'] || nil
+          @created_by = attributes[:created_by] || attributes['CreatedBy'] || nil
+          @message = attributes[:message] || attributes['Message'] || nil
+          @user = attributes[:user] || attributes['User'] || nil
         end
 
         # Override field mappings for JSON serialization
@@ -48,11 +48,11 @@ module GetStream
           {
             created_at: 'created_at',
             custom: 'custom',
-            type: 'type',
+            _type: 'type',
             received_at: 'received_at',
-            CreatedBy: 'CreatedBy',
-            Message: 'Message',
-            User: 'User'
+            created_by: 'CreatedBy',
+            message: 'Message',
+            user: 'User'
           }
         end
       end

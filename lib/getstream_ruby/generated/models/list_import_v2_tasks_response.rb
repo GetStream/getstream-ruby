@@ -15,9 +15,9 @@ module GetStream
         # @!attribute import_tasks
         #   @return [Array<ImportV2TaskItem>]
         attr_accessor :import_tasks
-        # @!attribute next
+        # @!attribute _next
         #   @return [String]
-        attr_accessor :next
+        attr_accessor :_next
         # @!attribute prev
         #   @return [String]
         attr_accessor :prev
@@ -27,7 +27,7 @@ module GetStream
           super(attributes)
           @duration = attributes[:duration] || attributes['duration']
           @import_tasks = attributes[:import_tasks] || attributes['import_tasks']
-          @next = attributes[:next] || attributes['next'] || ""
+          @_next = attributes[:_next] || attributes['next'] || ""
           @prev = attributes[:prev] || attributes['prev'] || ""
         end
 
@@ -36,7 +36,7 @@ module GetStream
           {
             duration: 'duration',
             import_tasks: 'import_tasks',
-            next: 'next',
+            _next: 'next',
             prev: 'prev'
           }
         end

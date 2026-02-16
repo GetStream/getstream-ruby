@@ -18,9 +18,9 @@ module GetStream
         # @!attribute user
         #   @return [UserResponseCommonFields]
         attr_accessor :user
-        # @!attribute type
+        # @!attribute _type
         #   @return [String] The type of event: "user.banned" in this case
-        attr_accessor :type
+        attr_accessor :_type
         # @!attribute channel_id
         #   @return [String] The ID of the channel where the target user was banned
         attr_accessor :channel_id
@@ -67,7 +67,7 @@ module GetStream
           @created_at = attributes[:created_at] || attributes['created_at']
           @custom = attributes[:custom] || attributes['custom']
           @user = attributes[:user] || attributes['user']
-          @type = attributes[:type] || attributes['type'] || "user.banned"
+          @_type = attributes[:_type] || attributes['type'] || "user.banned"
           @channel_id = attributes[:channel_id] || attributes['channel_id'] || ""
           @channel_member_count = attributes[:channel_member_count] || attributes['channel_member_count'] || 0
           @channel_message_count = attributes[:channel_message_count] || attributes['channel_message_count'] || 0
@@ -89,7 +89,7 @@ module GetStream
             created_at: 'created_at',
             custom: 'custom',
             user: 'user',
-            type: 'type',
+            _type: 'type',
             channel_id: 'channel_id',
             channel_member_count: 'channel_member_count',
             channel_message_count: 'channel_message_count',

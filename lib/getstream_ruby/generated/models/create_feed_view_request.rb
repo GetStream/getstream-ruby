@@ -9,9 +9,9 @@ module GetStream
       class CreateFeedViewRequest < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute id
+        # @!attribute _id
         #   @return [String] Unique identifier for the feed view
-        attr_accessor :id
+        attr_accessor :_id
         # @!attribute activity_selectors
         #   @return [Array<ActivitySelectorConfig>] Configuration for selecting activities
         attr_accessor :activity_selectors
@@ -25,7 +25,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @id = attributes[:id] || attributes['id']
+          @_id = attributes[:_id] || attributes['id']
           @activity_selectors = attributes[:activity_selectors] || attributes['activity_selectors'] || nil
           @aggregation = attributes[:aggregation] || attributes['aggregation'] || nil
           @ranking = attributes[:ranking] || attributes['ranking'] || nil
@@ -34,7 +34,7 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            id: 'id',
+            _id: 'id',
             activity_selectors: 'activity_selectors',
             aggregation: 'aggregation',
             ranking: 'ranking'

@@ -15,9 +15,9 @@ module GetStream
         # @!attribute reminders
         #   @return [Array<ReminderResponseData>] MessageReminders data returned by the query
         attr_accessor :reminders
-        # @!attribute next
+        # @!attribute _next
         #   @return [String]
-        attr_accessor :next
+        attr_accessor :_next
         # @!attribute prev
         #   @return [String]
         attr_accessor :prev
@@ -27,7 +27,7 @@ module GetStream
           super(attributes)
           @duration = attributes[:duration] || attributes['duration']
           @reminders = attributes[:reminders] || attributes['reminders']
-          @next = attributes[:next] || attributes['next'] || ""
+          @_next = attributes[:_next] || attributes['next'] || ""
           @prev = attributes[:prev] || attributes['prev'] || ""
         end
 
@@ -36,7 +36,7 @@ module GetStream
           {
             duration: 'duration',
             reminders: 'reminders',
-            next: 'next',
+            _next: 'next',
             prev: 'prev'
           }
         end

@@ -9,6 +9,12 @@ module GetStream
       class SegmentResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _id
+        #   @return [String]
+        attr_accessor :_id
+        # @!attribute _type
+        #   @return [String]
+        attr_accessor :_type
         # @!attribute all_sender_channels
         #   @return [Boolean]
         attr_accessor :all_sender_channels
@@ -24,18 +30,12 @@ module GetStream
         # @!attribute description
         #   @return [String]
         attr_accessor :description
-        # @!attribute id
-        #   @return [String]
-        attr_accessor :id
         # @!attribute name
         #   @return [String]
         attr_accessor :name
         # @!attribute size
         #   @return [Integer]
         attr_accessor :size
-        # @!attribute type
-        #   @return [String]
-        attr_accessor :type
         # @!attribute updated_at
         #   @return [DateTime]
         attr_accessor :updated_at
@@ -46,15 +46,15 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @_id = attributes[:_id] || attributes['id']
+          @_type = attributes[:_type] || attributes['type']
           @all_sender_channels = attributes[:all_sender_channels] || attributes['all_sender_channels']
           @all_users = attributes[:all_users] || attributes['all_users']
           @created_at = attributes[:created_at] || attributes['created_at']
           @deleted_at = attributes[:deleted_at] || attributes['deleted_at']
           @description = attributes[:description] || attributes['description']
-          @id = attributes[:id] || attributes['id']
           @name = attributes[:name] || attributes['name']
           @size = attributes[:size] || attributes['size']
-          @type = attributes[:type] || attributes['type']
           @updated_at = attributes[:updated_at] || attributes['updated_at']
           @filter = attributes[:filter] || attributes['filter']
         end
@@ -62,15 +62,15 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            _id: 'id',
+            _type: 'type',
             all_sender_channels: 'all_sender_channels',
             all_users: 'all_users',
             created_at: 'created_at',
             deleted_at: 'deleted_at',
             description: 'description',
-            id: 'id',
             name: 'name',
             size: 'size',
-            type: 'type',
             updated_at: 'updated_at',
             filter: 'filter'
           }

@@ -15,9 +15,9 @@ module GetStream
         # @!attribute custom
         #   @return [Object] Custom data for the collection (required, must contain at least one key)
         attr_accessor :custom
-        # @!attribute id
+        # @!attribute _id
         #   @return [String] Unique identifier for the collection within its name (optional, will be auto-generated if not provided)
-        attr_accessor :id
+        attr_accessor :_id
         # @!attribute user_id
         #   @return [String] ID of the user who owns this collection
         attr_accessor :user_id
@@ -27,7 +27,7 @@ module GetStream
           super(attributes)
           @name = attributes[:name] || attributes['name']
           @custom = attributes[:custom] || attributes['custom']
-          @id = attributes[:id] || attributes['id'] || ""
+          @_id = attributes[:_id] || attributes['id'] || ""
           @user_id = attributes[:user_id] || attributes['user_id'] || ""
         end
 
@@ -36,7 +36,7 @@ module GetStream
           {
             name: 'name',
             custom: 'custom',
-            id: 'id',
+            _id: 'id',
             user_id: 'user_id'
           }
         end

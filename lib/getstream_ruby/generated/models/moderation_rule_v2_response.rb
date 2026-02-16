@@ -9,6 +9,9 @@ module GetStream
       class ModerationRuleV2Response < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _id
+        #   @return [String]
+        attr_accessor :_id
         # @!attribute created_at
         #   @return [DateTime]
         attr_accessor :created_at
@@ -18,9 +21,6 @@ module GetStream
         # @!attribute enabled
         #   @return [Boolean]
         attr_accessor :enabled
-        # @!attribute id
-        #   @return [String]
-        attr_accessor :id
         # @!attribute name
         #   @return [String]
         attr_accessor :name
@@ -55,10 +55,10 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @_id = attributes[:_id] || attributes['id']
           @created_at = attributes[:created_at] || attributes['created_at']
           @description = attributes[:description] || attributes['description']
           @enabled = attributes[:enabled] || attributes['enabled']
-          @id = attributes[:id] || attributes['id']
           @name = attributes[:name] || attributes['name']
           @rule_type = attributes[:rule_type] || attributes['rule_type']
           @team = attributes[:team] || attributes['team']
@@ -74,10 +74,10 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            _id: 'id',
             created_at: 'created_at',
             description: 'description',
             enabled: 'enabled',
-            id: 'id',
             name: 'name',
             rule_type: 'rule_type',
             team: 'team',

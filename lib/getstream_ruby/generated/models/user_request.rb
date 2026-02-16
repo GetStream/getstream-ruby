@@ -9,9 +9,9 @@ module GetStream
       class UserRequest < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute id
+        # @!attribute _id
         #   @return [String] User ID
-        attr_accessor :id
+        attr_accessor :_id
         # @!attribute image
         #   @return [String] User's profile image URL
         attr_accessor :image
@@ -43,7 +43,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @id = attributes[:id] || attributes['id']
+          @_id = attributes[:_id] || attributes['id']
           @image = attributes[:image] || attributes['image'] || ""
           @invisible = attributes[:invisible] || attributes['invisible'] || false
           @language = attributes[:language] || attributes['language'] || ""
@@ -58,7 +58,7 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            id: 'id',
+            _id: 'id',
             image: 'image',
             invisible: 'invisible',
             language: 'language',

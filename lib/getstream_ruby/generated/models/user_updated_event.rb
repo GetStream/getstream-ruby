@@ -18,9 +18,9 @@ module GetStream
         # @!attribute user
         #   @return [UserResponsePrivacyFields]
         attr_accessor :user
-        # @!attribute type
+        # @!attribute _type
         #   @return [String] The type of event: "user.updated" in this case
-        attr_accessor :type
+        attr_accessor :_type
         # @!attribute received_at
         #   @return [DateTime]
         attr_accessor :received_at
@@ -31,7 +31,7 @@ module GetStream
           @created_at = attributes[:created_at] || attributes['created_at']
           @custom = attributes[:custom] || attributes['custom']
           @user = attributes[:user] || attributes['user']
-          @type = attributes[:type] || attributes['type'] || "user.updated"
+          @_type = attributes[:_type] || attributes['type'] || "user.updated"
           @received_at = attributes[:received_at] || attributes['received_at'] || nil
         end
 
@@ -41,7 +41,7 @@ module GetStream
             created_at: 'created_at',
             custom: 'custom',
             user: 'user',
-            type: 'type',
+            _type: 'type',
             received_at: 'received_at'
           }
         end

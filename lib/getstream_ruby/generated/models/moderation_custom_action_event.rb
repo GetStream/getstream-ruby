@@ -21,9 +21,9 @@ module GetStream
         # @!attribute review_queue_item
         #   @return [ReviewQueueItemResponse]
         attr_accessor :review_queue_item
-        # @!attribute type
+        # @!attribute _type
         #   @return [String]
-        attr_accessor :type
+        attr_accessor :_type
         # @!attribute received_at
         #   @return [DateTime]
         attr_accessor :received_at
@@ -41,7 +41,7 @@ module GetStream
           @created_at = attributes[:created_at] || attributes['created_at']
           @custom = attributes[:custom] || attributes['custom']
           @review_queue_item = attributes[:review_queue_item] || attributes['review_queue_item']
-          @type = attributes[:type] || attributes['type'] || "moderation.custom_action"
+          @_type = attributes[:_type] || attributes['type'] || "moderation.custom_action"
           @received_at = attributes[:received_at] || attributes['received_at'] || nil
           @action_options = attributes[:action_options] || attributes['action_options'] || nil
           @message = attributes[:message] || attributes['message'] || nil
@@ -54,7 +54,7 @@ module GetStream
             created_at: 'created_at',
             custom: 'custom',
             review_queue_item: 'review_queue_item',
-            type: 'type',
+            _type: 'type',
             received_at: 'received_at',
             action_options: 'action_options',
             message: 'message'

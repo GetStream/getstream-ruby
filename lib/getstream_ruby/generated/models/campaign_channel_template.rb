@@ -9,15 +9,15 @@ module GetStream
       class CampaignChannelTemplate < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute type
+        # @!attribute _type
         #   @return [String]
-        attr_accessor :type
+        attr_accessor :_type
         # @!attribute custom
         #   @return [Object]
         attr_accessor :custom
-        # @!attribute id
+        # @!attribute _id
         #   @return [String]
-        attr_accessor :id
+        attr_accessor :_id
         # @!attribute team
         #   @return [String]
         attr_accessor :team
@@ -31,9 +31,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @type = attributes[:type] || attributes['type']
+          @_type = attributes[:_type] || attributes['type']
           @custom = attributes[:custom] || attributes['custom']
-          @id = attributes[:id] || attributes['id'] || ""
+          @_id = attributes[:_id] || attributes['id'] || ""
           @team = attributes[:team] || attributes['team'] || ""
           @members = attributes[:members] || attributes['members'] || nil
           @members_template = attributes[:members_template] || attributes['members_template'] || nil
@@ -42,9 +42,9 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            type: 'type',
+            _type: 'type',
             custom: 'custom',
-            id: 'id',
+            _id: 'id',
             team: 'team',
             members: 'members',
             members_template: 'members_template'

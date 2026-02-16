@@ -21,9 +21,9 @@ module GetStream
         # @!attribute member
         #   @return [ChannelMemberResponse]
         attr_accessor :member
-        # @!attribute type
+        # @!attribute _type
         #   @return [String] The type of event: "member.added" in this case
-        attr_accessor :type
+        attr_accessor :_type
         # @!attribute channel_id
         #   @return [String] The ID of the channel to which the member was added
         attr_accessor :channel_id
@@ -59,7 +59,7 @@ module GetStream
           @channel = attributes[:channel] || attributes['channel']
           @custom = attributes[:custom] || attributes['custom']
           @member = attributes[:member] || attributes['member']
-          @type = attributes[:type] || attributes['type'] || "member.added"
+          @_type = attributes[:_type] || attributes['type'] || "member.added"
           @channel_id = attributes[:channel_id] || attributes['channel_id'] || ""
           @channel_member_count = attributes[:channel_member_count] || attributes['channel_member_count'] || 0
           @channel_message_count = attributes[:channel_message_count] || attributes['channel_message_count'] || 0
@@ -78,7 +78,7 @@ module GetStream
             channel: 'channel',
             custom: 'custom',
             member: 'member',
-            type: 'type',
+            _type: 'type',
             channel_id: 'channel_id',
             channel_member_count: 'channel_member_count',
             channel_message_count: 'channel_message_count',

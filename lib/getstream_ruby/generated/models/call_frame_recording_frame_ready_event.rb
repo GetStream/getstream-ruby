@@ -33,9 +33,9 @@ module GetStream
         # @!attribute users
         #   @return [Hash<String, UserResponse>] The users in the frame
         attr_accessor :users
-        # @!attribute type
+        # @!attribute _type
         #   @return [String] The type of event: "call.frame_recording_ready" in this case
-        attr_accessor :type
+        attr_accessor :_type
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -48,7 +48,7 @@ module GetStream
           @track_type = attributes[:track_type] || attributes['track_type']
           @url = attributes[:url] || attributes['url']
           @users = attributes[:users] || attributes['users']
-          @type = attributes[:type] || attributes['type'] || "call.frame_recording_ready"
+          @_type = attributes[:_type] || attributes['type'] || "call.frame_recording_ready"
         end
 
         # Override field mappings for JSON serialization
@@ -62,7 +62,7 @@ module GetStream
             track_type: 'track_type',
             url: 'url',
             users: 'users',
-            type: 'type'
+            _type: 'type'
           }
         end
       end

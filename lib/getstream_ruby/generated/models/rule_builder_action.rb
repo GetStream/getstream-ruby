@@ -9,9 +9,9 @@ module GetStream
       class RuleBuilderAction < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute type
+        # @!attribute _type
         #   @return [String]
-        attr_accessor :type
+        attr_accessor :_type
         # @!attribute ban_options
         #   @return [BanOptions]
         attr_accessor :ban_options
@@ -22,7 +22,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @type = attributes[:type] || attributes['type']
+          @_type = attributes[:_type] || attributes['type']
           @ban_options = attributes[:ban_options] || attributes['ban_options'] || nil
           @flag_user_options = attributes[:flag_user_options] || attributes['flag_user_options'] || nil
         end
@@ -30,7 +30,7 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            type: 'type',
+            _type: 'type',
             ban_options: 'ban_options',
             flag_user_options: 'flag_user_options'
           }

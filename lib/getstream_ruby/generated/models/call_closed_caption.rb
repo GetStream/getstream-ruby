@@ -9,12 +9,12 @@ module GetStream
       class CallClosedCaption < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _id
+        #   @return [String]
+        attr_accessor :_id
         # @!attribute end_time
         #   @return [DateTime]
         attr_accessor :end_time
-        # @!attribute id
-        #   @return [String]
-        attr_accessor :id
         # @!attribute language
         #   @return [String]
         attr_accessor :language
@@ -40,8 +40,8 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @_id = attributes[:_id] || attributes['id']
           @end_time = attributes[:end_time] || attributes['end_time']
-          @id = attributes[:id] || attributes['id']
           @language = attributes[:language] || attributes['language']
           @speaker_id = attributes[:speaker_id] || attributes['speaker_id']
           @start_time = attributes[:start_time] || attributes['start_time']
@@ -54,8 +54,8 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            _id: 'id',
             end_time: 'end_time',
-            id: 'id',
             language: 'language',
             speaker_id: 'speaker_id',
             start_time: 'start_time',

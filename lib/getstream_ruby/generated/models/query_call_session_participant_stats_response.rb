@@ -27,15 +27,15 @@ module GetStream
         # @!attribute counts
         #   @return [CallStatsParticipantCounts]
         attr_accessor :counts
+        # @!attribute _next
+        #   @return [String]
+        attr_accessor :_next
         # @!attribute call_ended_at
         #   @return [DateTime]
         attr_accessor :call_ended_at
         # @!attribute call_started_at
         #   @return [DateTime]
         attr_accessor :call_started_at
-        # @!attribute next
-        #   @return [String]
-        attr_accessor :next
         # @!attribute prev
         #   @return [String]
         attr_accessor :prev
@@ -52,9 +52,9 @@ module GetStream
           @duration = attributes[:duration] || attributes['duration']
           @participants = attributes[:participants] || attributes['participants']
           @counts = attributes[:counts] || attributes['counts']
+          @_next = attributes[:_next] || attributes['next'] || ""
           @call_ended_at = attributes[:call_ended_at] || attributes['call_ended_at'] || nil
           @call_started_at = attributes[:call_started_at] || attributes['call_started_at'] || nil
-          @next = attributes[:next] || attributes['next'] || ""
           @prev = attributes[:prev] || attributes['prev'] || ""
           @tmp_data_source = attributes[:tmp_data_source] || attributes['tmp_data_source'] || ""
         end
@@ -68,9 +68,9 @@ module GetStream
             duration: 'duration',
             participants: 'participants',
             counts: 'counts',
+            _next: 'next',
             call_ended_at: 'call_ended_at',
             call_started_at: 'call_started_at',
-            next: 'next',
             prev: 'prev',
             tmp_data_source: 'tmp_data_source'
           }

@@ -12,9 +12,9 @@ module GetStream
         # @!attribute enabled
         #   @return [Boolean]
         attr_accessor :enabled
-        # @!attribute id
+        # @!attribute _id
         #   @return [String]
-        attr_accessor :id
+        attr_accessor :_id
         # @!attribute secret
         #   @return [String]
         attr_accessor :secret
@@ -23,7 +23,7 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @enabled = attributes[:enabled] || attributes['enabled']
-          @id = attributes[:id] || attributes['id'] || ""
+          @_id = attributes[:_id] || attributes['id'] || ""
           @secret = attributes[:secret] || attributes['secret'] || ""
         end
 
@@ -31,7 +31,7 @@ module GetStream
         def self.json_field_mappings
           {
             enabled: 'enabled',
-            id: 'id',
+            _id: 'id',
             secret: 'secret'
           }
         end

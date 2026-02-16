@@ -12,6 +12,9 @@ module GetStream
         # @!attribute custom
         #   @return [Object]
         attr_accessor :custom
+        # @!attribute _type
+        #   @return [String] Attachment type (e.g. image, video, url)
+        attr_accessor :_type
         # @!attribute asset_url
         #   @return [String]
         attr_accessor :asset_url
@@ -63,9 +66,6 @@ module GetStream
         # @!attribute title_link
         #   @return [String]
         attr_accessor :title_link
-        # @!attribute type
-        #   @return [String] Attachment type (e.g. image, video, url)
-        attr_accessor :type
         # @!attribute actions
         #   @return [Array<Action>]
         attr_accessor :actions
@@ -80,6 +80,7 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @custom = attributes[:custom] || attributes['custom']
+          @_type = attributes[:_type] || attributes['type'] || ""
           @asset_url = attributes[:asset_url] || attributes['asset_url'] || ""
           @author_icon = attributes[:author_icon] || attributes['author_icon'] || ""
           @author_link = attributes[:author_link] || attributes['author_link'] || ""
@@ -97,7 +98,6 @@ module GetStream
           @thumb_url = attributes[:thumb_url] || attributes['thumb_url'] || ""
           @title = attributes[:title] || attributes['title'] || ""
           @title_link = attributes[:title_link] || attributes['title_link'] || ""
-          @type = attributes[:type] || attributes['type'] || ""
           @actions = attributes[:actions] || attributes['actions'] || nil
           @fields = attributes[:fields] || attributes['fields'] || nil
           @giphy = attributes[:giphy] || attributes['giphy'] || nil
@@ -107,6 +107,7 @@ module GetStream
         def self.json_field_mappings
           {
             custom: 'custom',
+            _type: 'type',
             asset_url: 'asset_url',
             author_icon: 'author_icon',
             author_link: 'author_link',
@@ -124,7 +125,6 @@ module GetStream
             thumb_url: 'thumb_url',
             title: 'title',
             title_link: 'title_link',
-            type: 'type',
             actions: 'actions',
             fields: 'fields',
             giphy: 'giphy'

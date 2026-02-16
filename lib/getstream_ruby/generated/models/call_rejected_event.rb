@@ -21,9 +21,9 @@ module GetStream
         # @!attribute user
         #   @return [UserResponse]
         attr_accessor :user
-        # @!attribute type
+        # @!attribute _type
         #   @return [String] The type of event: "call.rejected" in this case
-        attr_accessor :type
+        attr_accessor :_type
         # @!attribute reason
         #   @return [String] Provides information about why the call was rejected. You can provide any value, but the Stream API and SDKs use these default values: rejected, cancel, timeout and busy
         attr_accessor :reason
@@ -35,7 +35,7 @@ module GetStream
           @created_at = attributes[:created_at] || attributes['created_at']
           @call = attributes[:call] || attributes['call']
           @user = attributes[:user] || attributes['user']
-          @type = attributes[:type] || attributes['type'] || "call.rejected"
+          @_type = attributes[:_type] || attributes['type'] || "call.rejected"
           @reason = attributes[:reason] || attributes['reason'] || ""
         end
 
@@ -46,7 +46,7 @@ module GetStream
             created_at: 'created_at',
             call: 'call',
             user: 'user',
-            type: 'type',
+            _type: 'type',
             reason: 'reason'
           }
         end

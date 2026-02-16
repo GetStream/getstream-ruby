@@ -24,9 +24,9 @@ module GetStream
         # @!attribute custom
         #   @return [Object]
         attr_accessor :custom
-        # @!attribute type
+        # @!attribute _type
         #   @return [String] The type of event: "notification.reminder_due" in this case
-        attr_accessor :type
+        attr_accessor :_type
         # @!attribute parent_id
         #   @return [String]
         attr_accessor :parent_id
@@ -45,7 +45,7 @@ module GetStream
           @message_id = attributes[:message_id] || attributes['message_id']
           @user_id = attributes[:user_id] || attributes['user_id']
           @custom = attributes[:custom] || attributes['custom']
-          @type = attributes[:type] || attributes['type'] || "notification.reminder_due"
+          @_type = attributes[:_type] || attributes['type'] || "notification.reminder_due"
           @parent_id = attributes[:parent_id] || attributes['parent_id'] || ""
           @received_at = attributes[:received_at] || attributes['received_at'] || nil
           @reminder = attributes[:reminder] || attributes['reminder'] || nil
@@ -59,7 +59,7 @@ module GetStream
             message_id: 'message_id',
             user_id: 'user_id',
             custom: 'custom',
-            type: 'type',
+            _type: 'type',
             parent_id: 'parent_id',
             received_at: 'received_at',
             reminder: 'reminder'

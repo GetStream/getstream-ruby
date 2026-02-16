@@ -9,15 +9,15 @@ module GetStream
       class CallParticipantTimeline < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _type
+        #   @return [String]
+        attr_accessor :_type
         # @!attribute severity
         #   @return [String]
         attr_accessor :severity
         # @!attribute timestamp
         #   @return [DateTime]
         attr_accessor :timestamp
-        # @!attribute type
-        #   @return [String]
-        attr_accessor :type
         # @!attribute data
         #   @return [Object]
         attr_accessor :data
@@ -25,18 +25,18 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @_type = attributes[:_type] || attributes['type']
           @severity = attributes[:severity] || attributes['severity']
           @timestamp = attributes[:timestamp] || attributes['timestamp']
-          @type = attributes[:type] || attributes['type']
           @data = attributes[:data] || attributes['data']
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            _type: 'type',
             severity: 'severity',
             timestamp: 'timestamp',
-            type: 'type',
             data: 'data'
           }
         end

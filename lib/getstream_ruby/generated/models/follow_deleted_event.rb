@@ -21,9 +21,9 @@ module GetStream
         # @!attribute follow
         #   @return [FollowResponse]
         attr_accessor :follow
-        # @!attribute type
+        # @!attribute _type
         #   @return [String] The type of event: "feeds.follow.deleted" in this case
-        attr_accessor :type
+        attr_accessor :_type
         # @!attribute feed_visibility
         #   @return [String]
         attr_accessor :feed_visibility
@@ -38,7 +38,7 @@ module GetStream
           @fid = attributes[:fid] || attributes['fid']
           @custom = attributes[:custom] || attributes['custom']
           @follow = attributes[:follow] || attributes['follow']
-          @type = attributes[:type] || attributes['type'] || "feeds.follow.deleted"
+          @_type = attributes[:_type] || attributes['type'] || "feeds.follow.deleted"
           @feed_visibility = attributes[:feed_visibility] || attributes['feed_visibility'] || ""
           @received_at = attributes[:received_at] || attributes['received_at'] || nil
         end
@@ -50,7 +50,7 @@ module GetStream
             fid: 'fid',
             custom: 'custom',
             follow: 'follow',
-            type: 'type',
+            _type: 'type',
             feed_visibility: 'feed_visibility',
             received_at: 'received_at'
           }

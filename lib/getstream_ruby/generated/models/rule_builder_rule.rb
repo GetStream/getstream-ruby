@@ -15,12 +15,12 @@ module GetStream
         # @!attribute action
         #   @return [RuleBuilderAction]
         attr_accessor :action
+        # @!attribute _id
+        #   @return [String]
+        attr_accessor :_id
         # @!attribute cooldown_period
         #   @return [String]
         attr_accessor :cooldown_period
-        # @!attribute id
-        #   @return [String]
-        attr_accessor :id
         # @!attribute logic
         #   @return [String]
         attr_accessor :logic
@@ -36,8 +36,8 @@ module GetStream
           super(attributes)
           @rule_type = attributes[:rule_type] || attributes['rule_type']
           @action = attributes[:action] || attributes['action']
+          @_id = attributes[:_id] || attributes['id'] || ""
           @cooldown_period = attributes[:cooldown_period] || attributes['cooldown_period'] || ""
-          @id = attributes[:id] || attributes['id'] || ""
           @logic = attributes[:logic] || attributes['logic'] || ""
           @conditions = attributes[:conditions] || attributes['conditions'] || nil
           @groups = attributes[:groups] || attributes['groups'] || nil
@@ -48,8 +48,8 @@ module GetStream
           {
             rule_type: 'rule_type',
             action: 'action',
+            _id: 'id',
             cooldown_period: 'cooldown_period',
-            id: 'id',
             logic: 'logic',
             conditions: 'conditions',
             groups: 'groups'

@@ -15,9 +15,9 @@ module GetStream
         # @!attribute activities
         #   @return [Array<ActivityResponse>] List of activities matching the query
         attr_accessor :activities
-        # @!attribute next
+        # @!attribute _next
         #   @return [String] Cursor for next page
-        attr_accessor :next
+        attr_accessor :_next
         # @!attribute prev
         #   @return [String] Cursor for previous page
         attr_accessor :prev
@@ -27,7 +27,7 @@ module GetStream
           super(attributes)
           @duration = attributes[:duration] || attributes['duration']
           @activities = attributes[:activities] || attributes['activities']
-          @next = attributes[:next] || attributes['next'] || ""
+          @_next = attributes[:_next] || attributes['next'] || ""
           @prev = attributes[:prev] || attributes['prev'] || ""
         end
 
@@ -36,7 +36,7 @@ module GetStream
           {
             duration: 'duration',
             activities: 'activities',
-            next: 'next',
+            _next: 'next',
             prev: 'prev'
           }
         end

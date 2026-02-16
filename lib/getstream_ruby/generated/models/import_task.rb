@@ -9,12 +9,12 @@ module GetStream
       class ImportTask < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _id
+        #   @return [String]
+        attr_accessor :_id
         # @!attribute created_at
         #   @return [DateTime]
         attr_accessor :created_at
-        # @!attribute id
-        #   @return [String]
-        attr_accessor :id
         # @!attribute mode
         #   @return [String]
         attr_accessor :mode
@@ -37,8 +37,8 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @_id = attributes[:_id] || attributes['id']
           @created_at = attributes[:created_at] || attributes['created_at']
-          @id = attributes[:id] || attributes['id']
           @mode = attributes[:mode] || attributes['mode']
           @path = attributes[:path] || attributes['path']
           @state = attributes[:state] || attributes['state']
@@ -50,8 +50,8 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            _id: 'id',
             created_at: 'created_at',
-            id: 'id',
             mode: 'mode',
             path: 'path',
             state: 'state',

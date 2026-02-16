@@ -18,9 +18,9 @@ module GetStream
         # @!attribute name
         #   @return [String] Name of the given RTMP broadcast
         attr_accessor :name
-        # @!attribute type
+        # @!attribute _type
         #   @return [String] The type of event: "call.rtmp_broadcast_failed" in this case
-        attr_accessor :type
+        attr_accessor :_type
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -28,7 +28,7 @@ module GetStream
           @call_cid = attributes[:call_cid] || attributes['call_cid']
           @created_at = attributes[:created_at] || attributes['created_at']
           @name = attributes[:name] || attributes['name']
-          @type = attributes[:type] || attributes['type'] || "call.rtmp_broadcast_failed"
+          @_type = attributes[:_type] || attributes['type'] || "call.rtmp_broadcast_failed"
         end
 
         # Override field mappings for JSON serialization
@@ -37,7 +37,7 @@ module GetStream
             call_cid: 'call_cid',
             created_at: 'created_at',
             name: 'name',
-            type: 'type'
+            _type: 'type'
           }
         end
       end

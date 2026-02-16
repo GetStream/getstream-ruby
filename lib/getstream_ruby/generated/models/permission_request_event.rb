@@ -21,9 +21,9 @@ module GetStream
         # @!attribute user
         #   @return [UserResponse]
         attr_accessor :user
-        # @!attribute type
+        # @!attribute _type
         #   @return [String] The type of event: "call.permission_request" in this case
-        attr_accessor :type
+        attr_accessor :_type
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -32,7 +32,7 @@ module GetStream
           @created_at = attributes[:created_at] || attributes['created_at']
           @permissions = attributes[:permissions] || attributes['permissions']
           @user = attributes[:user] || attributes['user']
-          @type = attributes[:type] || attributes['type'] || "call.permission_request"
+          @_type = attributes[:_type] || attributes['type'] || "call.permission_request"
         end
 
         # Override field mappings for JSON serialization
@@ -42,7 +42,7 @@ module GetStream
             created_at: 'created_at',
             permissions: 'permissions',
             user: 'user',
-            type: 'type'
+            _type: 'type'
           }
         end
       end

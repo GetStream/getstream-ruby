@@ -15,9 +15,9 @@ module GetStream
         # @!attribute custom
         #   @return [Object]
         attr_accessor :custom
-        # @!attribute type
+        # @!attribute _type
         #   @return [String] The type of event: "notification.mark_unread" in this case
-        attr_accessor :type
+        attr_accessor :_type
         # @!attribute channel_id
         #   @return [String] The ID of the channel which was marked as unread
         attr_accessor :channel_id
@@ -84,7 +84,7 @@ module GetStream
           super(attributes)
           @created_at = attributes[:created_at] || attributes['created_at']
           @custom = attributes[:custom] || attributes['custom']
-          @type = attributes[:type] || attributes['type'] || "notification.mark_unread"
+          @_type = attributes[:_type] || attributes['type'] || "notification.mark_unread"
           @channel_id = attributes[:channel_id] || attributes['channel_id'] || ""
           @channel_member_count = attributes[:channel_member_count] || attributes['channel_member_count'] || 0
           @channel_message_count = attributes[:channel_message_count] || attributes['channel_message_count'] || 0
@@ -112,7 +112,7 @@ module GetStream
           {
             created_at: 'created_at',
             custom: 'custom',
-            type: 'type',
+            _type: 'type',
             channel_id: 'channel_id',
             channel_member_count: 'channel_member_count',
             channel_message_count: 'channel_message_count',

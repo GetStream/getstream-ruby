@@ -15,9 +15,9 @@ module GetStream
         # @!attribute user_feedback
         #   @return [Array<UserFeedbackResponse>]
         attr_accessor :user_feedback
-        # @!attribute next
+        # @!attribute _next
         #   @return [String]
-        attr_accessor :next
+        attr_accessor :_next
         # @!attribute prev
         #   @return [String]
         attr_accessor :prev
@@ -27,7 +27,7 @@ module GetStream
           super(attributes)
           @duration = attributes[:duration] || attributes['duration']
           @user_feedback = attributes[:user_feedback] || attributes['user_feedback']
-          @next = attributes[:next] || attributes['next'] || ""
+          @_next = attributes[:_next] || attributes['next'] || ""
           @prev = attributes[:prev] || attributes['prev'] || ""
         end
 
@@ -36,7 +36,7 @@ module GetStream
           {
             duration: 'duration',
             user_feedback: 'user_feedback',
-            next: 'next',
+            _next: 'next',
             prev: 'prev'
           }
         end

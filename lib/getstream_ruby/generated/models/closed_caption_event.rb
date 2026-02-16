@@ -18,9 +18,9 @@ module GetStream
         # @!attribute closed_caption
         #   @return [CallClosedCaption]
         attr_accessor :closed_caption
-        # @!attribute type
+        # @!attribute _type
         #   @return [String] The type of event: "call.closed_caption" in this case
-        attr_accessor :type
+        attr_accessor :_type
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -28,7 +28,7 @@ module GetStream
           @call_cid = attributes[:call_cid] || attributes['call_cid']
           @created_at = attributes[:created_at] || attributes['created_at']
           @closed_caption = attributes[:closed_caption] || attributes['closed_caption']
-          @type = attributes[:type] || attributes['type'] || "call.closed_caption"
+          @_type = attributes[:_type] || attributes['type'] || "call.closed_caption"
         end
 
         # Override field mappings for JSON serialization
@@ -37,7 +37,7 @@ module GetStream
             call_cid: 'call_cid',
             created_at: 'created_at',
             closed_caption: 'closed_caption',
-            type: 'type'
+            _type: 'type'
           }
         end
       end

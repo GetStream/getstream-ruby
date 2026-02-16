@@ -15,9 +15,9 @@ module GetStream
         # @!attribute reports
         #   @return [Array<CallStatsReportSummaryResponse>]
         attr_accessor :reports
-        # @!attribute next
+        # @!attribute _next
         #   @return [String]
-        attr_accessor :next
+        attr_accessor :_next
         # @!attribute prev
         #   @return [String]
         attr_accessor :prev
@@ -27,7 +27,7 @@ module GetStream
           super(attributes)
           @duration = attributes[:duration] || attributes['duration']
           @reports = attributes[:reports] || attributes['reports']
-          @next = attributes[:next] || attributes['next'] || ""
+          @_next = attributes[:_next] || attributes['next'] || ""
           @prev = attributes[:prev] || attributes['prev'] || ""
         end
 
@@ -36,7 +36,7 @@ module GetStream
           {
             duration: 'duration',
             reports: 'reports',
-            next: 'next',
+            _next: 'next',
             prev: 'prev'
           }
         end

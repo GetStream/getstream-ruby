@@ -24,9 +24,9 @@ module GetStream
         # @!attribute user_id
         #   @return [String] User who was streaming
         attr_accessor :user_id
-        # @!attribute type
+        # @!attribute _type
         #   @return [String] The type of event: "ingress.error" in this case
-        attr_accessor :type
+        attr_accessor :_type
         # @!attribute code
         #   @return [String] Error code
         attr_accessor :code
@@ -39,7 +39,7 @@ module GetStream
           @error = attributes[:error] || attributes['error']
           @ingress_stream_id = attributes[:ingress_stream_id] || attributes['ingress_stream_id']
           @user_id = attributes[:user_id] || attributes['user_id']
-          @type = attributes[:type] || attributes['type'] || "ingress.error"
+          @_type = attributes[:_type] || attributes['type'] || "ingress.error"
           @code = attributes[:code] || attributes['code'] || ""
         end
 
@@ -51,7 +51,7 @@ module GetStream
             error: 'error',
             ingress_stream_id: 'ingress_stream_id',
             user_id: 'user_id',
-            type: 'type',
+            _type: 'type',
             code: 'code'
           }
         end

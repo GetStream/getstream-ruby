@@ -9,18 +9,18 @@ module GetStream
       class UpdatePollOptionRequest < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute id
+        # @!attribute _id
         #   @return [String] Option ID
-        attr_accessor :id
+        attr_accessor :_id
         # @!attribute text
         #   @return [String] Option text
         attr_accessor :text
         # @!attribute user_id
         #   @return [String]
         attr_accessor :user_id
-        # @!attribute Custom
+        # @!attribute custom
         #   @return [Object]
-        attr_accessor :Custom
+        attr_accessor :custom
         # @!attribute user
         #   @return [UserRequest]
         attr_accessor :user
@@ -28,20 +28,20 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @id = attributes[:id] || attributes['id']
+          @_id = attributes[:_id] || attributes['id']
           @text = attributes[:text] || attributes['text']
           @user_id = attributes[:user_id] || attributes['user_id'] || ""
-          @Custom = attributes[:Custom] || attributes['Custom'] || nil
+          @custom = attributes[:custom] || attributes['Custom'] || nil
           @user = attributes[:user] || attributes['user'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            id: 'id',
+            _id: 'id',
             text: 'text',
             user_id: 'user_id',
-            Custom: 'Custom',
+            custom: 'Custom',
             user: 'user'
           }
         end

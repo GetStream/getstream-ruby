@@ -15,9 +15,9 @@ module GetStream
         # @!attribute custom
         #   @return [Object]
         attr_accessor :custom
-        # @!attribute type
+        # @!attribute _type
         #   @return [String]
-        attr_accessor :type
+        attr_accessor :_type
         # @!attribute channel_id
         #   @return [String]
         attr_accessor :channel_id
@@ -39,7 +39,7 @@ module GetStream
           super(attributes)
           @created_at = attributes[:created_at] || attributes['created_at']
           @custom = attributes[:custom] || attributes['custom']
-          @type = attributes[:type] || attributes['type'] || "thread.updated"
+          @_type = attributes[:_type] || attributes['type'] || "thread.updated"
           @channel_id = attributes[:channel_id] || attributes['channel_id'] || ""
           @channel_type = attributes[:channel_type] || attributes['channel_type'] || ""
           @cid = attributes[:cid] || attributes['cid'] || ""
@@ -52,7 +52,7 @@ module GetStream
           {
             created_at: 'created_at',
             custom: 'custom',
-            type: 'type',
+            _type: 'type',
             channel_id: 'channel_id',
             channel_type: 'channel_type',
             cid: 'cid',

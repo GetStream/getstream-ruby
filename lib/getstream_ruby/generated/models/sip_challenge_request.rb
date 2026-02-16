@@ -9,6 +9,9 @@ module GetStream
       class SIPChallengeRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _method
+        #   @return [String] SIP method (e.g., INVITE)
+        attr_accessor :_method
         # @!attribute a1
         #   @return [String] Deprecated: A1 hash for backward compatibility
         attr_accessor :a1
@@ -21,9 +24,6 @@ module GetStream
         # @!attribute cnonce
         #   @return [String] Client nonce for qop=auth
         attr_accessor :cnonce
-        # @!attribute method
-        #   @return [String] SIP method (e.g., INVITE)
-        attr_accessor :method
         # @!attribute nc
         #   @return [String] Nonce count for qop=auth
         attr_accessor :nc
@@ -61,11 +61,11 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @_method = attributes[:_method] || attributes['method'] || ""
           @a1 = attributes[:a1] || attributes['a1'] || ""
           @algorithm = attributes[:algorithm] || attributes['algorithm'] || ""
           @charset = attributes[:charset] || attributes['charset'] || ""
           @cnonce = attributes[:cnonce] || attributes['cnonce'] || ""
-          @method = attributes[:method] || attributes['method'] || ""
           @nc = attributes[:nc] || attributes['nc'] || ""
           @nonce = attributes[:nonce] || attributes['nonce'] || ""
           @opaque = attributes[:opaque] || attributes['opaque'] || ""
@@ -82,11 +82,11 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            _method: 'method',
             a1: 'a1',
             algorithm: 'algorithm',
             charset: 'charset',
             cnonce: 'cnonce',
-            method: 'method',
             nc: 'nc',
             nonce: 'nonce',
             opaque: 'opaque',

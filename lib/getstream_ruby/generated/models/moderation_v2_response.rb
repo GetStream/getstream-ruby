@@ -24,6 +24,9 @@ module GetStream
         # @!attribute semantic_filter_matched
         #   @return [String]
         attr_accessor :semantic_filter_matched
+        # @!attribute blocklists_matched
+        #   @return [Array<String>]
+        attr_accessor :blocklists_matched
         # @!attribute image_harms
         #   @return [Array<String>]
         attr_accessor :image_harms
@@ -39,6 +42,7 @@ module GetStream
           @blocklist_matched = attributes[:blocklist_matched] || attributes['blocklist_matched'] || ""
           @platform_circumvented = attributes[:platform_circumvented] || attributes['platform_circumvented'] || false
           @semantic_filter_matched = attributes[:semantic_filter_matched] || attributes['semantic_filter_matched'] || ""
+          @blocklists_matched = attributes[:blocklists_matched] || attributes['blocklists_matched'] || nil
           @image_harms = attributes[:image_harms] || attributes['image_harms'] || nil
           @text_harms = attributes[:text_harms] || attributes['text_harms'] || nil
         end
@@ -51,6 +55,7 @@ module GetStream
             blocklist_matched: 'blocklist_matched',
             platform_circumvented: 'platform_circumvented',
             semantic_filter_matched: 'semantic_filter_matched',
+            blocklists_matched: 'blocklists_matched',
             image_harms: 'image_harms',
             text_harms: 'text_harms'
           }

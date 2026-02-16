@@ -21,9 +21,9 @@ module GetStream
         # @!attribute custom
         #   @return [Object]
         attr_accessor :custom
-        # @!attribute type
+        # @!attribute _type
         #   @return [String] The type of event: "channel.hidden" in this case
-        attr_accessor :type
+        attr_accessor :_type
         # @!attribute channel_id
         #   @return [String] The ID of the channel which was hidden
         attr_accessor :channel_id
@@ -59,7 +59,7 @@ module GetStream
           @created_at = attributes[:created_at] || attributes['created_at']
           @channel = attributes[:channel] || attributes['channel']
           @custom = attributes[:custom] || attributes['custom']
-          @type = attributes[:type] || attributes['type'] || "channel.hidden"
+          @_type = attributes[:_type] || attributes['type'] || "channel.hidden"
           @channel_id = attributes[:channel_id] || attributes['channel_id'] || ""
           @channel_member_count = attributes[:channel_member_count] || attributes['channel_member_count'] || 0
           @channel_message_count = attributes[:channel_message_count] || attributes['channel_message_count'] || 0
@@ -78,7 +78,7 @@ module GetStream
             created_at: 'created_at',
             channel: 'channel',
             custom: 'custom',
-            type: 'type',
+            _type: 'type',
             channel_id: 'channel_id',
             channel_member_count: 'channel_member_count',
             channel_message_count: 'channel_message_count',

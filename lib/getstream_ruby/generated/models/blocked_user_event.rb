@@ -18,9 +18,9 @@ module GetStream
         # @!attribute user
         #   @return [UserResponse]
         attr_accessor :user
-        # @!attribute type
+        # @!attribute _type
         #   @return [String] The type of event: "call.blocked_user" in this case
-        attr_accessor :type
+        attr_accessor :_type
         # @!attribute blocked_by_user
         #   @return [UserResponse]
         attr_accessor :blocked_by_user
@@ -31,7 +31,7 @@ module GetStream
           @call_cid = attributes[:call_cid] || attributes['call_cid']
           @created_at = attributes[:created_at] || attributes['created_at']
           @user = attributes[:user] || attributes['user']
-          @type = attributes[:type] || attributes['type'] || "call.blocked_user"
+          @_type = attributes[:_type] || attributes['type'] || "call.blocked_user"
           @blocked_by_user = attributes[:blocked_by_user] || attributes['blocked_by_user'] || nil
         end
 
@@ -41,7 +41,7 @@ module GetStream
             call_cid: 'call_cid',
             created_at: 'created_at',
             user: 'user',
-            type: 'type',
+            _type: 'type',
             blocked_by_user: 'blocked_by_user'
           }
         end

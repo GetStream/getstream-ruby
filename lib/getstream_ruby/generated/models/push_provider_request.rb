@@ -12,6 +12,9 @@ module GetStream
         # @!attribute name
         #   @return [String]
         attr_accessor :name
+        # @!attribute _type
+        #   @return [String]
+        attr_accessor :_type
         # @!attribute apn_auth_key
         #   @return [String]
         attr_accessor :apn_auth_key
@@ -72,9 +75,6 @@ module GetStream
         # @!attribute huawei_app_secret
         #   @return [String]
         attr_accessor :huawei_app_secret
-        # @!attribute type
-        #   @return [String]
-        attr_accessor :type
         # @!attribute xiaomi_app_secret
         #   @return [String]
         attr_accessor :xiaomi_app_secret
@@ -86,6 +86,7 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @name = attributes[:name] || attributes['name']
+          @_type = attributes[:_type] || attributes['type'] || ""
           @apn_auth_key = attributes[:apn_auth_key] || attributes['apn_auth_key'] || ""
           @apn_auth_type = attributes[:apn_auth_type] || attributes['apn_auth_type'] || ""
           @apn_development = attributes[:apn_development] || attributes['apn_development'] || false
@@ -106,7 +107,6 @@ module GetStream
           @firebase_server_key = attributes[:firebase_server_key] || attributes['firebase_server_key'] || ""
           @huawei_app_id = attributes[:huawei_app_id] || attributes['huawei_app_id'] || ""
           @huawei_app_secret = attributes[:huawei_app_secret] || attributes['huawei_app_secret'] || ""
-          @type = attributes[:type] || attributes['type'] || ""
           @xiaomi_app_secret = attributes[:xiaomi_app_secret] || attributes['xiaomi_app_secret'] || ""
           @xiaomi_package_name = attributes[:xiaomi_package_name] || attributes['xiaomi_package_name'] || ""
         end
@@ -115,6 +115,7 @@ module GetStream
         def self.json_field_mappings
           {
             name: 'name',
+            _type: 'type',
             apn_auth_key: 'apn_auth_key',
             apn_auth_type: 'apn_auth_type',
             apn_development: 'apn_development',
@@ -135,7 +136,6 @@ module GetStream
             firebase_server_key: 'firebase_server_key',
             huawei_app_id: 'huawei_app_id',
             huawei_app_secret: 'huawei_app_secret',
-            type: 'type',
             xiaomi_app_secret: 'xiaomi_app_secret',
             xiaomi_package_name: 'xiaomi_package_name'
           }

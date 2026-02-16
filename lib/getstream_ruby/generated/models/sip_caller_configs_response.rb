@@ -9,9 +9,9 @@ module GetStream
       class SIPCallerConfigsResponse < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute id
+        # @!attribute _id
         #   @return [String] Unique identifier for the caller
-        attr_accessor :id
+        attr_accessor :_id
         # @!attribute custom_data
         #   @return [Object] Custom data associated with the caller
         attr_accessor :custom_data
@@ -19,14 +19,14 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @id = attributes[:id] || attributes['id']
+          @_id = attributes[:_id] || attributes['id']
           @custom_data = attributes[:custom_data] || attributes['custom_data']
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            id: 'id',
+            _id: 'id',
             custom_data: 'custom_data'
           }
         end

@@ -9,6 +9,9 @@ module GetStream
       class AppealItemResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _id
+        #   @return [String]
+        attr_accessor :_id
         # @!attribute appeal_reason
         #   @return [String] Reason Text of the Appeal Item
         attr_accessor :appeal_reason
@@ -21,9 +24,6 @@ module GetStream
         # @!attribute entity_type
         #   @return [String] Type of entity
         attr_accessor :entity_type
-        # @!attribute id
-        #   @return [String]
-        attr_accessor :id
         # @!attribute status
         #   @return [String] Status of the Appeal Item
         attr_accessor :status
@@ -46,11 +46,11 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @_id = attributes[:_id] || attributes['id']
           @appeal_reason = attributes[:appeal_reason] || attributes['appeal_reason']
           @created_at = attributes[:created_at] || attributes['created_at']
           @entity_id = attributes[:entity_id] || attributes['entity_id']
           @entity_type = attributes[:entity_type] || attributes['entity_type']
-          @id = attributes[:id] || attributes['id']
           @status = attributes[:status] || attributes['status']
           @updated_at = attributes[:updated_at] || attributes['updated_at']
           @decision_reason = attributes[:decision_reason] || attributes['decision_reason'] || ""
@@ -62,11 +62,11 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            _id: 'id',
             appeal_reason: 'appeal_reason',
             created_at: 'created_at',
             entity_id: 'entity_id',
             entity_type: 'entity_type',
-            id: 'id',
             status: 'status',
             updated_at: 'updated_at',
             decision_reason: 'decision_reason',

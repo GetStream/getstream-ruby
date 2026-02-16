@@ -9,12 +9,12 @@ module GetStream
       class QueryCampaignsRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _next
+        #   @return [String]
+        attr_accessor :_next
         # @!attribute limit
         #   @return [Integer]
         attr_accessor :limit
-        # @!attribute next
-        #   @return [String]
-        attr_accessor :next
         # @!attribute prev
         #   @return [String]
         attr_accessor :prev
@@ -31,8 +31,8 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @_next = attributes[:_next] || attributes['next'] || ""
           @limit = attributes[:limit] || attributes['limit'] || 0
-          @next = attributes[:next] || attributes['next'] || ""
           @prev = attributes[:prev] || attributes['prev'] || ""
           @user_limit = attributes[:user_limit] || attributes['user_limit'] || 0
           @sort = attributes[:sort] || attributes['sort'] || nil
@@ -42,8 +42,8 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            _next: 'next',
             limit: 'limit',
-            next: 'next',
             prev: 'prev',
             user_limit: 'user_limit',
             sort: 'sort',

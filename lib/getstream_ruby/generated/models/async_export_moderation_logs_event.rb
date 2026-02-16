@@ -27,9 +27,9 @@ module GetStream
         # @!attribute custom
         #   @return [Object]
         attr_accessor :custom
-        # @!attribute type
+        # @!attribute _type
         #   @return [String]
-        attr_accessor :type
+        attr_accessor :_type
         # @!attribute received_at
         #   @return [DateTime]
         attr_accessor :received_at
@@ -43,7 +43,7 @@ module GetStream
           @task_id = attributes[:task_id] || attributes['task_id']
           @url = attributes[:url] || attributes['url']
           @custom = attributes[:custom] || attributes['custom']
-          @type = attributes[:type] || attributes['type'] || "export.moderation_logs.success"
+          @_type = attributes[:_type] || attributes['type'] || "export.moderation_logs.success"
           @received_at = attributes[:received_at] || attributes['received_at'] || nil
         end
 
@@ -56,7 +56,7 @@ module GetStream
             task_id: 'task_id',
             url: 'url',
             custom: 'custom',
-            type: 'type',
+            _type: 'type',
             received_at: 'received_at'
           }
         end

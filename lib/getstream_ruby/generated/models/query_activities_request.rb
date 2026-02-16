@@ -9,15 +9,15 @@ module GetStream
       class QueryActivitiesRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _next
+        #   @return [String]
+        attr_accessor :_next
         # @!attribute include_private_activities
         #   @return [Boolean]
         attr_accessor :include_private_activities
         # @!attribute limit
         #   @return [Integer]
         attr_accessor :limit
-        # @!attribute next
-        #   @return [String]
-        attr_accessor :next
         # @!attribute prev
         #   @return [String]
         attr_accessor :prev
@@ -37,9 +37,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @_next = attributes[:_next] || attributes['next'] || ""
           @include_private_activities = attributes[:include_private_activities] || attributes['include_private_activities'] || false
           @limit = attributes[:limit] || attributes['limit'] || 0
-          @next = attributes[:next] || attributes['next'] || ""
           @prev = attributes[:prev] || attributes['prev'] || ""
           @user_id = attributes[:user_id] || attributes['user_id'] || ""
           @sort = attributes[:sort] || attributes['sort'] || nil
@@ -50,9 +50,9 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            _next: 'next',
             include_private_activities: 'include_private_activities',
             limit: 'limit',
-            next: 'next',
             prev: 'prev',
             user_id: 'user_id',
             sort: 'sort',

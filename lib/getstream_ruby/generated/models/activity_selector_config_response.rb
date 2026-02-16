@@ -9,9 +9,9 @@ module GetStream
       class ActivitySelectorConfigResponse < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute type
+        # @!attribute _type
         #   @return [String] Type of selector
-        attr_accessor :type
+        attr_accessor :_type
         # @!attribute cutoff_time
         #   @return [DateTime] Time threshold for activity selection (timestamp)
         attr_accessor :cutoff_time
@@ -34,7 +34,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @type = attributes[:type] || attributes['type']
+          @_type = attributes[:_type] || attributes['type']
           @cutoff_time = attributes[:cutoff_time] || attributes['cutoff_time'] || nil
           @cutoff_window = attributes[:cutoff_window] || attributes['cutoff_window'] || ""
           @min_popularity = attributes[:min_popularity] || attributes['min_popularity'] || 0
@@ -46,7 +46,7 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            type: 'type',
+            _type: 'type',
             cutoff_time: 'cutoff_time',
             cutoff_window: 'cutoff_window',
             min_popularity: 'min_popularity',

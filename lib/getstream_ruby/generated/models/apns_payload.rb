@@ -12,12 +12,12 @@ module GetStream
         # @!attribute body
         #   @return [String]
         attr_accessor :body
-        # @!attribute content-available
+        # @!attribute content_available
         #   @return [Integer]
-        attr_accessor :content-available
-        # @!attribute mutable-content
+        attr_accessor :content_available
+        # @!attribute mutable_content
         #   @return [Integer]
-        attr_accessor :mutable-content
+        attr_accessor :mutable_content
         # @!attribute sound
         #   @return [String]
         attr_accessor :sound
@@ -32,8 +32,8 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @body = attributes[:body] || attributes['body'] || ""
-          @content-available = attributes[:content-available] || attributes['content-available'] || 0
-          @mutable-content = attributes[:mutable-content] || attributes['mutable-content'] || 0
+          @content_available = attributes[:content_available] || attributes['content-available'] || 0
+          @mutable_content = attributes[:mutable_content] || attributes['mutable-content'] || 0
           @sound = attributes[:sound] || attributes['sound'] || ""
           @title = attributes[:title] || attributes['title'] || ""
           @data = attributes[:data] || attributes['data'] || nil
@@ -43,8 +43,8 @@ module GetStream
         def self.json_field_mappings
           {
             body: 'body',
-            content-available: 'content-available',
-            mutable-content: 'mutable-content',
+            content_available: 'content-available',
+            mutable_content: 'mutable-content',
             sound: 'sound',
             title: 'title',
             data: 'data'

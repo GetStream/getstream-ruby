@@ -24,9 +24,9 @@ module GetStream
         # @!attribute capabilities_by_role
         #   @return [Hash<String, Array<String>>] The capabilities by role for this call
         attr_accessor :capabilities_by_role
-        # @!attribute type
+        # @!attribute _type
         #   @return [String] The type of event: "call.member_added" in this case
-        attr_accessor :type
+        attr_accessor :_type
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -36,7 +36,7 @@ module GetStream
           @members = attributes[:members] || attributes['members']
           @call = attributes[:call] || attributes['call']
           @capabilities_by_role = attributes[:capabilities_by_role] || attributes['capabilities_by_role']
-          @type = attributes[:type] || attributes['type'] || "call.member_updated_permission"
+          @_type = attributes[:_type] || attributes['type'] || "call.member_updated_permission"
         end
 
         # Override field mappings for JSON serialization
@@ -47,7 +47,7 @@ module GetStream
             members: 'members',
             call: 'call',
             capabilities_by_role: 'capabilities_by_role',
-            type: 'type'
+            _type: 'type'
           }
         end
       end

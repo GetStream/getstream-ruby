@@ -9,9 +9,6 @@ module GetStream
       class FirebaseConfig < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute Disabled
-        #   @return [Boolean]
-        attr_accessor :Disabled
         # @!attribute apn_template
         #   @return [String]
         attr_accessor :apn_template
@@ -21,6 +18,9 @@ module GetStream
         # @!attribute data_template
         #   @return [String]
         attr_accessor :data_template
+        # @!attribute disabled
+        #   @return [Boolean]
+        attr_accessor :disabled
         # @!attribute notification_template
         #   @return [String]
         attr_accessor :notification_template
@@ -31,10 +31,10 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @Disabled = attributes[:Disabled] || attributes['Disabled'] || false
           @apn_template = attributes[:apn_template] || attributes['apn_template'] || ""
           @credentials_json = attributes[:credentials_json] || attributes['credentials_json'] || ""
           @data_template = attributes[:data_template] || attributes['data_template'] || ""
+          @disabled = attributes[:disabled] || attributes['Disabled'] || false
           @notification_template = attributes[:notification_template] || attributes['notification_template'] || ""
           @server_key = attributes[:server_key] || attributes['server_key'] || ""
         end
@@ -42,10 +42,10 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            Disabled: 'Disabled',
             apn_template: 'apn_template',
             credentials_json: 'credentials_json',
             data_template: 'data_template',
+            disabled: 'Disabled',
             notification_template: 'notification_template',
             server_key: 'server_key'
           }

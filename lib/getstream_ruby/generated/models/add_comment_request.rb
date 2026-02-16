@@ -9,6 +9,9 @@ module GetStream
       class AddCommentRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _id
+        #   @return [String] Optional custom ID for the comment (max 255 characters). If not provided, a UUID will be generated.
+        attr_accessor :_id
         # @!attribute comment
         #   @return [String] Text content of the comment
         attr_accessor :comment
@@ -18,9 +21,6 @@ module GetStream
         # @!attribute create_notification_activity
         #   @return [Boolean] Whether to create a notification activity for this comment
         attr_accessor :create_notification_activity
-        # @!attribute id
-        #   @return [String] Optional custom ID for the comment (max 255 characters). If not provided, a UUID will be generated.
-        attr_accessor :id
         # @!attribute object_id
         #   @return [String] ID of the object to comment on. Required for root comments
         attr_accessor :object_id
@@ -55,10 +55,10 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @_id = attributes[:_id] || attributes['id'] || ""
           @comment = attributes[:comment] || attributes['comment'] || ""
           @copy_custom_to_notification = attributes[:copy_custom_to_notification] || attributes['copy_custom_to_notification'] || false
           @create_notification_activity = attributes[:create_notification_activity] || attributes['create_notification_activity'] || false
-          @id = attributes[:id] || attributes['id'] || ""
           @object_id = attributes[:object_id] || attributes['object_id'] || ""
           @object_type = attributes[:object_type] || attributes['object_type'] || ""
           @parent_id = attributes[:parent_id] || attributes['parent_id'] || ""
@@ -74,10 +74,10 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            _id: 'id',
             comment: 'comment',
             copy_custom_to_notification: 'copy_custom_to_notification',
             create_notification_activity: 'create_notification_activity',
-            id: 'id',
             object_id: 'object_id',
             object_type: 'object_type',
             parent_id: 'parent_id',
