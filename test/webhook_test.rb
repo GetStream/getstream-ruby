@@ -731,6 +731,11 @@ class WebhookTest < Minitest::Test
     assert_equal 'StreamChat::ModerationCheckCompletedEvent', event.class.name
   end
 
+  def test_parse_moderation_rule_triggered
+    event = StreamChat::Webhook.parse_webhook_event('{"type":"moderation_rule.triggered"}')
+    assert_equal 'StreamChat::ModerationRulesTriggeredEvent', event.class.name
+  end
+
   def test_parse_notification_mark_unread
     event = StreamChat::Webhook.parse_webhook_event('{"type":"notification.mark_unread"}')
     assert_equal 'StreamChat::NotificationMarkUnreadEvent', event.class.name

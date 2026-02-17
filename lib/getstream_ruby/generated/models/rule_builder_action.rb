@@ -15,6 +15,9 @@ module GetStream
         # @!attribute ban_options
         #   @return [BanOptions]
         attr_accessor :ban_options
+        # @!attribute call_options
+        #   @return [CallActionOptions]
+        attr_accessor :call_options
         # @!attribute flag_user_options
         #   @return [FlagUserOptions]
         attr_accessor :flag_user_options
@@ -22,8 +25,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @type = attributes[:type] || attributes['type']
+          @type = attributes[:type] || attributes['type'] || nil
           @ban_options = attributes[:ban_options] || attributes['ban_options'] || nil
+          @call_options = attributes[:call_options] || attributes['call_options'] || nil
           @flag_user_options = attributes[:flag_user_options] || attributes['flag_user_options'] || nil
         end
 
@@ -32,6 +36,7 @@ module GetStream
           {
             type: 'type',
             ban_options: 'ban_options',
+            call_options: 'call_options',
             flag_user_options: 'flag_user_options'
           }
         end
