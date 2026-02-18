@@ -19,7 +19,7 @@ module GetStream
       # @param profile [Hash] Profile data to be checked
       # @option profile [String] :username Username to be checked
       # @option profile [String] :image Image URL to be checked
-      # @return [GetStreamRuby::StreamResponse]
+      # @return [Models::CheckResponse]
       #
       # @example
       #   client.moderation.check_user_profile('user-id',
