@@ -9,6 +9,7 @@ require_relative 'generated/base_model'
 require_relative 'generated/common_client'
 require_relative 'generated/feeds_client'
 require_relative 'generated/moderation_client'
+require_relative 'extensions/moderation_extensions'
 require_relative 'generated/feed'
 require_relative 'stream_response'
 
