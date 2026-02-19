@@ -15,6 +15,12 @@ module GetStream
         # @!attribute dir
         #   @return [String]
         attr_accessor :dir
+        # @!attribute file
+        #   @return [String]
+        attr_accessor :file
+        # @!attribute is_user
+        #   @return [Boolean]
+        attr_accessor :is_user
         # @!attribute region
         #   @return [String]
         attr_accessor :region
@@ -24,6 +30,8 @@ module GetStream
           super(attributes)
           @bucket = attributes[:bucket] || attributes['bucket'] || nil
           @dir = attributes[:dir] || attributes['dir'] || nil
+          @file = attributes[:file] || attributes['file'] || nil
+          @is_user = attributes[:is_user] || attributes['is_user'] || nil
           @region = attributes[:region] || attributes['region'] || nil
         end
 
@@ -32,6 +40,8 @@ module GetStream
           {
             bucket: 'bucket',
             dir: 'dir',
+            file: 'file',
+            is_user: 'is_user',
             region: 'region'
           }
         end

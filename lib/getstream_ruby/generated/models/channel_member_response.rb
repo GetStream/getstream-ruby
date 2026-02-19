@@ -55,7 +55,7 @@ module GetStream
         #   @return [DateTime]
         attr_accessor :pinned_at
         # @!attribute role
-        #   @return [String] Permission level of the member in the channel (DEPRECATED: use channel_role instead)
+        #   @return [String] Permission level of the member in the channel (DEPRECATED: use channel_role instead). One of: member, moderator, admin, owner
         attr_accessor :role
         # @!attribute status
         #   @return [String]

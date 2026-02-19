@@ -12,6 +12,9 @@ module GetStream
         # @!attribute skip_enrich_url
         #   @return [Boolean] Skip enriching the URL in the message
         attr_accessor :skip_enrich_url
+        # @!attribute skip_push
+        #   @return [Boolean]
+        attr_accessor :skip_push
         # @!attribute user_id
         #   @return [String]
         attr_accessor :user_id
@@ -29,6 +32,7 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @skip_enrich_url = attributes[:skip_enrich_url] || attributes['skip_enrich_url'] || nil
+          @skip_push = attributes[:skip_push] || attributes['skip_push'] || nil
           @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @unset = attributes[:unset] || attributes['unset'] || nil
           @set = attributes[:set] || attributes['set'] || nil
@@ -39,6 +43,7 @@ module GetStream
         def self.json_field_mappings
           {
             skip_enrich_url: 'skip_enrich_url',
+            skip_push: 'skip_push',
             user_id: 'user_id',
             unset: 'unset',
             set: 'set',

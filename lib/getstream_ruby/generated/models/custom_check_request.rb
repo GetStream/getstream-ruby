@@ -25,7 +25,7 @@ module GetStream
         #   @return [String]
         attr_accessor :user_id
         # @!attribute moderation_payload
-        #   @return [ModerationPayload]
+        #   @return [ModerationPayloadRequest]
         attr_accessor :moderation_payload
         # @!attribute user
         #   @return [UserRequest]

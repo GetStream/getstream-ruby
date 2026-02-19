@@ -10,7 +10,7 @@ module GetStream
 
         # Model attributes
         # @!attribute operation
-        #   @return [String] Type of update operation to perform
+        #   @return [String] Type of update operation to perform. One of: upsert, remove, set
         attr_accessor :operation
         # @!attribute limit
         #   @return [Integer]

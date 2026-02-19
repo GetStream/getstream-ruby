@@ -25,16 +25,16 @@ module GetStream
         #   @return [String]
         attr_accessor :team
         # @!attribute invites
-        #   @return [Array<ChannelMember>]
+        #   @return [Array<ChannelMemberRequest>]
         attr_accessor :invites
         # @!attribute members
-        #   @return [Array<ChannelMember>]
+        #   @return [Array<ChannelMemberRequest>]
         attr_accessor :members
         # @!attribute config_overrides
-        #   @return [ConfigOverrides]
+        #   @return [ConfigOverridesRequest]
         attr_accessor :config_overrides
         # @!attribute created_by
-        #   @return [User]
+        #   @return [UserRequest]
         attr_accessor :created_by
         # @!attribute custom
         #   @return [Object]

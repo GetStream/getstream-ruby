@@ -19,7 +19,7 @@ module GetStream
         #   @return [DateTime] When the feed group was last updated
         attr_accessor :updated_at
         # @!attribute default_visibility
-        #   @return [String] Default visibility for activities
+        #   @return [String] Default visibility for activities. One of: public, visible, followers, members, private
         attr_accessor :default_visibility
         # @!attribute deleted_at
         #   @return [DateTime]

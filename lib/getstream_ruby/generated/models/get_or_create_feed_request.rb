@@ -48,6 +48,9 @@ module GetStream
         # @!attribute following_pagination
         #   @return [PagerRequest]
         attr_accessor :following_pagination
+        # @!attribute friend_reactions_options
+        #   @return [FriendReactionsOptions]
+        attr_accessor :friend_reactions_options
         # @!attribute interest_weights
         #   @return [Hash<String, Float>]
         attr_accessor :interest_weights
@@ -74,6 +77,7 @@ module GetStream
           @filter = attributes[:filter] || attributes['filter'] || nil
           @followers_pagination = attributes[:followers_pagination] || attributes['followers_pagination'] || nil
           @following_pagination = attributes[:following_pagination] || attributes['following_pagination'] || nil
+          @friend_reactions_options = attributes[:friend_reactions_options] || attributes['friend_reactions_options'] || nil
           @interest_weights = attributes[:interest_weights] || attributes['interest_weights'] || nil
           @member_pagination = attributes[:member_pagination] || attributes['member_pagination'] || nil
           @user = attributes[:user] || attributes['user'] || nil
@@ -95,6 +99,7 @@ module GetStream
             filter: 'filter',
             followers_pagination: 'followers_pagination',
             following_pagination: 'following_pagination',
+            friend_reactions_options: 'friend_reactions_options',
             interest_weights: 'interest_weights',
             member_pagination: 'member_pagination',
             user: 'user'

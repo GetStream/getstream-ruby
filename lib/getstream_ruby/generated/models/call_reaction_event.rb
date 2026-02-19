@@ -16,7 +16,7 @@ module GetStream
         #   @return [DateTime]
         attr_accessor :created_at
         # @!attribute reaction
-        #   @return [ReactionResponse]
+        #   @return [VideoReactionResponse]
         attr_accessor :reaction
         # @!attribute type
         #   @return [String] The type of event: "call.reaction_new" in this case

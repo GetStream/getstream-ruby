@@ -10,10 +10,10 @@ module GetStream
 
         # Model attributes
         # @!attribute automod
-        #   @return [String] Automod
+        #   @return [String] Automod. One of: disabled, simple, AI
         attr_accessor :automod
         # @!attribute automod_behavior
-        #   @return [String] Automod behavior
+        #   @return [String] Automod behavior. One of: flag, block
         attr_accessor :automod_behavior
         # @!attribute max_message_length
         #   @return [Integer] Max message length
@@ -25,7 +25,7 @@ module GetStream
         #   @return [String] Blocklist
         attr_accessor :blocklist
         # @!attribute blocklist_behavior
-        #   @return [String] Blocklist behavior
+        #   @return [String] Blocklist behavior. One of: flag, block, shadow_block
         attr_accessor :blocklist_behavior
         # @!attribute connect_events
         #   @return [Boolean] Connect events
@@ -43,7 +43,7 @@ module GetStream
         #   @return [Boolean] Mark messages pending
         attr_accessor :mark_messages_pending
         # @!attribute message_retention
-        #   @return [String] Message retention
+        #   @return [String] Message retention. One of: infinite, numeric
         attr_accessor :message_retention
         # @!attribute mutes
         #   @return [Boolean] Mutes
@@ -57,6 +57,9 @@ module GetStream
         # @!attribute polls
         #   @return [Boolean] Polls
         attr_accessor :polls
+        # @!attribute push_level
+        #   @return [String] Default push notification level for the channel type. One of: all, all_mentions, mentions, direct_mentions, none
+        attr_accessor :push_level
         # @!attribute push_notifications
         #   @return [Boolean] Push notifications
         attr_accessor :push_notifications
@@ -122,6 +125,7 @@ module GetStream
           @partition_size = attributes[:partition_size] || attributes['partition_size'] || nil
           @partition_ttl = attributes[:partition_ttl] || attributes['partition_ttl'] || nil
           @polls = attributes[:polls] || attributes['polls'] || nil
+          @push_level = attributes[:push_level] || attributes['push_level'] || nil
           @push_notifications = attributes[:push_notifications] || attributes['push_notifications'] || nil
           @reactions = attributes[:reactions] || attributes['reactions'] || nil
           @read_events = attributes[:read_events] || attributes['read_events'] || nil
@@ -158,6 +162,7 @@ module GetStream
             partition_size: 'partition_size',
             partition_ttl: 'partition_ttl',
             polls: 'polls',
+            push_level: 'push_level',
             push_notifications: 'push_notifications',
             reactions: 'reactions',
             read_events: 'read_events',

@@ -5,68 +5,123 @@
 module GetStream
   module Generated
     module Models
-      # 
+      # Emitted when a message was successfully sent or when a message became visible after command execution.
       class MessageNewEvent < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute created_at
+        #   @return [DateTime] Date/time of creation
+        attr_accessor :created_at
+        # @!attribute message_id
+        #   @return [String]
+        attr_accessor :message_id
+        # @!attribute watcher_count
+        #   @return [Integer] The number of watchers
+        attr_accessor :watcher_count
+        # @!attribute custom
+        #   @return [Object]
+        attr_accessor :custom
+        # @!attribute message
+        #   @return [MessageResponse]
+        attr_accessor :message
+        # @!attribute type
+        #   @return [String] The type of event: "message.new" in this case
+        attr_accessor :type
         # @!attribute channel_id
-        #   @return [String]
+        #   @return [String] The ID of the channel where the message was sent
         attr_accessor :channel_id
+        # @!attribute channel_member_count
+        #   @return [Integer] The number of members in the channel
+        attr_accessor :channel_member_count
+        # @!attribute channel_message_count
+        #   @return [Integer] The number of messages in the channel
+        attr_accessor :channel_message_count
         # @!attribute channel_type
-        #   @return [String]
+        #   @return [String] The type of the channel where the message was sent
         attr_accessor :channel_type
         # @!attribute cid
-        #   @return [String]
+        #   @return [String] The CID of the channel where the message was sent
         attr_accessor :cid
-        # @!attribute created_at
+        # @!attribute parent_author
+        #   @return [String] The author of the parent message
+        attr_accessor :parent_author
+        # @!attribute received_at
         #   @return [DateTime]
-        attr_accessor :created_at
-        # @!attribute watcher_count
-        #   @return [Integer]
-        attr_accessor :watcher_count
-        # @!attribute type
-        #   @return [String]
-        attr_accessor :type
+        attr_accessor :received_at
         # @!attribute team
-        #   @return [String]
+        #   @return [String] The team ID
         attr_accessor :team
+        # @!attribute total_unread_count
+        #   @return [Integer]
+        attr_accessor :total_unread_count
+        # @!attribute unread_channels
+        #   @return [Integer]
+        attr_accessor :unread_channels
+        # @!attribute unread_count
+        #   @return [Integer] The number of unread messages
+        attr_accessor :unread_count
         # @!attribute thread_participants
-        #   @return [Array<User>]
+        #   @return [Array<UserResponseCommonFields>] The participants of the thread
         attr_accessor :thread_participants
-        # @!attribute message
-        #   @return [Message]
-        attr_accessor :message
+        # @!attribute channel
+        #   @return [ChannelResponse]
+        attr_accessor :channel
+        # @!attribute channel_custom
+        #   @return [Object]
+        attr_accessor :channel_custom
         # @!attribute user
-        #   @return [User]
+        #   @return [UserResponseCommonFields]
         attr_accessor :user
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @channel_id = attributes[:channel_id] || attributes['channel_id']
-          @channel_type = attributes[:channel_type] || attributes['channel_type']
-          @cid = attributes[:cid] || attributes['cid']
           @created_at = attributes[:created_at] || attributes['created_at']
+          @message_id = attributes[:message_id] || attributes['message_id']
           @watcher_count = attributes[:watcher_count] || attributes['watcher_count']
+          @custom = attributes[:custom] || attributes['custom']
+          @message = attributes[:message] || attributes['message']
           @type = attributes[:type] || attributes['type'] || "message.new"
+          @channel_id = attributes[:channel_id] || attributes['channel_id'] || nil
+          @channel_member_count = attributes[:channel_member_count] || attributes['channel_member_count'] || nil
+          @channel_message_count = attributes[:channel_message_count] || attributes['channel_message_count'] || nil
+          @channel_type = attributes[:channel_type] || attributes['channel_type'] || nil
+          @cid = attributes[:cid] || attributes['cid'] || nil
+          @parent_author = attributes[:parent_author] || attributes['parent_author'] || nil
+          @received_at = attributes[:received_at] || attributes['received_at'] || nil
           @team = attributes[:team] || attributes['team'] || nil
+          @total_unread_count = attributes[:total_unread_count] || attributes['total_unread_count'] || nil
+          @unread_channels = attributes[:unread_channels] || attributes['unread_channels'] || nil
+          @unread_count = attributes[:unread_count] || attributes['unread_count'] || nil
           @thread_participants = attributes[:thread_participants] || attributes['thread_participants'] || nil
-          @message = attributes[:message] || attributes['message'] || nil
+          @channel = attributes[:channel] || attributes['channel'] || nil
+          @channel_custom = attributes[:channel_custom] || attributes['channel_custom'] || nil
           @user = attributes[:user] || attributes['user'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            created_at: 'created_at',
+            message_id: 'message_id',
+            watcher_count: 'watcher_count',
+            custom: 'custom',
+            message: 'message',
+            type: 'type',
             channel_id: 'channel_id',
+            channel_member_count: 'channel_member_count',
+            channel_message_count: 'channel_message_count',
             channel_type: 'channel_type',
             cid: 'cid',
-            created_at: 'created_at',
-            watcher_count: 'watcher_count',
-            type: 'type',
+            parent_author: 'parent_author',
+            received_at: 'received_at',
             team: 'team',
+            total_unread_count: 'total_unread_count',
+            unread_channels: 'unread_channels',
+            unread_count: 'unread_count',
             thread_participants: 'thread_participants',
-            message: 'message',
+            channel: 'channel',
+            channel_custom: 'channel_custom',
             user: 'user'
           }
         end

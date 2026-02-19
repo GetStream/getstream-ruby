@@ -16,7 +16,7 @@ module GetStream
         #   @return [Hash<String, Array<String>>]
         attr_accessor :grants
         # @!attribute notification_settings
-        #   @return [NotificationSettings]
+        #   @return [NotificationSettingsRequest]
         attr_accessor :notification_settings
         # @!attribute settings
         #   @return [CallSettingsRequest]

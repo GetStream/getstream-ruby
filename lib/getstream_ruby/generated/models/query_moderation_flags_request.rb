@@ -19,7 +19,7 @@ module GetStream
         #   @return [String]
         attr_accessor :prev
         # @!attribute sort
-        #   @return [Array<SortParam>]
+        #   @return [Array<SortParamRequest>]
         attr_accessor :sort
         # @!attribute filter
         #   @return [Object]

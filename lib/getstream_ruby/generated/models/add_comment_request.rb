@@ -12,6 +12,9 @@ module GetStream
         # @!attribute comment
         #   @return [String] Text content of the comment
         attr_accessor :comment
+        # @!attribute copy_custom_to_notification
+        #   @return [Boolean] Whether to copy custom data to the notification activity (only applies when create_notification_activity is true)
+        attr_accessor :copy_custom_to_notification
         # @!attribute create_notification_activity
         #   @return [Boolean] Whether to create a notification activity for this comment
         attr_accessor :create_notification_activity
@@ -53,6 +56,7 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @comment = attributes[:comment] || attributes['comment'] || nil
+          @copy_custom_to_notification = attributes[:copy_custom_to_notification] || attributes['copy_custom_to_notification'] || nil
           @create_notification_activity = attributes[:create_notification_activity] || attributes['create_notification_activity'] || nil
           @id = attributes[:id] || attributes['id'] || nil
           @object_id = attributes[:object_id] || attributes['object_id'] || nil
@@ -71,6 +75,7 @@ module GetStream
         def self.json_field_mappings
           {
             comment: 'comment',
+            copy_custom_to_notification: 'copy_custom_to_notification',
             create_notification_activity: 'create_notification_activity',
             id: 'id',
             object_id: 'object_id',
