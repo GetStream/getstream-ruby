@@ -6,31 +6,27 @@ module GetStream
   module Generated
     module Models
       # 
-      class GetCommentsResponse < GetStream::BaseModel
+      class QueryPinnedActivitiesResponse < GetStream::BaseModel
 
         # Model attributes
         # @!attribute duration
         #   @return [String]
         attr_accessor :duration
-        # @!attribute sort
-        #   @return [String] Sort order used for the comments (first, last, top, best, controversial)
-        attr_accessor :sort
-        # @!attribute comments
-        #   @return [Array<ThreadedCommentResponse>] Threaded listing for the activity
-        attr_accessor :comments
+        # @!attribute pinned_activities
+        #   @return [Array<ActivityPinResponse>] List of pinned activities matching the query
+        attr_accessor :pinned_activities
         # @!attribute next
-        #   @return [String]
+        #   @return [String] Cursor for next page
         attr_accessor :next
         # @!attribute prev
-        #   @return [String]
+        #   @return [String] Cursor for previous page
         attr_accessor :prev
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @duration = attributes[:duration] || attributes['duration']
-          @sort = attributes[:sort] || attributes['sort']
-          @comments = attributes[:comments] || attributes['comments']
+          @pinned_activities = attributes[:pinned_activities] || attributes['pinned_activities']
           @next = attributes[:next] || attributes['next'] || nil
           @prev = attributes[:prev] || attributes['prev'] || nil
         end
@@ -39,8 +35,7 @@ module GetStream
         def self.json_field_mappings
           {
             duration: 'duration',
-            sort: 'sort',
-            comments: 'comments',
+            pinned_activities: 'pinned_activities',
             next: 'next',
             prev: 'prev'
           }

@@ -122,6 +122,16 @@ module GetStream
         @client.feeds.reject_feed_member_invite(@feed_group_id, @feed_id, reject_feed_member_invite_request)
       end
 
+      # Query pinned activities for a feed with filter query
+      #
+      # @param query_pinned_activities_request [QueryPinnedActivitiesRequest]
+      # @return [Models::QueryPinnedActivitiesResponse]
+      def query_pinned_activities(query_pinned_activities_request)
+
+        # Delegate to the FeedsClient
+        @client.feeds.query_pinned_activities(@feed_group_id, @feed_id, query_pinned_activities_request)
+      end
+
     end
   end
 end

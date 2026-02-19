@@ -6,43 +6,43 @@ module GetStream
   module Generated
     module Models
       # 
-      class GetCommentsResponse < GetStream::BaseModel
+      class QueryPinnedActivitiesRequest < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute duration
-        #   @return [String]
-        attr_accessor :duration
-        # @!attribute sort
-        #   @return [String] Sort order used for the comments (first, last, top, best, controversial)
-        attr_accessor :sort
-        # @!attribute comments
-        #   @return [Array<ThreadedCommentResponse>] Threaded listing for the activity
-        attr_accessor :comments
+        # @!attribute limit
+        #   @return [Integer]
+        attr_accessor :limit
         # @!attribute next
         #   @return [String]
         attr_accessor :next
         # @!attribute prev
         #   @return [String]
         attr_accessor :prev
+        # @!attribute sort
+        #   @return [Array<SortParamRequest>] Sorting parameters for the query
+        attr_accessor :sort
+        # @!attribute filter
+        #   @return [Object] Filters to apply to the query
+        attr_accessor :filter
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @duration = attributes[:duration] || attributes['duration']
-          @sort = attributes[:sort] || attributes['sort']
-          @comments = attributes[:comments] || attributes['comments']
+          @limit = attributes[:limit] || attributes['limit'] || nil
           @next = attributes[:next] || attributes['next'] || nil
           @prev = attributes[:prev] || attributes['prev'] || nil
+          @sort = attributes[:sort] || attributes['sort'] || nil
+          @filter = attributes[:filter] || attributes['filter'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            duration: 'duration',
-            sort: 'sort',
-            comments: 'comments',
+            limit: 'limit',
             next: 'next',
-            prev: 'prev'
+            prev: 'prev',
+            sort: 'sort',
+            filter: 'filter'
           }
         end
       end

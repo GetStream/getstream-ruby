@@ -27,6 +27,9 @@ module GetStream
         # @!attribute mentioned_channel
         #   @return [Boolean] Whether the message mentioned the channel tag
         attr_accessor :mentioned_channel
+        # @!attribute mentioned_here
+        #   @return [Boolean] Whether the message mentioned online users with @here tag
+        attr_accessor :mentioned_here
         # @!attribute pinned
         #   @return [Boolean] Whether message is pinned or not
         attr_accessor :pinned
@@ -157,6 +160,7 @@ module GetStream
           @html = attributes[:html] || attributes['html']
           @id = attributes[:id] || attributes['id']
           @mentioned_channel = attributes[:mentioned_channel] || attributes['mentioned_channel']
+          @mentioned_here = attributes[:mentioned_here] || attributes['mentioned_here']
           @pinned = attributes[:pinned] || attributes['pinned']
           @reply_count = attributes[:reply_count] || attributes['reply_count']
           @shadowed = attributes[:shadowed] || attributes['shadowed']
@@ -208,6 +212,7 @@ module GetStream
             html: 'html',
             id: 'id',
             mentioned_channel: 'mentioned_channel',
+            mentioned_here: 'mentioned_here',
             pinned: 'pinned',
             reply_count: 'reply_count',
             shadowed: 'shadowed',

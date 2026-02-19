@@ -1053,6 +1053,28 @@ module GetStream
         )
       end
 
+      # Query pinned activities for a feed with filter query
+      #
+      # @param feed_group_id [String]
+      # @param feed_id [String]
+      # @param query_pinned_activities_request [QueryPinnedActivitiesRequest]
+      # @return [Models::QueryPinnedActivitiesResponse]
+      def query_pinned_activities(feed_group_id, feed_id, query_pinned_activities_request)
+        path = '/api/v2/feeds/feed_groups/{feed_group_id}/feeds/{feed_id}/pinned_activities/query'
+        # Replace path parameters
+        path = path.gsub('{feed_group_id}', feed_group_id.to_s)
+        path = path.gsub('{feed_id}', feed_id.to_s)
+        # Build request body
+        body = query_pinned_activities_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
       # Get follow suggestions for a feed group
       #
       # @param feed_group_id [String]

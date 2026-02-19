@@ -18,6 +18,9 @@ module GetStream
         # @!attribute mentioned_channel
         #   @return [Boolean]
         attr_accessor :mentioned_channel
+        # @!attribute mentioned_here
+        #   @return [Boolean]
+        attr_accessor :mentioned_here
         # @!attribute mml
         #   @return [String] Should be empty if `text` is provided. Can only be set when using server-side API
         attr_accessor :mml
@@ -79,6 +82,7 @@ module GetStream
           @html = attributes[:html] || attributes['html'] || nil
           @id = attributes[:id] || attributes['id'] || nil
           @mentioned_channel = attributes[:mentioned_channel] || attributes['mentioned_channel'] || nil
+          @mentioned_here = attributes[:mentioned_here] || attributes['mentioned_here'] || nil
           @mml = attributes[:mml] || attributes['mml'] || nil
           @parent_id = attributes[:parent_id] || attributes['parent_id'] || nil
           @pin_expires = attributes[:pin_expires] || attributes['pin_expires'] || nil
@@ -105,6 +109,7 @@ module GetStream
             html: 'html',
             id: 'id',
             mentioned_channel: 'mentioned_channel',
+            mentioned_here: 'mentioned_here',
             mml: 'mml',
             parent_id: 'parent_id',
             pin_expires: 'pin_expires',
