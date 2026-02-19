@@ -15,6 +15,9 @@ module GetStream
         # @!attribute comment_reaction
         #   @return [String]
         attr_accessor :comment_reaction
+        # @!attribute comment_reply
+        #   @return [String]
+        attr_accessor :comment_reply
         # @!attribute follow
         #   @return [String]
         attr_accessor :follow
@@ -33,6 +36,7 @@ module GetStream
           super(attributes)
           @comment = attributes[:comment] || attributes['comment'] || nil
           @comment_reaction = attributes[:comment_reaction] || attributes['comment_reaction'] || nil
+          @comment_reply = attributes[:comment_reply] || attributes['comment_reply'] || nil
           @follow = attributes[:follow] || attributes['follow'] || nil
           @mention = attributes[:mention] || attributes['mention'] || nil
           @reaction = attributes[:reaction] || attributes['reaction'] || nil
@@ -44,6 +48,7 @@ module GetStream
           {
             comment: 'comment',
             comment_reaction: 'comment_reaction',
+            comment_reply: 'comment_reply',
             follow: 'follow',
             mention: 'mention',
             reaction: 'reaction',

@@ -5,34 +5,49 @@
 module GetStream
   module Generated
     module Models
-      # 
+      # This event is sent when a user gets reactivated. The event contains information about the user that was reactivated.
       class UserReactivatedEvent < GetStream::BaseModel
 
         # Model attributes
         # @!attribute created_at
-        #   @return [DateTime]
+        #   @return [DateTime] Date/time of creation
         attr_accessor :created_at
-        # @!attribute type
-        #   @return [String]
-        attr_accessor :type
+        # @!attribute custom
+        #   @return [Object]
+        attr_accessor :custom
         # @!attribute user
-        #   @return [User]
+        #   @return [UserResponseCommonFields]
         attr_accessor :user
+        # @!attribute type
+        #   @return [String] The type of event: "user.reactivated" in this case
+        attr_accessor :type
+        # @!attribute received_at
+        #   @return [DateTime]
+        attr_accessor :received_at
+        # @!attribute created_by
+        #   @return [UserResponseCommonFields]
+        attr_accessor :created_by
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @created_at = attributes[:created_at] || attributes['created_at']
+          @custom = attributes[:custom] || attributes['custom']
+          @user = attributes[:user] || attributes['user']
           @type = attributes[:type] || attributes['type'] || "user.reactivated"
-          @user = attributes[:user] || attributes['user'] || nil
+          @received_at = attributes[:received_at] || attributes['received_at'] || nil
+          @created_by = attributes[:created_by] || attributes['created_by'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
             created_at: 'created_at',
+            custom: 'custom',
+            user: 'user',
             type: 'type',
-            user: 'user'
+            received_at: 'received_at',
+            created_by: 'created_by'
           }
         end
       end

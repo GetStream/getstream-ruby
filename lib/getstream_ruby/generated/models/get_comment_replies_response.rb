@@ -12,6 +12,9 @@ module GetStream
         # @!attribute duration
         #   @return [String]
         attr_accessor :duration
+        # @!attribute sort
+        #   @return [String] Sort order used for the replies (first, last, top, best, controversial)
+        attr_accessor :sort
         # @!attribute comments
         #   @return [Array<ThreadedCommentResponse>] Threaded listing of replies to the comment
         attr_accessor :comments
@@ -26,6 +29,7 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @duration = attributes[:duration] || attributes['duration']
+          @sort = attributes[:sort] || attributes['sort']
           @comments = attributes[:comments] || attributes['comments']
           @next = attributes[:next] || attributes['next'] || nil
           @prev = attributes[:prev] || attributes['prev'] || nil
@@ -35,6 +39,7 @@ module GetStream
         def self.json_field_mappings
           {
             duration: 'duration',
+            sort: 'sort',
             comments: 'comments',
             next: 'next',
             prev: 'prev'

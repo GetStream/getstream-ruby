@@ -10,7 +10,7 @@ module GetStream
 
         # Model attributes
         # @!attribute mode
-        #   @return [String]
+        #   @return [String] Recording mode. One of: available, disabled, auto-on
         attr_accessor :mode
 
         # Initialize with attributes

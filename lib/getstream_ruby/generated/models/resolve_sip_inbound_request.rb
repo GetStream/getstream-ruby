@@ -16,7 +16,7 @@ module GetStream
         #   @return [String] SIP trunk number to resolve
         attr_accessor :sip_trunk_number
         # @!attribute challenge
-        #   @return [SIPChallenge]
+        #   @return [SIPChallengeRequest]
         attr_accessor :challenge
         # @!attribute routing_number
         #   @return [String] Optional routing number for routing number-based call routing (10 digits)

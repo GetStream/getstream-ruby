@@ -5,54 +5,94 @@
 module GetStream
   module Generated
     module Models
-      # 
+      # Emitted when a channel is successfully truncated.
       class ChannelTruncatedEvent < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute channel_id
-        #   @return [String]
-        attr_accessor :channel_id
-        # @!attribute channel_member_count
-        #   @return [Integer]
-        attr_accessor :channel_member_count
-        # @!attribute channel_type
-        #   @return [String]
-        attr_accessor :channel_type
-        # @!attribute cid
-        #   @return [String]
-        attr_accessor :cid
         # @!attribute created_at
-        #   @return [DateTime]
+        #   @return [DateTime] Date/time of creation
         attr_accessor :created_at
-        # @!attribute type
-        #   @return [String]
-        attr_accessor :type
         # @!attribute channel
         #   @return [ChannelResponse]
         attr_accessor :channel
+        # @!attribute custom
+        #   @return [Object]
+        attr_accessor :custom
+        # @!attribute type
+        #   @return [String] The type of event: "channel.truncated" in this case
+        attr_accessor :type
+        # @!attribute channel_id
+        #   @return [String] The ID of the channel which was truncated
+        attr_accessor :channel_id
+        # @!attribute channel_member_count
+        #   @return [Integer] The number of members in the channel
+        attr_accessor :channel_member_count
+        # @!attribute channel_message_count
+        #   @return [Integer]
+        attr_accessor :channel_message_count
+        # @!attribute channel_type
+        #   @return [String] The type of the channel which was truncated
+        attr_accessor :channel_type
+        # @!attribute cid
+        #   @return [String] The CID of the channel which was truncated
+        attr_accessor :cid
+        # @!attribute message_id
+        #   @return [String]
+        attr_accessor :message_id
+        # @!attribute received_at
+        #   @return [DateTime]
+        attr_accessor :received_at
+        # @!attribute team
+        #   @return [String] The team ID
+        attr_accessor :team
+        # @!attribute channel_custom
+        #   @return [Object]
+        attr_accessor :channel_custom
+        # @!attribute message
+        #   @return [MessageResponse]
+        attr_accessor :message
+        # @!attribute user
+        #   @return [UserResponseCommonFields]
+        attr_accessor :user
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @channel_id = attributes[:channel_id] || attributes['channel_id']
-          @channel_member_count = attributes[:channel_member_count] || attributes['channel_member_count']
-          @channel_type = attributes[:channel_type] || attributes['channel_type']
-          @cid = attributes[:cid] || attributes['cid']
           @created_at = attributes[:created_at] || attributes['created_at']
+          @channel = attributes[:channel] || attributes['channel']
+          @custom = attributes[:custom] || attributes['custom']
           @type = attributes[:type] || attributes['type'] || "channel.truncated"
-          @channel = attributes[:channel] || attributes['channel'] || nil
+          @channel_id = attributes[:channel_id] || attributes['channel_id'] || nil
+          @channel_member_count = attributes[:channel_member_count] || attributes['channel_member_count'] || nil
+          @channel_message_count = attributes[:channel_message_count] || attributes['channel_message_count'] || nil
+          @channel_type = attributes[:channel_type] || attributes['channel_type'] || nil
+          @cid = attributes[:cid] || attributes['cid'] || nil
+          @message_id = attributes[:message_id] || attributes['message_id'] || nil
+          @received_at = attributes[:received_at] || attributes['received_at'] || nil
+          @team = attributes[:team] || attributes['team'] || nil
+          @channel_custom = attributes[:channel_custom] || attributes['channel_custom'] || nil
+          @message = attributes[:message] || attributes['message'] || nil
+          @user = attributes[:user] || attributes['user'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            created_at: 'created_at',
+            channel: 'channel',
+            custom: 'custom',
+            type: 'type',
             channel_id: 'channel_id',
             channel_member_count: 'channel_member_count',
+            channel_message_count: 'channel_message_count',
             channel_type: 'channel_type',
             cid: 'cid',
-            created_at: 'created_at',
-            type: 'type',
-            channel: 'channel'
+            message_id: 'message_id',
+            received_at: 'received_at',
+            team: 'team',
+            channel_custom: 'channel_custom',
+            message: 'message',
+            user: 'user'
           }
         end
       end

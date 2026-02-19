@@ -25,7 +25,7 @@ module GetStream
         #   @return [String] Name of the feed
         attr_accessor :name
         # @!attribute visibility
-        #   @return [String] Visibility setting for the feed
+        #   @return [String] Visibility setting for the feed. One of: public, visible, followers, members, private
         attr_accessor :visibility
         # @!attribute filter_tags
         #   @return [Array<String>] Tags used for filtering feeds

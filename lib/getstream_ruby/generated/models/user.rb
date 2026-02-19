@@ -12,67 +12,22 @@ module GetStream
         # @!attribute id
         #   @return [String]
         attr_accessor :id
-        # @!attribute ban_expires
-        #   @return [DateTime]
-        attr_accessor :ban_expires
-        # @!attribute banned
-        #   @return [Boolean]
-        attr_accessor :banned
-        # @!attribute invisible
-        #   @return [Boolean]
-        attr_accessor :invisible
-        # @!attribute language
-        #   @return [String]
-        attr_accessor :language
-        # @!attribute revoke_tokens_issued_before
-        #   @return [DateTime]
-        attr_accessor :revoke_tokens_issued_before
-        # @!attribute role
-        #   @return [String]
-        attr_accessor :role
-        # @!attribute teams
-        #   @return [Array<String>]
-        attr_accessor :teams
-        # @!attribute custom
+        # @!attribute data
         #   @return [Object]
-        attr_accessor :custom
-        # @!attribute privacy_settings
-        #   @return [PrivacySettings]
-        attr_accessor :privacy_settings
-        # @!attribute teams_role
-        #   @return [Hash<String, String>]
-        attr_accessor :teams_role
+        attr_accessor :data
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @id = attributes[:id] || attributes['id']
-          @ban_expires = attributes[:ban_expires] || attributes['ban_expires'] || nil
-          @banned = attributes[:banned] || attributes['banned'] || nil
-          @invisible = attributes[:invisible] || attributes['invisible'] || nil
-          @language = attributes[:language] || attributes['language'] || nil
-          @revoke_tokens_issued_before = attributes[:revoke_tokens_issued_before] || attributes['revoke_tokens_issued_before'] || nil
-          @role = attributes[:role] || attributes['role'] || nil
-          @teams = attributes[:teams] || attributes['teams'] || nil
-          @custom = attributes[:custom] || attributes['custom'] || nil
-          @privacy_settings = attributes[:privacy_settings] || attributes['privacy_settings'] || nil
-          @teams_role = attributes[:teams_role] || attributes['teams_role'] || nil
+          @data = attributes[:data] || attributes['data'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
             id: 'id',
-            ban_expires: 'ban_expires',
-            banned: 'banned',
-            invisible: 'invisible',
-            language: 'language',
-            revoke_tokens_issued_before: 'revoke_tokens_issued_before',
-            role: 'role',
-            teams: 'teams',
-            custom: 'custom',
-            privacy_settings: 'privacy_settings',
-            teams_role: 'teams_role'
+            data: 'data'
           }
         end
       end

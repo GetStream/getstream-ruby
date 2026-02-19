@@ -12,9 +12,6 @@ module GetStream
         # @!attribute rule_type
         #   @return [String]
         attr_accessor :rule_type
-        # @!attribute action
-        #   @return [RuleBuilderAction]
-        attr_accessor :action
         # @!attribute cooldown_period
         #   @return [String]
         attr_accessor :cooldown_period
@@ -24,35 +21,43 @@ module GetStream
         # @!attribute logic
         #   @return [String]
         attr_accessor :logic
+        # @!attribute action_sequences
+        #   @return [Array<CallRuleActionSequence>]
+        attr_accessor :action_sequences
         # @!attribute conditions
         #   @return [Array<RuleBuilderCondition>]
         attr_accessor :conditions
         # @!attribute groups
         #   @return [Array<RuleBuilderConditionGroup>]
         attr_accessor :groups
+        # @!attribute action
+        #   @return [RuleBuilderAction]
+        attr_accessor :action
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @rule_type = attributes[:rule_type] || attributes['rule_type']
-          @action = attributes[:action] || attributes['action']
           @cooldown_period = attributes[:cooldown_period] || attributes['cooldown_period'] || nil
           @id = attributes[:id] || attributes['id'] || nil
           @logic = attributes[:logic] || attributes['logic'] || nil
+          @action_sequences = attributes[:action_sequences] || attributes['action_sequences'] || nil
           @conditions = attributes[:conditions] || attributes['conditions'] || nil
           @groups = attributes[:groups] || attributes['groups'] || nil
+          @action = attributes[:action] || attributes['action'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
             rule_type: 'rule_type',
-            action: 'action',
             cooldown_period: 'cooldown_period',
             id: 'id',
             logic: 'logic',
+            action_sequences: 'action_sequences',
             conditions: 'conditions',
-            groups: 'groups'
+            groups: 'groups',
+            action: 'action'
           }
         end
       end

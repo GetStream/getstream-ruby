@@ -22,7 +22,7 @@ module GetStream
         #   @return [String]
         attr_accessor :prev
         # @!attribute sort
-        #   @return [String] first (oldest), last (newest) or top
+        #   @return [String] first (oldest), last (newest) or top. One of: first, last, top, best, controversial
         attr_accessor :sort
 
         # Initialize with attributes

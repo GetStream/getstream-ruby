@@ -10,7 +10,7 @@ module GetStream
 
         # Model attributes
         # @!attribute type
-        #   @return [String] Type of ranking algorithm. Required. Must be one of: expression, interest
+        #   @return [String] Type of ranking algorithm. Required. One of: expression, interest
         attr_accessor :type
         # @!attribute score
         #   @return [String] Scoring formula. Required when type is 'expression' or 'interest'

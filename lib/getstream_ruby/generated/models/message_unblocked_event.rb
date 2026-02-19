@@ -5,48 +5,58 @@
 module GetStream
   module Generated
     module Models
-      # 
+      # Emitted when a message is unblocked.
       class MessageUnblockedEvent < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute cid
-        #   @return [String]
-        attr_accessor :cid
         # @!attribute created_at
-        #   @return [DateTime]
+        #   @return [DateTime] Date/time of creation
         attr_accessor :created_at
-        # @!attribute type
+        # @!attribute message_id
         #   @return [String]
-        attr_accessor :type
-        # @!attribute thread_participants
-        #   @return [Array<User>]
-        attr_accessor :thread_participants
+        attr_accessor :message_id
+        # @!attribute custom
+        #   @return [Object]
+        attr_accessor :custom
         # @!attribute message
-        #   @return [Message]
+        #   @return [MessageResponse]
         attr_accessor :message
+        # @!attribute type
+        #   @return [String] The type of event: "message.unblocked" in this case
+        attr_accessor :type
+        # @!attribute cid
+        #   @return [String] The CID of the channel where the message was unblocked
+        attr_accessor :cid
+        # @!attribute received_at
+        #   @return [DateTime]
+        attr_accessor :received_at
         # @!attribute user
-        #   @return [User]
+        #   @return [UserResponseCommonFields]
         attr_accessor :user
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @cid = attributes[:cid] || attributes['cid']
           @created_at = attributes[:created_at] || attributes['created_at']
+          @message_id = attributes[:message_id] || attributes['message_id']
+          @custom = attributes[:custom] || attributes['custom']
+          @message = attributes[:message] || attributes['message']
           @type = attributes[:type] || attributes['type'] || "message.unblocked"
-          @thread_participants = attributes[:thread_participants] || attributes['thread_participants'] || nil
-          @message = attributes[:message] || attributes['message'] || nil
+          @cid = attributes[:cid] || attributes['cid'] || nil
+          @received_at = attributes[:received_at] || attributes['received_at'] || nil
           @user = attributes[:user] || attributes['user'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            cid: 'cid',
             created_at: 'created_at',
-            type: 'type',
-            thread_participants: 'thread_participants',
+            message_id: 'message_id',
+            custom: 'custom',
             message: 'message',
+            type: 'type',
+            cid: 'cid',
+            received_at: 'received_at',
             user: 'user'
           }
         end

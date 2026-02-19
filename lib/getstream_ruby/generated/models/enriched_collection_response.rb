@@ -16,7 +16,7 @@ module GetStream
         #   @return [String] Name/type of the collection
         attr_accessor :name
         # @!attribute status
-        #   @return [String] Enrichment status of the collection
+        #   @return [String] Enrichment status of the collection. One of: ok, notfound
         attr_accessor :status
         # @!attribute created_at
         #   @return [DateTime] When the collection was created

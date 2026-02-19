@@ -16,10 +16,10 @@ module GetStream
         #   @return [String] Role of the follower (source user) in the follow relationship
         attr_accessor :follower_role
         # @!attribute push_preference
-        #   @return [String] Push preference for notifications
+        #   @return [String] Push preference for notifications. One of: all, none
         attr_accessor :push_preference
         # @!attribute status
-        #   @return [String] Status of the follow relationship
+        #   @return [String] Status of the follow relationship. One of: accepted, pending, rejected
         attr_accessor :status
         # @!attribute updated_at
         #   @return [DateTime] When the follow relationship was last updated

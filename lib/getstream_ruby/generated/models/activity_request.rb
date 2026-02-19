@@ -15,6 +15,9 @@ module GetStream
         # @!attribute feeds
         #   @return [Array<String>] List of feeds to add the activity to with a default max limit of 25 feeds
         attr_accessor :feeds
+        # @!attribute copy_custom_to_notification
+        #   @return [Boolean] Whether to copy custom data to the notification activity (only applies when create_notification_activity is true)
+        attr_accessor :copy_custom_to_notification
         # @!attribute create_notification_activity
         #   @return [Boolean] Whether to create notification activities for mentioned users
         attr_accessor :create_notification_activity
@@ -31,7 +34,7 @@ module GetStream
         #   @return [String] ID of a poll to attach to activity
         attr_accessor :poll_id
         # @!attribute restrict_replies
-        #   @return [String] Controls who can add comments/replies to this activity. Options: 'everyone' (default - anyone can reply), 'people_i_follow' (only people the activity creator follows can reply), 'nobody' (no one can reply)
+        #   @return [String] Controls who can add comments/replies to this activity. One of: everyone, people_i_follow, nobody
         attr_accessor :restrict_replies
         # @!attribute skip_enrich_url
         #   @return [Boolean] Whether to skip URL enrichment for the activity
@@ -46,7 +49,7 @@ module GetStream
         #   @return [String] ID of the user creating the activity
         attr_accessor :user_id
         # @!attribute visibility
-        #   @return [String] Visibility setting for the activity
+        #   @return [String] Visibility setting for the activity. One of: public, private, tag
         attr_accessor :visibility
         # @!attribute visibility_tag
         #   @return [String] If visibility is 'tag', this is the tag name and is required
@@ -81,6 +84,7 @@ module GetStream
           super(attributes)
           @type = attributes[:type] || attributes['type']
           @feeds = attributes[:feeds] || attributes['feeds']
+          @copy_custom_to_notification = attributes[:copy_custom_to_notification] || attributes['copy_custom_to_notification'] || nil
           @create_notification_activity = attributes[:create_notification_activity] || attributes['create_notification_activity'] || nil
           @expires_at = attributes[:expires_at] || attributes['expires_at'] || nil
           @id = attributes[:id] || attributes['id'] || nil
@@ -108,6 +112,7 @@ module GetStream
           {
             type: 'type',
             feeds: 'feeds',
+            copy_custom_to_notification: 'copy_custom_to_notification',
             create_notification_activity: 'create_notification_activity',
             expires_at: 'expires_at',
             id: 'id',

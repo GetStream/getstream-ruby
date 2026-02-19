@@ -13,7 +13,7 @@ module GetStream
         #   @return [String] Duration of the request in milliseconds
         attr_accessor :duration
         # @!attribute templates
-        #   @return [Array<PushTemplate>]
+        #   @return [Array<PushTemplateResponse>]
         attr_accessor :templates
 
         # Initialize with attributes
