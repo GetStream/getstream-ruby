@@ -10,13 +10,13 @@ module GetStream
 
         # Model attributes
         # @!attribute mode
-        #   @return [String]
+        #   @return [String] Recording mode. One of: available, disabled, auto-on
         attr_accessor :mode
         # @!attribute audio_only
-        #   @return [Boolean]
+        #   @return [Boolean] Whether to record audio only
         attr_accessor :audio_only
         # @!attribute quality
-        #   @return [String]
+        #   @return [String] Recording quality. One of: 360p, 480p, 720p, 1080p, 1440p, portrait-360x640, portrait-480x854, portrait-720x1280, portrait-1080x1920, portrait-1440x2560
         attr_accessor :quality
         # @!attribute layout
         #   @return [LayoutSettingsRequest]

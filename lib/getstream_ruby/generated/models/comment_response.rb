@@ -37,7 +37,7 @@ module GetStream
         #   @return [Integer] Score of the comment based on reactions
         attr_accessor :score
         # @!attribute status
-        #   @return [String] Status of the comment (e.g., active, deleted)
+        #   @return [String] Status of the comment. One of: active, deleted, removed, hidden
         attr_accessor :status
         # @!attribute updated_at
         #   @return [DateTime] When the comment was last updated
@@ -70,7 +70,7 @@ module GetStream
         #   @return [String] Text content of the comment
         attr_accessor :text
         # @!attribute attachments
-        #   @return [Array<Attachment>]
+        #   @return [Array<Attachment>] Attachments associated with the comment
         attr_accessor :attachments
         # @!attribute latest_reactions
         #   @return [Array<FeedsReactionResponse>] Recent reactions to the comment
@@ -82,7 +82,7 @@ module GetStream
         #   @return [ModerationV2Response]
         attr_accessor :moderation
         # @!attribute reaction_groups
-        #   @return [Hash<String, ReactionGroupResponse>] Grouped reactions by type
+        #   @return [Hash<String, FeedsReactionGroupResponse>] Grouped reactions by type
         attr_accessor :reaction_groups
 
         # Initialize with attributes

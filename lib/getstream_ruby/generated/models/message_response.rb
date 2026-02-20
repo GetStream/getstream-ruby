@@ -24,6 +24,12 @@ module GetStream
         # @!attribute id
         #   @return [String] Message ID is unique string identifier of the message
         attr_accessor :id
+        # @!attribute mentioned_channel
+        #   @return [Boolean] Whether the message mentioned the channel tag
+        attr_accessor :mentioned_channel
+        # @!attribute mentioned_here
+        #   @return [Boolean] Whether the message mentioned online users with @here tag
+        attr_accessor :mentioned_here
         # @!attribute pinned
         #   @return [Boolean] Whether message is pinned or not
         attr_accessor :pinned
@@ -40,7 +46,7 @@ module GetStream
         #   @return [String] Text of the message. Should be empty if `mml` is provided
         attr_accessor :text
         # @!attribute type
-        #   @return [String] Contains type of the message
+        #   @return [String] Contains type of the message. One of: regular, ephemeral, error, reply, system, deleted
         attr_accessor :type
         # @!attribute updated_at
         #   @return [DateTime] Date/time of the last update
@@ -150,6 +156,8 @@ module GetStream
           @deleted_reply_count = attributes[:deleted_reply_count] || attributes['deleted_reply_count']
           @html = attributes[:html] || attributes['html']
           @id = attributes[:id] || attributes['id']
+          @mentioned_channel = attributes[:mentioned_channel] || attributes['mentioned_channel']
+          @mentioned_here = attributes[:mentioned_here] || attributes['mentioned_here']
           @pinned = attributes[:pinned] || attributes['pinned']
           @reply_count = attributes[:reply_count] || attributes['reply_count']
           @shadowed = attributes[:shadowed] || attributes['shadowed']
@@ -199,6 +207,8 @@ module GetStream
             deleted_reply_count: 'deleted_reply_count',
             html: 'html',
             id: 'id',
+            mentioned_channel: 'mentioned_channel',
+            mentioned_here: 'mentioned_here',
             pinned: 'pinned',
             reply_count: 'reply_count',
             shadowed: 'shadowed',

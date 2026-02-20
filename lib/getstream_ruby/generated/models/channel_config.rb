@@ -102,6 +102,9 @@ module GetStream
         # @!attribute partition_ttl
         #   @return [String]
         attr_accessor :partition_ttl
+        # @!attribute push_level
+        #   @return [String]
+        attr_accessor :push_level
         # @!attribute allowed_flag_reasons
         #   @return [Array<String>]
         attr_accessor :allowed_flag_reasons
@@ -146,6 +149,7 @@ module GetStream
           @blocklist_behavior = attributes[:blocklist_behavior] || attributes['blocklist_behavior'] || nil
           @partition_size = attributes[:partition_size] || attributes['partition_size'] || nil
           @partition_ttl = attributes[:partition_ttl] || attributes['partition_ttl'] || nil
+          @push_level = attributes[:push_level] || attributes['push_level'] || nil
           @allowed_flag_reasons = attributes[:allowed_flag_reasons] || attributes['allowed_flag_reasons'] || nil
           @blocklists = attributes[:blocklists] || attributes['blocklists'] || nil
           @automod_thresholds = attributes[:automod_thresholds] || attributes['automod_thresholds'] || nil
@@ -185,6 +189,7 @@ module GetStream
             blocklist_behavior: 'blocklist_behavior',
             partition_size: 'partition_size',
             partition_ttl: 'partition_ttl',
+            push_level: 'push_level',
             allowed_flag_reasons: 'allowed_flag_reasons',
             blocklists: 'blocklists',
             automod_thresholds: 'automod_thresholds'

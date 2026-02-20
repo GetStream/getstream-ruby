@@ -5,51 +5,79 @@
 module GetStream
   module Generated
     module Models
-      # 
+      # Emitted when a new reaction is added to a message.
       class ReactionNewEvent < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute created_at
+        #   @return [DateTime] Date/time of creation
+        attr_accessor :created_at
+        # @!attribute channel
+        #   @return [ChannelResponse]
+        attr_accessor :channel
+        # @!attribute custom
+        #   @return [Object]
+        attr_accessor :custom
+        # @!attribute type
+        #   @return [String] The type of event: "reaction.new" in this case
+        attr_accessor :type
         # @!attribute channel_id
-        #   @return [String]
+        #   @return [String] The ID of the channel containing the message
         attr_accessor :channel_id
+        # @!attribute channel_member_count
+        #   @return [Integer] The number of members in the channel
+        attr_accessor :channel_member_count
+        # @!attribute channel_message_count
+        #   @return [Integer] The number of messages in the channel
+        attr_accessor :channel_message_count
         # @!attribute channel_type
-        #   @return [String]
+        #   @return [String] The type of the channel containing the message
         attr_accessor :channel_type
         # @!attribute cid
-        #   @return [String]
+        #   @return [String] The CID of the channel containing the message
         attr_accessor :cid
-        # @!attribute created_at
+        # @!attribute message_id
+        #   @return [String]
+        attr_accessor :message_id
+        # @!attribute received_at
         #   @return [DateTime]
-        attr_accessor :created_at
-        # @!attribute type
-        #   @return [String]
-        attr_accessor :type
+        attr_accessor :received_at
         # @!attribute team
-        #   @return [String]
+        #   @return [String] The team ID
         attr_accessor :team
         # @!attribute thread_participants
-        #   @return [Array<User>]
+        #   @return [Array<UserResponseCommonFields>] The participants of the thread
         attr_accessor :thread_participants
+        # @!attribute channel_custom
+        #   @return [Object]
+        attr_accessor :channel_custom
         # @!attribute message
-        #   @return [Message]
+        #   @return [MessageResponse]
         attr_accessor :message
         # @!attribute reaction
-        #   @return [Reaction]
+        #   @return [ReactionResponse]
         attr_accessor :reaction
         # @!attribute user
-        #   @return [User]
+        #   @return [UserResponseCommonFields]
         attr_accessor :user
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @channel_id = attributes[:channel_id] || attributes['channel_id']
-          @channel_type = attributes[:channel_type] || attributes['channel_type']
-          @cid = attributes[:cid] || attributes['cid']
           @created_at = attributes[:created_at] || attributes['created_at']
+          @channel = attributes[:channel] || attributes['channel']
+          @custom = attributes[:custom] || attributes['custom']
           @type = attributes[:type] || attributes['type'] || "reaction.new"
+          @channel_id = attributes[:channel_id] || attributes['channel_id'] || nil
+          @channel_member_count = attributes[:channel_member_count] || attributes['channel_member_count'] || nil
+          @channel_message_count = attributes[:channel_message_count] || attributes['channel_message_count'] || nil
+          @channel_type = attributes[:channel_type] || attributes['channel_type'] || nil
+          @cid = attributes[:cid] || attributes['cid'] || nil
+          @message_id = attributes[:message_id] || attributes['message_id'] || nil
+          @received_at = attributes[:received_at] || attributes['received_at'] || nil
           @team = attributes[:team] || attributes['team'] || nil
           @thread_participants = attributes[:thread_participants] || attributes['thread_participants'] || nil
+          @channel_custom = attributes[:channel_custom] || attributes['channel_custom'] || nil
           @message = attributes[:message] || attributes['message'] || nil
           @reaction = attributes[:reaction] || attributes['reaction'] || nil
           @user = attributes[:user] || attributes['user'] || nil
@@ -58,13 +86,20 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            created_at: 'created_at',
+            channel: 'channel',
+            custom: 'custom',
+            type: 'type',
             channel_id: 'channel_id',
+            channel_member_count: 'channel_member_count',
+            channel_message_count: 'channel_message_count',
             channel_type: 'channel_type',
             cid: 'cid',
-            created_at: 'created_at',
-            type: 'type',
+            message_id: 'message_id',
+            received_at: 'received_at',
             team: 'team',
             thread_participants: 'thread_participants',
+            channel_custom: 'channel_custom',
             message: 'message',
             reaction: 'reaction',
             user: 'user'

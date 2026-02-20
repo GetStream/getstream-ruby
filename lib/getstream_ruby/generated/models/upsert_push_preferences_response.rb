@@ -13,10 +13,10 @@ module GetStream
         #   @return [String] Duration of the request in milliseconds
         attr_accessor :duration
         # @!attribute user_channel_preferences
-        #   @return [Hash<String, Hash<String, ChannelPushPreferences>>] The channel specific push notification preferences, only returned for channels you've edited.
+        #   @return [Hash<String, Hash<String, ChannelPushPreferencesResponse>>] The channel specific push notification preferences, only returned for channels you've edited.
         attr_accessor :user_channel_preferences
         # @!attribute user_preferences
-        #   @return [Hash<String, PushPreferences>] The user preferences, always returned regardless if you edited it
+        #   @return [Hash<String, PushPreferencesResponse>] The user preferences, always returned regardless if you edited it
         attr_accessor :user_preferences
 
         # Initialize with attributes

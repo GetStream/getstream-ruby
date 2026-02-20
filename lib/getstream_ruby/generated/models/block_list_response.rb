@@ -19,7 +19,7 @@ module GetStream
         #   @return [String] Block list name
         attr_accessor :name
         # @!attribute type
-        #   @return [String] Block list type.
+        #   @return [String] Block list type. One of: regex, domain, domain_allowlist, email, email_allowlist, word
         attr_accessor :type
         # @!attribute words
         #   @return [Array<String>] List of words to block

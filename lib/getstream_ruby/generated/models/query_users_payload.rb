@@ -5,7 +5,7 @@
 module GetStream
   module Generated
     module Models
-      # 
+      # Client request
       class QueryUsersPayload < GetStream::BaseModel
 
         # Model attributes

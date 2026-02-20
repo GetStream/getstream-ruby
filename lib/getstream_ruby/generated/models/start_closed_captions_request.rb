@@ -16,7 +16,7 @@ module GetStream
         #   @return [String] Which external storage to use for transcriptions (only applicable if enable_transcription is true)
         attr_accessor :external_storage
         # @!attribute language
-        #   @return [String] The spoken language in the call, if not provided the language defined in the transcription settings will be used
+        #   @return [String] The spoken language in the call, if not provided the language defined in the transcription settings will be used. One of: auto, ar, bg, ca, cs, da, de, el, en, es, et, fi, fr, he, hi, hr, hu, id, it, ja, ko, ms, nl, no, pl, pt, ro, ru, sk, sl, sv, ta, th, tl, tr, uk, zh
         attr_accessor :language
         # @!attribute speech_segment_config
         #   @return [SpeechSegmentConfig]

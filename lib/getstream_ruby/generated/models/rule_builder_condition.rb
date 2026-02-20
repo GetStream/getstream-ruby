@@ -15,6 +15,15 @@ module GetStream
         # @!attribute type
         #   @return [String]
         attr_accessor :type
+        # @!attribute call_custom_property_params
+        #   @return [CallCustomPropertyParameters]
+        attr_accessor :call_custom_property_params
+        # @!attribute call_type_rule_params
+        #   @return [CallTypeRuleParameters]
+        attr_accessor :call_type_rule_params
+        # @!attribute closed_caption_rule_params
+        #   @return [ClosedCaptionRuleParameters]
+        attr_accessor :closed_caption_rule_params
         # @!attribute content_count_rule_params
         #   @return [ContentCountRuleParameters]
         attr_accessor :content_count_rule_params
@@ -27,6 +36,9 @@ module GetStream
         # @!attribute image_rule_params
         #   @return [ImageRuleParameters]
         attr_accessor :image_rule_params
+        # @!attribute keyframe_rule_params
+        #   @return [KeyframeRuleParameters]
+        attr_accessor :keyframe_rule_params
         # @!attribute text_content_params
         #   @return [TextContentParameters]
         attr_accessor :text_content_params
@@ -63,10 +75,14 @@ module GetStream
           super(attributes)
           @confidence = attributes[:confidence] || attributes['confidence'] || nil
           @type = attributes[:type] || attributes['type'] || nil
+          @call_custom_property_params = attributes[:call_custom_property_params] || attributes['call_custom_property_params'] || nil
+          @call_type_rule_params = attributes[:call_type_rule_params] || attributes['call_type_rule_params'] || nil
+          @closed_caption_rule_params = attributes[:closed_caption_rule_params] || attributes['closed_caption_rule_params'] || nil
           @content_count_rule_params = attributes[:content_count_rule_params] || attributes['content_count_rule_params'] || nil
           @content_flag_count_rule_params = attributes[:content_flag_count_rule_params] || attributes['content_flag_count_rule_params'] || nil
           @image_content_params = attributes[:image_content_params] || attributes['image_content_params'] || nil
           @image_rule_params = attributes[:image_rule_params] || attributes['image_rule_params'] || nil
+          @keyframe_rule_params = attributes[:keyframe_rule_params] || attributes['keyframe_rule_params'] || nil
           @text_content_params = attributes[:text_content_params] || attributes['text_content_params'] || nil
           @text_rule_params = attributes[:text_rule_params] || attributes['text_rule_params'] || nil
           @user_created_within_params = attributes[:user_created_within_params] || attributes['user_created_within_params'] || nil
@@ -84,10 +100,14 @@ module GetStream
           {
             confidence: 'confidence',
             type: 'type',
+            call_custom_property_params: 'call_custom_property_params',
+            call_type_rule_params: 'call_type_rule_params',
+            closed_caption_rule_params: 'closed_caption_rule_params',
             content_count_rule_params: 'content_count_rule_params',
             content_flag_count_rule_params: 'content_flag_count_rule_params',
             image_content_params: 'image_content_params',
             image_rule_params: 'image_rule_params',
+            keyframe_rule_params: 'keyframe_rule_params',
             text_content_params: 'text_content_params',
             text_rule_params: 'text_rule_params',
             user_created_within_params: 'user_created_within_params',

@@ -9,6 +9,9 @@ module GetStream
       class QueryActivitiesRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute include_expired_activities
+        #   @return [Boolean] When true, include both expired and non-expired activities in the result.
+        attr_accessor :include_expired_activities
         # @!attribute include_private_activities
         #   @return [Boolean]
         attr_accessor :include_private_activities
@@ -37,6 +40,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @include_expired_activities = attributes[:include_expired_activities] || attributes['include_expired_activities'] || nil
           @include_private_activities = attributes[:include_private_activities] || attributes['include_private_activities'] || nil
           @limit = attributes[:limit] || attributes['limit'] || nil
           @next = attributes[:next] || attributes['next'] || nil
@@ -50,6 +54,7 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            include_expired_activities: 'include_expired_activities',
             include_private_activities: 'include_private_activities',
             limit: 'limit',
             next: 'next',

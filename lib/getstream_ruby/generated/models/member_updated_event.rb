@@ -5,58 +5,88 @@
 module GetStream
   module Generated
     module Models
-      # 
+      # Emitted when a member is updated in a channel.
       class MemberUpdatedEvent < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute created_at
+        #   @return [DateTime] Date/time of creation
+        attr_accessor :created_at
+        # @!attribute channel
+        #   @return [ChannelResponse]
+        attr_accessor :channel
+        # @!attribute custom
+        #   @return [Object]
+        attr_accessor :custom
+        # @!attribute member
+        #   @return [ChannelMemberResponse]
+        attr_accessor :member
+        # @!attribute type
+        #   @return [String] The type of event: "member.updated" in this case
+        attr_accessor :type
         # @!attribute channel_id
-        #   @return [String]
+        #   @return [String] The ID of the channel in which the member was updated
         attr_accessor :channel_id
+        # @!attribute channel_member_count
+        #   @return [Integer] The number of members in the channel
+        attr_accessor :channel_member_count
+        # @!attribute channel_message_count
+        #   @return [Integer] The number of messages in the channel
+        attr_accessor :channel_message_count
         # @!attribute channel_type
-        #   @return [String]
+        #   @return [String] The type of the channel in which the member was updated
         attr_accessor :channel_type
         # @!attribute cid
-        #   @return [String]
+        #   @return [String] The CID of the channel in which the member was updated
         attr_accessor :cid
-        # @!attribute created_at
+        # @!attribute received_at
         #   @return [DateTime]
-        attr_accessor :created_at
-        # @!attribute type
-        #   @return [String]
-        attr_accessor :type
+        attr_accessor :received_at
         # @!attribute team
-        #   @return [String]
+        #   @return [String] The team ID
         attr_accessor :team
-        # @!attribute member
-        #   @return [ChannelMember]
-        attr_accessor :member
+        # @!attribute channel_custom
+        #   @return [Object]
+        attr_accessor :channel_custom
         # @!attribute user
-        #   @return [User]
+        #   @return [UserResponseCommonFields]
         attr_accessor :user
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @channel_id = attributes[:channel_id] || attributes['channel_id']
-          @channel_type = attributes[:channel_type] || attributes['channel_type']
-          @cid = attributes[:cid] || attributes['cid']
           @created_at = attributes[:created_at] || attributes['created_at']
+          @channel = attributes[:channel] || attributes['channel']
+          @custom = attributes[:custom] || attributes['custom']
+          @member = attributes[:member] || attributes['member']
           @type = attributes[:type] || attributes['type'] || "member.updated"
+          @channel_id = attributes[:channel_id] || attributes['channel_id'] || nil
+          @channel_member_count = attributes[:channel_member_count] || attributes['channel_member_count'] || nil
+          @channel_message_count = attributes[:channel_message_count] || attributes['channel_message_count'] || nil
+          @channel_type = attributes[:channel_type] || attributes['channel_type'] || nil
+          @cid = attributes[:cid] || attributes['cid'] || nil
+          @received_at = attributes[:received_at] || attributes['received_at'] || nil
           @team = attributes[:team] || attributes['team'] || nil
-          @member = attributes[:member] || attributes['member'] || nil
+          @channel_custom = attributes[:channel_custom] || attributes['channel_custom'] || nil
           @user = attributes[:user] || attributes['user'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            created_at: 'created_at',
+            channel: 'channel',
+            custom: 'custom',
+            member: 'member',
+            type: 'type',
             channel_id: 'channel_id',
+            channel_member_count: 'channel_member_count',
+            channel_message_count: 'channel_message_count',
             channel_type: 'channel_type',
             cid: 'cid',
-            created_at: 'created_at',
-            type: 'type',
+            received_at: 'received_at',
             team: 'team',
-            member: 'member',
+            channel_custom: 'channel_custom',
             user: 'user'
           }
         end

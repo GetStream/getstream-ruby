@@ -16,7 +16,7 @@ module GetStream
         #   @return [Array<ReviewQueueItemResponse>] List of review queue items
         attr_accessor :items
         # @!attribute action_config
-        #   @return [Hash<String, Array<ModerationActionConfig>>] Configuration for moderation actions
+        #   @return [Hash<String, Array<ModerationActionConfigResponse>>] Configuration for moderation actions
         attr_accessor :action_config
         # @!attribute stats
         #   @return [Object] Statistics about the review queue

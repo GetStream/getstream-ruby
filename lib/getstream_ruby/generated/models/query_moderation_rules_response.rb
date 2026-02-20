@@ -12,6 +12,12 @@ module GetStream
         # @!attribute duration
         #   @return [String]
         attr_accessor :duration
+        # @!attribute closed_caption_labels
+        #   @return [Array<String>] Available harm labels for closed caption rules
+        attr_accessor :closed_caption_labels
+        # @!attribute keyframe_labels
+        #   @return [Array<String>] Available harm labels for keyframe rules
+        attr_accessor :keyframe_labels
         # @!attribute rules
         #   @return [Array<ModerationRuleV2Response>] List of moderation rules
         attr_accessor :rules
@@ -29,6 +35,8 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @duration = attributes[:duration] || attributes['duration']
+          @closed_caption_labels = attributes[:closed_caption_labels] || attributes['closed_caption_labels']
+          @keyframe_labels = attributes[:keyframe_labels] || attributes['keyframe_labels']
           @rules = attributes[:rules] || attributes['rules']
           @default_llm_labels = attributes[:default_llm_labels] || attributes['default_llm_labels']
           @next = attributes[:next] || attributes['next'] || nil
@@ -39,6 +47,8 @@ module GetStream
         def self.json_field_mappings
           {
             duration: 'duration',
+            closed_caption_labels: 'closed_caption_labels',
+            keyframe_labels: 'keyframe_labels',
             rules: 'rules',
             default_llm_labels: 'default_llm_labels',
             next: 'next',

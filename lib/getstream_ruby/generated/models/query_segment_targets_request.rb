@@ -18,12 +18,12 @@ module GetStream
         # @!attribute prev
         #   @return [String] Prev
         attr_accessor :prev
-        # @!attribute Sort
+        # @!attribute sort
         #   @return [Array<SortParamRequest>]
-        attr_accessor :Sort
-        # @!attribute Filter
+        attr_accessor :sort
+        # @!attribute filter
         #   @return [Object]
-        attr_accessor :Filter
+        attr_accessor :filter
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -31,8 +31,8 @@ module GetStream
           @limit = attributes[:limit] || attributes['limit'] || nil
           @next = attributes[:next] || attributes['next'] || nil
           @prev = attributes[:prev] || attributes['prev'] || nil
-          @Sort = attributes[:Sort] || attributes['Sort'] || nil
-          @Filter = attributes[:Filter] || attributes['Filter'] || nil
+          @sort = attributes[:sort] || attributes['Sort'] || nil
+          @filter = attributes[:filter] || attributes['Filter'] || nil
         end
 
         # Override field mappings for JSON serialization
@@ -41,8 +41,8 @@ module GetStream
             limit: 'limit',
             next: 'next',
             prev: 'prev',
-            Sort: 'Sort',
-            Filter: 'Filter'
+            sort: 'Sort',
+            filter: 'Filter'
           }
         end
       end

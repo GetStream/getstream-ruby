@@ -37,7 +37,7 @@ module GetStream
         #   @return [Integer]
         attr_accessor :score
         # @!attribute status
-        #   @return [String]
+        #   @return [String] Status of the comment. One of: active, deleted, removed, hidden
         attr_accessor :status
         # @!attribute updated_at
         #   @return [DateTime]
@@ -88,7 +88,7 @@ module GetStream
         #   @return [ModerationV2Response]
         attr_accessor :moderation
         # @!attribute reaction_groups
-        #   @return [Hash<String, ReactionGroupResponse>]
+        #   @return [Hash<String, FeedsReactionGroupResponse>]
         attr_accessor :reaction_groups
 
         # Initialize with attributes

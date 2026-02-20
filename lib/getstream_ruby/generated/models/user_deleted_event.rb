@@ -5,49 +5,74 @@
 module GetStream
   module Generated
     module Models
-      # 
+      # This event is sent when a user gets deleted. The event contains information about the user that was deleted and the deletion options that were used.
       class UserDeletedEvent < GetStream::BaseModel
 
         # Model attributes
         # @!attribute created_at
-        #   @return [DateTime]
+        #   @return [DateTime] Date/time of creation
         attr_accessor :created_at
+        # @!attribute delete_conversation
+        #   @return [String] The type of deletion that was used for the user's conversations. One of: hard, soft, pruning, (empty string)
+        attr_accessor :delete_conversation
         # @!attribute delete_conversation_channels
-        #   @return [Boolean]
+        #   @return [Boolean] Whether the user's conversation channels were deleted
         attr_accessor :delete_conversation_channels
+        # @!attribute delete_messages
+        #   @return [String] The type of deletion that was used for the user's messages. One of: hard, soft, pruning, (empty string)
+        attr_accessor :delete_messages
+        # @!attribute delete_user
+        #   @return [String] The type of deletion that was used for the user. One of: hard, soft, pruning, (empty string)
+        attr_accessor :delete_user
         # @!attribute hard_delete
-        #   @return [Boolean]
+        #   @return [Boolean] Whether the user was hard deleted
         attr_accessor :hard_delete
         # @!attribute mark_messages_deleted
-        #   @return [Boolean]
+        #   @return [Boolean] Whether the user's messages were marked as deleted
         attr_accessor :mark_messages_deleted
-        # @!attribute type
-        #   @return [String]
-        attr_accessor :type
+        # @!attribute custom
+        #   @return [Object]
+        attr_accessor :custom
         # @!attribute user
-        #   @return [User]
+        #   @return [UserResponseCommonFields]
         attr_accessor :user
+        # @!attribute type
+        #   @return [String] The type of event: "user.deleted" in this case
+        attr_accessor :type
+        # @!attribute received_at
+        #   @return [DateTime]
+        attr_accessor :received_at
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @created_at = attributes[:created_at] || attributes['created_at']
+          @delete_conversation = attributes[:delete_conversation] || attributes['delete_conversation']
           @delete_conversation_channels = attributes[:delete_conversation_channels] || attributes['delete_conversation_channels']
+          @delete_messages = attributes[:delete_messages] || attributes['delete_messages']
+          @delete_user = attributes[:delete_user] || attributes['delete_user']
           @hard_delete = attributes[:hard_delete] || attributes['hard_delete']
           @mark_messages_deleted = attributes[:mark_messages_deleted] || attributes['mark_messages_deleted']
+          @custom = attributes[:custom] || attributes['custom']
+          @user = attributes[:user] || attributes['user']
           @type = attributes[:type] || attributes['type'] || "user.deleted"
-          @user = attributes[:user] || attributes['user'] || nil
+          @received_at = attributes[:received_at] || attributes['received_at'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
             created_at: 'created_at',
+            delete_conversation: 'delete_conversation',
             delete_conversation_channels: 'delete_conversation_channels',
+            delete_messages: 'delete_messages',
+            delete_user: 'delete_user',
             hard_delete: 'hard_delete',
             mark_messages_deleted: 'mark_messages_deleted',
+            custom: 'custom',
+            user: 'user',
             type: 'type',
-            user: 'user'
+            received_at: 'received_at'
           }
         end
       end

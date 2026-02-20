@@ -22,7 +22,7 @@ module GetStream
         #   @return [String] Unique permission ID
         attr_accessor :id
         # @!attribute level
-        #   @return [String] Level at which permission could be applied (app or channel)
+        #   @return [String] Level at which permission could be applied (app or channel). One of: app, channel
         attr_accessor :level
         # @!attribute name
         #   @return [String] Name of the permission

@@ -5,44 +5,59 @@
 module GetStream
   module Generated
     module Models
-      # 
+      # This event is sent when a user gets flagged. The event contains information about the user that was flagged.
       class UserFlaggedEvent < GetStream::BaseModel
 
         # Model attributes
         # @!attribute created_at
-        #   @return [DateTime]
+        #   @return [DateTime] Date/time of creation
         attr_accessor :created_at
-        # @!attribute type
-        #   @return [String]
-        attr_accessor :type
-        # @!attribute target_user
-        #   @return [String]
-        attr_accessor :target_user
-        # @!attribute target_users
-        #   @return [Array<String>]
-        attr_accessor :target_users
+        # @!attribute reason
+        #   @return [String] The reason for the flag
+        attr_accessor :reason
+        # @!attribute total_flags
+        #   @return [Integer] The total number of flags for the user
+        attr_accessor :total_flags
         # @!attribute user
-        #   @return [User]
+        #   @return [UserResponseCommonFields]
         attr_accessor :user
+        # @!attribute type
+        #   @return [String] The type of event: "user.flagged" in this case
+        attr_accessor :type
+        # @!attribute received_at
+        #   @return [DateTime]
+        attr_accessor :received_at
+        # @!attribute custom
+        #   @return [Object] Custom data
+        attr_accessor :custom
+        # @!attribute target_user
+        #   @return [UserResponseCommonFields]
+        attr_accessor :target_user
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @created_at = attributes[:created_at] || attributes['created_at']
+          @reason = attributes[:reason] || attributes['reason']
+          @total_flags = attributes[:total_flags] || attributes['total_flags']
+          @user = attributes[:user] || attributes['user']
           @type = attributes[:type] || attributes['type'] || "user.flagged"
+          @received_at = attributes[:received_at] || attributes['received_at'] || nil
+          @custom = attributes[:custom] || attributes['custom'] || nil
           @target_user = attributes[:target_user] || attributes['target_user'] || nil
-          @target_users = attributes[:target_users] || attributes['target_users'] || nil
-          @user = attributes[:user] || attributes['user'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
             created_at: 'created_at',
+            reason: 'reason',
+            total_flags: 'total_flags',
+            user: 'user',
             type: 'type',
-            target_user: 'target_user',
-            target_users: 'target_users',
-            user: 'user'
+            received_at: 'received_at',
+            custom: 'custom',
+            target_user: 'target_user'
           }
         end
       end

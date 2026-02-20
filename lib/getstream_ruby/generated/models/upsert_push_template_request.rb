@@ -10,10 +10,10 @@ module GetStream
 
         # Model attributes
         # @!attribute event_type
-        #   @return [String] Event type (message.new, message.updated, reaction.new)
+        #   @return [String] Event type. One of: message.new, message.updated, reaction.new, notification.reminder_due, feeds.activity.added, feeds.comment.added, feeds.activity.reaction.added, feeds.comment.reaction.added, feeds.follow.created, feeds.notification_feed.updated
         attr_accessor :event_type
         # @!attribute push_provider_type
-        #   @return [String] Push provider type (firebase, apn, huawei, xiaomi)
+        #   @return [String] Push provider type. One of: firebase, apn, huawei, xiaomi
         attr_accessor :push_provider_type
         # @!attribute enable_push
         #   @return [Boolean] Whether to send push notification for this event

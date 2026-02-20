@@ -27,9 +27,9 @@ module GetStream
         # @!attribute attachments
         #   @return [Array<Attachment>]
         attr_accessor :attachments
-        # @!attribute Custom
+        # @!attribute custom
         #   @return [Object]
-        attr_accessor :Custom
+        attr_accessor :custom
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -40,7 +40,7 @@ module GetStream
           @message_updated_by_id = attributes[:message_updated_by_id] || attributes['message_updated_by_id']
           @text = attributes[:text] || attributes['text']
           @attachments = attributes[:attachments] || attributes['attachments']
-          @Custom = attributes[:Custom] || attributes['Custom']
+          @custom = attributes[:custom] || attributes['Custom']
         end
 
         # Override field mappings for JSON serialization
@@ -52,7 +52,7 @@ module GetStream
             message_updated_by_id: 'message_updated_by_id',
             text: 'text',
             attachments: 'attachments',
-            Custom: 'Custom'
+            custom: 'Custom'
           }
         end
       end

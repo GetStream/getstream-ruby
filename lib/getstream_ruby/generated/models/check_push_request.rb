@@ -13,7 +13,7 @@ module GetStream
         #   @return [String] Push message template for APN
         attr_accessor :apn_template
         # @!attribute event_type
-        #   @return [String] Type of event for push templates (default: message.new)
+        #   @return [String] Type of event for push templates (default: message.new). One of: message.new, message.updated, reaction.new, reaction.updated, notification.reminder_due
         attr_accessor :event_type
         # @!attribute firebase_data_template
         #   @return [String] Push message data template for Firebase
@@ -28,7 +28,7 @@ module GetStream
         #   @return [String] Name of push provider
         attr_accessor :push_provider_name
         # @!attribute push_provider_type
-        #   @return [String] Push provider type
+        #   @return [String] Push provider type. One of: firebase, apn, huawei, xiaomi
         attr_accessor :push_provider_type
         # @!attribute skip_devices
         #   @return [Boolean] Don't require existing devices to render templates

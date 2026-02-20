@@ -5,73 +5,98 @@
 module GetStream
   module Generated
     module Models
-      # 
+      # Emitted when a message is deleted.
       class MessageDeletedEvent < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute channel_id
-        #   @return [String]
-        attr_accessor :channel_id
-        # @!attribute channel_type
-        #   @return [String]
-        attr_accessor :channel_type
-        # @!attribute cid
-        #   @return [String]
-        attr_accessor :cid
         # @!attribute created_at
-        #   @return [DateTime]
+        #   @return [DateTime] Date/time of creation
         attr_accessor :created_at
         # @!attribute hard_delete
-        #   @return [Boolean]
+        #   @return [Boolean] Whether the message was hard deleted
         attr_accessor :hard_delete
-        # @!attribute type
+        # @!attribute message_id
         #   @return [String]
-        attr_accessor :type
-        # @!attribute deleted_for_me
-        #   @return [Boolean]
-        attr_accessor :deleted_for_me
-        # @!attribute team
-        #   @return [String]
-        attr_accessor :team
-        # @!attribute thread_participants
-        #   @return [Array<User>]
-        attr_accessor :thread_participants
+        attr_accessor :message_id
+        # @!attribute custom
+        #   @return [Object]
+        attr_accessor :custom
         # @!attribute message
-        #   @return [Message]
+        #   @return [MessageResponse]
         attr_accessor :message
+        # @!attribute type
+        #   @return [String] The type of event: "message.deleted" in this case
+        attr_accessor :type
+        # @!attribute channel_id
+        #   @return [String] The ID of the channel where the message was sent
+        attr_accessor :channel_id
+        # @!attribute channel_member_count
+        #   @return [Integer] The number of members in the channel
+        attr_accessor :channel_member_count
+        # @!attribute channel_message_count
+        #   @return [Integer] The number of messages in the channel
+        attr_accessor :channel_message_count
+        # @!attribute channel_type
+        #   @return [String] The type of the channel where the message was sent
+        attr_accessor :channel_type
+        # @!attribute cid
+        #   @return [String] The CID of the channel where the message was sent
+        attr_accessor :cid
+        # @!attribute deleted_for_me
+        #   @return [Boolean] Whether the message was deleted only for the current user
+        attr_accessor :deleted_for_me
+        # @!attribute received_at
+        #   @return [DateTime]
+        attr_accessor :received_at
+        # @!attribute team
+        #   @return [String] The team ID
+        attr_accessor :team
+        # @!attribute channel_custom
+        #   @return [Object]
+        attr_accessor :channel_custom
         # @!attribute user
-        #   @return [User]
+        #   @return [UserResponseCommonFields]
         attr_accessor :user
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @channel_id = attributes[:channel_id] || attributes['channel_id']
-          @channel_type = attributes[:channel_type] || attributes['channel_type']
-          @cid = attributes[:cid] || attributes['cid']
           @created_at = attributes[:created_at] || attributes['created_at']
           @hard_delete = attributes[:hard_delete] || attributes['hard_delete']
+          @message_id = attributes[:message_id] || attributes['message_id']
+          @custom = attributes[:custom] || attributes['custom']
+          @message = attributes[:message] || attributes['message']
           @type = attributes[:type] || attributes['type'] || "message.deleted"
+          @channel_id = attributes[:channel_id] || attributes['channel_id'] || nil
+          @channel_member_count = attributes[:channel_member_count] || attributes['channel_member_count'] || nil
+          @channel_message_count = attributes[:channel_message_count] || attributes['channel_message_count'] || nil
+          @channel_type = attributes[:channel_type] || attributes['channel_type'] || nil
+          @cid = attributes[:cid] || attributes['cid'] || nil
           @deleted_for_me = attributes[:deleted_for_me] || attributes['deleted_for_me'] || nil
+          @received_at = attributes[:received_at] || attributes['received_at'] || nil
           @team = attributes[:team] || attributes['team'] || nil
-          @thread_participants = attributes[:thread_participants] || attributes['thread_participants'] || nil
-          @message = attributes[:message] || attributes['message'] || nil
+          @channel_custom = attributes[:channel_custom] || attributes['channel_custom'] || nil
           @user = attributes[:user] || attributes['user'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            channel_id: 'channel_id',
-            channel_type: 'channel_type',
-            cid: 'cid',
             created_at: 'created_at',
             hard_delete: 'hard_delete',
-            type: 'type',
-            deleted_for_me: 'deleted_for_me',
-            team: 'team',
-            thread_participants: 'thread_participants',
+            message_id: 'message_id',
+            custom: 'custom',
             message: 'message',
+            type: 'type',
+            channel_id: 'channel_id',
+            channel_member_count: 'channel_member_count',
+            channel_message_count: 'channel_message_count',
+            channel_type: 'channel_type',
+            cid: 'cid',
+            deleted_for_me: 'deleted_for_me',
+            received_at: 'received_at',
+            team: 'team',
+            channel_custom: 'channel_custom',
             user: 'user'
           }
         end

@@ -10,7 +10,7 @@ module GetStream
 
         # Model attributes
         # @!attribute action_type
-        #   @return [String] Type of moderation action to perform (mark_reviewed, delete_message, etc.)
+        #   @return [String] Type of moderation action to perform. One of: mark_reviewed, delete_message, delete_activity, delete_comment, delete_reaction, ban, custom, unban, restore, delete_user, unblock, block, shadow_block, unmask, kick_user, end_call
         attr_accessor :action_type
         # @!attribute appeal_id
         #   @return [String] UUID of the appeal to act on (required for reject_appeal, optional for other actions)
@@ -22,46 +22,49 @@ module GetStream
         #   @return [String]
         attr_accessor :user_id
         # @!attribute ban
-        #   @return [BanActionRequest]
+        #   @return [BanActionRequestPayload]
         attr_accessor :ban
         # @!attribute block
-        #   @return [BlockActionRequest]
+        #   @return [BlockActionRequestPayload]
         attr_accessor :block
         # @!attribute custom
-        #   @return [CustomActionRequest]
+        #   @return [CustomActionRequestPayload]
         attr_accessor :custom
         # @!attribute delete_activity
-        #   @return [DeleteActivityRequest]
+        #   @return [DeleteActivityRequestPayload]
         attr_accessor :delete_activity
         # @!attribute delete_comment
-        #   @return [DeleteCommentRequest]
+        #   @return [DeleteCommentRequestPayload]
         attr_accessor :delete_comment
         # @!attribute delete_message
-        #   @return [DeleteMessageRequest]
+        #   @return [DeleteMessageRequestPayload]
         attr_accessor :delete_message
         # @!attribute delete_reaction
-        #   @return [DeleteReactionRequest]
+        #   @return [DeleteReactionRequestPayload]
         attr_accessor :delete_reaction
         # @!attribute delete_user
-        #   @return [DeleteUserRequest]
+        #   @return [DeleteUserRequestPayload]
         attr_accessor :delete_user
+        # @!attribute flag
+        #   @return [FlagRequest]
+        attr_accessor :flag
         # @!attribute mark_reviewed
-        #   @return [MarkReviewedRequest]
+        #   @return [MarkReviewedRequestPayload]
         attr_accessor :mark_reviewed
         # @!attribute reject_appeal
-        #   @return [RejectAppealRequest]
+        #   @return [RejectAppealRequestPayload]
         attr_accessor :reject_appeal
         # @!attribute restore
-        #   @return [RestoreActionRequest]
+        #   @return [RestoreActionRequestPayload]
         attr_accessor :restore
         # @!attribute shadow_block
-        #   @return [ShadowBlockActionRequest]
+        #   @return [ShadowBlockActionRequestPayload]
         attr_accessor :shadow_block
         # @!attribute unban
-        #   @return [UnbanActionRequest]
+        #   @return [UnbanActionRequestPayload]
         attr_accessor :unban
         # @!attribute unblock
-        #   @return [UnblockActionRequest]
+        #   @return [UnblockActionRequestPayload]
         attr_accessor :unblock
         # @!attribute user
         #   @return [UserRequest]
@@ -82,6 +85,7 @@ module GetStream
           @delete_message = attributes[:delete_message] || attributes['delete_message'] || nil
           @delete_reaction = attributes[:delete_reaction] || attributes['delete_reaction'] || nil
           @delete_user = attributes[:delete_user] || attributes['delete_user'] || nil
+          @flag = attributes[:flag] || attributes['flag'] || nil
           @mark_reviewed = attributes[:mark_reviewed] || attributes['mark_reviewed'] || nil
           @reject_appeal = attributes[:reject_appeal] || attributes['reject_appeal'] || nil
           @restore = attributes[:restore] || attributes['restore'] || nil
@@ -106,6 +110,7 @@ module GetStream
             delete_message: 'delete_message',
             delete_reaction: 'delete_reaction',
             delete_user: 'delete_user',
+            flag: 'flag',
             mark_reviewed: 'mark_reviewed',
             reject_appeal: 'reject_appeal',
             restore: 'restore',

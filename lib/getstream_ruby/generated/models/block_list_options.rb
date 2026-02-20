@@ -10,7 +10,7 @@ module GetStream
 
         # Model attributes
         # @!attribute behavior
-        #   @return [String] Blocklist behavior
+        #   @return [String] Blocklist behavior. One of: flag, block, shadow_block
         attr_accessor :behavior
         # @!attribute blocklist
         #   @return [String] Blocklist name

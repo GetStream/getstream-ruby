@@ -13,7 +13,7 @@ module GetStream
         #   @return [String]
         attr_accessor :duration
         # @!attribute status
-        #   @return [String] Validation result
+        #   @return [String] Validation result. One of: ok, error
         attr_accessor :status
         # @!attribute error
         #   @return [String] Error text

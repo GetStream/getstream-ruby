@@ -5,29 +5,54 @@
 module GetStream
   module Generated
     module Models
-      # 
+      # Emitted when a channel is successfully unmuted.
       class ChannelUnmutedEvent < GetStream::BaseModel
 
         # Model attributes
         # @!attribute created_at
-        #   @return [DateTime]
+        #   @return [DateTime] Date/time of creation
         attr_accessor :created_at
+        # @!attribute custom
+        #   @return [Object]
+        attr_accessor :custom
         # @!attribute type
-        #   @return [String]
+        #   @return [String] The type of event: "channel.unmuted" in this case
         attr_accessor :type
+        # @!attribute received_at
+        #   @return [DateTime]
+        attr_accessor :received_at
+        # @!attribute mutes
+        #   @return [Array<ChannelMute>] The mute objects
+        attr_accessor :mutes
+        # @!attribute mute
+        #   @return [ChannelMute]
+        attr_accessor :mute
+        # @!attribute user
+        #   @return [UserResponseCommonFields]
+        attr_accessor :user
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @created_at = attributes[:created_at] || attributes['created_at']
+          @custom = attributes[:custom] || attributes['custom']
           @type = attributes[:type] || attributes['type'] || "channel.unmuted"
+          @received_at = attributes[:received_at] || attributes['received_at'] || nil
+          @mutes = attributes[:mutes] || attributes['mutes'] || nil
+          @mute = attributes[:mute] || attributes['mute'] || nil
+          @user = attributes[:user] || attributes['user'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
             created_at: 'created_at',
-            type: 'type'
+            custom: 'custom',
+            type: 'type',
+            received_at: 'received_at',
+            mutes: 'mutes',
+            mute: 'mute',
+            user: 'user'
           }
         end
       end

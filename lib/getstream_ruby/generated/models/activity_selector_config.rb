@@ -10,7 +10,7 @@ module GetStream
 
         # Model attributes
         # @!attribute type
-        #   @return [String] Type of selector
+        #   @return [String] Type of selector. One of: popular, proximity, following, current_feed, query, interest, follow_suggestion
         attr_accessor :type
         # @!attribute cutoff_time
         #   @return [String] Time threshold for activity selection (string). Expected RFC3339 format (e.g., 2006-01-02T15:04:05Z07:00). Cannot be used together with cutoff_window
