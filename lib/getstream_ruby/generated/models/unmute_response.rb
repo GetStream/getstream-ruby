@@ -5,15 +5,15 @@
 module GetStream
   module Generated
     module Models
-      # Basic response information
+      # 
       class UnmuteResponse < GetStream::BaseModel
 
         # Model attributes
         # @!attribute duration
-        #   @return [String] Duration of the request in milliseconds
+        #   @return [String]
         attr_accessor :duration
         # @!attribute non_existing_users
-        #   @return [Array<String>]
+        #   @return [Array<String>] A list of users that can't be found. Common cause for this is deleted users
         attr_accessor :non_existing_users
 
         # Initialize with attributes

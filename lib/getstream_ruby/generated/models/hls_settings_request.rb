@@ -10,13 +10,13 @@ module GetStream
 
         # Model attributes
         # @!attribute quality_tracks
-        #   @return [Array<String>]
+        #   @return [Array<String>] Quality tracks for HLS. One of: 360p, 480p, 720p, 1080p, 1440p, portrait-360x640, portrait-480x854, portrait-720x1280, portrait-1080x1920, portrait-1440x2560
         attr_accessor :quality_tracks
         # @!attribute auto_on
-        #   @return [Boolean]
+        #   @return [Boolean] Whether HLS broadcasting should start automatically
         attr_accessor :auto_on
         # @!attribute enabled
-        #   @return [Boolean]
+        #   @return [Boolean] Whether HLS broadcasting is enabled
         attr_accessor :enabled
         # @!attribute layout
         #   @return [LayoutSettingsRequest]

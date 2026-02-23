@@ -9,6 +9,9 @@ module GetStream
       class SipInboundCredentials < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute api_key
+        #   @return [String] API key for the application
+        attr_accessor :api_key
         # @!attribute call_id
         #   @return [String] ID of the call
         attr_accessor :call_id
@@ -31,6 +34,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @api_key = attributes[:api_key] || attributes['api_key']
           @call_id = attributes[:call_id] || attributes['call_id']
           @call_type = attributes[:call_type] || attributes['call_type']
           @token = attributes[:token] || attributes['token']
@@ -42,6 +46,7 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            api_key: 'api_key',
             call_id: 'call_id',
             call_type: 'call_type',
             token: 'token',

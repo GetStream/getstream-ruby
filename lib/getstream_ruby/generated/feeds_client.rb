@@ -46,6 +46,23 @@ module GetStream
         )
       end
 
+      # Updates certain fields of multiple activities in a batch. Use 'set' to update specific fields and 'unset' to remove fields. Activities that fail due to not found, permission denied, or no changes detected are silently skipped and not included in the response. However, validation errors (e.g., updating reserved fields, invalid field values) will fail the entire batch request.Sends events:- feeds.activity.updated
+      #
+      # @param update_activities_partial_batch_request [UpdateActivitiesPartialBatchRequest]
+      # @return [Models::UpdateActivitiesPartialBatchResponse]
+      def update_activities_partial_batch(update_activities_partial_batch_request)
+        path = '/api/v2/feeds/activities/batch/partial'
+        # Build request body
+        body = update_activities_partial_batch_request
+
+        # Make the API request
+        @client.make_request(
+          :patch,
+          path,
+          body: body
+        )
+      end
+
       # Delete one or more activities by their IDs
       #
       # @param delete_activities_request [DeleteActivitiesRequest]
@@ -1027,6 +1044,28 @@ module GetStream
         path = path.gsub('{feed_id}', feed_id.to_s)
         # Build request body
         body = reject_feed_member_invite_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
+      # Query pinned activities for a feed with filter query
+      #
+      # @param feed_group_id [String]
+      # @param feed_id [String]
+      # @param query_pinned_activities_request [QueryPinnedActivitiesRequest]
+      # @return [Models::QueryPinnedActivitiesResponse]
+      def query_pinned_activities(feed_group_id, feed_id, query_pinned_activities_request)
+        path = '/api/v2/feeds/feed_groups/{feed_group_id}/feeds/{feed_id}/pinned_activities/query'
+        # Replace path parameters
+        path = path.gsub('{feed_group_id}', feed_group_id.to_s)
+        path = path.gsub('{feed_id}', feed_id.to_s)
+        # Build request body
+        body = query_pinned_activities_request
 
         # Make the API request
         @client.make_request(

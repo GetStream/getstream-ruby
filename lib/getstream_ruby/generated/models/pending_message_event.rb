@@ -25,16 +25,16 @@ module GetStream
         #   @return [DateTime]
         attr_accessor :received_at
         # @!attribute channel
-        #   @return [Channel]
+        #   @return [ChannelResponse]
         attr_accessor :channel
         # @!attribute message
-        #   @return [Message]
+        #   @return [MessageResponse]
         attr_accessor :message
         # @!attribute metadata
-        #   @return [Hash<String, String>]
+        #   @return [Hash<String, String>] Metadata attached to the pending message
         attr_accessor :metadata
         # @!attribute user
-        #   @return [User]
+        #   @return [UserResponse]
         attr_accessor :user
 
         # Initialize with attributes

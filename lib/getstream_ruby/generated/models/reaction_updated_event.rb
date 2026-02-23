@@ -5,63 +5,98 @@
 module GetStream
   module Generated
     module Models
-      # 
+      # Emitted when a reaction is updated on a message.
       class ReactionUpdatedEvent < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute created_at
+        #   @return [DateTime] Date/time of creation
+        attr_accessor :created_at
+        # @!attribute message_id
+        #   @return [String]
+        attr_accessor :message_id
+        # @!attribute channel
+        #   @return [ChannelResponse]
+        attr_accessor :channel
+        # @!attribute custom
+        #   @return [Object]
+        attr_accessor :custom
+        # @!attribute message
+        #   @return [MessageResponse]
+        attr_accessor :message
+        # @!attribute type
+        #   @return [String] The type of event: "reaction.updated" in this case
+        attr_accessor :type
         # @!attribute channel_id
-        #   @return [String]
+        #   @return [String] The ID of the channel containing the message
         attr_accessor :channel_id
+        # @!attribute channel_member_count
+        #   @return [Integer] The number of members in the channel
+        attr_accessor :channel_member_count
+        # @!attribute channel_message_count
+        #   @return [Integer] The number of messages in the channel
+        attr_accessor :channel_message_count
         # @!attribute channel_type
-        #   @return [String]
+        #   @return [String] The type of the channel containing the message
         attr_accessor :channel_type
         # @!attribute cid
-        #   @return [String]
+        #   @return [String] The CID of the channel containing the message
         attr_accessor :cid
-        # @!attribute created_at
+        # @!attribute received_at
         #   @return [DateTime]
-        attr_accessor :created_at
-        # @!attribute message
-        #   @return [Message]
-        attr_accessor :message
-        # @!attribute reaction
-        #   @return [Reaction]
-        attr_accessor :reaction
-        # @!attribute type
-        #   @return [String]
-        attr_accessor :type
+        attr_accessor :received_at
         # @!attribute team
-        #   @return [String]
+        #   @return [String] The team ID
         attr_accessor :team
+        # @!attribute channel_custom
+        #   @return [Object]
+        attr_accessor :channel_custom
+        # @!attribute reaction
+        #   @return [ReactionResponse]
+        attr_accessor :reaction
         # @!attribute user
-        #   @return [User]
+        #   @return [UserResponseCommonFields]
         attr_accessor :user
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @channel_id = attributes[:channel_id] || attributes['channel_id']
-          @channel_type = attributes[:channel_type] || attributes['channel_type']
-          @cid = attributes[:cid] || attributes['cid']
           @created_at = attributes[:created_at] || attributes['created_at']
+          @message_id = attributes[:message_id] || attributes['message_id']
+          @channel = attributes[:channel] || attributes['channel']
+          @custom = attributes[:custom] || attributes['custom']
           @message = attributes[:message] || attributes['message']
-          @reaction = attributes[:reaction] || attributes['reaction']
           @type = attributes[:type] || attributes['type'] || "reaction.updated"
+          @channel_id = attributes[:channel_id] || attributes['channel_id'] || nil
+          @channel_member_count = attributes[:channel_member_count] || attributes['channel_member_count'] || nil
+          @channel_message_count = attributes[:channel_message_count] || attributes['channel_message_count'] || nil
+          @channel_type = attributes[:channel_type] || attributes['channel_type'] || nil
+          @cid = attributes[:cid] || attributes['cid'] || nil
+          @received_at = attributes[:received_at] || attributes['received_at'] || nil
           @team = attributes[:team] || attributes['team'] || nil
+          @channel_custom = attributes[:channel_custom] || attributes['channel_custom'] || nil
+          @reaction = attributes[:reaction] || attributes['reaction'] || nil
           @user = attributes[:user] || attributes['user'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            created_at: 'created_at',
+            message_id: 'message_id',
+            channel: 'channel',
+            custom: 'custom',
+            message: 'message',
+            type: 'type',
             channel_id: 'channel_id',
+            channel_member_count: 'channel_member_count',
+            channel_message_count: 'channel_message_count',
             channel_type: 'channel_type',
             cid: 'cid',
-            created_at: 'created_at',
-            message: 'message',
-            reaction: 'reaction',
-            type: 'type',
+            received_at: 'received_at',
             team: 'team',
+            channel_custom: 'channel_custom',
+            reaction: 'reaction',
             user: 'user'
           }
         end

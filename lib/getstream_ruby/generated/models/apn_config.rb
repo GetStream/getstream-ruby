@@ -9,9 +9,6 @@ module GetStream
       class APNConfig < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute Disabled
-        #   @return [Boolean]
-        attr_accessor :Disabled
         # @!attribute auth_key
         #   @return [String]
         attr_accessor :auth_key
@@ -24,6 +21,9 @@ module GetStream
         # @!attribute development
         #   @return [Boolean]
         attr_accessor :development
+        # @!attribute disabled
+        #   @return [Boolean]
+        attr_accessor :disabled
         # @!attribute host
         #   @return [String]
         attr_accessor :host
@@ -43,11 +43,11 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @Disabled = attributes[:Disabled] || attributes['Disabled'] || nil
           @auth_key = attributes[:auth_key] || attributes['auth_key'] || nil
           @auth_type = attributes[:auth_type] || attributes['auth_type'] || nil
           @bundle_id = attributes[:bundle_id] || attributes['bundle_id'] || nil
           @development = attributes[:development] || attributes['development'] || nil
+          @disabled = attributes[:disabled] || attributes['Disabled'] || nil
           @host = attributes[:host] || attributes['host'] || nil
           @key_id = attributes[:key_id] || attributes['key_id'] || nil
           @notification_template = attributes[:notification_template] || attributes['notification_template'] || nil
@@ -58,11 +58,11 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            Disabled: 'Disabled',
             auth_key: 'auth_key',
             auth_type: 'auth_type',
             bundle_id: 'bundle_id',
             development: 'development',
+            disabled: 'Disabled',
             host: 'host',
             key_id: 'key_id',
             notification_template: 'notification_template',

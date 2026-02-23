@@ -34,13 +34,13 @@ module GetStream
         #   @return [Object]
         attr_accessor :custom
         # @!attribute details
-        #   @return [FlagDetails]
+        #   @return [FlagDetailsResponse]
         attr_accessor :details
         # @!attribute message
-        #   @return [Message]
+        #   @return [MessageResponse]
         attr_accessor :message
         # @!attribute moderation_feedback
-        #   @return [FlagFeedback]
+        #   @return [FlagFeedbackResponse]
         attr_accessor :moderation_feedback
         # @!attribute moderation_result
         #   @return [MessageModerationResult]

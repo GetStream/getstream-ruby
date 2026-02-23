@@ -5,30 +5,38 @@
 module GetStream
   module Generated
     module Models
-      # 
+      # Reminder events allow you to notify your users about unread messages. Reminders can be used to trigger an email, push notification or SMS to the user.
       class UserUnreadReminderEvent < GetStream::BaseModel
 
         # Model attributes
         # @!attribute created_at
-        #   @return [DateTime]
+        #   @return [DateTime] Date/time of creation
         attr_accessor :created_at
         # @!attribute channels
-        #   @return [Hash<String, ChannelMessages>]
+        #   @return [Hash<String, ChannelMessagesResponse>] The channels with unread messages
         attr_accessor :channels
-        # @!attribute type
-        #   @return [String]
-        attr_accessor :type
+        # @!attribute custom
+        #   @return [Object]
+        attr_accessor :custom
         # @!attribute user
-        #   @return [User]
+        #   @return [UserResponseCommonFields]
         attr_accessor :user
+        # @!attribute type
+        #   @return [String] The type of event: "user.unread_message_reminder" in this case
+        attr_accessor :type
+        # @!attribute received_at
+        #   @return [DateTime]
+        attr_accessor :received_at
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @created_at = attributes[:created_at] || attributes['created_at']
           @channels = attributes[:channels] || attributes['channels']
+          @custom = attributes[:custom] || attributes['custom']
+          @user = attributes[:user] || attributes['user']
           @type = attributes[:type] || attributes['type'] || "user.unread_message_reminder"
-          @user = attributes[:user] || attributes['user'] || nil
+          @received_at = attributes[:received_at] || attributes['received_at'] || nil
         end
 
         # Override field mappings for JSON serialization
@@ -36,8 +44,10 @@ module GetStream
           {
             created_at: 'created_at',
             channels: 'channels',
+            custom: 'custom',
+            user: 'user',
             type: 'type',
-            user: 'user'
+            received_at: 'received_at'
           }
         end
       end

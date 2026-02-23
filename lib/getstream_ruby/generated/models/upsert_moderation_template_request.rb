@@ -13,7 +13,7 @@ module GetStream
         #   @return [String] Name of the moderation template
         attr_accessor :name
         # @!attribute config
-        #   @return [FeedsModerationTemplateConfig]
+        #   @return [FeedsModerationTemplateConfigPayload]
         attr_accessor :config
 
         # Initialize with attributes

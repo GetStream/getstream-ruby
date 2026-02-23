@@ -51,6 +51,9 @@ module GetStream
         # @!attribute polls
         #   @return [Boolean]
         attr_accessor :polls
+        # @!attribute push_level
+        #   @return [String]
+        attr_accessor :push_level
         # @!attribute push_notifications
         #   @return [Boolean]
         attr_accessor :push_notifications
@@ -126,6 +129,7 @@ module GetStream
           @partition_size = attributes[:partition_size] || attributes['partition_size'] || nil
           @partition_ttl = attributes[:partition_ttl] || attributes['partition_ttl'] || nil
           @polls = attributes[:polls] || attributes['polls'] || nil
+          @push_level = attributes[:push_level] || attributes['push_level'] || nil
           @push_notifications = attributes[:push_notifications] || attributes['push_notifications'] || nil
           @quotes = attributes[:quotes] || attributes['quotes'] || nil
           @reactions = attributes[:reactions] || attributes['reactions'] || nil
@@ -164,6 +168,7 @@ module GetStream
             partition_size: 'partition_size',
             partition_ttl: 'partition_ttl',
             polls: 'polls',
+            push_level: 'push_level',
             push_notifications: 'push_notifications',
             quotes: 'quotes',
             reactions: 'reactions',

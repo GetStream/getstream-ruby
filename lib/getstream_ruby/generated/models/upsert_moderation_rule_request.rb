@@ -15,9 +15,6 @@ module GetStream
         # @!attribute rule_type
         #   @return [String]
         attr_accessor :rule_type
-        # @!attribute action
-        #   @return [RuleBuilderAction]
-        attr_accessor :action
         # @!attribute cooldown_period
         #   @return [String]
         attr_accessor :cooldown_period
@@ -33,6 +30,9 @@ module GetStream
         # @!attribute team
         #   @return [String]
         attr_accessor :team
+        # @!attribute action_sequences
+        #   @return [Array<CallRuleActionSequence>]
+        attr_accessor :action_sequences
         # @!attribute conditions
         #   @return [Array<RuleBuilderCondition>]
         attr_accessor :conditions
@@ -42,21 +42,25 @@ module GetStream
         # @!attribute groups
         #   @return [Array<RuleBuilderConditionGroup>]
         attr_accessor :groups
+        # @!attribute action
+        #   @return [RuleBuilderAction]
+        attr_accessor :action
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @name = attributes[:name] || attributes['name']
           @rule_type = attributes[:rule_type] || attributes['rule_type']
-          @action = attributes[:action] || attributes['action']
           @cooldown_period = attributes[:cooldown_period] || attributes['cooldown_period'] || nil
           @description = attributes[:description] || attributes['description'] || nil
           @enabled = attributes[:enabled] || attributes['enabled'] || nil
           @logic = attributes[:logic] || attributes['logic'] || nil
           @team = attributes[:team] || attributes['team'] || nil
+          @action_sequences = attributes[:action_sequences] || attributes['action_sequences'] || nil
           @conditions = attributes[:conditions] || attributes['conditions'] || nil
           @config_keys = attributes[:config_keys] || attributes['config_keys'] || nil
           @groups = attributes[:groups] || attributes['groups'] || nil
+          @action = attributes[:action] || attributes['action'] || nil
         end
 
         # Override field mappings for JSON serialization
@@ -64,15 +68,16 @@ module GetStream
           {
             name: 'name',
             rule_type: 'rule_type',
-            action: 'action',
             cooldown_period: 'cooldown_period',
             description: 'description',
             enabled: 'enabled',
             logic: 'logic',
             team: 'team',
+            action_sequences: 'action_sequences',
             conditions: 'conditions',
             config_keys: 'config_keys',
-            groups: 'groups'
+            groups: 'groups',
+            action: 'action'
           }
         end
       end

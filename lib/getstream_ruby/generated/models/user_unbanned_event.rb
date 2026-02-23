@@ -5,59 +5,89 @@
 module GetStream
   module Generated
     module Models
-      # 
+      # This event is sent when a user gets unbanned. The event contains information about the user that was unbanned.
       class UserUnbannedEvent < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute created_at
+        #   @return [DateTime] Date/time of creation
+        attr_accessor :created_at
+        # @!attribute custom
+        #   @return [Object]
+        attr_accessor :custom
+        # @!attribute user
+        #   @return [UserResponseCommonFields]
+        attr_accessor :user
+        # @!attribute type
+        #   @return [String] The type of event: "user.unbanned" in this case
+        attr_accessor :type
         # @!attribute channel_id
-        #   @return [String]
+        #   @return [String] The ID of the channel where the target user was unbanned
         attr_accessor :channel_id
+        # @!attribute channel_member_count
+        #   @return [Integer]
+        attr_accessor :channel_member_count
+        # @!attribute channel_message_count
+        #   @return [Integer]
+        attr_accessor :channel_message_count
         # @!attribute channel_type
-        #   @return [String]
+        #   @return [String] The type of the channel where the target user was unbanned
         attr_accessor :channel_type
         # @!attribute cid
-        #   @return [String]
+        #   @return [String] The CID of the channel where the target user was unbanned
         attr_accessor :cid
-        # @!attribute created_at
+        # @!attribute received_at
         #   @return [DateTime]
-        attr_accessor :created_at
+        attr_accessor :received_at
         # @!attribute shadow
-        #   @return [Boolean]
+        #   @return [Boolean] Whether the target user was shadow unbanned
         attr_accessor :shadow
-        # @!attribute type
-        #   @return [String]
-        attr_accessor :type
         # @!attribute team
-        #   @return [String]
+        #   @return [String] The team of the channel where the target user was unbanned
         attr_accessor :team
-        # @!attribute user
-        #   @return [User]
-        attr_accessor :user
+        # @!attribute channel_custom
+        #   @return [Object]
+        attr_accessor :channel_custom
+        # @!attribute created_by
+        #   @return [UserResponseCommonFields]
+        attr_accessor :created_by
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @channel_id = attributes[:channel_id] || attributes['channel_id']
-          @channel_type = attributes[:channel_type] || attributes['channel_type']
-          @cid = attributes[:cid] || attributes['cid']
           @created_at = attributes[:created_at] || attributes['created_at']
-          @shadow = attributes[:shadow] || attributes['shadow']
+          @custom = attributes[:custom] || attributes['custom']
+          @user = attributes[:user] || attributes['user']
           @type = attributes[:type] || attributes['type'] || "user.unbanned"
+          @channel_id = attributes[:channel_id] || attributes['channel_id'] || nil
+          @channel_member_count = attributes[:channel_member_count] || attributes['channel_member_count'] || nil
+          @channel_message_count = attributes[:channel_message_count] || attributes['channel_message_count'] || nil
+          @channel_type = attributes[:channel_type] || attributes['channel_type'] || nil
+          @cid = attributes[:cid] || attributes['cid'] || nil
+          @received_at = attributes[:received_at] || attributes['received_at'] || nil
+          @shadow = attributes[:shadow] || attributes['shadow'] || nil
           @team = attributes[:team] || attributes['team'] || nil
-          @user = attributes[:user] || attributes['user'] || nil
+          @channel_custom = attributes[:channel_custom] || attributes['channel_custom'] || nil
+          @created_by = attributes[:created_by] || attributes['created_by'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            created_at: 'created_at',
+            custom: 'custom',
+            user: 'user',
+            type: 'type',
             channel_id: 'channel_id',
+            channel_member_count: 'channel_member_count',
+            channel_message_count: 'channel_message_count',
             channel_type: 'channel_type',
             cid: 'cid',
-            created_at: 'created_at',
+            received_at: 'received_at',
             shadow: 'shadow',
-            type: 'type',
             team: 'team',
-            user: 'user'
+            channel_custom: 'channel_custom',
+            created_by: 'created_by'
           }
         end
       end

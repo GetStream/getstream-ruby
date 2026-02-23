@@ -48,9 +48,6 @@ module GetStream
         # @!attribute max_aggregated_activities_length
         #   @return [Integer]
         attr_accessor :max_aggregated_activities_length
-        # @!attribute moderation_bulk_submit_action_enabled
-        #   @return [Boolean]
-        attr_accessor :moderation_bulk_submit_action_enabled
         # @!attribute moderation_enabled
         #   @return [Boolean]
         attr_accessor :moderation_enabled
@@ -182,7 +179,6 @@ module GetStream
           @id = attributes[:id] || attributes['id']
           @image_moderation_enabled = attributes[:image_moderation_enabled] || attributes['image_moderation_enabled']
           @max_aggregated_activities_length = attributes[:max_aggregated_activities_length] || attributes['max_aggregated_activities_length']
-          @moderation_bulk_submit_action_enabled = attributes[:moderation_bulk_submit_action_enabled] || attributes['moderation_bulk_submit_action_enabled']
           @moderation_enabled = attributes[:moderation_enabled] || attributes['moderation_enabled']
           @moderation_llm_configurability_enabled = attributes[:moderation_llm_configurability_enabled] || attributes['moderation_llm_configurability_enabled']
           @moderation_multitenant_blocklist_enabled = attributes[:moderation_multitenant_blocklist_enabled] || attributes['moderation_multitenant_blocklist_enabled']
@@ -239,7 +235,6 @@ module GetStream
             id: 'id',
             image_moderation_enabled: 'image_moderation_enabled',
             max_aggregated_activities_length: 'max_aggregated_activities_length',
-            moderation_bulk_submit_action_enabled: 'moderation_bulk_submit_action_enabled',
             moderation_enabled: 'moderation_enabled',
             moderation_llm_configurability_enabled: 'moderation_llm_configurability_enabled',
             moderation_multitenant_blocklist_enabled: 'moderation_multitenant_blocklist_enabled',

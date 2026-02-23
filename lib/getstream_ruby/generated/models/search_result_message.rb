@@ -24,6 +24,12 @@ module GetStream
         # @!attribute id
         #   @return [String]
         attr_accessor :id
+        # @!attribute mentioned_channel
+        #   @return [Boolean]
+        attr_accessor :mentioned_channel
+        # @!attribute mentioned_here
+        #   @return [Boolean]
+        attr_accessor :mentioned_here
         # @!attribute pinned
         #   @return [Boolean]
         attr_accessor :pinned
@@ -153,6 +159,8 @@ module GetStream
           @deleted_reply_count = attributes[:deleted_reply_count] || attributes['deleted_reply_count']
           @html = attributes[:html] || attributes['html']
           @id = attributes[:id] || attributes['id']
+          @mentioned_channel = attributes[:mentioned_channel] || attributes['mentioned_channel']
+          @mentioned_here = attributes[:mentioned_here] || attributes['mentioned_here']
           @pinned = attributes[:pinned] || attributes['pinned']
           @reply_count = attributes[:reply_count] || attributes['reply_count']
           @shadowed = attributes[:shadowed] || attributes['shadowed']
@@ -203,6 +211,8 @@ module GetStream
             deleted_reply_count: 'deleted_reply_count',
             html: 'html',
             id: 'id',
+            mentioned_channel: 'mentioned_channel',
+            mentioned_here: 'mentioned_here',
             pinned: 'pinned',
             reply_count: 'reply_count',
             shadowed: 'shadowed',

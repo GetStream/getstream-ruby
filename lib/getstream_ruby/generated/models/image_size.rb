@@ -10,13 +10,13 @@ module GetStream
 
         # Model attributes
         # @!attribute crop
-        #   @return [String] Crop mode
+        #   @return [String] Crop mode. One of: top, bottom, left, right, center
         attr_accessor :crop
         # @!attribute height
         #   @return [Integer] Target image height
         attr_accessor :height
         # @!attribute resize
-        #   @return [String] Resize method
+        #   @return [String] Resize method. One of: clip, crop, scale, fill
         attr_accessor :resize
         # @!attribute width
         #   @return [Integer] Target image width
