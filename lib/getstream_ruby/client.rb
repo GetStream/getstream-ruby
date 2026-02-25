@@ -117,7 +117,6 @@ module GetStreamRuby
           interval: 0.05,
           interval_randomness: 0.5,
           backoff_factor: 2,
-          retry_statuses: [429],
         }
         conn.response :json, content_type: /\bjson$/
         conn.adapter Faraday.default_adapter

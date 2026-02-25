@@ -221,9 +221,11 @@ RSpec.describe 'Chat User Integration', type: :integration do
       # exhausted the budget. Start with a longer initial wait and use
       # exponential backoff to let the budget recover.
       resp = nil
+      last_error = nil
       sleep(5) # let rate-limit budget recover from prior cleanups
       6.times do |i|
 
+        last_error = nil
         resp = @client.common.delete_users(
           GetStream::Generated::Models::DeleteUsersRequest.new(
             user_ids: user_ids,
@@ -236,9 +238,12 @@ RSpec.describe 'Chat User Integration', type: :integration do
       rescue GetStreamRuby::APIError => e
         raise unless e.message.include?('Too many requests')
 
+        last_error = e
         sleep([8 * (2**i), 60].min)
 
       end
+
+      raise last_error if last_error
 
       expect(resp).not_to be_nil
       task_id = resp.task_id
