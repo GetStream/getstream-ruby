@@ -132,7 +132,7 @@ module ChatTestHelpers
     rescue GetStreamRuby::APIError => e
       return unless e.message.include?('Too many requests')
 
-      sleep((i + 1) * 3)
+      sleep([2**i, 16].min)
     end
   end
 

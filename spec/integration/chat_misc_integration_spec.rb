@@ -38,19 +38,18 @@ RSpec.describe 'Chat Misc Integration', type: :integration do
 
     # Clean up channel types (with retry due to eventual consistency)
     @created_channel_type_names&.each do |name|
-      5.times do |i|
+      3.times do |i|
         @client.make_request(:delete, "/api/v2/chat/channeltypes/#{name}")
         break
       rescue StandardError => e
         puts "Warning: Failed to delete channel type #{name} (attempt #{i + 1}): #{e.message}"
-        sleep(2)
+        sleep(1)
       end
     end
 
     # Clean up roles
     @created_role_names&.each do |name|
-      sleep(2)
-      5.times do |i|
+      3.times do |i|
         @client.common.delete_role(name)
         break
       rescue StandardError => e
@@ -228,7 +227,7 @@ RSpec.describe 'Chat Misc Integration', type: :integration do
       @created_channel_type_names << type_name
 
       # Wait for eventual consistency
-      sleep(6)
+      sleep(2)
 
       # Get channel type
       get_resp = @client.make_request(:get, "/api/v2/chat/channeltypes/#{type_name}")
@@ -253,7 +252,7 @@ RSpec.describe 'Chat Misc Integration', type: :integration do
       })
       @created_channel_type_names << del_name
 
-      sleep(6)
+      sleep(2)
 
       delete_err = nil
       5.times do |i|
@@ -264,7 +263,7 @@ RSpec.describe 'Chat Misc Integration', type: :integration do
           break
         rescue StandardError => e
           delete_err = e
-          sleep(1)
+          sleep(2)
         end
       end
       expect(delete_err).to be_nil, "Channel type deletion should succeed: #{delete_err&.message}"

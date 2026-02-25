@@ -33,7 +33,6 @@ RSpec.describe 'Video Integration', type: :integration do
 
     # Clean up call types
     @created_call_type_names&.each do |name|
-      sleep(1) # small delay to avoid rate limits
       @client.make_request(:delete, "/api/v2/video/calltypes/#{name}")
     rescue StandardError => e
       puts "Warning: Failed to delete call type #{name}: #{e.message}"
@@ -103,13 +102,12 @@ RSpec.describe 'Video Integration', type: :integration do
       })
       expect(resp.name).to eq(ct_name)
 
-      # Wait for eventual consistency (video call types need longer propagation than chat channel types).
-      # Poll for availability instead of a fixed sleep to keep the suite fast.
-      20.times do
+      # Poll for eventual consistency
+      10.times do
         @client.make_request(:get, "/api/v2/video/calltypes/#{ct_name}")
         break
       rescue GetStreamRuby::APIError
-        sleep(2)
+        sleep(1)
       end
 
       # Update call type settings (with retry for eventual consistency)
@@ -129,7 +127,7 @@ RSpec.describe 'Video Integration', type: :integration do
       rescue GetStreamRuby::APIError
         raise if i == 2
 
-        sleep(5)
+        sleep(2)
       end
       expect(resp2).not_to be_nil
 
@@ -141,20 +139,20 @@ RSpec.describe 'Video Integration', type: :integration do
       rescue GetStreamRuby::APIError
         raise if i == 2
 
-        sleep(5)
+        sleep(2)
       end
       expect(resp3.name).to eq(ct_name)
 
       # Delete call type (with retry for eventual consistency)
-      sleep(6)
-      3.times do |i|
+      sleep(2)
+      5.times do |i|
         @client.make_request(:delete, "/api/v2/video/calltypes/#{ct_name}")
         @created_call_type_names.delete(ct_name)
         break
       rescue GetStreamRuby::APIError => e
-        raise if i == 2
+        raise if i == 4
 
-        sleep(5)
+        sleep(2)
       end
     end
   end
@@ -218,8 +216,8 @@ RSpec.describe 'Video Integration', type: :integration do
 
       # Verify unblocked (with retry for eventual consistency)
       unblocked = false
-      6.times do |i|
-        sleep(2)
+      5.times do
+        sleep(1)
         resp2 = get_call('default', call_id)
         call_h2 = resp2.to_h
         blocked_ids2 = call_h2.dig('call', 'blocked_user_ids') || []
@@ -532,12 +530,11 @@ RSpec.describe 'Video Integration', type: :integration do
       expect(resp_h['task_id']).to be_nil
 
       # Verify not found (with retry for eventual consistency)
-      sleep(3)
       found = false
-      3.times do |i|
+      5.times do
+        sleep(1)
         begin
           get_call('default', call_id)
-          sleep(3) # still found, wait and retry
         rescue GetStreamRuby::APIError => e
           found = true if e.message.include?("Can't find call with id")
           break
@@ -569,12 +566,11 @@ RSpec.describe 'Video Integration', type: :integration do
       expect(task_result.status).to eq('completed')
 
       # Verify not found (with retry for eventual consistency)
-      sleep(3)
       found = false
-      3.times do |i|
+      5.times do
+        sleep(1)
         begin
           get_call('default', call_id)
-          sleep(3) # still found, wait and retry
         rescue GetStreamRuby::APIError => e
           found = true if e.message.include?("Can't find call with id")
           break
@@ -654,8 +650,8 @@ RSpec.describe 'Video Integration', type: :integration do
 
       # Verify via list (with retry for eventual consistency)
       found = false
-      8.times do |i|
-        sleep(3)
+      10.times do
+        sleep(1)
         list_resp = @client.make_request(:get, '/api/v2/external_storage')
         storages_h = list_resp.to_h['external_storages'] || {}
         if storages_h.key?(storage_name)
@@ -672,7 +668,7 @@ RSpec.describe 'Video Integration', type: :integration do
       rescue GetStreamRuby::APIError => e
         raise if i == 4
 
-        sleep(3)
+        sleep(2)
       end
     end
   end

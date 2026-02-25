@@ -369,7 +369,7 @@ RSpec.describe 'Chat Message Integration', type: :integration do
       expect(attachments).to be_empty
 
       # Verify via GetMessage that attachments remain empty
-      sleep(3)
+      sleep(1)
       get_resp = get_message(send_resp.message.id)
       attachments2 = get_resp.message.to_h['attachments'] || []
       expect(attachments2).to be_empty
