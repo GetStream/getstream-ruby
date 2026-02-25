@@ -529,7 +529,7 @@ RSpec.describe 'Chat Message Integration', type: :integration do
           query: 'test',
           message_filter_conditions: { 'text' => { '$q' => 'test' } }
         )
-      end.to raise_error(StandardError)
+      end.to raise_error(GetStreamRuby::APIError)
     end
   end
 
@@ -545,7 +545,7 @@ RSpec.describe 'Chat Message Integration', type: :integration do
         )
         # If no error, the API accepts the combination — verify a valid response
         expect(resp).not_to be_nil
-      rescue StandardError
+      rescue GetStreamRuby::APIError
         # Expected error — test passes
       end
     end
@@ -560,7 +560,7 @@ RSpec.describe 'Chat Message Integration', type: :integration do
           offset: 1,
           next: SecureRandom.hex(5)
         )
-      end.to raise_error(StandardError)
+      end.to raise_error(GetStreamRuby::APIError)
     end
   end
 

@@ -153,7 +153,9 @@ RSpec.describe 'Chat Misc Integration', type: :integration do
           words: %w[word1]
         )
       )
+      @created_blocklist_names << del_name
       @client.common.delete_block_list(del_name)
+      @created_blocklist_names.delete(del_name)
     end
   end
 
