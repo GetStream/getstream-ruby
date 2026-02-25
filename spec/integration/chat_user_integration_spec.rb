@@ -182,8 +182,11 @@ RSpec.describe 'Chat User Integration', type: :integration do
       # Remove from tracked list so cleanup doesn't double-delete
       user_ids.each { |uid| @created_user_ids.delete(uid) }
 
+      # delete_users is heavily rate-limited; previous spec cleanups may have
+      # exhausted the budget. Use fewer retries with longer waits to avoid
+      # wasting rate-limit tokens on rapid 429 responses.
       resp = nil
-      10.times do |i|
+      6.times do |i|
         resp = @client.common.delete_users(
           GetStream::Generated::Models::DeleteUsersRequest.new(
             user_ids: user_ids,
@@ -196,7 +199,7 @@ RSpec.describe 'Chat User Integration', type: :integration do
       rescue GetStreamRuby::APIError => e
         raise unless e.message.include?('Too many requests')
 
-        sleep([2**i, 30].min)
+        sleep([5 * 2**i, 60].min)
       end
 
       expect(resp).not_to be_nil
