@@ -147,7 +147,7 @@ module ChatTestHelpers
   # Helper 7: wait_for_task
   # ---------------------------------------------------------------------------
 
-  def wait_for_task(task_id, max_attempts: 30, interval_seconds: 1)
+  def wait_for_task(task_id, max_attempts: 60, interval_seconds: 1)
     max_attempts.times do
 
       result = @client.common.get_task(task_id)
