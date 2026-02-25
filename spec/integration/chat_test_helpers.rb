@@ -36,8 +36,10 @@ module ChatTestHelpers
 
     end
 
-    # Delete users with retry
-    delete_users_with_retry(@created_user_ids) if @created_user_ids && !@created_user_ids.empty?
+    # Users are intentionally not deleted here. The delete_users endpoint is
+    # heavily rate-limited; calling it from every spec file's cleanup exhausts
+    # the quota and causes the DeleteUsers integration test to fail.
+    # Test users have random UUIDs and do not interfere with other tests.
   end
 
   # ---------------------------------------------------------------------------
