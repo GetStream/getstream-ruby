@@ -218,9 +218,10 @@ RSpec.describe 'Chat User Integration', type: :integration do
       user_ids.each { |uid| @created_user_ids.delete(uid) }
 
       # delete_users is heavily rate-limited; previous spec cleanups may have
-      # exhausted the budget. Use fewer retries with longer waits to avoid
-      # wasting rate-limit tokens on rapid 429 responses.
+      # exhausted the budget. Start with a longer initial wait and use
+      # exponential backoff to let the budget recover.
       resp = nil
+      sleep(5) # let rate-limit budget recover from prior cleanups
       6.times do |i|
 
         resp = @client.common.delete_users(
@@ -235,7 +236,7 @@ RSpec.describe 'Chat User Integration', type: :integration do
       rescue GetStreamRuby::APIError => e
         raise unless e.message.include?('Too many requests')
 
-        sleep([5 * (2**i), 60].min)
+        sleep([8 * (2**i), 60].min)
 
       end
 
