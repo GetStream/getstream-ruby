@@ -103,8 +103,14 @@ RSpec.describe 'Video Integration', type: :integration do
       })
       expect(resp.name).to eq(ct_name)
 
-      # Wait for eventual consistency (video call types need longer propagation than chat channel types)
-      sleep(20)
+      # Wait for eventual consistency (video call types need longer propagation than chat channel types).
+      # Poll for availability instead of a fixed sleep to keep the suite fast.
+      20.times do
+        @client.make_request(:get, "/api/v2/video/calltypes/#{ct_name}")
+        break
+      rescue GetStreamRuby::APIError
+        sleep(2)
+      end
 
       # Update call type settings (with retry for eventual consistency)
       resp2 = nil
@@ -120,7 +126,7 @@ RSpec.describe 'Video Integration', type: :integration do
           }
         })
         break
-      rescue GetStreamRuby::APIError => e
+      rescue GetStreamRuby::APIError
         raise if i == 2
 
         sleep(5)
@@ -132,7 +138,7 @@ RSpec.describe 'Video Integration', type: :integration do
       3.times do |i|
         resp3 = @client.make_request(:get, "/api/v2/video/calltypes/#{ct_name}")
         break
-      rescue GetStreamRuby::APIError => e
+      rescue GetStreamRuby::APIError
         raise if i == 2
 
         sleep(5)
@@ -632,7 +638,7 @@ RSpec.describe 'Video Integration', type: :integration do
     it 'creates, lists, and deletes external storage' do
       storage_name = "test-storage-#{random_string(10)}"
 
-      # Create external storage
+      # Create external storage (fake credentials for API contract testing only)
       create_resp = @client.make_request(:post, '/api/v2/external_storage', body: {
         bucket: 'test-bucket',
         name: storage_name,

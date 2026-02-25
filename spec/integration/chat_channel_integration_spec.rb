@@ -650,7 +650,7 @@ RSpec.describe 'Chat Channel Integration', type: :integration do
       channel_h = q_resp.channels.first.to_h.dig('channel') || {}
       msg_count = channel_h['message_count']
       # message_count may be nil if disabled on channel type
-      expect(msg_count).to be >= 1 if msg_count
+      expect(msg_count).to be_nil.or be >= 1
     end
   end
 

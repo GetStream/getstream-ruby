@@ -140,14 +140,14 @@ module ChatTestHelpers
   # Helper 7: wait_for_task
   # ---------------------------------------------------------------------------
 
-  def wait_for_task(task_id)
-    30.times do
+  def wait_for_task(task_id, max_attempts: 30, interval_seconds: 1)
+    max_attempts.times do
       result = @client.common.get_task(task_id)
       return result if %w[completed failed].include?(result.status)
 
-      sleep(1)
+      sleep(interval_seconds)
     end
-    raise "Task #{task_id} did not complete after 30 attempts"
+    raise "Task #{task_id} did not complete after #{max_attempts} attempts"
   end
 
   # ---------------------------------------------------------------------------

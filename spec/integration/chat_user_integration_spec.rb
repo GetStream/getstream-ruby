@@ -196,7 +196,7 @@ RSpec.describe 'Chat User Integration', type: :integration do
       rescue GetStreamRuby::APIError => e
         raise unless e.message.include?('Too many requests')
 
-        sleep((i + 1) * 3)
+        sleep([2**i, 30].min)
       end
 
       expect(resp).not_to be_nil
