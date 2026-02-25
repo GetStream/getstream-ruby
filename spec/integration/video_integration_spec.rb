@@ -814,7 +814,6 @@ RSpec.describe 'Video Integration', type: :integration do
                     data: { created_by_id: @user_1 },
                   })
 
-      # rubocop:disable Layout/EmptyLinesAroundArguments
       expect do
 
         @client.make_request(
@@ -823,7 +822,6 @@ RSpec.describe 'Video Integration', type: :integration do
         )
 
       end.to raise_error(GetStreamRuby::APIError)
-      # rubocop:enable Layout/EmptyLinesAroundArguments
 
     end
 
@@ -836,7 +834,6 @@ RSpec.describe 'Video Integration', type: :integration do
                     data: { created_by_id: @user_1 },
                   })
 
-      # rubocop:disable Layout/EmptyLinesAroundArguments
       expect do
 
         @client.make_request(
@@ -845,7 +842,6 @@ RSpec.describe 'Video Integration', type: :integration do
         )
 
       end.to raise_error(GetStreamRuby::APIError)
-      # rubocop:enable Layout/EmptyLinesAroundArguments
 
     end
 

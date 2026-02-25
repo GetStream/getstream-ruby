@@ -62,7 +62,7 @@ RSpec.describe 'Chat Moderation Integration', type: :integration do
 
         h = b.is_a?(Hash) ? b : b.to_h
         target = h['user'] || {}
-        target = target.is_a?(Hash) ? target : target.to_h
+        target = target.to_h unless target.is_a?(Hash)
         target['id']
 
       end
@@ -87,7 +87,7 @@ RSpec.describe 'Chat Moderation Integration', type: :integration do
 
         h = b.is_a?(Hash) ? b : b.to_h
         target = h['user'] || {}
-        target = target.is_a?(Hash) ? target : target.to_h
+        target = target.to_h unless target.is_a?(Hash)
         target['id']
 
       end
@@ -157,7 +157,7 @@ RSpec.describe 'Chat Moderation Integration', type: :integration do
 
       mute_h = mute_resp.mutes[0].is_a?(Hash) ? mute_resp.mutes[0] : mute_resp.mutes[0].to_h
       target = mute_h['target'] || {}
-      target = target.is_a?(Hash) ? target : target.to_h
+      target = target.to_h unless target.is_a?(Hash)
       expect(target['id']).to eq(@user_4)
 
       # Verify via QueryUsers that muter has mutes
@@ -174,7 +174,7 @@ RSpec.describe 'Chat Moderation Integration', type: :integration do
 
         t = m.is_a?(Hash) ? m : m.to_h
         tgt = t['target'] || {}
-        tgt = tgt.is_a?(Hash) ? tgt : tgt.to_h
+        tgt = tgt.to_h unless tgt.is_a?(Hash)
         tgt['id']
 
       end
@@ -198,7 +198,7 @@ RSpec.describe 'Chat Moderation Integration', type: :integration do
 
         t = m.is_a?(Hash) ? m : m.to_h
         tgt = t['target'] || {}
-        tgt = tgt.is_a?(Hash) ? tgt : tgt.to_h
+        tgt = tgt.to_h unless tgt.is_a?(Hash)
         tgt['id']
 
       end

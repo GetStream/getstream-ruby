@@ -624,7 +624,6 @@ RSpec.describe 'Chat Message Integration', type: :integration do
 
     it 'verifies error when using both query and message_filter_conditions' do
 
-      # rubocop:disable Layout/EmptyLinesAroundArguments
       expect do
 
         search_messages(
@@ -634,7 +633,6 @@ RSpec.describe 'Chat Message Integration', type: :integration do
         )
 
       end.to raise_error(GetStreamRuby::APIError)
-      # rubocop:enable Layout/EmptyLinesAroundArguments
 
     end
 
@@ -665,7 +663,6 @@ RSpec.describe 'Chat Message Integration', type: :integration do
 
     it 'verifies error when using offset with next' do
 
-      # rubocop:disable Layout/EmptyLinesAroundArguments
       expect do
 
         search_messages(
@@ -676,7 +673,6 @@ RSpec.describe 'Chat Message Integration', type: :integration do
         )
 
       end.to raise_error(GetStreamRuby::APIError)
-      # rubocop:enable Layout/EmptyLinesAroundArguments
 
     end
 
