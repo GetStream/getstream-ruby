@@ -9,6 +9,7 @@ require_relative '../../lib/getstream_ruby'
 # Include this module in RSpec describe blocks and call `init_chat_client`
 # in a before(:all) hook.
 module ChatTestHelpers
+
   # ---------------------------------------------------------------------------
   # Setup / teardown
   # ---------------------------------------------------------------------------
@@ -23,14 +24,16 @@ module ChatTestHelpers
   def cleanup_chat_resources
     # Delete channels first (they reference users)
     @created_channel_cids&.each do |cid|
+
       type, id = cid.split(':', 2)
       @client.make_request(
         :delete,
         "/api/v2/chat/channels/#{type}/#{id}",
-        query_params: { 'hard_delete' => 'true' }
+        query_params: { 'hard_delete' => 'true' },
       )
     rescue StandardError => e
       puts "Warning: Failed to delete channel #{cid}: #{e.message}"
+
     end
 
     # Delete users with retry
@@ -41,27 +44,29 @@ module ChatTestHelpers
   # Helper 1: random_string
   # ---------------------------------------------------------------------------
 
-  def random_string(n = 8)
-    SecureRandom.alphanumeric(n)
+  def random_string(length = 8)
+    SecureRandom.alphanumeric(length)
   end
 
   # ---------------------------------------------------------------------------
   # Helper 2: create_test_users
   # ---------------------------------------------------------------------------
 
-  def create_test_users(n)
-    ids = Array.new(n) { "test-user-#{SecureRandom.uuid}" }
+  def create_test_users(count)
+    ids = Array.new(count) { "test-user-#{SecureRandom.uuid}" }
     users = {}
     ids.each do |id|
+
       users[id] = GetStream::Generated::Models::UserRequest.new(
         id: id,
         name: "Test User #{id[0..7]}",
-        role: 'user'
+        role: 'user',
       )
+
     end
 
     response = @client.common.update_users(
-      GetStream::Generated::Models::UpdateUsersRequest.new(users: users)
+      GetStream::Generated::Models::UpdateUsersRequest.new(users: users),
     )
     @created_user_ids.concat(ids)
     [ids, response]
@@ -77,7 +82,7 @@ module ChatTestHelpers
     response = @client.make_request(
       :post,
       "/api/v2/chat/channels/messaging/#{channel_id}/query",
-      body: body
+      body: body,
     )
     @created_channel_cids << "messaging:#{channel_id}"
     ['messaging', channel_id, response]
@@ -94,7 +99,7 @@ module ChatTestHelpers
     response = @client.make_request(
       :post,
       "/api/v2/chat/channels/messaging/#{channel_id}/query",
-      body: body
+      body: body,
     )
     @created_channel_cids << "messaging:#{channel_id}"
     ['messaging', channel_id, response]
@@ -109,7 +114,7 @@ module ChatTestHelpers
     resp = @client.make_request(
       :post,
       "/api/v2/chat/channels/#{channel_type}/#{channel_id}/message",
-      body: body
+      body: body,
     )
     resp.message.id
   end
@@ -120,19 +125,21 @@ module ChatTestHelpers
 
   def delete_users_with_retry(user_ids)
     10.times do |i|
+
       @client.common.delete_users(
         GetStream::Generated::Models::DeleteUsersRequest.new(
           user_ids: user_ids,
           user: 'hard',
           messages: 'hard',
-          conversations: 'hard'
-        )
+          conversations: 'hard',
+        ),
       )
-      return
+      break
     rescue GetStreamRuby::APIError => e
-      return unless e.message.include?('Too many requests')
+      break unless e.message.include?('Too many requests')
 
       sleep([2**i, 16].min)
+
     end
   end
 
@@ -142,10 +149,12 @@ module ChatTestHelpers
 
   def wait_for_task(task_id, max_attempts: 30, interval_seconds: 1)
     max_attempts.times do
+
       result = @client.common.get_task(task_id)
       return result if %w[completed failed].include?(result.status)
 
       sleep(interval_seconds)
+
     end
     raise "Task #{task_id} did not complete after #{max_attempts} attempts"
   end
@@ -170,4 +179,5 @@ module ChatTestHelpers
   def send_message(type, id, body)
     @client.make_request(:post, "/api/v2/chat/channels/#{type}/#{id}/message", body: body)
   end
+
 end
