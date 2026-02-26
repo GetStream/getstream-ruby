@@ -210,23 +210,13 @@ RSpec.describe 'Chat User Integration', type: :integration do
 
   describe 'DeleteUsers' do
 
-    it 'deletes 2 users with retry and polls task until completed' do
+    it 'deletes 2 users and polls task until completed' do
 
       user_ids, _resp = create_test_users(2)
 
-      # Remove from tracked list so cleanup doesn't double-delete
-      user_ids.each { |uid| @created_user_ids.delete(uid) }
-
-      # delete_users is rate-limited to 6 req/min on a fixed 1-minute clock
-      # window in the Stream backend. Crucially, rejected 429 calls still
-      # increment the counter, so exponential backoff makes things worse.
-      # Instead: on a 429, sleep until the next minute boundary (at most 61s)
-      # to guarantee a fresh window before retrying.
       resp = nil
-      last_error = nil
       3.times do
 
-        last_error = nil
         resp = @client.common.delete_users(
           GetStream::Generated::Models::DeleteUsersRequest.new(
             user_ids: user_ids,
@@ -235,16 +225,19 @@ RSpec.describe 'Chat User Integration', type: :integration do
             conversations: 'hard',
           ),
         )
+        # Remove from tracked list only after a successful call so that a
+        # rate-limit failure on a prior attempt still leaves them registered
+        # for suite cleanup.
+        user_ids.each { |uid| @created_user_ids.delete(uid) }
         break
+
       rescue GetStreamRuby::APIError => e
         raise unless e.message.include?('Too many requests')
 
-        last_error = e
-        sleep(61 - Time.now.sec)
+        wait = 61 - Time.now.sec
+        sleep(wait)
 
       end
-
-      raise last_error if last_error
 
       expect(resp).not_to be_nil
       task_id = resp.task_id
