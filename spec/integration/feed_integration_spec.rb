@@ -386,41 +386,41 @@ RSpec.describe 'Feed Integration Tests', type: :integration do
         client.common.update_users(create_request)
 
         # snippet-start: DeleteUsers
-        # Delete users in batch (with retry for rate limits)
+        # Delete users in batch.
+        # delete_users is rate-limited to 6 req/min on a fixed 1-minute clock
+        # window. Rejected 429 calls still increment the counter, so arbitrary
+        # backoff makes recovery harder. On a 429, sleep until the next minute
+        # boundary (at most 61s) to guarantee a fresh window before retrying.
         response = nil
-        10.times do |i|
+        last_error = nil
+        3.times do
 
-          delete_request = GetStream::Generated::Models::DeleteUsersRequest.new(
-            user_ids: user_ids,
-            user: 'hard',
+          last_error = nil
+          response = client.common.delete_users(
+            GetStream::Generated::Models::DeleteUsersRequest.new(
+              user_ids: user_ids,
+              user: 'hard',
+            ),
           )
-
-          response = client.common.delete_users(delete_request)
           break
         rescue GetStreamRuby::APIError => e
           raise unless e.message.include?('Too many requests')
 
-          sleep([2**i, 30].min)
+          last_error = e
+          sleep(61 - Time.now.sec)
 
         end
+
+        raise last_error if last_error
 
         expect(response).not_to be_nil
         expect(response).to be_a(GetStreamRuby::StreamResponse)
         puts "✅ Deleted #{user_ids.length} users in batch"
         # snippet-stop: DeleteUsers
-      rescue StandardError => e
-        puts "⚠️ Error: #{e.message}"
-        # Try cleanup anyway
-        begin
-          delete_request = GetStream::Generated::Models::DeleteUsersRequest.new(
-            user_ids: user_ids,
-            user: 'hard',
-          )
-          client.common.delete_users(delete_request)
-        rescue StandardError
-          # Ignore cleanup errors
-        end
-        raise e
+      ensure
+        # Register for suite cleanup. If delete_users already succeeded above,
+        # the suite cleanup attempt on these IDs is a harmless no-op.
+        SuiteCleanup.register_users(user_ids)
       end
 
     end

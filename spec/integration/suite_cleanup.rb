@@ -42,7 +42,7 @@ module SuiteCleanup
       # The delete_users endpoint accepts up to 100 user IDs per request.
       uniq_ids.each_slice(100) do |batch|
 
-        3.times do |i|
+        3.times do
 
           client.common.delete_users(
             GetStream::Generated::Models::DeleteUsersRequest.new(
@@ -58,8 +58,11 @@ module SuiteCleanup
 
           raise unless e.message.include?('Too many requests')
 
-          wait = [30 * (2**i), 120].min
-          puts "⏳ Rate-limited during suite cleanup, retrying in #{wait}s..."
+          # The Stream backend enforces 6 req/min on a fixed 1-minute clock
+          # window. Sleep until the next boundary (at most 61s) to guarantee
+          # a fresh window. Arbitrary backoff risks retrying in the same window.
+          wait = 61 - Time.now.sec
+          puts "⏳ Rate-limited during suite cleanup, waiting #{wait}s for window reset..."
           sleep(wait)
 
         end

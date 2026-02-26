@@ -217,13 +217,14 @@ RSpec.describe 'Chat User Integration', type: :integration do
       # Remove from tracked list so cleanup doesn't double-delete
       user_ids.each { |uid| @created_user_ids.delete(uid) }
 
-      # delete_users is heavily rate-limited; previous spec cleanups may have
-      # exhausted the budget. Start with a longer initial wait and use
-      # exponential backoff to let the budget recover.
+      # delete_users is rate-limited to 6 req/min on a fixed 1-minute clock
+      # window in the Stream backend. Crucially, rejected 429 calls still
+      # increment the counter, so exponential backoff makes things worse.
+      # Instead: on a 429, sleep until the next minute boundary (at most 61s)
+      # to guarantee a fresh window before retrying.
       resp = nil
       last_error = nil
-      sleep(5) # let rate-limit budget recover from prior cleanups
-      6.times do |i|
+      3.times do
 
         last_error = nil
         resp = @client.common.delete_users(
@@ -239,7 +240,7 @@ RSpec.describe 'Chat User Integration', type: :integration do
         raise unless e.message.include?('Too many requests')
 
         last_error = e
-        sleep([8 * (2**i), 60].min)
+        sleep(61 - Time.now.sec)
 
       end
 
