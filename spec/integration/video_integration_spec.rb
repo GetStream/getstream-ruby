@@ -814,14 +814,8 @@ RSpec.describe 'Video Integration', type: :integration do
                     data: { created_by_id: @user_1 },
                   })
 
-      expect do
-
-        @client.make_request(
-          :delete,
-          "/api/v2/video/call/default/#{call_id}/non-existent-session/recordings/non-existent-filename",
-        )
-
-      end.to raise_error(GetStreamRuby::APIError)
+      url = "/api/v2/video/call/default/#{call_id}/non-existent-session/recordings/non-existent-filename"
+      expect { @client.make_request(:delete, url) }.to raise_error(GetStreamRuby::APIError)
 
     end
 
@@ -834,14 +828,8 @@ RSpec.describe 'Video Integration', type: :integration do
                     data: { created_by_id: @user_1 },
                   })
 
-      expect do
-
-        @client.make_request(
-          :delete,
-          "/api/v2/video/call/default/#{call_id}/non-existent-session/transcriptions/non-existent-filename",
-        )
-
-      end.to raise_error(GetStreamRuby::APIError)
+      url = "/api/v2/video/call/default/#{call_id}/non-existent-session/transcriptions/non-existent-filename"
+      expect { @client.make_request(:delete, url) }.to raise_error(GetStreamRuby::APIError)
 
     end
 

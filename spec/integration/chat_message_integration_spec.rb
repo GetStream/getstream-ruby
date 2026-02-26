@@ -624,15 +624,12 @@ RSpec.describe 'Chat Message Integration', type: :integration do
 
     it 'verifies error when using both query and message_filter_conditions' do
 
-      expect do
-
-        search_messages(
-          filter_conditions: { 'members' => { '$in' => [@user_1] } },
-          query: 'test',
-          message_filter_conditions: { 'text' => { '$q' => 'test' } },
-        )
-
-      end.to raise_error(GetStreamRuby::APIError)
+      params = {
+        filter_conditions: { 'members' => { '$in' => [@user_1] } },
+        query: 'test',
+        message_filter_conditions: { 'text' => { '$q' => 'test' } },
+      }
+      expect { search_messages(**params) }.to raise_error(GetStreamRuby::APIError)
 
     end
 
@@ -663,16 +660,13 @@ RSpec.describe 'Chat Message Integration', type: :integration do
 
     it 'verifies error when using offset with next' do
 
-      expect do
-
-        search_messages(
-          filter_conditions: { 'members' => { '$in' => [@user_1] } },
-          query: 'test',
-          offset: 1,
-          next: SecureRandom.hex(5),
-        )
-
-      end.to raise_error(GetStreamRuby::APIError)
+      params = {
+        filter_conditions: { 'members' => { '$in' => [@user_1] } },
+        query: 'test',
+        offset: 1,
+        next: SecureRandom.hex(5),
+      }
+      expect { search_messages(**params) }.to raise_error(GetStreamRuby::APIError)
 
     end
 

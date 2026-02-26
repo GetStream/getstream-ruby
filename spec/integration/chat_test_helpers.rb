@@ -45,11 +45,13 @@ module ChatTestHelpers
 
       type, id = cid.split(':', 2)
       retry_on_rate_limit do
+
         @client.make_request(
           :delete,
           "/api/v2/chat/channels/#{type}/#{id}",
           query_params: { 'hard_delete' => 'true' },
         )
+
       end
     rescue StandardError => e
       puts "Warning: Failed to delete channel #{cid}: #{e.message}"
@@ -169,7 +171,9 @@ module ChatTestHelpers
   def delete_channel(type, id, hard: false)
     query_params = hard ? { 'hard_delete' => 'true' } : {}
     retry_on_rate_limit do
+
       @client.make_request(:delete, "/api/v2/chat/channels/#{type}/#{id}", query_params: query_params)
+
     end
   end
 
