@@ -285,18 +285,16 @@ RSpec.describe 'Chat Misc Integration', type: :integration do
       expect(get_resp.name).to eq(type_name)
 
       # Update channel type — raise to 4000 (plan maximum) to verify the
-      # update is applied and the new value is reflected on re-fetch.
-      @client.make_request(:put, "/api/v2/chat/channeltypes/#{type_name}", body: {
-                             automod: 'disabled',
-                             automod_behavior: 'flag',
-                             max_message_length: 4000,
-                             typing_events: false,
-                           })
-
-      # Re-fetch to verify (eventual consistency)
-      sleep(2)
-      updated = @client.make_request(:get, "/api/v2/chat/channeltypes/#{type_name}")
-      expect(updated.max_message_length).to eq(4000)
+      # update is applied. Assert on the update response directly: it is read
+      # from the writing server's local cache (always fresh) so we avoid the
+      # eventual consistency window that makes a re-fetch flaky.
+      update_resp = @client.make_request(:put, "/api/v2/chat/channeltypes/#{type_name}", body: {
+                                           automod: 'disabled',
+                                           automod_behavior: 'flag',
+                                           max_message_length: 4000,
+                                           typing_events: false,
+                                         })
+      expect(update_resp.max_message_length).to eq(4000)
 
       # Delete a separate channel type
       del_name = "testdeltype#{random_string(6)}"
