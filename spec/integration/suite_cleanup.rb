@@ -53,9 +53,7 @@ module SuiteCleanup
             ),
           )
           break
-
         rescue GetStreamRuby::APIError => e
-
           raise unless e.message.include?('Too many requests')
 
           # The Stream backend enforces 6 req/min on a fixed 1-minute clock
@@ -79,7 +77,9 @@ end
 RSpec.configure do |config|
 
   config.after(:suite) do
+
     SuiteCleanup.run
+
   end
 
 end
