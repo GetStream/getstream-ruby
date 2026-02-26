@@ -22,16 +22,35 @@ module ChatTestHelpers
     @created_channel_cids = []
   end
 
+  def retry_on_rate_limit(max_attempts: 3)
+    attempts = 0
+    begin
+      yield
+    rescue GetStreamRuby::APIError => e
+      raise unless e.message.include?('Too many requests')
+
+      attempts += 1
+      raise if attempts >= max_attempts
+
+      wait = 61 - Time.now.sec
+      puts "⏳ Rate-limited, waiting #{wait}s for window reset (attempt #{attempts}/#{max_attempts})..."
+      sleep(wait)
+      retry
+    end
+  end
+
   def cleanup_chat_resources
     # Delete channels (they reference users and must be removed per-spec).
     @created_channel_cids&.each do |cid|
 
       type, id = cid.split(':', 2)
-      @client.make_request(
-        :delete,
-        "/api/v2/chat/channels/#{type}/#{id}",
-        query_params: { 'hard_delete' => 'true' },
-      )
+      retry_on_rate_limit do
+        @client.make_request(
+          :delete,
+          "/api/v2/chat/channels/#{type}/#{id}",
+          query_params: { 'hard_delete' => 'true' },
+        )
+      end
     rescue StandardError => e
       puts "Warning: Failed to delete channel #{cid}: #{e.message}"
 
@@ -149,7 +168,9 @@ module ChatTestHelpers
 
   def delete_channel(type, id, hard: false)
     query_params = hard ? { 'hard_delete' => 'true' } : {}
-    @client.make_request(:delete, "/api/v2/chat/channels/#{type}/#{id}", query_params: query_params)
+    retry_on_rate_limit do
+      @client.make_request(:delete, "/api/v2/chat/channels/#{type}/#{id}", query_params: query_params)
+    end
   end
 
   def query_channels(body)
