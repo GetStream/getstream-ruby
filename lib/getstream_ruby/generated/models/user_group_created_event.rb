@@ -5,59 +5,49 @@
 module GetStream
   module Generated
     module Models
-      # 
-      class AsyncExportErrorEvent < GetStream::BaseModel
+      # Emitted when a user group is created.
+      class UserGroupCreatedEvent < GetStream::BaseModel
 
         # Model attributes
         # @!attribute created_at
-        #   @return [DateTime]
+        #   @return [DateTime] Date/time of creation
         attr_accessor :created_at
-        # @!attribute error
-        #   @return [String]
-        attr_accessor :error
-        # @!attribute finished_at
-        #   @return [DateTime]
-        attr_accessor :finished_at
-        # @!attribute started_at
-        #   @return [DateTime]
-        attr_accessor :started_at
-        # @!attribute task_id
-        #   @return [String]
-        attr_accessor :task_id
         # @!attribute custom
         #   @return [Object]
         attr_accessor :custom
         # @!attribute type
-        #   @return [String]
+        #   @return [String] The type of event: "user_group.created" in this case
         attr_accessor :type
         # @!attribute received_at
         #   @return [DateTime]
         attr_accessor :received_at
+        # @!attribute user
+        #   @return [UserResponseCommonFields]
+        attr_accessor :user
+        # @!attribute user_group
+        #   @return [UserGroup]
+        attr_accessor :user_group
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @created_at = attributes[:created_at] || attributes['created_at']
-          @error = attributes[:error] || attributes['error']
-          @finished_at = attributes[:finished_at] || attributes['finished_at']
-          @started_at = attributes[:started_at] || attributes['started_at']
-          @task_id = attributes[:task_id] || attributes['task_id']
           @custom = attributes[:custom] || attributes['custom']
-          @type = attributes[:type] || attributes['type'] || "export.users.error"
+          @type = attributes[:type] || attributes['type'] || "user_group.created"
           @received_at = attributes[:received_at] || attributes['received_at'] || nil
+          @user = attributes[:user] || attributes['user'] || nil
+          @user_group = attributes[:user_group] || attributes['user_group'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
             created_at: 'created_at',
-            error: 'error',
-            finished_at: 'finished_at',
-            started_at: 'started_at',
-            task_id: 'task_id',
             custom: 'custom',
             type: 'type',
-            received_at: 'received_at'
+            received_at: 'received_at',
+            user: 'user',
+            user_group: 'user_group'
           }
         end
       end

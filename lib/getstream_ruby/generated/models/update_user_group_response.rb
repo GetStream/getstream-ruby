@@ -5,29 +5,29 @@
 module GetStream
   module Generated
     module Models
-      # 
-      class IndividualRecordSettings < GetStream::BaseModel
+      # Response for updating a user group
+      class UpdateUserGroupResponse < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute mode
+        # @!attribute duration
         #   @return [String]
-        attr_accessor :mode
-        # @!attribute output_types
-        #   @return [Array<String>]
-        attr_accessor :output_types
+        attr_accessor :duration
+        # @!attribute user_group
+        #   @return [UserGroupResponse]
+        attr_accessor :user_group
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @mode = attributes[:mode] || attributes['mode']
-          @output_types = attributes[:output_types] || attributes['output_types'] || nil
+          @duration = attributes[:duration] || attributes['duration']
+          @user_group = attributes[:user_group] || attributes['user_group'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            mode: 'mode',
-            output_types: 'output_types'
+            duration: 'duration',
+            user_group: 'user_group'
           }
         end
       end

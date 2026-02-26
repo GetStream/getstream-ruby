@@ -6,28 +6,23 @@ module GetStream
   module Generated
     module Models
       # 
-      class IndividualRecordSettings < GetStream::BaseModel
+      class UndeleteMessageRequest < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute mode
-        #   @return [String]
-        attr_accessor :mode
-        # @!attribute output_types
-        #   @return [Array<String>]
-        attr_accessor :output_types
+        # @!attribute undeleted_by
+        #   @return [String] ID of the user who is undeleting the message
+        attr_accessor :undeleted_by
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @mode = attributes[:mode] || attributes['mode']
-          @output_types = attributes[:output_types] || attributes['output_types'] || nil
+          @undeleted_by = attributes[:undeleted_by] || attributes['undeleted_by']
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            mode: 'mode',
-            output_types: 'output_types'
+            undeleted_by: 'undeleted_by'
           }
         end
       end

@@ -481,15 +481,15 @@ module GetStream
 
       # Read collections with optional filtering by user ID and collection name. By default, users can only read their own collections.
       #
-      # @param collection_refs [Array<String>]
       # @param user_id [String]
+      # @param collection_refs [Array<String>]
       # @return [Models::ReadCollectionsResponse]
-      def read_collections(collection_refs, user_id = nil)
+      def read_collections(user_id = nil, collection_refs = nil)
         path = '/api/v2/feeds/collections'
         # Build query parameters
         query_params = {}
-        query_params['collection_refs'] = collection_refs unless collection_refs.nil?
         query_params['user_id'] = user_id unless user_id.nil?
+        query_params['collection_refs'] = collection_refs unless collection_refs.nil?
 
         # Make the API request
         @client.make_request(
@@ -1095,6 +1095,22 @@ module GetStream
           :get,
           path,
           query_params: query_params
+        )
+      end
+
+      # Restores a soft-deleted feed group by its ID. Only clears DeletedAt in the database; no other fields are updated.
+      #
+      # @param feed_group_id [String]
+      # @return [Models::RestoreFeedGroupResponse]
+      def restore_feed_group(feed_group_id)
+        path = '/api/v2/feeds/feed_groups/{feed_group_id}/restore'
+        # Replace path parameters
+        path = path.gsub('{feed_group_id}', feed_group_id.to_s)
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path
         )
       end
 

@@ -21,6 +21,12 @@ module GetStream
         # @!attribute type
         #   @return [String] The type of event, "call.report_ready" in this case
         attr_accessor :type
+        # @!attribute is_trimmed
+        #   @return [Boolean] Whether participants_overview is truncated by the server-side limit
+        attr_accessor :is_trimmed
+        # @!attribute participants_overview
+        #   @return [Array<CallStatsParticipant>] Top participant sessions overview
+        attr_accessor :participants_overview
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -29,6 +35,8 @@ module GetStream
           @created_at = attributes[:created_at] || attributes['created_at']
           @session_id = attributes[:session_id] || attributes['session_id']
           @type = attributes[:type] || attributes['type'] || "call.stats_report_ready"
+          @is_trimmed = attributes[:is_trimmed] || attributes['is_trimmed'] || nil
+          @participants_overview = attributes[:participants_overview] || attributes['participants_overview'] || nil
         end
 
         # Override field mappings for JSON serialization
@@ -37,7 +45,9 @@ module GetStream
             call_cid: 'call_cid',
             created_at: 'created_at',
             session_id: 'session_id',
-            type: 'type'
+            type: 'type',
+            is_trimmed: 'is_trimmed',
+            participants_overview: 'participants_overview'
           }
         end
       end

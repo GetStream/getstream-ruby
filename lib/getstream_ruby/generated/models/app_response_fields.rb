@@ -48,6 +48,9 @@ module GetStream
         # @!attribute max_aggregated_activities_length
         #   @return [Integer]
         attr_accessor :max_aggregated_activities_length
+        # @!attribute moderation_audio_call_moderation_enabled
+        #   @return [Boolean]
+        attr_accessor :moderation_audio_call_moderation_enabled
         # @!attribute moderation_enabled
         #   @return [Boolean]
         attr_accessor :moderation_enabled
@@ -57,6 +60,9 @@ module GetStream
         # @!attribute moderation_multitenant_blocklist_enabled
         #   @return [Boolean]
         attr_accessor :moderation_multitenant_blocklist_enabled
+        # @!attribute moderation_video_call_moderation_enabled
+        #   @return [Boolean]
+        attr_accessor :moderation_video_call_moderation_enabled
         # @!attribute moderation_webhook_url
         #   @return [String]
         attr_accessor :moderation_webhook_url
@@ -179,9 +185,11 @@ module GetStream
           @id = attributes[:id] || attributes['id']
           @image_moderation_enabled = attributes[:image_moderation_enabled] || attributes['image_moderation_enabled']
           @max_aggregated_activities_length = attributes[:max_aggregated_activities_length] || attributes['max_aggregated_activities_length']
+          @moderation_audio_call_moderation_enabled = attributes[:moderation_audio_call_moderation_enabled] || attributes['moderation_audio_call_moderation_enabled']
           @moderation_enabled = attributes[:moderation_enabled] || attributes['moderation_enabled']
           @moderation_llm_configurability_enabled = attributes[:moderation_llm_configurability_enabled] || attributes['moderation_llm_configurability_enabled']
           @moderation_multitenant_blocklist_enabled = attributes[:moderation_multitenant_blocklist_enabled] || attributes['moderation_multitenant_blocklist_enabled']
+          @moderation_video_call_moderation_enabled = attributes[:moderation_video_call_moderation_enabled] || attributes['moderation_video_call_moderation_enabled']
           @moderation_webhook_url = attributes[:moderation_webhook_url] || attributes['moderation_webhook_url']
           @multi_tenant_enabled = attributes[:multi_tenant_enabled] || attributes['multi_tenant_enabled']
           @name = attributes[:name] || attributes['name']
@@ -235,9 +243,11 @@ module GetStream
             id: 'id',
             image_moderation_enabled: 'image_moderation_enabled',
             max_aggregated_activities_length: 'max_aggregated_activities_length',
+            moderation_audio_call_moderation_enabled: 'moderation_audio_call_moderation_enabled',
             moderation_enabled: 'moderation_enabled',
             moderation_llm_configurability_enabled: 'moderation_llm_configurability_enabled',
             moderation_multitenant_blocklist_enabled: 'moderation_multitenant_blocklist_enabled',
+            moderation_video_call_moderation_enabled: 'moderation_video_call_moderation_enabled',
             moderation_webhook_url: 'moderation_webhook_url',
             multi_tenant_enabled: 'multi_tenant_enabled',
             name: 'name',

@@ -111,6 +111,9 @@ module GetStream
         # @!attribute show_in_channel
         #   @return [Boolean]
         attr_accessor :show_in_channel
+        # @!attribute mentioned_roles
+        #   @return [Array<String>]
+        attr_accessor :mentioned_roles
         # @!attribute thread_participants
         #   @return [Array<UserResponse>]
         attr_accessor :thread_participants
@@ -188,6 +191,7 @@ module GetStream
           @poll_id = attributes[:poll_id] || attributes['poll_id'] || nil
           @quoted_message_id = attributes[:quoted_message_id] || attributes['quoted_message_id'] || nil
           @show_in_channel = attributes[:show_in_channel] || attributes['show_in_channel'] || nil
+          @mentioned_roles = attributes[:mentioned_roles] || attributes['mentioned_roles'] || nil
           @thread_participants = attributes[:thread_participants] || attributes['thread_participants'] || nil
           @channel = attributes[:channel] || attributes['channel'] || nil
           @draft = attributes[:draft] || attributes['draft'] || nil
@@ -240,6 +244,7 @@ module GetStream
             poll_id: 'poll_id',
             quoted_message_id: 'quoted_message_id',
             show_in_channel: 'show_in_channel',
+            mentioned_roles: 'mentioned_roles',
             thread_participants: 'thread_participants',
             channel: 'channel',
             draft: 'draft',

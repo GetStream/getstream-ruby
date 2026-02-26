@@ -5,31 +5,28 @@
 module GetStream
   module Generated
     module Models
-      # 
-      class AsyncExportErrorEvent < GetStream::BaseModel
+      # Emitted when a feed group is restored.
+      class FeedGroupRestoredEvent < GetStream::BaseModel
 
         # Model attributes
         # @!attribute created_at
-        #   @return [DateTime]
+        #   @return [DateTime] Date/time of creation
         attr_accessor :created_at
-        # @!attribute error
+        # @!attribute fid
         #   @return [String]
-        attr_accessor :error
-        # @!attribute finished_at
-        #   @return [DateTime]
-        attr_accessor :finished_at
-        # @!attribute started_at
-        #   @return [DateTime]
-        attr_accessor :started_at
-        # @!attribute task_id
-        #   @return [String]
-        attr_accessor :task_id
+        attr_accessor :fid
+        # @!attribute group_id
+        #   @return [String] The ID of the feed group that was restored
+        attr_accessor :group_id
         # @!attribute custom
         #   @return [Object]
         attr_accessor :custom
         # @!attribute type
-        #   @return [String]
+        #   @return [String] The type of event: "feeds.feed_group.restored" in this case
         attr_accessor :type
+        # @!attribute feed_visibility
+        #   @return [String]
+        attr_accessor :feed_visibility
         # @!attribute received_at
         #   @return [DateTime]
         attr_accessor :received_at
@@ -38,12 +35,11 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @created_at = attributes[:created_at] || attributes['created_at']
-          @error = attributes[:error] || attributes['error']
-          @finished_at = attributes[:finished_at] || attributes['finished_at']
-          @started_at = attributes[:started_at] || attributes['started_at']
-          @task_id = attributes[:task_id] || attributes['task_id']
+          @fid = attributes[:fid] || attributes['fid']
+          @group_id = attributes[:group_id] || attributes['group_id']
           @custom = attributes[:custom] || attributes['custom']
-          @type = attributes[:type] || attributes['type'] || "export.users.error"
+          @type = attributes[:type] || attributes['type'] || "feeds.feed_group.restored"
+          @feed_visibility = attributes[:feed_visibility] || attributes['feed_visibility'] || nil
           @received_at = attributes[:received_at] || attributes['received_at'] || nil
         end
 
@@ -51,12 +47,11 @@ module GetStream
         def self.json_field_mappings
           {
             created_at: 'created_at',
-            error: 'error',
-            finished_at: 'finished_at',
-            started_at: 'started_at',
-            task_id: 'task_id',
+            fid: 'fid',
+            group_id: 'group_id',
             custom: 'custom',
             type: 'type',
+            feed_visibility: 'feed_visibility',
             received_at: 'received_at'
           }
         end

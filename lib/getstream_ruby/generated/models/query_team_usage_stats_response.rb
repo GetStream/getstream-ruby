@@ -5,39 +5,34 @@
 module GetStream
   module Generated
     module Models
-      # 
-      class ReadCollectionsResponse < GetStream::BaseModel
+      # Response containing team-level usage statistics
+      class QueryTeamUsageStatsResponse < GetStream::BaseModel
 
         # Model attributes
         # @!attribute duration
-        #   @return [String]
+        #   @return [String] Duration of the request in milliseconds
         attr_accessor :duration
-        # @!attribute collections
-        #   @return [Array<CollectionResponse>] List of collections matching the query
-        attr_accessor :collections
+        # @!attribute teams
+        #   @return [Array<TeamUsageStats>] Array of team usage statistics
+        attr_accessor :teams
         # @!attribute next
-        #   @return [String] Cursor for next page (when listing without collection_refs)
+        #   @return [String] Cursor for pagination to fetch next page
         attr_accessor :next
-        # @!attribute prev
-        #   @return [String] Cursor for previous page (when listing without collection_refs)
-        attr_accessor :prev
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @duration = attributes[:duration] || attributes['duration']
-          @collections = attributes[:collections] || attributes['collections']
+          @teams = attributes[:teams] || attributes['teams']
           @next = attributes[:next] || attributes['next'] || nil
-          @prev = attributes[:prev] || attributes['prev'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
             duration: 'duration',
-            collections: 'collections',
-            next: 'next',
-            prev: 'prev'
+            teams: 'teams',
+            next: 'next'
           }
         end
       end

@@ -102,6 +102,7 @@ require_relative 'models/feed_created_event'
 require_relative 'models/feed_deleted_event'
 require_relative 'models/feed_group_changed_event'
 require_relative 'models/feed_group_deleted_event'
+require_relative 'models/feed_group_restored_event'
 require_relative 'models/feed_member_added_event'
 require_relative 'models/feed_member_removed_event'
 require_relative 'models/feed_member_updated_event'
@@ -152,6 +153,11 @@ require_relative 'models/user_banned_event'
 require_relative 'models/user_deactivated_event'
 require_relative 'models/user_deleted_event'
 require_relative 'models/user_flagged_event'
+require_relative 'models/user_group_created_event'
+require_relative 'models/user_group_deleted_event'
+require_relative 'models/user_group_member_added_event'
+require_relative 'models/user_group_member_removed_event'
+require_relative 'models/user_group_updated_event'
 require_relative 'models/user_messages_deleted_event'
 require_relative 'models/user_muted_event'
 require_relative 'models/user_reactivated_event'
@@ -272,6 +278,7 @@ module StreamChat
     EVENT_TYPE_FEEDS_FEED_UPDATED = 'feeds.feed.updated'
     EVENT_TYPE_FEEDS_FEED_GROUP_CHANGED = 'feeds.feed_group.changed'
     EVENT_TYPE_FEEDS_FEED_GROUP_DELETED = 'feeds.feed_group.deleted'
+    EVENT_TYPE_FEEDS_FEED_GROUP_RESTORED = 'feeds.feed_group.restored'
     EVENT_TYPE_FEEDS_FEED_MEMBER_ADDED = 'feeds.feed_member.added'
     EVENT_TYPE_FEEDS_FEED_MEMBER_REMOVED = 'feeds.feed_member.removed'
     EVENT_TYPE_FEEDS_FEED_MEMBER_UPDATED = 'feeds.feed_member.updated'
@@ -323,6 +330,11 @@ module StreamChat
     EVENT_TYPE_USER_UNMUTED = 'user.unmuted'
     EVENT_TYPE_USER_UNREAD_MESSAGE_REMINDER = 'user.unread_message_reminder'
     EVENT_TYPE_USER_UPDATED = 'user.updated'
+    EVENT_TYPE_USER_GROUP_CREATED = 'user_group.created'
+    EVENT_TYPE_USER_GROUP_DELETED = 'user_group.deleted'
+    EVENT_TYPE_USER_GROUP_MEMBER_ADDED = 'user_group.member_added'
+    EVENT_TYPE_USER_GROUP_MEMBER_REMOVED = 'user_group.member_removed'
+    EVENT_TYPE_USER_GROUP_UPDATED = 'user_group.updated'
 
     # Extract the event type from a raw webhook payload.
     #
@@ -586,6 +598,8 @@ module StreamChat
         StreamChat::FeedGroupChangedEvent
       when 'feeds.feed_group.deleted'
         StreamChat::FeedGroupDeletedEvent
+      when 'feeds.feed_group.restored'
+        StreamChat::FeedGroupRestoredEvent
       when 'feeds.feed_member.added'
         StreamChat::FeedMemberAddedEvent
       when 'feeds.feed_member.removed'
@@ -688,6 +702,16 @@ module StreamChat
         StreamChat::UserUnreadReminderEvent
       when 'user.updated'
         StreamChat::UserUpdatedEvent
+      when 'user_group.created'
+        StreamChat::UserGroupCreatedEvent
+      when 'user_group.deleted'
+        StreamChat::UserGroupDeletedEvent
+      when 'user_group.member_added'
+        StreamChat::UserGroupMemberAddedEvent
+      when 'user_group.member_removed'
+        StreamChat::UserGroupMemberRemovedEvent
+      when 'user_group.updated'
+        StreamChat::UserGroupUpdatedEvent
       else
         nil
       end
