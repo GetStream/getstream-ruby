@@ -311,20 +311,7 @@ RSpec.describe 'Feed Integration Tests', type: :integration do
         puts "✅ Created/updated users in batch: #{user_id_1}, #{user_id_2}"
         # snippet-stop: UpdateUsers
       ensure
-        # Cleanup created users (with retry for rate limits)
-        3.times do |i|
-
-          delete_request = GetStream::Generated::Models::DeleteUsersRequest.new(
-            user_ids: [user_id_1, user_id_2],
-            user: 'hard',
-          )
-          client.common.delete_users(delete_request)
-          break
-        rescue StandardError => e
-          puts "⚠️ Cleanup error: #{e.message}" if i == 2
-          sleep(2**i)
-
-        end
+        SuiteCleanup.register_users([user_id_1, user_id_2])
       end
 
     end
@@ -366,20 +353,7 @@ RSpec.describe 'Feed Integration Tests', type: :integration do
         puts "✅ Partially updated user: #{user_id}"
         # snippet-stop: UpdateUsersPartial
       ensure
-        # Cleanup (with retry for rate limits)
-        3.times do |i|
-
-          delete_request = GetStream::Generated::Models::DeleteUsersRequest.new(
-            user_ids: [user_id],
-            user: 'hard',
-          )
-          client.common.delete_users(delete_request)
-          break
-        rescue StandardError => e
-          puts "⚠️ Cleanup error: #{e.message}" if i == 2
-          sleep(2**i)
-
-        end
+        SuiteCleanup.register_users([user_id])
       end
 
     end

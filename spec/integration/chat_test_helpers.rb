@@ -4,6 +4,7 @@ require 'securerandom'
 require 'json'
 require 'dotenv'
 require_relative '../../lib/getstream_ruby'
+require_relative 'suite_cleanup'
 
 # Shared helpers for chat integration tests.
 # Include this module in RSpec describe blocks and call `init_chat_client`
@@ -22,7 +23,7 @@ module ChatTestHelpers
   end
 
   def cleanup_chat_resources
-    # Delete channels first (they reference users)
+    # Delete channels (they reference users and must be removed per-spec).
     @created_channel_cids&.each do |cid|
 
       type, id = cid.split(':', 2)
@@ -36,10 +37,11 @@ module ChatTestHelpers
 
     end
 
-    # Users are intentionally not deleted here. The delete_users endpoint is
-    # heavily rate-limited; calling it from every spec file's cleanup exhausts
-    # the quota and causes the DeleteUsers integration test to fail.
-    # Test users have random UUIDs and do not interfere with other tests.
+    # Register users for deferred deletion at suite end.
+    # The delete_users endpoint is rate-limited; batching all user deletes into
+    # a single after(:suite) call (in suite_cleanup.rb) keeps the quota free
+    # for the DeleteUsers integration test that runs during the suite.
+    SuiteCleanup.register_users(@created_user_ids)
   end
 
   # ---------------------------------------------------------------------------
@@ -122,31 +124,7 @@ module ChatTestHelpers
   end
 
   # ---------------------------------------------------------------------------
-  # Helper 6: delete_users_with_retry
-  # ---------------------------------------------------------------------------
-
-  def delete_users_with_retry(user_ids)
-    10.times do |i|
-
-      @client.common.delete_users(
-        GetStream::Generated::Models::DeleteUsersRequest.new(
-          user_ids: user_ids,
-          user: 'hard',
-          messages: 'hard',
-          conversations: 'hard',
-        ),
-      )
-      break
-    rescue GetStreamRuby::APIError => e
-      break unless e.message.include?('Too many requests')
-
-      sleep([2**i, 16].min)
-
-    end
-  end
-
-  # ---------------------------------------------------------------------------
-  # Helper 7: wait_for_task
+  # Helper 6: wait_for_task
   # ---------------------------------------------------------------------------
 
   def wait_for_task(task_id, max_attempts: 60, interval_seconds: 1)
