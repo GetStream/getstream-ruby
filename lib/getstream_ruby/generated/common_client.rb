@@ -1159,16 +1159,20 @@ module GetStream
       # Removes members from a user group. Users already not in the group are silently ignored.
       #
       # @param _id [String]
+      # @param remove_user_group_members_request [RemoveUserGroupMembersRequest]
       # @return [Models::RemoveUserGroupMembersResponse]
-      def remove_user_group_members(_id)
+      def remove_user_group_members(_id, remove_user_group_members_request)
         path = '/api/v2/usergroups/{id}/members'
         # Replace path parameters
         path = path.gsub('{id}', _id.to_s)
+        # Build request body
+        body = remove_user_group_members_request
 
         # Make the API request
         @client.make_request(
           :delete,
-          path
+          path,
+          body: body
         )
       end
 
