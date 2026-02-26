@@ -230,7 +230,6 @@ RSpec.describe 'Chat User Integration', type: :integration do
         # for suite cleanup.
         user_ids.each { |uid| @created_user_ids.delete(uid) }
         break
-
       rescue GetStreamRuby::APIError => e
         raise unless e.message.include?('Too many requests')
 
