@@ -141,17 +141,17 @@ RSpec.describe 'Chat User Group Integration', type: :integration do
 
     it 'lists groups and at least one created group appears' do
 
-      group_id1 = "test-group-#{SecureRandom.uuid}"
-      group_id2 = "test-group-#{SecureRandom.uuid}"
-      create_group(id: group_id1, name: 'List Test Group One')
-      create_group(id: group_id2, name: 'List Test Group Two')
+      group_id_a = "test-group-#{SecureRandom.uuid}"
+      group_id_b = "test-group-#{SecureRandom.uuid}"
+      create_group(id: group_id_a, name: 'List Test Group One')
+      create_group(id: group_id_b, name: 'List Test Group Two')
 
       list_resp = @client.common.list_user_groups
       expect(list_resp.user_groups).not_to be_nil
       expect(list_resp.user_groups).not_to be_empty
 
       found_ids = list_resp.user_groups.map { |g| g.is_a?(Hash) ? g['id'] : g.id }
-      expect(found_ids).to include(group_id1).or include(group_id2)
+      expect(found_ids).to include(group_id_a).or include(group_id_b)
 
     end
 
@@ -258,9 +258,9 @@ RSpec.describe 'Chat User Group Integration', type: :integration do
       )
 
       # Verify members are removed
-      get_resp2 = @client.common.get_user_group(group_id)
-      expect(get_resp2.user_group).not_to be_nil
-      members_after = get_resp2.user_group.members
+      get_resp_after = @client.common.get_user_group(group_id)
+      expect(get_resp_after.user_group).not_to be_nil
+      members_after = get_resp_after.user_group.members
       expect(members_after).to satisfy('be nil or empty') { |m| m.nil? || m.empty? }
 
     end
@@ -276,11 +276,7 @@ RSpec.describe 'Chat User Group Integration', type: :integration do
 
       delete_group(group_id)
 
-      expect do
-
-        @client.common.get_user_group(group_id)
-
-      end.to raise_error(StandardError)
+      expect { @client.common.get_user_group(group_id) }.to raise_error(StandardError)
 
     end
 
