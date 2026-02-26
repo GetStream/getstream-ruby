@@ -265,12 +265,14 @@ RSpec.describe 'Chat Misc Integration', type: :integration do
 
       type_name = "testtype#{random_string(6)}"
 
-      # Create channel type
+      # Create channel type with a lower max_message_length so the update below
+      # can demonstrate the value actually changes. The test app plan caps at
+      # 5000, so stay within that ceiling to avoid silent truncation.
       create_resp = @client.make_request(:post, '/api/v2/chat/channeltypes', body: {
                                            name: type_name,
                                            automod: 'disabled',
                                            automod_behavior: 'flag',
-                                           max_message_length: 5000,
+                                           max_message_length: 4000,
                                          })
       expect(create_resp.name).to eq(type_name)
       @created_channel_type_names << type_name
@@ -282,18 +284,19 @@ RSpec.describe 'Chat Misc Integration', type: :integration do
       get_resp = @client.make_request(:get, "/api/v2/chat/channeltypes/#{type_name}")
       expect(get_resp.name).to eq(type_name)
 
-      # Update channel type
+      # Update channel type — raise to 5000 (plan maximum) to verify the
+      # update is applied and the new value is reflected on re-fetch.
       @client.make_request(:put, "/api/v2/chat/channeltypes/#{type_name}", body: {
                              automod: 'disabled',
                              automod_behavior: 'flag',
-                             max_message_length: 10_000,
+                             max_message_length: 5000,
                              typing_events: false,
                            })
 
       # Re-fetch to verify (eventual consistency)
       sleep(2)
       updated = @client.make_request(:get, "/api/v2/chat/channeltypes/#{type_name}")
-      expect(updated.max_message_length).to eq(10_000)
+      expect(updated.max_message_length).to eq(5000)
 
       # Delete a separate channel type
       del_name = "testdeltype#{random_string(6)}"
