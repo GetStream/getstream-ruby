@@ -314,7 +314,7 @@ RSpec.describe 'Chat Message Integration', type: :integration do
                              message: { text: 'Pending message text', user_id: @user_1 },
                              pending: true,
                              skip_push: true)
-      rescue StandardError => e
+      rescue GetStreamRuby::APIError => e
         if e.message.include?('pending messages not enabled') || e.message.include?('feature flag')
           skip('Pending messages feature not enabled for this app')
         end
@@ -359,7 +359,7 @@ RSpec.describe 'Chat Message Integration', type: :integration do
           filter: { 'message_id' => msg_id },
           sort: [],
         )
-      rescue StandardError => e
+      rescue GetStreamRuby::APIError => e
         if e.message.include?('feature flag') || e.message.include?('not enabled')
           skip('QueryMessageHistory feature not enabled for this app')
         end
@@ -378,8 +378,8 @@ RSpec.describe 'Chat Message Integration', type: :integration do
       end
 
       # Verify text values (descending by default: most recent first)
-      expect(hist_resp.message_history[0].to_h['text']).to eq('updated text')
-      expect(hist_resp.message_history[1].to_h['text']).to eq('initial text')
+      expect(hist_resp.message_history.first.to_h['text']).to eq('updated text 2')
+      expect(hist_resp.message_history.last.to_h['text']).to eq('initial text')
 
     end
 
@@ -403,7 +403,7 @@ RSpec.describe 'Chat Message Integration', type: :integration do
           filter: { 'message_id' => msg_id },
           sort: [{ 'field' => 'message_updated_at', 'direction' => 1 }],
         )
-      rescue StandardError => e
+      rescue GetStreamRuby::APIError => e
         if e.message.include?('feature flag') || e.message.include?('not enabled')
           skip('QueryMessageHistory feature not enabled for this app')
         end
@@ -486,7 +486,7 @@ RSpec.describe 'Chat Message Integration', type: :integration do
       # Undelete
       begin
         undel_resp = undelete_message(msg_id, undeleted_by: @user_1)
-      rescue StandardError => e
+      rescue GetStreamRuby::APIError => e
         if e.message.include?('undeleted_by') || e.message.include?('required field')
           skip('UndeleteMessage requires undeleted_by field not yet in generated request struct')
         end
@@ -510,7 +510,7 @@ RSpec.describe 'Chat Message Integration', type: :integration do
         send_resp = send_msg('messaging', channel_id,
                              message: { text: 'Secret message', user_id: @user_1,
                                         restricted_visibility: [@user_1] })
-      rescue StandardError => e
+      rescue GetStreamRuby::APIError => e
         if e.message.include?('private messaging is not allowed') || e.message.include?('not enabled')
           skip('RestrictedVisibility (private messaging) is not enabled for this app')
         end
