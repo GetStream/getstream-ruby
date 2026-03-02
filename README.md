@@ -288,6 +288,9 @@ The project includes simple GitHub Actions workflows:
   - Create a tag: `git tag v1.0.0 && git push origin v1.0.0`
   - Automated gem build and release
 
+- **Pre-releasee Pipeline:** Create a pre-release to trigger the workflow
+  - Push a tag (e.g. `1.0.0.beta.1`), then go to **GitHub Releases -> Draft a new release**, select the tag, check **"Set as a pre-release"**, and publish. The CI job will trigger automatically and publish the package.
+
 #### GitHub Environment Variables
 
 To enable integration tests in CI, configure these GitHub repository settings:
