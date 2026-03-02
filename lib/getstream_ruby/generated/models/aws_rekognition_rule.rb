@@ -18,6 +18,9 @@ module GetStream
         # @!attribute min_confidence
         #   @return [Float]
         attr_accessor :min_confidence
+        # @!attribute subclassifications
+        #   @return [Hash<String, Boolean>]
+        attr_accessor :subclassifications
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -25,6 +28,7 @@ module GetStream
           @action = attributes[:action] || attributes['action']
           @label = attributes[:label] || attributes['label']
           @min_confidence = attributes[:min_confidence] || attributes['min_confidence']
+          @subclassifications = attributes[:subclassifications] || attributes['subclassifications'] || nil
         end
 
         # Override field mappings for JSON serialization
@@ -32,7 +36,8 @@ module GetStream
           {
             action: 'action',
             label: 'label',
-            min_confidence: 'min_confidence'
+            min_confidence: 'min_confidence',
+            subclassifications: 'subclassifications'
           }
         end
       end

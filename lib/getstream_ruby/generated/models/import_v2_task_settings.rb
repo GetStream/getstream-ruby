@@ -9,6 +9,9 @@ module GetStream
       class ImportV2TaskSettings < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute merge_custom
+        #   @return [Boolean]
+        attr_accessor :merge_custom
         # @!attribute mode
         #   @return [String]
         attr_accessor :mode
@@ -25,6 +28,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @merge_custom = attributes[:merge_custom] || attributes['merge_custom'] || nil
           @mode = attributes[:mode] || attributes['mode'] || nil
           @path = attributes[:path] || attributes['path'] || nil
           @skip_references_check = attributes[:skip_references_check] || attributes['skip_references_check'] || nil
@@ -34,6 +38,7 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            merge_custom: 'merge_custom',
             mode: 'mode',
             path: 'path',
             skip_references_check: 'skip_references_check',

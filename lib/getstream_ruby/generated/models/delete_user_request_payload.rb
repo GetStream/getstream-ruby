@@ -15,6 +15,12 @@ module GetStream
         # @!attribute delete_feeds_content
         #   @return [Boolean] Delete flagged feeds content
         attr_accessor :delete_feeds_content
+        # @!attribute entity_id
+        #   @return [String] ID of the user to delete (alternative to item_id)
+        attr_accessor :entity_id
+        # @!attribute entity_type
+        #   @return [String] Type of the entity
+        attr_accessor :entity_type
         # @!attribute hard_delete
         #   @return [Boolean] Whether to permanently delete the user
         attr_accessor :hard_delete
@@ -30,6 +36,8 @@ module GetStream
           super(attributes)
           @delete_conversation_channels = attributes[:delete_conversation_channels] || attributes['delete_conversation_channels'] || nil
           @delete_feeds_content = attributes[:delete_feeds_content] || attributes['delete_feeds_content'] || nil
+          @entity_id = attributes[:entity_id] || attributes['entity_id'] || nil
+          @entity_type = attributes[:entity_type] || attributes['entity_type'] || nil
           @hard_delete = attributes[:hard_delete] || attributes['hard_delete'] || nil
           @mark_messages_deleted = attributes[:mark_messages_deleted] || attributes['mark_messages_deleted'] || nil
           @reason = attributes[:reason] || attributes['reason'] || nil
@@ -40,6 +48,8 @@ module GetStream
           {
             delete_conversation_channels: 'delete_conversation_channels',
             delete_feeds_content: 'delete_feeds_content',
+            entity_id: 'entity_id',
+            entity_type: 'entity_type',
             hard_delete: 'hard_delete',
             mark_messages_deleted: 'mark_messages_deleted',
             reason: 'reason'

@@ -15,19 +15,24 @@ module GetStream
         # @!attribute path
         #   @return [String]
         attr_accessor :path
+        # @!attribute merge_custom
+        #   @return [Boolean]
+        attr_accessor :merge_custom
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @mode = attributes[:mode] || attributes['mode']
           @path = attributes[:path] || attributes['path']
+          @merge_custom = attributes[:merge_custom] || attributes['merge_custom'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
             mode: 'mode',
-            path: 'path'
+            path: 'path',
+            merge_custom: 'merge_custom'
           }
         end
       end

@@ -12,17 +12,22 @@ module GetStream
         # @!attribute mode
         #   @return [String] Recording mode. One of: available, disabled, auto-on
         attr_accessor :mode
+        # @!attribute output_types
+        #   @return [Array<String>] Output types to include: audio_only, video_only, audio_video, screenshare_audio_only, screenshare_video_only, screenshare_audio_video
+        attr_accessor :output_types
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @mode = attributes[:mode] || attributes['mode']
+          @output_types = attributes[:output_types] || attributes['output_types'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            mode: 'mode'
+            mode: 'mode',
+            output_types: 'output_types'
           }
         end
       end

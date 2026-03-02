@@ -1027,6 +1027,175 @@ module GetStream
         )
       end
 
+      # Lists user groups with cursor-based pagination
+      #
+      # @param limit [Integer]
+      # @param id_gt [String]
+      # @param created_at_gt [String]
+      # @param team_id [String]
+      # @return [Models::ListUserGroupsResponse]
+      def list_user_groups(limit = nil, id_gt = nil, created_at_gt = nil, team_id = nil)
+        path = '/api/v2/usergroups'
+        # Build query parameters
+        query_params = {}
+        query_params['limit'] = limit unless limit.nil?
+        query_params['id_gt'] = id_gt unless id_gt.nil?
+        query_params['created_at_gt'] = created_at_gt unless created_at_gt.nil?
+        query_params['team_id'] = team_id unless team_id.nil?
+
+        # Make the API request
+        @client.make_request(
+          :get,
+          path,
+          query_params: query_params
+        )
+      end
+
+      # Creates a new user group, optionally with initial members
+      #
+      # @param create_user_group_request [CreateUserGroupRequest]
+      # @return [Models::CreateUserGroupResponse]
+      def create_user_group(create_user_group_request)
+        path = '/api/v2/usergroups'
+        # Build request body
+        body = create_user_group_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
+      # Searches user groups by name prefix for autocomplete
+      #
+      # @param query [String]
+      # @param limit [Integer]
+      # @param name_gt [String]
+      # @param id_gt [String]
+      # @param team_id [String]
+      # @return [Models::SearchUserGroupsResponse]
+      def search_user_groups(query, limit = nil, name_gt = nil, id_gt = nil, team_id = nil)
+        path = '/api/v2/usergroups/search'
+        # Build query parameters
+        query_params = {}
+        query_params['query'] = query unless query.nil?
+        query_params['limit'] = limit unless limit.nil?
+        query_params['name_gt'] = name_gt unless name_gt.nil?
+        query_params['id_gt'] = id_gt unless id_gt.nil?
+        query_params['team_id'] = team_id unless team_id.nil?
+
+        # Make the API request
+        @client.make_request(
+          :get,
+          path,
+          query_params: query_params
+        )
+      end
+
+      # Deletes a user group and all its members
+      #
+      # @param _id [String]
+      # @param team_id [String]
+      # @return [Models::Response]
+      def delete_user_group(_id, team_id = nil)
+        path = '/api/v2/usergroups/{id}'
+        # Replace path parameters
+        path = path.gsub('{id}', _id.to_s)
+        # Build query parameters
+        query_params = {}
+        query_params['team_id'] = team_id unless team_id.nil?
+
+        # Make the API request
+        @client.make_request(
+          :delete,
+          path,
+          query_params: query_params
+        )
+      end
+
+      # Gets a user group by ID, including its members
+      #
+      # @param _id [String]
+      # @param team_id [String]
+      # @return [Models::GetUserGroupResponse]
+      def get_user_group(_id, team_id = nil)
+        path = '/api/v2/usergroups/{id}'
+        # Replace path parameters
+        path = path.gsub('{id}', _id.to_s)
+        # Build query parameters
+        query_params = {}
+        query_params['team_id'] = team_id unless team_id.nil?
+
+        # Make the API request
+        @client.make_request(
+          :get,
+          path,
+          query_params: query_params
+        )
+      end
+
+      # Updates a user group's name and/or description. team_id is immutable.
+      #
+      # @param _id [String]
+      # @param update_user_group_request [UpdateUserGroupRequest]
+      # @return [Models::UpdateUserGroupResponse]
+      def update_user_group(_id, update_user_group_request)
+        path = '/api/v2/usergroups/{id}'
+        # Replace path parameters
+        path = path.gsub('{id}', _id.to_s)
+        # Build request body
+        body = update_user_group_request
+
+        # Make the API request
+        @client.make_request(
+          :put,
+          path,
+          body: body
+        )
+      end
+
+      # Removes members from a user group. Users already not in the group are silently ignored.
+      #
+      # @param _id [String]
+      # @param remove_user_group_members_request [RemoveUserGroupMembersRequest]
+      # @return [Models::RemoveUserGroupMembersResponse]
+      def remove_user_group_members(_id, remove_user_group_members_request)
+        path = '/api/v2/usergroups/{id}/members'
+        # Replace path parameters
+        path = path.gsub('{id}', _id.to_s)
+        # Build request body
+        body = remove_user_group_members_request
+
+        # Make the API request
+        @client.make_request(
+          :delete,
+          path,
+          body: body
+        )
+      end
+
+      # Adds members to a user group. All user IDs must exist. The operation is all-or-nothing.
+      #
+      # @param _id [String]
+      # @param add_user_group_members_request [AddUserGroupMembersRequest]
+      # @return [Models::AddUserGroupMembersResponse]
+      def add_user_group_members(_id, add_user_group_members_request)
+        path = '/api/v2/usergroups/{id}/members'
+        # Replace path parameters
+        path = path.gsub('{id}', _id.to_s)
+        # Build request body
+        body = add_user_group_members_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
       # Find and filter users
       #
       # @param payload [QueryUsersPayload]

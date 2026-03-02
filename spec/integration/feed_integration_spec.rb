@@ -310,20 +310,8 @@ RSpec.describe 'Feed Integration Tests', type: :integration do
         expect(response).to be_a(GetStreamRuby::StreamResponse)
         puts "✅ Created/updated users in batch: #{user_id_1}, #{user_id_2}"
         # snippet-stop: UpdateUsers
-
-        # Wait for backend propagation
-        test_helper.wait_for_backend_propagation(1)
       ensure
-        # Cleanup created users
-        begin
-          delete_request = GetStream::Generated::Models::DeleteUsersRequest.new(
-            user_ids: [user_id_1, user_id_2],
-            user: 'hard',
-          )
-          client.common.delete_users(delete_request)
-        rescue StandardError => e
-          puts "⚠️ Cleanup error: #{e.message}"
-        end
+        SuiteCleanup.register_users([user_id_1, user_id_2])
       end
 
     end
@@ -346,7 +334,6 @@ RSpec.describe 'Feed Integration Tests', type: :integration do
           },
         )
         client.common.update_users(create_request)
-        test_helper.wait_for_backend_propagation(1)
 
         # snippet-start: UpdateUsersPartial
         # Partially update user
@@ -366,16 +353,7 @@ RSpec.describe 'Feed Integration Tests', type: :integration do
         puts "✅ Partially updated user: #{user_id}"
         # snippet-stop: UpdateUsersPartial
       ensure
-        # Cleanup
-        begin
-          delete_request = GetStream::Generated::Models::DeleteUsersRequest.new(
-            user_ids: [user_id],
-            user: 'hard',
-          )
-          client.common.delete_users(delete_request)
-        rescue StandardError => e
-          puts "⚠️ Cleanup error: #{e.message}"
-        end
+        SuiteCleanup.register_users([user_id])
       end
 
     end
@@ -406,32 +384,43 @@ RSpec.describe 'Feed Integration Tests', type: :integration do
 
         create_request = GetStream::Generated::Models::UpdateUsersRequest.new(users: users_hash)
         client.common.update_users(create_request)
-        test_helper.wait_for_backend_propagation(1)
 
         # snippet-start: DeleteUsers
-        # Delete users in batch
-        delete_request = GetStream::Generated::Models::DeleteUsersRequest.new(
-          user_ids: user_ids,
-          user: 'hard',
-        )
+        # Delete users in batch.
+        # delete_users is rate-limited to 6 req/min on a fixed 1-minute clock
+        # window. Rejected 429 calls still increment the counter, so arbitrary
+        # backoff makes recovery harder. On a 429, sleep until the next minute
+        # boundary (at most 61s) to guarantee a fresh window before retrying.
+        response = nil
+        last_error = nil
+        3.times do
 
-        response = client.common.delete_users(delete_request)
+          last_error = nil
+          response = client.common.delete_users(
+            GetStream::Generated::Models::DeleteUsersRequest.new(
+              user_ids: user_ids,
+              user: 'hard',
+            ),
+          )
+          break
+        rescue GetStreamRuby::APIError => e
+          raise unless e.message.include?('Too many requests')
+
+          last_error = e
+          sleep(61 - Time.now.sec)
+
+        end
+
+        raise last_error if last_error
+
+        expect(response).not_to be_nil
         expect(response).to be_a(GetStreamRuby::StreamResponse)
         puts "✅ Deleted #{user_ids.length} users in batch"
         # snippet-stop: DeleteUsers
-      rescue StandardError => e
-        puts "⚠️ Error: #{e.message}"
-        # Try cleanup anyway
-        begin
-          delete_request = GetStream::Generated::Models::DeleteUsersRequest.new(
-            user_ids: user_ids,
-            user: 'hard',
-          )
-          client.common.delete_users(delete_request)
-        rescue StandardError
-          # Ignore cleanup errors
-        end
-        raise e
+      ensure
+        # Register for suite cleanup. If delete_users already succeeded above,
+        # the suite cleanup attempt on these IDs is a harmless no-op.
+        SuiteCleanup.register_users(user_ids)
       end
 
     end
@@ -832,30 +821,36 @@ RSpec.describe 'Feed Integration Tests', type: :integration do
 
       puts "\n📤 Testing file upload..."
 
-      # Get the path to the test file (in the same directory as the spec)
-      test_file_path = File.join(__dir__, 'upload-test.png')
-      raise "Test file not found: #{test_file_path}" unless File.exist?(test_file_path)
+      # Create a temporary text file (feed API upload_file supports text, not images)
+      require 'tempfile'
+      tmpfile = Tempfile.new(['feed-upload-test-', '.txt'])
+      tmpfile.write('hello world test file content from Ruby SDK')
+      tmpfile.close
 
-      # Create file upload request
-      file_upload_request = GetStream::Generated::Models::FileUploadRequest.new(
-        file: test_file_path,
-        user: GetStream::Generated::Models::OnlyUserID.new(id: test_user_id_1),
-      )
+      begin
+        # Create file upload request
+        file_upload_request = GetStream::Generated::Models::FileUploadRequest.new(
+          file: tmpfile.path,
+          user: GetStream::Generated::Models::OnlyUserID.new(id: test_user_id_1),
+        )
 
-      # Upload the file
-      upload_response = client.common.upload_file(file_upload_request)
+        # Upload the file
+        upload_response = client.common.upload_file(file_upload_request)
 
-      expect(upload_response).to be_a(GetStreamRuby::StreamResponse)
-      expect(upload_response.file).not_to be_nil
-      expect(upload_response.file).to be_a(String)
-      expect(upload_response.file).not_to be_empty
+        expect(upload_response).to be_a(GetStreamRuby::StreamResponse)
+        expect(upload_response.file).not_to be_nil
+        expect(upload_response.file).to be_a(String)
+        expect(upload_response.file).not_to be_empty
 
-      puts '✅ File uploaded successfully'
-      puts "   File URL: #{upload_response.file}"
-      puts "   Thumbnail URL: #{upload_response.thumb_url}" if upload_response.thumb_url
+        puts '✅ File uploaded successfully'
+        puts "   File URL: #{upload_response.file}"
+        puts "   Thumbnail URL: #{upload_response.thumb_url}" if upload_response.thumb_url
 
-      # Verify the URL is a valid URL
-      expect(upload_response.file).to match(/^https?:\/\//)
+        # Verify the URL is a valid URL
+        expect(upload_response.file).to match(/^https?:\/\//)
+      ensure
+        tmpfile.unlink
+      end
 
     end
 

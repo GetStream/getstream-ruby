@@ -30,6 +30,9 @@ module GetStream
         # @!attribute ai_image_config
         #   @return [AIImageConfig]
         attr_accessor :ai_image_config
+        # @!attribute ai_image_subclassifications
+        #   @return [Hash<String, Array<String>>] Available L2 subclassifications per L1 image moderation label, based on the active provider
+        attr_accessor :ai_image_subclassifications
         # @!attribute ai_text_config
         #   @return [AITextConfig]
         attr_accessor :ai_text_config
@@ -68,6 +71,7 @@ module GetStream
           @updated_at = attributes[:updated_at] || attributes['updated_at']
           @supported_video_call_harm_types = attributes[:supported_video_call_harm_types] || attributes['supported_video_call_harm_types']
           @ai_image_config = attributes[:ai_image_config] || attributes['ai_image_config'] || nil
+          @ai_image_subclassifications = attributes[:ai_image_subclassifications] || attributes['ai_image_subclassifications'] || nil
           @ai_text_config = attributes[:ai_text_config] || attributes['ai_text_config'] || nil
           @ai_video_config = attributes[:ai_video_config] || attributes['ai_video_config'] || nil
           @automod_platform_circumvention_config = attributes[:automod_platform_circumvention_config] || attributes['automod_platform_circumvention_config'] || nil
@@ -89,6 +93,7 @@ module GetStream
             updated_at: 'updated_at',
             supported_video_call_harm_types: 'supported_video_call_harm_types',
             ai_image_config: 'ai_image_config',
+            ai_image_subclassifications: 'ai_image_subclassifications',
             ai_text_config: 'ai_text_config',
             ai_video_config: 'ai_video_config',
             automod_platform_circumvention_config: 'automod_platform_circumvention_config',
