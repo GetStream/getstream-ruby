@@ -150,25 +150,21 @@ module GetStream
       # Delete a specific moderation policy by its name
       #
       # @param key [String]
-      # @param delete_moderation_config_request [DeleteModerationConfigRequest]
       # @param team [String]
       # @return [Models::DeleteModerationConfigResponse]
-      def delete_config(key, delete_moderation_config_request, team = nil)
+      def delete_config(key, team = nil)
         path = '/api/v2/moderation/config/{key}'
         # Replace path parameters
         path = path.gsub('{key}', key.to_s)
         # Build query parameters
         query_params = {}
         query_params['team'] = team unless team.nil?
-        # Build request body
-        body = delete_moderation_config_request
 
         # Make the API request
         @client.make_request(
           :delete,
           path,
-          query_params: query_params,
-          body: body
+          query_params: query_params
         )
       end
 

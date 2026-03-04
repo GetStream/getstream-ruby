@@ -80,25 +80,21 @@ module GetStream
       # Deletes previously created application blocklist
       #
       # @param name [String]
-      # @param delete_block_list_request [DeleteBlockListRequest]
       # @param team [String]
       # @return [Models::Response]
-      def delete_block_list(name, delete_block_list_request, team = nil)
+      def delete_block_list(name, team = nil)
         path = '/api/v2/blocklists/{name}'
         # Replace path parameters
         path = path.gsub('{name}', name.to_s)
         # Build query parameters
         query_params = {}
         query_params['team'] = team unless team.nil?
-        # Build request body
-        body = delete_block_list_request
 
         # Make the API request
         @client.make_request(
           :delete,
           path,
-          query_params: query_params,
-          body: body
+          query_params: query_params
         )
       end
 
@@ -299,20 +295,16 @@ module GetStream
       # Deletes external storage
       #
       # @param name [String]
-      # @param delete_external_storage_request [DeleteExternalStorageRequest]
       # @return [Models::DeleteExternalStorageResponse]
-      def delete_external_storage(name, delete_external_storage_request)
+      def delete_external_storage(name)
         path = '/api/v2/external_storage/{name}'
         # Replace path parameters
         path = path.gsub('{name}', name.to_s)
-        # Build request body
-        body = delete_external_storage_request
 
         # Make the API request
         @client.make_request(
           :delete,
-          path,
-          body: body
+          path
         )
       end
 
@@ -605,25 +597,21 @@ module GetStream
       # Deletes a pollSends events:- feeds.poll.deleted- poll.deleted
       #
       # @param poll_id [String]
-      # @param delete_poll_request [DeletePollRequest]
       # @param user_id [String]
       # @return [Models::Response]
-      def delete_poll(poll_id, delete_poll_request, user_id = nil)
+      def delete_poll(poll_id, user_id = nil)
         path = '/api/v2/polls/{poll_id}'
         # Replace path parameters
         path = path.gsub('{poll_id}', poll_id.to_s)
         # Build query parameters
         query_params = {}
         query_params['user_id'] = user_id unless user_id.nil?
-        # Build request body
-        body = delete_poll_request
 
         # Make the API request
         @client.make_request(
           :delete,
           path,
-          query_params: query_params,
-          body: body
+          query_params: query_params
         )
       end
 
@@ -712,10 +700,9 @@ module GetStream
       #
       # @param poll_id [String]
       # @param option_id [String]
-      # @param delete_poll_option_request [DeletePollOptionRequest]
       # @param user_id [String]
       # @return [Models::Response]
-      def delete_poll_option(poll_id, option_id, delete_poll_option_request, user_id = nil)
+      def delete_poll_option(poll_id, option_id, user_id = nil)
         path = '/api/v2/polls/{poll_id}/options/{option_id}'
         # Replace path parameters
         path = path.gsub('{poll_id}', poll_id.to_s)
@@ -723,15 +710,12 @@ module GetStream
         # Build query parameters
         query_params = {}
         query_params['user_id'] = user_id unless user_id.nil?
-        # Build request body
-        body = delete_poll_option_request
 
         # Make the API request
         @client.make_request(
           :delete,
           path,
-          query_params: query_params,
-          body: body
+          query_params: query_params
         )
       end
 
@@ -944,20 +928,16 @@ module GetStream
       # Deletes custom role
       #
       # @param name [String]
-      # @param delete_custom_role_request [DeleteCustomRoleRequest]
       # @return [Models::Response]
-      def delete_role(name, delete_custom_role_request)
+      def delete_role(name)
         path = '/api/v2/roles/{name}'
         # Replace path parameters
         path = path.gsub('{name}', name.to_s)
-        # Build request body
-        body = delete_custom_role_request
 
         # Make the API request
         @client.make_request(
           :delete,
-          path,
-          body: body
+          path
         )
       end
 
@@ -979,23 +959,19 @@ module GetStream
 
       # Deletes previously uploaded file
       #
-      # @param file_delete_request [FileDeleteRequest]
       # @param url [String]
       # @return [Models::Response]
-      def delete_file(file_delete_request, url = nil)
+      def delete_file(url = nil)
         path = '/api/v2/uploads/file'
         # Build query parameters
         query_params = {}
         query_params['url'] = url unless url.nil?
-        # Build request body
-        body = file_delete_request
 
         # Make the API request
         @client.make_request(
           :delete,
           path,
-          query_params: query_params,
-          body: body
+          query_params: query_params
         )
       end
 
@@ -1018,23 +994,19 @@ module GetStream
 
       # Deletes previously uploaded image
       #
-      # @param file_delete_request [FileDeleteRequest]
       # @param url [String]
       # @return [Models::Response]
-      def delete_image(file_delete_request, url = nil)
+      def delete_image(url = nil)
         path = '/api/v2/uploads/image'
         # Build query parameters
         query_params = {}
         query_params['url'] = url unless url.nil?
-        # Build request body
-        body = file_delete_request
 
         # Make the API request
         @client.make_request(
           :delete,
           path,
-          query_params: query_params,
-          body: body
+          query_params: query_params
         )
       end
 
@@ -1125,25 +1097,21 @@ module GetStream
       # Deletes a user group and all its members
       #
       # @param _id [String]
-      # @param delete_user_group_request [DeleteUserGroupRequest]
       # @param team_id [String]
       # @return [Models::Response]
-      def delete_user_group(_id, delete_user_group_request, team_id = nil)
+      def delete_user_group(_id, team_id = nil)
         path = '/api/v2/usergroups/{id}'
         # Replace path parameters
         path = path.gsub('{id}', _id.to_s)
         # Build query parameters
         query_params = {}
         query_params['team_id'] = team_id unless team_id.nil?
-        # Build request body
-        body = delete_user_group_request
 
         # Make the API request
         @client.make_request(
           :delete,
           path,
-          query_params: query_params,
-          body: body
+          query_params: query_params
         )
       end
 

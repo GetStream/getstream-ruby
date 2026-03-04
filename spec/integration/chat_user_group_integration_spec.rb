@@ -90,7 +90,7 @@ RSpec.describe 'Chat User Group Integration', type: :integration do
       user_ids, _resp = create_test_users(2)
       group_id = "test-group-#{SecureRandom.uuid}"
 
-      create_resp = create_group(id: group_id, name: 'Group With Members', member_ids: user_ids)
+      create_resp = create_group(id: group_id, name: "Group With Members #{group_id}", member_ids: user_ids)
       expect(create_resp.user_group).not_to be_nil
       expect(create_resp.user_group.id).to eq(group_id)
 
@@ -114,7 +114,7 @@ RSpec.describe 'Chat User Group Integration', type: :integration do
     it 'updates the group name and description, then confirms via GET' do
 
       group_id = "test-group-#{SecureRandom.uuid}"
-      create_group(id: group_id, name: 'Original Name')
+      create_group(id: group_id, name: "Original Name #{group_id}")
 
       new_name = 'Updated Name'
       new_desc = 'Updated description'
@@ -143,8 +143,8 @@ RSpec.describe 'Chat User Group Integration', type: :integration do
 
       group_id_a = "test-group-#{SecureRandom.uuid}"
       group_id_b = "test-group-#{SecureRandom.uuid}"
-      create_group(id: group_id_a, name: 'List Test Group One')
-      create_group(id: group_id_b, name: 'List Test Group Two')
+      create_group(id: group_id_a, name: "List Test Group One #{group_id_a}")
+      create_group(id: group_id_b, name: "List Test Group Two #{group_id_b}")
 
       list_resp = @client.common.list_user_groups
       expect(list_resp.user_groups).not_to be_nil
@@ -164,7 +164,7 @@ RSpec.describe 'Chat User Group Integration', type: :integration do
       group_ids = Array.new(3) { "test-group-#{SecureRandom.uuid}" }
       group_ids.each_with_index do |gid, i|
 
-        create_group(id: gid, name: "Limit Test Group #{i + 1}")
+        create_group(id: gid, name: "Limit Test Group #{gid}")
 
       end
 
@@ -208,7 +208,7 @@ RSpec.describe 'Chat User Group Integration', type: :integration do
       group_id = "test-group-#{SecureRandom.uuid}"
 
       # Create with first member only
-      create_group(id: group_id, name: 'Member Management Group', member_ids: user_ids[0, 1])
+      create_group(id: group_id, name: "Member Management Group #{group_id}", member_ids: user_ids[0, 1])
 
       # Add remaining members
       add_resp = @client.common.add_user_group_members(
@@ -243,7 +243,7 @@ RSpec.describe 'Chat User Group Integration', type: :integration do
       group_id = "test-group-#{SecureRandom.uuid}"
 
       # Create group with members
-      create_group(id: group_id, name: 'Remove Members Group', member_ids: user_ids)
+      create_group(id: group_id, name: "Remove Members Group #{group_id}", member_ids: user_ids)
 
       # Verify members are present before removal
       get_resp = @client.common.get_user_group(group_id)
@@ -272,7 +272,7 @@ RSpec.describe 'Chat User Group Integration', type: :integration do
     it 'deletes a group and verifies a subsequent GET returns an error' do
 
       group_id = "test-group-#{SecureRandom.uuid}"
-      create_group(id: group_id, name: 'Group To Delete')
+      create_group(id: group_id, name: "Group To Delete #{group_id}")
 
       delete_group(group_id)
 
