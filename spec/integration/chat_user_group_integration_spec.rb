@@ -116,7 +116,7 @@ RSpec.describe 'Chat User Group Integration', type: :integration do
       group_id = "test-group-#{SecureRandom.uuid}"
       create_group(id: group_id, name: "Original Name #{group_id}")
 
-      new_name = 'Updated Name'
+      new_name = "Updated Name #{group_id}"
       new_desc = 'Updated description'
       update_resp = @client.common.update_user_group(
         group_id,
