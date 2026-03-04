@@ -1156,6 +1156,22 @@ module GetStream
         )
       end
 
+      # Removes members from a user group. Users already not in the group are silently ignored.
+      #
+      # @param _id [String]
+      # @return [Models::RemoveUserGroupMembersResponse]
+      def remove_user_group_members(_id)
+        path = '/api/v2/usergroups/{id}/members'
+        # Replace path parameters
+        path = path.gsub('{id}', _id.to_s)
+
+        # Make the API request
+        @client.make_request(
+          :delete,
+          path
+        )
+      end
+
       # Adds members to a user group. All user IDs must exist. The operation is all-or-nothing.
       #
       # @param _id [String]
@@ -1167,26 +1183,6 @@ module GetStream
         path = path.gsub('{id}', _id.to_s)
         # Build request body
         body = add_user_group_members_request
-
-        # Make the API request
-        @client.make_request(
-          :post,
-          path,
-          body: body
-        )
-      end
-
-      # Removes members from a user group. Users already not in the group are silently ignored.
-      #
-      # @param _id [String]
-      # @param remove_user_group_members_request [RemoveUserGroupMembersRequest]
-      # @return [Models::RemoveUserGroupMembersResponse]
-      def remove_user_group_members(_id, remove_user_group_members_request)
-        path = '/api/v2/usergroups/{id}/members/delete'
-        # Replace path parameters
-        path = path.gsub('{id}', _id.to_s)
-        # Build request body
-        body = remove_user_group_members_request
 
         # Make the API request
         @client.make_request(

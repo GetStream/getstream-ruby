@@ -12,6 +12,9 @@ module GetStream
         # @!attribute copy_custom_to_notification
         #   @return [Boolean] Whether to copy custom data to the notification activity (only applies when handle_mention_notifications creates notifications)
         attr_accessor :copy_custom_to_notification
+        # @!attribute enrich_own_fields
+        #   @return [Boolean] If true, enriches the activity's current_feed with own_* fields (own_follows, own_followings, own_capabilities, own_membership). Defaults to false for performance.
+        attr_accessor :enrich_own_fields
         # @!attribute expires_at
         #   @return [DateTime] Time when the activity will expire
         attr_accessor :expires_at
@@ -77,6 +80,7 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @copy_custom_to_notification = attributes[:copy_custom_to_notification] || attributes['copy_custom_to_notification'] || nil
+          @enrich_own_fields = attributes[:enrich_own_fields] || attributes['enrich_own_fields'] || nil
           @expires_at = attributes[:expires_at] || attributes['expires_at'] || nil
           @handle_mention_notifications = attributes[:handle_mention_notifications] || attributes['handle_mention_notifications'] || nil
           @poll_id = attributes[:poll_id] || attributes['poll_id'] || nil
@@ -103,6 +107,7 @@ module GetStream
         def self.json_field_mappings
           {
             copy_custom_to_notification: 'copy_custom_to_notification',
+            enrich_own_fields: 'enrich_own_fields',
             expires_at: 'expires_at',
             handle_mention_notifications: 'handle_mention_notifications',
             poll_id: 'poll_id',

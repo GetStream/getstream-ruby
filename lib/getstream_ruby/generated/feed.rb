@@ -60,11 +60,13 @@ module GetStream
       # Unpin an activity from a feed. This removes the pin, so the activity will no longer be displayed at the top of the feed.
       #
       # @param activity_id [String]
+      # @param enrich_own_fields [Boolean]
       # @param user_id [String]
       # @return [Models::UnpinActivityResponse]
-      def unpin_activity(activity_id, user_id = nil)
+      def unpin_activity(activity_id, enrich_own_fields = nil, user_id = nil)
         # Build query parameters
         query_params = {}
+        query_params['enrich_own_fields'] = enrich_own_fields unless enrich_own_fields.nil?
         query_params['user_id'] = user_id unless user_id.nil?
 
         # Delegate to the FeedsClient

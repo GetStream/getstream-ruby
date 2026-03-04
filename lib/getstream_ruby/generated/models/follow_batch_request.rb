@@ -12,17 +12,22 @@ module GetStream
         # @!attribute follows
         #   @return [Array<FollowRequest>] List of follow relationships to create
         attr_accessor :follows
+        # @!attribute enrich_own_fields
+        #   @return [Boolean] If true, enriches the follow's source_feed and target_feed with own_* fields (own_follows, own_followings, own_capabilities, own_membership). Defaults to false for performance.
+        attr_accessor :enrich_own_fields
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @follows = attributes[:follows] || attributes['follows']
+          @enrich_own_fields = attributes[:enrich_own_fields] || attributes['enrich_own_fields'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            follows: 'follows'
+            follows: 'follows',
+            enrich_own_fields: 'enrich_own_fields'
           }
         end
       end

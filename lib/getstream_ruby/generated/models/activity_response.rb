@@ -135,6 +135,9 @@ module GetStream
         # @!attribute location
         #   @return [ActivityLocation]
         attr_accessor :location
+        # @!attribute metrics
+        #   @return [Hash<String, Integer>]
+        attr_accessor :metrics
         # @!attribute moderation
         #   @return [ModerationV2Response]
         attr_accessor :moderation
@@ -193,6 +196,7 @@ module GetStream
           @friend_reactions = attributes[:friend_reactions] || attributes['friend_reactions'] || nil
           @current_feed = attributes[:current_feed] || attributes['current_feed'] || nil
           @location = attributes[:location] || attributes['location'] || nil
+          @metrics = attributes[:metrics] || attributes['metrics'] || nil
           @moderation = attributes[:moderation] || attributes['moderation'] || nil
           @notification_context = attributes[:notification_context] || attributes['notification_context'] || nil
           @parent = attributes[:parent] || attributes['parent'] || nil
@@ -244,6 +248,7 @@ module GetStream
             friend_reactions: 'friend_reactions',
             current_feed: 'current_feed',
             location: 'location',
+            metrics: 'metrics',
             moderation: 'moderation',
             notification_context: 'notification_context',
             parent: 'parent',

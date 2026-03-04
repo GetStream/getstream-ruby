@@ -5,13 +5,13 @@
 module GetStream
   module Generated
     module Models
-      # 
-      class PinActivityRequest < GetStream::BaseModel
+      # Batch request to track metric events for activities. Rate-limited per user/IP per activity per metric.
+      class TrackActivityMetricsRequest < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute enrich_own_fields
-        #   @return [Boolean] If true, enriches the activity's current_feed with own_* fields (own_follows, own_followings, own_capabilities, own_membership). Defaults to false for performance.
-        attr_accessor :enrich_own_fields
+        # @!attribute events
+        #   @return [Array<TrackActivityMetricsEvent>] List of metric events to track (max 100 per request)
+        attr_accessor :events
         # @!attribute user_id
         #   @return [String]
         attr_accessor :user_id
@@ -22,7 +22,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @enrich_own_fields = attributes[:enrich_own_fields] || attributes['enrich_own_fields'] || nil
+          @events = attributes[:events] || attributes['events']
           @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @user = attributes[:user] || attributes['user'] || nil
         end
@@ -30,7 +30,7 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            enrich_own_fields: 'enrich_own_fields',
+            events: 'events',
             user_id: 'user_id',
             user: 'user'
           }

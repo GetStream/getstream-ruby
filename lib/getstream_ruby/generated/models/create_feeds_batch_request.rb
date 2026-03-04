@@ -12,17 +12,22 @@ module GetStream
         # @!attribute feeds
         #   @return [Array<FeedRequest>] List of feeds to create
         attr_accessor :feeds
+        # @!attribute enrich_own_fields
+        #   @return [Boolean] If true, enriches the created feeds with own_* fields (own_follows, own_followings, own_capabilities, own_membership). Defaults to false for performance.
+        attr_accessor :enrich_own_fields
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @feeds = attributes[:feeds] || attributes['feeds']
+          @enrich_own_fields = attributes[:enrich_own_fields] || attributes['enrich_own_fields'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            feeds: 'feeds'
+            feeds: 'feeds',
+            enrich_own_fields: 'enrich_own_fields'
           }
         end
       end
