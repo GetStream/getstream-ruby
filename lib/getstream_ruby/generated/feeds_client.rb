@@ -411,20 +411,16 @@ module GetStream
       # Delete a bookmark folder by its ID
       #
       # @param folder_id [String]
-      # @param delete_bookmark_folder_request [DeleteBookmarkFolderRequest]
       # @return [Models::DeleteBookmarkFolderResponse]
-      def delete_bookmark_folder(folder_id, delete_bookmark_folder_request)
+      def delete_bookmark_folder(folder_id)
         path = '/api/v2/feeds/bookmark_folders/{folder_id}'
         # Replace path parameters
         path = path.gsub('{folder_id}', folder_id.to_s)
-        # Build request body
-        body = delete_bookmark_folder_request
 
         # Make the API request
         @client.make_request(
           :delete,
-          path,
-          body: body
+          path
         )
       end
 
@@ -467,23 +463,19 @@ module GetStream
 
       # Delete collections in a batch operation. Users can only delete their own collections.
       #
-      # @param delete_collections_request [DeleteCollectionsRequest]
       # @param collection_refs [Array<String>]
       # @return [Models::DeleteCollectionsResponse]
-      def delete_collections(delete_collections_request, collection_refs)
+      def delete_collections(collection_refs)
         path = '/api/v2/feeds/collections'
         # Build query parameters
         query_params = {}
         query_params['collection_refs'] = collection_refs unless collection_refs.nil?
-        # Build request body
-        body = delete_collections_request
 
         # Make the API request
         @client.make_request(
           :delete,
           path,
-          query_params: query_params,
-          body: body
+          query_params: query_params
         )
       end
 

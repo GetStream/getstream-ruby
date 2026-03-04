@@ -225,18 +225,14 @@ module GetStream
 
       # Delete a specific moderation template by its name
       #
-      # @param delete_moderation_template_request [DeleteModerationTemplateRequest]
       # @return [Models::DeleteModerationTemplateResponse]
-      def v2_delete_template(delete_moderation_template_request)
+      def v2_delete_template()
         path = '/api/v2/moderation/feeds_moderation_template'
-        # Build request body
-        body = delete_moderation_template_request
 
         # Make the API request
         @client.make_request(
           :delete,
-          path,
-          body: body
+          path
         )
       end
 

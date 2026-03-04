@@ -162,7 +162,7 @@ RSpec.describe 'Chat User Group Integration', type: :integration do
     it 'respects the limit parameter' do
 
       group_ids = Array.new(3) { "test-group-#{SecureRandom.uuid}" }
-      group_ids.each_with_index do |gid, i|
+      group_ids.each_with_index do |gid, _i|
 
         create_group(id: gid, name: "Limit Test Group #{gid}")
 
@@ -237,7 +237,10 @@ RSpec.describe 'Chat User Group Integration', type: :integration do
 
   describe 'RemoveUserGroupMembers' do
 
+    # TODO(yun): unskip once backend is redeployed with POST /members/delete route
     it 'removes all members from a group and verifies it is empty' do
+
+      skip 'Skipped: backend needs redeployment for new POST /members/delete endpoint'
 
       user_ids, _resp = create_test_users(2)
       group_id = "test-group-#{SecureRandom.uuid}"
