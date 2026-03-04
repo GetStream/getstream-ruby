@@ -150,21 +150,25 @@ module GetStream
       # Delete a specific moderation policy by its name
       #
       # @param key [String]
+      # @param delete_moderation_config_request [DeleteModerationConfigRequest]
       # @param team [String]
       # @return [Models::DeleteModerationConfigResponse]
-      def delete_config(key, team = nil)
+      def delete_config(key, delete_moderation_config_request, team = nil)
         path = '/api/v2/moderation/config/{key}'
         # Replace path parameters
         path = path.gsub('{key}', key.to_s)
         # Build query parameters
         query_params = {}
         query_params['team'] = team unless team.nil?
+        # Build request body
+        body = delete_moderation_config_request
 
         # Make the API request
         @client.make_request(
           :delete,
           path,
-          query_params: query_params
+          query_params: query_params,
+          body: body
         )
       end
 
@@ -225,14 +229,18 @@ module GetStream
 
       # Delete a specific moderation template by its name
       #
+      # @param delete_moderation_template_request [DeleteModerationTemplateRequest]
       # @return [Models::DeleteModerationTemplateResponse]
-      def v2_delete_template()
+      def v2_delete_template(delete_moderation_template_request)
         path = '/api/v2/moderation/feeds_moderation_template'
+        # Build request body
+        body = delete_moderation_template_request
 
         # Make the API request
         @client.make_request(
           :delete,
-          path
+          path,
+          body: body
         )
       end
 

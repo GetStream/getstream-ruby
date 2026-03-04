@@ -5,8 +5,8 @@
 module GetStream
   module Generated
     module Models
-      # 
-      class DeleteCommentRequest < GetStream::BaseModel
+      # DeleteTranscriptionRequest is the payload for deleting a transcription.
+      class DeleteTranscriptionRequest < GetStream::BaseModel
         # Empty model - inherits all functionality from BaseModel
       end
     end

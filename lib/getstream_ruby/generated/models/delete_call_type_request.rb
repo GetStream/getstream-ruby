@@ -5,8 +5,8 @@
 module GetStream
   module Generated
     module Models
-      # 
-      class DeleteCommentRequest < GetStream::BaseModel
+      # DeleteCallTypeRequest is the payload for deleting a call type.
+      class DeleteCallTypeRequest < GetStream::BaseModel
         # Empty model - inherits all functionality from BaseModel
       end
     end

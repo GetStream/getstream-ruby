@@ -5,8 +5,8 @@
 module GetStream
   module Generated
     module Models
-      # 
-      class DeleteCommentRequest < GetStream::BaseModel
+      # Request for DeleteRecording
+      class DeleteRecordingRequest < GetStream::BaseModel
         # Empty model - inherits all functionality from BaseModel
       end
     end

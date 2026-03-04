@@ -5,8 +5,8 @@
 module GetStream
   module Generated
     module Models
-      # 
-      class DeleteCommentRequest < GetStream::BaseModel
+      # Request to delete a SIP trunk
+      class DeleteSIPTrunkRequest < GetStream::BaseModel
         # Empty model - inherits all functionality from BaseModel
       end
     end

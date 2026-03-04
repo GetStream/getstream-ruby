@@ -16,15 +16,16 @@ module GetStream
 
       # Delete a single feed by its ID
       #
+      # @param delete_feed_request [DeleteFeedRequest]
       # @param hard_delete [Boolean]
       # @return [Models::DeleteFeedResponse]
-      def delete_feed(hard_delete = nil)
+      def delete_feed(delete_feed_request, hard_delete = nil)
         # Build query parameters
         query_params = {}
         query_params['hard_delete'] = hard_delete unless hard_delete.nil?
 
         # Delegate to the FeedsClient
-        @client.feeds.delete_feed(@feed_group_id, @feed_id, query_params)
+        @client.feeds.delete_feed(@feed_group_id, @feed_id, delete_feed_request, query_params)
       end
 
       # Create a single feed for a given feed group

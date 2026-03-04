@@ -6,7 +6,7 @@ module GetStream
   module Generated
     module Models
       # 
-      class DeleteCommentRequest < GetStream::BaseModel
+      class DeleteImportV2TaskRequest < GetStream::BaseModel
         # Empty model - inherits all functionality from BaseModel
       end
     end

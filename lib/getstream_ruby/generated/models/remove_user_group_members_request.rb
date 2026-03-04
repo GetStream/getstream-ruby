@@ -10,7 +10,7 @@ module GetStream
 
         # Model attributes
         # @!attribute member_ids
-        #   @return [Array<String>] List of user IDs to remove from the group
+        #   @return [Array<String>] List of user IDs to remove
         attr_accessor :member_ids
         # @!attribute team_id
         #   @return [String]
