@@ -16,7 +16,7 @@ module GetStream
         #   @return [Array<String>] Available harm labels for closed caption rules
         attr_accessor :closed_caption_labels
         # @!attribute keyframe_labels
-        #   @return [Array<String>] Available harm labels for keyframe rules
+        #   @return [Array<String>] Deprecated: use keyframe_label_classifications instead. Available L1 harm labels for keyframe rules
         attr_accessor :keyframe_labels
         # @!attribute rules
         #   @return [Array<ModerationRuleV2Response>] List of moderation rules
@@ -24,6 +24,9 @@ module GetStream
         # @!attribute default_llm_labels
         #   @return [Hash<String, String>] Default LLM label descriptions
         attr_accessor :default_llm_labels
+        # @!attribute keyframe_label_classifications
+        #   @return [Hash<String, Array<String>>] L1 to L2 mapping of keyframe harm label classifications
+        attr_accessor :keyframe_label_classifications
         # @!attribute next
         #   @return [String]
         attr_accessor :next
@@ -39,6 +42,7 @@ module GetStream
           @keyframe_labels = attributes[:keyframe_labels] || attributes['keyframe_labels']
           @rules = attributes[:rules] || attributes['rules']
           @default_llm_labels = attributes[:default_llm_labels] || attributes['default_llm_labels']
+          @keyframe_label_classifications = attributes[:keyframe_label_classifications] || attributes['keyframe_label_classifications']
           @next = attributes[:next] || attributes['next'] || nil
           @prev = attributes[:prev] || attributes['prev'] || nil
         end
@@ -51,6 +55,7 @@ module GetStream
             keyframe_labels: 'keyframe_labels',
             rules: 'rules',
             default_llm_labels: 'default_llm_labels',
+            keyframe_label_classifications: 'keyframe_label_classifications',
             next: 'next',
             prev: 'prev'
           }

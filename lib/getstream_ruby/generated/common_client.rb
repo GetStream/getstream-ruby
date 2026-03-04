@@ -1159,20 +1159,16 @@ module GetStream
       # Removes members from a user group. Users already not in the group are silently ignored.
       #
       # @param _id [String]
-      # @param remove_user_group_members_request [RemoveUserGroupMembersRequest]
       # @return [Models::RemoveUserGroupMembersResponse]
-      def remove_user_group_members(_id, remove_user_group_members_request)
+      def remove_user_group_members(_id)
         path = '/api/v2/usergroups/{id}/members'
         # Replace path parameters
         path = path.gsub('{id}', _id.to_s)
-        # Build request body
-        body = remove_user_group_members_request
 
         # Make the API request
         @client.make_request(
           :delete,
-          path,
-          body: body
+          path
         )
       end
 
@@ -1214,7 +1210,7 @@ module GetStream
         )
       end
 
-      # Updates certain fields of the userSends events:- user.presence.changed- user.updated- user.presence.changed
+      # Updates certain fields of the userSends events:- user.presence.changed- user.updated
       #
       # @param update_users_partial_request [UpdateUsersPartialRequest]
       # @return [Models::UpdateUsersResponse]
@@ -1357,7 +1353,7 @@ module GetStream
         )
       end
 
-      # Reactivate users in batchesSends events:- user.reactivated- user.reactivated
+      # Reactivate users in batchesSends events:- user.reactivated
       #
       # @param reactivate_users_request [ReactivateUsersRequest]
       # @return [Models::ReactivateUsersResponse]

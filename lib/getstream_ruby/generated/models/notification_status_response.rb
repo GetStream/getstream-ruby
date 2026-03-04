@@ -16,16 +16,16 @@ module GetStream
         #   @return [Integer] Number of unseen notifications
         attr_accessor :unseen
         # @!attribute last_read_at
-        #   @return [DateTime]
+        #   @return [DateTime] When notifications were last read
         attr_accessor :last_read_at
         # @!attribute last_seen_at
         #   @return [DateTime] When notifications were last seen
         attr_accessor :last_seen_at
         # @!attribute read_activities
-        #   @return [Array<String>] IDs of activities that have been read
+        #   @return [Array<String>] Deprecated: use is_read on each activity/group instead. IDs of activities that have been read. Capped at ~101 entries for aggregated feeds.
         attr_accessor :read_activities
         # @!attribute seen_activities
-        #   @return [Array<String>]
+        #   @return [Array<String>] Deprecated: use is_seen on each activity/group instead. IDs of activities that have been seen. Capped at ~101 entries for aggregated feeds.
         attr_accessor :seen_activities
 
         # Initialize with attributes

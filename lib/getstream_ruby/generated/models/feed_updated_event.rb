@@ -5,7 +5,7 @@
 module GetStream
   module Generated
     module Models
-      # Emitted when a feed is created.
+      # Emitted when a feed is updated.
       class FeedUpdatedEvent < GetStream::BaseModel
 
         # Model attributes

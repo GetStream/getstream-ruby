@@ -33,6 +33,12 @@ module GetStream
         # @!attribute activities
         #   @return [Array<ActivityResponse>] List of activities in this aggregation
         attr_accessor :activities
+        # @!attribute is_read
+        #   @return [Boolean] Whether this aggregated group has been read. Only set for feed groups with notification config (track_seen/track_read enabled).
+        attr_accessor :is_read
+        # @!attribute is_seen
+        #   @return [Boolean] Whether this aggregated group has been seen. Only set for feed groups with notification config (track_seen/track_read enabled).
+        attr_accessor :is_seen
         # @!attribute is_watched
         #   @return [Boolean]
         attr_accessor :is_watched
@@ -48,6 +54,8 @@ module GetStream
           @user_count = attributes[:user_count] || attributes['user_count']
           @user_count_truncated = attributes[:user_count_truncated] || attributes['user_count_truncated']
           @activities = attributes[:activities] || attributes['activities']
+          @is_read = attributes[:is_read] || attributes['is_read'] || nil
+          @is_seen = attributes[:is_seen] || attributes['is_seen'] || nil
           @is_watched = attributes[:is_watched] || attributes['is_watched'] || nil
         end
 
@@ -62,6 +70,8 @@ module GetStream
             user_count: 'user_count',
             user_count_truncated: 'user_count_truncated',
             activities: 'activities',
+            is_read: 'is_read',
+            is_seen: 'is_seen',
             is_watched: 'is_watched'
           }
         end
