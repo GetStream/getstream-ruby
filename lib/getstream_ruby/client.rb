@@ -9,6 +9,8 @@ require_relative 'generated/base_model'
 require_relative 'generated/common_client'
 require_relative 'generated/feeds_client'
 require_relative 'generated/moderation_client'
+require_relative 'generated/chat_client'
+require_relative 'generated/video_client'
 require_relative 'extensions/moderation_extensions'
 require_relative 'generated/feed'
 require_relative 'stream_response'
@@ -55,6 +57,16 @@ module GetStreamRuby
     # @return [GetStream::Generated::ModerationClient] The moderation API client
     def moderation
       @moderation ||= GetStream::Generated::ModerationClient.new(self)
+    end
+
+    # @return [GetStream::Generated::ChatClient] The chat API client
+    def chat
+      @chat ||= GetStream::Generated::ChatClient.new(self)
+    end
+
+    # @return [GetStream::Generated::VideoClient] The video API client
+    def video
+      @video ||= GetStream::Generated::VideoClient.new(self)
     end
 
     # Create an individual feed instance

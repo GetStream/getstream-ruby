@@ -9,6 +9,9 @@ module GetStream
       class QueryPinnedActivitiesRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute enrich_own_fields
+        #   @return [Boolean]
+        attr_accessor :enrich_own_fields
         # @!attribute limit
         #   @return [Integer]
         attr_accessor :limit
@@ -28,6 +31,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @enrich_own_fields = attributes[:enrich_own_fields] || attributes['enrich_own_fields'] || nil
           @limit = attributes[:limit] || attributes['limit'] || nil
           @next = attributes[:next] || attributes['next'] || nil
           @prev = attributes[:prev] || attributes['prev'] || nil
@@ -38,6 +42,7 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            enrich_own_fields: 'enrich_own_fields',
             limit: 'limit',
             next: 'next',
             prev: 'prev',

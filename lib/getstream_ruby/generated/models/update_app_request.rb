@@ -54,9 +54,15 @@ module GetStream
         # @!attribute migrate_permissions_to_v2
         #   @return [Boolean]
         attr_accessor :migrate_permissions_to_v2
+        # @!attribute moderation_analytics_enabled
+        #   @return [Boolean]
+        attr_accessor :moderation_analytics_enabled
         # @!attribute moderation_enabled
         #   @return [Boolean]
         attr_accessor :moderation_enabled
+        # @!attribute moderation_s3_image_access_role_arn
+        #   @return [String]
+        attr_accessor :moderation_s3_image_access_role_arn
         # @!attribute moderation_webhook_url
         #   @return [String]
         attr_accessor :moderation_webhook_url
@@ -169,7 +175,9 @@ module GetStream
           @image_moderation_enabled = attributes[:image_moderation_enabled] || attributes['image_moderation_enabled'] || nil
           @max_aggregated_activities_length = attributes[:max_aggregated_activities_length] || attributes['max_aggregated_activities_length'] || nil
           @migrate_permissions_to_v2 = attributes[:migrate_permissions_to_v2] || attributes['migrate_permissions_to_v2'] || nil
+          @moderation_analytics_enabled = attributes[:moderation_analytics_enabled] || attributes['moderation_analytics_enabled'] || nil
           @moderation_enabled = attributes[:moderation_enabled] || attributes['moderation_enabled'] || nil
+          @moderation_s3_image_access_role_arn = attributes[:moderation_s3_image_access_role_arn] || attributes['moderation_s3_image_access_role_arn'] || nil
           @moderation_webhook_url = attributes[:moderation_webhook_url] || attributes['moderation_webhook_url'] || nil
           @multi_tenant_enabled = attributes[:multi_tenant_enabled] || attributes['multi_tenant_enabled'] || nil
           @permission_version = attributes[:permission_version] || attributes['permission_version'] || nil
@@ -221,7 +229,9 @@ module GetStream
             image_moderation_enabled: 'image_moderation_enabled',
             max_aggregated_activities_length: 'max_aggregated_activities_length',
             migrate_permissions_to_v2: 'migrate_permissions_to_v2',
+            moderation_analytics_enabled: 'moderation_analytics_enabled',
             moderation_enabled: 'moderation_enabled',
+            moderation_s3_image_access_role_arn: 'moderation_s3_image_access_role_arn',
             moderation_webhook_url: 'moderation_webhook_url',
             multi_tenant_enabled: 'multi_tenant_enabled',
             permission_version: 'permission_version',

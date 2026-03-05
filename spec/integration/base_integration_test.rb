@@ -4,6 +4,7 @@ require 'rspec'
 require 'securerandom'
 require 'dotenv'
 require_relative '../../lib/getstream_ruby'
+require_relative 'suite_cleanup'
 
 # Base class for integration tests with common setup and cleanup
 class BaseIntegrationTest

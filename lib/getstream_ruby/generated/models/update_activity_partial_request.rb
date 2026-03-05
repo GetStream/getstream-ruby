@@ -12,6 +12,9 @@ module GetStream
         # @!attribute copy_custom_to_notification
         #   @return [Boolean] Whether to copy custom data to the notification activity (only applies when handle_mention_notifications creates notifications)
         attr_accessor :copy_custom_to_notification
+        # @!attribute enrich_own_fields
+        #   @return [Boolean] If true, enriches the activity's current_feed with own_* fields (own_follows, own_followings, own_capabilities, own_membership). Defaults to false for performance.
+        attr_accessor :enrich_own_fields
         # @!attribute handle_mention_notifications
         #   @return [Boolean] If true, creates notification activities for newly mentioned users and deletes notifications for users no longer mentioned
         attr_accessor :handle_mention_notifications
@@ -35,6 +38,7 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @copy_custom_to_notification = attributes[:copy_custom_to_notification] || attributes['copy_custom_to_notification'] || nil
+          @enrich_own_fields = attributes[:enrich_own_fields] || attributes['enrich_own_fields'] || nil
           @handle_mention_notifications = attributes[:handle_mention_notifications] || attributes['handle_mention_notifications'] || nil
           @run_activity_processors = attributes[:run_activity_processors] || attributes['run_activity_processors'] || nil
           @user_id = attributes[:user_id] || attributes['user_id'] || nil
@@ -47,6 +51,7 @@ module GetStream
         def self.json_field_mappings
           {
             copy_custom_to_notification: 'copy_custom_to_notification',
+            enrich_own_fields: 'enrich_own_fields',
             handle_mention_notifications: 'handle_mention_notifications',
             run_activity_processors: 'run_activity_processors',
             user_id: 'user_id',

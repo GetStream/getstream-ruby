@@ -113,6 +113,23 @@ module GetStream
         )
       end
 
+      # Verifies that the configured IAM role ARN can access private S3 images for moderation. Optionally accepts a stream+s3:// URL to check access to a specific object.
+      #
+      # @param check_s3_access_request [CheckS3AccessRequest]
+      # @return [Models::CheckS3AccessResponse]
+      def check_s3_access(check_s3_access_request)
+        path = '/api/v2/moderation/check_s3_access'
+        # Build request body
+        body = check_s3_access_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
       # Create a new moderation configuration or update an existing one. Configure settings for content filtering, AI analysis, toxicity detection, and other moderation features.
       #
       # @param upsert_config_request [UpsertConfigRequest]

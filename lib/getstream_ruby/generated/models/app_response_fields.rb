@@ -48,6 +48,9 @@ module GetStream
         # @!attribute max_aggregated_activities_length
         #   @return [Integer]
         attr_accessor :max_aggregated_activities_length
+        # @!attribute moderation_audio_call_moderation_enabled
+        #   @return [Boolean]
+        attr_accessor :moderation_audio_call_moderation_enabled
         # @!attribute moderation_enabled
         #   @return [Boolean]
         attr_accessor :moderation_enabled
@@ -57,6 +60,9 @@ module GetStream
         # @!attribute moderation_multitenant_blocklist_enabled
         #   @return [Boolean]
         attr_accessor :moderation_multitenant_blocklist_enabled
+        # @!attribute moderation_video_call_moderation_enabled
+        #   @return [Boolean]
+        attr_accessor :moderation_video_call_moderation_enabled
         # @!attribute moderation_webhook_url
         #   @return [String]
         attr_accessor :moderation_webhook_url
@@ -144,6 +150,9 @@ module GetStream
         # @!attribute before_message_send_hook_url
         #   @return [String]
         attr_accessor :before_message_send_hook_url
+        # @!attribute moderation_s3_image_access_role_arn
+        #   @return [String]
+        attr_accessor :moderation_s3_image_access_role_arn
         # @!attribute revoke_tokens_issued_before
         #   @return [DateTime]
         attr_accessor :revoke_tokens_issued_before
@@ -179,9 +188,11 @@ module GetStream
           @id = attributes[:id] || attributes['id']
           @image_moderation_enabled = attributes[:image_moderation_enabled] || attributes['image_moderation_enabled']
           @max_aggregated_activities_length = attributes[:max_aggregated_activities_length] || attributes['max_aggregated_activities_length']
+          @moderation_audio_call_moderation_enabled = attributes[:moderation_audio_call_moderation_enabled] || attributes['moderation_audio_call_moderation_enabled']
           @moderation_enabled = attributes[:moderation_enabled] || attributes['moderation_enabled']
           @moderation_llm_configurability_enabled = attributes[:moderation_llm_configurability_enabled] || attributes['moderation_llm_configurability_enabled']
           @moderation_multitenant_blocklist_enabled = attributes[:moderation_multitenant_blocklist_enabled] || attributes['moderation_multitenant_blocklist_enabled']
+          @moderation_video_call_moderation_enabled = attributes[:moderation_video_call_moderation_enabled] || attributes['moderation_video_call_moderation_enabled']
           @moderation_webhook_url = attributes[:moderation_webhook_url] || attributes['moderation_webhook_url']
           @multi_tenant_enabled = attributes[:multi_tenant_enabled] || attributes['multi_tenant_enabled']
           @name = attributes[:name] || attributes['name']
@@ -211,6 +222,7 @@ module GetStream
           @policies = attributes[:policies] || attributes['policies']
           @push_notifications = attributes[:push_notifications] || attributes['push_notifications']
           @before_message_send_hook_url = attributes[:before_message_send_hook_url] || attributes['before_message_send_hook_url'] || nil
+          @moderation_s3_image_access_role_arn = attributes[:moderation_s3_image_access_role_arn] || attributes['moderation_s3_image_access_role_arn'] || nil
           @revoke_tokens_issued_before = attributes[:revoke_tokens_issued_before] || attributes['revoke_tokens_issued_before'] || nil
           @allowed_flag_reasons = attributes[:allowed_flag_reasons] || attributes['allowed_flag_reasons'] || nil
           @geofences = attributes[:geofences] || attributes['geofences'] || nil
@@ -235,9 +247,11 @@ module GetStream
             id: 'id',
             image_moderation_enabled: 'image_moderation_enabled',
             max_aggregated_activities_length: 'max_aggregated_activities_length',
+            moderation_audio_call_moderation_enabled: 'moderation_audio_call_moderation_enabled',
             moderation_enabled: 'moderation_enabled',
             moderation_llm_configurability_enabled: 'moderation_llm_configurability_enabled',
             moderation_multitenant_blocklist_enabled: 'moderation_multitenant_blocklist_enabled',
+            moderation_video_call_moderation_enabled: 'moderation_video_call_moderation_enabled',
             moderation_webhook_url: 'moderation_webhook_url',
             multi_tenant_enabled: 'multi_tenant_enabled',
             name: 'name',
@@ -267,6 +281,7 @@ module GetStream
             policies: 'policies',
             push_notifications: 'push_notifications',
             before_message_send_hook_url: 'before_message_send_hook_url',
+            moderation_s3_image_access_role_arn: 'moderation_s3_image_access_role_arn',
             revoke_tokens_issued_before: 'revoke_tokens_issued_before',
             allowed_flag_reasons: 'allowed_flag_reasons',
             geofences: 'geofences',

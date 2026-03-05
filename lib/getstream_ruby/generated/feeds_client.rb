@@ -80,6 +80,23 @@ module GetStream
         )
       end
 
+      # Track metric events (views, clicks, impressions) for activities. Supports batching up to 100 events per request. Each event is independently rate-limited per user per activity per metric. Server-side calls must include user_id.
+      #
+      # @param track_activity_metrics_request [TrackActivityMetricsRequest]
+      # @return [Models::TrackActivityMetricsResponse]
+      def track_activity_metrics(track_activity_metrics_request)
+        path = '/api/v2/feeds/activities/metrics/track'
+        # Build request body
+        body = track_activity_metrics_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
       # Query activities based on filters with pagination and sorting options
       #
       # @param query_activities_request [QueryActivitiesRequest]
@@ -375,11 +392,15 @@ module GetStream
       #
       # @param _id [String]
       # @param restore_activity_request [RestoreActivityRequest]
+      # @param enrich_own_fields [Boolean]
       # @return [Models::RestoreActivityResponse]
-      def restore_activity(_id, restore_activity_request)
+      def restore_activity(_id, restore_activity_request, enrich_own_fields = nil)
         path = '/api/v2/feeds/activities/{id}/restore'
         # Replace path parameters
         path = path.gsub('{id}', _id.to_s)
+        # Build query parameters
+        query_params = {}
+        query_params['enrich_own_fields'] = enrich_own_fields unless enrich_own_fields.nil?
         # Build request body
         body = restore_activity_request
 
@@ -387,6 +408,7 @@ module GetStream
         @client.make_request(
           :post,
           path,
+          query_params: query_params,
           body: body
         )
       end
@@ -481,15 +503,15 @@ module GetStream
 
       # Read collections with optional filtering by user ID and collection name. By default, users can only read their own collections.
       #
-      # @param collection_refs [Array<String>]
       # @param user_id [String]
+      # @param collection_refs [Array<String>]
       # @return [Models::ReadCollectionsResponse]
-      def read_collections(collection_refs, user_id = nil)
+      def read_collections(user_id = nil, collection_refs = nil)
         path = '/api/v2/feeds/collections'
         # Build query parameters
         query_params = {}
-        query_params['collection_refs'] = collection_refs unless collection_refs.nil?
         query_params['user_id'] = user_id unless user_id.nil?
+        query_params['collection_refs'] = collection_refs unless collection_refs.nil?
 
         # Make the API request
         @client.make_request(
@@ -921,9 +943,10 @@ module GetStream
       # @param feed_group_id [String]
       # @param feed_id [String]
       # @param activity_id [String]
+      # @param enrich_own_fields [Boolean]
       # @param user_id [String]
       # @return [Models::UnpinActivityResponse]
-      def unpin_activity(feed_group_id, feed_id, activity_id, user_id = nil)
+      def unpin_activity(feed_group_id, feed_id, activity_id, enrich_own_fields = nil, user_id = nil)
         path = '/api/v2/feeds/feed_groups/{feed_group_id}/feeds/{feed_id}/activities/{activity_id}/pin'
         # Replace path parameters
         path = path.gsub('{feed_group_id}', feed_group_id.to_s)
@@ -931,6 +954,7 @@ module GetStream
         path = path.gsub('{activity_id}', activity_id.to_s)
         # Build query parameters
         query_params = {}
+        query_params['enrich_own_fields'] = enrich_own_fields unless enrich_own_fields.nil?
         query_params['user_id'] = user_id unless user_id.nil?
 
         # Make the API request
@@ -1095,6 +1119,22 @@ module GetStream
           :get,
           path,
           query_params: query_params
+        )
+      end
+
+      # Restores a soft-deleted feed group by its ID. Only clears DeletedAt in the database; no other fields are updated.
+      #
+      # @param feed_group_id [String]
+      # @return [Models::RestoreFeedGroupResponse]
+      def restore_feed_group(feed_group_id)
+        path = '/api/v2/feeds/feed_groups/{feed_group_id}/restore'
+        # Replace path parameters
+        path = path.gsub('{feed_group_id}', feed_group_id.to_s)
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path
         )
       end
 
@@ -1549,8 +1589,9 @@ module GetStream
       # @param source [String]
       # @param target [String]
       # @param delete_notification_activity [Boolean]
+      # @param enrich_own_fields [Boolean]
       # @return [Models::UnfollowResponse]
-      def unfollow(source, target, delete_notification_activity = nil)
+      def unfollow(source, target, delete_notification_activity = nil, enrich_own_fields = nil)
         path = '/api/v2/feeds/follows/{source}/{target}'
         # Replace path parameters
         path = path.gsub('{source}', source.to_s)
@@ -1558,6 +1599,7 @@ module GetStream
         # Build query parameters
         query_params = {}
         query_params['delete_notification_activity'] = delete_notification_activity unless delete_notification_activity.nil?
+        query_params['enrich_own_fields'] = enrich_own_fields unless enrich_own_fields.nil?
 
         # Make the API request
         @client.make_request(

@@ -596,6 +596,11 @@ class WebhookTest < Minitest::Test
     assert_equal 'StreamChat::FeedGroupDeletedEvent', event.class.name
   end
 
+  def test_parse_feeds_feed_group_restored
+    event = StreamChat::Webhook.parse_webhook_event('{"type":"feeds.feed_group.restored"}')
+    assert_equal 'StreamChat::FeedGroupRestoredEvent', event.class.name
+  end
+
   def test_parse_feeds_feed_member_added
     event = StreamChat::Webhook.parse_webhook_event('{"type":"feeds.feed_member.added"}')
     assert_equal 'StreamChat::FeedMemberAddedEvent', event.class.name
@@ -849,6 +854,31 @@ class WebhookTest < Minitest::Test
   def test_parse_user_updated
     event = StreamChat::Webhook.parse_webhook_event('{"type":"user.updated"}')
     assert_equal 'StreamChat::UserUpdatedEvent', event.class.name
+  end
+
+  def test_parse_user_group_created
+    event = StreamChat::Webhook.parse_webhook_event('{"type":"user_group.created"}')
+    assert_equal 'StreamChat::UserGroupCreatedEvent', event.class.name
+  end
+
+  def test_parse_user_group_deleted
+    event = StreamChat::Webhook.parse_webhook_event('{"type":"user_group.deleted"}')
+    assert_equal 'StreamChat::UserGroupDeletedEvent', event.class.name
+  end
+
+  def test_parse_user_group_member_added
+    event = StreamChat::Webhook.parse_webhook_event('{"type":"user_group.member_added"}')
+    assert_equal 'StreamChat::UserGroupMemberAddedEvent', event.class.name
+  end
+
+  def test_parse_user_group_member_removed
+    event = StreamChat::Webhook.parse_webhook_event('{"type":"user_group.member_removed"}')
+    assert_equal 'StreamChat::UserGroupMemberRemovedEvent', event.class.name
+  end
+
+  def test_parse_user_group_updated
+    event = StreamChat::Webhook.parse_webhook_event('{"type":"user_group.updated"}')
+    assert_equal 'StreamChat::UserGroupUpdatedEvent', event.class.name
   end
 
   def test_parse_webhook_event_unknown_type

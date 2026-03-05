@@ -9,6 +9,12 @@ module GetStream
       class DeleteMessageRequestPayload < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute entity_id
+        #   @return [String] ID of the message to delete (alternative to item_id)
+        attr_accessor :entity_id
+        # @!attribute entity_type
+        #   @return [String] Type of the entity
+        attr_accessor :entity_type
         # @!attribute hard_delete
         #   @return [Boolean] Whether to permanently delete the message
         attr_accessor :hard_delete
@@ -19,6 +25,8 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @entity_id = attributes[:entity_id] || attributes['entity_id'] || nil
+          @entity_type = attributes[:entity_type] || attributes['entity_type'] || nil
           @hard_delete = attributes[:hard_delete] || attributes['hard_delete'] || nil
           @reason = attributes[:reason] || attributes['reason'] || nil
         end
@@ -26,6 +34,8 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            entity_id: 'entity_id',
+            entity_type: 'entity_type',
             hard_delete: 'hard_delete',
             reason: 'reason'
           }

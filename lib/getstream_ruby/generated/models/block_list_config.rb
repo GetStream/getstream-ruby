@@ -15,6 +15,9 @@ module GetStream
         # @!attribute enabled
         #   @return [Boolean]
         attr_accessor :enabled
+        # @!attribute match_substring
+        #   @return [Boolean]
+        attr_accessor :match_substring
         # @!attribute rules
         #   @return [Array<BlockListRule>]
         attr_accessor :rules
@@ -24,6 +27,7 @@ module GetStream
           super(attributes)
           @async = attributes[:async] || attributes['async'] || nil
           @enabled = attributes[:enabled] || attributes['enabled'] || nil
+          @match_substring = attributes[:match_substring] || attributes['match_substring'] || nil
           @rules = attributes[:rules] || attributes['rules'] || nil
         end
 
@@ -32,6 +36,7 @@ module GetStream
           {
             async: 'async',
             enabled: 'enabled',
+            match_substring: 'match_substring',
             rules: 'rules'
           }
         end

@@ -1,6 +1,6 @@
 # GetStream Ruby SDK Makefile
 
-.PHONY: help install test test-unit test-integration lint format clean setup
+.PHONY: help install test test-unit test-integration test-integration-chat test-integration-video lint format clean setup
 
 # Default target
 help: ## Show this help message
@@ -28,8 +28,14 @@ test: test-unit ## Run unit tests only
 test-unit: ## Run unit tests (excluding integration tests)
 	bundle exec rspec spec --exclude-pattern "spec/integration/**/*_spec.rb"
 
-test-integration: ## Run integration tests only
+test-integration: ## Run all integration tests
 	bundle exec rspec spec/integration/
+
+test-integration-chat: ## Run chat integration tests only (excludes video)
+	bundle exec rspec spec/integration/ --exclude-pattern "spec/integration/video*_spec.rb"
+
+test-integration-video: ## Run video integration tests only
+	bundle exec rspec spec/integration/video_integration_spec.rb spec/integration/video_client_integration_spec.rb
 
 test-all: ## Run all tests (unit + integration)
 	bundle exec rspec spec/

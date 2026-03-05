@@ -15,6 +15,9 @@ module GetStream
         # @!attribute description
         #   @return [String] Description of the feed
         attr_accessor :description
+        # @!attribute enrich_own_fields
+        #   @return [Boolean] If true, enriches the feed with own_* fields (own_follows, own_followings, own_capabilities, own_membership). Defaults to false for performance.
+        attr_accessor :enrich_own_fields
         # @!attribute name
         #   @return [String] Name of the feed
         attr_accessor :name
@@ -30,6 +33,7 @@ module GetStream
           super(attributes)
           @created_by_id = attributes[:created_by_id] || attributes['created_by_id'] || nil
           @description = attributes[:description] || attributes['description'] || nil
+          @enrich_own_fields = attributes[:enrich_own_fields] || attributes['enrich_own_fields'] || nil
           @name = attributes[:name] || attributes['name'] || nil
           @filter_tags = attributes[:filter_tags] || attributes['filter_tags'] || nil
           @custom = attributes[:custom] || attributes['custom'] || nil
@@ -40,6 +44,7 @@ module GetStream
           {
             created_by_id: 'created_by_id',
             description: 'description',
+            enrich_own_fields: 'enrich_own_fields',
             name: 'name',
             filter_tags: 'filter_tags',
             custom: 'custom'

@@ -21,6 +21,9 @@ module GetStream
         # @!attribute call_type_rule_params
         #   @return [CallTypeRuleParameters]
         attr_accessor :call_type_rule_params
+        # @!attribute call_violation_count_params
+        #   @return [CallViolationCountParameters]
+        attr_accessor :call_violation_count_params
         # @!attribute closed_caption_rule_params
         #   @return [ClosedCaptionRuleParameters]
         attr_accessor :closed_caption_rule_params
@@ -77,6 +80,7 @@ module GetStream
           @type = attributes[:type] || attributes['type'] || nil
           @call_custom_property_params = attributes[:call_custom_property_params] || attributes['call_custom_property_params'] || nil
           @call_type_rule_params = attributes[:call_type_rule_params] || attributes['call_type_rule_params'] || nil
+          @call_violation_count_params = attributes[:call_violation_count_params] || attributes['call_violation_count_params'] || nil
           @closed_caption_rule_params = attributes[:closed_caption_rule_params] || attributes['closed_caption_rule_params'] || nil
           @content_count_rule_params = attributes[:content_count_rule_params] || attributes['content_count_rule_params'] || nil
           @content_flag_count_rule_params = attributes[:content_flag_count_rule_params] || attributes['content_flag_count_rule_params'] || nil
@@ -102,6 +106,7 @@ module GetStream
             type: 'type',
             call_custom_property_params: 'call_custom_property_params',
             call_type_rule_params: 'call_type_rule_params',
+            call_violation_count_params: 'call_violation_count_params',
             closed_caption_rule_params: 'closed_caption_rule_params',
             content_count_rule_params: 'content_count_rule_params',
             content_flag_count_rule_params: 'content_flag_count_rule_params',

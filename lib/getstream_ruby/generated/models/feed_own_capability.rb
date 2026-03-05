@@ -5,7 +5,7 @@
 module GetStream
   module Generated
     module Models
-      # All possibility of string to use
+      # Represents a feed capability value and enumerates all possible capability strings.
       class FeedOwnCapability < GetStream::BaseModel
         # Empty model - inherits all functionality from BaseModel
       end

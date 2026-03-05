@@ -21,6 +21,9 @@ module GetStream
         # @!attribute create_notification_activity
         #   @return [Boolean] Whether to create a notification activity for this follow
         attr_accessor :create_notification_activity
+        # @!attribute enrich_own_fields
+        #   @return [Boolean] If true, enriches the follow's source_feed and target_feed with own_* fields (own_follows, own_followings, own_capabilities, own_membership). Defaults to false for performance.
+        attr_accessor :enrich_own_fields
         # @!attribute follower_role
         #   @return [String]
         attr_accessor :follower_role
@@ -44,6 +47,7 @@ module GetStream
           @target = attributes[:target] || attributes['target']
           @copy_custom_to_notification = attributes[:copy_custom_to_notification] || attributes['copy_custom_to_notification'] || nil
           @create_notification_activity = attributes[:create_notification_activity] || attributes['create_notification_activity'] || nil
+          @enrich_own_fields = attributes[:enrich_own_fields] || attributes['enrich_own_fields'] || nil
           @follower_role = attributes[:follower_role] || attributes['follower_role'] || nil
           @push_preference = attributes[:push_preference] || attributes['push_preference'] || nil
           @skip_push = attributes[:skip_push] || attributes['skip_push'] || nil
@@ -58,6 +62,7 @@ module GetStream
             target: 'target',
             copy_custom_to_notification: 'copy_custom_to_notification',
             create_notification_activity: 'create_notification_activity',
+            enrich_own_fields: 'enrich_own_fields',
             follower_role: 'follower_role',
             push_preference: 'push_preference',
             skip_push: 'skip_push',

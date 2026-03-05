@@ -5,31 +5,9 @@
 module GetStream
   module Generated
     module Models
-      # 
+      # Delete reaction request
       class DeleteReactionRequest < GetStream::BaseModel
-
-        # Model attributes
-        # @!attribute hard_delete
-        #   @return [Boolean]
-        attr_accessor :hard_delete
-        # @!attribute reason
-        #   @return [String]
-        attr_accessor :reason
-
-        # Initialize with attributes
-        def initialize(attributes = {})
-          super(attributes)
-          @hard_delete = attributes[:hard_delete] || attributes['hard_delete'] || nil
-          @reason = attributes[:reason] || attributes['reason'] || nil
-        end
-
-        # Override field mappings for JSON serialization
-        def self.json_field_mappings
-          {
-            hard_delete: 'hard_delete',
-            reason: 'reason'
-          }
-        end
+        # Empty model - inherits all functionality from BaseModel
       end
     end
   end

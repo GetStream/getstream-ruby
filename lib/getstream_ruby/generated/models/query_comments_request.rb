@@ -12,6 +12,9 @@ module GetStream
         # @!attribute filter
         #   @return [Object] MongoDB-style filter for querying comments
         attr_accessor :filter
+        # @!attribute id_around
+        #   @return [String] Returns the comment with the specified ID along with surrounding comments for context
+        attr_accessor :id_around
         # @!attribute limit
         #   @return [Integer] Maximum number of comments to return
         attr_accessor :limit
@@ -24,25 +27,37 @@ module GetStream
         # @!attribute sort
         #   @return [String] first (oldest), last (newest) or top. One of: first, last, top, best, controversial
         attr_accessor :sort
+        # @!attribute user_id
+        #   @return [String]
+        attr_accessor :user_id
+        # @!attribute user
+        #   @return [UserRequest]
+        attr_accessor :user
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @filter = attributes[:filter] || attributes['filter']
+          @id_around = attributes[:id_around] || attributes['id_around'] || nil
           @limit = attributes[:limit] || attributes['limit'] || nil
           @next = attributes[:next] || attributes['next'] || nil
           @prev = attributes[:prev] || attributes['prev'] || nil
           @sort = attributes[:sort] || attributes['sort'] || nil
+          @user_id = attributes[:user_id] || attributes['user_id'] || nil
+          @user = attributes[:user] || attributes['user'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
             filter: 'filter',
+            id_around: 'id_around',
             limit: 'limit',
             next: 'next',
             prev: 'prev',
-            sort: 'sort'
+            sort: 'sort',
+            user_id: 'user_id',
+            user: 'user'
           }
         end
       end

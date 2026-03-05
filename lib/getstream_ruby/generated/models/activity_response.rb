@@ -105,6 +105,12 @@ module GetStream
         # @!attribute friend_reaction_count
         #   @return [Integer] Total count of reactions from friends on this activity
         attr_accessor :friend_reaction_count
+        # @!attribute is_read
+        #   @return [Boolean] Whether this activity has been read. Only set for feed groups with notification config (track_seen/track_read enabled).
+        attr_accessor :is_read
+        # @!attribute is_seen
+        #   @return [Boolean] Whether this activity has been seen. Only set for feed groups with notification config (track_seen/track_read enabled).
+        attr_accessor :is_seen
         # @!attribute is_watched
         #   @return [Boolean]
         attr_accessor :is_watched
@@ -129,6 +135,9 @@ module GetStream
         # @!attribute location
         #   @return [ActivityLocation]
         attr_accessor :location
+        # @!attribute metrics
+        #   @return [Hash<String, Integer>]
+        attr_accessor :metrics
         # @!attribute moderation
         #   @return [ModerationV2Response]
         attr_accessor :moderation
@@ -177,6 +186,8 @@ module GetStream
           @edited_at = attributes[:edited_at] || attributes['edited_at'] || nil
           @expires_at = attributes[:expires_at] || attributes['expires_at'] || nil
           @friend_reaction_count = attributes[:friend_reaction_count] || attributes['friend_reaction_count'] || nil
+          @is_read = attributes[:is_read] || attributes['is_read'] || nil
+          @is_seen = attributes[:is_seen] || attributes['is_seen'] || nil
           @is_watched = attributes[:is_watched] || attributes['is_watched'] || nil
           @moderation_action = attributes[:moderation_action] || attributes['moderation_action'] || nil
           @selector_source = attributes[:selector_source] || attributes['selector_source'] || nil
@@ -185,6 +196,7 @@ module GetStream
           @friend_reactions = attributes[:friend_reactions] || attributes['friend_reactions'] || nil
           @current_feed = attributes[:current_feed] || attributes['current_feed'] || nil
           @location = attributes[:location] || attributes['location'] || nil
+          @metrics = attributes[:metrics] || attributes['metrics'] || nil
           @moderation = attributes[:moderation] || attributes['moderation'] || nil
           @notification_context = attributes[:notification_context] || attributes['notification_context'] || nil
           @parent = attributes[:parent] || attributes['parent'] || nil
@@ -226,6 +238,8 @@ module GetStream
             edited_at: 'edited_at',
             expires_at: 'expires_at',
             friend_reaction_count: 'friend_reaction_count',
+            is_read: 'is_read',
+            is_seen: 'is_seen',
             is_watched: 'is_watched',
             moderation_action: 'moderation_action',
             selector_source: 'selector_source',
@@ -234,6 +248,7 @@ module GetStream
             friend_reactions: 'friend_reactions',
             current_feed: 'current_feed',
             location: 'location',
+            metrics: 'metrics',
             moderation: 'moderation',
             notification_context: 'notification_context',
             parent: 'parent',
