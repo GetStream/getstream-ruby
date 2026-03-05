@@ -32,8 +32,8 @@ jobs:
         make lint
         make security
 
-  integration-chat:
-    name: Chat Integration Tests
+  integration-non-video:
+    name: Non-video Integration Tests
     runs-on: ubuntu-latest
     environment: ci
     if: github.event_name == 'push' || github.event_name == 'pull_request'
