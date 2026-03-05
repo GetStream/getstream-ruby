@@ -831,8 +831,8 @@ RSpec.describe 'Feed Integration Tests', type: :integration do
             blocked_file_extensions: [],
             allowed_mime_types: [],
             blocked_mime_types: [],
-          )
-        )
+          ),
+        ),
       )
       sleep 2
 
@@ -868,8 +868,8 @@ RSpec.describe 'Feed Integration Tests', type: :integration do
         # Restore original file upload config
         client.common.update_app(
           GetStream::Generated::Models::UpdateAppRequest.new(
-            file_upload_config: original_config
-          )
+            file_upload_config: original_config,
+          ),
         )
       end
 
