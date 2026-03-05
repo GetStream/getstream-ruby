@@ -893,6 +893,21 @@ RSpec.describe 'Chat Channel Integration', type: :integration do
         @creator_id, [@creator_id]
       )
 
+      # Save original file upload config and clear restrictions
+      app_resp = @client.common.get_app
+      original_config = app_resp.app.file_upload_config
+      @client.common.update_app(
+        GetStream::Generated::Models::UpdateAppRequest.new(
+          file_upload_config: GetStream::Generated::Models::FileUploadConfig.new(
+            allowed_file_extensions: [],
+            blocked_file_extensions: [],
+            allowed_mime_types: [],
+            blocked_mime_types: [],
+          )
+        )
+      )
+      sleep 2
+
       # Create a temp file
       tmpfile = Tempfile.new(['chat-test-', '.txt'])
       tmpfile.write('hello world test file content')
@@ -914,6 +929,12 @@ RSpec.describe 'Chat Channel Integration', type: :integration do
         delete_channel_file('messaging', channel_id, file_url)
       ensure
         tmpfile.unlink
+        # Restore original file upload config
+        @client.common.update_app(
+          GetStream::Generated::Models::UpdateAppRequest.new(
+            file_upload_config: original_config
+          )
+        )
       end
 
     end

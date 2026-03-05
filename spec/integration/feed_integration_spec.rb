@@ -638,7 +638,7 @@ RSpec.describe 'Feed Integration Tests', type: :integration do
       puts '✅ Pinned activity successfully'
 
       # Unpin activity
-      unpin_response = client.feeds.unpin_activity(feed_group_id, feed_id, activity_id, test_user_id_1)
+      unpin_response = client.feeds.unpin_activity(feed_group_id, feed_id, activity_id, nil, test_user_id_1)
       expect(unpin_response).to be_a(GetStreamRuby::StreamResponse)
       puts '✅ Unpinned activity successfully'
 
@@ -821,7 +821,22 @@ RSpec.describe 'Feed Integration Tests', type: :integration do
 
       puts "\n📤 Testing file upload..."
 
-      # Create a temporary text file (feed API upload_file supports text, not images)
+      # Save original file upload config and clear restrictions
+      app_resp = client.common.get_app
+      original_config = app_resp.app.file_upload_config
+      client.common.update_app(
+        GetStream::Generated::Models::UpdateAppRequest.new(
+          file_upload_config: GetStream::Generated::Models::FileUploadConfig.new(
+            allowed_file_extensions: [],
+            blocked_file_extensions: [],
+            allowed_mime_types: [],
+            blocked_mime_types: [],
+          )
+        )
+      )
+      sleep 2
+
+      # Create a temporary text file
       require 'tempfile'
       tmpfile = Tempfile.new(['feed-upload-test-', '.txt'])
       tmpfile.write('hello world test file content from Ruby SDK')
@@ -850,6 +865,12 @@ RSpec.describe 'Feed Integration Tests', type: :integration do
         expect(upload_response.file).to match(/^https?:\/\//)
       ensure
         tmpfile.unlink
+        # Restore original file upload config
+        client.common.update_app(
+          GetStream::Generated::Models::UpdateAppRequest.new(
+            file_upload_config: original_config
+          )
+        )
       end
 
     end

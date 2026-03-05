@@ -6,37 +6,78 @@ on:
   pull_request:
     branches: [ master, main ]
 
-env:
-  STREAM_API_KEY: ${{ vars.STREAM_API_KEY }}
-  STREAM_API_SECRET: ${{ secrets.STREAM_API_SECRET }}
-
 jobs:
-  test:
-    name: Test Suite
+  unit:
+    name: Unit Tests & Code Quality
     runs-on: ubuntu-latest
-    environment: ci
-    
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-      
+
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: '3.1.0'
-        
+
     - name: Install dependencies
       run: bundle install --jobs 4 --retry 3
-        
-    - name: Run tests
+
+    - name: Run unit tests
       run: make test
-      
-    - name: Run integration tests
-      if: github.event_name == 'push' || github.event_name == 'pull_request'
-      run: make test-integration
-      
+
     - name: Run code quality checks
       run: |
         make format-check
         make lint
         make security
+
+  integration-chat:
+    name: Chat Integration Tests
+    runs-on: ubuntu-latest
+    environment: ci
+    if: github.event_name == 'push' || github.event_name == 'pull_request'
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '3.1.0'
+
+    - name: Install dependencies
+      run: bundle install --jobs 4 --retry 3
+
+    - name: Run chat integration tests
+      env:
+        STREAM_API_KEY: ${{ vars.STREAM_API_KEY }}
+        STREAM_API_SECRET: ${{ secrets.STREAM_API_SECRET }}
+        STREAM_BASE_URL: ${{ vars.STREAM_BASE_URL }}
+      run: make test-integration-chat
+
+  integration-video:
+    name: Video Integration Tests
+    runs-on: ubuntu-latest
+    environment: ci
+    if: github.event_name == 'push' || github.event_name == 'pull_request'
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '3.1.0'
+
+    - name: Install dependencies
+      run: bundle install --jobs 4 --retry 3
+
+    - name: Run video integration tests
+      env:
+        STREAM_API_KEY: ${{ vars.STREAM_VIDEO_API_KEY }}
+        STREAM_API_SECRET: ${{ secrets.STREAM_VIDEO_API_SECRET }}
+        STREAM_BASE_URL: ${{ vars.STREAM_VIDEO_BASE_URL }}
+      run: make test-integration-video
