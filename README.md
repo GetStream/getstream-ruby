@@ -22,6 +22,10 @@ Or install it yourself as:
 $ gem install getstream-ruby
 ```
 
+## Migrating from stream-chat-ruby?
+
+If you are currently using [`stream-chat-ruby`](https://github.com/GetStream/stream-chat-ruby), we have a detailed migration guide with side-by-side code examples for common Chat use cases. See the [Migration Guide](docs/migration-from-stream-chat-ruby/README.md).
+
 ## Configuration
 
 ### Method 1: Manual (Highest Priority)
