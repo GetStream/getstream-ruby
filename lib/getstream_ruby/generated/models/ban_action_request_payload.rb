@@ -12,6 +12,9 @@ module GetStream
         # @!attribute channel_ban_only
         #   @return [Boolean] Ban only from specific channel
         attr_accessor :channel_ban_only
+        # @!attribute channel_cid
+        #   @return [String]
+        attr_accessor :channel_cid
         # @!attribute delete_messages
         #   @return [String] Message deletion mode: soft, pruning, or hard
         attr_accessor :delete_messages
@@ -35,6 +38,7 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @channel_ban_only = attributes[:channel_ban_only] || attributes['channel_ban_only'] || nil
+          @channel_cid = attributes[:channel_cid] || attributes['channel_cid'] || nil
           @delete_messages = attributes[:delete_messages] || attributes['delete_messages'] || nil
           @ip_ban = attributes[:ip_ban] || attributes['ip_ban'] || nil
           @reason = attributes[:reason] || attributes['reason'] || nil
@@ -47,6 +51,7 @@ module GetStream
         def self.json_field_mappings
           {
             channel_ban_only: 'channel_ban_only',
+            channel_cid: 'channel_cid',
             delete_messages: 'delete_messages',
             ip_ban: 'ip_ban',
             reason: 'reason',

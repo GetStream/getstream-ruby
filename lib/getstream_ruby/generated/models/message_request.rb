@@ -60,6 +60,9 @@ module GetStream
         # @!attribute attachments
         #   @return [Array<Attachment>] Array of message attachments
         attr_accessor :attachments
+        # @!attribute mentioned_group_ids
+        #   @return [Array<String>] List of user group IDs to mention. Group members who are also channel members will receive push notifications. Max 10 groups
+        attr_accessor :mentioned_group_ids
         # @!attribute mentioned_roles
         #   @return [Array<String>]
         attr_accessor :mentioned_roles
@@ -99,6 +102,7 @@ module GetStream
           @type = attributes[:type] || attributes['type'] || nil
           @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @attachments = attributes[:attachments] || attributes['attachments'] || nil
+          @mentioned_group_ids = attributes[:mentioned_group_ids] || attributes['mentioned_group_ids'] || nil
           @mentioned_roles = attributes[:mentioned_roles] || attributes['mentioned_roles'] || nil
           @mentioned_users = attributes[:mentioned_users] || attributes['mentioned_users'] || nil
           @restricted_visibility = attributes[:restricted_visibility] || attributes['restricted_visibility'] || nil
@@ -127,6 +131,7 @@ module GetStream
             type: 'type',
             user_id: 'user_id',
             attachments: 'attachments',
+            mentioned_group_ids: 'mentioned_group_ids',
             mentioned_roles: 'mentioned_roles',
             mentioned_users: 'mentioned_users',
             restricted_visibility: 'restricted_visibility',
