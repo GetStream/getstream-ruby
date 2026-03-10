@@ -501,7 +501,7 @@ module GetStream
         )
       end
 
-      # Read collections with optional filtering by user ID and collection name. By default, users can only read their own collections.
+      # Read collections by their references. By default, users can only read their own collections.
       #
       # @param user_id [String]
       # @param collection_refs [Array<String>]
@@ -567,6 +567,23 @@ module GetStream
         # Make the API request
         @client.make_request(
           :put,
+          path,
+          body: body
+        )
+      end
+
+      # Query collections with filter query
+      #
+      # @param query_collections_request [QueryCollectionsRequest]
+      # @return [Models::QueryCollectionsResponse]
+      def query_collections(query_collections_request)
+        path = '/api/v2/feeds/collections/query'
+        # Build request body
+        body = query_collections_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
           path,
           body: body
         )

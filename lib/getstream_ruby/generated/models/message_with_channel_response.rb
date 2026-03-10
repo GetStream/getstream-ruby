@@ -114,6 +114,9 @@ module GetStream
         # @!attribute show_in_channel
         #   @return [Boolean] Whether thread reply should be shown in the channel as well
         attr_accessor :show_in_channel
+        # @!attribute mentioned_group_ids
+        #   @return [Array<String>] List of user group IDs mentioned in the message. Group members who are also channel members will receive push notifications based on their push preferences. Max 10 groups
+        attr_accessor :mentioned_group_ids
         # @!attribute mentioned_roles
         #   @return [Array<String>] List of roles mentioned in the message (e.g. admin, channel_moderator, custom roles). Members with matching roles will receive push notifications based on their push preferences. Max 10 roles
         attr_accessor :mentioned_roles
@@ -192,6 +195,7 @@ module GetStream
           @poll_id = attributes[:poll_id] || attributes['poll_id'] || nil
           @quoted_message_id = attributes[:quoted_message_id] || attributes['quoted_message_id'] || nil
           @show_in_channel = attributes[:show_in_channel] || attributes['show_in_channel'] || nil
+          @mentioned_group_ids = attributes[:mentioned_group_ids] || attributes['mentioned_group_ids'] || nil
           @mentioned_roles = attributes[:mentioned_roles] || attributes['mentioned_roles'] || nil
           @thread_participants = attributes[:thread_participants] || attributes['thread_participants'] || nil
           @draft = attributes[:draft] || attributes['draft'] || nil
@@ -245,6 +249,7 @@ module GetStream
             poll_id: 'poll_id',
             quoted_message_id: 'quoted_message_id',
             show_in_channel: 'show_in_channel',
+            mentioned_group_ids: 'mentioned_group_ids',
             mentioned_roles: 'mentioned_roles',
             thread_participants: 'thread_participants',
             draft: 'draft',

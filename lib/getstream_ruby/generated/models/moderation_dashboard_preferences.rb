@@ -27,6 +27,9 @@ module GetStream
         # @!attribute allowed_moderation_action_reasons
         #   @return [Array<String>]
         attr_accessor :allowed_moderation_action_reasons
+        # @!attribute keyframe_classifications_map
+        #   @return [Hash<String, Hash<String, Boolean>>]
+        attr_accessor :keyframe_classifications_map
         # @!attribute overview_dashboard
         #   @return [OverviewDashboardConfig]
         attr_accessor :overview_dashboard
@@ -40,6 +43,7 @@ module GetStream
           @flag_user_on_flagged_content = attributes[:flag_user_on_flagged_content] || attributes['flag_user_on_flagged_content'] || nil
           @media_queue_blur_enabled = attributes[:media_queue_blur_enabled] || attributes['media_queue_blur_enabled'] || nil
           @allowed_moderation_action_reasons = attributes[:allowed_moderation_action_reasons] || attributes['allowed_moderation_action_reasons'] || nil
+          @keyframe_classifications_map = attributes[:keyframe_classifications_map] || attributes['keyframe_classifications_map'] || nil
           @overview_dashboard = attributes[:overview_dashboard] || attributes['overview_dashboard'] || nil
         end
 
@@ -52,6 +56,7 @@ module GetStream
             flag_user_on_flagged_content: 'flag_user_on_flagged_content',
             media_queue_blur_enabled: 'media_queue_blur_enabled',
             allowed_moderation_action_reasons: 'allowed_moderation_action_reasons',
+            keyframe_classifications_map: 'keyframe_classifications_map',
             overview_dashboard: 'overview_dashboard'
           }
         end
