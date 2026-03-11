@@ -239,12 +239,12 @@ client = GetStreamRuby.manual(api_key: 'STREAM_KEY', api_secret: 'STREAM_SECRET'
 client.chat.delete_message(message_id)
 
 # Hard delete
-client.chat.delete_message(message_id, hard: true)
+client.chat.delete_message(message_id, true)
 ```
 
 **Key changes:**
 - Old SDK has separate methods: `delete_message` (soft) and `hard_delete_message` (hard)
-- New SDK uses a single `delete_message` method with an optional `hard:` parameter
+- New SDK uses a single `delete_message` method with an optional `hard` positional parameter
 
 ## Send a Reaction
 
@@ -303,13 +303,13 @@ require 'getstream_ruby'
 
 client = GetStreamRuby.manual(api_key: 'STREAM_KEY', api_secret: 'STREAM_SECRET')
 
-response = client.chat.get_reactions(message_id, limit: 10, offset: 0)
+response = client.chat.get_reactions(message_id, 10, 0)
 reactions = response['reactions']
 ```
 
 **Key changes:**
 - Old SDK calls `chan.get_reactions` on the `Channel` object
-- New SDK calls `client.chat.get_reactions` directly with the same keyword arguments
+- New SDK calls `client.chat.get_reactions` directly with positional arguments for `limit` and `offset`
 
 ## Delete a Reaction
 
@@ -331,12 +331,12 @@ require 'getstream_ruby'
 
 client = GetStreamRuby.manual(api_key: 'STREAM_KEY', api_secret: 'STREAM_SECRET')
 
-response = client.chat.delete_reaction(message_id, 'like', user_id: 'bob-1')
+response = client.chat.delete_reaction(message_id, 'like', 'bob-1')
 ```
 
 **Key changes:**
 - Old SDK calls `chan.delete_reaction(message_id, type, user_id)` with all positional arguments
-- New SDK calls `client.chat.delete_reaction(message_id, type, user_id:)` with `user_id` as a keyword argument
+- New SDK calls `client.chat.delete_reaction(message_id, type, user_id)` with all positional arguments
 
 ## Summary of Method Changes
 
@@ -349,7 +349,7 @@ response = client.chat.delete_reaction(message_id, 'like', user_id: 'bob-1')
 | Full update | `client.update_message(hash)` | `client.chat.update_message(id, UpdateMessageRequest)` |
 | Partial update | `client.update_message_partial(id, hash)` | `client.chat.update_message_partial(id, UpdateMessagePartialRequest)` |
 | Soft delete | `client.delete_message(id)` | `client.chat.delete_message(id)` |
-| Hard delete | `client.hard_delete_message(id)` | `client.chat.delete_message(id, hard: true)` |
+| Hard delete | `client.hard_delete_message(id)` | `client.chat.delete_message(id, true)` |
 | Send reaction | `chan.send_reaction(msg_id, hash, uid)` | `client.chat.send_reaction(msg_id, SendReactionRequest)` |
-| Get reactions | `chan.get_reactions(msg_id)` | `client.chat.get_reactions(msg_id)` |
-| Delete reaction | `chan.delete_reaction(msg_id, type, uid)` | `client.chat.delete_reaction(msg_id, type, user_id:)` |
+| Get reactions | `chan.get_reactions(msg_id)` | `client.chat.get_reactions(msg_id, limit, offset)` |
+| Delete reaction | `chan.delete_reaction(msg_id, type, uid)` | `client.chat.delete_reaction(msg_id, type, user_id)` |

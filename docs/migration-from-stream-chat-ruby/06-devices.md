@@ -120,13 +120,13 @@ require 'getstream_ruby'
 
 client = GetStreamRuby.manual(api_key: 'STREAM_KEY', api_secret: 'STREAM_SECRET')
 
-response = client.common.list_devices(user_id: 'jane-1')
+response = client.common.list_devices('jane-1')
 devices = response['devices']
 ```
 
 **Key changes:**
 - Old SDK uses `get_devices(user_id)` with a positional argument
-- New SDK uses `list_devices(user_id:)` with a keyword argument
+- New SDK uses `list_devices(user_id)` with a positional argument
 
 ## Delete a Device
 
@@ -147,17 +147,17 @@ require 'getstream_ruby'
 
 client = GetStreamRuby.manual(api_key: 'STREAM_KEY', api_secret: 'STREAM_SECRET')
 
-client.common.delete_device('apns-device-token', user_id: 'jane-1')
+client.common.delete_device('apns-device-token', 'jane-1')
 ```
 
 **Key changes:**
 - Old SDK uses `remove_device(id, user_id)` with positional arguments
-- New SDK uses `delete_device(id, user_id:)` with `user_id` as a keyword argument
+- New SDK uses `delete_device(id, user_id)` with positional arguments
 
 ## Summary of Method Changes
 
 | Operation | stream-chat-ruby | getstream-ruby |
 |-----------|-----------------|---------------|
 | Add device | `client.add_device(id, provider, uid, name)` | `client.common.create_device(CreateDeviceRequest)` |
-| List devices | `client.get_devices(uid)` | `client.common.list_devices(user_id:)` |
-| Delete device | `client.remove_device(id, uid)` | `client.common.delete_device(id, user_id:)` |
+| List devices | `client.get_devices(uid)` | `client.common.list_devices(uid)` |
+| Delete device | `client.remove_device(id, uid)` | `client.common.delete_device(id, uid)` |

@@ -120,7 +120,7 @@ client.moderation.ban(request)        # moderation operations
 
 ## User Token Generation
 
-### Token Without Expiration
+The new SDK does not yet include a built-in `create_token` method. You can generate user tokens directly using the `jwt` gem (which is already a dependency of `getstream-ruby`):
 
 **Before (stream-chat-ruby):**
 
@@ -129,30 +129,8 @@ require 'stream-chat'
 
 client = StreamChat::Client.new('STREAM_KEY', 'STREAM_SECRET')
 token = client.create_token('bob-1')
-```
 
-**After (getstream-ruby):**
-
-```ruby
-require 'getstream_ruby'
-
-client = GetStreamRuby.manual(api_key: 'STREAM_KEY', api_secret: 'STREAM_SECRET')
-token = client.create_token('bob-1')
-```
-
-**Key changes:**
-- Method name is the same (`create_token`), only the client initialization differs
-
-### Token With Expiration
-
-**Before (stream-chat-ruby):**
-
-```ruby
-require 'stream-chat'
-
-client = StreamChat::Client.new('STREAM_KEY', 'STREAM_SECRET')
-
-# Expiration and issued-at are Unix timestamps
+# With expiration
 token = client.create_token(
   'bob-1',
   exp: (Time.now + 3600).to_i,
@@ -163,17 +141,25 @@ token = client.create_token(
 **After (getstream-ruby):**
 
 ```ruby
-require 'getstream_ruby'
+require 'jwt'
 
-client = GetStreamRuby.manual(api_key: 'STREAM_KEY', api_secret: 'STREAM_SECRET')
+api_secret = 'STREAM_SECRET'
 
-# Expiration is a duration in seconds (relative, not absolute)
-token = client.create_token('bob-1', expiration: 3600)
+# Token without expiration
+token = JWT.encode({ user_id: 'bob-1', iat: Time.now.to_i }, api_secret, 'HS256')
+
+# Token with expiration (1 hour)
+token = JWT.encode(
+  { user_id: 'bob-1', iat: Time.now.to_i, exp: (Time.now + 3600).to_i },
+  api_secret,
+  'HS256',
+)
 ```
 
 **Key changes:**
-- Old SDK uses absolute Unix timestamps for `exp` and `iat`
-- New SDK uses a relative duration in seconds via the `expiration` keyword argument
+- Old SDK has a built-in `create_token` method on the client
+- New SDK requires generating tokens directly with the `jwt` gem using `JWT.encode`
+- The payload must include `user_id` and should include `iat`; `exp` is optional
 
 ## Summary of Method Changes
 
@@ -181,5 +167,5 @@ token = client.create_token('bob-1', expiration: 3600)
 |-----------|-----------------|---------------|
 | Create client | `StreamChat::Client.new(key, secret)` | `GetStreamRuby.manual(api_key: key, api_secret: secret)` |
 | Client from env | `StreamChat::Client.from_env` | `GetStreamRuby.env` or `GetStreamRuby.env_vars` |
-| Generate token | `client.create_token(user_id)` | `client.create_token(user_id)` |
-| Token with expiry | `client.create_token(uid, exp: timestamp)` | `client.create_token(uid, expiration: seconds)` |
+| Generate token | `client.create_token(user_id)` | `JWT.encode({ user_id: uid, iat: ... }, secret, 'HS256')` |
+| Token with expiry | `client.create_token(uid, exp: timestamp)` | `JWT.encode({ user_id: uid, iat: ..., exp: ... }, secret, 'HS256')` |

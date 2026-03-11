@@ -233,12 +233,12 @@ require 'getstream_ruby'
 
 client = GetStreamRuby.manual(api_key: 'STREAM_KEY', api_secret: 'STREAM_SECRET')
 
-client.chat.delete_channel('messaging', 'general', hard_delete: false)
+client.chat.delete_channel('messaging', 'general', false)
 ```
 
 **Key changes:**
 - Old SDK calls `chan.delete` on the `Channel` object
-- New SDK calls `client.chat.delete_channel` with channel type, ID, and an explicit `hard_delete` parameter
+- New SDK calls `client.chat.delete_channel` with channel type, ID, and an optional `hard_delete` positional parameter
 
 ## Delete Multiple Channels
 
@@ -286,5 +286,5 @@ task_id = response['task_id']
 | Remove members | `chan.remove_members(user_ids)` | `client.chat.update_channel(type, id, UpdateChannelRequest(remove_members:))` |
 | Full update | `chan.update(data)` | `client.chat.update_channel(type, id, UpdateChannelRequest)` |
 | Partial update | `chan.update_partial(set:, unset:)` | `client.chat.update_channel_partial(type, id, UpdateChannelPartialRequest)` |
-| Delete channel | `chan.delete` | `client.chat.delete_channel(type, id, hard_delete:)` |
+| Delete channel | `chan.delete` | `client.chat.delete_channel(type, id, hard_delete)` |
 | Delete batch | `client.delete_channels(cids)` | `client.chat.delete_channels(DeleteChannelsRequest)` |
