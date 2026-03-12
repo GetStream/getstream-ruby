@@ -34,6 +34,9 @@ test-integration: ## Run all integration tests
 test-integration-chat: ## Run chat integration tests only (excludes video)
 	bundle exec rspec spec/integration/ --exclude-pattern "spec/integration/video*_spec.rb"
 
+test-integration-feed: ## Run feed integration tests only
+	bundle exec rspec spec/integration/feed_integration_spec.rb
+
 test-integration-video: ## Run video integration tests only
 	bundle exec rspec spec/integration/video_integration_spec.rb spec/integration/video_client_integration_spec.rb
 

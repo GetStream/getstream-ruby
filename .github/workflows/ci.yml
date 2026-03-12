@@ -57,6 +57,31 @@ jobs:
         STREAM_BASE_URL: ${{ vars.STREAM_BASE_URL }}
       run: make test-integration-chat
 
+  integration-feed:
+    name: Feed Integration Tests
+    runs-on: ubuntu-latest
+    environment: ci
+    if: github.event_name == 'push' || github.event_name == 'pull_request'
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '3.1.0'
+
+    - name: Install dependencies
+      run: bundle install --jobs 4 --retry 3
+
+    - name: Run feed integration tests
+      env:
+        STREAM_API_KEY: ${{ vars.STREAM_API_KEY }}
+        STREAM_API_SECRET: ${{ secrets.STREAM_API_SECRET }}
+        STREAM_BASE_URL: ${{ vars.STREAM_BASE_URL }}
+      run: make test-integration-feed
+
   integration-video:
     name: Video Integration Tests
     runs-on: ubuntu-latest
