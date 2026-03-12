@@ -32,9 +32,6 @@ module SuiteCleanup
       # Require the library; it may already be loaded, require is idempotent.
       require_relative '../../lib/getstream_ruby'
 
-      # Allow network access in case WebMock disabled it after the last test.
-      WebMock.allow_net_connect! if defined?(WebMock)
-
       client = GetStreamRuby.client
       uniq_ids = @user_ids.uniq
       puts "\n🧹 Suite cleanup: deleting #{uniq_ids.length} test users..."

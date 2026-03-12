@@ -49,6 +49,15 @@ module GetStream
         end
       end
       
+      # Apply field name mappings (e.g. _object_id -> object_id) if defined
+      if self.class.respond_to?(:json_field_mappings)
+        mappings = self.class.json_field_mappings
+        hash = hash.each_with_object({}) do |(key, value), mapped|
+          json_key = mappings[key] || key.to_s
+          mapped[json_key] = value
+        end
+      end
+
       hash.to_json(*args)
     end
 
