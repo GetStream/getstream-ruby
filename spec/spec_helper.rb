@@ -2,7 +2,6 @@
 
 require 'bundler/setup'
 require 'getstream_ruby'
-require 'webmock/rspec'
 
 RSpec.configure do |config|
 
@@ -26,19 +25,6 @@ RSpec.configure do |config|
     # Reset configuration before each test
     GetStreamRuby.instance_variable_set(:@configuration, nil)
     GetStreamRuby.instance_variable_set(:@client, nil)
-
-  end
-
-  # Disable WebMock for integration tests
-  config.before(:each, type: :integration) do
-
-    WebMock.allow_net_connect! if defined?(WebMock)
-
-  end
-
-  config.after(:each, type: :integration) do
-
-    WebMock.disable_net_connect! if defined?(WebMock)
 
   end
 
