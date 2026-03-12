@@ -32,7 +32,7 @@ test-integration: ## Run all integration tests
 	bundle exec rspec spec/integration/
 
 test-integration-chat: ## Run chat integration tests only (excludes video)
-	bundle exec rspec spec/integration/ "spec/integration/chat*.rb"
+	bundle exec rspec --pattern "spec/integration/chat_*_spec.rb"
 
 test-integration-feed: ## Run feed integration tests only
 	bundle exec rspec spec/integration/feed_integration_spec.rb
