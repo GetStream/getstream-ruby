@@ -1,3 +1,8 @@
+## [4.0.0] - 2026-03-12
+
+### major^2 changes
+- 
+
 # Changelog
 
 All notable changes to this project will be documented in this file.
