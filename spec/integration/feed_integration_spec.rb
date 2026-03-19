@@ -295,12 +295,12 @@ RSpec.describe 'Feed Integration Tests', type: :integration do
           users: {
             user_id_1 => {
               'id' => user_id_1,
-              'name' => 'Test User 1',
+              'name' => "Test User #{user_id_1}",
               'role' => 'user',
             },
             user_id_2 => {
               'id' => user_id_2,
-              'name' => 'Test User 2',
+              'name' => "Test User #{user_id_2}",
               'role' => 'user',
             },
           },
@@ -328,7 +328,7 @@ RSpec.describe 'Feed Integration Tests', type: :integration do
           users: {
             user_id => {
               'id' => user_id,
-              'name' => 'Original Name',
+              'name' => "Original Name #{user_id}",
               'role' => 'user',
             },
           },
@@ -342,7 +342,7 @@ RSpec.describe 'Feed Integration Tests', type: :integration do
             {
               'id' => user_id,
               'set' => {
-                'name' => 'Updated Name',
+                'name' => "Updated Name #{user_id}",
               },
             },
           ],

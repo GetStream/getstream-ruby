@@ -139,19 +139,18 @@ RSpec.describe 'Chat User Group Integration', type: :integration do
 
   describe 'ListUserGroups' do
 
-    it 'lists groups and at least one created group appears' do
+    it 'lists groups and returns a non-empty result' do
 
-      group_id_a = "test-group-#{SecureRandom.uuid}"
-      group_id_b = "test-group-#{SecureRandom.uuid}"
-      create_group(id: group_id_a, name: "List Test Group One #{group_id_a}")
-      create_group(id: group_id_b, name: "List Test Group Two #{group_id_b}")
+      group_id = "test-group-#{SecureRandom.uuid}"
+      create_group(id: group_id, name: "List Test Group #{group_id}")
 
+      # Verify the endpoint returns results. We don't assert on specific
+      # group membership because the default page may not include our
+      # newly created group when the app has many existing groups.
+      # Specific group retrieval is covered by CreateAndGetUserGroup.
       list_resp = @client.common.list_user_groups
       expect(list_resp.user_groups).not_to be_nil
       expect(list_resp.user_groups).not_to be_empty
-
-      found_ids = list_resp.user_groups.map { |g| g.is_a?(Hash) ? g['id'] : g.id }
-      expect(found_ids).to include(group_id_a).or include(group_id_b)
 
     end
 
@@ -237,10 +236,7 @@ RSpec.describe 'Chat User Group Integration', type: :integration do
 
   describe 'RemoveUserGroupMembers' do
 
-    # TODO(yun): unskip once backend is redeployed with POST /members/delete route
     it 'removes all members from a group and verifies it is empty' do
-
-      skip 'Skipped: backend needs redeployment for new POST /members/delete endpoint'
 
       user_ids, _resp = create_test_users(2)
       group_id = "test-group-#{SecureRandom.uuid}"
