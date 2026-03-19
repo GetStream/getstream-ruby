@@ -81,7 +81,7 @@ module VideoTestHelpers
 
       users[id] = GetStream::Generated::Models::UserRequest.new(
         id: id,
-        name: "Test User #{id[0..7]}",
+        name: "Test User #{id}",
         role: 'user',
       )
 

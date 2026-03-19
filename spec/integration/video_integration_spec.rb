@@ -673,7 +673,7 @@ RSpec.describe 'Video Integration', type: :integration do
           users: {
             team_user_id => GetStream::Generated::Models::UserRequest.new(
               id: team_user_id,
-              name: 'Team User',
+              name: "Team User #{team_user_id}",
               role: 'user',
               teams: %w[red blue],
             ),

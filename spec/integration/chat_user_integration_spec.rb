@@ -273,7 +273,7 @@ RSpec.describe 'Chat User Integration', type: :integration do
         GetStream::Generated::Models::CreateGuestRequest.new(
           user: GetStream::Generated::Models::UserRequest.new(
             id: guest_id,
-            name: 'Test Guest',
+            name: "Test Guest #{guest_id}",
           ),
         ),
       )
@@ -303,7 +303,7 @@ RSpec.describe 'Chat User Integration', type: :integration do
           users: {
             uid => GetStream::Generated::Models::UserRequest.new(
               id: uid,
-              name: "Admin User #{uid[0..7]}",
+              name: "Admin User #{uid}",
               role: 'admin',
               teams: ['blue'],
               teams_role: { 'blue' => 'admin' },
@@ -367,7 +367,7 @@ RSpec.describe 'Chat User Integration', type: :integration do
           users: {
             uid => GetStream::Generated::Models::UserRequest.new(
               id: uid,
-              name: "Privacy User #{uid[0..7]}",
+              name: "Privacy User #{uid}",
               privacy_settings: GetStream::Generated::Models::PrivacySettingsResponse.new(
                 typing_indicators: GetStream::Generated::Models::TypingIndicatorsResponse.new(enabled: false),
               ),
@@ -540,7 +540,7 @@ RSpec.describe 'Chat User Integration', type: :integration do
           users: {
             uid => GetStream::Generated::Models::UserRequest.new(
               id: uid,
-              name: "Custom User #{uid[0..7]}",
+              name: "Custom User #{uid}",
               custom: custom_data,
             ),
           },
