@@ -21,6 +21,9 @@ module GetStream
         # @!attribute max_message_length
         #   @return [Integer] Maximum message length
         attr_accessor :max_message_length
+        # @!attribute push_level
+        #   @return [String]
+        attr_accessor :push_level
         # @!attribute quotes
         #   @return [Boolean] Enable/disable quotes
         attr_accessor :quotes
@@ -48,6 +51,9 @@ module GetStream
         # @!attribute commands
         #   @return [Array<String>] List of available commands
         attr_accessor :commands
+        # @!attribute chat_preferences
+        #   @return [ChatPreferences]
+        attr_accessor :chat_preferences
         # @!attribute grants
         #   @return [Hash<String, Array<String>>] Permission grants modifiers
         attr_accessor :grants
@@ -59,6 +65,7 @@ module GetStream
           @blocklist_behavior = attributes[:blocklist_behavior] || attributes['blocklist_behavior'] || nil
           @count_messages = attributes[:count_messages] || attributes['count_messages'] || nil
           @max_message_length = attributes[:max_message_length] || attributes['max_message_length'] || nil
+          @push_level = attributes[:push_level] || attributes['push_level'] || nil
           @quotes = attributes[:quotes] || attributes['quotes'] || nil
           @reactions = attributes[:reactions] || attributes['reactions'] || nil
           @replies = attributes[:replies] || attributes['replies'] || nil
@@ -68,6 +75,7 @@ module GetStream
           @url_enrichment = attributes[:url_enrichment] || attributes['url_enrichment'] || nil
           @user_message_reminders = attributes[:user_message_reminders] || attributes['user_message_reminders'] || nil
           @commands = attributes[:commands] || attributes['commands'] || nil
+          @chat_preferences = attributes[:chat_preferences] || attributes['chat_preferences'] || nil
           @grants = attributes[:grants] || attributes['grants'] || nil
         end
 
@@ -78,6 +86,7 @@ module GetStream
             blocklist_behavior: 'blocklist_behavior',
             count_messages: 'count_messages',
             max_message_length: 'max_message_length',
+            push_level: 'push_level',
             quotes: 'quotes',
             reactions: 'reactions',
             replies: 'replies',
@@ -87,6 +96,7 @@ module GetStream
             url_enrichment: 'url_enrichment',
             user_message_reminders: 'user_message_reminders',
             commands: 'commands',
+            chat_preferences: 'chat_preferences',
             grants: 'grants'
           }
         end

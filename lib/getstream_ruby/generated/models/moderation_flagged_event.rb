@@ -9,15 +9,15 @@ module GetStream
       class ModerationFlaggedEvent < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute _object_id
-        #   @return [String] The ID of the flagged content
-        attr_accessor :_object_id
         # @!attribute content_type
         #   @return [String] The type of content that was flagged
         attr_accessor :content_type
         # @!attribute created_at
         #   @return [DateTime]
         attr_accessor :created_at
+        # @!attribute object_id
+        #   @return [String] The ID of the flagged content
+        attr_accessor :object_id
         # @!attribute custom
         #   @return [Object]
         attr_accessor :custom
@@ -31,9 +31,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @_object_id = attributes[:_object_id] || attributes['object_id']
           @content_type = attributes[:content_type] || attributes['content_type']
           @created_at = attributes[:created_at] || attributes['created_at']
+          @object_id = attributes[:object_id] || attributes['object_id']
           @custom = attributes[:custom] || attributes['custom']
           @type = attributes[:type] || attributes['type'] || "moderation.flagged"
           @received_at = attributes[:received_at] || attributes['received_at'] || nil
@@ -42,9 +42,9 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            _object_id: 'object_id',
             content_type: 'content_type',
             created_at: 'created_at',
+            object_id: 'object_id',
             custom: 'custom',
             type: 'type',
             received_at: 'received_at'

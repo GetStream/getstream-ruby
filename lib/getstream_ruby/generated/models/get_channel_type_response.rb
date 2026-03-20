@@ -123,6 +123,9 @@ module GetStream
         # @!attribute automod_thresholds
         #   @return [Thresholds]
         attr_accessor :automod_thresholds
+        # @!attribute chat_preferences
+        #   @return [ChatPreferences]
+        attr_accessor :chat_preferences
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -165,6 +168,7 @@ module GetStream
           @allowed_flag_reasons = attributes[:allowed_flag_reasons] || attributes['allowed_flag_reasons'] || nil
           @blocklists = attributes[:blocklists] || attributes['blocklists'] || nil
           @automod_thresholds = attributes[:automod_thresholds] || attributes['automod_thresholds'] || nil
+          @chat_preferences = attributes[:chat_preferences] || attributes['chat_preferences'] || nil
         end
 
         # Override field mappings for JSON serialization
@@ -207,7 +211,8 @@ module GetStream
             push_level: 'push_level',
             allowed_flag_reasons: 'allowed_flag_reasons',
             blocklists: 'blocklists',
-            automod_thresholds: 'automod_thresholds'
+            automod_thresholds: 'automod_thresholds',
+            chat_preferences: 'chat_preferences'
           }
         end
       end

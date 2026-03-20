@@ -15,12 +15,15 @@ module GetStream
         # @!attribute sip_trunk_number
         #   @return [String] SIP trunk number to resolve
         attr_accessor :sip_trunk_number
-        # @!attribute challenge
-        #   @return [SIPChallengeRequest]
-        attr_accessor :challenge
         # @!attribute routing_number
         #   @return [String] Optional routing number for routing number-based call routing (10 digits)
         attr_accessor :routing_number
+        # @!attribute trunk_id
+        #   @return [String] Optional pre-authenticated trunk ID (from PreAuth no-auth flow)
+        attr_accessor :trunk_id
+        # @!attribute challenge
+        #   @return [SIPChallengeRequest]
+        attr_accessor :challenge
         # @!attribute sip_headers
         #   @return [Hash<String, String>] Optional SIP headers as key-value pairs
         attr_accessor :sip_headers
@@ -30,8 +33,9 @@ module GetStream
           super(attributes)
           @sip_caller_number = attributes[:sip_caller_number] || attributes['sip_caller_number']
           @sip_trunk_number = attributes[:sip_trunk_number] || attributes['sip_trunk_number']
-          @challenge = attributes[:challenge] || attributes['challenge']
           @routing_number = attributes[:routing_number] || attributes['routing_number'] || nil
+          @trunk_id = attributes[:trunk_id] || attributes['trunk_id'] || nil
+          @challenge = attributes[:challenge] || attributes['challenge'] || nil
           @sip_headers = attributes[:sip_headers] || attributes['sip_headers'] || nil
         end
 
@@ -40,8 +44,9 @@ module GetStream
           {
             sip_caller_number: 'sip_caller_number',
             sip_trunk_number: 'sip_trunk_number',
-            challenge: 'challenge',
             routing_number: 'routing_number',
+            trunk_id: 'trunk_id',
+            challenge: 'challenge',
             sip_headers: 'sip_headers'
           }
         end

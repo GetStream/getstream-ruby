@@ -21,6 +21,9 @@ module GetStream
         # @!attribute feeds_level
         #   @return [String]
         attr_accessor :feeds_level
+        # @!attribute chat_preferences
+        #   @return [ChatPreferencesResponse]
+        attr_accessor :chat_preferences
         # @!attribute feeds_preferences
         #   @return [FeedsPreferencesResponse]
         attr_accessor :feeds_preferences
@@ -32,6 +35,7 @@ module GetStream
           @chat_level = attributes[:chat_level] || attributes['chat_level'] || nil
           @disabled_until = attributes[:disabled_until] || attributes['disabled_until'] || nil
           @feeds_level = attributes[:feeds_level] || attributes['feeds_level'] || nil
+          @chat_preferences = attributes[:chat_preferences] || attributes['chat_preferences'] || nil
           @feeds_preferences = attributes[:feeds_preferences] || attributes['feeds_preferences'] || nil
         end
 
@@ -42,6 +46,7 @@ module GetStream
             chat_level: 'chat_level',
             disabled_until: 'disabled_until',
             feeds_level: 'feeds_level',
+            chat_preferences: 'chat_preferences',
             feeds_preferences: 'feeds_preferences'
           }
         end

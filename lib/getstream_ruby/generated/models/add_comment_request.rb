@@ -9,9 +9,6 @@ module GetStream
       class AddCommentRequest < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute _object_id
-        #   @return [String] ID of the object to comment on. Required for root comments
-        attr_accessor :_object_id
         # @!attribute comment
         #   @return [String] Text content of the comment
         attr_accessor :comment
@@ -24,6 +21,9 @@ module GetStream
         # @!attribute id
         #   @return [String] Optional custom ID for the comment (max 255 characters). If not provided, a UUID will be generated.
         attr_accessor :id
+        # @!attribute object_id
+        #   @return [String] ID of the object to comment on. Required for root comments
+        attr_accessor :object_id
         # @!attribute object_type
         #   @return [String] Type of the object to comment on. Required for root comments
         attr_accessor :object_type
@@ -55,11 +55,11 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @_object_id = attributes[:_object_id] || attributes['object_id'] || nil
           @comment = attributes[:comment] || attributes['comment'] || nil
           @copy_custom_to_notification = attributes[:copy_custom_to_notification] || attributes['copy_custom_to_notification'] || nil
           @create_notification_activity = attributes[:create_notification_activity] || attributes['create_notification_activity'] || nil
           @id = attributes[:id] || attributes['id'] || nil
+          @object_id = attributes[:object_id] || attributes['object_id'] || nil
           @object_type = attributes[:object_type] || attributes['object_type'] || nil
           @parent_id = attributes[:parent_id] || attributes['parent_id'] || nil
           @skip_enrich_url = attributes[:skip_enrich_url] || attributes['skip_enrich_url'] || nil
@@ -74,11 +74,11 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            _object_id: 'object_id',
             comment: 'comment',
             copy_custom_to_notification: 'copy_custom_to_notification',
             create_notification_activity: 'create_notification_activity',
             id: 'id',
+            object_id: 'object_id',
             object_type: 'object_type',
             parent_id: 'parent_id',
             skip_enrich_url: 'skip_enrich_url',

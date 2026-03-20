@@ -108,6 +108,9 @@ module GetStream
         # @!attribute automod_thresholds
         #   @return [Thresholds]
         attr_accessor :automod_thresholds
+        # @!attribute chat_preferences
+        #   @return [ChatPreferences]
+        attr_accessor :chat_preferences
         # @!attribute grants
         #   @return [Hash<String, Array<String>>]
         attr_accessor :grants
@@ -148,6 +151,7 @@ module GetStream
           @commands = attributes[:commands] || attributes['commands'] || nil
           @permissions = attributes[:permissions] || attributes['permissions'] || nil
           @automod_thresholds = attributes[:automod_thresholds] || attributes['automod_thresholds'] || nil
+          @chat_preferences = attributes[:chat_preferences] || attributes['chat_preferences'] || nil
           @grants = attributes[:grants] || attributes['grants'] || nil
         end
 
@@ -187,6 +191,7 @@ module GetStream
             commands: 'commands',
             permissions: 'permissions',
             automod_thresholds: 'automod_thresholds',
+            chat_preferences: 'chat_preferences',
             grants: 'grants'
           }
         end

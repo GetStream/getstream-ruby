@@ -27,6 +27,9 @@ module GetStream
         # @!attribute supported_video_call_harm_types
         #   @return [Array<String>]
         attr_accessor :supported_video_call_harm_types
+        # @!attribute ai_image_label_definitions
+        #   @return [Array<AIImageLabelDefinition>] Configurable image moderation label definitions for dashboard rendering
+        attr_accessor :ai_image_label_definitions
         # @!attribute ai_image_config
         #   @return [AIImageConfig]
         attr_accessor :ai_image_config
@@ -70,6 +73,7 @@ module GetStream
           @team = attributes[:team] || attributes['team']
           @updated_at = attributes[:updated_at] || attributes['updated_at']
           @supported_video_call_harm_types = attributes[:supported_video_call_harm_types] || attributes['supported_video_call_harm_types']
+          @ai_image_label_definitions = attributes[:ai_image_label_definitions] || attributes['ai_image_label_definitions'] || nil
           @ai_image_config = attributes[:ai_image_config] || attributes['ai_image_config'] || nil
           @ai_image_subclassifications = attributes[:ai_image_subclassifications] || attributes['ai_image_subclassifications'] || nil
           @ai_text_config = attributes[:ai_text_config] || attributes['ai_text_config'] || nil
@@ -92,6 +96,7 @@ module GetStream
             team: 'team',
             updated_at: 'updated_at',
             supported_video_call_harm_types: 'supported_video_call_harm_types',
+            ai_image_label_definitions: 'ai_image_label_definitions',
             ai_image_config: 'ai_image_config',
             ai_image_subclassifications: 'ai_image_subclassifications',
             ai_text_config: 'ai_text_config',

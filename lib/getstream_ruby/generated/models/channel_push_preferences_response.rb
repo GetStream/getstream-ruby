@@ -15,19 +15,24 @@ module GetStream
         # @!attribute disabled_until
         #   @return [DateTime]
         attr_accessor :disabled_until
+        # @!attribute chat_preferences
+        #   @return [ChatPreferencesResponse]
+        attr_accessor :chat_preferences
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @chat_level = attributes[:chat_level] || attributes['chat_level'] || nil
           @disabled_until = attributes[:disabled_until] || attributes['disabled_until'] || nil
+          @chat_preferences = attributes[:chat_preferences] || attributes['chat_preferences'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
             chat_level: 'chat_level',
-            disabled_until: 'disabled_until'
+            disabled_until: 'disabled_until',
+            chat_preferences: 'chat_preferences'
           }
         end
       end

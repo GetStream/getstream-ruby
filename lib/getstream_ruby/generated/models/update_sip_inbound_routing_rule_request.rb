@@ -12,15 +12,15 @@ module GetStream
         # @!attribute name
         #   @return [String] Name of the SIP Inbound Routing Rule
         attr_accessor :name
-        # @!attribute called_numbers
-        #   @return [Array<String>] List of called numbers
-        attr_accessor :called_numbers
         # @!attribute trunk_ids
         #   @return [Array<String>] List of SIP trunk IDs
         attr_accessor :trunk_ids
         # @!attribute caller_configs
         #   @return [SIPCallerConfigsRequest]
         attr_accessor :caller_configs
+        # @!attribute called_numbers
+        #   @return [Array<String>] List of called numbers
+        attr_accessor :called_numbers
         # @!attribute caller_numbers
         #   @return [Array<String>] List of caller numbers (optional)
         attr_accessor :caller_numbers
@@ -41,9 +41,9 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @name = attributes[:name] || attributes['name']
-          @called_numbers = attributes[:called_numbers] || attributes['called_numbers']
           @trunk_ids = attributes[:trunk_ids] || attributes['trunk_ids']
           @caller_configs = attributes[:caller_configs] || attributes['caller_configs']
+          @called_numbers = attributes[:called_numbers] || attributes['called_numbers'] || nil
           @caller_numbers = attributes[:caller_numbers] || attributes['caller_numbers'] || nil
           @call_configs = attributes[:call_configs] || attributes['call_configs'] || nil
           @direct_routing_configs = attributes[:direct_routing_configs] || attributes['direct_routing_configs'] || nil
@@ -55,9 +55,9 @@ module GetStream
         def self.json_field_mappings
           {
             name: 'name',
-            called_numbers: 'called_numbers',
             trunk_ids: 'trunk_ids',
             caller_configs: 'caller_configs',
+            called_numbers: 'called_numbers',
             caller_numbers: 'caller_numbers',
             call_configs: 'call_configs',
             direct_routing_configs: 'direct_routing_configs',

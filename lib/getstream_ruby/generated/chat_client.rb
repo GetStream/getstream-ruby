@@ -1388,6 +1388,73 @@ module GetStream
         )
       end
 
+      # Returns all retention policies configured for the app. Server-side only.
+      #
+      # @return [Models::GetRetentionPolicyResponse]
+      def get_retention_policy()
+        path = '/api/v2/chat/retention_policy'
+
+        # Make the API request
+        @client.make_request(
+          :get,
+          path
+        )
+      end
+
+      # Creates or updates a retention policy for the app. Server-side only.
+      #
+      # @param set_retention_policy_request [SetRetentionPolicyRequest]
+      # @return [Models::SetRetentionPolicyResponse]
+      def set_retention_policy(set_retention_policy_request)
+        path = '/api/v2/chat/retention_policy'
+        # Build request body
+        body = set_retention_policy_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
+      # Removes a retention policy for the app. Server-side only.
+      #
+      # @param delete_retention_policy_request [DeleteRetentionPolicyRequest]
+      # @return [Models::DeleteRetentionPolicyResponse]
+      def delete_retention_policy(delete_retention_policy_request)
+        path = '/api/v2/chat/retention_policy/delete'
+        # Build request body
+        body = delete_retention_policy_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
+      # Returns paginated retention cleanup run history for the app. Server-side only.
+      #
+      # @param limit [Integer]
+      # @param offset [Integer]
+      # @return [Models::GetRetentionPolicyRunsResponse]
+      def get_retention_policy_runs(limit = nil, offset = nil)
+        path = '/api/v2/chat/retention_policy/runs'
+        # Build query parameters
+        query_params = {}
+        query_params['limit'] = limit unless limit.nil?
+        query_params['offset'] = offset unless offset.nil?
+
+        # Make the API request
+        @client.make_request(
+          :get,
+          path,
+          query_params: query_params
+        )
+      end
+
       # Search messages across channels
       #
       # @param payload [SearchPayload]

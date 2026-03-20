@@ -123,6 +123,9 @@ module GetStream
         # @!attribute webhook_events
         #   @return [Array<String>]
         attr_accessor :webhook_events
+        # @!attribute activity_metrics_config
+        #   @return [Hash<String, Integer>]
+        attr_accessor :activity_metrics_config
         # @!attribute apn_config
         #   @return [APNConfig]
         attr_accessor :apn_config
@@ -198,6 +201,7 @@ module GetStream
           @image_moderation_labels = attributes[:image_moderation_labels] || attributes['image_moderation_labels'] || nil
           @user_search_disallowed_roles = attributes[:user_search_disallowed_roles] || attributes['user_search_disallowed_roles'] || nil
           @webhook_events = attributes[:webhook_events] || attributes['webhook_events'] || nil
+          @activity_metrics_config = attributes[:activity_metrics_config] || attributes['activity_metrics_config'] || nil
           @apn_config = attributes[:apn_config] || attributes['apn_config'] || nil
           @async_moderation_config = attributes[:async_moderation_config] || attributes['async_moderation_config'] || nil
           @datadog_info = attributes[:datadog_info] || attributes['datadog_info'] || nil
@@ -252,6 +256,7 @@ module GetStream
             image_moderation_labels: 'image_moderation_labels',
             user_search_disallowed_roles: 'user_search_disallowed_roles',
             webhook_events: 'webhook_events',
+            activity_metrics_config: 'activity_metrics_config',
             apn_config: 'apn_config',
             async_moderation_config: 'async_moderation_config',
             datadog_info: 'datadog_info',

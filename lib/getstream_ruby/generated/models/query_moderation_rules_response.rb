@@ -12,6 +12,9 @@ module GetStream
         # @!attribute duration
         #   @return [String]
         attr_accessor :duration
+        # @!attribute ai_image_label_definitions
+        #   @return [Array<AIImageLabelDefinition>] AI image label definitions with metadata for dashboard rendering
+        attr_accessor :ai_image_label_definitions
         # @!attribute closed_caption_labels
         #   @return [Array<String>] Available harm labels for closed caption rules
         attr_accessor :closed_caption_labels
@@ -21,6 +24,9 @@ module GetStream
         # @!attribute rules
         #   @return [Array<ModerationRuleV2Response>] List of moderation rules
         attr_accessor :rules
+        # @!attribute ai_image_subclassifications
+        #   @return [Hash<String, Array<String>>] Stream L1 to leaf-level label name mapping for AI image rules
+        attr_accessor :ai_image_subclassifications
         # @!attribute default_llm_labels
         #   @return [Hash<String, String>] Default LLM label descriptions
         attr_accessor :default_llm_labels
@@ -38,9 +44,11 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @duration = attributes[:duration] || attributes['duration']
+          @ai_image_label_definitions = attributes[:ai_image_label_definitions] || attributes['ai_image_label_definitions']
           @closed_caption_labels = attributes[:closed_caption_labels] || attributes['closed_caption_labels']
           @keyframe_labels = attributes[:keyframe_labels] || attributes['keyframe_labels']
           @rules = attributes[:rules] || attributes['rules']
+          @ai_image_subclassifications = attributes[:ai_image_subclassifications] || attributes['ai_image_subclassifications']
           @default_llm_labels = attributes[:default_llm_labels] || attributes['default_llm_labels']
           @keyframe_label_classifications = attributes[:keyframe_label_classifications] || attributes['keyframe_label_classifications']
           @next = attributes[:next] || attributes['next'] || nil
@@ -51,9 +59,11 @@ module GetStream
         def self.json_field_mappings
           {
             duration: 'duration',
+            ai_image_label_definitions: 'ai_image_label_definitions',
             closed_caption_labels: 'closed_caption_labels',
             keyframe_labels: 'keyframe_labels',
             rules: 'rules',
+            ai_image_subclassifications: 'ai_image_subclassifications',
             default_llm_labels: 'default_llm_labels',
             keyframe_label_classifications: 'keyframe_label_classifications',
             next: 'next',
