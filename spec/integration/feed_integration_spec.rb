@@ -506,7 +506,7 @@ RSpec.describe 'Feed Integration Tests', type: :integration do
       # Query comments
       query_request = GetStream::Generated::Models::QueryCommentsRequest.new(
         filter: {
-          _object_id: activity_id,
+          object_id: activity_id,
         },
         limit: 10,
       )
