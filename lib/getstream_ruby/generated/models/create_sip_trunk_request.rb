@@ -15,19 +15,29 @@ module GetStream
         # @!attribute numbers
         #   @return [Array<String>] Phone numbers associated with this SIP trunk
         attr_accessor :numbers
+        # @!attribute password
+        #   @return [String] Optional password for SIP trunk authentication
+        attr_accessor :password
+        # @!attribute allowed_ips
+        #   @return [Array<String>] Optional list of allowed IPv4/IPv6 addresses or CIDR blocks
+        attr_accessor :allowed_ips
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @name = attributes[:name] || attributes['name']
           @numbers = attributes[:numbers] || attributes['numbers']
+          @password = attributes[:password] || attributes['password'] || nil
+          @allowed_ips = attributes[:allowed_ips] || attributes['allowed_ips'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
             name: 'name',
-            numbers: 'numbers'
+            numbers: 'numbers',
+            password: 'password',
+            allowed_ips: 'allowed_ips'
           }
         end
       end

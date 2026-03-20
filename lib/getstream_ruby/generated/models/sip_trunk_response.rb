@@ -30,6 +30,9 @@ module GetStream
         # @!attribute username
         #   @return [String] Username for SIP trunk authentication
         attr_accessor :username
+        # @!attribute allowed_ips
+        #   @return [Array<String>] Allowed IPv4/IPv6 addresses or CIDR blocks
+        attr_accessor :allowed_ips
         # @!attribute numbers
         #   @return [Array<String>] Phone numbers associated with this SIP trunk
         attr_accessor :numbers
@@ -44,6 +47,7 @@ module GetStream
           @updated_at = attributes[:updated_at] || attributes['updated_at']
           @uri = attributes[:uri] || attributes['uri']
           @username = attributes[:username] || attributes['username']
+          @allowed_ips = attributes[:allowed_ips] || attributes['allowed_ips']
           @numbers = attributes[:numbers] || attributes['numbers']
         end
 
@@ -57,6 +61,7 @@ module GetStream
             updated_at: 'updated_at',
             uri: 'uri',
             username: 'username',
+            allowed_ips: 'allowed_ips',
             numbers: 'numbers'
           }
         end

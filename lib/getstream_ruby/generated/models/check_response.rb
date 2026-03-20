@@ -24,6 +24,9 @@ module GetStream
         # @!attribute item
         #   @return [ReviewQueueItemResponse]
         attr_accessor :item
+        # @!attribute triggered_rule
+        #   @return [TriggeredRuleResponse]
+        attr_accessor :triggered_rule
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -33,6 +36,7 @@ module GetStream
           @status = attributes[:status] || attributes['status']
           @task_id = attributes[:task_id] || attributes['task_id'] || nil
           @item = attributes[:item] || attributes['item'] || nil
+          @triggered_rule = attributes[:triggered_rule] || attributes['triggered_rule'] || nil
         end
 
         # Override field mappings for JSON serialization
@@ -42,7 +46,8 @@ module GetStream
             recommended_action: 'recommended_action',
             status: 'status',
             task_id: 'task_id',
-            item: 'item'
+            item: 'item',
+            triggered_rule: 'triggered_rule'
           }
         end
       end

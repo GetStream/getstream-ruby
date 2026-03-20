@@ -15,19 +15,24 @@ module GetStream
         # @!attribute ai_text_labels
         #   @return [Array<String>]
         attr_accessor :ai_text_labels
+        # @!attribute config_keys
+        #   @return [Array<String>]
+        attr_accessor :config_keys
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @llm_labels = attributes[:llm_labels] || attributes['llm_labels']
           @ai_text_labels = attributes[:ai_text_labels] || attributes['ai_text_labels'] || nil
+          @config_keys = attributes[:config_keys] || attributes['config_keys'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
             llm_labels: 'llm_labels',
-            ai_text_labels: 'ai_text_labels'
+            ai_text_labels: 'ai_text_labels',
+            config_keys: 'config_keys'
           }
         end
       end

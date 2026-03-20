@@ -9,6 +9,9 @@ module GetStream
       class ImageRuleParameters < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute min_confidence
+        #   @return [Float]
+        attr_accessor :min_confidence
         # @!attribute threshold
         #   @return [Integer]
         attr_accessor :threshold
@@ -22,6 +25,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @min_confidence = attributes[:min_confidence] || attributes['min_confidence'] || nil
           @threshold = attributes[:threshold] || attributes['threshold'] || nil
           @time_window = attributes[:time_window] || attributes['time_window'] || nil
           @harm_labels = attributes[:harm_labels] || attributes['harm_labels'] || nil
@@ -30,6 +34,7 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            min_confidence: 'min_confidence',
             threshold: 'threshold',
             time_window: 'time_window',
             harm_labels: 'harm_labels'

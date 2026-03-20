@@ -102,6 +102,9 @@ module GetStream
         # @!attribute permissions
         #   @return [Array<PolicyRequest>] List of permissions for the channel type
         attr_accessor :permissions
+        # @!attribute chat_preferences
+        #   @return [ChatPreferences]
+        attr_accessor :chat_preferences
         # @!attribute grants
         #   @return [Hash<String, Array<String>>] List of grants for the channel type
         attr_accessor :grants
@@ -140,6 +143,7 @@ module GetStream
           @blocklists = attributes[:blocklists] || attributes['blocklists'] || nil
           @commands = attributes[:commands] || attributes['commands'] || nil
           @permissions = attributes[:permissions] || attributes['permissions'] || nil
+          @chat_preferences = attributes[:chat_preferences] || attributes['chat_preferences'] || nil
           @grants = attributes[:grants] || attributes['grants'] || nil
         end
 
@@ -177,6 +181,7 @@ module GetStream
             blocklists: 'blocklists',
             commands: 'commands',
             permissions: 'permissions',
+            chat_preferences: 'chat_preferences',
             grants: 'grants'
           }
         end

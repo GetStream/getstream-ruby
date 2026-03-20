@@ -19,7 +19,7 @@ module GetStream
         #   @return [Float]
         attr_accessor :min_confidence
         # @!attribute subclassifications
-        #   @return [Hash<String, Boolean>]
+        #   @return [Object]
         attr_accessor :subclassifications
 
         # Initialize with attributes

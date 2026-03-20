@@ -165,6 +165,9 @@ module GetStream
         # @!attribute image_moderation_labels
         #   @return [Array<String>]
         attr_accessor :image_moderation_labels
+        # @!attribute activity_metrics_config
+        #   @return [Hash<String, Integer>]
+        attr_accessor :activity_metrics_config
         # @!attribute datadog_info
         #   @return [DataDogInfo]
         attr_accessor :datadog_info
@@ -227,6 +230,7 @@ module GetStream
           @allowed_flag_reasons = attributes[:allowed_flag_reasons] || attributes['allowed_flag_reasons'] || nil
           @geofences = attributes[:geofences] || attributes['geofences'] || nil
           @image_moderation_labels = attributes[:image_moderation_labels] || attributes['image_moderation_labels'] || nil
+          @activity_metrics_config = attributes[:activity_metrics_config] || attributes['activity_metrics_config'] || nil
           @datadog_info = attributes[:datadog_info] || attributes['datadog_info'] || nil
           @moderation_dashboard_preferences = attributes[:moderation_dashboard_preferences] || attributes['moderation_dashboard_preferences'] || nil
         end
@@ -286,6 +290,7 @@ module GetStream
             allowed_flag_reasons: 'allowed_flag_reasons',
             geofences: 'geofences',
             image_moderation_labels: 'image_moderation_labels',
+            activity_metrics_config: 'activity_metrics_config',
             datadog_info: 'datadog_info',
             moderation_dashboard_preferences: 'moderation_dashboard_preferences'
           }

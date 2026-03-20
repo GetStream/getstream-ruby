@@ -24,6 +24,9 @@ module GetStream
         # @!attribute reason
         #   @return [String] The reason why the call ended, if available
         attr_accessor :reason
+        # @!attribute members
+        #   @return [Array<MemberResponse>] The list of members in the call
+        attr_accessor :members
         # @!attribute user
         #   @return [UserResponse]
         attr_accessor :user
@@ -36,6 +39,7 @@ module GetStream
           @call = attributes[:call] || attributes['call']
           @type = attributes[:type] || attributes['type'] || "call.ended"
           @reason = attributes[:reason] || attributes['reason'] || nil
+          @members = attributes[:members] || attributes['members'] || nil
           @user = attributes[:user] || attributes['user'] || nil
         end
 
@@ -47,6 +51,7 @@ module GetStream
             call: 'call',
             type: 'type',
             reason: 'reason',
+            members: 'members',
             user: 'user'
           }
         end

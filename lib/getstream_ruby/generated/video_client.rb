@@ -1214,6 +1214,23 @@ module GetStream
         )
       end
 
+      # Determine authentication requirements for an inbound SIP call before sending a digest challenge
+      #
+      # @param resolve_sip_auth_request [ResolveSipAuthRequest]
+      # @return [Models::ResolveSipAuthResponse]
+      def resolve_sip_auth(resolve_sip_auth_request)
+        path = '/api/v2/video/sip/auth'
+        # Build request body
+        body = resolve_sip_auth_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
       # List all SIP Inbound Routing Rules for the application
       #
       # @return [Models::ListSIPInboundRoutingRuleResponse]

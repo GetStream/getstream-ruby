@@ -30,6 +30,9 @@ module GetStream
         # @!attribute user_id
         #   @return [String] The user id for which to set the push preferences. Required when using server side auths, defaults to current user with client side auth.
         attr_accessor :user_id
+        # @!attribute chat_preferences
+        #   @return [ChatPreferencesInput]
+        attr_accessor :chat_preferences
         # @!attribute feeds_preferences
         #   @return [FeedsPreferences]
         attr_accessor :feeds_preferences
@@ -44,6 +47,7 @@ module GetStream
           @feeds_level = attributes[:feeds_level] || attributes['feeds_level'] || nil
           @remove_disable = attributes[:remove_disable] || attributes['remove_disable'] || nil
           @user_id = attributes[:user_id] || attributes['user_id'] || nil
+          @chat_preferences = attributes[:chat_preferences] || attributes['chat_preferences'] || nil
           @feeds_preferences = attributes[:feeds_preferences] || attributes['feeds_preferences'] || nil
         end
 
@@ -57,6 +61,7 @@ module GetStream
             feeds_level: 'feeds_level',
             remove_disable: 'remove_disable',
             user_id: 'user_id',
+            chat_preferences: 'chat_preferences',
             feeds_preferences: 'feeds_preferences'
           }
         end
