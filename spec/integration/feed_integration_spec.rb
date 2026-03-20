@@ -489,7 +489,7 @@ RSpec.describe 'Feed Integration Tests', type: :integration do
       # Add comment
       comment_request = GetStream::Generated::Models::AddCommentRequest.new(
         comment: 'This is a test comment from Ruby SDK',
-        _object_id: activity_id,
+        object_id: activity_id,
         object_type: 'activity',
         user_id: test_user_id_1,
       )
@@ -939,7 +939,7 @@ RSpec.describe 'Feed Integration Tests', type: :integration do
 
         comment_request = GetStream::Generated::Models::AddCommentRequest.new(
           comment: comment_text,
-          _object_id: post_id,
+          object_id: post_id,
           object_type: 'activity',
           user_id: test_user_id_2,
         )
