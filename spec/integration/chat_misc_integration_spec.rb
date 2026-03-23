@@ -778,53 +778,90 @@ RSpec.describe 'Chat Misc Integration', type: :integration do
 
   describe 'RetentionPolicy' do
 
-    it 'sets, gets, lists runs, and deletes a retention policy' do
+    before(:all) do
 
-      policy_name = 'old-messages'
-
-      # Set retention policy
-      set_resp = @client.chat.set_retention_policy(
+      @retention_policy_name = 'old-messages'
+      @client.chat.set_retention_policy(
         GetStream::Generated::Models::SetRetentionPolicyRequest.new(
-          policy: policy_name,
+          policy: @retention_policy_name,
           max_age_hours: 720,
         ),
       )
-      expect(set_resp).not_to be_nil
-
-      # Get retention policies and verify
-      get_resp = @client.chat.get_retention_policy
-      expect(get_resp).not_to be_nil
-      policies = get_resp.retention_policies || []
-      found = policies.any? do |p|
-
-        h = p.is_a?(Hash) ? p : p.to_h
-        h['policy'] == policy_name
-
-      end
-      expect(found).to be(true), 'Retention policy should appear in list'
-
-      # Get retention policy runs
-      runs_resp = @client.chat.get_retention_policy_runs
-      expect(runs_resp).not_to be_nil
-      runs = runs_resp.retention_policy_runs || []
-      expect(runs).to be_an(Array)
-
-      # Delete retention policy (cleanup)
-      del_resp = @client.chat.delete_retention_policy(
-        GetStream::Generated::Models::DeleteRetentionPolicyRequest.new(
-          policy: policy_name,
-        ),
-      )
-      expect(del_resp).not_to be_nil
+      @retention_policy_available = true
     rescue GetStreamRuby::APIError => e
       if e.message.include?('not enabled') ||
          e.message.include?('not available') ||
          e.message.include?('retention') ||
          e.message.include?('Not Found') ||
          e.message.include?('not found')
-        skip('Retention policy not available for this app')
+        @retention_policy_available = false
+      else
+        raise
       end
-      raise
+
+    end
+
+    after(:all) do
+
+      if @retention_policy_available
+        @client.chat.delete_retention_policy(
+          GetStream::Generated::Models::DeleteRetentionPolicyRequest.new(
+            policy: @retention_policy_name,
+          ),
+        )
+      end
+    rescue StandardError => e
+      puts "Warning: Failed to delete retention policy: #{e.message}"
+
+    end
+
+    it 'gets retention policies and verifies the created policy appears' do
+
+      skip('Retention policy not available for this app') unless @retention_policy_available
+
+      get_resp = @client.chat.get_retention_policy
+      expect(get_resp).not_to be_nil
+      policies = get_resp.retention_policies || []
+      found = policies.any? do |p|
+
+        h = p.is_a?(Hash) ? p : p.to_h
+        h['policy'] == @retention_policy_name
+
+      end
+      expect(found).to be(true), 'Retention policy should appear in list'
+
+    end
+
+    it 'gets retention policy runs' do
+
+      skip('Retention policy not available for this app') unless @retention_policy_available
+
+      runs_resp = @client.chat.get_retention_policy_runs
+      expect(runs_resp).not_to be_nil
+      runs = runs_resp.retention_policy_runs || []
+      expect(runs).to be_an(Array)
+
+    end
+
+    it 'deletes a retention policy' do
+
+      skip('Retention policy not available for this app') unless @retention_policy_available
+
+      # Create a separate policy to test deletion
+      del_policy_name = 'delete-test-policy'
+      @client.chat.set_retention_policy(
+        GetStream::Generated::Models::SetRetentionPolicyRequest.new(
+          policy: del_policy_name,
+          max_age_hours: 360,
+        ),
+      )
+
+      del_resp = @client.chat.delete_retention_policy(
+        GetStream::Generated::Models::DeleteRetentionPolicyRequest.new(
+          policy: del_policy_name,
+        ),
+      )
+      expect(del_resp).not_to be_nil
 
     end
 
