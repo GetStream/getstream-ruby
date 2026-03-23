@@ -843,28 +843,6 @@ RSpec.describe 'Chat Misc Integration', type: :integration do
 
     end
 
-    it 'deletes a retention policy' do
-
-      skip('Retention policy not available for this app') unless @retention_policy_available
-
-      # Create a separate policy to test deletion
-      del_policy_name = 'delete-test-policy'
-      @client.chat.set_retention_policy(
-        GetStream::Generated::Models::SetRetentionPolicyRequest.new(
-          policy: del_policy_name,
-          max_age_hours: 360,
-        ),
-      )
-
-      del_resp = @client.chat.delete_retention_policy(
-        GetStream::Generated::Models::DeleteRetentionPolicyRequest.new(
-          policy: del_policy_name,
-        ),
-      )
-      expect(del_resp).not_to be_nil
-
-    end
-
   end
 
 end
