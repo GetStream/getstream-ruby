@@ -12,6 +12,9 @@ module GetStream
         # @!attribute enrich_own_followings
         #   @return [Boolean] Default: false. When true, includes fetching and enriching own_followings (follows where activity author's feeds follow current user's feeds).
         attr_accessor :enrich_own_followings
+        # @!attribute include_score_vars
+        #   @return [Boolean] Default: false. When true, includes score_vars in activity responses containing variable values used at ranking time.
+        attr_accessor :include_score_vars
         # @!attribute skip_activity
         #   @return [Boolean] Default: false. When true, skips all activity enrichments.
         attr_accessor :skip_activity
@@ -68,6 +71,7 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @enrich_own_followings = attributes[:enrich_own_followings] || attributes['enrich_own_followings'] || nil
+          @include_score_vars = attributes[:include_score_vars] || attributes['include_score_vars'] || nil
           @skip_activity = attributes[:skip_activity] || attributes['skip_activity'] || nil
           @skip_activity_collections = attributes[:skip_activity_collections] || attributes['skip_activity_collections'] || nil
           @skip_activity_comments = attributes[:skip_activity_comments] || attributes['skip_activity_comments'] || nil
@@ -91,6 +95,7 @@ module GetStream
         def self.json_field_mappings
           {
             enrich_own_followings: 'enrich_own_followings',
+            include_score_vars: 'include_score_vars',
             skip_activity: 'skip_activity',
             skip_activity_collections: 'skip_activity_collections',
             skip_activity_comments: 'skip_activity_comments',

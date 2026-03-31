@@ -10,7 +10,7 @@ module GetStream
 
         # Model attributes
         # @!attribute filter_conditions
-        #   @return [Object]
+        #   @return [Object] Filter conditions to apply to the query
         attr_accessor :filter_conditions
         # @!attribute exclude_expired_bans
         #   @return [Boolean] Whether to exclude expired bans or not

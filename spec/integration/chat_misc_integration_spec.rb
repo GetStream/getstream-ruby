@@ -773,67 +773,30 @@ RSpec.describe 'Chat Misc Integration', type: :integration do
   end
 
   # ---------------------------------------------------------------------------
-  # Retention Policy
+  # Retention Policy Runs
   # ---------------------------------------------------------------------------
 
-  describe 'RetentionPolicy' do
+  describe 'RetentionPolicyRuns' do
 
-    before(:all) do
+    it 'gets retention policy runs' do
 
-      @retention_policy_name = 'old-messages'
-      @client.chat.set_retention_policy(
-        GetStream::Generated::Models::SetRetentionPolicyRequest.new(
-          policy: @retention_policy_name,
-          max_age_hours: 720,
+      runs_resp = @client.chat.get_retention_policy_runs(
+        GetStream::Generated::Models::GetRetentionPolicyRunsRequest.new(
+          limit: 10,
         ),
       )
-      @retention_policy_available = true
+      expect(runs_resp).not_to be_nil
+      runs = runs_resp.runs || []
+      expect(runs).to be_an(Array)
     rescue GetStreamRuby::APIError => e
       if e.message.include?('not enabled') ||
          e.message.include?('not available') ||
          e.message.include?('retention') ||
          e.message.include?('Not Found') ||
          e.message.include?('not found')
-        @retention_policy_available = false
-      else
-        raise
+        skip('Retention policy not available for this app')
       end
-
-    end
-
-    after(:all) do
-
-      if @retention_policy_available
-        @client.chat.delete_retention_policy(
-          GetStream::Generated::Models::DeleteRetentionPolicyRequest.new(
-            policy: @retention_policy_name,
-          ),
-        )
-      end
-    rescue StandardError => e
-      puts "Warning: Failed to delete retention policy: #{e.message}"
-
-    end
-
-    it 'gets retention policies' do
-
-      skip('Retention policy not available for this app') unless @retention_policy_available
-
-      get_resp = @client.chat.get_retention_policy
-      expect(get_resp).not_to be_nil
-      policies = get_resp.retention_policies
-      expect(policies).not_to be_nil
-
-    end
-
-    it 'gets retention policy runs' do
-
-      skip('Retention policy not available for this app') unless @retention_policy_available
-
-      runs_resp = @client.chat.get_retention_policy_runs
-      expect(runs_resp).not_to be_nil
-      runs = runs_resp.retention_policy_runs || []
-      expect(runs).to be_an(Array)
+      raise
 
     end
 

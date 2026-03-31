@@ -12,6 +12,23 @@ module GetStream
       def initialize(client)
         @client = client
       end
+      # Insert a moderation action log entry. Server-side only. Used by product services to log moderation-related actions.
+      #
+      # @param insert_action_log_request [InsertActionLogRequest]
+      # @return [Models::InsertActionLogResponse]
+      def insert_action_log(insert_action_log_request)
+        path = '/api/v2/moderation/action_logs'
+        # Build request body
+        body = insert_action_log_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
       # Appeal against the moderation decision
       #
       # @param appeal_request [AppealRequest]
@@ -274,6 +291,23 @@ module GetStream
         path = '/api/v2/moderation/flag'
         # Build request body
         body = flag_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
+      # Returns the number of moderation flags created against a specific user's content. Optionally filter by entity type.
+      #
+      # @param get_flag_count_request [GetFlagCountRequest]
+      # @return [Models::GetFlagCountResponse]
+      def get_flag_count(get_flag_count_request)
+        path = '/api/v2/moderation/flag_count'
+        # Build request body
+        body = get_flag_count_request
 
         # Make the API request
         @client.make_request(

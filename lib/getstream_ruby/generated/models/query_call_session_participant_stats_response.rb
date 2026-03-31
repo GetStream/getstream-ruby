@@ -42,6 +42,9 @@ module GetStream
         # @!attribute tmp_data_source
         #   @return [String]
         attr_accessor :tmp_data_source
+        # @!attribute call_events
+        #   @return [Array<CallLevelEventPayload>]
+        attr_accessor :call_events
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -57,6 +60,7 @@ module GetStream
           @next = attributes[:next] || attributes['next'] || nil
           @prev = attributes[:prev] || attributes['prev'] || nil
           @tmp_data_source = attributes[:tmp_data_source] || attributes['tmp_data_source'] || nil
+          @call_events = attributes[:call_events] || attributes['call_events'] || nil
         end
 
         # Override field mappings for JSON serialization
@@ -72,7 +76,8 @@ module GetStream
             call_started_at: 'call_started_at',
             next: 'next',
             prev: 'prev',
-            tmp_data_source: 'tmp_data_source'
+            tmp_data_source: 'tmp_data_source',
+            call_events: 'call_events'
           }
         end
       end

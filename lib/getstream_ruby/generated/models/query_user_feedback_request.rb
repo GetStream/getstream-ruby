@@ -19,10 +19,10 @@ module GetStream
         #   @return [String]
         attr_accessor :prev
         # @!attribute sort
-        #   @return [Array<SortParamRequest>]
+        #   @return [Array<SortParamRequest>] Array of sort parameters
         attr_accessor :sort
         # @!attribute filter_conditions
-        #   @return [Object]
+        #   @return [Object] Filter conditions to apply to the query
         attr_accessor :filter_conditions
 
         # Initialize with attributes

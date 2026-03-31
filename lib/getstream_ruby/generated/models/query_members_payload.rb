@@ -5,7 +5,7 @@
 module GetStream
   module Generated
     module Models
-      # Client request
+      # 
       class QueryMembersPayload < GetStream::BaseModel
 
         # Model attributes
@@ -13,7 +13,7 @@ module GetStream
         #   @return [String]
         attr_accessor :type
         # @!attribute filter_conditions
-        #   @return [Object]
+        #   @return [Object] Filter conditions to apply to the query
         attr_accessor :filter_conditions
         # @!attribute id
         #   @return [String]
@@ -31,7 +31,7 @@ module GetStream
         #   @return [Array<ChannelMemberRequest>]
         attr_accessor :members
         # @!attribute sort
-        #   @return [Array<SortParamRequest>]
+        #   @return [Array<SortParamRequest>] Array of sort parameters
         attr_accessor :sort
         # @!attribute user
         #   @return [UserRequest]

@@ -566,6 +566,11 @@ class WebhookTest < Minitest::Test
     assert_equal 'StreamChat::CommentReactionUpdatedEvent', event.class.name
   end
 
+  def test_parse_feeds_comment_restored
+    event = StreamChat::Webhook.parse_webhook_event('{"type":"feeds.comment.restored"}')
+    assert_equal 'StreamChat::CommentRestoredEvent', event.class.name
+  end
+
   def test_parse_feeds_comment_updated
     event = StreamChat::Webhook.parse_webhook_event('{"type":"feeds.comment.updated"}')
     assert_equal 'StreamChat::CommentUpdatedEvent', event.class.name

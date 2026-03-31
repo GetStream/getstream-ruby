@@ -21,6 +21,9 @@ module GetStream
         # @!attribute entity_type
         #   @return [String] Type of entity being reviewed
         attr_accessor :entity_type
+        # @!attribute escalated
+        #   @return [Boolean] Whether the item has been escalated
+        attr_accessor :escalated
         # @!attribute flags_count
         #   @return [Integer]
         attr_accessor :flags_count
@@ -66,6 +69,12 @@ module GetStream
         # @!attribute entity_creator_id
         #   @return [String] ID of who created the entity
         attr_accessor :entity_creator_id
+        # @!attribute escalated_at
+        #   @return [DateTime] When the item was escalated
+        attr_accessor :escalated_at
+        # @!attribute escalated_by
+        #   @return [String] ID of the moderator who escalated the item
+        attr_accessor :escalated_by
         # @!attribute reviewed_at
         #   @return [DateTime] When the item was reviewed
         attr_accessor :reviewed_at
@@ -87,6 +96,9 @@ module GetStream
         # @!attribute entity_creator
         #   @return [EntityCreatorResponse]
         attr_accessor :entity_creator
+        # @!attribute escalation_metadata
+        #   @return [EscalationMetadata]
+        attr_accessor :escalation_metadata
         # @!attribute feeds_v2_activity
         #   @return [EnrichedActivity]
         attr_accessor :feeds_v2_activity
@@ -94,10 +106,10 @@ module GetStream
         #   @return [Reaction]
         attr_accessor :feeds_v2_reaction
         # @!attribute feeds_v3_activity
-        #   @return [ActivityResponse]
+        #   @return [FeedsV3ActivityResponse]
         attr_accessor :feeds_v3_activity
         # @!attribute feeds_v3_comment
-        #   @return [CommentResponse]
+        #   @return [FeedsV3CommentResponse]
         attr_accessor :feeds_v3_comment
         # @!attribute message
         #   @return [MessageResponse]
@@ -116,6 +128,7 @@ module GetStream
           @created_at = attributes[:created_at] || attributes['created_at']
           @entity_id = attributes[:entity_id] || attributes['entity_id']
           @entity_type = attributes[:entity_type] || attributes['entity_type']
+          @escalated = attributes[:escalated] || attributes['escalated']
           @flags_count = attributes[:flags_count] || attributes['flags_count']
           @id = attributes[:id] || attributes['id']
           @latest_moderator_action = attributes[:latest_moderator_action] || attributes['latest_moderator_action']
@@ -131,6 +144,8 @@ module GetStream
           @completed_at = attributes[:completed_at] || attributes['completed_at'] || nil
           @config_key = attributes[:config_key] || attributes['config_key'] || nil
           @entity_creator_id = attributes[:entity_creator_id] || attributes['entity_creator_id'] || nil
+          @escalated_at = attributes[:escalated_at] || attributes['escalated_at'] || nil
+          @escalated_by = attributes[:escalated_by] || attributes['escalated_by'] || nil
           @reviewed_at = attributes[:reviewed_at] || attributes['reviewed_at'] || nil
           @teams = attributes[:teams] || attributes['teams'] || nil
           @activity = attributes[:activity] || attributes['activity'] || nil
@@ -138,6 +153,7 @@ module GetStream
           @assigned_to = attributes[:assigned_to] || attributes['assigned_to'] || nil
           @call = attributes[:call] || attributes['call'] || nil
           @entity_creator = attributes[:entity_creator] || attributes['entity_creator'] || nil
+          @escalation_metadata = attributes[:escalation_metadata] || attributes['escalation_metadata'] || nil
           @feeds_v2_activity = attributes[:feeds_v2_activity] || attributes['feeds_v2_activity'] || nil
           @feeds_v2_reaction = attributes[:feeds_v2_reaction] || attributes['feeds_v2_reaction'] || nil
           @feeds_v3_activity = attributes[:feeds_v3_activity] || attributes['feeds_v3_activity'] || nil
@@ -154,6 +170,7 @@ module GetStream
             created_at: 'created_at',
             entity_id: 'entity_id',
             entity_type: 'entity_type',
+            escalated: 'escalated',
             flags_count: 'flags_count',
             id: 'id',
             latest_moderator_action: 'latest_moderator_action',
@@ -169,6 +186,8 @@ module GetStream
             completed_at: 'completed_at',
             config_key: 'config_key',
             entity_creator_id: 'entity_creator_id',
+            escalated_at: 'escalated_at',
+            escalated_by: 'escalated_by',
             reviewed_at: 'reviewed_at',
             teams: 'teams',
             activity: 'activity',
@@ -176,6 +195,7 @@ module GetStream
             assigned_to: 'assigned_to',
             call: 'call',
             entity_creator: 'entity_creator',
+            escalation_metadata: 'escalation_metadata',
             feeds_v2_activity: 'feeds_v2_activity',
             feeds_v2_reaction: 'feeds_v2_reaction',
             feeds_v3_activity: 'feeds_v3_activity',

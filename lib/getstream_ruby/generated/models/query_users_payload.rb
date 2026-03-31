@@ -5,12 +5,12 @@
 module GetStream
   module Generated
     module Models
-      # Client request
+      # 
       class QueryUsersPayload < GetStream::BaseModel
 
         # Model attributes
         # @!attribute filter_conditions
-        #   @return [Object]
+        #   @return [Object] Filter conditions to apply to the query
         attr_accessor :filter_conditions
         # @!attribute include_deactivated_users
         #   @return [Boolean]
@@ -28,7 +28,7 @@ module GetStream
         #   @return [String]
         attr_accessor :user_id
         # @!attribute sort
-        #   @return [Array<SortParamRequest>]
+        #   @return [Array<SortParamRequest>] Array of sort parameters
         attr_accessor :sort
         # @!attribute user
         #   @return [UserRequest]

@@ -12,17 +12,22 @@ module GetStream
         # @!attribute format
         #   @return [String] Format for activity aggregation
         attr_accessor :format
+        # @!attribute score_strategy
+        #   @return [String] Strategy for computing aggregated group scores from member activity scores when ranking is enabled. Valid values: sum, max, avg
+        attr_accessor :score_strategy
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @format = attributes[:format] || attributes['format'] || nil
+          @score_strategy = attributes[:score_strategy] || attributes['score_strategy'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            format: 'format'
+            format: 'format',
+            score_strategy: 'score_strategy'
           }
         end
       end

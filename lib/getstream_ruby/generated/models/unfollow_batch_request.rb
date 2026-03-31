@@ -10,7 +10,7 @@ module GetStream
 
         # Model attributes
         # @!attribute follows
-        #   @return [Array<FollowPair>] List of follow relationships to remove
+        #   @return [Array<UnfollowPair>] List of follow relationships to remove, each with optional keep_history
         attr_accessor :follows
         # @!attribute delete_notification_activity
         #   @return [Boolean] Whether to delete the corresponding notification activity (default: false)

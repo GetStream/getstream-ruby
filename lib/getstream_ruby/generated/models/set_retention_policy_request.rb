@@ -19,8 +19,8 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @max_age_hours = attributes[:max_age_hours] || attributes['max_age_hours'] || nil
-          @policy = attributes[:policy] || attributes['policy'] || nil
+          @max_age_hours = attributes[:max_age_hours] || attributes['max_age_hours']
+          @policy = attributes[:policy] || attributes['policy']
         end
 
         # Override field mappings for JSON serialization

@@ -95,6 +95,7 @@ require_relative 'models/comment_deleted_event'
 require_relative 'models/comment_reaction_added_event'
 require_relative 'models/comment_reaction_deleted_event'
 require_relative 'models/comment_reaction_updated_event'
+require_relative 'models/comment_restored_event'
 require_relative 'models/comment_updated_event'
 require_relative 'models/custom_event'
 require_relative 'models/custom_video_event'
@@ -272,6 +273,7 @@ module StreamChat
     EVENT_TYPE_FEEDS_COMMENT_REACTION_ADDED = 'feeds.comment.reaction.added'
     EVENT_TYPE_FEEDS_COMMENT_REACTION_DELETED = 'feeds.comment.reaction.deleted'
     EVENT_TYPE_FEEDS_COMMENT_REACTION_UPDATED = 'feeds.comment.reaction.updated'
+    EVENT_TYPE_FEEDS_COMMENT_RESTORED = 'feeds.comment.restored'
     EVENT_TYPE_FEEDS_COMMENT_UPDATED = 'feeds.comment.updated'
     EVENT_TYPE_FEEDS_FEED_CREATED = 'feeds.feed.created'
     EVENT_TYPE_FEEDS_FEED_DELETED = 'feeds.feed.deleted'
@@ -586,6 +588,8 @@ module StreamChat
         StreamChat::CommentReactionDeletedEvent
       when 'feeds.comment.reaction.updated'
         StreamChat::CommentReactionUpdatedEvent
+      when 'feeds.comment.restored'
+        StreamChat::CommentRestoredEvent
       when 'feeds.comment.updated'
         StreamChat::CommentUpdatedEvent
       when 'feeds.feed.created'

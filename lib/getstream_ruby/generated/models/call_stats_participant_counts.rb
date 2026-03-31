@@ -27,6 +27,12 @@ module GetStream
         # @!attribute sessions
         #   @return [Integer]
         attr_accessor :sessions
+        # @!attribute call_event_count
+        #   @return [Integer]
+        attr_accessor :call_event_count
+        # @!attribute cq_score
+        #   @return [Integer]
+        attr_accessor :cq_score
         # @!attribute total_participant_duration
         #   @return [Integer]
         attr_accessor :total_participant_duration
@@ -40,6 +46,8 @@ module GetStream
           @peak_concurrent_users = attributes[:peak_concurrent_users] || attributes['peak_concurrent_users']
           @publishers = attributes[:publishers] || attributes['publishers']
           @sessions = attributes[:sessions] || attributes['sessions']
+          @call_event_count = attributes[:call_event_count] || attributes['call_event_count'] || nil
+          @cq_score = attributes[:cq_score] || attributes['cq_score'] || nil
           @total_participant_duration = attributes[:total_participant_duration] || attributes['total_participant_duration'] || nil
         end
 
@@ -52,6 +60,8 @@ module GetStream
             peak_concurrent_users: 'peak_concurrent_users',
             publishers: 'publishers',
             sessions: 'sessions',
+            call_event_count: 'call_event_count',
+            cq_score: 'cq_score',
             total_participant_duration: 'total_participant_duration'
           }
         end

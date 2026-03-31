@@ -12,6 +12,9 @@ module GetStream
         # @!attribute comment
         #   @return [String] Push notification preference for comments on user's activities. One of: all, none
         attr_accessor :comment
+        # @!attribute comment_mention
+        #   @return [String] Push notification preference for mentions in comments. One of: all, none
+        attr_accessor :comment_mention
         # @!attribute comment_reaction
         #   @return [String] Push notification preference for reactions on comments. One of: all, none
         attr_accessor :comment_reaction
@@ -22,7 +25,7 @@ module GetStream
         #   @return [String] Push notification preference for new followers. One of: all, none
         attr_accessor :follow
         # @!attribute mention
-        #   @return [String] Push notification preference for mentions in activities or comments. One of: all, none
+        #   @return [String] Push notification preference for mentions in activities. One of: all, none
         attr_accessor :mention
         # @!attribute reaction
         #   @return [String] Push notification preference for reactions on user's activities or comments. One of: all, none
@@ -35,6 +38,7 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @comment = attributes[:comment] || attributes['comment'] || nil
+          @comment_mention = attributes[:comment_mention] || attributes['comment_mention'] || nil
           @comment_reaction = attributes[:comment_reaction] || attributes['comment_reaction'] || nil
           @comment_reply = attributes[:comment_reply] || attributes['comment_reply'] || nil
           @follow = attributes[:follow] || attributes['follow'] || nil
@@ -47,6 +51,7 @@ module GetStream
         def self.json_field_mappings
           {
             comment: 'comment',
+            comment_mention: 'comment_mention',
             comment_reaction: 'comment_reaction',
             comment_reply: 'comment_reply',
             follow: 'follow',

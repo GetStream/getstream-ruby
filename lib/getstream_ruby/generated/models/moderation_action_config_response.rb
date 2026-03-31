@@ -24,6 +24,9 @@ module GetStream
         # @!attribute order
         #   @return [Integer] Display order (lower numbers shown first)
         attr_accessor :order
+        # @!attribute queue_type
+        #   @return [String] Queue type this action config belongs to
+        attr_accessor :queue_type
         # @!attribute custom
         #   @return [Object] Custom data for the action
         attr_accessor :custom
@@ -36,6 +39,7 @@ module GetStream
           @entity_type = attributes[:entity_type] || attributes['entity_type']
           @icon = attributes[:icon] || attributes['icon']
           @order = attributes[:order] || attributes['order']
+          @queue_type = attributes[:queue_type] || attributes['queue_type'] || nil
           @custom = attributes[:custom] || attributes['custom'] || nil
         end
 
@@ -47,6 +51,7 @@ module GetStream
             entity_type: 'entity_type',
             icon: 'icon',
             order: 'order',
+            queue_type: 'queue_type',
             custom: 'custom'
           }
         end

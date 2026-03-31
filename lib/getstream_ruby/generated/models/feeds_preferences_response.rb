@@ -12,6 +12,9 @@ module GetStream
         # @!attribute comment
         #   @return [String]
         attr_accessor :comment
+        # @!attribute comment_mention
+        #   @return [String]
+        attr_accessor :comment_mention
         # @!attribute comment_reaction
         #   @return [String]
         attr_accessor :comment_reaction
@@ -35,6 +38,7 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @comment = attributes[:comment] || attributes['comment'] || nil
+          @comment_mention = attributes[:comment_mention] || attributes['comment_mention'] || nil
           @comment_reaction = attributes[:comment_reaction] || attributes['comment_reaction'] || nil
           @comment_reply = attributes[:comment_reply] || attributes['comment_reply'] || nil
           @follow = attributes[:follow] || attributes['follow'] || nil
@@ -47,6 +51,7 @@ module GetStream
         def self.json_field_mappings
           {
             comment: 'comment',
+            comment_mention: 'comment_mention',
             comment_reaction: 'comment_reaction',
             comment_reply: 'comment_reply',
             follow: 'follow',

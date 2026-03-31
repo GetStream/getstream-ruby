@@ -13,13 +13,13 @@ module GetStream
         #   @return [String] ID of the moderation rule that triggered
         attr_accessor :rule_id
         # @!attribute actions
-        #   @return [Array<String>] Array of action types resolved from the rule's action sequence (e.g. mute_video, kick_user, end_call, warning, blur)
+        #   @return [Array<String>] Action types resolved from the rule's action sequence
         attr_accessor :actions
         # @!attribute rule_name
         #   @return [String] Name of the moderation rule that triggered
         attr_accessor :rule_name
         # @!attribute violation_number
-        #   @return [Integer] The violation count for action sequence rules (1-based)
+        #   @return [Integer] Violation count for action sequence rules (1-based)
         attr_accessor :violation_number
         # @!attribute call_options
         #   @return [CallActionOptions]

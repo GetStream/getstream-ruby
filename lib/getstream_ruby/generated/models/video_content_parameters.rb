@@ -9,6 +9,9 @@ module GetStream
       class VideoContentParameters < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute label_operator
+        #   @return [String]
+        attr_accessor :label_operator
         # @!attribute harm_labels
         #   @return [Array<String>]
         attr_accessor :harm_labels
@@ -16,12 +19,14 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @label_operator = attributes[:label_operator] || attributes['label_operator'] || nil
           @harm_labels = attributes[:harm_labels] || attributes['harm_labels'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            label_operator: 'label_operator',
             harm_labels: 'harm_labels'
           }
         end

@@ -34,7 +34,7 @@ module GetStream
         #   @return [Array<SortParamRequest>] List of sort parameters
         attr_accessor :sort
         # @!attribute filter_conditions
-        #   @return [Object]
+        #   @return [Object] Filter conditions to apply to the query
         attr_accessor :filter_conditions
         # @!attribute filter_values
         #   @return [Object] Values to interpolate into the predefined filter template

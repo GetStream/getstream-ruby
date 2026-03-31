@@ -13,7 +13,8 @@ module GetStream
         #   @return [String] ID of the activity to update
         attr_accessor :activity_id
         # @!attribute copy_custom_to_notification
-        #   @return [Boolean] Whether to copy custom data to the notification activity (only applies when handle_mention_notifications creates notifications)
+        # @deprecated This field is deprecated.
+        #   @return [Boolean] Whether to copy custom data to the notification activity (only applies when handle_mention_notifications creates notifications) Deprecated: use notification_context.trigger.custom and notification_context.target.custom instead
         attr_accessor :copy_custom_to_notification
         # @!attribute handle_mention_notifications
         #   @return [Boolean] When true and 'mentioned_user_ids' is updated, automatically creates or deletes mention notifications for added/removed users. Only applicable for client-side requests (ignored for server-side requests)
