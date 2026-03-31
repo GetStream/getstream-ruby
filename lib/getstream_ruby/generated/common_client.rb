@@ -443,6 +443,62 @@ module GetStream
         )
       end
 
+      # Removes the external storage configuration for the app. Idempotent: succeeds even if no configuration exists.
+      #
+      # @return [Models::DeleteExternalStorageResponse]
+      def delete_importer_external_storage()
+        path = '/api/v2/imports/v2/external-storage'
+
+        # Make the API request
+        @client.make_request(
+          :delete,
+          path
+        )
+      end
+
+      # Returns the current external storage configuration for the app. Returns 404 if no configuration exists.
+      #
+      # @return [Models::GetExternalStorageResponse]
+      def get_importer_external_storage()
+        path = '/api/v2/imports/v2/external-storage'
+
+        # Make the API request
+        @client.make_request(
+          :get,
+          path
+        )
+      end
+
+      # Creates or updates the external storage configuration for the app. Currently only AWS S3 (via cross-account IAM role assumption) is supported.
+      #
+      # @param upsert_external_storage_request [UpsertExternalStorageRequest]
+      # @return [Models::UpsertExternalStorageResponse]
+      def upsert_importer_external_storage(upsert_external_storage_request)
+        path = '/api/v2/imports/v2/external-storage'
+        # Build request body
+        body = upsert_external_storage_request
+
+        # Make the API request
+        @client.make_request(
+          :put,
+          path,
+          body: body
+        )
+      end
+
+      # Validates the configured external S3 storage by performing a live STS AssumeRole and S3 ListObjectsV2 check.
+      #
+      # @return [Models::ValidateExternalStorageResponse]
+      def validate_importer_external_storage()
+        path = '/api/v2/imports/v2/external-storage/validate'
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path
+        )
+      end
+
       # Deletes an import v2 task. Can only delete tasks in queued state.
       #
       # @param _id [String]

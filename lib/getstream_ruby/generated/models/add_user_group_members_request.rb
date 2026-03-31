@@ -12,6 +12,9 @@ module GetStream
         # @!attribute member_ids
         #   @return [Array<String>] List of user IDs to add as members
         attr_accessor :member_ids
+        # @!attribute as_admin
+        #   @return [Boolean] Whether to add the members as group admins. Defaults to false
+        attr_accessor :as_admin
         # @!attribute team_id
         #   @return [String]
         attr_accessor :team_id
@@ -20,6 +23,7 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @member_ids = attributes[:member_ids] || attributes['member_ids']
+          @as_admin = attributes[:as_admin] || attributes['as_admin'] || nil
           @team_id = attributes[:team_id] || attributes['team_id'] || nil
         end
 
@@ -27,6 +31,7 @@ module GetStream
         def self.json_field_mappings
           {
             member_ids: 'member_ids',
+            as_admin: 'as_admin',
             team_id: 'team_id'
           }
         end

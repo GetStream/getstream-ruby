@@ -12,6 +12,9 @@ module GetStream
         # @!attribute contains_url
         #   @return [Boolean]
         attr_accessor :contains_url
+        # @!attribute label_operator
+        #   @return [String]
+        attr_accessor :label_operator
         # @!attribute severity
         #   @return [String]
         attr_accessor :severity
@@ -29,6 +32,7 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @contains_url = attributes[:contains_url] || attributes['contains_url'] || nil
+          @label_operator = attributes[:label_operator] || attributes['label_operator'] || nil
           @severity = attributes[:severity] || attributes['severity'] || nil
           @blocklist_match = attributes[:blocklist_match] || attributes['blocklist_match'] || nil
           @harm_labels = attributes[:harm_labels] || attributes['harm_labels'] || nil
@@ -39,6 +43,7 @@ module GetStream
         def self.json_field_mappings
           {
             contains_url: 'contains_url',
+            label_operator: 'label_operator',
             severity: 'severity',
             blocklist_match: 'blocklist_match',
             harm_labels: 'harm_labels',

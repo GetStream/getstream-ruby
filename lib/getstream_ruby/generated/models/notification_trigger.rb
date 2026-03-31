@@ -18,6 +18,9 @@ module GetStream
         # @!attribute comment
         #   @return [NotificationComment]
         attr_accessor :comment
+        # @!attribute custom
+        #   @return [Object] Custom data from the trigger object (comment, reaction, etc.)
+        attr_accessor :custom
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -25,6 +28,7 @@ module GetStream
           @text = attributes[:text] || attributes['text']
           @type = attributes[:type] || attributes['type']
           @comment = attributes[:comment] || attributes['comment'] || nil
+          @custom = attributes[:custom] || attributes['custom'] || nil
         end
 
         # Override field mappings for JSON serialization
@@ -32,7 +36,8 @@ module GetStream
           {
             text: 'text',
             type: 'type',
-            comment: 'comment'
+            comment: 'comment',
+            custom: 'custom'
           }
         end
       end

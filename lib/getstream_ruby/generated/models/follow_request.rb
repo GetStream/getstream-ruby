@@ -16,7 +16,8 @@ module GetStream
         #   @return [String] Fully qualified ID of the target feed
         attr_accessor :target
         # @!attribute copy_custom_to_notification
-        #   @return [Boolean] Whether to copy custom data to the notification activity (only applies when create_notification_activity is true)
+        # @deprecated This field is deprecated.
+        #   @return [Boolean] Whether to copy custom data to the notification activity (only applies when create_notification_activity is true) Deprecated: use notification_context.trigger.custom and notification_context.target.custom instead
         attr_accessor :copy_custom_to_notification
         # @!attribute create_notification_activity
         #   @return [Boolean] Whether to create a notification activity for this follow

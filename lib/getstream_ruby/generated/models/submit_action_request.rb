@@ -10,7 +10,7 @@ module GetStream
 
         # Model attributes
         # @!attribute action_type
-        #   @return [String] Type of moderation action to perform. One of: mark_reviewed, delete_message, delete_activity, delete_comment, delete_reaction, ban, custom, unban, restore, delete_user, unblock, block, shadow_block, unmask, kick_user, end_call
+        #   @return [String] Type of moderation action to perform. One of: mark_reviewed, delete_message, delete_activity, delete_comment, delete_reaction, ban, custom, unban, restore, delete_user, unblock, block, shadow_block, unmask, kick_user, end_call, escalate, de_escalate
         attr_accessor :action_type
         # @!attribute appeal_id
         #   @return [String] UUID of the appeal to act on (required for reject_appeal, optional for other actions)
@@ -45,6 +45,9 @@ module GetStream
         # @!attribute delete_user
         #   @return [DeleteUserRequestPayload]
         attr_accessor :delete_user
+        # @!attribute escalate
+        #   @return [EscalatePayload]
+        attr_accessor :escalate
         # @!attribute flag
         #   @return [FlagRequest]
         attr_accessor :flag
@@ -85,6 +88,7 @@ module GetStream
           @delete_message = attributes[:delete_message] || attributes['delete_message'] || nil
           @delete_reaction = attributes[:delete_reaction] || attributes['delete_reaction'] || nil
           @delete_user = attributes[:delete_user] || attributes['delete_user'] || nil
+          @escalate = attributes[:escalate] || attributes['escalate'] || nil
           @flag = attributes[:flag] || attributes['flag'] || nil
           @mark_reviewed = attributes[:mark_reviewed] || attributes['mark_reviewed'] || nil
           @reject_appeal = attributes[:reject_appeal] || attributes['reject_appeal'] || nil
@@ -110,6 +114,7 @@ module GetStream
             delete_message: 'delete_message',
             delete_reaction: 'delete_reaction',
             delete_user: 'delete_user',
+            escalate: 'escalate',
             flag: 'flag',
             mark_reviewed: 'mark_reviewed',
             reject_appeal: 'reject_appeal',

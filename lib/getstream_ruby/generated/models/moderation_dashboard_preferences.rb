@@ -18,6 +18,9 @@ module GetStream
         # @!attribute disable_flagging_reviewed_entity
         #   @return [Boolean]
         attr_accessor :disable_flagging_reviewed_entity
+        # @!attribute escalation_queue_enabled
+        #   @return [Boolean]
+        attr_accessor :escalation_queue_enabled
         # @!attribute flag_user_on_flagged_content
         #   @return [Boolean]
         attr_accessor :flag_user_on_flagged_content
@@ -27,6 +30,9 @@ module GetStream
         # @!attribute allowed_moderation_action_reasons
         #   @return [Array<String>]
         attr_accessor :allowed_moderation_action_reasons
+        # @!attribute escalation_reasons
+        #   @return [Array<String>]
+        attr_accessor :escalation_reasons
         # @!attribute keyframe_classifications_map
         #   @return [Hash<String, Hash<String, Boolean>>]
         attr_accessor :keyframe_classifications_map
@@ -40,9 +46,11 @@ module GetStream
           @async_review_queue_upsert = attributes[:async_review_queue_upsert] || attributes['async_review_queue_upsert'] || nil
           @disable_audit_logs = attributes[:disable_audit_logs] || attributes['disable_audit_logs'] || nil
           @disable_flagging_reviewed_entity = attributes[:disable_flagging_reviewed_entity] || attributes['disable_flagging_reviewed_entity'] || nil
+          @escalation_queue_enabled = attributes[:escalation_queue_enabled] || attributes['escalation_queue_enabled'] || nil
           @flag_user_on_flagged_content = attributes[:flag_user_on_flagged_content] || attributes['flag_user_on_flagged_content'] || nil
           @media_queue_blur_enabled = attributes[:media_queue_blur_enabled] || attributes['media_queue_blur_enabled'] || nil
           @allowed_moderation_action_reasons = attributes[:allowed_moderation_action_reasons] || attributes['allowed_moderation_action_reasons'] || nil
+          @escalation_reasons = attributes[:escalation_reasons] || attributes['escalation_reasons'] || nil
           @keyframe_classifications_map = attributes[:keyframe_classifications_map] || attributes['keyframe_classifications_map'] || nil
           @overview_dashboard = attributes[:overview_dashboard] || attributes['overview_dashboard'] || nil
         end
@@ -53,9 +61,11 @@ module GetStream
             async_review_queue_upsert: 'async_review_queue_upsert',
             disable_audit_logs: 'disable_audit_logs',
             disable_flagging_reviewed_entity: 'disable_flagging_reviewed_entity',
+            escalation_queue_enabled: 'escalation_queue_enabled',
             flag_user_on_flagged_content: 'flag_user_on_flagged_content',
             media_queue_blur_enabled: 'media_queue_blur_enabled',
             allowed_moderation_action_reasons: 'allowed_moderation_action_reasons',
+            escalation_reasons: 'escalation_reasons',
             keyframe_classifications_map: 'keyframe_classifications_map',
             overview_dashboard: 'overview_dashboard'
           }

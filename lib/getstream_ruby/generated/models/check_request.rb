@@ -24,6 +24,9 @@ module GetStream
         # @!attribute config_team
         #   @return [String] Team associated with the configuration
         attr_accessor :config_team
+        # @!attribute content_published_at
+        #   @return [DateTime] Original timestamp when the content was produced (for correlating flagged content with source video timeline)
+        attr_accessor :content_published_at
         # @!attribute test_mode
         #   @return [Boolean] Whether to run moderation in test mode
         attr_accessor :test_mode
@@ -51,6 +54,7 @@ module GetStream
           @entity_type = attributes[:entity_type] || attributes['entity_type']
           @config_key = attributes[:config_key] || attributes['config_key'] || nil
           @config_team = attributes[:config_team] || attributes['config_team'] || nil
+          @content_published_at = attributes[:content_published_at] || attributes['content_published_at'] || nil
           @test_mode = attributes[:test_mode] || attributes['test_mode'] || nil
           @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @config = attributes[:config] || attributes['config'] || nil
@@ -67,6 +71,7 @@ module GetStream
             entity_type: 'entity_type',
             config_key: 'config_key',
             config_team: 'config_team',
+            content_published_at: 'content_published_at',
             test_mode: 'test_mode',
             user_id: 'user_id',
             config: 'config',

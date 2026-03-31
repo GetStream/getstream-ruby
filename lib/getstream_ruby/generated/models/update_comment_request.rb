@@ -13,7 +13,8 @@ module GetStream
         #   @return [String] Updated text content of the comment
         attr_accessor :comment
         # @!attribute copy_custom_to_notification
-        #   @return [Boolean] Whether to copy custom data to the notification activity (only applies when handle_mention_notifications creates notifications)
+        # @deprecated This field is deprecated.
+        #   @return [Boolean] Whether to copy custom data to the notification activity (only applies when handle_mention_notifications creates notifications) Deprecated: use notification_context.trigger.custom and notification_context.target.custom instead
         attr_accessor :copy_custom_to_notification
         # @!attribute handle_mention_notifications
         #   @return [Boolean] If true, creates notification activities for newly mentioned users and deletes notifications for users no longer mentioned

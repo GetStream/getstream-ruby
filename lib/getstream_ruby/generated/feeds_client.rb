@@ -596,12 +596,13 @@ module GetStream
       # @param depth [Integer]
       # @param sort [String]
       # @param replies_limit [Integer]
+      # @param id_around [String]
       # @param user_id [String]
       # @param limit [Integer]
       # @param prev [String]
       # @param _next [String]
       # @return [Models::GetCommentsResponse]
-      def get_comments(object_id, object_type, depth = nil, sort = nil, replies_limit = nil, user_id = nil, limit = nil, prev = nil, _next = nil)
+      def get_comments(object_id, object_type, depth = nil, sort = nil, replies_limit = nil, id_around = nil, user_id = nil, limit = nil, prev = nil, _next = nil)
         path = '/api/v2/feeds/comments'
         # Build query parameters
         query_params = {}
@@ -610,6 +611,7 @@ module GetStream
         query_params['depth'] = depth unless depth.nil?
         query_params['sort'] = sort unless sort.nil?
         query_params['replies_limit'] = replies_limit unless replies_limit.nil?
+        query_params['id_around'] = id_around unless id_around.nil?
         query_params['user_id'] = user_id unless user_id.nil?
         query_params['limit'] = limit unless limit.nil?
         query_params['prev'] = prev unless prev.nil?
@@ -733,6 +735,26 @@ module GetStream
         )
       end
 
+      # Updates certain fields of the comment. Use 'set' to update specific fields and 'unset' to remove fields.Sends events:- feeds.activity.updated- feeds.comment.updated
+      #
+      # @param _id [String]
+      # @param update_comment_partial_request [UpdateCommentPartialRequest]
+      # @return [Models::UpdateCommentPartialResponse]
+      def update_comment_partial(_id, update_comment_partial_request)
+        path = '/api/v2/feeds/comments/{id}/partial'
+        # Replace path parameters
+        path = path.gsub('{id}', _id.to_s)
+        # Build request body
+        body = update_comment_partial_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
       # Adds a reaction to a comment
       #
       # @param _id [String]
@@ -804,12 +826,13 @@ module GetStream
       # @param depth [Integer]
       # @param sort [String]
       # @param replies_limit [Integer]
+      # @param id_around [String]
       # @param user_id [String]
       # @param limit [Integer]
       # @param prev [String]
       # @param _next [String]
       # @return [Models::GetCommentRepliesResponse]
-      def get_comment_replies(_id, depth = nil, sort = nil, replies_limit = nil, user_id = nil, limit = nil, prev = nil, _next = nil)
+      def get_comment_replies(_id, depth = nil, sort = nil, replies_limit = nil, id_around = nil, user_id = nil, limit = nil, prev = nil, _next = nil)
         path = '/api/v2/feeds/comments/{id}/replies'
         # Replace path parameters
         path = path.gsub('{id}', _id.to_s)
@@ -818,6 +841,7 @@ module GetStream
         query_params['depth'] = depth unless depth.nil?
         query_params['sort'] = sort unless sort.nil?
         query_params['replies_limit'] = replies_limit unless replies_limit.nil?
+        query_params['id_around'] = id_around unless id_around.nil?
         query_params['user_id'] = user_id unless user_id.nil?
         query_params['limit'] = limit unless limit.nil?
         query_params['prev'] = prev unless prev.nil?
@@ -828,6 +852,26 @@ module GetStream
           :get,
           path,
           query_params: query_params
+        )
+      end
+
+      # Restores a soft-deleted comment by its ID. The comment and all its descendants are restored. Requires moderator permissions.
+      #
+      # @param _id [String]
+      # @param restore_comment_request [RestoreCommentRequest]
+      # @return [Models::RestoreCommentResponse]
+      def restore_comment(_id, restore_comment_request)
+        path = '/api/v2/feeds/comments/{id}/restore'
+        # Replace path parameters
+        path = path.gsub('{id}', _id.to_s)
+        # Build request body
+        body = restore_comment_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
         )
       end
 
@@ -1606,9 +1650,10 @@ module GetStream
       # @param source [String]
       # @param target [String]
       # @param delete_notification_activity [Boolean]
+      # @param keep_history [Boolean]
       # @param enrich_own_fields [Boolean]
       # @return [Models::UnfollowResponse]
-      def unfollow(source, target, delete_notification_activity = nil, enrich_own_fields = nil)
+      def unfollow(source, target, delete_notification_activity = nil, keep_history = nil, enrich_own_fields = nil)
         path = '/api/v2/feeds/follows/{source}/{target}'
         # Replace path parameters
         path = path.gsub('{source}', source.to_s)
@@ -1616,6 +1661,7 @@ module GetStream
         # Build query parameters
         query_params = {}
         query_params['delete_notification_activity'] = delete_notification_activity unless delete_notification_activity.nil?
+        query_params['keep_history'] = keep_history unless keep_history.nil?
         query_params['enrich_own_fields'] = enrich_own_fields unless enrich_own_fields.nil?
 
         # Make the API request

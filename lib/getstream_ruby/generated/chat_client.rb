@@ -1435,23 +1435,20 @@ module GetStream
         )
       end
 
-      # Returns paginated retention cleanup run history for the app. Server-side only.
+      # Returns filtered and sorted retention cleanup run history for the app. Supports filter_conditions on 'policy' (possible values: 'old-messages', 'inactive-channels') and 'date' fields. Server-side only.
       #
-      # @param limit [Integer]
-      # @param offset [Integer]
+      # @param get_retention_policy_runs_request [GetRetentionPolicyRunsRequest]
       # @return [Models::GetRetentionPolicyRunsResponse]
-      def get_retention_policy_runs(limit = nil, offset = nil)
+      def get_retention_policy_runs(get_retention_policy_runs_request)
         path = '/api/v2/chat/retention_policy/runs'
-        # Build query parameters
-        query_params = {}
-        query_params['limit'] = limit unless limit.nil?
-        query_params['offset'] = offset unless offset.nil?
+        # Build request body
+        body = get_retention_policy_runs_request
 
         # Make the API request
         @client.make_request(
-          :get,
+          :post,
           path,
-          query_params: query_params
+          body: body
         )
       end
 

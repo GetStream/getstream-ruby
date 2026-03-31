@@ -372,11 +372,11 @@ RSpec.describe 'Feed Integration Tests', type: :integration do
       begin
         # Create users first
         users_hash = {}
-        user_ids.each_with_index do |user_id, i|
+        user_ids.each_with_index do |user_id, _i|
 
           users_hash[user_id] = {
             'id' => user_id,
-            'name' => "Delete Test User #{i + 1}",
+            'name' => "Delete Test User #{user_id}",
             'role' => 'user',
           }
 

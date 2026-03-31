@@ -9,6 +9,9 @@ module GetStream
       class ImageContentParameters < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute label_operator
+        #   @return [String]
+        attr_accessor :label_operator
         # @!attribute min_confidence
         #   @return [Float]
         attr_accessor :min_confidence
@@ -19,6 +22,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @label_operator = attributes[:label_operator] || attributes['label_operator'] || nil
           @min_confidence = attributes[:min_confidence] || attributes['min_confidence'] || nil
           @harm_labels = attributes[:harm_labels] || attributes['harm_labels'] || nil
         end
@@ -26,6 +30,7 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            label_operator: 'label_operator',
             min_confidence: 'min_confidence',
             harm_labels: 'harm_labels'
           }

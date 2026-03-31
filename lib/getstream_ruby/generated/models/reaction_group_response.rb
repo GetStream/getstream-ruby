@@ -21,6 +21,9 @@ module GetStream
         # @!attribute sum_scores
         #   @return [Integer] SumScores is the sum of all scores of reactions of this type. Medium allows you to clap articles more than once and shows the sum of all claps from all users. For example, you can send `clap` x5 using `score: 5`.
         attr_accessor :sum_scores
+        # @!attribute latest_reactions_by
+        #   @return [Array<ReactionGroupUserResponse>] The most recent users who reacted with this type, ordered by most recent first.
+        attr_accessor :latest_reactions_by
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -29,6 +32,7 @@ module GetStream
           @first_reaction_at = attributes[:first_reaction_at] || attributes['first_reaction_at']
           @last_reaction_at = attributes[:last_reaction_at] || attributes['last_reaction_at']
           @sum_scores = attributes[:sum_scores] || attributes['sum_scores']
+          @latest_reactions_by = attributes[:latest_reactions_by] || attributes['latest_reactions_by']
         end
 
         # Override field mappings for JSON serialization
@@ -37,7 +41,8 @@ module GetStream
             count: 'count',
             first_reaction_at: 'first_reaction_at',
             last_reaction_at: 'last_reaction_at',
-            sum_scores: 'sum_scores'
+            sum_scores: 'sum_scores',
+            latest_reactions_by: 'latest_reactions_by'
           }
         end
       end

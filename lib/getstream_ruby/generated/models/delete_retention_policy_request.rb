@@ -16,7 +16,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @policy = attributes[:policy] || attributes['policy'] || nil
+          @policy = attributes[:policy] || attributes['policy']
         end
 
         # Override field mappings for JSON serialization

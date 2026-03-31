@@ -13,21 +13,31 @@ module GetStream
         #   @return [String] Duration of the request in milliseconds
         attr_accessor :duration
         # @!attribute runs
-        #   @return [Array<RetentionCleanupRun>]
+        #   @return [Array<RetentionRunResponse>]
         attr_accessor :runs
+        # @!attribute next
+        #   @return [String]
+        attr_accessor :next
+        # @!attribute prev
+        #   @return [String]
+        attr_accessor :prev
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @duration = attributes[:duration] || attributes['duration']
           @runs = attributes[:runs] || attributes['runs']
+          @next = attributes[:next] || attributes['next'] || nil
+          @prev = attributes[:prev] || attributes['prev'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
             duration: 'duration',
-            runs: 'runs'
+            runs: 'runs',
+            next: 'next',
+            prev: 'prev'
           }
         end
       end

@@ -772,4 +772,34 @@ RSpec.describe 'Chat Misc Integration', type: :integration do
 
   end
 
+  # ---------------------------------------------------------------------------
+  # Retention Policy Runs
+  # ---------------------------------------------------------------------------
+
+  describe 'RetentionPolicyRuns' do
+
+    it 'gets retention policy runs' do
+
+      runs_resp = @client.chat.get_retention_policy_runs(
+        GetStream::Generated::Models::GetRetentionPolicyRunsRequest.new(
+          limit: 10,
+        ),
+      )
+      expect(runs_resp).not_to be_nil
+      runs = runs_resp.runs || []
+      expect(runs).to be_an(Array)
+    rescue GetStreamRuby::APIError => e
+      if e.message.include?('not enabled') ||
+         e.message.include?('not available') ||
+         e.message.include?('retention') ||
+         e.message.include?('Not Found') ||
+         e.message.include?('not found')
+        skip('Retention policy not available for this app')
+      end
+      raise
+
+    end
+
+  end
+
 end

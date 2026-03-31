@@ -150,6 +150,9 @@ module GetStream
         # @!attribute poll
         #   @return [PollResponseData]
         attr_accessor :poll
+        # @!attribute score_vars
+        #   @return [Object] Variable values used at ranking time. Only included when include_score_vars is enabled in enrichment options.
+        attr_accessor :score_vars
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -201,6 +204,7 @@ module GetStream
           @notification_context = attributes[:notification_context] || attributes['notification_context'] || nil
           @parent = attributes[:parent] || attributes['parent'] || nil
           @poll = attributes[:poll] || attributes['poll'] || nil
+          @score_vars = attributes[:score_vars] || attributes['score_vars'] || nil
         end
 
         # Override field mappings for JSON serialization
@@ -252,7 +256,8 @@ module GetStream
             moderation: 'moderation',
             notification_context: 'notification_context',
             parent: 'parent',
-            poll: 'poll'
+            poll: 'poll',
+            score_vars: 'score_vars'
           }
         end
       end

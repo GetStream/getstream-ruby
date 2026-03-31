@@ -30,6 +30,9 @@ module GetStream
         # @!attribute comment
         #   @return [NotificationComment]
         attr_accessor :comment
+        # @!attribute custom
+        #   @return [Object] Custom data from the target activity
+        attr_accessor :custom
         # @!attribute parent_activity
         #   @return [NotificationParentActivity]
         attr_accessor :parent_activity
@@ -44,6 +47,7 @@ module GetStream
           @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @attachments = attributes[:attachments] || attributes['attachments'] || nil
           @comment = attributes[:comment] || attributes['comment'] || nil
+          @custom = attributes[:custom] || attributes['custom'] || nil
           @parent_activity = attributes[:parent_activity] || attributes['parent_activity'] || nil
         end
 
@@ -57,6 +61,7 @@ module GetStream
             user_id: 'user_id',
             attachments: 'attachments',
             comment: 'comment',
+            custom: 'custom',
             parent_activity: 'parent_activity'
           }
         end

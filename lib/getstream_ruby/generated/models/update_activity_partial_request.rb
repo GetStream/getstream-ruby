@@ -10,7 +10,8 @@ module GetStream
 
         # Model attributes
         # @!attribute copy_custom_to_notification
-        #   @return [Boolean] Whether to copy custom data to the notification activity (only applies when handle_mention_notifications creates notifications)
+        # @deprecated This field is deprecated.
+        #   @return [Boolean] Whether to copy custom data to the notification activity (only applies when handle_mention_notifications creates notifications) Deprecated: use notification_context.trigger.custom and notification_context.target.custom instead
         attr_accessor :copy_custom_to_notification
         # @!attribute enrich_own_fields
         #   @return [Boolean] If true, enriches the activity's current_feed with own_* fields (own_follows, own_followings, own_capabilities, own_membership). Defaults to false for performance.
