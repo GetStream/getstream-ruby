@@ -376,7 +376,7 @@ RSpec.describe 'Feed Integration Tests', type: :integration do
 
           users_hash[user_id] = {
             'id' => user_id,
-            'name' => "Delete Test User #{i + 1}",
+            'name' => "Delete Test User #{user_id}",
             'role' => 'user',
           }
 
