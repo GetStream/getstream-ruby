@@ -18,6 +18,9 @@ module GetStream
         # @!attribute include_private_activities
         #   @return [Boolean]
         attr_accessor :include_private_activities
+        # @!attribute include_soft_deleted_activities
+        #   @return [Boolean] When true, include soft-deleted activities in the result.
+        attr_accessor :include_soft_deleted_activities
         # @!attribute limit
         #   @return [Integer]
         attr_accessor :limit
@@ -46,6 +49,7 @@ module GetStream
           @enrich_own_fields = attributes[:enrich_own_fields] || attributes['enrich_own_fields'] || nil
           @include_expired_activities = attributes[:include_expired_activities] || attributes['include_expired_activities'] || nil
           @include_private_activities = attributes[:include_private_activities] || attributes['include_private_activities'] || nil
+          @include_soft_deleted_activities = attributes[:include_soft_deleted_activities] || attributes['include_soft_deleted_activities'] || nil
           @limit = attributes[:limit] || attributes['limit'] || nil
           @next = attributes[:next] || attributes['next'] || nil
           @prev = attributes[:prev] || attributes['prev'] || nil
@@ -61,6 +65,7 @@ module GetStream
             enrich_own_fields: 'enrich_own_fields',
             include_expired_activities: 'include_expired_activities',
             include_private_activities: 'include_private_activities',
+            include_soft_deleted_activities: 'include_soft_deleted_activities',
             limit: 'limit',
             next: 'next',
             prev: 'prev',

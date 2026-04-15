@@ -15,6 +15,9 @@ module GetStream
         # @!attribute target
         #   @return [String] Fully qualified ID of the target feed
         attr_accessor :target
+        # @!attribute activity_copy_limit
+        #   @return [Integer] Maximum number of historical activities to copy from the target feed when the follow is first materialized. Not set = unlimited (default). 0 = copy nothing. Range: 0-1000.
+        attr_accessor :activity_copy_limit
         # @!attribute copy_custom_to_notification
         # @deprecated This field is deprecated.
         #   @return [Boolean] Whether to copy custom data to the notification activity (only applies when create_notification_activity is true) Deprecated: use notification_context.trigger.custom and notification_context.target.custom instead
@@ -46,6 +49,7 @@ module GetStream
           super(attributes)
           @source = attributes[:source] || attributes['source']
           @target = attributes[:target] || attributes['target']
+          @activity_copy_limit = attributes[:activity_copy_limit] || attributes['activity_copy_limit'] || nil
           @copy_custom_to_notification = attributes[:copy_custom_to_notification] || attributes['copy_custom_to_notification'] || nil
           @create_notification_activity = attributes[:create_notification_activity] || attributes['create_notification_activity'] || nil
           @enrich_own_fields = attributes[:enrich_own_fields] || attributes['enrich_own_fields'] || nil
@@ -61,6 +65,7 @@ module GetStream
           {
             source: 'source',
             target: 'target',
+            activity_copy_limit: 'activity_copy_limit',
             copy_custom_to_notification: 'copy_custom_to_notification',
             create_notification_activity: 'create_notification_activity',
             enrich_own_fields: 'enrich_own_fields',

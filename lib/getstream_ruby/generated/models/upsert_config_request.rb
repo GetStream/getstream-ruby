@@ -19,7 +19,7 @@ module GetStream
         #   @return [String] Team associated with the configuration
         attr_accessor :team
         # @!attribute user_id
-        #   @return [String]
+        #   @return [String] Optional user ID to associate with the audit log entry
         attr_accessor :user_id
         # @!attribute ai_image_config
         #   @return [AIImageConfig]

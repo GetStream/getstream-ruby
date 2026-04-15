@@ -113,6 +113,23 @@ module GetStream
         )
       end
 
+      # Enable or disable moderation bypass for a user. This endpoint is server-side only.
+      #
+      # @param bypass_request [BypassRequest]
+      # @return [Models::BypassResponse]
+      def bypass(bypass_request)
+        path = '/api/v2/moderation/bypass'
+        # Build request body
+        body = bypass_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
       # Run moderation checks on the provided content
       #
       # @param check_request [CheckRequest]
@@ -168,14 +185,16 @@ module GetStream
       #
       # @param key [String]
       # @param team [String]
+      # @param user_id [String]
       # @return [Models::DeleteModerationConfigResponse]
-      def delete_config(key, team = nil)
+      def delete_config(key, team = nil, user_id = nil)
         path = '/api/v2/moderation/config/{key}'
         # Replace path parameters
         path = path.gsub('{key}', key.to_s)
         # Build query parameters
         query_params = {}
         query_params['team'] = team unless team.nil?
+        query_params['user_id'] = user_id unless user_id.nil?
 
         # Make the API request
         @client.make_request(
@@ -370,14 +389,19 @@ module GetStream
 
       # Delete an existing moderation rule
       #
+      # @param user_id [String]
       # @return [Models::DeleteModerationRuleResponse]
-      def delete_moderation_rule()
+      def delete_moderation_rule(user_id = nil)
         path = '/api/v2/moderation/moderation_rule/{id}'
+        # Build query parameters
+        query_params = {}
+        query_params['user_id'] = user_id unless user_id.nil?
 
         # Make the API request
         @client.make_request(
           :delete,
-          path
+          path,
+          query_params: query_params
         )
       end
 

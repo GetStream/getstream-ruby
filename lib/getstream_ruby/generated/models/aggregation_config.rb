@@ -9,6 +9,9 @@ module GetStream
       class AggregationConfig < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute activities_sort
+        #   @return [String] Order of member activities inside each aggregated group for non-stories feeds: created_at_desc (newest first, default) or created_at_asc (oldest first). Stories feeds ignore this and always use oldest first.
+        attr_accessor :activities_sort
         # @!attribute format
         #   @return [String] Format for activity aggregation
         attr_accessor :format
@@ -19,6 +22,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @activities_sort = attributes[:activities_sort] || attributes['activities_sort'] || nil
           @format = attributes[:format] || attributes['format'] || nil
           @score_strategy = attributes[:score_strategy] || attributes['score_strategy'] || nil
         end
@@ -26,6 +30,7 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            activities_sort: 'activities_sort',
             format: 'format',
             score_strategy: 'score_strategy'
           }

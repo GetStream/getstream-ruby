@@ -10,41 +10,47 @@ module GetStream
 
         # Model attributes
         # @!attribute name
-        #   @return [String]
+        #   @return [String] Unique rule name
         attr_accessor :name
         # @!attribute rule_type
-        #   @return [String]
+        #   @return [String] Type of rule: user, content, or call
         attr_accessor :rule_type
         # @!attribute cooldown_period
-        #   @return [String]
+        #   @return [String] Duration before rule can trigger again (e.g. 24h, 7d)
         attr_accessor :cooldown_period
         # @!attribute description
-        #   @return [String]
+        #   @return [String] Optional description of the rule
         attr_accessor :description
         # @!attribute enabled
-        #   @return [Boolean]
+        #   @return [Boolean] Whether the rule is active
         attr_accessor :enabled
         # @!attribute logic
-        #   @return [String]
+        #   @return [String] Logical operator between conditions/groups: AND or OR
         attr_accessor :logic
         # @!attribute team
-        #   @return [String]
+        #   @return [String] Team scope for the rule
         attr_accessor :team
+        # @!attribute user_id
+        #   @return [String] Optional user ID to associate with the audit log entry
+        attr_accessor :user_id
         # @!attribute action_sequences
-        #   @return [Array<CallRuleActionSequence>]
+        #   @return [Array<CallRuleActionSequence>] Escalation sequences for call rules
         attr_accessor :action_sequences
         # @!attribute conditions
-        #   @return [Array<RuleBuilderCondition>]
+        #   @return [Array<RuleBuilderCondition>] Flat list of conditions (legacy)
         attr_accessor :conditions
         # @!attribute config_keys
-        #   @return [Array<String>]
+        #   @return [Array<String>] List of config keys this rule applies to
         attr_accessor :config_keys
         # @!attribute groups
-        #   @return [Array<RuleBuilderConditionGroup>]
+        #   @return [Array<RuleBuilderConditionGroup>] Nested condition groups
         attr_accessor :groups
         # @!attribute action
         #   @return [RuleBuilderAction]
         attr_accessor :action
+        # @!attribute user
+        #   @return [UserRequest]
+        attr_accessor :user
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -56,11 +62,13 @@ module GetStream
           @enabled = attributes[:enabled] || attributes['enabled'] || nil
           @logic = attributes[:logic] || attributes['logic'] || nil
           @team = attributes[:team] || attributes['team'] || nil
+          @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @action_sequences = attributes[:action_sequences] || attributes['action_sequences'] || nil
           @conditions = attributes[:conditions] || attributes['conditions'] || nil
           @config_keys = attributes[:config_keys] || attributes['config_keys'] || nil
           @groups = attributes[:groups] || attributes['groups'] || nil
           @action = attributes[:action] || attributes['action'] || nil
+          @user = attributes[:user] || attributes['user'] || nil
         end
 
         # Override field mappings for JSON serialization
@@ -73,11 +81,13 @@ module GetStream
             enabled: 'enabled',
             logic: 'logic',
             team: 'team',
+            user_id: 'user_id',
             action_sequences: 'action_sequences',
             conditions: 'conditions',
             config_keys: 'config_keys',
             groups: 'groups',
-            action: 'action'
+            action: 'action',
+            user: 'user'
           }
         end
       end

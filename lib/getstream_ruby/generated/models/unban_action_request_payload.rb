@@ -15,19 +15,24 @@ module GetStream
         # @!attribute decision_reason
         #   @return [String] Reason for the appeal decision
         attr_accessor :decision_reason
+        # @!attribute remove_future_channels_ban
+        #   @return [Boolean] Also remove the future channels ban for this user
+        attr_accessor :remove_future_channels_ban
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @channel_cid = attributes[:channel_cid] || attributes['channel_cid'] || nil
           @decision_reason = attributes[:decision_reason] || attributes['decision_reason'] || nil
+          @remove_future_channels_ban = attributes[:remove_future_channels_ban] || attributes['remove_future_channels_ban'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
             channel_cid: 'channel_cid',
-            decision_reason: 'decision_reason'
+            decision_reason: 'decision_reason',
+            remove_future_channels_ban: 'remove_future_channels_ban'
           }
         end
       end

@@ -12,17 +12,22 @@ module GetStream
         # @!attribute mode
         #   @return [String]
         attr_accessor :mode
+        # @!attribute audio_only
+        #   @return [Boolean]
+        attr_accessor :audio_only
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @mode = attributes[:mode] || attributes['mode']
+          @audio_only = attributes[:audio_only] || attributes['audio_only'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            mode: 'mode'
+            mode: 'mode',
+            audio_only: 'audio_only'
           }
         end
       end

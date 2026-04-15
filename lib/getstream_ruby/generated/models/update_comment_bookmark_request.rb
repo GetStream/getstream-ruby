@@ -6,7 +6,7 @@ module GetStream
   module Generated
     module Models
       # 
-      class UpdateBookmarkRequest < GetStream::BaseModel
+      class UpdateCommentBookmarkRequest < GetStream::BaseModel
 
         # Model attributes
         # @!attribute folder_id

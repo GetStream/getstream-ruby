@@ -6,15 +6,12 @@ module GetStream
   module Generated
     module Models
       # 
-      class UpdateBookmarkRequest < GetStream::BaseModel
+      class AddCommentBookmarkRequest < GetStream::BaseModel
 
         # Model attributes
         # @!attribute folder_id
-        #   @return [String] ID of the folder containing the bookmark
+        #   @return [String] ID of the folder to add the bookmark to
         attr_accessor :folder_id
-        # @!attribute new_folder_id
-        #   @return [String] Move the bookmark to this folder (empty string removes the folder)
-        attr_accessor :new_folder_id
         # @!attribute user_id
         #   @return [String]
         attr_accessor :user_id
@@ -32,7 +29,6 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @folder_id = attributes[:folder_id] || attributes['folder_id'] || nil
-          @new_folder_id = attributes[:new_folder_id] || attributes['new_folder_id'] || nil
           @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @custom = attributes[:custom] || attributes['custom'] || nil
           @new_folder = attributes[:new_folder] || attributes['new_folder'] || nil
@@ -43,7 +39,6 @@ module GetStream
         def self.json_field_mappings
           {
             folder_id: 'folder_id',
-            new_folder_id: 'new_folder_id',
             user_id: 'user_id',
             custom: 'custom',
             new_folder: 'new_folder',

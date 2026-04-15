@@ -77,7 +77,7 @@ module GetStream
         #   @return [Object] Custom data for the activity
         attr_accessor :custom
         # @!attribute location
-        #   @return [ActivityLocation]
+        #   @return [Location]
         attr_accessor :location
         # @!attribute search_data
         #   @return [Object] Additional data for search indexing

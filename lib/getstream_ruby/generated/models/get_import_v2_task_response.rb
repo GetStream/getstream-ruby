@@ -33,6 +33,9 @@ module GetStream
         # @!attribute settings
         #   @return [ImportV2TaskSettings]
         attr_accessor :settings
+        # @!attribute result
+        #   @return [Object]
+        attr_accessor :result
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -45,6 +48,7 @@ module GetStream
           @state = attributes[:state] || attributes['state']
           @updated_at = attributes[:updated_at] || attributes['updated_at']
           @settings = attributes[:settings] || attributes['settings']
+          @result = attributes[:result] || attributes['result'] || nil
         end
 
         # Override field mappings for JSON serialization
@@ -57,7 +61,8 @@ module GetStream
             product: 'product',
             state: 'state',
             updated_at: 'updated_at',
-            settings: 'settings'
+            settings: 'settings',
+            result: 'result'
           }
         end
       end

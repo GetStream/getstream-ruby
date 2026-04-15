@@ -31,10 +31,10 @@ module GetStream
         #   @return [String]
         attr_accessor :user_id
         # @!attribute sort
-        #   @return [Array<SortParamRequest>] Sort conditions to apply to threads
+        #   @return [Array<SortParamRequest>] Array of sort parameters
         attr_accessor :sort
         # @!attribute filter
-        #   @return [Object] Filter conditions to apply to threads
+        #   @return [Object] Filter to apply to the query
         attr_accessor :filter
         # @!attribute user
         #   @return [UserRequest]
