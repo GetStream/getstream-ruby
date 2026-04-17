@@ -684,11 +684,6 @@ RSpec.describe 'Feed Integration Tests', type: :integration do
         rescue StandardError => e
           puts "⚠️ Unfollow cleanup warning: #{e.message}"
         end
-      rescue GetStreamRuby::APIError => e
-        # Matches the pattern used by the sibling follow test: if the test
-        # app isn't provisioned with the required feed groups (e.g.
-        # `timeline` / `user`), gracefully skip instead of hard-failing.
-        puts "⚠️ create_users follow test skipped: #{e.message}"
       ensure
         SuiteCleanup.register_users([alice_id, bob_id, charlie_id])
       end
