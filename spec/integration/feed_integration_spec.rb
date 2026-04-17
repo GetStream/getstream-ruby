@@ -617,6 +617,79 @@ RSpec.describe 'Feed Integration Tests', type: :integration do
 
     end
 
+    it 'auto-generates users on follow with create_users: true' do
+
+      puts "\n👤 Testing auto-generated users on follow..."
+
+      # Use fresh user IDs that don't exist yet so we can verify that the
+      # server creates them via create_users: true.
+      alice_id = "autogen-alice-#{SecureRandom.hex(4)}"
+      bob_id = "autogen-bob-#{SecureRandom.hex(4)}"
+      charlie_id = "autogen-charlie-#{SecureRandom.hex(4)}"
+
+      begin
+        # snippet-start: FollowCreateUsers
+        # Single follow with create_users: true auto-creates both the source
+        # (timeline:alice) and target (user:bob) users on the server.
+        follow_request = {
+          source: "timeline:#{alice_id}",
+          target: "user:#{bob_id}",
+          create_users: true,
+        }
+
+        follow_response = client.feeds.follow(follow_request)
+        expect(follow_response).to be_a(GetStreamRuby::StreamResponse)
+        puts "✅ Follow created with auto-generated users: #{alice_id} -> #{bob_id}"
+        # snippet-stop: FollowCreateUsers
+
+        # snippet-start: GetOrCreateFollowsCreateUsers
+        # Batch upsert with top-level create_users: true auto-creates any
+        # users referenced by source/target FIDs across the batch.
+        batch_response = client.feeds.get_or_create_follows(
+          GetStream::Generated::Models::FollowBatchRequest.new(
+            create_users: true,
+            follows: [
+              GetStream::Generated::Models::FollowRequest.new(
+                source: "timeline:#{alice_id}",
+                target: "user:#{bob_id}",
+              ),
+              GetStream::Generated::Models::FollowRequest.new(
+                source: "timeline:#{alice_id}",
+                target: "user:#{charlie_id}",
+              ),
+            ],
+          ),
+        )
+        expect(batch_response).to be_a(GetStreamRuby::StreamResponse)
+        puts "✅ Batch follow upsert with auto-generated users (targets: #{bob_id}, #{charlie_id})"
+        # snippet-stop: GetOrCreateFollowsCreateUsers
+
+        # Verify the auto-generated users actually exist server-side by
+        # querying them back. query_users expects the payload serialized as
+        # a JSON string (it rides on the query string, not the body).
+        query_users_response = client.common.query_users(
+          JSON.generate(
+            filter_conditions: { 'id' => { '$in' => [alice_id, bob_id, charlie_id] } },
+          ),
+        )
+        expect(query_users_response).to be_a(GetStreamRuby::StreamResponse)
+        returned_ids = query_users_response.users.map { |u| u.to_h['id'] || u.id }
+        expect(returned_ids).to include(alice_id, bob_id, charlie_id)
+        puts "✅ Verified auto-generated users exist: #{returned_ids.sort.join(', ')}"
+
+        # Unfollow to clean up the follow edges
+        begin
+          client.feeds.unfollow("timeline:#{alice_id}", "user:#{bob_id}")
+          client.feeds.unfollow("timeline:#{alice_id}", "user:#{charlie_id}")
+        rescue StandardError => e
+          puts "⚠️ Unfollow cleanup warning: #{e.message}"
+        end
+      ensure
+        SuiteCleanup.register_users([alice_id, bob_id, charlie_id])
+      end
+
+    end
+
   end
 
   describe 'Pin Operations' do
