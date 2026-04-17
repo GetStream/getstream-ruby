@@ -27,6 +27,9 @@ module GetStream
         # @!attribute block
         #   @return [BlockActionRequestPayload]
         attr_accessor :block
+        # @!attribute bypass
+        #   @return [BypassActionRequest]
+        attr_accessor :bypass
         # @!attribute custom
         #   @return [CustomActionRequestPayload]
         attr_accessor :custom
@@ -82,6 +85,7 @@ module GetStream
           @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @ban = attributes[:ban] || attributes['ban'] || nil
           @block = attributes[:block] || attributes['block'] || nil
+          @bypass = attributes[:bypass] || attributes['bypass'] || nil
           @custom = attributes[:custom] || attributes['custom'] || nil
           @delete_activity = attributes[:delete_activity] || attributes['delete_activity'] || nil
           @delete_comment = attributes[:delete_comment] || attributes['delete_comment'] || nil
@@ -108,6 +112,7 @@ module GetStream
             user_id: 'user_id',
             ban: 'ban',
             block: 'block',
+            bypass: 'bypass',
             custom: 'custom',
             delete_activity: 'delete_activity',
             delete_comment: 'delete_comment',

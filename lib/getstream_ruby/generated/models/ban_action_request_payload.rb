@@ -9,6 +9,9 @@ module GetStream
       class BanActionRequestPayload < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute ban_from_future_channels
+        #   @return [Boolean] Also ban user from all channels this moderator creates in the future
+        attr_accessor :ban_from_future_channels
         # @!attribute channel_ban_only
         #   @return [Boolean] Ban only from specific channel
         attr_accessor :channel_ban_only
@@ -37,6 +40,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @ban_from_future_channels = attributes[:ban_from_future_channels] || attributes['ban_from_future_channels'] || nil
           @channel_ban_only = attributes[:channel_ban_only] || attributes['channel_ban_only'] || nil
           @channel_cid = attributes[:channel_cid] || attributes['channel_cid'] || nil
           @delete_messages = attributes[:delete_messages] || attributes['delete_messages'] || nil
@@ -50,6 +54,7 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            ban_from_future_channels: 'ban_from_future_channels',
             channel_ban_only: 'channel_ban_only',
             channel_cid: 'channel_cid',
             delete_messages: 'delete_messages',

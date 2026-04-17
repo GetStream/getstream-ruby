@@ -21,6 +21,9 @@ module GetStream
         # @!attribute skip_references_check
         #   @return [Boolean]
         attr_accessor :skip_references_check
+        # @!attribute source
+        #   @return [String]
+        attr_accessor :source
         # @!attribute s3
         #   @return [ImportV2TaskSettingsS3]
         attr_accessor :s3
@@ -32,6 +35,7 @@ module GetStream
           @mode = attributes[:mode] || attributes['mode'] || nil
           @path = attributes[:path] || attributes['path'] || nil
           @skip_references_check = attributes[:skip_references_check] || attributes['skip_references_check'] || nil
+          @source = attributes[:source] || attributes['source'] || nil
           @s3 = attributes[:s3] || attributes['s3'] || nil
         end
 
@@ -42,6 +46,7 @@ module GetStream
             mode: 'mode',
             path: 'path',
             skip_references_check: 'skip_references_check',
+            source: 'source',
             s3: 's3'
           }
         end

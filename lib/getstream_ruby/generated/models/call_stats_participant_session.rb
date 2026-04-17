@@ -39,6 +39,15 @@ module GetStream
         # @!attribute ended_at
         #   @return [DateTime]
         attr_accessor :ended_at
+        # @!attribute freezes_duration_ms
+        #   @return [Integer]
+        attr_accessor :freezes_duration_ms
+        # @!attribute jitter_ms
+        #   @return [Integer]
+        attr_accessor :jitter_ms
+        # @!attribute latency_ms
+        #   @return [Integer]
+        attr_accessor :latency_ms
         # @!attribute os
         #   @return [String]
         attr_accessor :os
@@ -77,6 +86,9 @@ module GetStream
           @current_sfu = attributes[:current_sfu] || attributes['current_sfu'] || nil
           @distance_to_sfu_kilometers = attributes[:distance_to_sfu_kilometers] || attributes['distance_to_sfu_kilometers'] || nil
           @ended_at = attributes[:ended_at] || attributes['ended_at'] || nil
+          @freezes_duration_ms = attributes[:freezes_duration_ms] || attributes['freezes_duration_ms'] || nil
+          @jitter_ms = attributes[:jitter_ms] || attributes['jitter_ms'] || nil
+          @latency_ms = attributes[:latency_ms] || attributes['latency_ms'] || nil
           @os = attributes[:os] || attributes['os'] || nil
           @publisher_type = attributes[:publisher_type] || attributes['publisher_type'] || nil
           @sdk = attributes[:sdk] || attributes['sdk'] || nil
@@ -100,6 +112,9 @@ module GetStream
             current_sfu: 'current_sfu',
             distance_to_sfu_kilometers: 'distance_to_sfu_kilometers',
             ended_at: 'ended_at',
+            freezes_duration_ms: 'freezes_duration_ms',
+            jitter_ms: 'jitter_ms',
+            latency_ms: 'latency_ms',
             os: 'os',
             publisher_type: 'publisher_type',
             sdk: 'sdk',

@@ -133,7 +133,7 @@ module GetStream
         #   @return [FeedResponse]
         attr_accessor :current_feed
         # @!attribute location
-        #   @return [ActivityLocation]
+        #   @return [Location]
         attr_accessor :location
         # @!attribute metrics
         #   @return [Hash<String, Integer>]

@@ -9,30 +9,25 @@ module GetStream
       class Location < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute continent_code
-        #   @return [String]
-        attr_accessor :continent_code
-        # @!attribute country_iso_code
-        #   @return [String]
-        attr_accessor :country_iso_code
-        # @!attribute subdivision_iso_code
-        #   @return [String]
-        attr_accessor :subdivision_iso_code
+        # @!attribute lat
+        #   @return [Float] Latitude coordinate
+        attr_accessor :lat
+        # @!attribute lng
+        #   @return [Float] Longitude coordinate
+        attr_accessor :lng
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @continent_code = attributes[:continent_code] || attributes['continent_code']
-          @country_iso_code = attributes[:country_iso_code] || attributes['country_iso_code']
-          @subdivision_iso_code = attributes[:subdivision_iso_code] || attributes['subdivision_iso_code']
+          @lat = attributes[:lat] || attributes['lat']
+          @lng = attributes[:lng] || attributes['lng']
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            continent_code: 'continent_code',
-            country_iso_code: 'country_iso_code',
-            subdivision_iso_code: 'subdivision_iso_code'
+            lat: 'lat',
+            lng: 'lng'
           }
         end
       end

@@ -9,9 +9,15 @@ module GetStream
       class BookmarkResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute _object_id
+        #   @return [String] ID of the bookmarked object
+        attr_accessor :_object_id
         # @!attribute created_at
         #   @return [DateTime] When the bookmark was created
         attr_accessor :created_at
+        # @!attribute object_type
+        #   @return [String] Type of the bookmarked object (activity or comment)
+        attr_accessor :object_type
         # @!attribute updated_at
         #   @return [DateTime] When the bookmark was last updated
         attr_accessor :updated_at
@@ -21,6 +27,12 @@ module GetStream
         # @!attribute user
         #   @return [UserResponse]
         attr_accessor :user
+        # @!attribute activity_id
+        #   @return [String]
+        attr_accessor :activity_id
+        # @!attribute comment
+        #   @return [CommentResponse]
+        attr_accessor :comment
         # @!attribute custom
         #   @return [Object] Custom data for the bookmark
         attr_accessor :custom
@@ -31,10 +43,14 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @_object_id = attributes[:_object_id] || attributes['object_id']
           @created_at = attributes[:created_at] || attributes['created_at']
+          @object_type = attributes[:object_type] || attributes['object_type']
           @updated_at = attributes[:updated_at] || attributes['updated_at']
           @activity = attributes[:activity] || attributes['activity']
           @user = attributes[:user] || attributes['user']
+          @activity_id = attributes[:activity_id] || attributes['activity_id'] || nil
+          @comment = attributes[:comment] || attributes['comment'] || nil
           @custom = attributes[:custom] || attributes['custom'] || nil
           @folder = attributes[:folder] || attributes['folder'] || nil
         end
@@ -42,10 +58,14 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            _object_id: 'object_id',
             created_at: 'created_at',
+            object_type: 'object_type',
             updated_at: 'updated_at',
             activity: 'activity',
             user: 'user',
+            activity_id: 'activity_id',
+            comment: 'comment',
             custom: 'custom',
             folder: 'folder'
           }

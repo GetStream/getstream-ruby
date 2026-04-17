@@ -27,6 +27,9 @@ module GetStream
         # @!attribute custom
         #   @return [Object]
         attr_accessor :custom
+        # @!attribute location
+        #   @return [Location]
+        attr_accessor :location
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -37,6 +40,7 @@ module GetStream
           @filter_tags = attributes[:filter_tags] || attributes['filter_tags'] || nil
           @members = attributes[:members] || attributes['members'] || nil
           @custom = attributes[:custom] || attributes['custom'] || nil
+          @location = attributes[:location] || attributes['location'] || nil
         end
 
         # Override field mappings for JSON serialization
@@ -47,7 +51,8 @@ module GetStream
             visibility: 'visibility',
             filter_tags: 'filter_tags',
             members: 'members',
-            custom: 'custom'
+            custom: 'custom',
+            location: 'location'
           }
         end
       end

@@ -12,17 +12,22 @@ module GetStream
         # @!attribute changes
         #   @return [Array<UpdateActivityPartialChangeRequest>] List of activity changes to apply. Each change specifies an activity ID and the fields to set/unset
         attr_accessor :changes
+        # @!attribute force_moderation
+        #   @return [Boolean] If true, forces moderation to run for server-side requests. By default, server-side requests skip moderation. Client-side requests always run moderation regardless of this field.
+        attr_accessor :force_moderation
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @changes = attributes[:changes] || attributes['changes']
+          @force_moderation = attributes[:force_moderation] || attributes['force_moderation'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            changes: 'changes'
+            changes: 'changes',
+            force_moderation: 'force_moderation'
           }
         end
       end
