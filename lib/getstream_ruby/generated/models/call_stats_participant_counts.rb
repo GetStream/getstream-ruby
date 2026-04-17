@@ -27,12 +27,24 @@ module GetStream
         # @!attribute sessions
         #   @return [Integer]
         attr_accessor :sessions
+        # @!attribute sfus_used
+        #   @return [Integer]
+        attr_accessor :sfus_used
+        # @!attribute average_jitter_ms
+        #   @return [Integer]
+        attr_accessor :average_jitter_ms
+        # @!attribute average_latency_ms
+        #   @return [Integer]
+        attr_accessor :average_latency_ms
         # @!attribute call_event_count
         #   @return [Integer]
         attr_accessor :call_event_count
         # @!attribute cq_score
         #   @return [Integer]
         attr_accessor :cq_score
+        # @!attribute max_freezes_duration_ms
+        #   @return [Integer]
+        attr_accessor :max_freezes_duration_ms
         # @!attribute total_participant_duration
         #   @return [Integer]
         attr_accessor :total_participant_duration
@@ -46,8 +58,12 @@ module GetStream
           @peak_concurrent_users = attributes[:peak_concurrent_users] || attributes['peak_concurrent_users']
           @publishers = attributes[:publishers] || attributes['publishers']
           @sessions = attributes[:sessions] || attributes['sessions']
+          @sfus_used = attributes[:sfus_used] || attributes['sfus_used']
+          @average_jitter_ms = attributes[:average_jitter_ms] || attributes['average_jitter_ms'] || nil
+          @average_latency_ms = attributes[:average_latency_ms] || attributes['average_latency_ms'] || nil
           @call_event_count = attributes[:call_event_count] || attributes['call_event_count'] || nil
           @cq_score = attributes[:cq_score] || attributes['cq_score'] || nil
+          @max_freezes_duration_ms = attributes[:max_freezes_duration_ms] || attributes['max_freezes_duration_ms'] || nil
           @total_participant_duration = attributes[:total_participant_duration] || attributes['total_participant_duration'] || nil
         end
 
@@ -60,8 +76,12 @@ module GetStream
             peak_concurrent_users: 'peak_concurrent_users',
             publishers: 'publishers',
             sessions: 'sessions',
+            sfus_used: 'sfus_used',
+            average_jitter_ms: 'average_jitter_ms',
+            average_latency_ms: 'average_latency_ms',
             call_event_count: 'call_event_count',
             cq_score: 'cq_score',
+            max_freezes_duration_ms: 'max_freezes_duration_ms',
             total_participant_duration: 'total_participant_duration'
           }
         end

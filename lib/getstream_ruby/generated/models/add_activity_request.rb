@@ -28,6 +28,9 @@ module GetStream
         # @!attribute expires_at
         #   @return [String] Expiration time for the activity
         attr_accessor :expires_at
+        # @!attribute force_moderation
+        #   @return [Boolean]
+        attr_accessor :force_moderation
         # @!attribute id
         #   @return [String] Optional ID for the activity
         attr_accessor :id
@@ -77,7 +80,7 @@ module GetStream
         #   @return [Object] Custom data for the activity
         attr_accessor :custom
         # @!attribute location
-        #   @return [ActivityLocation]
+        #   @return [Location]
         attr_accessor :location
         # @!attribute search_data
         #   @return [Object] Additional data for search indexing
@@ -92,6 +95,7 @@ module GetStream
           @create_notification_activity = attributes[:create_notification_activity] || attributes['create_notification_activity'] || nil
           @enrich_own_fields = attributes[:enrich_own_fields] || attributes['enrich_own_fields'] || nil
           @expires_at = attributes[:expires_at] || attributes['expires_at'] || nil
+          @force_moderation = attributes[:force_moderation] || attributes['force_moderation'] || nil
           @id = attributes[:id] || attributes['id'] || nil
           @parent_id = attributes[:parent_id] || attributes['parent_id'] || nil
           @poll_id = attributes[:poll_id] || attributes['poll_id'] || nil
@@ -121,6 +125,7 @@ module GetStream
             create_notification_activity: 'create_notification_activity',
             enrich_own_fields: 'enrich_own_fields',
             expires_at: 'expires_at',
+            force_moderation: 'force_moderation',
             id: 'id',
             parent_id: 'parent_id',
             poll_id: 'poll_id',

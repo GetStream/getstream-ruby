@@ -15,19 +15,24 @@ module GetStream
         # @!attribute enrich_own_fields
         #   @return [Boolean] If true, enriches the activities' current_feed with own_* fields (own_follows, own_followings, own_capabilities, own_membership). Defaults to false for performance.
         attr_accessor :enrich_own_fields
+        # @!attribute force_moderation
+        #   @return [Boolean] If true, forces moderation to run for server-side requests. By default, server-side requests skip moderation. Client-side requests always run moderation regardless of this field.
+        attr_accessor :force_moderation
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @activities = attributes[:activities] || attributes['activities']
           @enrich_own_fields = attributes[:enrich_own_fields] || attributes['enrich_own_fields'] || nil
+          @force_moderation = attributes[:force_moderation] || attributes['force_moderation'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
             activities: 'activities',
-            enrich_own_fields: 'enrich_own_fields'
+            enrich_own_fields: 'enrich_own_fields',
+            force_moderation: 'force_moderation'
           }
         end
       end

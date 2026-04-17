@@ -335,16 +335,25 @@ module GetStream
       # Returns activity by ID
       #
       # @param _id [String]
+      # @param comment_sort [String]
+      # @param comment_limit [Integer]
+      # @param user_id [String]
       # @return [Models::GetActivityResponse]
-      def get_activity(_id)
+      def get_activity(_id, comment_sort = nil, comment_limit = nil, user_id = nil)
         path = '/api/v2/feeds/activities/{id}'
         # Replace path parameters
         path = path.gsub('{id}', _id.to_s)
+        # Build query parameters
+        query_params = {}
+        query_params['comment_sort'] = comment_sort unless comment_sort.nil?
+        query_params['comment_limit'] = comment_limit unless comment_limit.nil?
+        query_params['user_id'] = user_id unless user_id.nil?
 
         # Make the API request
         @client.make_request(
           :get,
-          path
+          path,
+          query_params: query_params
         )
       end
 
@@ -676,6 +685,69 @@ module GetStream
         )
       end
 
+      # Deletes a bookmark from a comment
+      #
+      # @param comment_id [String]
+      # @param folder_id [String]
+      # @param user_id [String]
+      # @return [Models::DeleteCommentBookmarkResponse]
+      def delete_comment_bookmark(comment_id, folder_id = nil, user_id = nil)
+        path = '/api/v2/feeds/comments/{comment_id}/bookmarks'
+        # Replace path parameters
+        path = path.gsub('{comment_id}', comment_id.to_s)
+        # Build query parameters
+        query_params = {}
+        query_params['folder_id'] = folder_id unless folder_id.nil?
+        query_params['user_id'] = user_id unless user_id.nil?
+
+        # Make the API request
+        @client.make_request(
+          :delete,
+          path,
+          query_params: query_params
+        )
+      end
+
+      # Updates a bookmark for a comment
+      #
+      # @param comment_id [String]
+      # @param update_comment_bookmark_request [UpdateCommentBookmarkRequest]
+      # @return [Models::UpdateCommentBookmarkResponse]
+      def update_comment_bookmark(comment_id, update_comment_bookmark_request)
+        path = '/api/v2/feeds/comments/{comment_id}/bookmarks'
+        # Replace path parameters
+        path = path.gsub('{comment_id}', comment_id.to_s)
+        # Build request body
+        body = update_comment_bookmark_request
+
+        # Make the API request
+        @client.make_request(
+          :patch,
+          path,
+          body: body
+        )
+      end
+
+      # Adds a bookmark to a comment
+      #
+      # @param comment_id [String]
+      # @param add_comment_bookmark_request [AddCommentBookmarkRequest]
+      # @return [Models::AddCommentBookmarkResponse]
+      def add_comment_bookmark(comment_id, add_comment_bookmark_request)
+        path = '/api/v2/feeds/comments/{comment_id}/bookmarks'
+        # Replace path parameters
+        path = path.gsub('{comment_id}', comment_id.to_s)
+        # Build request body
+        body = add_comment_bookmark_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
       # Deletes a comment from an object (e.g., activity) and broadcasts appropriate events
       #
       # @param _id [String]
@@ -702,16 +774,21 @@ module GetStream
       # Get a comment by ID
       #
       # @param _id [String]
+      # @param user_id [String]
       # @return [Models::GetCommentResponse]
-      def get_comment(_id)
+      def get_comment(_id, user_id = nil)
         path = '/api/v2/feeds/comments/{id}'
         # Replace path parameters
         path = path.gsub('{id}', _id.to_s)
+        # Build query parameters
+        query_params = {}
+        query_params['user_id'] = user_id unless user_id.nil?
 
         # Make the API request
         @client.make_request(
           :get,
-          path
+          path,
+          query_params: query_params
         )
       end
 

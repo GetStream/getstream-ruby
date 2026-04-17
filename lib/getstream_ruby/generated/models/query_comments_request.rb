@@ -10,7 +10,7 @@ module GetStream
 
         # Model attributes
         # @!attribute filter
-        #   @return [Object] MongoDB-style filter for querying comments
+        #   @return [Object] Filter to apply to the query
         attr_accessor :filter
         # @!attribute id_around
         #   @return [String] Returns the comment with the specified ID along with surrounding comments for context
@@ -25,7 +25,7 @@ module GetStream
         #   @return [String]
         attr_accessor :prev
         # @!attribute sort
-        #   @return [String] first (oldest), last (newest) or top. One of: first, last, top, best, controversial
+        #   @return [String] Array of sort parameters
         attr_accessor :sort
         # @!attribute user_id
         #   @return [String]

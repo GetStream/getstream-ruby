@@ -19,6 +19,9 @@ module GetStream
         # @!attribute expires_at
         #   @return [DateTime] Time when the activity will expire
         attr_accessor :expires_at
+        # @!attribute force_moderation
+        #   @return [Boolean] If true, forces moderation to run for server-side requests. By default, server-side requests skip moderation. Client-side requests always run moderation regardless of this field.
+        attr_accessor :force_moderation
         # @!attribute handle_mention_notifications
         #   @return [Boolean] If true, creates notification activities for newly mentioned users and deletes notifications for users no longer mentioned
         attr_accessor :handle_mention_notifications
@@ -68,7 +71,7 @@ module GetStream
         #   @return [Object] Custom data for the activity
         attr_accessor :custom
         # @!attribute location
-        #   @return [ActivityLocation]
+        #   @return [Location]
         attr_accessor :location
         # @!attribute search_data
         #   @return [Object] Additional data for search indexing
@@ -83,6 +86,7 @@ module GetStream
           @copy_custom_to_notification = attributes[:copy_custom_to_notification] || attributes['copy_custom_to_notification'] || nil
           @enrich_own_fields = attributes[:enrich_own_fields] || attributes['enrich_own_fields'] || nil
           @expires_at = attributes[:expires_at] || attributes['expires_at'] || nil
+          @force_moderation = attributes[:force_moderation] || attributes['force_moderation'] || nil
           @handle_mention_notifications = attributes[:handle_mention_notifications] || attributes['handle_mention_notifications'] || nil
           @poll_id = attributes[:poll_id] || attributes['poll_id'] || nil
           @restrict_replies = attributes[:restrict_replies] || attributes['restrict_replies'] || nil
@@ -110,6 +114,7 @@ module GetStream
             copy_custom_to_notification: 'copy_custom_to_notification',
             enrich_own_fields: 'enrich_own_fields',
             expires_at: 'expires_at',
+            force_moderation: 'force_moderation',
             handle_mention_notifications: 'handle_mention_notifications',
             poll_id: 'poll_id',
             restrict_replies: 'restrict_replies',

@@ -6,28 +6,23 @@ module GetStream
   module Generated
     module Models
       # 
-      class RawRecordingSettingsResponse < GetStream::BaseModel
+      class BypassActionRequest < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute mode
-        #   @return [String]
-        attr_accessor :mode
-        # @!attribute audio_only
+        # @!attribute enabled
         #   @return [Boolean]
-        attr_accessor :audio_only
+        attr_accessor :enabled
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @mode = attributes[:mode] || attributes['mode']
-          @audio_only = attributes[:audio_only] || attributes['audio_only'] || nil
+          @enabled = attributes[:enabled] || attributes['enabled'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            mode: 'mode',
-            audio_only: 'audio_only'
+            enabled: 'enabled'
           }
         end
       end

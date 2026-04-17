@@ -12,6 +12,9 @@ module GetStream
         # @!attribute _object_id
         #   @return [String] ID of the object this comment is associated with
         attr_accessor :_object_id
+        # @!attribute bookmark_count
+        #   @return [Integer]
+        attr_accessor :bookmark_count
         # @!attribute confidence_score
         #   @return [Float] Confidence score of the comment
         attr_accessor :confidence_score
@@ -89,6 +92,7 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @_object_id = attributes[:_object_id] || attributes['object_id']
+          @bookmark_count = attributes[:bookmark_count] || attributes['bookmark_count']
           @confidence_score = attributes[:confidence_score] || attributes['confidence_score']
           @created_at = attributes[:created_at] || attributes['created_at']
           @downvote_count = attributes[:downvote_count] || attributes['downvote_count']
@@ -119,6 +123,7 @@ module GetStream
         def self.json_field_mappings
           {
             _object_id: 'object_id',
+            bookmark_count: 'bookmark_count',
             confidence_score: 'confidence_score',
             created_at: 'created_at',
             downvote_count: 'downvote_count',

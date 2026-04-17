@@ -72,6 +72,9 @@ module GetStream
         # @!attribute ban_expires
         #   @return [DateTime]
         attr_accessor :ban_expires
+        # @!attribute bypass_moderation
+        #   @return [Boolean]
+        attr_accessor :bypass_moderation
         # @!attribute deactivated_at
         #   @return [DateTime]
         attr_accessor :deactivated_at
@@ -124,6 +127,7 @@ module GetStream
           @custom = attributes[:custom] || attributes['custom']
           @avg_response_time = attributes[:avg_response_time] || attributes['avg_response_time'] || nil
           @ban_expires = attributes[:ban_expires] || attributes['ban_expires'] || nil
+          @bypass_moderation = attributes[:bypass_moderation] || attributes['bypass_moderation'] || nil
           @deactivated_at = attributes[:deactivated_at] || attributes['deactivated_at'] || nil
           @deleted_at = attributes[:deleted_at] || attributes['deleted_at'] || nil
           @image = attributes[:image] || attributes['image'] || nil
@@ -159,6 +163,7 @@ module GetStream
             custom: 'custom',
             avg_response_time: 'avg_response_time',
             ban_expires: 'ban_expires',
+            bypass_moderation: 'bypass_moderation',
             deactivated_at: 'deactivated_at',
             deleted_at: 'deleted_at',
             image: 'image',

@@ -78,6 +78,9 @@ module GetStream
         # @!attribute custom
         #   @return [Object] Custom data for the feed
         attr_accessor :custom
+        # @!attribute location
+        #   @return [Location]
+        attr_accessor :location
         # @!attribute own_membership
         #   @return [FeedMemberResponse]
         attr_accessor :own_membership
@@ -108,6 +111,7 @@ module GetStream
           @own_follows = attributes[:own_follows] || attributes['own_follows'] || nil
           @algorithm_scores = attributes[:algorithm_scores] || attributes['algorithm_scores'] || nil
           @custom = attributes[:custom] || attributes['custom'] || nil
+          @location = attributes[:location] || attributes['location'] || nil
           @own_membership = attributes[:own_membership] || attributes['own_membership'] || nil
         end
 
@@ -137,6 +141,7 @@ module GetStream
             own_follows: 'own_follows',
             algorithm_scores: 'algorithm_scores',
             custom: 'custom',
+            location: 'location',
             own_membership: 'own_membership'
           }
         end

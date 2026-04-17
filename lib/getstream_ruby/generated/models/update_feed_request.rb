@@ -9,6 +9,9 @@ module GetStream
       class UpdateFeedRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute clear_location
+        #   @return [Boolean] If true, removes the geographic location from the feed
+        attr_accessor :clear_location
         # @!attribute created_by_id
         #   @return [String] ID of the new feed creator (owner)
         attr_accessor :created_by_id
@@ -27,27 +30,34 @@ module GetStream
         # @!attribute custom
         #   @return [Object] Custom data for the feed
         attr_accessor :custom
+        # @!attribute location
+        #   @return [Location]
+        attr_accessor :location
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @clear_location = attributes[:clear_location] || attributes['clear_location'] || nil
           @created_by_id = attributes[:created_by_id] || attributes['created_by_id'] || nil
           @description = attributes[:description] || attributes['description'] || nil
           @enrich_own_fields = attributes[:enrich_own_fields] || attributes['enrich_own_fields'] || nil
           @name = attributes[:name] || attributes['name'] || nil
           @filter_tags = attributes[:filter_tags] || attributes['filter_tags'] || nil
           @custom = attributes[:custom] || attributes['custom'] || nil
+          @location = attributes[:location] || attributes['location'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            clear_location: 'clear_location',
             created_by_id: 'created_by_id',
             description: 'description',
             enrich_own_fields: 'enrich_own_fields',
             name: 'name',
             filter_tags: 'filter_tags',
-            custom: 'custom'
+            custom: 'custom',
+            location: 'location'
           }
         end
       end

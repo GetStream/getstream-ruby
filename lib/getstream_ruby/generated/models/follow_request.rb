@@ -15,6 +15,9 @@ module GetStream
         # @!attribute target
         #   @return [String] Fully qualified ID of the target feed
         attr_accessor :target
+        # @!attribute activity_copy_limit
+        #   @return [Integer] Maximum number of historical activities to copy from the target feed when the follow is first materialized. Not set = unlimited (default). 0 = copy nothing. Range: 0-1000.
+        attr_accessor :activity_copy_limit
         # @!attribute copy_custom_to_notification
         # @deprecated This field is deprecated.
         #   @return [Boolean] Whether to copy custom data to the notification activity (only applies when create_notification_activity is true) Deprecated: use notification_context.trigger.custom and notification_context.target.custom instead
@@ -22,6 +25,9 @@ module GetStream
         # @!attribute create_notification_activity
         #   @return [Boolean] Whether to create a notification activity for this follow
         attr_accessor :create_notification_activity
+        # @!attribute create_users
+        #   @return [Boolean] If true, auto-creates users referenced by the source and target FIDs when they don't already exist. Server-side only. Defaults to false. For FollowBatch/GetOrCreateFollows, use the top-level create_users field; per-item follows[i].create_users is rejected.
+        attr_accessor :create_users
         # @!attribute enrich_own_fields
         #   @return [Boolean] If true, enriches the follow's source_feed and target_feed with own_* fields (own_follows, own_followings, own_capabilities, own_membership). Defaults to false for performance.
         attr_accessor :enrich_own_fields
@@ -43,8 +49,10 @@ module GetStream
           super(attributes)
           @source = attributes[:source] || attributes['source']
           @target = attributes[:target] || attributes['target']
+          @activity_copy_limit = attributes[:activity_copy_limit] || attributes['activity_copy_limit'] || nil
           @copy_custom_to_notification = attributes[:copy_custom_to_notification] || attributes['copy_custom_to_notification'] || nil
           @create_notification_activity = attributes[:create_notification_activity] || attributes['create_notification_activity'] || nil
+          @create_users = attributes[:create_users] || attributes['create_users'] || nil
           @enrich_own_fields = attributes[:enrich_own_fields] || attributes['enrich_own_fields'] || nil
           @push_preference = attributes[:push_preference] || attributes['push_preference'] || nil
           @skip_push = attributes[:skip_push] || attributes['skip_push'] || nil
@@ -57,8 +65,10 @@ module GetStream
           {
             source: 'source',
             target: 'target',
+            activity_copy_limit: 'activity_copy_limit',
             copy_custom_to_notification: 'copy_custom_to_notification',
             create_notification_activity: 'create_notification_activity',
+            create_users: 'create_users',
             enrich_own_fields: 'enrich_own_fields',
             push_preference: 'push_preference',
             skip_push: 'skip_push',

@@ -6,7 +6,7 @@ module GetStream
   module Generated
     module Models
       # 
-      class QueryReactionsRequest < GetStream::BaseModel
+      class QueryCallSessionStatsRequest < GetStream::BaseModel
 
         # Model attributes
         # @!attribute limit
@@ -18,18 +18,12 @@ module GetStream
         # @!attribute prev
         #   @return [String]
         attr_accessor :prev
-        # @!attribute user_id
-        #   @return [String]
-        attr_accessor :user_id
         # @!attribute sort
         #   @return [Array<SortParamRequest>] Array of sort parameters
         attr_accessor :sort
-        # @!attribute filter
-        #   @return [Object] Filter to apply to the query
-        attr_accessor :filter
-        # @!attribute user
-        #   @return [UserRequest]
-        attr_accessor :user
+        # @!attribute filter_conditions
+        #   @return [Object] Filter conditions to apply to the query
+        attr_accessor :filter_conditions
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -37,10 +31,8 @@ module GetStream
           @limit = attributes[:limit] || attributes['limit'] || nil
           @next = attributes[:next] || attributes['next'] || nil
           @prev = attributes[:prev] || attributes['prev'] || nil
-          @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @sort = attributes[:sort] || attributes['sort'] || nil
-          @filter = attributes[:filter] || attributes['filter'] || nil
-          @user = attributes[:user] || attributes['user'] || nil
+          @filter_conditions = attributes[:filter_conditions] || attributes['filter_conditions'] || nil
         end
 
         # Override field mappings for JSON serialization
@@ -49,10 +41,8 @@ module GetStream
             limit: 'limit',
             next: 'next',
             prev: 'prev',
-            user_id: 'user_id',
             sort: 'sort',
-            filter: 'filter',
-            user: 'user'
+            filter_conditions: 'filter_conditions'
           }
         end
       end
