@@ -81,6 +81,9 @@ module GetStream
         # @!attribute callback
         #   @return [AsyncModerationCallbackConfig]
         attr_accessor :callback
+        # @!attribute failover_config
+        #   @return [WebhookFailoverConfig]
+        attr_accessor :failover_config
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -109,6 +112,7 @@ module GetStream
           @webhook_url = attributes[:webhook_url] || attributes['webhook_url'] || nil
           @event_types = attributes[:event_types] || attributes['event_types'] || nil
           @callback = attributes[:callback] || attributes['callback'] || nil
+          @failover_config = attributes[:failover_config] || attributes['failover_config'] || nil
         end
 
         # Override field mappings for JSON serialization
@@ -137,7 +141,8 @@ module GetStream
             updated_at: 'updated_at',
             webhook_url: 'webhook_url',
             event_types: 'event_types',
-            callback: 'callback'
+            callback: 'callback',
+            failover_config: 'failover_config'
           }
         end
       end

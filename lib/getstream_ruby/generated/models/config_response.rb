@@ -30,6 +30,9 @@ module GetStream
         # @!attribute ai_image_label_definitions
         #   @return [Array<AIImageLabelDefinition>] Configurable image moderation label definitions for dashboard rendering
         attr_accessor :ai_image_label_definitions
+        # @!attribute available_bodyguard_profiles
+        #   @return [Array<BodyguardProfileSummary>] Names of Bodyguard credential profiles registered on this app. The dashboard uses this list to render the profile picker on the AI Text section.
+        attr_accessor :available_bodyguard_profiles
         # @!attribute ai_image_config
         #   @return [AIImageConfig]
         attr_accessor :ai_image_config
@@ -74,6 +77,7 @@ module GetStream
           @updated_at = attributes[:updated_at] || attributes['updated_at']
           @supported_video_call_harm_types = attributes[:supported_video_call_harm_types] || attributes['supported_video_call_harm_types']
           @ai_image_label_definitions = attributes[:ai_image_label_definitions] || attributes['ai_image_label_definitions'] || nil
+          @available_bodyguard_profiles = attributes[:available_bodyguard_profiles] || attributes['available_bodyguard_profiles'] || nil
           @ai_image_config = attributes[:ai_image_config] || attributes['ai_image_config'] || nil
           @ai_image_subclassifications = attributes[:ai_image_subclassifications] || attributes['ai_image_subclassifications'] || nil
           @ai_text_config = attributes[:ai_text_config] || attributes['ai_text_config'] || nil
@@ -97,6 +101,7 @@ module GetStream
             updated_at: 'updated_at',
             supported_video_call_harm_types: 'supported_video_call_harm_types',
             ai_image_label_definitions: 'ai_image_label_definitions',
+            available_bodyguard_profiles: 'available_bodyguard_profiles',
             ai_image_config: 'ai_image_config',
             ai_image_subclassifications: 'ai_image_subclassifications',
             ai_text_config: 'ai_text_config',

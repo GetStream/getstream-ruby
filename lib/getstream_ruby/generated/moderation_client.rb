@@ -12,6 +12,104 @@ module GetStream
       def initialize(client)
         @client = client
       end
+      # Returns moderation action configs grouped by entity type, sorted by order ascending. Supports fetching DB-configured actions, hardcoded defaults, or both.
+      #
+      # @param queue_type [String]
+      # @param entity_type [String]
+      # @param exclude_defaults [Boolean]
+      # @param only_defaults [Boolean]
+      # @param user_id [String]
+      # @return [Models::GetActionConfigResponse]
+      def get_action_config(queue_type = nil, entity_type = nil, exclude_defaults = nil, only_defaults = nil, user_id = nil)
+        path = '/api/v2/moderation/action_config'
+        # Build query parameters
+        query_params = {}
+        query_params['queue_type'] = queue_type unless queue_type.nil?
+        query_params['entity_type'] = entity_type unless entity_type.nil?
+        query_params['exclude_defaults'] = exclude_defaults unless exclude_defaults.nil?
+        query_params['only_defaults'] = only_defaults unless only_defaults.nil?
+        query_params['user_id'] = user_id unless user_id.nil?
+
+        # Make the API request
+        @client.make_request(
+          :get,
+          path,
+          query_params: query_params
+        )
+      end
+
+      # Create a new moderation action config entry or update an existing one. Action configs control the action buttons displayed in the moderation dashboard for each entity type.
+      #
+      # @param upsert_action_config_request [UpsertActionConfigRequest]
+      # @return [Models::UpsertActionConfigResponse]
+      def upsert_action_config(upsert_action_config_request)
+        path = '/api/v2/moderation/action_config'
+        # Build request body
+        body = upsert_action_config_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
+      # Create or update multiple moderation action config entries in a single request. Omit the ID field to create; provide an ID to update.
+      #
+      # @param bulk_upsert_action_config_request [BulkUpsertActionConfigRequest]
+      # @return [Models::BulkUpsertActionConfigResponse]
+      def bulk_upsert_action_config(bulk_upsert_action_config_request)
+        path = '/api/v2/moderation/action_config/bulk'
+        # Build request body
+        body = bulk_upsert_action_config_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
+      # Delete multiple moderation action config entries by UUID in a single request.
+      #
+      # @param bulk_delete_action_config_request [BulkDeleteActionConfigRequest]
+      # @return [Models::BulkDeleteActionConfigResponse]
+      def bulk_delete_action_config(bulk_delete_action_config_request)
+        path = '/api/v2/moderation/action_config/bulk_delete'
+        # Build request body
+        body = bulk_delete_action_config_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
+      # Delete a specific moderation action config entry by its UUID.
+      #
+      # @param _id [String]
+      # @param user_id [String]
+      # @return [Models::DeleteActionConfigResponse]
+      def delete_action_config(_id, user_id = nil)
+        path = '/api/v2/moderation/action_config/{id}'
+        # Replace path parameters
+        path = path.gsub('{id}', _id.to_s)
+        # Build query parameters
+        query_params = {}
+        query_params['user_id'] = user_id unless user_id.nil?
+
+        # Make the API request
+        @client.make_request(
+          :delete,
+          path,
+          query_params: query_params
+        )
+      end
+
       # Insert a moderation action log entry. Server-side only. Used by product services to log moderation-related actions.
       #
       # @param insert_action_log_request [InsertActionLogRequest]
@@ -344,6 +442,40 @@ module GetStream
         path = '/api/v2/moderation/flags'
         # Build request body
         body = query_moderation_flags_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
+      # Run moderation on text and return labels
+      #
+      # @param labels_request [LabelsRequest]
+      # @return [Models::LabelsResponse]
+      def labels(labels_request)
+        path = '/api/v2/moderation/labels'
+        # Build request body
+        body = labels_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
+      # Search and filter moderation label results with support for pagination and sorting. View the history of moderation labels applied to content.
+      #
+      # @param query_label_results_request [QueryLabelResultsRequest]
+      # @return [Models::QueryLabelResultsResponse]
+      def query_label_results(query_label_results_request)
+        path = '/api/v2/moderation/labels/results'
+        # Build request body
+        body = query_label_results_request
 
         # Make the API request
         @client.make_request(

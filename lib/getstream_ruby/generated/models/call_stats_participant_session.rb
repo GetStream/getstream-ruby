@@ -42,6 +42,9 @@ module GetStream
         # @!attribute freezes_duration_ms
         #   @return [Integer]
         attr_accessor :freezes_duration_ms
+        # @!attribute ingress
+        #   @return [String]
+        attr_accessor :ingress
         # @!attribute jitter_ms
         #   @return [Integer]
         attr_accessor :jitter_ms
@@ -87,6 +90,7 @@ module GetStream
           @distance_to_sfu_kilometers = attributes[:distance_to_sfu_kilometers] || attributes['distance_to_sfu_kilometers'] || nil
           @ended_at = attributes[:ended_at] || attributes['ended_at'] || nil
           @freezes_duration_ms = attributes[:freezes_duration_ms] || attributes['freezes_duration_ms'] || nil
+          @ingress = attributes[:ingress] || attributes['ingress'] || nil
           @jitter_ms = attributes[:jitter_ms] || attributes['jitter_ms'] || nil
           @latency_ms = attributes[:latency_ms] || attributes['latency_ms'] || nil
           @os = attributes[:os] || attributes['os'] || nil
@@ -113,6 +117,7 @@ module GetStream
             distance_to_sfu_kilometers: 'distance_to_sfu_kilometers',
             ended_at: 'ended_at',
             freezes_duration_ms: 'freezes_duration_ms',
+            ingress: 'ingress',
             jitter_ms: 'jitter_ms',
             latency_ms: 'latency_ms',
             os: 'os',

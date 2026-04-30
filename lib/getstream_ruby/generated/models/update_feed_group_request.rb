@@ -18,6 +18,9 @@ module GetStream
         # @!attribute activity_selectors
         #   @return [Array<ActivitySelectorConfig>] Configuration for activity selectors
         attr_accessor :activity_selectors
+        # @!attribute activity_filter
+        #   @return [ActivityFilterConfig]
+        attr_accessor :activity_filter
         # @!attribute aggregation
         #   @return [AggregationConfig]
         attr_accessor :aggregation
@@ -43,6 +46,7 @@ module GetStream
           @default_visibility = attributes[:default_visibility] || attributes['default_visibility'] || nil
           @activity_processors = attributes[:activity_processors] || attributes['activity_processors'] || nil
           @activity_selectors = attributes[:activity_selectors] || attributes['activity_selectors'] || nil
+          @activity_filter = attributes[:activity_filter] || attributes['activity_filter'] || nil
           @aggregation = attributes[:aggregation] || attributes['aggregation'] || nil
           @custom = attributes[:custom] || attributes['custom'] || nil
           @notification = attributes[:notification] || attributes['notification'] || nil
@@ -57,6 +61,7 @@ module GetStream
             default_visibility: 'default_visibility',
             activity_processors: 'activity_processors',
             activity_selectors: 'activity_selectors',
+            activity_filter: 'activity_filter',
             aggregation: 'aggregation',
             custom: 'custom',
             notification: 'notification',

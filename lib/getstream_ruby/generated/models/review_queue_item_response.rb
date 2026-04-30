@@ -112,7 +112,7 @@ module GetStream
         #   @return [FeedsV3CommentResponse]
         attr_accessor :feeds_v3_comment
         # @!attribute message
-        #   @return [MessageResponse]
+        #   @return [ChatMessageResponse]
         attr_accessor :message
         # @!attribute moderation_payload
         #   @return [ModerationPayloadResponse]

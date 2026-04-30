@@ -6,41 +6,26 @@ module GetStream
   module Generated
     module Models
       # 
-      class QueryReviewQueueRequest < GetStream::BaseModel
+      class QueryLabelResultsRequest < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute exclude_default_action_config
-        #   @return [Boolean]
-        attr_accessor :exclude_default_action_config
         # @!attribute limit
         #   @return [Integer]
         attr_accessor :limit
-        # @!attribute lock_count
-        #   @return [Integer] Number of items to lock (1-25)
-        attr_accessor :lock_count
-        # @!attribute lock_duration
-        #   @return [Integer] Duration for which items should be locked
-        attr_accessor :lock_duration
-        # @!attribute lock_items
-        #   @return [Boolean] Whether to lock items for review (true), unlock items (false), or just fetch (nil)
-        attr_accessor :lock_items
         # @!attribute next
         #   @return [String]
         attr_accessor :next
         # @!attribute prev
         #   @return [String]
         attr_accessor :prev
-        # @!attribute stats_only
-        #   @return [Boolean] Whether to return only statistics
-        attr_accessor :stats_only
         # @!attribute user_id
         #   @return [String]
         attr_accessor :user_id
         # @!attribute sort
-        #   @return [Array<SortParamRequest>] Sorting parameters for the results
+        #   @return [Array<SortParamRequest>] Sorting parameters
         attr_accessor :sort
         # @!attribute filter
-        #   @return [Object] Filter conditions for review queue items
+        #   @return [Object] Filter conditions
         attr_accessor :filter
         # @!attribute user
         #   @return [UserRequest]
@@ -49,14 +34,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @exclude_default_action_config = attributes[:exclude_default_action_config] || attributes['exclude_default_action_config'] || nil
           @limit = attributes[:limit] || attributes['limit'] || nil
-          @lock_count = attributes[:lock_count] || attributes['lock_count'] || nil
-          @lock_duration = attributes[:lock_duration] || attributes['lock_duration'] || nil
-          @lock_items = attributes[:lock_items] || attributes['lock_items'] || nil
           @next = attributes[:next] || attributes['next'] || nil
           @prev = attributes[:prev] || attributes['prev'] || nil
-          @stats_only = attributes[:stats_only] || attributes['stats_only'] || nil
           @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @sort = attributes[:sort] || attributes['sort'] || nil
           @filter = attributes[:filter] || attributes['filter'] || nil
@@ -66,14 +46,9 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            exclude_default_action_config: 'exclude_default_action_config',
             limit: 'limit',
-            lock_count: 'lock_count',
-            lock_duration: 'lock_duration',
-            lock_items: 'lock_items',
             next: 'next',
             prev: 'prev',
-            stats_only: 'stats_only',
             user_id: 'user_id',
             sort: 'sort',
             filter: 'filter',
