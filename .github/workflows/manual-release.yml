@@ -1,0 +1,73 @@
+name: Manual Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Release version (example: 6.1.0)"
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  manual-release:
+    name: 🚀 Manual Release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: master
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.1.0"
+
+      - name: Install dependencies
+        run: bundle install --jobs 4 --retry 3
+
+      - name: Update version file
+        env:
+          VERSION: ${{ github.event.inputs.version }}
+        run: |
+          sed -i "s/VERSION = '[^']*'/VERSION = '${VERSION}'/" lib/getstream_ruby/version.rb
+
+      - name: Commit version update
+        env:
+          VERSION: ${{ github.event.inputs.version }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add lib/getstream_ruby/version.rb
+          if git diff --cached --quiet; then
+            echo "No version changes to commit."
+          else
+            git commit -m "chore(release): v${VERSION} (manual)"
+            git push origin HEAD:master
+          fi
+
+      - name: Create and push tag
+        env:
+          VERSION: ${{ github.event.inputs.version }}
+        run: |
+          git tag "v${VERSION}"
+          git push origin "v${VERSION}"
+
+      - name: Build and publish gem
+        env:
+          VERSION: ${{ github.event.inputs.version }}
+          GEM_HOST_API_KEY: ${{ secrets.RUBYGEMS_API_KEY }}
+        run: |
+          gem build getstream-ruby.gemspec
+          gem push getstream-ruby-${VERSION}.gem --key "$GEM_HOST_API_KEY"
+
+      - name: Create GitHub release
+        uses: ncipollo/release-action@v1
+        with:
+          tag: v${{ github.event.inputs.version }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          body: |
+            Manual release v${{ github.event.inputs.version }}.
