@@ -24,6 +24,9 @@ module GetStream
         # @!attribute flag_user_on_flagged_content
         #   @return [Boolean]
         attr_accessor :flag_user_on_flagged_content
+        # @!attribute include_attachment_payload
+        #   @return [Boolean]
+        attr_accessor :include_attachment_payload
         # @!attribute media_queue_blur_enabled
         #   @return [Boolean]
         attr_accessor :media_queue_blur_enabled
@@ -48,6 +51,7 @@ module GetStream
           @disable_flagging_reviewed_entity = attributes[:disable_flagging_reviewed_entity] || attributes['disable_flagging_reviewed_entity'] || nil
           @escalation_queue_enabled = attributes[:escalation_queue_enabled] || attributes['escalation_queue_enabled'] || nil
           @flag_user_on_flagged_content = attributes[:flag_user_on_flagged_content] || attributes['flag_user_on_flagged_content'] || nil
+          @include_attachment_payload = attributes[:include_attachment_payload] || attributes['include_attachment_payload'] || nil
           @media_queue_blur_enabled = attributes[:media_queue_blur_enabled] || attributes['media_queue_blur_enabled'] || nil
           @allowed_moderation_action_reasons = attributes[:allowed_moderation_action_reasons] || attributes['allowed_moderation_action_reasons'] || nil
           @escalation_reasons = attributes[:escalation_reasons] || attributes['escalation_reasons'] || nil
@@ -63,6 +67,7 @@ module GetStream
             disable_flagging_reviewed_entity: 'disable_flagging_reviewed_entity',
             escalation_queue_enabled: 'escalation_queue_enabled',
             flag_user_on_flagged_content: 'flag_user_on_flagged_content',
+            include_attachment_payload: 'include_attachment_payload',
             media_queue_blur_enabled: 'media_queue_blur_enabled',
             allowed_moderation_action_reasons: 'allowed_moderation_action_reasons',
             escalation_reasons: 'escalation_reasons',

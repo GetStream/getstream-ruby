@@ -397,7 +397,7 @@ module GetStream
         )
       end
 
-      # Restores a soft-deleted activity by its ID. Only the activity owner can restore their own activities.
+      # Restores a soft-deleted, moderation-removed, or shadow-blocked activity by its ID. Deleted activities can be restored by the owner (client-side). Moderation-blocked activities can only be restored server-side.
       #
       # @param _id [String]
       # @param restore_activity_request [RestoreActivityRequest]
@@ -932,7 +932,7 @@ module GetStream
         )
       end
 
-      # Restores a soft-deleted comment by its ID. The comment and all its descendants are restored. Requires moderator permissions.
+      # Restores a soft-deleted, moderation-removed, or shadow-blocked comment by its ID. The comment and all its descendants are restored. Deleted comments can be restored client-side. Moderation-blocked comments can only be restored server-side.
       #
       # @param _id [String]
       # @param restore_comment_request [RestoreCommentRequest]
@@ -1118,6 +1118,28 @@ module GetStream
         path = path.gsub('{activity_id}', activity_id.to_s)
         # Build request body
         body = pin_activity_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
+      # Changes the visibility of an existing feed. Follow reconciliation (rewriting pending follows on loosening, or removing disallowed follows/members on tightening) runs asynchronously in the background; the response returns optimistically with the intended visibility.
+      #
+      # @param feed_group_id [String]
+      # @param feed_id [String]
+      # @param change_feed_visibility_request [ChangeFeedVisibilityRequest]
+      # @return [Models::ChangeFeedVisibilityResponse]
+      def change_feed_visibility(feed_group_id, feed_id, change_feed_visibility_request)
+        path = '/api/v2/feeds/feed_groups/{feed_group_id}/feeds/{feed_id}/change_visibility'
+        # Replace path parameters
+        path = path.gsub('{feed_group_id}', feed_group_id.to_s)
+        path = path.gsub('{feed_id}', feed_id.to_s)
+        # Build request body
+        body = change_feed_visibility_request
 
         # Make the API request
         @client.make_request(
@@ -1814,6 +1836,23 @@ module GetStream
         # Make the API request
         @client.make_request(
           :patch,
+          path,
+          body: body
+        )
+      end
+
+      # Queries revision history for activities and comments
+      #
+      # @param query_revision_history_request [QueryRevisionHistoryRequest]
+      # @return [Models::QueryRevisionHistoryResponse]
+      def query_revision_history(query_revision_history_request)
+        path = '/api/v2/feeds/revisions/query'
+        # Build request body
+        body = query_revision_history_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
           path,
           body: body
         )

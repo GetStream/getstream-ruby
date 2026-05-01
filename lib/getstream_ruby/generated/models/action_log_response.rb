@@ -18,6 +18,9 @@ module GetStream
         # @!attribute reason
         #   @return [String] Reason for the moderation action
         attr_accessor :reason
+        # @!attribute reporter_type
+        #   @return [String] Classification of who triggered the action (e.g. user, moderator, automod, api_integration)
+        attr_accessor :reporter_type
         # @!attribute target_user_id
         #   @return [String] ID of the user who was the target of the action
         attr_accessor :target_user_id
@@ -49,6 +52,7 @@ module GetStream
           @created_at = attributes[:created_at] || attributes['created_at']
           @id = attributes[:id] || attributes['id']
           @reason = attributes[:reason] || attributes['reason']
+          @reporter_type = attributes[:reporter_type] || attributes['reporter_type']
           @target_user_id = attributes[:target_user_id] || attributes['target_user_id']
           @type = attributes[:type] || attributes['type']
           @user_id = attributes[:user_id] || attributes['user_id']
@@ -65,6 +69,7 @@ module GetStream
             created_at: 'created_at',
             id: 'id',
             reason: 'reason',
+            reporter_type: 'reporter_type',
             target_user_id: 'target_user_id',
             type: 'type',
             user_id: 'user_id',

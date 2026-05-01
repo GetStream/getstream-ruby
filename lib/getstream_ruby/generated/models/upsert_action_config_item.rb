@@ -5,43 +5,43 @@
 module GetStream
   module Generated
     module Models
-      # Configuration for a moderation action
-      class ModerationActionConfigResponse < GetStream::BaseModel
+      # 
+      class UpsertActionConfigItem < GetStream::BaseModel
 
         # Model attributes
         # @!attribute action
-        #   @return [String] The action to take
+        #   @return [String]
         attr_accessor :action
-        # @!attribute description
-        #   @return [String] Description of what this action does
-        attr_accessor :description
         # @!attribute entity_type
-        #   @return [String] Type of entity this action applies to
+        #   @return [String]
         attr_accessor :entity_type
-        # @!attribute icon
-        #   @return [String] Icon for the dashboard
-        attr_accessor :icon
         # @!attribute order
-        #   @return [Integer] Display order (lower numbers shown first)
+        #   @return [Integer]
         attr_accessor :order
+        # @!attribute description
+        #   @return [String]
+        attr_accessor :description
+        # @!attribute icon
+        #   @return [String]
+        attr_accessor :icon
         # @!attribute id
         #   @return [String]
         attr_accessor :id
         # @!attribute queue_type
-        #   @return [String] Queue type this action config belongs to
+        #   @return [String]
         attr_accessor :queue_type
         # @!attribute custom
-        #   @return [Object] Custom data for the action
+        #   @return [Object]
         attr_accessor :custom
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @action = attributes[:action] || attributes['action']
-          @description = attributes[:description] || attributes['description']
           @entity_type = attributes[:entity_type] || attributes['entity_type']
-          @icon = attributes[:icon] || attributes['icon']
           @order = attributes[:order] || attributes['order']
+          @description = attributes[:description] || attributes['description'] || nil
+          @icon = attributes[:icon] || attributes['icon'] || nil
           @id = attributes[:id] || attributes['id'] || nil
           @queue_type = attributes[:queue_type] || attributes['queue_type'] || nil
           @custom = attributes[:custom] || attributes['custom'] || nil
@@ -51,10 +51,10 @@ module GetStream
         def self.json_field_mappings
           {
             action: 'action',
-            description: 'description',
             entity_type: 'entity_type',
-            icon: 'icon',
             order: 'order',
+            description: 'description',
+            icon: 'icon',
             id: 'id',
             queue_type: 'queue_type',
             custom: 'custom'
