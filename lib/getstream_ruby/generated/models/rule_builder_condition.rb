@@ -24,6 +24,9 @@ module GetStream
         # @!attribute call_violation_count_params
         #   @return [CallViolationCountParameters]
         attr_accessor :call_violation_count_params
+        # @!attribute channel_message_count_rule_params
+        #   @return [ChannelMessageCountRuleParameters]
+        attr_accessor :channel_message_count_rule_params
         # @!attribute closed_caption_rule_params
         #   @return [ClosedCaptionRuleParameters]
         attr_accessor :closed_caption_rule_params
@@ -81,6 +84,7 @@ module GetStream
           @call_custom_property_params = attributes[:call_custom_property_params] || attributes['call_custom_property_params'] || nil
           @call_type_rule_params = attributes[:call_type_rule_params] || attributes['call_type_rule_params'] || nil
           @call_violation_count_params = attributes[:call_violation_count_params] || attributes['call_violation_count_params'] || nil
+          @channel_message_count_rule_params = attributes[:channel_message_count_rule_params] || attributes['channel_message_count_rule_params'] || nil
           @closed_caption_rule_params = attributes[:closed_caption_rule_params] || attributes['closed_caption_rule_params'] || nil
           @content_count_rule_params = attributes[:content_count_rule_params] || attributes['content_count_rule_params'] || nil
           @content_flag_count_rule_params = attributes[:content_flag_count_rule_params] || attributes['content_flag_count_rule_params'] || nil
@@ -107,6 +111,7 @@ module GetStream
             call_custom_property_params: 'call_custom_property_params',
             call_type_rule_params: 'call_type_rule_params',
             call_violation_count_params: 'call_violation_count_params',
+            channel_message_count_rule_params: 'channel_message_count_rule_params',
             closed_caption_rule_params: 'closed_caption_rule_params',
             content_count_rule_params: 'content_count_rule_params',
             content_flag_count_rule_params: 'content_flag_count_rule_params',

@@ -6,23 +6,28 @@ module GetStream
   module Generated
     module Models
       # 
-      class BlockActionRequest < GetStream::BaseModel
+      class ChannelMessageCountRuleParameters < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute reason
+        # @!attribute operator
         #   @return [String]
-        attr_accessor :reason
+        attr_accessor :operator
+        # @!attribute threshold
+        #   @return [Integer]
+        attr_accessor :threshold
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @reason = attributes[:reason] || attributes['reason'] || nil
+          @operator = attributes[:operator] || attributes['operator'] || nil
+          @threshold = attributes[:threshold] || attributes['threshold'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            reason: 'reason'
+            operator: 'operator',
+            threshold: 'threshold'
           }
         end
       end
