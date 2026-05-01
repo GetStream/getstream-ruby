@@ -15,10 +15,17 @@ permissions:
   contents: write
 
 jobs:
-  release:
-    name: 🚀 Release
+  prepare_release:
+    name: Prepare release
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
+    outputs:
+      should_release: ${{ steps.release_meta.outputs.should_release }}
+      bump: ${{ steps.release_meta.outputs.bump }}
+      previous_version: ${{ steps.release_meta.outputs.previous_version }}
+      version: ${{ steps.release_meta.outputs.version }}
+      tag: ${{ steps.release_meta.outputs.tag }}
+      already_released: ${{ steps.already_released.outputs.value }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -85,23 +92,66 @@ jobs:
           git tag "${{ steps.release_meta.outputs.tag }}"
           git push origin "${{ steps.release_meta.outputs.tag }}"
 
-      - name: Build and publish gem
+      - name: Build gem
         if: steps.already_released.outputs.value != 'true' && steps.release_meta.outputs.should_release == 'true'
+        run: |
+          gem build getstream-ruby.gemspec --output "getstream-ruby-${{ steps.release_meta.outputs.version }}.gem"
+
+      - name: Upload gem artifact
+        if: steps.already_released.outputs.value != 'true' && steps.release_meta.outputs.should_release == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: getstream-ruby-gem-${{ steps.release_meta.outputs.version }}
+          path: getstream-ruby-${{ steps.release_meta.outputs.version }}.gem
+          if-no-files-found: error
+
+  publish_release:
+    name: Publish release
+    needs: prepare_release
+    if: needs.prepare_release.outputs.already_released != 'true' && needs.prepare_release.outputs.should_release == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.1.0"
+
+      - name: Download gem artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: getstream-ruby-gem-${{ needs.prepare_release.outputs.version }}
+
+      - name: Publish gem
         env:
+          VERSION: ${{ needs.prepare_release.outputs.version }}
           GEM_HOST_API_KEY: ${{ secrets.RUBYGEMS_API_KEY }}
         run: |
-          gem build getstream-ruby.gemspec
-          gem push getstream-ruby-${{ steps.release_meta.outputs.version }}.gem --key "$GEM_HOST_API_KEY"
+          if curl -s "https://rubygems.org/api/v1/versions/getstream-ruby.json" | jq -e '.[] | select(.number == env.VERSION)' >/dev/null; then
+            echo "Gem version ${VERSION} already published; skipping."
+            exit 0
+          fi
+          gem push "getstream-ruby-${VERSION}.gem" --key "$GEM_HOST_API_KEY"
 
       - name: Create release on GitHub
-        if: steps.already_released.outputs.value != 'true' && steps.release_meta.outputs.should_release == 'true'
-        uses: ncipollo/release-action@v1
-        with:
-          tag: ${{ steps.release_meta.outputs.tag }}
-          token: ${{ secrets.GITHUB_TOKEN }}
-          body: |
-            Release v${{ steps.release_meta.outputs.version }}
+        env:
+          TAG: ${{ needs.prepare_release.outputs.tag }}
+          VERSION: ${{ needs.prepare_release.outputs.version }}
+          BUMP: ${{ needs.prepare_release.outputs.bump }}
+          PREVIOUS: ${{ needs.prepare_release.outputs.previous_version }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if gh release view "${TAG}" >/dev/null 2>&1; then
+            echo "GitHub release ${TAG} already exists; skipping."
+            exit 0
+          fi
+          RELEASE_NOTES="$(cat <<EOF
+          Release v${VERSION}
 
-            - Bump type: `${{ steps.release_meta.outputs.bump }}`
-            - Previous: `${{ steps.release_meta.outputs.previous_version }}`
-            - Next: `${{ steps.release_meta.outputs.version }}`
+          - Bump type: ${BUMP}
+          - Previous: ${PREVIOUS}
+          - Next: ${VERSION}
+          EOF
+          )"
+          gh release create "${TAG}" \
+            --title "Release v${VERSION}" \
+            --notes "${RELEASE_NOTES}"
