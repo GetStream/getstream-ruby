@@ -1,45 +1,43 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-require "optparse"
+require 'optparse'
 
 def run_command(command)
-  output = `#{command}`.to_s
-  output.strip
+  `#{command}`.to_s.strip
 end
 
 def find_latest_semver_tag
-  tags = run_command("git tag --list").split(/\R/)
-  versions = tags.map(&:strip).map { |tag| tag.sub(/^v/, "") }
-                 .select { |value| value.match?(/^\d+\.\d+\.\d+$/) }
-  return "0.0.0" if versions.empty?
+  tags = run_command('git tag --list').split(/\R/)
+  versions = tags.map(&:strip).map { |tag| tag.sub(/^v/, '') }.grep(/^\d+\.\d+\.\d+$/)
+  return '0.0.0' if versions.empty?
 
-  versions.sort_by { |version| version.split(".").map(&:to_i) }.last
+  versions.max_by { |version| version.split('.').map(&:to_i) }
 end
 
 def determine_bump_type(title, body)
-  return "major" if body.match?(/BREAKING[ -]CHANGE/i)
+  return 'major' if body.match?(/BREAKING[ -]CHANGE/i)
 
   match = title.strip.match(/^([a-z]+)(\([^)]+\))?(!)?:/i)
-  return "none" unless match
+  return 'none' unless match
 
   type = match[1].downcase
-  return "major" if match[3] == "!"
-  return "minor" if type == "feat"
-  return "patch" if ["fix", "bug"].include?(type)
+  return 'major' if match[3] == '!'
+  return 'minor' if type == 'feat'
+  return 'patch' if %w[fix bug].include?(type)
 
-  "none"
+  'none'
 end
 
 def increment_version(version, bump)
-  major, minor, patch = version.split(".").map(&:to_i)
+  major, minor, patch = version.split('.').map(&:to_i)
 
   case bump
-  when "major"
+  when 'major'
     "#{major + 1}.0.0"
-  when "minor"
+  when 'minor'
     "#{major}.#{minor + 1}.0"
-  when "patch"
+  when 'patch'
     "#{major}.#{minor}.#{patch + 1}"
   else
     version
@@ -49,33 +47,35 @@ end
 def update_version_file(path, version)
   content = File.read(path)
   updated = content.sub(/VERSION = '[^']+'/, "VERSION = '#{version}'")
-  raise "Could not update version.rb" if updated == content
+  raise 'Could not update version.rb' if updated == content
 
   File.write(path, updated)
 end
 
 def write_outputs(output_path, values)
-  lines = values.map { |k, v| "#{k}=#{v}" }.join("\n") + "\n"
+  lines = "#{values.map { |k, v| "#{k}=#{v}" }.join("\n")}\n"
   if output_path.empty?
     print(lines)
     return
   end
 
-  File.open(output_path, "a") { |f| f.write(lines) }
+  File.open(output_path, 'a') { |file| file.write(lines) }
 end
 
 options = {
-  title: "",
-  body: "",
-  body_file: "",
-  output: ""
+  title: '',
+  body: '',
+  body_file: '',
+  output: '',
 }
 
 OptionParser.new do |opts|
-  opts.on("--title TITLE") { |v| options[:title] = v }
-  opts.on("--body BODY") { |v| options[:body] = v }
-  opts.on("--body-file FILE") { |v| options[:body_file] = v }
-  opts.on("--output FILE") { |v| options[:output] = v }
+
+  opts.on('--title TITLE') { |value| options[:title] = value }
+  opts.on('--body BODY') { |value| options[:body] = value }
+  opts.on('--body-file FILE') { |value| options[:body_file] = value }
+  opts.on('--output FILE') { |value| options[:output] = value }
+
 end.parse!
 
 body = if options[:body_file].empty?
@@ -85,10 +85,10 @@ body = if options[:body_file].empty?
        end
 
 bump = determine_bump_type(options[:title].to_s, body.to_s)
-if bump == "none"
+if bump == 'none'
   write_outputs(options[:output], {
-                  "should_release" => "false",
-                  "bump" => "none"
+                  'should_release' => 'false',
+                  'bump' => 'none',
                 })
   exit(0)
 end
@@ -96,12 +96,12 @@ end
 current_version = find_latest_semver_tag
 next_version = increment_version(current_version, bump)
 
-update_version_file("lib/getstream_ruby/version.rb", next_version)
+update_version_file('lib/getstream_ruby/version.rb', next_version)
 
 write_outputs(options[:output], {
-                "should_release" => "true",
-                "bump" => bump,
-                "previous_version" => current_version,
-                "version" => next_version,
-                "tag" => "v#{next_version}"
+                'should_release' => 'true',
+                'bump' => bump,
+                'previous_version' => current_version,
+                'version' => next_version,
+                'tag' => "v#{next_version}",
               })
