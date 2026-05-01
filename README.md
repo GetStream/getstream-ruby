@@ -349,6 +349,12 @@ Automatic semver bump rules are based on merged PR title/body:
 
 PRs with other prefixes do not trigger a release.
 
+Release title examples:
+
+- `fix: correct feed follow pagination`
+- `feat: add campaign query helper`
+- `feat!: drop deprecated moderation endpoint`
+
 ## License
 
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
