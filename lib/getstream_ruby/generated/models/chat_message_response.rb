@@ -52,16 +52,16 @@ module GetStream
         #   @return [DateTime]
         attr_accessor :updated_at
         # @!attribute attachments
-        #   @return [Array]
+        #   @return [Array<Attachment>]
         attr_accessor :attachments
         # @!attribute latest_reactions
-        #   @return [Array]
+        #   @return [Array<ChatReactionResponse>]
         attr_accessor :latest_reactions
         # @!attribute mentioned_users
         #   @return [Array<UserResponse>]
         attr_accessor :mentioned_users
         # @!attribute own_reactions
-        #   @return [Array]
+        #   @return [Array<ChatReactionResponse>]
         attr_accessor :own_reactions
         # @!attribute restricted_visibility
         #   @return [Array<String>]
@@ -84,6 +84,9 @@ module GetStream
         # @!attribute deleted_at
         #   @return [DateTime]
         attr_accessor :deleted_at
+        # @!attribute deleted_for_me
+        #   @return [Boolean]
+        attr_accessor :deleted_for_me
         # @!attribute message_text_updated_at
         #   @return [DateTime]
         attr_accessor :message_text_updated_at
@@ -108,18 +111,48 @@ module GetStream
         # @!attribute show_in_channel
         #   @return [Boolean]
         attr_accessor :show_in_channel
+        # @!attribute mentioned_group_ids
+        #   @return [Array<String>]
+        attr_accessor :mentioned_group_ids
+        # @!attribute mentioned_roles
+        #   @return [Array<String>]
+        attr_accessor :mentioned_roles
+        # @!attribute thread_participants
+        #   @return [Array<UserResponse>]
+        attr_accessor :thread_participants
+        # @!attribute draft
+        #   @return [ChatDraftResponse]
+        attr_accessor :draft
         # @!attribute i18n
         #   @return [Hash<String, String>]
         attr_accessor :i18n
         # @!attribute image_labels
         #   @return [Hash<String, Array<String>>]
         attr_accessor :image_labels
+        # @!attribute member
+        #   @return [ChannelMemberResponse]
+        attr_accessor :member
+        # @!attribute moderation
+        #   @return [ChatModerationV2Response]
+        attr_accessor :moderation
         # @!attribute pinned_by
         #   @return [UserResponse]
         attr_accessor :pinned_by
+        # @!attribute poll
+        #   @return [PollResponseData]
+        attr_accessor :poll
         # @!attribute quoted_message
         #   @return [ChatMessageResponse]
         attr_accessor :quoted_message
+        # @!attribute reaction_groups
+        #   @return [Hash<String, ChatReactionGroupResponse>]
+        attr_accessor :reaction_groups
+        # @!attribute reminder
+        #   @return [ChatReminderResponseData]
+        attr_accessor :reminder
+        # @!attribute shared_location
+        #   @return [ChatSharedLocationResponseData]
+        attr_accessor :shared_location
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -149,6 +182,7 @@ module GetStream
           @user = attributes[:user] || attributes['user']
           @command = attributes[:command] || attributes['command'] || nil
           @deleted_at = attributes[:deleted_at] || attributes['deleted_at'] || nil
+          @deleted_for_me = attributes[:deleted_for_me] || attributes['deleted_for_me'] || nil
           @message_text_updated_at = attributes[:message_text_updated_at] || attributes['message_text_updated_at'] || nil
           @mml = attributes[:mml] || attributes['mml'] || nil
           @parent_id = attributes[:parent_id] || attributes['parent_id'] || nil
@@ -157,10 +191,20 @@ module GetStream
           @poll_id = attributes[:poll_id] || attributes['poll_id'] || nil
           @quoted_message_id = attributes[:quoted_message_id] || attributes['quoted_message_id'] || nil
           @show_in_channel = attributes[:show_in_channel] || attributes['show_in_channel'] || nil
+          @mentioned_group_ids = attributes[:mentioned_group_ids] || attributes['mentioned_group_ids'] || nil
+          @mentioned_roles = attributes[:mentioned_roles] || attributes['mentioned_roles'] || nil
+          @thread_participants = attributes[:thread_participants] || attributes['thread_participants'] || nil
+          @draft = attributes[:draft] || attributes['draft'] || nil
           @i18n = attributes[:i18n] || attributes['i18n'] || nil
           @image_labels = attributes[:image_labels] || attributes['image_labels'] || nil
+          @member = attributes[:member] || attributes['member'] || nil
+          @moderation = attributes[:moderation] || attributes['moderation'] || nil
           @pinned_by = attributes[:pinned_by] || attributes['pinned_by'] || nil
+          @poll = attributes[:poll] || attributes['poll'] || nil
           @quoted_message = attributes[:quoted_message] || attributes['quoted_message'] || nil
+          @reaction_groups = attributes[:reaction_groups] || attributes['reaction_groups'] || nil
+          @reminder = attributes[:reminder] || attributes['reminder'] || nil
+          @shared_location = attributes[:shared_location] || attributes['shared_location'] || nil
         end
 
         # Override field mappings for JSON serialization
@@ -191,6 +235,7 @@ module GetStream
             user: 'user',
             command: 'command',
             deleted_at: 'deleted_at',
+            deleted_for_me: 'deleted_for_me',
             message_text_updated_at: 'message_text_updated_at',
             mml: 'mml',
             parent_id: 'parent_id',
@@ -199,10 +244,20 @@ module GetStream
             poll_id: 'poll_id',
             quoted_message_id: 'quoted_message_id',
             show_in_channel: 'show_in_channel',
+            mentioned_group_ids: 'mentioned_group_ids',
+            mentioned_roles: 'mentioned_roles',
+            thread_participants: 'thread_participants',
+            draft: 'draft',
             i18n: 'i18n',
             image_labels: 'image_labels',
+            member: 'member',
+            moderation: 'moderation',
             pinned_by: 'pinned_by',
-            quoted_message: 'quoted_message'
+            poll: 'poll',
+            quoted_message: 'quoted_message',
+            reaction_groups: 'reaction_groups',
+            reminder: 'reminder',
+            shared_location: 'shared_location'
           }
         end
       end

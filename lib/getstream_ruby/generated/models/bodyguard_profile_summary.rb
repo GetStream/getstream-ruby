@@ -15,19 +15,24 @@ module GetStream
         # @!attribute display_name
         #   @return [String]
         attr_accessor :display_name
+        # @!attribute text_type
+        #   @return [String]
+        attr_accessor :text_type
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @name = attributes[:name] || attributes['name']
           @display_name = attributes[:display_name] || attributes['display_name'] || nil
+          @text_type = attributes[:text_type] || attributes['text_type'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
             name: 'name',
-            display_name: 'display_name'
+            display_name: 'display_name',
+            text_type: 'text_type'
           }
         end
       end

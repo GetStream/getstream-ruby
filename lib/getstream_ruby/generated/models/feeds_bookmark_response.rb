@@ -6,27 +6,27 @@ module GetStream
   module Generated
     module Models
       # 
-      class FeedsReactionResponse < GetStream::BaseModel
+      class FeedsBookmarkResponse < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute activity_id
+        # @!attribute _object_id
         #   @return [String]
-        attr_accessor :activity_id
+        attr_accessor :_object_id
         # @!attribute created_at
         #   @return [DateTime]
         attr_accessor :created_at
-        # @!attribute type
+        # @!attribute object_type
         #   @return [String]
-        attr_accessor :type
+        attr_accessor :object_type
         # @!attribute updated_at
         #   @return [DateTime]
         attr_accessor :updated_at
         # @!attribute user
         #   @return [UserResponse]
         attr_accessor :user
-        # @!attribute comment_id
+        # @!attribute activity_id
         #   @return [String]
-        attr_accessor :comment_id
+        attr_accessor :activity_id
         # @!attribute custom
         #   @return [Object]
         attr_accessor :custom
@@ -34,24 +34,24 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @activity_id = attributes[:activity_id] || attributes['activity_id']
+          @_object_id = attributes[:_object_id] || attributes['object_id']
           @created_at = attributes[:created_at] || attributes['created_at']
-          @type = attributes[:type] || attributes['type']
+          @object_type = attributes[:object_type] || attributes['object_type']
           @updated_at = attributes[:updated_at] || attributes['updated_at']
           @user = attributes[:user] || attributes['user']
-          @comment_id = attributes[:comment_id] || attributes['comment_id'] || nil
+          @activity_id = attributes[:activity_id] || attributes['activity_id'] || nil
           @custom = attributes[:custom] || attributes['custom'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            activity_id: 'activity_id',
+            _object_id: 'object_id',
             created_at: 'created_at',
-            type: 'type',
+            object_type: 'object_type',
             updated_at: 'updated_at',
             user: 'user',
-            comment_id: 'comment_id',
+            activity_id: 'activity_id',
             custom: 'custom'
           }
         end

@@ -6,53 +6,58 @@ module GetStream
   module Generated
     module Models
       # 
-      class FeedsReactionResponse < GetStream::BaseModel
+      class ChatReactionResponse < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute activity_id
-        #   @return [String]
-        attr_accessor :activity_id
         # @!attribute created_at
         #   @return [DateTime]
         attr_accessor :created_at
+        # @!attribute message_id
+        #   @return [String]
+        attr_accessor :message_id
+        # @!attribute score
+        #   @return [Integer]
+        attr_accessor :score
         # @!attribute type
         #   @return [String]
         attr_accessor :type
         # @!attribute updated_at
         #   @return [DateTime]
         attr_accessor :updated_at
-        # @!attribute user
-        #   @return [UserResponse]
-        attr_accessor :user
-        # @!attribute comment_id
+        # @!attribute user_id
         #   @return [String]
-        attr_accessor :comment_id
+        attr_accessor :user_id
         # @!attribute custom
         #   @return [Object]
         attr_accessor :custom
+        # @!attribute user
+        #   @return [UserResponse]
+        attr_accessor :user
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @activity_id = attributes[:activity_id] || attributes['activity_id']
           @created_at = attributes[:created_at] || attributes['created_at']
+          @message_id = attributes[:message_id] || attributes['message_id']
+          @score = attributes[:score] || attributes['score']
           @type = attributes[:type] || attributes['type']
           @updated_at = attributes[:updated_at] || attributes['updated_at']
+          @user_id = attributes[:user_id] || attributes['user_id']
+          @custom = attributes[:custom] || attributes['custom']
           @user = attributes[:user] || attributes['user']
-          @comment_id = attributes[:comment_id] || attributes['comment_id'] || nil
-          @custom = attributes[:custom] || attributes['custom'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            activity_id: 'activity_id',
             created_at: 'created_at',
+            message_id: 'message_id',
+            score: 'score',
             type: 'type',
             updated_at: 'updated_at',
-            user: 'user',
-            comment_id: 'comment_id',
-            custom: 'custom'
+            user_id: 'user_id',
+            custom: 'custom',
+            user: 'user'
           }
         end
       end

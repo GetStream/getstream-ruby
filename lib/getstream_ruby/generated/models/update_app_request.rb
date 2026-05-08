@@ -33,6 +33,9 @@ module GetStream
         # @!attribute disable_permissions_checks
         #   @return [Boolean]
         attr_accessor :disable_permissions_checks
+        # @!attribute enable_hook_payload_compression
+        #   @return [Boolean]
+        attr_accessor :enable_hook_payload_compression
         # @!attribute enforce_unique_usernames
         #   @return [String]
         attr_accessor :enforce_unique_usernames
@@ -171,6 +174,7 @@ module GetStream
           @custom_action_handler_url = attributes[:custom_action_handler_url] || attributes['custom_action_handler_url'] || nil
           @disable_auth_checks = attributes[:disable_auth_checks] || attributes['disable_auth_checks'] || nil
           @disable_permissions_checks = attributes[:disable_permissions_checks] || attributes['disable_permissions_checks'] || nil
+          @enable_hook_payload_compression = attributes[:enable_hook_payload_compression] || attributes['enable_hook_payload_compression'] || nil
           @enforce_unique_usernames = attributes[:enforce_unique_usernames] || attributes['enforce_unique_usernames'] || nil
           @feeds_moderation_enabled = attributes[:feeds_moderation_enabled] || attributes['feeds_moderation_enabled'] || nil
           @feeds_v2_region = attributes[:feeds_v2_region] || attributes['feeds_v2_region'] || nil
@@ -226,6 +230,7 @@ module GetStream
             custom_action_handler_url: 'custom_action_handler_url',
             disable_auth_checks: 'disable_auth_checks',
             disable_permissions_checks: 'disable_permissions_checks',
+            enable_hook_payload_compression: 'enable_hook_payload_compression',
             enforce_unique_usernames: 'enforce_unique_usernames',
             feeds_moderation_enabled: 'feeds_moderation_enabled',
             feeds_v2_region: 'feeds_v2_region',

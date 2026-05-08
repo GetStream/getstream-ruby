@@ -634,6 +634,23 @@ module GetStream
         )
       end
 
+      # Forward a moderator-supplied correction to the moderation feedback pipeline. Server-side only.
+      #
+      # @param submit_moderation_feedback_request [SubmitModerationFeedbackRequest]
+      # @return [Models::SubmitModerationFeedbackResponse]
+      def submit_moderation_feedback(submit_moderation_feedback_request)
+        path = '/api/v2/moderation/submit_moderation_feedback'
+        # Build request body
+        body = submit_moderation_feedback_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
       # Unban a user from a channel or globally.
       #
       # @param unban_request [UnbanRequest]

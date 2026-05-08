@@ -22,6 +22,9 @@ module GetStream
         # @!attribute create_notification_activity
         #   @return [Boolean] Whether to create notification activities for mentioned users
         attr_accessor :create_notification_activity
+        # @!attribute create_users
+        #   @return [Boolean]
+        attr_accessor :create_users
         # @!attribute enrich_own_fields
         #   @return [Boolean]
         attr_accessor :enrich_own_fields
@@ -93,6 +96,7 @@ module GetStream
           @feeds = attributes[:feeds] || attributes['feeds']
           @copy_custom_to_notification = attributes[:copy_custom_to_notification] || attributes['copy_custom_to_notification'] || nil
           @create_notification_activity = attributes[:create_notification_activity] || attributes['create_notification_activity'] || nil
+          @create_users = attributes[:create_users] || attributes['create_users'] || nil
           @enrich_own_fields = attributes[:enrich_own_fields] || attributes['enrich_own_fields'] || nil
           @expires_at = attributes[:expires_at] || attributes['expires_at'] || nil
           @force_moderation = attributes[:force_moderation] || attributes['force_moderation'] || nil
@@ -123,6 +127,7 @@ module GetStream
             feeds: 'feeds',
             copy_custom_to_notification: 'copy_custom_to_notification',
             create_notification_activity: 'create_notification_activity',
+            create_users: 'create_users',
             enrich_own_fields: 'enrich_own_fields',
             expires_at: 'expires_at',
             force_moderation: 'force_moderation',

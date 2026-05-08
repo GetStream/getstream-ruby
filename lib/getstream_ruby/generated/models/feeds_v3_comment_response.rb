@@ -12,6 +12,9 @@ module GetStream
         # @!attribute _object_id
         #   @return [String]
         attr_accessor :_object_id
+        # @!attribute bookmark_count
+        #   @return [Integer]
+        attr_accessor :bookmark_count
         # @!attribute confidence_score
         #   @return [Float]
         attr_accessor :confidence_score
@@ -49,7 +52,7 @@ module GetStream
         #   @return [Array<UserResponse>]
         attr_accessor :mentioned_users
         # @!attribute own_reactions
-        #   @return [Array]
+        #   @return [Array<FeedsReactionResponse>]
         attr_accessor :own_reactions
         # @!attribute user
         #   @return [UserResponse]
@@ -72,17 +75,24 @@ module GetStream
         # @!attribute attachments
         #   @return [Array<Attachment>]
         attr_accessor :attachments
+        # @!attribute latest_reactions
+        #   @return [Array<FeedsReactionResponse>]
+        attr_accessor :latest_reactions
         # @!attribute custom
         #   @return [Object]
         attr_accessor :custom
         # @!attribute moderation
         #   @return [ModerationV2Response]
         attr_accessor :moderation
+        # @!attribute reaction_groups
+        #   @return [Hash<String, FeedsReactionGroupResponse>]
+        attr_accessor :reaction_groups
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @_object_id = attributes[:_object_id] || attributes['object_id']
+          @bookmark_count = attributes[:bookmark_count] || attributes['bookmark_count']
           @confidence_score = attributes[:confidence_score] || attributes['confidence_score']
           @created_at = attributes[:created_at] || attributes['created_at']
           @downvote_count = attributes[:downvote_count] || attributes['downvote_count']
@@ -103,14 +113,17 @@ module GetStream
           @parent_id = attributes[:parent_id] || attributes['parent_id'] || nil
           @text = attributes[:text] || attributes['text'] || nil
           @attachments = attributes[:attachments] || attributes['attachments'] || nil
+          @latest_reactions = attributes[:latest_reactions] || attributes['latest_reactions'] || nil
           @custom = attributes[:custom] || attributes['custom'] || nil
           @moderation = attributes[:moderation] || attributes['moderation'] || nil
+          @reaction_groups = attributes[:reaction_groups] || attributes['reaction_groups'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
             _object_id: 'object_id',
+            bookmark_count: 'bookmark_count',
             confidence_score: 'confidence_score',
             created_at: 'created_at',
             downvote_count: 'downvote_count',
@@ -131,8 +144,10 @@ module GetStream
             parent_id: 'parent_id',
             text: 'text',
             attachments: 'attachments',
+            latest_reactions: 'latest_reactions',
             custom: 'custom',
-            moderation: 'moderation'
+            moderation: 'moderation',
+            reaction_groups: 'reaction_groups'
           }
         end
       end

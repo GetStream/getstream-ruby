@@ -6,7 +6,7 @@ module GetStream
   module Generated
     module Models
       # 
-      class FeedsReactionGroupResponse < GetStream::BaseModel
+      class ChatReactionGroupResponse < GetStream::BaseModel
 
         # Model attributes
         # @!attribute count
@@ -18,6 +18,12 @@ module GetStream
         # @!attribute last_reaction_at
         #   @return [DateTime]
         attr_accessor :last_reaction_at
+        # @!attribute sum_scores
+        #   @return [Integer]
+        attr_accessor :sum_scores
+        # @!attribute latest_reactions_by
+        #   @return [Array<ChatReactionGroupUserResponse>]
+        attr_accessor :latest_reactions_by
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -25,6 +31,8 @@ module GetStream
           @count = attributes[:count] || attributes['count']
           @first_reaction_at = attributes[:first_reaction_at] || attributes['first_reaction_at']
           @last_reaction_at = attributes[:last_reaction_at] || attributes['last_reaction_at']
+          @sum_scores = attributes[:sum_scores] || attributes['sum_scores']
+          @latest_reactions_by = attributes[:latest_reactions_by] || attributes['latest_reactions_by']
         end
 
         # Override field mappings for JSON serialization
@@ -32,7 +40,9 @@ module GetStream
           {
             count: 'count',
             first_reaction_at: 'first_reaction_at',
-            last_reaction_at: 'last_reaction_at'
+            last_reaction_at: 'last_reaction_at',
+            sum_scores: 'sum_scores',
+            latest_reactions_by: 'latest_reactions_by'
           }
         end
       end
