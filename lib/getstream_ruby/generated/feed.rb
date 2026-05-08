@@ -84,6 +84,16 @@ module GetStream
         @client.feeds.pin_activity(@feed_group_id, @feed_id, activity_id, pin_activity_request)
       end
 
+      # Changes the visibility of an existing feed. Follow reconciliation (rewriting pending follows on loosening, or removing disallowed follows/members on tightening) runs asynchronously in the background; the response returns optimistically with the intended visibility.
+      #
+      # @param change_feed_visibility_request [ChangeFeedVisibilityRequest]
+      # @return [Models::ChangeFeedVisibilityResponse]
+      def change_feed_visibility(change_feed_visibility_request)
+
+        # Delegate to the FeedsClient
+        @client.feeds.change_feed_visibility(@feed_group_id, @feed_id, change_feed_visibility_request)
+      end
+
       # Add, remove, or set members for a feed
       #
       # @param update_feed_members_request [UpdateFeedMembersRequest]

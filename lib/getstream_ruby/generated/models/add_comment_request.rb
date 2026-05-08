@@ -22,6 +22,9 @@ module GetStream
         # @!attribute create_notification_activity
         #   @return [Boolean] Whether to create a notification activity for this comment
         attr_accessor :create_notification_activity
+        # @!attribute force_moderation
+        #   @return [Boolean] If true, forces moderation to run for server-side requests. By default, server-side requests skip moderation. Client-side requests always run moderation regardless of this field.
+        attr_accessor :force_moderation
         # @!attribute id
         #   @return [String] Optional custom ID for the comment (max 255 characters). If not provided, a UUID will be generated.
         attr_accessor :id
@@ -60,6 +63,7 @@ module GetStream
           @comment = attributes[:comment] || attributes['comment'] || nil
           @copy_custom_to_notification = attributes[:copy_custom_to_notification] || attributes['copy_custom_to_notification'] || nil
           @create_notification_activity = attributes[:create_notification_activity] || attributes['create_notification_activity'] || nil
+          @force_moderation = attributes[:force_moderation] || attributes['force_moderation'] || nil
           @id = attributes[:id] || attributes['id'] || nil
           @object_type = attributes[:object_type] || attributes['object_type'] || nil
           @parent_id = attributes[:parent_id] || attributes['parent_id'] || nil
@@ -79,6 +83,7 @@ module GetStream
             comment: 'comment',
             copy_custom_to_notification: 'copy_custom_to_notification',
             create_notification_activity: 'create_notification_activity',
+            force_moderation: 'force_moderation',
             id: 'id',
             object_type: 'object_type',
             parent_id: 'parent_id',

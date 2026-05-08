@@ -18,6 +18,9 @@ module GetStream
         # @!attribute session_id
         #   @return [String] Call session ID
         attr_accessor :session_id
+        # @!attribute counts
+        #   @return [CallStatsParticipantCounts]
+        attr_accessor :counts
         # @!attribute type
         #   @return [String] The type of event, "call.report_ready" in this case
         attr_accessor :type
@@ -34,6 +37,7 @@ module GetStream
           @call_cid = attributes[:call_cid] || attributes['call_cid']
           @created_at = attributes[:created_at] || attributes['created_at']
           @session_id = attributes[:session_id] || attributes['session_id']
+          @counts = attributes[:counts] || attributes['counts']
           @type = attributes[:type] || attributes['type'] || "call.stats_report_ready"
           @is_trimmed = attributes[:is_trimmed] || attributes['is_trimmed'] || nil
           @participants_overview = attributes[:participants_overview] || attributes['participants_overview'] || nil
@@ -45,6 +49,7 @@ module GetStream
             call_cid: 'call_cid',
             created_at: 'created_at',
             session_id: 'session_id',
+            counts: 'counts',
             type: 'type',
             is_trimmed: 'is_trimmed',
             participants_overview: 'participants_overview'

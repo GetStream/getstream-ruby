@@ -12,6 +12,23 @@ module GetStream
       def initialize(client)
         @client = client
       end
+      # Creates a campaign
+      #
+      # @param create_campaign_request [CreateCampaignRequest]
+      # @return [Models::CreateCampaignResponse]
+      def create_campaign(create_campaign_request)
+        path = '/api/v2/chat/campaigns'
+        # Build request body
+        body = create_campaign_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
       # Query campaigns with filter query
       #
       # @param query_campaigns_request [QueryCampaignsRequest]
@@ -26,6 +43,22 @@ module GetStream
           :post,
           path,
           body: body
+        )
+      end
+
+      # Delete campaign
+      #
+      # @param _id [String]
+      # @return [Models::DeleteCampaignResponse]
+      def delete_campaign(_id)
+        path = '/api/v2/chat/campaigns/{id}'
+        # Replace path parameters
+        path = path.gsub('{id}', _id.to_s)
+
+        # Make the API request
+        @client.make_request(
+          :delete,
+          path
         )
       end
 
@@ -51,6 +84,26 @@ module GetStream
           :get,
           path,
           query_params: query_params
+        )
+      end
+
+      # Updates a campaign
+      #
+      # @param _id [String]
+      # @param update_campaign_request [UpdateCampaignRequest]
+      # @return [Models::CampaignResponse]
+      def update_campaign(_id, update_campaign_request)
+        path = '/api/v2/chat/campaigns/{id}'
+        # Replace path parameters
+        path = path.gsub('{id}', _id.to_s)
+        # Build request body
+        body = update_campaign_request
+
+        # Make the API request
+        @client.make_request(
+          :put,
+          path,
+          body: body
         )
       end
 
@@ -163,6 +216,23 @@ module GetStream
           :post,
           path,
           query_params: query_params,
+          body: body
+        )
+      end
+
+      # Query channels grouped into predefined buckets. Only available for enterprise apps.
+      #
+      # @param grouped_query_channels_request [GroupedQueryChannelsRequest]
+      # @return [Models::GroupedQueryChannelsResponse]
+      def grouped_query_channels(grouped_query_channels_request)
+        path = '/api/v2/chat/channels/grouped'
+        # Build request body
+        body = grouped_query_channels_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
           body: body
         )
       end

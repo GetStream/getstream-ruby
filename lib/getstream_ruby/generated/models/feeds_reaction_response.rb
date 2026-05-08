@@ -10,25 +10,25 @@ module GetStream
 
         # Model attributes
         # @!attribute activity_id
-        #   @return [String] ID of the activity that was reacted to
+        #   @return [String]
         attr_accessor :activity_id
         # @!attribute created_at
-        #   @return [DateTime] When the reaction was created
+        #   @return [DateTime]
         attr_accessor :created_at
         # @!attribute type
-        #   @return [String] Type of reaction
+        #   @return [String]
         attr_accessor :type
         # @!attribute updated_at
-        #   @return [DateTime] When the reaction was last updated
+        #   @return [DateTime]
         attr_accessor :updated_at
         # @!attribute user
         #   @return [UserResponse]
         attr_accessor :user
         # @!attribute comment_id
-        #   @return [String] ID of the comment that was reacted to
+        #   @return [String]
         attr_accessor :comment_id
         # @!attribute custom
-        #   @return [Object] Custom data for the reaction
+        #   @return [Object]
         attr_accessor :custom
 
         # Initialize with attributes

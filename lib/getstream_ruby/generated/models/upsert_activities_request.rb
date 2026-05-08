@@ -12,22 +12,32 @@ module GetStream
         # @!attribute activities
         #   @return [Array<ActivityRequest>] List of activities to create or update
         attr_accessor :activities
+        # @!attribute create_users
+        #   @return [Boolean] Server-side only. If true, auto-creates users referenced by activity user_id values that don't already exist. Default: false.
+        attr_accessor :create_users
         # @!attribute enrich_own_fields
         #   @return [Boolean] If true, enriches the activities' current_feed with own_* fields (own_follows, own_followings, own_capabilities, own_membership). Defaults to false for performance.
         attr_accessor :enrich_own_fields
+        # @!attribute force_moderation
+        #   @return [Boolean] If true, forces moderation to run for server-side requests. By default, server-side requests skip moderation. Client-side requests always run moderation regardless of this field.
+        attr_accessor :force_moderation
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @activities = attributes[:activities] || attributes['activities']
+          @create_users = attributes[:create_users] || attributes['create_users'] || nil
           @enrich_own_fields = attributes[:enrich_own_fields] || attributes['enrich_own_fields'] || nil
+          @force_moderation = attributes[:force_moderation] || attributes['force_moderation'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
             activities: 'activities',
-            enrich_own_fields: 'enrich_own_fields'
+            create_users: 'create_users',
+            enrich_own_fields: 'enrich_own_fields',
+            force_moderation: 'force_moderation'
           }
         end
       end

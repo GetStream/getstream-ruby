@@ -9,15 +9,15 @@ module GetStream
       class CampaignMessageTemplate < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute text
+        #   @return [String]
+        attr_accessor :text
         # @!attribute poll_id
         #   @return [String]
         attr_accessor :poll_id
         # @!attribute searchable
         #   @return [Boolean]
         attr_accessor :searchable
-        # @!attribute text
-        #   @return [String]
-        attr_accessor :text
         # @!attribute attachments
         #   @return [Array<Attachment>]
         attr_accessor :attachments
@@ -28,19 +28,19 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @poll_id = attributes[:poll_id] || attributes['poll_id']
-          @searchable = attributes[:searchable] || attributes['searchable']
           @text = attributes[:text] || attributes['text']
-          @attachments = attributes[:attachments] || attributes['attachments']
-          @custom = attributes[:custom] || attributes['custom']
+          @poll_id = attributes[:poll_id] || attributes['poll_id'] || nil
+          @searchable = attributes[:searchable] || attributes['searchable'] || nil
+          @attachments = attributes[:attachments] || attributes['attachments'] || nil
+          @custom = attributes[:custom] || attributes['custom'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            text: 'text',
             poll_id: 'poll_id',
             searchable: 'searchable',
-            text: 'text',
             attachments: 'attachments',
             custom: 'custom'
           }

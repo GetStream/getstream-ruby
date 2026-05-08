@@ -10,13 +10,13 @@ module GetStream
 
         # Model attributes
         # @!attribute count
-        #   @return [Integer] Number of reactions in this group
+        #   @return [Integer]
         attr_accessor :count
         # @!attribute first_reaction_at
-        #   @return [DateTime] Time of the first reaction
+        #   @return [DateTime]
         attr_accessor :first_reaction_at
         # @!attribute last_reaction_at
-        #   @return [DateTime] Time of the most recent reaction
+        #   @return [DateTime]
         attr_accessor :last_reaction_at
 
         # Initialize with attributes

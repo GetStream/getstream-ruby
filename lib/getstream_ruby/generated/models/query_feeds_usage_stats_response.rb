@@ -24,6 +24,9 @@ module GetStream
         # @!attribute openai_requests
         #   @return [DailyMetricStatsResponse]
         attr_accessor :openai_requests
+        # @!attribute emau
+        #   @return [EMAUStatsResponse]
+        attr_accessor :emau
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -33,6 +36,7 @@ module GetStream
           @api_requests = attributes[:api_requests] || attributes['api_requests']
           @follows = attributes[:follows] || attributes['follows']
           @openai_requests = attributes[:openai_requests] || attributes['openai_requests']
+          @emau = attributes[:emau] || attributes['emau'] || nil
         end
 
         # Override field mappings for JSON serialization
@@ -42,7 +46,8 @@ module GetStream
             activities: 'activities',
             api_requests: 'api_requests',
             follows: 'follows',
-            openai_requests: 'openai_requests'
+            openai_requests: 'openai_requests',
+            emau: 'emau'
           }
         end
       end

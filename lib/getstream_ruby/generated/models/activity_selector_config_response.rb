@@ -19,7 +19,7 @@ module GetStream
         #   @return [String] Flexible relative time window for activity selection (e.g., '1h', '3d', '1y')
         attr_accessor :cutoff_window
         # @!attribute min_popularity
-        #   @return [Integer] Minimum popularity threshold
+        #   @return [Integer] Minimum popularity threshold. For the 'popular' selector, values below 1 are normalized to the default (5) at read time.
         attr_accessor :min_popularity
         # @!attribute sort
         #   @return [Array<SortParamRequest>] Sort parameters for activity selection

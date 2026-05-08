@@ -42,6 +42,9 @@ module GetStream
         # @!attribute last_feed_get_at
         #   @return [DateTime]
         attr_accessor :last_feed_get_at
+        # @!attribute activity_filter
+        #   @return [ActivityFilterConfig]
+        attr_accessor :activity_filter
         # @!attribute aggregation
         #   @return [AggregationConfig]
         attr_accessor :aggregation
@@ -72,6 +75,7 @@ module GetStream
           @custom = attributes[:custom] || attributes['custom']
           @deleted_at = attributes[:deleted_at] || attributes['deleted_at'] || nil
           @last_feed_get_at = attributes[:last_feed_get_at] || attributes['last_feed_get_at'] || nil
+          @activity_filter = attributes[:activity_filter] || attributes['activity_filter'] || nil
           @aggregation = attributes[:aggregation] || attributes['aggregation'] || nil
           @notification = attributes[:notification] || attributes['notification'] || nil
           @push_notification = attributes[:push_notification] || attributes['push_notification'] || nil
@@ -93,6 +97,7 @@ module GetStream
             custom: 'custom',
             deleted_at: 'deleted_at',
             last_feed_get_at: 'last_feed_get_at',
+            activity_filter: 'activity_filter',
             aggregation: 'aggregation',
             notification: 'notification',
             push_notification: 'push_notification',

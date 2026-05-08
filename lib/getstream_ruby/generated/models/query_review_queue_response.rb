@@ -27,6 +27,9 @@ module GetStream
         # @!attribute prev
         #   @return [String]
         attr_accessor :prev
+        # @!attribute default_action_config
+        #   @return [Hash<String, Array<ModerationActionConfigResponse>>]
+        attr_accessor :default_action_config
         # @!attribute filter_config
         #   @return [FilterConfigResponse]
         attr_accessor :filter_config
@@ -40,6 +43,7 @@ module GetStream
           @stats = attributes[:stats] || attributes['stats']
           @next = attributes[:next] || attributes['next'] || nil
           @prev = attributes[:prev] || attributes['prev'] || nil
+          @default_action_config = attributes[:default_action_config] || attributes['default_action_config'] || nil
           @filter_config = attributes[:filter_config] || attributes['filter_config'] || nil
         end
 
@@ -52,6 +56,7 @@ module GetStream
             stats: 'stats',
             next: 'next',
             prev: 'prev',
+            default_action_config: 'default_action_config',
             filter_config: 'filter_config'
           }
         end

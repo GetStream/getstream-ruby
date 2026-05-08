@@ -36,6 +36,9 @@ module GetStream
         # @!attribute enforce_unique_usernames
         #   @return [String]
         attr_accessor :enforce_unique_usernames
+        # @!attribute feed_audit_logs_enabled
+        #   @return [Boolean]
+        attr_accessor :feed_audit_logs_enabled
         # @!attribute guest_user_creation_disabled
         #   @return [Boolean]
         attr_accessor :guest_user_creation_disabled
@@ -187,6 +190,7 @@ module GetStream
           @disable_auth_checks = attributes[:disable_auth_checks] || attributes['disable_auth_checks']
           @disable_permissions_checks = attributes[:disable_permissions_checks] || attributes['disable_permissions_checks']
           @enforce_unique_usernames = attributes[:enforce_unique_usernames] || attributes['enforce_unique_usernames']
+          @feed_audit_logs_enabled = attributes[:feed_audit_logs_enabled] || attributes['feed_audit_logs_enabled']
           @guest_user_creation_disabled = attributes[:guest_user_creation_disabled] || attributes['guest_user_creation_disabled']
           @id = attributes[:id] || attributes['id']
           @image_moderation_enabled = attributes[:image_moderation_enabled] || attributes['image_moderation_enabled']
@@ -247,6 +251,7 @@ module GetStream
             disable_auth_checks: 'disable_auth_checks',
             disable_permissions_checks: 'disable_permissions_checks',
             enforce_unique_usernames: 'enforce_unique_usernames',
+            feed_audit_logs_enabled: 'feed_audit_logs_enabled',
             guest_user_creation_disabled: 'guest_user_creation_disabled',
             id: 'id',
             image_moderation_enabled: 'image_moderation_enabled',

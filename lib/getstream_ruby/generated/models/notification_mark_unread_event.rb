@@ -75,6 +75,9 @@ module GetStream
         # @!attribute channel_custom
         #   @return [Object]
         attr_accessor :channel_custom
+        # @!attribute grouped_unread_channels
+        #   @return [Hash<String, Integer>]
+        attr_accessor :grouped_unread_channels
         # @!attribute user
         #   @return [UserResponseCommonFields]
         attr_accessor :user
@@ -104,6 +107,7 @@ module GetStream
           @unread_threads = attributes[:unread_threads] || attributes['unread_threads'] || nil
           @channel = attributes[:channel] || attributes['channel'] || nil
           @channel_custom = attributes[:channel_custom] || attributes['channel_custom'] || nil
+          @grouped_unread_channels = attributes[:grouped_unread_channels] || attributes['grouped_unread_channels'] || nil
           @user = attributes[:user] || attributes['user'] || nil
         end
 
@@ -132,6 +136,7 @@ module GetStream
             unread_threads: 'unread_threads',
             channel: 'channel',
             channel_custom: 'channel_custom',
+            grouped_unread_channels: 'grouped_unread_channels',
             user: 'user'
           }
         end

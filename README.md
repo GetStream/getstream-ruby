@@ -334,6 +334,21 @@ To enable integration tests in CI, configure these GitHub repository settings:
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/getstream/getstream-ruby.
 
+## Release Process
+
+Releases use two paths:
+
+- Default: automatic release when a PR is merged to `main`/`master`.
+- Fallback: manual release using `.github/workflows/manual-release.yml` (admin use only).
+
+Automatic semver bump rules are based on merged PR title/body:
+
+- `feat:` -> minor
+- `fix:` (or `bug:`) -> patch
+- `feat!:` or `BREAKING CHANGE` in PR body -> major
+
+PRs with other prefixes do not trigger a release.
+
 ## License
 
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).

@@ -13,6 +13,9 @@ module GetStream
         # @deprecated This field is deprecated.
         #   @return [Boolean] Whether to copy custom data to notification activities Deprecated: use notification_context.trigger.custom and notification_context.target.custom instead
         attr_accessor :copy_custom_to_notification
+        # @!attribute force_moderation
+        #   @return [Boolean] If true, forces moderation to run for server-side requests. By default, server-side requests skip moderation. Client-side requests always run moderation regardless of this field.
+        attr_accessor :force_moderation
         # @!attribute handle_mention_notifications
         #   @return [Boolean] Whether to handle mention notification changes
         attr_accessor :handle_mention_notifications
@@ -39,6 +42,7 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @copy_custom_to_notification = attributes[:copy_custom_to_notification] || attributes['copy_custom_to_notification'] || nil
+          @force_moderation = attributes[:force_moderation] || attributes['force_moderation'] || nil
           @handle_mention_notifications = attributes[:handle_mention_notifications] || attributes['handle_mention_notifications'] || nil
           @skip_enrich_url = attributes[:skip_enrich_url] || attributes['skip_enrich_url'] || nil
           @skip_push = attributes[:skip_push] || attributes['skip_push'] || nil
@@ -52,6 +56,7 @@ module GetStream
         def self.json_field_mappings
           {
             copy_custom_to_notification: 'copy_custom_to_notification',
+            force_moderation: 'force_moderation',
             handle_mention_notifications: 'handle_mention_notifications',
             skip_enrich_url: 'skip_enrich_url',
             skip_push: 'skip_push',

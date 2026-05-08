@@ -9,6 +9,9 @@ module GetStream
       class QueryReviewQueueRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute exclude_default_action_config
+        #   @return [Boolean]
+        attr_accessor :exclude_default_action_config
         # @!attribute limit
         #   @return [Integer]
         attr_accessor :limit
@@ -46,6 +49,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @exclude_default_action_config = attributes[:exclude_default_action_config] || attributes['exclude_default_action_config'] || nil
           @limit = attributes[:limit] || attributes['limit'] || nil
           @lock_count = attributes[:lock_count] || attributes['lock_count'] || nil
           @lock_duration = attributes[:lock_duration] || attributes['lock_duration'] || nil
@@ -62,6 +66,7 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            exclude_default_action_config: 'exclude_default_action_config',
             limit: 'limit',
             lock_count: 'lock_count',
             lock_duration: 'lock_duration',

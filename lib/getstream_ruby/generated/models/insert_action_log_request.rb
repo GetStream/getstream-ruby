@@ -24,6 +24,12 @@ module GetStream
         # @!attribute reason
         #   @return [String] Reason for the action
         attr_accessor :reason
+        # @!attribute reporter_type
+        #   @return [String] Type of reporter; 'api_integration' when the action was triggered by an API integration call with no authenticated user
+        attr_accessor :reporter_type
+        # @!attribute reporter_user_id
+        #   @return [String] ID of the user who triggered the action; empty for automated actions
+        attr_accessor :reporter_user_id
         # @!attribute custom
         #   @return [Object] Custom metadata for the action log
         attr_accessor :custom
@@ -36,6 +42,8 @@ module GetStream
           @entity_id = attributes[:entity_id] || attributes['entity_id']
           @entity_type = attributes[:entity_type] || attributes['entity_type']
           @reason = attributes[:reason] || attributes['reason'] || nil
+          @reporter_type = attributes[:reporter_type] || attributes['reporter_type'] || nil
+          @reporter_user_id = attributes[:reporter_user_id] || attributes['reporter_user_id'] || nil
           @custom = attributes[:custom] || attributes['custom'] || nil
         end
 
@@ -47,6 +55,8 @@ module GetStream
             entity_id: 'entity_id',
             entity_type: 'entity_type',
             reason: 'reason',
+            reporter_type: 'reporter_type',
+            reporter_user_id: 'reporter_user_id',
             custom: 'custom'
           }
         end

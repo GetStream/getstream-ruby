@@ -12,6 +12,9 @@ module GetStream
         # @!attribute follows
         #   @return [Array<FollowRequest>] List of follow relationships to create
         attr_accessor :follows
+        # @!attribute create_users
+        #   @return [Boolean] If true, auto-creates users referenced by source/target FIDs in the batch when they don't already exist. Server-side only. Defaults to false. This top-level field is the only supported batch/upsert create_users control.
+        attr_accessor :create_users
         # @!attribute enrich_own_fields
         #   @return [Boolean] If true, enriches the follow's source_feed and target_feed with own_* fields (own_follows, own_followings, own_capabilities, own_membership). Defaults to false for performance.
         attr_accessor :enrich_own_fields
@@ -20,6 +23,7 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @follows = attributes[:follows] || attributes['follows']
+          @create_users = attributes[:create_users] || attributes['create_users'] || nil
           @enrich_own_fields = attributes[:enrich_own_fields] || attributes['enrich_own_fields'] || nil
         end
 
@@ -27,6 +31,7 @@ module GetStream
         def self.json_field_mappings
           {
             follows: 'follows',
+            create_users: 'create_users',
             enrich_own_fields: 'enrich_own_fields'
           }
         end

@@ -67,25 +67,25 @@ module GetStream
         #   @return [Array<String>]
         attr_accessor :interest_tags
         # @!attribute latest_reactions
-        #   @return [Array]
+        #   @return [Array<FeedsReactionResponse>]
         attr_accessor :latest_reactions
         # @!attribute mentioned_users
         #   @return [Array<UserResponse>]
         attr_accessor :mentioned_users
         # @!attribute own_bookmarks
-        #   @return [Array]
+        #   @return [Array<FeedsBookmarkResponse>]
         attr_accessor :own_bookmarks
         # @!attribute own_reactions
-        #   @return [Array]
+        #   @return [Array<FeedsReactionResponse>]
         attr_accessor :own_reactions
         # @!attribute collections
-        #   @return [Hash<String, EnrichedCollection>]
+        #   @return [Hash<String, FeedsEnrichedCollectionResponse>]
         attr_accessor :collections
         # @!attribute custom
         #   @return [Object]
         attr_accessor :custom
         # @!attribute reaction_groups
-        #   @return [Hash<String, FeedsReactionGroup>]
+        #   @return [Hash<String, FeedsReactionGroupResponse>]
         attr_accessor :reaction_groups
         # @!attribute search_data
         #   @return [Object]
@@ -102,21 +102,57 @@ module GetStream
         # @!attribute expires_at
         #   @return [DateTime]
         attr_accessor :expires_at
+        # @!attribute friend_reaction_count
+        #   @return [Integer]
+        attr_accessor :friend_reaction_count
+        # @!attribute is_read
+        #   @return [Boolean]
+        attr_accessor :is_read
+        # @!attribute is_seen
+        #   @return [Boolean]
+        attr_accessor :is_seen
+        # @!attribute is_watched
+        #   @return [Boolean]
+        attr_accessor :is_watched
         # @!attribute moderation_action
         #   @return [String]
         attr_accessor :moderation_action
+        # @!attribute selector_source
+        #   @return [String]
+        attr_accessor :selector_source
         # @!attribute text
         #   @return [String]
         attr_accessor :text
         # @!attribute visibility_tag
         #   @return [String]
         attr_accessor :visibility_tag
+        # @!attribute friend_reactions
+        #   @return [Array<FeedsReactionResponse>]
+        attr_accessor :friend_reactions
+        # @!attribute current_feed
+        #   @return [FeedsFeedResponse]
+        attr_accessor :current_feed
+        # @!attribute location
+        #   @return [FeedsActivityLocation]
+        attr_accessor :location
         # @!attribute metrics
         #   @return [Hash<String, Integer>]
         attr_accessor :metrics
         # @!attribute moderation
         #   @return [ModerationV2Response]
         attr_accessor :moderation
+        # @!attribute notification_context
+        #   @return [FeedsNotificationContext]
+        attr_accessor :notification_context
+        # @!attribute parent
+        #   @return [FeedsV3ActivityResponse]
+        attr_accessor :parent
+        # @!attribute poll
+        #   @return [PollResponseData]
+        attr_accessor :poll
+        # @!attribute score_vars
+        #   @return [Object]
+        attr_accessor :score_vars
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -152,11 +188,23 @@ module GetStream
           @deleted_at = attributes[:deleted_at] || attributes['deleted_at'] || nil
           @edited_at = attributes[:edited_at] || attributes['edited_at'] || nil
           @expires_at = attributes[:expires_at] || attributes['expires_at'] || nil
+          @friend_reaction_count = attributes[:friend_reaction_count] || attributes['friend_reaction_count'] || nil
+          @is_read = attributes[:is_read] || attributes['is_read'] || nil
+          @is_seen = attributes[:is_seen] || attributes['is_seen'] || nil
+          @is_watched = attributes[:is_watched] || attributes['is_watched'] || nil
           @moderation_action = attributes[:moderation_action] || attributes['moderation_action'] || nil
+          @selector_source = attributes[:selector_source] || attributes['selector_source'] || nil
           @text = attributes[:text] || attributes['text'] || nil
           @visibility_tag = attributes[:visibility_tag] || attributes['visibility_tag'] || nil
+          @friend_reactions = attributes[:friend_reactions] || attributes['friend_reactions'] || nil
+          @current_feed = attributes[:current_feed] || attributes['current_feed'] || nil
+          @location = attributes[:location] || attributes['location'] || nil
           @metrics = attributes[:metrics] || attributes['metrics'] || nil
           @moderation = attributes[:moderation] || attributes['moderation'] || nil
+          @notification_context = attributes[:notification_context] || attributes['notification_context'] || nil
+          @parent = attributes[:parent] || attributes['parent'] || nil
+          @poll = attributes[:poll] || attributes['poll'] || nil
+          @score_vars = attributes[:score_vars] || attributes['score_vars'] || nil
         end
 
         # Override field mappings for JSON serialization
@@ -193,11 +241,23 @@ module GetStream
             deleted_at: 'deleted_at',
             edited_at: 'edited_at',
             expires_at: 'expires_at',
+            friend_reaction_count: 'friend_reaction_count',
+            is_read: 'is_read',
+            is_seen: 'is_seen',
+            is_watched: 'is_watched',
             moderation_action: 'moderation_action',
+            selector_source: 'selector_source',
             text: 'text',
             visibility_tag: 'visibility_tag',
+            friend_reactions: 'friend_reactions',
+            current_feed: 'current_feed',
+            location: 'location',
             metrics: 'metrics',
-            moderation: 'moderation'
+            moderation: 'moderation',
+            notification_context: 'notification_context',
+            parent: 'parent',
+            poll: 'poll',
+            score_vars: 'score_vars'
           }
         end
       end

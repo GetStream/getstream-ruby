@@ -19,6 +19,9 @@ module GetStream
         # @!attribute create_notification_activity
         #   @return [Boolean] Whether to create a notification activity for this reaction
         attr_accessor :create_notification_activity
+        # @!attribute create_users
+        #   @return [Boolean] Server-side only. If true, auto-creates the reacting user identified by user_id when they don't already exist. Default: false.
+        attr_accessor :create_users
         # @!attribute enforce_unique
         #   @return [Boolean] Whether to enforce unique reactions per user (remove other reaction types from the user when adding this one)
         attr_accessor :enforce_unique
@@ -41,6 +44,7 @@ module GetStream
           @type = attributes[:type] || attributes['type']
           @copy_custom_to_notification = attributes[:copy_custom_to_notification] || attributes['copy_custom_to_notification'] || nil
           @create_notification_activity = attributes[:create_notification_activity] || attributes['create_notification_activity'] || nil
+          @create_users = attributes[:create_users] || attributes['create_users'] || nil
           @enforce_unique = attributes[:enforce_unique] || attributes['enforce_unique'] || nil
           @skip_push = attributes[:skip_push] || attributes['skip_push'] || nil
           @user_id = attributes[:user_id] || attributes['user_id'] || nil
@@ -54,6 +58,7 @@ module GetStream
             type: 'type',
             copy_custom_to_notification: 'copy_custom_to_notification',
             create_notification_activity: 'create_notification_activity',
+            create_users: 'create_users',
             enforce_unique: 'enforce_unique',
             skip_push: 'skip_push',
             user_id: 'user_id',

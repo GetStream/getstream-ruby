@@ -972,6 +972,23 @@ module GetStream
 
       # 
       #
+      # @param query_call_session_stats_request [QueryCallSessionStatsRequest]
+      # @return [Models::QueryCallSessionStatsResponse]
+      def query_call_session_stats(query_call_session_stats_request)
+        path = '/api/v2/video/call_stats'
+        # Build request body
+        body = query_call_session_stats_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
+      # 
+      #
       # @param call_type [String]
       # @param call_id [String]
       # @param session [String]
