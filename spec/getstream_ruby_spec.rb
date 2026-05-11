@@ -26,7 +26,7 @@ RSpec.describe GetStreamRuby do
       expect(client.configuration.faraday_adapter).to be_nil
       expect(client.configuration.faraday_adapter_options).to eq({})
       expect(client.configuration.connection_keep_alive).to eq(true)
- 
+
     end
 
     it 'creates a client with custom faraday adapter settings' do

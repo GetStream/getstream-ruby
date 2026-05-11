@@ -21,21 +21,15 @@ module GetStreamRuby
 
     attr_reader :configuration
 
-    def initialize(config = nil, api_key: nil, api_secret: nil, base_url: nil, timeout: nil, faraday_adapter: nil,
-                   faraday_adapter_options: nil, connection_keep_alive: nil)
+    def initialize(config = nil, api_key: nil, api_secret: nil, **options)
       @configuration = config || GetStreamRuby.configuration
 
       # Create new configuration with overrides if any parameters provided
-      if api_key || api_secret || base_url || timeout || faraday_adapter || faraday_adapter_options ||
-         !connection_keep_alive.nil?
+      if api_key || api_secret || !options.empty?
         @configuration = Configuration.with_overrides(
           api_key: api_key,
           api_secret: api_secret,
-          base_url: base_url,
-          timeout: timeout,
-          faraday_adapter: faraday_adapter,
-          faraday_adapter_options: faraday_adapter_options,
-          connection_keep_alive: connection_keep_alive,
+          **options,
         )
       end
 
