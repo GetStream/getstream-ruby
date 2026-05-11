@@ -4,9 +4,21 @@ module GetStreamRuby
 
   class Configuration
 
-    attr_accessor :api_key, :api_secret, :base_url, :timeout, :logger
+    attr_accessor :api_key, :api_secret, :base_url, :timeout, :logger, :faraday_adapter, :faraday_adapter_options,
+                  :connection_keep_alive
 
-    def initialize(api_key: nil, api_secret: nil, base_url: nil, timeout: nil, use_env: true)
+    def initialize(api_key: nil, api_secret: nil, use_env: true, **options)
+      base_url = options[:base_url]
+      timeout = options[:timeout]
+      http_options = options[:http_options] || {}
+      faraday_adapter = options[:faraday_adapter] || http_options[:faraday_adapter]
+      faraday_adapter_options = options[:faraday_adapter_options] || http_options[:faraday_adapter_options]
+      connection_keep_alive = if options.key?(:connection_keep_alive)
+                                options[:connection_keep_alive]
+                              else
+                                http_options[:connection_keep_alive]
+                              end
+
       if use_env
         @api_key = api_key || ENV.fetch('STREAM_API_KEY', nil)
         @api_secret = api_secret || ENV.fetch('STREAM_API_SECRET', nil)
@@ -20,6 +32,13 @@ module GetStreamRuby
         @timeout = timeout || 30
       end
 
+      @faraday_adapter = (faraday_adapter || ENV.fetch('STREAM_FARADAY_ADAPTER', nil))&.to_sym
+      @faraday_adapter_options = faraday_adapter_options || default_adapter_options
+      @connection_keep_alive = if connection_keep_alive.nil?
+                                 ENV.fetch('STREAM_CONNECTION_KEEP_ALIVE', 'true') == 'true'
+                               else
+                                 connection_keep_alive
+                               end
       @logger = nil
     end
 
@@ -38,6 +57,9 @@ module GetStreamRuby
         api_secret: @api_secret,
         base_url: @base_url,
         timeout: @timeout,
+        faraday_adapter: @faraday_adapter,
+        faraday_adapter_options: @faraday_adapter_options.dup,
+        connection_keep_alive: @connection_keep_alive,
       )
     end
 
@@ -47,9 +69,8 @@ module GetStreamRuby
     end
 
     # Method 1: Manual configuration (no environment variables)
-    def self.manual(api_key:, api_secret:, base_url: nil, timeout: nil)
-      new(api_key: api_key, api_secret: api_secret,
-          base_url: base_url, timeout: timeout, use_env: false)
+    def self.manual(api_key:, api_secret:, **options)
+      new(api_key: api_key, api_secret: api_secret, use_env: false, **options)
     end
 
     # Method 2: .env file (loads .env file via dotenv gem, falls back to env vars)
@@ -61,6 +82,12 @@ module GetStreamRuby
     # Method 3: Environment variables (no .env file, direct system env)
     def self.from_system_env
       new(use_env: true)
+    end
+
+    private
+
+    def default_adapter_options
+      {}
     end
 
   end

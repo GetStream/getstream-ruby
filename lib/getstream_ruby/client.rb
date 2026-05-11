@@ -21,16 +21,15 @@ module GetStreamRuby
 
     attr_reader :configuration
 
-    def initialize(config = nil, api_key: nil, api_secret: nil, base_url: nil, timeout: nil)
+    def initialize(config = nil, api_key: nil, api_secret: nil, **options)
       @configuration = config || GetStreamRuby.configuration
 
       # Create new configuration with overrides if any parameters provided
-      if api_key || api_secret || base_url || timeout
+      if api_key || api_secret || !options.empty?
         @configuration = Configuration.with_overrides(
           api_key: api_key,
           api_secret: api_secret,
-          base_url: base_url,
-          timeout: timeout,
+          **options,
         )
       end
 
@@ -131,10 +130,22 @@ module GetStreamRuby
           backoff_factor: 2,
         }
         conn.response :json, content_type: /\bjson$/
-        conn.adapter Faraday.default_adapter
+        conn.headers['Connection'] = 'keep-alive' if @configuration.connection_keep_alive
+        configure_adapter(conn)
         conn.options.timeout = @configuration.timeout
 
       end
+    end
+
+    def configure_adapter(connection)
+      adapter = @configuration.faraday_adapter || Faraday.default_adapter
+      adapter_options = @configuration.faraday_adapter_options || {}
+      connection.adapter(adapter, **adapter_options)
+    rescue Faraday::Error, ArgumentError => e
+      @configuration.logger&.warn(
+        "Falling back to #{Faraday.default_adapter}: could not use adapter #{adapter} (#{e.message})",
+      )
+      connection.adapter Faraday.default_adapter
     end
 
     def generate_auth_header

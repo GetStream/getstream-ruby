@@ -36,7 +36,21 @@ require 'getstream_ruby'
 client = GetStreamRuby.manual(
   api_key: "your_api_key",
   api_secret: "your_api_secret",
+  # Optional HTTP tuning for keep-alive / connection reuse
+  connection_keep_alive: true,
+  # Optional: bring your own Faraday adapter (default is Faraday.default_adapter)
+  faraday_adapter: :net_http,
+  faraday_adapter_options: {
+    # adapter-specific options
+  }
 )
+```
+
+You can also set these via environment variables:
+
+```bash
+STREAM_CONNECTION_KEEP_ALIVE=true
+STREAM_FARADAY_ADAPTER=net_http
 ```
 
 ### Method 2: .env File

@@ -12,12 +12,11 @@ module GetStreamRuby
   class << self
 
     # Method 1: Manual configuration (highest priority)
-    def manual(api_key:, api_secret:, base_url: nil, timeout: nil)
+    def manual(api_key:, api_secret:, **options)
       config = Configuration.manual(
         api_key: api_key,
         api_secret: api_secret,
-        base_url: base_url,
-        timeout: timeout,
+        **options,
       )
       Client.new(config)
     end
