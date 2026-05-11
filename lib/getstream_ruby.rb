@@ -12,12 +12,16 @@ module GetStreamRuby
   class << self
 
     # Method 1: Manual configuration (highest priority)
-    def manual(api_key:, api_secret:, base_url: nil, timeout: nil)
+    def manual(api_key:, api_secret:, base_url: nil, timeout: nil, faraday_adapter: nil,
+               faraday_adapter_options: nil, connection_keep_alive: nil)
       config = Configuration.manual(
         api_key: api_key,
         api_secret: api_secret,
         base_url: base_url,
         timeout: timeout,
+        faraday_adapter: faraday_adapter,
+        faraday_adapter_options: faraday_adapter_options,
+        connection_keep_alive: connection_keep_alive,
       )
       Client.new(config)
     end

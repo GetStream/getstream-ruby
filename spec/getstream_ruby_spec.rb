@@ -23,6 +23,24 @@ RSpec.describe GetStreamRuby do
       expect(client).to be_a(GetStreamRuby::Client)
       expect(client.configuration.api_key).to eq('manual_key')
       expect(client.configuration.api_secret).to eq('manual_secret')
+      expect(client.configuration.faraday_adapter).to be_nil
+      expect(client.configuration.faraday_adapter_options).to eq({})
+      expect(client.configuration.connection_keep_alive).to eq(true)
+ 
+    end
+
+    it 'creates a client with custom faraday adapter settings' do
+
+      client = GetStreamRuby.manual(
+        api_key: 'manual_key',
+        api_secret: 'manual_secret',
+        faraday_adapter: :net_http,
+        faraday_adapter_options: {},
+        connection_keep_alive: false,
+      )
+      expect(client.configuration.faraday_adapter).to eq(:net_http)
+      expect(client.configuration.faraday_adapter_options).to eq({})
+      expect(client.configuration.connection_keep_alive).to eq(false)
 
     end
 
