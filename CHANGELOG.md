@@ -1,3 +1,30 @@
+## [Unreleased]
+
+### Added
+
+- Webhook handling spec helpers (CHA-2961): `UnknownEvent` class for forward-compat;
+  `gunzip_payload`, `decode_sqs_payload`, `decode_sns_payload` primitives;
+  `parse_event` (returns typed event or `UnknownEvent` for unrecognized discriminators);
+  `verify_and_parse_webhook` HTTP composite; `parse_sqs_payload` / `parse_sns_payload`
+  queue composites (no signature — backend emits no HMAC for queue messages today).
+- New `Stream::Webhook` module alias (preferred). `StreamChat::Webhook` retained as
+  backward-compat alias for one minor-version cycle.
+- New unified error class: `StreamChat::Webhook::InvalidWebhookError` covering signature
+  mismatch, invalid JSON, missing/non-string `type` field, gzip decompression failure,
+  invalid base64 in a queue body, and malformed SNS envelopes. Distinguish failure modes
+  via the message substring or `cause` chain rather than the class.
+- New instance methods on `GetStreamRuby::Client`: `verify_signature(body, signature)` and
+  `verify_and_parse_webhook(body, signature)` — drop the `api_secret` parameter in favor
+  of the client's stored secret. Dual API: module-level methods remain available.
+- Conformance fixture suite under `test/fixtures/webhooks/` (14 event-type buckets plus
+  `_invalid/` negative cases).
+
+### Changed
+
+- No breaking changes.
+
+[Spec](https://www.notion.so/stream-wiki/Server-Side-SDK-Webhook-Handling-Spec-34b6a5d7f9f681e78003c443f227493c)
+
 ## [6.0.0] - 2026-04-17
 
 ### major^2 changes

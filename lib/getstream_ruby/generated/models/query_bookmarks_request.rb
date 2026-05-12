@@ -21,12 +21,18 @@ module GetStream
         # @!attribute prev
         #   @return [String]
         attr_accessor :prev
+        # @!attribute user_id
+        #   @return [String]
+        attr_accessor :user_id
         # @!attribute sort
         #   @return [Array<SortParamRequest>] Sorting parameters for the query
         attr_accessor :sort
         # @!attribute filter
         #   @return [Object] Filters to apply to the query
         attr_accessor :filter
+        # @!attribute user
+        #   @return [UserRequest]
+        attr_accessor :user
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -35,8 +41,10 @@ module GetStream
           @limit = attributes[:limit] || attributes['limit'] || nil
           @next = attributes[:next] || attributes['next'] || nil
           @prev = attributes[:prev] || attributes['prev'] || nil
+          @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @sort = attributes[:sort] || attributes['sort'] || nil
           @filter = attributes[:filter] || attributes['filter'] || nil
+          @user = attributes[:user] || attributes['user'] || nil
         end
 
         # Override field mappings for JSON serialization
@@ -46,8 +54,10 @@ module GetStream
             limit: 'limit',
             next: 'next',
             prev: 'prev',
+            user_id: 'user_id',
             sort: 'sort',
-            filter: 'filter'
+            filter: 'filter',
+            user: 'user'
           }
         end
       end
