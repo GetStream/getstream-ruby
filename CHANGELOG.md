@@ -5,8 +5,10 @@
 - Webhook handling spec helpers (CHA-2961): `UnknownEvent` class for forward-compat;
   `gunzip_payload`, `decode_sqs_payload`, `decode_sns_payload` primitives;
   `parse_event` (returns typed event or `UnknownEvent` for unrecognized discriminators);
-  `verify_and_parse_webhook` HTTP composite; `parse_sqs_payload` / `parse_sns_payload`
-  queue composites (no signature — backend emits no HMAC for queue messages today).
+  `verify_and_parse_webhook` HTTP composite; `parse_sqs` / `parse_sns`
+  queue composites (no signature; backend emits no HMAC for queue messages today).
+  Security for queue-delivered payloads is enforced via AWS IAM on the SQS/SNS
+  subscription, not in-SDK.
 - New `Stream::Webhook` module alias (preferred). `StreamChat::Webhook` retained as
   backward-compat alias for one minor-version cycle.
 - New unified error class: `StreamChat::Webhook::InvalidWebhookError` covering signature
@@ -22,6 +24,12 @@
 ### Changed
 
 - No breaking changes.
+
+### Fixed
+
+- `event_class_for_type` now references `GetStream::Generated::Models::*Event`
+  (was `StreamChat::*Event`, which raised `NameError` at runtime). `parse_event`
+  resolves known event types correctly.
 
 [Spec](https://www.notion.so/stream-wiki/Server-Side-SDK-Webhook-Handling-Spec-34b6a5d7f9f681e78003c443f227493c)
 

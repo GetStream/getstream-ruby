@@ -908,7 +908,7 @@ class WebhookTest < Minitest::Test
 
   # ---------------------------------------------------------------------------
   # Spec §6 helpers + composites: parse_event, gunzip_payload, decode_sqs_payload,
-  # decode_sns_payload, verify_and_parse_webhook, parse_sqs_payload, parse_sns_payload.
+  # decode_sns_payload, verify_and_parse_webhook, parse_sqs, parse_sns.
   # ---------------------------------------------------------------------------
 
   def test_stream_webhook_canonical_alias_resolves
@@ -1031,18 +1031,18 @@ class WebhookTest < Minitest::Test
     end
   end
 
-  def test_parse_sqs_payload_happy_path
+  def test_parse_sqs_happy_path
     plain = '{"type":"message.new"}'
-    refute_nil StreamChat::Webhook.parse_sqs_payload(Base64.strict_encode64(plain))
+    refute_nil StreamChat::Webhook.parse_sqs(Base64.strict_encode64(plain))
   end
 
-  def test_parse_sns_payload_happy_path
+  def test_parse_sns_happy_path
     plain = '{"type":"message.new"}'
     envelope = JSON.generate(
       'Type' => 'Notification',
       'Message' => Base64.strict_encode64(plain)
     )
-    refute_nil StreamChat::Webhook.parse_sns_payload(envelope)
+    refute_nil StreamChat::Webhook.parse_sns(envelope)
   end
 end
 
@@ -1090,12 +1090,12 @@ class WebhookConformanceTest < Minitest::Test
                  "verify_and_parse_webhook (identity) failed for #{name}"
       refute_nil StreamChat::Webhook.verify_and_parse_webhook(body_gz, sig, CANONICAL_TEST_SECRET),
                  "verify_and_parse_webhook (gzip) failed for #{name}"
-      refute_nil StreamChat::Webhook.parse_sqs_payload(sqs_compressed),
-                 "parse_sqs_payload (compressed) failed for #{name}"
-      refute_nil StreamChat::Webhook.parse_sqs_payload(sqs_raw),
-                 "parse_sqs_payload (uncompressed) failed for #{name}"
-      refute_nil StreamChat::Webhook.parse_sns_payload(sns),
-                 "parse_sns_payload failed for #{name}"
+      refute_nil StreamChat::Webhook.parse_sqs(sqs_compressed),
+                 "parse_sqs (compressed) failed for #{name}"
+      refute_nil StreamChat::Webhook.parse_sqs(sqs_raw),
+                 "parse_sqs (uncompressed) failed for #{name}"
+      refute_nil StreamChat::Webhook.parse_sns(sns),
+                 "parse_sns failed for #{name}"
     end
   end
 
@@ -1168,7 +1168,7 @@ class WebhookConformanceTest < Minitest::Test
 
     msg = File.read(File.join(neg_dir('bad_base64'), 'sqs_body.txt')).strip
     err = assert_raises(StreamChat::Webhook::InvalidWebhookError) do
-      StreamChat::Webhook.parse_sqs_payload(msg)
+      StreamChat::Webhook.parse_sqs(msg)
     end
     assert_includes err.message, 'base64'
   end
@@ -1178,7 +1178,7 @@ class WebhookConformanceTest < Minitest::Test
 
     notif = File.read(File.join(neg_dir('bad_sns_envelope'), 'sns_notification.txt')).strip
     err = assert_raises(StreamChat::Webhook::InvalidWebhookError) do
-      StreamChat::Webhook.parse_sns_payload(notif)
+      StreamChat::Webhook.parse_sns(notif)
     end
     assert_includes err.message, 'SNS envelope'
   end
