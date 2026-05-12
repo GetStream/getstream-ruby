@@ -106,6 +106,23 @@ module GetStreamRuby
       StreamChat::Webhook.verify_and_parse_webhook(body, signature, @configuration.api_secret)
     end
 
+    # Decode + parse a Stream-delivered SQS message body.
+    #
+    # Convenience wrapper around StreamChat::Webhook.parse_sqs. No signature is
+    # required; SQS deliveries are authenticated via AWS IAM.
+    def parse_sqs(message_body)
+      StreamChat::Webhook.parse_sqs(message_body)
+    end
+
+    # Decode + parse a Stream-delivered SNS notification body.
+    #
+    # Accepts either the raw SNS HTTP envelope JSON or the pre-extracted Message
+    # string. Convenience wrapper around StreamChat::Webhook.parse_sns. No signature
+    # is required; SNS deliveries are authenticated via AWS IAM.
+    def parse_sns(notification_body)
+      StreamChat::Webhook.parse_sns(notification_body)
+    end
+
     # @param path [String] The API path
     # @param body [Hash] The request body
     # @return [GetStreamRuby::StreamResponse] The API response

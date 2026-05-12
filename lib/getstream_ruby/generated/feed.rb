@@ -17,11 +17,13 @@ module GetStream
       # Delete a single feed by its ID
       #
       # @param hard_delete [Boolean]
+      # @param purge_user_activities [Boolean]
       # @return [Models::DeleteFeedResponse]
-      def delete_feed(hard_delete = nil)
+      def delete_feed(hard_delete = nil, purge_user_activities = nil)
         # Build query parameters
         query_params = {}
         query_params['hard_delete'] = hard_delete unless hard_delete.nil?
+        query_params['purge_user_activities'] = purge_user_activities unless purge_user_activities.nil?
 
         # Delegate to the FeedsClient
         @client.feeds.delete_feed(@feed_group_id, @feed_id, query_params)

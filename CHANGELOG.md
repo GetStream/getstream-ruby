@@ -18,6 +18,8 @@
 - New instance methods on `GetStreamRuby::Client`: `verify_signature(body, signature)` and
   `verify_and_parse_webhook(body, signature)` — drop the `api_secret` parameter in favor
   of the client's stored secret. Dual API: module-level methods remain available.
+- New instance methods on `GetStreamRuby::Client`: `parse_sqs(message_body)` and
+  `parse_sns(notification_body)` (no signature; AWS IAM).
 - Conformance fixture suite under `test/fixtures/webhooks/` (14 event-type buckets plus
   `_invalid/` negative cases).
 

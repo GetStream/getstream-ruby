@@ -992,8 +992,9 @@ module GetStream
       # @param feed_group_id [String]
       # @param feed_id [String]
       # @param hard_delete [Boolean]
+      # @param purge_user_activities [Boolean]
       # @return [Models::DeleteFeedResponse]
-      def delete_feed(feed_group_id, feed_id, hard_delete = nil)
+      def delete_feed(feed_group_id, feed_id, hard_delete = nil, purge_user_activities = nil)
         path = '/api/v2/feeds/feed_groups/{feed_group_id}/feeds/{feed_id}'
         # Replace path parameters
         path = path.gsub('{feed_group_id}', feed_group_id.to_s)
@@ -1001,6 +1002,7 @@ module GetStream
         # Build query parameters
         query_params = {}
         query_params['hard_delete'] = hard_delete unless hard_delete.nil?
+        query_params['purge_user_activities'] = purge_user_activities unless purge_user_activities.nil?
 
         # Make the API request
         @client.make_request(
