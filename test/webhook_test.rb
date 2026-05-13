@@ -980,10 +980,12 @@ class WebhookTest < Minitest::Test
     assert_equal plain, StreamChat::Webhook.decode_sqs_payload(encoded)
   end
 
-  def test_decode_sqs_payload_raises_on_invalid_base64
-    assert_raises(StreamChat::Webhook::InvalidWebhookError) do
-      StreamChat::Webhook.decode_sqs_payload('!!!not base64!!!')
-    end
+  def test_decode_sqs_payload_passes_through_non_base64
+    # Per chat#13392 wire format: SQS bodies are raw JSON when
+    # hook_payload_compression is off. decode_sqs_payload must fall back to
+    # raw bytes on non-base64 input rather than raise.
+    plain = '{"type":"message.new"}'
+    assert_equal plain, StreamChat::Webhook.decode_sqs_payload(plain)
   end
 
   def test_decode_sns_payload_extracts_and_decodes_message
@@ -1164,13 +1166,16 @@ class WebhookConformanceTest < Minitest::Test
   end
 
   def test_bad_base64
+    # Per CHA-3071 wire format: decode_sqs_payload falls back to raw bytes when
+    # base64 decoding fails (uncompressed wire format). For input that is
+    # neither valid base64 nor valid JSON nor gzip-prefixed, parse_sqs still
+    # raises InvalidWebhookError — just down the chain at JSON parsing.
     skip 'fixtures not present' unless fixtures_present?
 
     msg = File.read(File.join(neg_dir('bad_base64'), 'sqs_body.txt')).strip
-    err = assert_raises(StreamChat::Webhook::InvalidWebhookError) do
+    assert_raises(StreamChat::Webhook::InvalidWebhookError) do
       StreamChat::Webhook.parse_sqs(msg)
     end
-    assert_includes err.message, 'base64'
   end
 
   def test_bad_sns_envelope
