@@ -926,25 +926,25 @@ class WebhookTest < Minitest::Test
   end
 
   def test_parse_event_empty_body
-    assert_raises(StreamChat::Webhook::MalformedWebhookError) do
+    assert_raises(StreamChat::Webhook::InvalidWebhookError) do
       StreamChat::Webhook.parse_event('')
     end
   end
 
   def test_parse_event_invalid_json
-    assert_raises(StreamChat::Webhook::MalformedWebhookError) do
+    assert_raises(StreamChat::Webhook::InvalidWebhookError) do
       StreamChat::Webhook.parse_event('not json')
     end
   end
 
   def test_parse_event_non_object_json
-    assert_raises(StreamChat::Webhook::MalformedWebhookError) do
+    assert_raises(StreamChat::Webhook::InvalidWebhookError) do
       StreamChat::Webhook.parse_event('[1,2,3]')
     end
   end
 
   def test_parse_event_missing_type
-    assert_raises(StreamChat::Webhook::MalformedWebhookError) do
+    assert_raises(StreamChat::Webhook::InvalidWebhookError) do
       StreamChat::Webhook.parse_event('{"foo":"bar"}')
     end
   end
@@ -962,7 +962,7 @@ class WebhookTest < Minitest::Test
 
   def test_gunzip_payload_raises_on_corrupt_gzip
     corrupt = "\x1F\x8Bnot-actually-a-gzip-stream".b
-    assert_raises(StreamChat::Webhook::MalformedWebhookError) do
+    assert_raises(StreamChat::Webhook::InvalidWebhookError) do
       StreamChat::Webhook.gunzip_payload(corrupt)
     end
   end
@@ -1028,14 +1028,11 @@ class WebhookTest < Minitest::Test
   def test_verify_and_parse_webhook_raises_on_tampered_body
     body = '{"type":"message.new"}'
     sig = compute_signature(body, SECRET)
-    # Signature-mismatch path must raise InvalidSignatureError. Base class
-    # Webhook::Error must also match for single-arm rescuers.
-    assert_raises(StreamChat::Webhook::InvalidSignatureError) do
+    # Single-arm rescue on the unified InvalidWebhookError; message identifies the mode.
+    err = assert_raises(StreamChat::Webhook::InvalidWebhookError) do
       StreamChat::Webhook.verify_and_parse_webhook('{"type":"message.deleted"}', sig, SECRET)
     end
-    assert_raises(StreamChat::Webhook::Error) do
-      StreamChat::Webhook.verify_and_parse_webhook('{"type":"message.deleted"}', sig, SECRET)
-    end
+    assert_includes err.message, StreamChat::Webhook::InvalidWebhookError::SIGNATURE_MISMATCH
   end
 
   def test_parse_sqs_happy_path
@@ -1115,10 +1112,10 @@ class WebhookConformanceTest < Minitest::Test
 
     body = File.binread(File.join(neg_dir('tampered_body'), 'body.json'))
     sig = File.read(File.join(neg_dir('tampered_body'), 'signature.txt')).strip
-    err = assert_raises(StreamChat::Webhook::MalformedWebhookError) do
+    err = assert_raises(StreamChat::Webhook::InvalidWebhookError) do
       StreamChat::Webhook.verify_and_parse_webhook(body, sig, CANONICAL_TEST_SECRET)
     end
-    assert_includes err.message, 'signature mismatch'
+    assert_includes err.message, StreamChat::Webhook::InvalidWebhookError::SIGNATURE_MISMATCH
   end
 
   def test_unknown_type_returns_unknown_event
@@ -1134,7 +1131,7 @@ class WebhookConformanceTest < Minitest::Test
     skip 'fixtures not present' unless fixtures_present?
 
     body = File.binread(File.join(neg_dir('missing_type'), 'body.json'))
-    err = assert_raises(StreamChat::Webhook::MalformedWebhookError) do
+    err = assert_raises(StreamChat::Webhook::InvalidWebhookError) do
       StreamChat::Webhook.parse_event(body)
     end
     assert_includes err.message, "missing 'type'"
@@ -1144,7 +1141,7 @@ class WebhookConformanceTest < Minitest::Test
     skip 'fixtures not present' unless fixtures_present?
 
     body = File.binread(File.join(neg_dir('malformed_json'), 'body.json'))
-    err = assert_raises(StreamChat::Webhook::MalformedWebhookError) do
+    err = assert_raises(StreamChat::Webhook::InvalidWebhookError) do
       StreamChat::Webhook.parse_event(body)
     end
     assert_includes err.message, 'failed to parse webhook payload'
@@ -1154,7 +1151,7 @@ class WebhookConformanceTest < Minitest::Test
     skip 'fixtures not present' unless fixtures_present?
 
     body = File.binread(File.join(neg_dir('empty_body'), 'body.json'))
-    err = assert_raises(StreamChat::Webhook::MalformedWebhookError) do
+    err = assert_raises(StreamChat::Webhook::InvalidWebhookError) do
       StreamChat::Webhook.parse_event(body)
     end
     assert_includes err.message, 'must not be empty'
@@ -1164,7 +1161,7 @@ class WebhookConformanceTest < Minitest::Test
     skip 'fixtures not present' unless fixtures_present?
 
     body = File.binread(File.join(neg_dir('bad_compression'), 'body.gz'))
-    err = assert_raises(StreamChat::Webhook::MalformedWebhookError) do
+    err = assert_raises(StreamChat::Webhook::InvalidWebhookError) do
       StreamChat::Webhook.gunzip_payload(body)
     end
     assert_includes err.message, 'gzip decompression failed'
@@ -1174,11 +1171,11 @@ class WebhookConformanceTest < Minitest::Test
     # Per CHA-3071 wire format: decode_sqs_payload falls back to raw bytes when
     # base64 decoding fails (uncompressed wire format). For input that is
     # neither valid base64 nor valid JSON nor gzip-prefixed, parse_sqs still
-    # raises MalformedWebhookError — just down the chain at JSON parsing.
+    # raises InvalidWebhookError — just down the chain at JSON parsing.
     skip 'fixtures not present' unless fixtures_present?
 
     msg = File.read(File.join(neg_dir('bad_base64'), 'sqs_body.txt')).strip
-    assert_raises(StreamChat::Webhook::MalformedWebhookError) do
+    assert_raises(StreamChat::Webhook::InvalidWebhookError) do
       StreamChat::Webhook.parse_sqs(msg)
     end
   end
@@ -1187,11 +1184,11 @@ class WebhookConformanceTest < Minitest::Test
     # Fix #4: bad_sns_envelope (non-envelope JSON) is now treated as a
     # pre-extracted Message string and flows through the SQS path, surfacing
     # as a downstream parse failure rather than SNS-specific. Still
-    # MalformedWebhookError.
+    # InvalidWebhookError.
     skip 'fixtures not present' unless fixtures_present?
 
     notif = File.read(File.join(neg_dir('bad_sns_envelope'), 'sns_notification.txt')).strip
-    assert_raises(StreamChat::Webhook::MalformedWebhookError) do
+    assert_raises(StreamChat::Webhook::InvalidWebhookError) do
       StreamChat::Webhook.parse_sns(notif)
     end
   end
