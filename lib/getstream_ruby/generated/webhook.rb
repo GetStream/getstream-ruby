@@ -172,14 +172,21 @@ require_relative 'models/user_updated_event'
 
 module StreamChat
   module Webhook
-    # Raised for every webhook handling failure: signature mismatch, invalid
-    # JSON, missing/non-string +type+ field, gzip decompression failure,
-    # invalid base64 in a queue body, or a malformed SNS envelope.
-    #
-    # The unified class replaces the earlier split (separate signature vs.
-    # malformed errors): customers distinguish failure modes via the message
-    # substring or +cause+ chain rather than the class.
-    class InvalidWebhookError < StandardError; end
+    # Base class for every webhook handling failure. Rescue +Error+ for a
+    # single arm that covers all modes, or one of its subclasses
+    # ({InvalidSignatureError}, {MalformedWebhookError}) to distinguish
+    # security failures from parse failures.
+    class Error < StandardError; end
+
+    # Raised when the X-Signature header does not match the HMAC-SHA256 of
+    # the body under the configured webhook secret. Treat as a security
+    # failure: log the source and reject the request.
+    class InvalidSignatureError < Error; end
+
+    # Raised when the body could not be parsed: invalid JSON, missing/non-
+    # string +type+ field, gzip decompression failure, base64 failure, or
+    # malformed SNS envelope. Treat as a client/format problem.
+    class MalformedWebhookError < Error; end
 
     # Returned by parse_event when the type discriminator is well-formed but
     # unknown to this SDK version.
@@ -789,17 +796,17 @@ module StreamChat
     #
     # @param body [String] raw body (binary-safe)
     # @return [String] decompressed body, or the original body if not gzip-prefixed
-    # @raise [InvalidWebhookError] if body has the gzip magic prefix but
+    # @raise [MalformedWebhookError] if body has the gzip magic prefix but
     #        isn't a valid gzip stream
     def self.gunzip_payload(body)
-      raise InvalidWebhookError, 'body must be a String' unless body.is_a?(String)
+      raise MalformedWebhookError, 'body must be a String' unless body.is_a?(String)
 
       bytes = body.b
       return bytes if bytes.bytesize < 2 || bytes.byteslice(0, 2) != GZIP_MAGIC
 
       Zlib.gunzip(bytes)
     rescue Zlib::Error => e
-      raise InvalidWebhookError, "gzip decompression failed: #{e.message}"
+      raise MalformedWebhookError, "gzip decompression failed: #{e.message}"
     end
 
     # Decode an SQS Message Body: try base64 first, fall back to raw bytes if
@@ -817,9 +824,9 @@ module StreamChat
     #
     # @param message_body [String]
     # @return [String]
-    # @raise [InvalidWebhookError] only if gzip decompression fails (input had gzip magic prefix)
+    # @raise [MalformedWebhookError] only if gzip decompression fails (input had gzip magic prefix)
     def self.decode_sqs_payload(message_body)
-      raise InvalidWebhookError, 'message_body must be a String' unless message_body.is_a?(String)
+      raise MalformedWebhookError, 'message_body must be a String' unless message_body.is_a?(String)
 
       decoded =
         begin
@@ -831,25 +838,38 @@ module StreamChat
       gunzip_payload(decoded)
     end
 
-    # Extract the +Message+ field from a standard AWS SNS notification envelope,
-    # then base64-decode and gunzip. Envelope shape:
-    #   {"Type":"Notification","Message":"<base64>","MessageId":"...","Timestamp":"...","TopicArn":"..."}
+    # Return the inner +Message+ field when +body+ is a standard SNS
+    # notification envelope JSON; otherwise return +body+ unchanged so a
+    # pre-extracted Message string flows through.
+    #
+    # Heuristic: try to JSON-parse the input. If it yields a Hash with a
+    # String +Message+ field, that's the envelope shape — return the Message.
+    # Otherwise the input is presumed to BE the pre-extracted Message
+    # (base64-encoded bytes are not valid JSON, so this falls through cleanly).
+    def self.unwrap_sns_notification_body(body)
+      env = JSON.parse(body)
+      return env['Message'] if env.is_a?(Hash) && env['Message'].is_a?(String)
+
+      body
+    rescue JSON::ParserError
+      body
+    end
+    private_class_method :unwrap_sns_notification_body
+
+    # Decode an SNS notification body. Accepts either:
+    # * a full SNS HTTP notification envelope JSON
+    #   ({"Type":"Notification","Message":"<base64>",...}), or
+    # * a pre-extracted Message string (forwarded-through-SQS path).
+    # The inner payload is then base64-decoded and gunzipped via
+    # {decode_sqs_payload}.
     #
     # @param notification_body [String]
     # @return [String]
-    # @raise [InvalidWebhookError]
+    # @raise [MalformedWebhookError]
     def self.decode_sns_payload(notification_body)
-      raise InvalidWebhookError, 'notification_body must be a String' unless notification_body.is_a?(String)
+      raise MalformedWebhookError, 'notification_body must be a String' unless notification_body.is_a?(String)
 
-      env = JSON.parse(notification_body)
-      raise InvalidWebhookError, 'SNS envelope must be a JSON object' unless env.is_a?(Hash)
-
-      msg = env['Message']
-      raise InvalidWebhookError, "SNS envelope missing 'Message' string field" unless msg.is_a?(String)
-
-      decode_sqs_payload(msg)
-    rescue JSON::ParserError => e
-      raise InvalidWebhookError, "invalid SNS envelope JSON: #{e.message}"
+      decode_sqs_payload(unwrap_sns_notification_body(notification_body))
     end
 
     # Parse a webhook payload and return the typed event for known discriminators
@@ -860,18 +880,18 @@ module StreamChat
     #
     # @param payload [String]
     # @return [Object] the typed event class instance or {UnknownEvent}
-    # @raise [InvalidWebhookError] for invalid JSON, missing/non-string type field,
+    # @raise [MalformedWebhookError] for invalid JSON, missing/non-string type field,
     #        or known-type deserialization failure
     def self.parse_event(payload)
-      raise InvalidWebhookError, 'payload must be a String' unless payload.is_a?(String)
-      raise InvalidWebhookError, 'payload must not be empty' if payload.empty?
+      raise MalformedWebhookError, 'payload must be a String' unless payload.is_a?(String)
+      raise MalformedWebhookError, 'payload must not be empty' if payload.empty?
 
       data = JSON.parse(payload)
-      raise InvalidWebhookError, 'webhook payload must be a JSON object' unless data.is_a?(Hash)
+      raise MalformedWebhookError, 'webhook payload must be a JSON object' unless data.is_a?(Hash)
 
       event_type = data['type']
       unless event_type.is_a?(String) && !event_type.empty?
-        raise InvalidWebhookError, "webhook payload missing 'type' string field"
+        raise MalformedWebhookError, "webhook payload missing 'type' string field"
       end
 
       event_class = event_class_for_type(event_type)
@@ -880,10 +900,10 @@ module StreamChat
       begin
         event_class.new(data)
       rescue StandardError => e
-        raise InvalidWebhookError, "failed to deserialize event: #{e.message}"
+        raise MalformedWebhookError, "failed to deserialize event: #{e.message}"
       end
     rescue JSON::ParserError => e
-      raise InvalidWebhookError, "failed to parse webhook payload: #{e.message}"
+      raise MalformedWebhookError, "failed to parse webhook payload: #{e.message}"
     end
 
     private_class_method def self.build_unknown_event(event_type, data)
@@ -911,12 +931,13 @@ module StreamChat
     # @param signature [String] X-Signature header value
     # @param secret [String] webhook secret
     # @return [Object] the typed event class instance or {UnknownEvent}
-    # @raise [InvalidWebhookError] for signature mismatches as well as
-    #        parse/decompression failures; distinguish modes via the message
-    #        substring
+    # @raise [InvalidSignatureError] if the X-Signature header does not match
+    #        the HMAC-SHA256 of the body under the configured secret.
+    # @raise [MalformedWebhookError] if gunzip, JSON parse, type dispatch, or
+    #        event deserialization fails.
     def self.verify_and_parse_webhook(body, signature, secret)
       payload = gunzip_payload(body)
-      raise InvalidWebhookError, 'webhook signature mismatch' unless verify_signature(payload, signature, secret)
+      raise InvalidSignatureError, 'webhook signature mismatch' unless verify_signature(payload, signature, secret)
 
       parse_event(payload)
     end
@@ -929,7 +950,7 @@ module StreamChat
     #
     # @param message_body [String]
     # @return [Object] the typed event class instance or {UnknownEvent}
-    # @raise [InvalidWebhookError]
+    # @raise [MalformedWebhookError]
     def self.parse_sqs(message_body)
       parse_event(decode_sqs_payload(message_body))
     end
@@ -939,7 +960,7 @@ module StreamChat
     #
     # @param notification_body [String]
     # @return [Object] the typed event class instance or {UnknownEvent}
-    # @raise [InvalidWebhookError]
+    # @raise [MalformedWebhookError]
     def self.parse_sns(notification_body)
       parse_event(decode_sns_payload(notification_body))
     end
