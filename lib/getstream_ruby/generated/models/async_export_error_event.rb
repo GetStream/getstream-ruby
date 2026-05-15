@@ -43,7 +43,7 @@ module GetStream
           @started_at = attributes[:started_at] || attributes['started_at']
           @task_id = attributes[:task_id] || attributes['task_id']
           @custom = attributes[:custom] || attributes['custom']
-          @type = attributes[:type] || attributes['type'] || "export.channels.error"
+          @type = attributes[:type] || attributes['type'] || "export.bulk_image_moderation.error"
           @received_at = attributes[:received_at] || attributes['received_at'] || nil
         end
 
