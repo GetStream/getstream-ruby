@@ -21,6 +21,9 @@ module GetStream
         # @!attribute content_type
         #   @return [String] Type of content: 'text' (default), 'message', or 'username'. Stored as-sent; only 'username' routes to the username moderation API.
         attr_accessor :content_type
+        # @!attribute dry_run
+        #   @return [Boolean] When true, run moderation and return labels without persisting the result. Useful for one-off checks (e.g. UI testers) that should not be recorded in the stored history.
+        attr_accessor :dry_run
         # @!attribute policy
         #   @return [String] Optional moderation policy key (max 128 chars)
         attr_accessor :policy
@@ -35,6 +38,7 @@ module GetStream
           @category = attributes[:category] || attributes['category'] || nil
           @content_id = attributes[:content_id] || attributes['content_id'] || nil
           @content_type = attributes[:content_type] || attributes['content_type'] || nil
+          @dry_run = attributes[:dry_run] || attributes['dry_run'] || nil
           @policy = attributes[:policy] || attributes['policy'] || nil
           @user_id = attributes[:user_id] || attributes['user_id'] || nil
         end
@@ -46,6 +50,7 @@ module GetStream
             category: 'category',
             content_id: 'content_id',
             content_type: 'content_type',
+            dry_run: 'dry_run',
             policy: 'policy',
             user_id: 'user_id'
           }

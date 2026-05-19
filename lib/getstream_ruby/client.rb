@@ -13,6 +13,7 @@ require_relative 'generated/chat_client'
 require_relative 'generated/video_client'
 require_relative 'extensions/moderation_extensions'
 require_relative 'generated/feed'
+require_relative 'generated/webhook'
 require_relative 'stream_response'
 
 module GetStreamRuby
@@ -74,6 +75,52 @@ module GetStreamRuby
     # @return [GetStream::Generated::Feed] A feed instance
     def feed(feed_group_id, feed_id)
       GetStream::Generated::Feed.new(self, feed_group_id, feed_id)
+    end
+
+    # Verify a webhook signature using this client's API secret (CHA-2961).
+    #
+    # Convenience wrapper around StreamChat::Webhook.verify_signature that
+    # supplies the secret automatically. The module-level method is still
+    # available for callers that need to verify with an arbitrary secret.
+    #
+    # @param body [String] The raw request body (already-decompressed)
+    # @param signature [String] The signature from the X-Signature header
+    # @return [Boolean] true if the signature is valid, false otherwise
+    def verify_signature(body, signature)
+      StreamChat::Webhook.verify_signature(body, signature, @configuration.api_secret)
+    end
+
+    # Verify and parse a webhook payload in one call, using this client's API
+    # secret (CHA-2961).
+    #
+    # Handles gzip-compressed bodies transparently. Raises
+    # StreamChat::Webhook::InvalidWebhookError on signature mismatch or parse
+    # failures; distinguish failure modes via the message substring.
+    #
+    # @param body [String] raw request body (possibly gzip-compressed)
+    # @param signature [String] X-Signature header value
+    # @return [Object] the typed event class instance or
+    #         StreamChat::Webhook::UnknownEvent
+    # @raise [StreamChat::Webhook::InvalidWebhookError]
+    def verify_and_parse_webhook(body, signature)
+      StreamChat::Webhook.verify_and_parse_webhook(body, signature, @configuration.api_secret)
+    end
+
+    # Decode + parse a Stream-delivered SQS message body.
+    #
+    # Convenience wrapper around StreamChat::Webhook.parse_sqs. No signature is
+    # required; SQS deliveries are authenticated via AWS IAM.
+    def parse_sqs(message_body)
+      StreamChat::Webhook.parse_sqs(message_body)
+    end
+
+    # Decode + parse a Stream-delivered SNS notification body.
+    #
+    # Accepts either the raw SNS HTTP envelope JSON or the pre-extracted Message
+    # string. Convenience wrapper around StreamChat::Webhook.parse_sns. No signature
+    # is required; SNS deliveries are authenticated via AWS IAM.
+    def parse_sns(notification_body)
+      StreamChat::Webhook.parse_sns(notification_body)
     end
 
     # @param path [String] The API path

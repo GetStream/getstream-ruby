@@ -15,19 +15,24 @@ module GetStream
         # @!attribute hard_delete
         #   @return [Boolean] Whether to permanently delete the feeds instead of soft delete
         attr_accessor :hard_delete
+        # @!attribute purge_user_activities
+        #   @return [Boolean] When hard-deleting, also fully delete activities authored by each feed's owner from every other feed those activities were fanned out to. Default false preserves existing fan-out. Requires 'hard_delete' to be true; the request is rejected otherwise. Feeds with no recorded owner (created_by_id is empty) are silently skipped for the purge step — owner-matching against an empty string is a safety guard, not a wildcard.
+        attr_accessor :purge_user_activities
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @feeds = attributes[:feeds] || attributes['feeds']
           @hard_delete = attributes[:hard_delete] || attributes['hard_delete'] || nil
+          @purge_user_activities = attributes[:purge_user_activities] || attributes['purge_user_activities'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
             feeds: 'feeds',
-            hard_delete: 'hard_delete'
+            hard_delete: 'hard_delete',
+            purge_user_activities: 'purge_user_activities'
           }
         end
       end

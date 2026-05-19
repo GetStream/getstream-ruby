@@ -981,6 +981,32 @@ module GetStream
         )
       end
 
+      # Searches mentionable roles (user-assignable + channel-assignable, built-in and custom) by name prefix for autocomplete
+      #
+      # @param query [String]
+      # @param limit [Integer]
+      # @param name_gt [String]
+      # @param role_type [String]
+      # @param include_global_roles [Boolean]
+      # @return [Models::SearchRolesResponse]
+      def search_roles(query, limit = nil, name_gt = nil, role_type = nil, include_global_roles = nil)
+        path = '/api/v2/roles/search'
+        # Build query parameters
+        query_params = {}
+        query_params['query'] = query unless query.nil?
+        query_params['limit'] = limit unless limit.nil?
+        query_params['name_gt'] = name_gt unless name_gt.nil?
+        query_params['role_type'] = role_type unless role_type.nil?
+        query_params['include_global_roles'] = include_global_roles unless include_global_roles.nil?
+
+        # Make the API request
+        @client.make_request(
+          :get,
+          path,
+          query_params: query_params
+        )
+      end
+
       # Deletes custom role
       #
       # @param name [String]
