@@ -12,8 +12,18 @@ concurrency:
 
 jobs:
   unit:
-    name: Unit Tests & Code Quality
+    name: Unit Tests & Code Quality (jwt ${{ matrix.jwt }})
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - jwt: '2'
+            gemfile: gemfiles/jwt_2.gemfile
+          - jwt: '3'
+            gemfile: gemfiles/jwt_3.gemfile
+    env:
+      BUNDLE_GEMFILE: ${{ matrix.gemfile }}
 
     steps:
     - name: Checkout code
@@ -31,6 +41,7 @@ jobs:
       run: make test
 
     - name: Run code quality checks
+      if: matrix.jwt == '3'
       run: |
         make format-check
         make lint

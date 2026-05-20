@@ -1,5 +1,14 @@
 ## [Unreleased]
 
+### Changed
+
+- Relaxed `jwt` dependency constraint from `~> 2.0` to `>= 2.0, < 4` so consumers can
+  run the SDK alongside jwt 3.x (see #58). CI now matrix-tests both jwt 2.x and 3.x.
+- `Configuration#valid?` / `#validate!` now reject empty-string `api_key` / `api_secret`
+  in addition to `nil`. This aligns with jwt 3.x's stricter rejection of empty HMAC keys
+  (CVE-2026-45363) and fails fast under jwt 2.x rather than silently signing tokens
+  with an empty secret.
+
 ### Added
 
 - Webhook handling spec helpers (CHA-2961): `UnknownEvent` class for forward-compat;
