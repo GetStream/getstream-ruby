@@ -70,7 +70,7 @@ def write_outputs(output_path, values)
   File.open(output_path, 'a') { |file| file.write(lines) }
 end
 
-def parse_bool(value)
+def truthy?(value)
   value.to_s.strip.downcase == 'true'
 end
 
@@ -98,14 +98,14 @@ VERSION_FILE = 'lib/getstream_ruby/version.rb'
 
 manual = options[:manual_bump].to_s.strip.downcase
 
-if !manual.empty?
+unless manual.empty?
   unless %w[major minor patch].include?(manual)
     warn('manual-bump must be one of: major, minor, patch')
     exit(1)
   end
 
   previous_version = find_latest_semver_tag
-  next_version = if parse_bool(options[:use_current_version])
+  next_version = if truthy?(options[:use_current_version])
                    read_version_file(VERSION_FILE)
                  else
                    updated = increment_version(previous_version, manual)
