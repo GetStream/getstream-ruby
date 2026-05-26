@@ -4,6 +4,8 @@ require 'faraday'
 require 'faraday/gzip'
 require 'faraday/retry'
 require 'faraday/multipart'
+require 'faraday/net_http_persistent'
+require 'logger'
 require 'json'
 require 'jwt'
 require_relative 'generated/base_model'
@@ -168,6 +170,10 @@ module GetStreamRuby
     end
 
     def build_connection
+      # §7 escape hatch #1: user supplied a fully-built Faraday::Connection.
+      # Use it as-is; none of the 5 knobs apply.
+      return @configuration.http_client if @configuration.http_client
+
       Faraday.new(url: @configuration.base_url) do |conn|
 
         conn.request :multipart
@@ -180,20 +186,40 @@ module GetStreamRuby
         conn.response :json, content_type: /\bjson$/
         # :gzip must come after :json (Faraday runs response middleware in reverse).
         conn.request :gzip
-        conn.headers['Connection'] = 'keep-alive' if @configuration.connection_keep_alive
         configure_adapter(conn)
-        conn.options.timeout = @configuration.timeout
+
+        conn.options.timeout = @configuration.request_timeout
+        conn.options.open_timeout = @configuration.connect_timeout
 
       end
     end
 
     def configure_adapter(connection)
-      adapter = @configuration.faraday_adapter || Faraday.default_adapter
-      adapter_options = @configuration.faraday_adapter_options || {}
-      connection.adapter(adapter, **adapter_options)
+      # §7 escape hatch #2: custom adapter symbol. Use it with the user's
+      # adapter_options; do NOT apply pool_size/idle_timeout (those are
+      # net_http_persistent-specific).
+      if @configuration.faraday_adapter
+        adapter = @configuration.faraday_adapter
+        adapter_options = @configuration.faraday_adapter_options || {}
+        # Header-based keep-alive only on the custom-adapter path. net_http_persistent
+        # (default) keeps connections alive natively without any HTTP header.
+        connection.headers['Connection'] = 'keep-alive' if @configuration.connection_keep_alive
+        connection.adapter(adapter, **adapter_options)
+        return
+      end
+
+      # Default: net_http_persistent with the 5-knob spec config.
+      # §5 invariant 4 — never set Connection: close; net_http_persistent keeps
+      # connections alive natively.
+      idle = @configuration.idle_timeout
+      connection.adapter :net_http_persistent, pool_size: @configuration.max_conns_per_host do |http|
+
+        http.idle_timeout = idle
+
+      end
     rescue Faraday::Error, ArgumentError => e
       @configuration.logger&.warn(
-        "Falling back to #{Faraday.default_adapter}: could not use adapter #{adapter} (#{e.message})",
+        "Falling back to #{Faraday.default_adapter}: could not configure net_http_persistent (#{e.message})",
       )
       connection.adapter Faraday.default_adapter
     end
