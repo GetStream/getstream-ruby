@@ -110,4 +110,46 @@ RSpec.describe 'CHA-2956 connection pooling' do
 
   end
 
+  describe 'escape hatch: http_client (§7)' do
+
+    it 'uses the user-supplied Faraday::Connection as-is' do
+
+      custom = Faraday.new(url: 'https://example.invalid') { |c| c.adapter :test }
+      client = GetStreamRuby.manual(
+        api_key: 'k', api_secret: 's',
+        http_client: custom,
+        # All ignored:
+        max_conns_per_host: 99,
+        idle_timeout: 99,
+        connect_timeout: 99,
+        request_timeout: 99,
+      )
+
+      expect(client.instance_variable_get(:@connection)).to be(custom)
+      expect(custom.builder.adapter.klass).to eq(Faraday::Adapter::Test)
+
+    end
+
+  end
+
+  describe 'escape hatch: faraday_adapter (§7)' do
+
+    it 'uses the custom adapter symbol and does NOT apply pool_size' do
+
+      client = GetStreamRuby.manual(
+        api_key: 'k', api_secret: 's',
+        faraday_adapter: :net_http,
+        max_conns_per_host: 17, # MUST be ignored
+      )
+
+      handler = client.instance_variable_get(:@connection).builder.adapter
+      expect(handler.klass).to eq(Faraday::Adapter::NetHttp)
+      kwargs = handler.instance_variable_get(:@args).last
+      kwargs = {} unless kwargs.is_a?(Hash)
+      expect(kwargs).not_to include(pool_size: 17)
+
+    end
+
+  end
+
 end
