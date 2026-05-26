@@ -69,4 +69,45 @@ RSpec.describe 'CHA-2956 connection pooling' do
 
   end
 
+  describe 'per-call request_timeout override (§5.2)' do
+
+    let(:stubs) { Faraday::Adapter::Test::Stubs.new }
+    let(:client) do
+
+      c = GetStreamRuby.manual(
+        api_key: 'k', api_secret: 's',
+        base_url: 'https://chat.stream-io-api.test',
+        request_timeout: 30,
+      )
+      test_conn = Faraday.new(url: c.configuration.base_url) do |conn|
+
+        conn.request :multipart
+        conn.response :json, content_type: /\bjson$/
+        conn.adapter :test, stubs
+
+      end
+      c.instance_variable_set(:@connection, test_conn)
+      c
+
+    end
+
+    it 'overrides per-request timeout for a single call without mutating the client' do
+
+      captured = nil
+      stubs.get('/api/v2/probe') do |env|
+
+        captured = env
+        [200, { 'Content-Type' => 'application/json' }, '{}']
+
+      end
+
+      client.make_request(:get, '/api/v2/probe', request_timeout: 5)
+
+      expect(captured.request.timeout).to eq(5)
+      expect(client.configuration.request_timeout).to eq(30)
+
+    end
+
+  end
+
 end

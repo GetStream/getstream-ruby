@@ -133,7 +133,7 @@ module GetStreamRuby
       request(:post, path, body)
     end
 
-    def make_request(method, path, query_params: nil, body: nil)
+    def make_request(method, path, query_params: nil, body: nil, request_timeout: nil)
       # Handle query parameters
       if query_params && !query_params.empty?
         query_string = query_params.map { |k, v| "#{k}=#{v}" }.join('&')
@@ -141,12 +141,12 @@ module GetStreamRuby
       end
 
       # Make the request
-      request(method, path, body)
+      request(method, path, body, request_timeout: request_timeout)
     end
 
     private
 
-    def request(method, path, data = {})
+    def request(method, path, data = {}, request_timeout: nil)
       # Add API key to query parameters
       query_params = { api_key: @configuration.api_key }
 
@@ -161,6 +161,7 @@ module GetStreamRuby
         req.headers['stream-auth-type'] = 'jwt'
         req.headers['X-Stream-Client'] = user_agent
         req.body = data.to_json
+        req.options.timeout = request_timeout if request_timeout
 
       end
 
