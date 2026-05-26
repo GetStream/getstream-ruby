@@ -77,7 +77,7 @@ RSpec.describe 'CHA-2956 connection pooling' do
       c = GetStreamRuby.manual(
         api_key: 'k', api_secret: 's',
         base_url: 'https://chat.stream-io-api.test',
-        request_timeout: 30,
+        request_timeout: 30
       )
       test_conn = Faraday.new(url: c.configuration.base_url) do |conn|
 
@@ -122,7 +122,7 @@ RSpec.describe 'CHA-2956 connection pooling' do
         max_conns_per_host: 99,
         idle_timeout: 99,
         connect_timeout: 99,
-        request_timeout: 99,
+        request_timeout: 99
       )
 
       expect(client.instance_variable_get(:@connection)).to be(custom)
@@ -139,7 +139,7 @@ RSpec.describe 'CHA-2956 connection pooling' do
       client = GetStreamRuby.manual(
         api_key: 'k', api_secret: 's',
         faraday_adapter: :net_http,
-        max_conns_per_host: 17, # MUST be ignored
+        max_conns_per_host: 17 # MUST be ignored
       )
 
       handler = client.instance_variable_get(:@connection).builder.adapter
