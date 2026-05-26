@@ -152,4 +152,42 @@ RSpec.describe 'CHA-2956 connection pooling' do
 
   end
 
+  describe 'INFO log on construction (§8)' do
+
+    let(:log_io) { StringIO.new }
+    let(:logger) { Logger.new(log_io).tap { |l| l.level = Logger::INFO } }
+
+    it 'emits exactly one INFO line listing the 5 effective values' do
+
+      GetStreamRuby.manual(api_key: 'k', api_secret: 's', logger: logger)
+      info_lines = log_io.string.lines.select { |l| l.include?('INFO') }
+      expect(info_lines.size).to eq(1)
+      line = info_lines.first
+      expect(line).to include('connection pool')
+      expect(line).to include('max_conns_per_host=5')
+      expect(line).to include('idle_timeout=55')
+      expect(line).to include('connect_timeout=10')
+      expect(line).to include('request_timeout=30')
+      expect(line).to include('user_http_client=false')
+      expect(line).to include('faraday_adapter=default')
+
+    end
+
+    it 'reports user_http_client=true when http_client is supplied' do
+
+      custom = Faraday.new(url: 'https://example.invalid') { |c| c.adapter :test }
+      GetStreamRuby.manual(api_key: 'k', api_secret: 's', logger: logger, http_client: custom)
+      expect(log_io.string).to include('user_http_client=true')
+
+    end
+
+    it 'reports the adapter symbol when faraday_adapter is supplied' do
+
+      GetStreamRuby.manual(api_key: 'k', api_secret: 's', logger: logger, faraday_adapter: :net_http)
+      expect(log_io.string).to include('faraday_adapter=net_http')
+
+    end
+
+  end
+
 end

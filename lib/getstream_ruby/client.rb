@@ -39,6 +39,7 @@ module GetStreamRuby
 
       @configuration.validate!
       @connection = build_connection
+      log_pool_config
     end
 
     def feed_resource
@@ -339,6 +340,29 @@ module GetStreamRuby
       else
         'application/octet-stream'
       end
+    end
+
+    def log_pool_config
+      logger = @configuration.logger || Logger.new($stdout).tap { |l| l.level = Logger::INFO }
+      flag = @configuration.http_client ? 'user_http_client=true' : 'user_http_client=false'
+      adapter_label = if @configuration.http_client
+                        'user-supplied'
+                      elsif @configuration.faraday_adapter
+                        @configuration.faraday_adapter.to_s
+                      else
+                        'default'
+                      end
+      logger.info(
+        format(
+          'connection pool: max_conns_per_host=%<m>d idle_timeout=%<i>d connect_timeout=%<c>d request_timeout=%<r>d %<flag>s faraday_adapter=%<a>s',
+          m: @configuration.max_conns_per_host,
+          i: @configuration.idle_timeout,
+          c: @configuration.connect_timeout,
+          r: @configuration.request_timeout,
+          flag: flag,
+          a: adapter_label,
+        ),
+      )
     end
 
   end
