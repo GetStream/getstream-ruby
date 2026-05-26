@@ -22,9 +22,11 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'faraday', '~> 2.0'
   spec.add_dependency 'faraday-gzip', '~> 3.0'
   spec.add_dependency 'faraday-multipart', '~> 1.0'
+  spec.add_dependency 'faraday-net_http_persistent', '~> 2.3'
   spec.add_dependency 'faraday-retry', '~> 2.0'
   spec.add_dependency 'json', '~> 2.0'
   spec.add_dependency 'jwt', '~> 2.0'
+  spec.add_dependency 'net-http-persistent', '~> 4.0'
 
   # spec.metadata['rubygems_mfa_required'] = 'true'
 
