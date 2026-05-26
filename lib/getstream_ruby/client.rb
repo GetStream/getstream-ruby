@@ -178,12 +178,8 @@ module GetStreamRuby
           backoff_factor: 2,
         }
         conn.response :json, content_type: /\bjson$/
-        # Gzip middleware must be registered AFTER :json so its on_complete
-        # decompresses the response body before :json attempts to parse it.
-        # Faraday's response chain runs on_complete in reverse registration
-        # order, so the last registered middleware runs first on the response
-        # path. The gzip middleware still injects the Accept-Encoding request
-        # header on outgoing requests regardless of position.
+        # Register :gzip after :json so it decompresses the body before
+        # JSON parses (Faraday runs response middleware in reverse order).
         conn.request :gzip
         conn.headers['Connection'] = 'keep-alive' if @configuration.connection_keep_alive
         configure_adapter(conn)

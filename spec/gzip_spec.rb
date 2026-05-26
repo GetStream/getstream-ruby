@@ -7,10 +7,8 @@ require 'json'
 require 'stringio'
 require 'zlib'
 
-# CHA-2964 — verify that the SDK's default Faraday connection both advertises
-# gzip via the Accept-Encoding request header and transparently decodes a
-# gzip-encoded JSON response body. Driven through the public Client#post entry
-# point with Faraday's :test adapter so the full middleware stack runs.
+# Verify the SDK's default Faraday connection advertises Accept-Encoding: gzip
+# and transparently decodes a gzip-encoded JSON response body.
 RSpec.describe 'Gzip request/response handling' do
 
   let(:stubs) { Faraday::Adapter::Test::Stubs.new }
