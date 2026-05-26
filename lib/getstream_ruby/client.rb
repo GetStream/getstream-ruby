@@ -178,8 +178,7 @@ module GetStreamRuby
           backoff_factor: 2,
         }
         conn.response :json, content_type: /\bjson$/
-        # Register :gzip after :json so it decompresses the body before
-        # JSON parses (Faraday runs response middleware in reverse order).
+        # :gzip must come after :json (Faraday runs response middleware in reverse).
         conn.request :gzip
         conn.headers['Connection'] = 'keep-alive' if @configuration.connection_keep_alive
         configure_adapter(conn)
