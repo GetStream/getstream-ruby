@@ -817,7 +817,7 @@ module StreamChat
     # detection decides whether to decompress.
     #
     # {parse_sqs} sits on top of this and works transparently for both wire
-    # formats — no caller code change, no flag, no header.
+    # formats: no caller code change, no flag, no header.
     #
     # @param message_body [String]
     # @return [String]
@@ -829,7 +829,7 @@ module StreamChat
         begin
           Base64.strict_decode64(message_body)
         rescue ArgumentError
-          # Not base64 — treat input as raw bytes (uncompressed wire format).
+          # Not base64, so treat input as raw bytes (uncompressed wire format).
           message_body.dup.force_encoding(Encoding::ASCII_8BIT)
         end
       gunzip_payload(decoded)
@@ -840,7 +840,7 @@ module StreamChat
     # pre-extracted Message string flows through.
     #
     # Heuristic: try to JSON-parse the input. If it yields a Hash with a
-    # String +Message+ field, that's the envelope shape — return the Message.
+    # String +Message+ field, that's the envelope shape; return the Message.
     # Otherwise the input is presumed to BE the pre-extracted Message
     # (base64-encoded bytes are not valid JSON, so this falls through cleanly).
     def self.unwrap_sns_notification_body(body)
