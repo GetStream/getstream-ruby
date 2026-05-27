@@ -37,36 +37,25 @@
 
 ### Added (CHA-2956 connection pooling)
 
-- New runtime dependency: `faraday-net_http_persistent ~> 2.3` + `net-http-persistent ~> 4.0`.
-  Default Faraday adapter switched from `Faraday.default_adapter` (plain `Net::HTTP`,
-  no pool) to `:net_http_persistent` (pooled). Matches legacy `stream-chat-ruby`.
+- New runtime dependency: `faraday-net_http_persistent ~> 2.3` + `net-http-persistent ~> 4.0`. Default Faraday adapter switched from `Faraday.default_adapter` (plain `Net::HTTP`, no pool) to `:net_http_persistent` (pooled). Matches legacy `stream-chat-ruby`.
 - New constructor kwargs on `GetStreamRuby.manual` / `Configuration`:
-    * `max_conns_per_host:` — default `5`
-    * `idle_timeout:` — default `55` (seconds)
-    * `connect_timeout:` — default `10` (seconds)
-    * `request_timeout:` — default `30` (seconds)
-    * `http_client:` — escape hatch (`Faraday::Connection`); when set, the 4
-      knobs above are ignored.
-- Per-call `request_timeout:` kwarg on `Client#make_request` for one-off
-  overrides without rebuilding the client.
-- One INFO log on `Client.new` listing the effective pool config + escape-hatch
-  flag.
+    * `max_conns_per_host:` default `5`
+    * `idle_timeout:` default `55` (seconds)
+    * `connect_timeout:` default `10` (seconds)
+    * `request_timeout:` default `30` (seconds)
+    * `http_client:` escape hatch (`Faraday::Connection`); when set, the 4 knobs above are ignored.
+- Per-call `request_timeout:` kwarg on `Client#make_request` for one-off overrides without rebuilding the client.
+- One INFO log on `Client.new` listing the effective pool config + escape-hatch flag.
 
 ### Changed
 
-- Default adapter is now `:net_http_persistent`; long-lived processes hold up
-  to 5 idle TCP connections per upstream host until they age out at 55s.
-- The `Connection: keep-alive` request header is no longer emitted on the
-  default path (`net_http_persistent` keeps connections alive natively). Still
-  emitted when the user opts into a custom `faraday_adapter` with
-  `connection_keep_alive: true`.
+- Default adapter is now `:net_http_persistent`; long-lived processes hold up to 5 idle TCP connections per upstream host until they age out at 55s.
+- The `Connection: keep-alive` request header is no longer emitted on the default path (`net_http_persistent` keeps connections alive natively). Still emitted when the user opts into a custom `faraday_adapter` with `connection_keep_alive: true`.
 
 ### Backwards compatibility
 
 - The `timeout:` kwarg remains as an alias for `request_timeout:`.
-- The `faraday_adapter` kwarg remains as an alternate escape hatch. When set,
-  `pool_size`/`idle_timeout` are NOT applied (those are
-  `net_http_persistent`-specific).
+- The `faraday_adapter` kwarg remains as an alternate escape hatch. When set, `pool_size`/`idle_timeout` are NOT applied (those are `net_http_persistent`-specific).
 
 ## [6.0.0] - 2026-04-17
 

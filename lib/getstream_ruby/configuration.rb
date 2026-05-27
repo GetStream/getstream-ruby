@@ -51,9 +51,8 @@ module GetStreamRuby
       )
     end
 
-    # Emit a single INFO line listing the 5 effective pool knobs plus the
-    # active escape hatch (CHA-2956). If no logger
-    # is supplied, a default $stdout INFO logger is used.
+    # Emit a single INFO line listing the 5 effective pool knobs plus the active escape hatch (CHA-2956).
+    # If no logger is supplied, a default $stdout INFO logger is used.
     def log_pool_config_to(logger)
       logger ||= Logger.new($stdout).tap { |l| l.level = Logger::INFO }
       flag = @http_client ? 'user_http_client=true' : 'user_http_client=false'

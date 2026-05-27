@@ -203,16 +203,15 @@ module GetStreamRuby
       if @configuration.faraday_adapter
         adapter = @configuration.faraday_adapter
         adapter_options = @configuration.faraday_adapter_options || {}
-        # Header-based keep-alive only on the custom-adapter path. net_http_persistent
-        # (default) keeps connections alive natively without any HTTP header.
+        # Header-based keep-alive only on the custom-adapter path.
+        # net_http_persistent (default) keeps connections alive natively without any HTTP header.
         connection.headers['Connection'] = 'keep-alive' if @configuration.connection_keep_alive
         connection.adapter(adapter, **adapter_options)
         return
       end
 
       # Default: net_http_persistent with the 5-knob config.
-      # Never set Connection: close; net_http_persistent keeps
-      # connections alive natively.
+      # Never set Connection: close; net_http_persistent keeps connections alive natively.
       idle = @configuration.idle_timeout
       connection.adapter :net_http_persistent, pool_size: @configuration.max_conns_per_host do |http|
 
