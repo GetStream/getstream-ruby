@@ -6,6 +6,24 @@ require 'faraday/net_http_persistent'
 # CHA-2956 connection pooling spec.
 RSpec.describe 'CHA-2956 connection pooling' do
 
+  # Capture the args/kwargs of the last `conn.adapter` call made while the
+  # block runs. Intercepts the public Faraday::RackBuilder#adapter API (the
+  # same call the client makes) rather than the handler's internal @args
+  # ivar, whose layout changed between Faraday 2.8 (kwargs in @args) and 2.9+
+  # (kwargs in a separate @kwargs), which made the old introspection nil in CI.
+  def capture_adapter_call
+    captured = { args: [], kwargs: {} }
+    allow_any_instance_of(Faraday::RackBuilder).to receive(:adapter).and_wrap_original do |orig, *args, **kwargs, &blk|
+
+      captured[:args] = args
+      captured[:kwargs] = kwargs
+      orig.call(*args, **kwargs, &blk)
+
+    end
+    yield
+    captured
+  end
+
   describe 'defaults' do
 
     let(:client) { GetStreamRuby.manual(api_key: 'k', api_secret: 's') }
@@ -27,9 +45,9 @@ RSpec.describe 'CHA-2956 connection pooling' do
 
     it 'passes pool_size=5 to the net_http_persistent adapter' do
 
-      handler = client.instance_variable_get(:@connection).builder.adapter
-      kwargs = handler.instance_variable_get(:@args).last
-      expect(kwargs).to include(pool_size: 5)
+      captured = capture_adapter_call { GetStreamRuby.manual(api_key: 'k', api_secret: 's') }
+      expect(captured[:args].first).to eq(:net_http_persistent)
+      expect(captured[:kwargs]).to include(pool_size: 5)
 
     end
 
@@ -39,9 +57,12 @@ RSpec.describe 'CHA-2956 connection pooling' do
 
     it 'honors max_conns_per_host:' do
 
-      client = GetStreamRuby.manual(api_key: 'k', api_secret: 's', max_conns_per_host: 17)
-      handler = client.instance_variable_get(:@connection).builder.adapter
-      expect(handler.instance_variable_get(:@args).last).to include(pool_size: 17)
+      captured = capture_adapter_call do
+
+        GetStreamRuby.manual(api_key: 'k', api_secret: 's', max_conns_per_host: 17)
+
+      end
+      expect(captured[:kwargs]).to include(pool_size: 17)
 
     end
 
@@ -136,17 +157,18 @@ RSpec.describe 'CHA-2956 connection pooling' do
 
     it 'uses the custom adapter symbol and does NOT apply pool_size' do
 
-      client = GetStreamRuby.manual(
-        api_key: 'k', api_secret: 's',
-        faraday_adapter: :net_http,
-        max_conns_per_host: 17 # MUST be ignored
-      )
+      captured = capture_adapter_call do
 
-      handler = client.instance_variable_get(:@connection).builder.adapter
-      expect(handler.klass).to eq(Faraday::Adapter::NetHttp)
-      kwargs = handler.instance_variable_get(:@args).last
-      kwargs = {} unless kwargs.is_a?(Hash)
-      expect(kwargs).not_to include(pool_size: 17)
+        GetStreamRuby.manual(
+          api_key: 'k', api_secret: 's',
+          faraday_adapter: :net_http,
+          max_conns_per_host: 17 # MUST be ignored
+        )
+
+      end
+
+      expect(captured[:args].first).to eq(:net_http)
+      expect(captured[:kwargs]).not_to include(pool_size: 17)
 
     end
 
