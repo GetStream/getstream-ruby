@@ -33,8 +33,6 @@
   (was `StreamChat::*Event`, which raised `NameError` at runtime). `parse_event`
   resolves known event types correctly.
 
-[Spec](https://www.notion.so/stream-wiki/Server-Side-SDK-Webhook-Handling-Spec-34b6a5d7f9f681e78003c443f227493c)
-
 ## [7.1.0] - 2026-MM-DD
 
 ### Added (CHA-2956 connection pooling)
@@ -52,7 +50,7 @@
 - Per-call `request_timeout:` kwarg on `Client#make_request` for one-off
   overrides without rebuilding the client.
 - One INFO log on `Client.new` listing the effective pool config + escape-hatch
-  flag (§8 transparency requirement).
+  flag.
 
 ### Changed
 
@@ -66,11 +64,9 @@
 ### Backwards compatibility
 
 - The `timeout:` kwarg remains as an alias for `request_timeout:`.
-- The `faraday_adapter` kwarg remains as an alternate escape hatch — when set,
+- The `faraday_adapter` kwarg remains as an alternate escape hatch. When set,
   `pool_size`/`idle_timeout` are NOT applied (those are
   `net_http_persistent`-specific).
-
-See the [Connection Pooling Spec](https://www.notion.so/stream-wiki/Server-Side-SDK-Connection-Pooling-Spec-3496a5d7f9f680749b8be9ee238ae108).
 
 ## [6.0.0] - 2026-04-17
 

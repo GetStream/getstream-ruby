@@ -1283,7 +1283,7 @@ RSpec.describe 'Webhook' do
   end
 
   # ---------------------------------------------------------------------------
-  # Spec §6 helpers + composites: parse_event, gunzip_payload, decode_sqs_payload,
+  # Helpers + composites: parse_event, gunzip_payload, decode_sqs_payload,
   # decode_sns_payload, verify_and_parse_webhook, parse_sqs, parse_sns.
   # ---------------------------------------------------------------------------
 

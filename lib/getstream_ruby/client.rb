@@ -172,7 +172,7 @@ module GetStreamRuby
     end
 
     def build_connection
-      # §7 escape hatch #1: user supplied a fully-built Faraday::Connection.
+      # Escape hatch #1: user supplied a fully-built Faraday::Connection.
       # Use it as-is; none of the 5 knobs apply.
       return @configuration.http_client if @configuration.http_client
 
@@ -197,7 +197,7 @@ module GetStreamRuby
     end
 
     def configure_adapter(connection)
-      # §7 escape hatch #2: custom adapter symbol. Use it with the user's
+      # Escape hatch #2: custom adapter symbol. Use it with the user's
       # adapter_options; do NOT apply pool_size/idle_timeout (those are
       # net_http_persistent-specific).
       if @configuration.faraday_adapter
@@ -210,8 +210,8 @@ module GetStreamRuby
         return
       end
 
-      # Default: net_http_persistent with the 5-knob spec config.
-      # §5 invariant 4 — never set Connection: close; net_http_persistent keeps
+      # Default: net_http_persistent with the 5-knob config.
+      # Never set Connection: close; net_http_persistent keeps
       # connections alive natively.
       idle = @configuration.idle_timeout
       connection.adapter :net_http_persistent, pool_size: @configuration.max_conns_per_host do |http|

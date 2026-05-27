@@ -90,7 +90,7 @@ RSpec.describe 'CHA-2956 connection pooling' do
 
   end
 
-  describe 'per-call request_timeout override (§5.2)' do
+  describe 'per-call request_timeout override' do
 
     let(:stubs) { Faraday::Adapter::Test::Stubs.new }
     let(:client) do
@@ -131,7 +131,7 @@ RSpec.describe 'CHA-2956 connection pooling' do
 
   end
 
-  describe 'escape hatch: http_client (§7)' do
+  describe 'escape hatch: http_client' do
 
     it 'uses the user-supplied Faraday::Connection as-is' do
 
@@ -153,7 +153,7 @@ RSpec.describe 'CHA-2956 connection pooling' do
 
   end
 
-  describe 'escape hatch: faraday_adapter (§7)' do
+  describe 'escape hatch: faraday_adapter' do
 
     it 'uses the custom adapter symbol and does NOT apply pool_size' do
 
@@ -174,7 +174,7 @@ RSpec.describe 'CHA-2956 connection pooling' do
 
   end
 
-  describe 'INFO log on construction (§8)' do
+  describe 'INFO log on construction' do
 
     let(:log_io) { StringIO.new }
     let(:logger) { Logger.new(log_io).tap { |l| l.level = Logger::INFO } }
