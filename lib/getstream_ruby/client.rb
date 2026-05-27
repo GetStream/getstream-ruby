@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'faraday'
+require 'faraday/gzip'
 require 'faraday/retry'
 require 'faraday/multipart'
 require 'json'
@@ -177,6 +178,8 @@ module GetStreamRuby
           backoff_factor: 2,
         }
         conn.response :json, content_type: /\bjson$/
+        # :gzip must come after :json (Faraday runs response middleware in reverse).
+        conn.request :gzip
         conn.headers['Connection'] = 'keep-alive' if @configuration.connection_keep_alive
         configure_adapter(conn)
         conn.options.timeout = @configuration.timeout

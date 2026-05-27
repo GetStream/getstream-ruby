@@ -350,18 +350,20 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/getstr
 
 ## Release Process
 
-Releases use two paths:
+Releases use two paths, both handled by `.github/workflows/release.yml`:
 
-- Default: automatic release when a PR is merged to `main`/`master`.
-- Fallback: manual release using `.github/workflows/manual-release.yml` (admin use only).
+- **Default**: automatic release when a PR is merged to `main`/`master`. The PR title (and body) drives the semver bump.
+- **Fallback**: manual release via the `Release` workflow's `workflow_dispatch` (admin use). Select a `version_bump` (`patch`/`minor`/`major`). `use_current_version=true` skips the bump and publishes whatever is already in `lib/getstream_ruby/version.rb`.
 
-Automatic semver bump rules are based on merged PR title/body:
+Automatic semver bump rules:
 
 - `feat:` -> minor
 - `fix:` (or `bug:`) -> patch
-- `feat!:` or `BREAKING CHANGE` in PR body -> major
+- `feat!:`, `<type>(scope)!:`, or `BREAKING CHANGE` in the PR body/title -> major
 
-PRs with other prefixes do not trigger a release.
+PRs with any other prefix do not trigger a release.
+
+The release pipeline runs lint (`make format-check && make lint && make security`), the unit suite (`make test`), and all three integration suites (chat, feed, video) on the merged commit before publishing to RubyGems. Each step is idempotent; a failed run can be re-dispatched from the Actions UI.
 
 ## License
 
