@@ -19,7 +19,7 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version = '>= 2.6.0'
 
   spec.add_dependency 'dotenv', '>= 2.0'
-  spec.add_dependency 'faraday', '~> 2.0'
+  spec.add_dependency 'faraday', '~> 2.5'
   spec.add_dependency 'faraday-gzip', '~> 3.0'
   spec.add_dependency 'faraday-multipart', '~> 1.0'
   spec.add_dependency 'faraday-net_http_persistent', '~> 2.3'

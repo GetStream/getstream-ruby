@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 
 gemspec name: 'getstream-ruby'
 
-# Pin transitive dep: connection_pool 3.x requires Ruby >= 3.4.
+# Pin transitive dep: connection_pool 3.x requires Ruby >= 3.2.
 # net-http-persistent accepts 2.x (>= 2.2.4, < 4), and CI runs Ruby 3.1.
 gem 'connection_pool', '< 3.0'
 

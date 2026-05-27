@@ -8,7 +8,7 @@ module GetStreamRuby
 
     attr_accessor :api_key, :api_secret, :base_url, :timeout, :logger, :faraday_adapter, :faraday_adapter_options,
                   :connection_keep_alive, :max_conns_per_host, :idle_timeout, :connect_timeout,
-                  :request_timeout, :http_client
+                  :request_timeout, :http_client, :effective_adapter
 
     def initialize(api_key: nil, api_secret: nil, use_env: true, **options)
       http_options = options[:http_options] || {}
@@ -53,11 +53,16 @@ module GetStreamRuby
 
     # Emit a single INFO line listing the 5 effective pool knobs plus the active escape hatch (CHA-2956).
     # If no logger is supplied, a default $stdout INFO logger is used.
+    # The faraday_adapter label reflects the adapter actually built
+    # (effective_adapter, set by Client#configure_adapter) so a silent fallback
+    # to the default adapter is never misreported as the requested adapter.
     def log_pool_config_to(logger)
       logger ||= Logger.new($stdout).tap { |l| l.level = Logger::INFO }
       flag = @http_client ? 'user_http_client=true' : 'user_http_client=false'
       adapter_label = if @http_client
                         'user-supplied'
+                      elsif @effective_adapter
+                        @effective_adapter
                       elsif @faraday_adapter
                         @faraday_adapter.to_s
                       else
@@ -71,6 +76,17 @@ module GetStreamRuby
           m: @max_conns_per_host, i: @idle_timeout, c: @connect_timeout,
           r: @request_timeout, flag: flag, a: adapter_label
         ),
+      )
+    end
+
+    # Emit a WARNING that the requested adapter could not be built and pooling
+    # is disabled (CHA-2956). A fallback must never be silent, so when no logger
+    # is configured this uses a default $stdout logger, exactly like
+    # log_pool_config_to.
+    def warn_pool_fallback(fallback_adapter, error)
+      warn_logger = @logger || Logger.new($stdout).tap { |l| l.level = Logger::WARN }
+      warn_logger.warn(
+        "Falling back to #{fallback_adapter}: could not configure net_http_persistent (#{error.message})",
       )
     end
 

@@ -174,6 +174,50 @@ RSpec.describe 'CHA-2956 connection pooling' do
 
   end
 
+  describe 'adapter fallback' do
+
+    # A bogus adapter symbol forces configure_adapter into its rescue, which
+    # falls back to Faraday.default_adapter and disables pooling.
+    let(:bogus) { :bogus_xyz_adapter }
+
+    it 'warns via a $stdout logger when no logger is configured (never silent)' do
+
+      build = -> { GetStreamRuby.manual(api_key: 'k', api_secret: 's', faraday_adapter: bogus) }
+      expect(&build).to output(/Falling back to .*could not configure net_http_persistent/).to_stdout
+
+    end
+
+    it 'warns on the configured logger when one is supplied' do
+
+      log_io = StringIO.new
+      logger = Logger.new(log_io).tap { |l| l.level = Logger::WARN }
+      GetStreamRuby.manual(api_key: 'k', api_secret: 's', faraday_adapter: bogus, logger: logger)
+      expect(log_io.string).to include('WARN').and include('Falling back to')
+
+    end
+
+    it 'builds the default adapter, not the requested-but-failed one' do
+
+      client = GetStreamRuby.manual(api_key: 'k', api_secret: 's', faraday_adapter: bogus)
+      handler = client.instance_variable_get(:@connection).builder.adapter
+      expect(handler.klass).to eq(Faraday::Adapter.lookup_middleware(Faraday.default_adapter))
+
+    end
+
+    it 'reports the EFFECTIVE adapter in the INFO log, not the requested one' do
+
+      log_io = StringIO.new
+      logger = Logger.new(log_io).tap { |l| l.level = Logger::INFO }
+      GetStreamRuby.manual(api_key: 'k', api_secret: 's', faraday_adapter: bogus, logger: logger)
+      info_lines = log_io.string.lines.select { |l| l.include?('INFO') }
+      expect(info_lines.size).to eq(1)
+      expect(info_lines.first).to include("faraday_adapter=#{Faraday.default_adapter}")
+      expect(info_lines.first).not_to include("faraday_adapter=#{bogus}")
+
+    end
+
+  end
+
   describe 'INFO log on construction' do
 
     let(:log_io) { StringIO.new }

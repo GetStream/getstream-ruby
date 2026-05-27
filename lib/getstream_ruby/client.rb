@@ -219,10 +219,11 @@ module GetStreamRuby
 
       end
     rescue Faraday::Error, ArgumentError => e
-      @configuration.logger&.warn(
-        "Falling back to #{Faraday.default_adapter}: could not configure net_http_persistent (#{e.message})",
-      )
+      # A fallback silently disables pooling, so always WARN (never swallow).
+      @configuration.warn_pool_fallback(Faraday.default_adapter, e)
       connection.adapter Faraday.default_adapter
+      # Record the adapter actually built so the INFO log reports it accurately.
+      @configuration.effective_adapter = Faraday.default_adapter.to_s
     end
 
     def generate_auth_header
