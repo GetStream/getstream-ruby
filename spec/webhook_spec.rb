@@ -11,7 +11,7 @@ require 'zlib'
 
 require_relative '../lib/getstream_ruby/generated/webhook'
 
-# Top-level constants — pulled out of the RSpec.describe blocks below to avoid
+# Top-level constants, pulled out of the RSpec.describe blocks below to avoid
 # Lint/ConstantDefinitionInBlock. WEBHOOK_FIXTURE_ROOT is evaluated at file-load
 # time so the `Dir.children` iteration below can build the per-fixture contexts.
 WEBHOOK_TEST_SECRET = 'test-webhook-secret'
@@ -1611,7 +1611,7 @@ RSpec.describe 'Webhook conformance', type: :integration do
       # Per CHA-3071 wire format: decode_sqs_payload falls back to raw bytes
       # when base64 decoding fails (uncompressed wire format). For input that
       # is neither valid base64 nor valid JSON nor gzip-prefixed, parse_sqs
-      # still raises InvalidWebhookError — just down the chain at JSON parsing.
+      # still raises InvalidWebhookError, just down the chain at JSON parsing.
       skip 'fixtures not present' unless File.directory?(WEBHOOK_FIXTURE_ROOT)
 
       msg = File.read(File.join(neg_dir('bad_base64'), 'sqs_body.txt')).strip
