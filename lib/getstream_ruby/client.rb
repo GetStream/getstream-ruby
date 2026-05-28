@@ -4,6 +4,8 @@ require 'faraday'
 require 'faraday/gzip'
 require 'faraday/retry'
 require 'faraday/multipart'
+require 'faraday/net_http_persistent'
+require 'logger'
 require 'json'
 require 'jwt'
 require_relative 'generated/base_model'
@@ -37,6 +39,7 @@ module GetStreamRuby
 
       @configuration.validate!
       @connection = build_connection
+      @configuration.log_pool_config_to(@configuration.logger)
     end
 
     def feed_resource
@@ -131,7 +134,7 @@ module GetStreamRuby
       request(:post, path, body)
     end
 
-    def make_request(method, path, query_params: nil, body: nil)
+    def make_request(method, path, query_params: nil, body: nil, request_timeout: nil)
       # Handle query parameters
       if query_params && !query_params.empty?
         query_string = query_params.map { |k, v| "#{k}=#{v}" }.join('&')
@@ -139,12 +142,12 @@ module GetStreamRuby
       end
 
       # Make the request
-      request(method, path, body)
+      request(method, path, body, request_timeout: request_timeout)
     end
 
     private
 
-    def request(method, path, data = {})
+    def request(method, path, data = {}, request_timeout: nil)
       # Add API key to query parameters
       query_params = { api_key: @configuration.api_key }
 
@@ -159,6 +162,7 @@ module GetStreamRuby
         req.headers['stream-auth-type'] = 'jwt'
         req.headers['X-Stream-Client'] = user_agent
         req.body = data.to_json
+        req.options.timeout = request_timeout if request_timeout
 
       end
 
@@ -168,6 +172,10 @@ module GetStreamRuby
     end
 
     def build_connection
+      # Escape hatch #1: user supplied a fully-built Faraday::Connection.
+      # Use it as-is; none of the 5 knobs apply.
+      return @configuration.http_client if @configuration.http_client
+
       Faraday.new(url: @configuration.base_url) do |conn|
 
         conn.request :multipart
@@ -180,22 +188,42 @@ module GetStreamRuby
         conn.response :json, content_type: /\bjson$/
         # :gzip must come after :json (Faraday runs response middleware in reverse).
         conn.request :gzip
-        conn.headers['Connection'] = 'keep-alive' if @configuration.connection_keep_alive
         configure_adapter(conn)
-        conn.options.timeout = @configuration.timeout
+
+        conn.options.timeout = @configuration.request_timeout
+        conn.options.open_timeout = @configuration.connect_timeout
 
       end
     end
 
     def configure_adapter(connection)
-      adapter = @configuration.faraday_adapter || Faraday.default_adapter
-      adapter_options = @configuration.faraday_adapter_options || {}
-      connection.adapter(adapter, **adapter_options)
+      # Escape hatch #2: custom adapter symbol. Use it with the user's
+      # adapter_options; do NOT apply pool_size/idle_timeout (those are
+      # net_http_persistent-specific).
+      if @configuration.faraday_adapter
+        adapter = @configuration.faraday_adapter
+        adapter_options = @configuration.faraday_adapter_options || {}
+        # Header-based keep-alive only on the custom-adapter path.
+        # net_http_persistent (default) keeps connections alive natively without any HTTP header.
+        connection.headers['Connection'] = 'keep-alive' if @configuration.connection_keep_alive
+        connection.adapter(adapter, **adapter_options)
+        return
+      end
+
+      # Default: net_http_persistent with the 5-knob config.
+      # Never set Connection: close; net_http_persistent keeps connections alive natively.
+      idle = @configuration.idle_timeout
+      connection.adapter :net_http_persistent, pool_size: @configuration.max_conns_per_host do |http|
+
+        http.idle_timeout = idle
+
+      end
     rescue Faraday::Error, ArgumentError => e
-      @configuration.logger&.warn(
-        "Falling back to #{Faraday.default_adapter}: could not use adapter #{adapter} (#{e.message})",
-      )
+      # A fallback silently disables pooling, so always WARN (never swallow).
+      @configuration.warn_pool_fallback(Faraday.default_adapter, e)
       connection.adapter Faraday.default_adapter
+      # Record the adapter actually built so the INFO log reports it accurately.
+      @configuration.effective_adapter = Faraday.default_adapter.to_s
     end
 
     def generate_auth_header
