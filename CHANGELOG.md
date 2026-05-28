@@ -1,6 +1,23 @@
 ## [Unreleased]
 
-### Added
+### Added (CHA-2958 server-side error handling)
+
+- New error class hierarchy under `GetStreamRuby`:
+    * `StreamError < StandardError`. Abstract base for every SDK-raised exception.
+    * `ApiError < StreamError`. Raised on any HTTP 4xx/5xx, and on responses whose body cannot be parsed as the canonical `APIError` envelope. Exposes `status_code`, `code`, `message`, `exception_fields`, `unrecoverable`, `raw_response_body`, `more_info`, `details`. Previously only `message` survived.
+    * `RateLimitError < ApiError`. Raised on HTTP 429. Adds `retry_after` (Float seconds, nil when the header is absent). Parses the `Retry-After` response header per RFC 7231 in both integer-seconds and HTTP-date forms. Past HTTP-dates clamp to 0.
+    * `TransportError < StreamError`. Raised when no HTTP response is received (connection reset, timeout, TLS handshake failure, DNS failure). Exposes `error_type` from the enum `connection_reset`, `timeout`, `dns_failure`, `tls_handshake_failed`, `unknown`. Always raised inside the matching `rescue Faraday::Error` block, so `Exception#cause` is set to the underlying Faraday error.
+    * `TaskError < StreamError`. Raised by `wait_for_task` when an async task finishes with `status="failed"`. Exposes `task_id`, `error_type`, `description`, `stack_trace`, `version`.
+- New `Client#wait_for_task(task_id, poll_interval: 1, timeout: 60)` helper. Polls `/api/v2/tasks/:id` and: returns the task `result` payload when status reaches `completed`; raises `TaskError` when status reaches `failed`; raises `TransportError` with `error_type: "timeout"` when the deadline elapses.
+- `Client#post` (and the multipart upload path) now deserialize the full canonical `APIError` envelope (`code`, `message`, `exception_fields`, `more_info`, `StatusCode`, `details`, `unrecoverable`, `duration`) and populate the new `ApiError` attributes.
+
+### Changed (CHA-2958)
+
+- The old `GetStreamRuby::APIError` constant remains as a deprecated alias for `GetStreamRuby::ApiError` for one minor cycle, slated for removal in v9.0. First access emits a one-time `Kernel.warn` deprecation notice.
+- The old `GetStreamRuby::Error` constant is preserved as an alias for `StreamError`. Existing `rescue GetStreamRuby::Error` clauses continue to match.
+- Pre-flight multipart validation (`file name must be provided`, `file not found`) now raises `ArgumentError` instead of the old `APIError`. These are caller-side programming errors and don't belong on the API-error surface.
+
+### Webhook helpers (CHA-2961)
 
 - Webhook handling spec helpers (CHA-2961): `UnknownEvent` class for forward-compat;
   `gunzip_payload`, `decode_sqs_payload`, `decode_sns_payload` primitives;
@@ -22,10 +39,6 @@
   `parse_sns(notification_body)` (no signature; AWS IAM).
 - Conformance fixture suite under `test/fixtures/webhooks/` (14 event-type buckets plus
   `_invalid/` negative cases).
-
-### Changed
-
-- No breaking changes.
 
 ### Fixed
 

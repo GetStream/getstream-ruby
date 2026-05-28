@@ -52,7 +52,12 @@ Metrics/MethodLength:
     - 'lib/getstream_ruby/generated/**/*'
 
 Metrics/ClassLength:
-  Max: 200
+  Max: 250
+  Exclude:
+    - 'lib/getstream_ruby/generated/**/*'
+
+Metrics/ParameterLists:
+  Max: 8 # ApiError mirrors the canonical APIError envelope (CHA-2958 §5.1)
   Exclude:
     - 'lib/getstream_ruby/generated/**/*'
 

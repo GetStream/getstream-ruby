@@ -17,7 +17,9 @@ require_relative 'generated/video_client'
 require_relative 'extensions/moderation_extensions'
 require_relative 'generated/feed'
 require_relative 'generated/webhook'
+require_relative 'generated/models/api_error'
 require_relative 'stream_response'
+require_relative 'error_mapping'
 
 module GetStreamRuby
 
@@ -134,6 +136,49 @@ module GetStreamRuby
       request(:post, path, body)
     end
 
+    # Polls the task-status endpoint until the task reaches a terminal state.
+    #
+    # Behaviour:
+    #   - status="completed": returns the task `result` payload.
+    #   - status="failed":    raises `TaskError` populated from the task's
+    #                         `ErrorResult` (`type`, `description`, `stacktrace`,
+    #                         `version`).
+    #   - timeout elapsed:    raises `TransportError` with `error_type:
+    #                         "timeout"`.
+    #
+    # @param task_id [String]
+    # @param poll_interval [Numeric] seconds between polls (default 1)
+    # @param timeout [Numeric] max seconds to wait (default 60)
+    # @return [Object] the task `result` payload on success
+    # @raise [TaskError] when the task reports `status="failed"`
+    # @raise [TransportError] when the timeout elapses (`error_type="timeout"`)
+    def wait_for_task(task_id, poll_interval: 1, timeout: 60)
+      start_time = monotonic_now
+
+      loop do
+
+        response = common.get_task(task_id)
+        status = response.status
+
+        case status
+        when 'completed'
+          return response.result
+        when 'failed'
+          raise ErrorMapping.build_task_error(task_id, response.error)
+        end
+
+        if monotonic_now - start_time >= timeout
+          raise TransportError.new(
+            "wait_for_task timed out after #{timeout}s for task_id=#{task_id}",
+            error_type: 'timeout',
+          )
+        end
+
+        sleep(poll_interval)
+
+      end
+    end
+
     def make_request(method, path, query_params: nil, body: nil, request_timeout: nil)
       # Handle query parameters
       if query_params && !query_params.empty?
@@ -168,7 +213,7 @@ module GetStreamRuby
 
       handle_response(response)
     rescue Faraday::Error => e
-      raise APIError, "Request failed: #{e.message}"
+      raise TransportError.new("Request failed: #{e.message}", error_type: ErrorMapping.classify_faraday_error(e))
     end
 
     def build_connection
@@ -242,29 +287,13 @@ module GetStreamRuby
     end
 
     def handle_response(response)
-      case response.status
-      when 200..299
-        StreamResponse.new(response.body)
-      else
-        # Parse JSON response body if it's a string
-        parsed_body = if response.body.is_a?(String)
-                        begin
-                          JSON.parse(response.body)
-                        rescue JSON::ParserError
-                          response.body
-                        end
-                      else
-                        response.body
-                      end
+      return StreamResponse.new(response.body) if (200..299).cover?(response.status)
 
-        error_message = if parsed_body.is_a?(Hash)
-                          parsed_body['message'] || parsed_body['detail'] ||
-                            "Request failed with status #{response.status}"
-                        else
-                          "Request failed with status #{response.status}"
-                        end
-        raise APIError, error_message
-      end
+      ErrorMapping.raise_api_error(response)
+    end
+
+    def monotonic_now
+      Process.clock_gettime(Process::CLOCK_MONOTONIC)
     end
 
     def multipart_request?(data)
@@ -280,10 +309,10 @@ module GetStreamRuby
       payload = {}
 
       # Handle file field
-      raise APIError, 'file name must be provided' if data.file.nil? || data.file.empty?
+      raise ArgumentError, 'file name must be provided' if data.file.nil? || data.file.empty?
 
       file_path = data.file
-      raise APIError, "file not found: #{file_path}" unless File.exist?(file_path)
+      raise ArgumentError, "file not found: #{file_path}" unless File.exist?(file_path)
 
       # Determine content type
       content_type = detect_content_type(file_path)
@@ -319,7 +348,7 @@ module GetStreamRuby
 
       handle_response(response)
     rescue Faraday::Error => e
-      raise APIError, "Request failed: #{e.message}"
+      raise TransportError.new("Request failed: #{e.message}", error_type: ErrorMapping.classify_faraday_error(e))
     end
 
     def detect_content_type(file_path)
