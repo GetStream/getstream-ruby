@@ -126,7 +126,7 @@ module GetStreamRuby
 
     def build_task_error(task_id, error_payload)
       hash = if error_payload.respond_to?(:to_h)
-               error_payload.to_h || {}
+               error_payload.to_h
              else
                error_payload || {}
              end
