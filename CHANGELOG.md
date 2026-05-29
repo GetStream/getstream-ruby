@@ -1,6 +1,6 @@
 ## [Unreleased]
 
-### Added (CHA-2958 server-side error handling)
+### Added
 
 - New error class hierarchy under `GetStreamRuby`:
     * `StreamError < StandardError`. Abstract base for every SDK-raised exception.
@@ -11,13 +11,13 @@
 - New `Client#wait_for_task(task_id, poll_interval: 1, timeout: 60)` helper. Polls `/api/v2/tasks/:id` and: returns the task `result` payload when status reaches `completed`; raises `TaskError` when status reaches `failed`; raises `TransportError` with `error_type: "timeout"` when the deadline elapses.
 - `Client#post` (and the multipart upload path) now deserialize the full canonical `APIError` envelope (`code`, `message`, `exception_fields`, `more_info`, `StatusCode`, `details`, `unrecoverable`, `duration`) and populate the new `ApiError` attributes.
 
-### Changed (CHA-2958)
+### Changed
 
 - The old `GetStreamRuby::APIError` constant remains as a deprecated alias for `GetStreamRuby::ApiError` for one minor cycle, slated for removal in v9.0. First access emits a one-time `Kernel.warn` deprecation notice.
 - The old `GetStreamRuby::Error` constant is preserved as an alias for `StreamError`. Existing `rescue GetStreamRuby::Error` clauses continue to match.
 - Pre-flight multipart validation (`file name must be provided`, `file not found`) now raises `ArgumentError` instead of the old `APIError`. These are caller-side programming errors and don't belong on the API-error surface.
 
-### Webhook helpers (CHA-2961)
+### Webhook helpers
 
 - Webhook handling spec helpers (CHA-2961): `UnknownEvent` class for forward-compat;
   `gunzip_payload`, `decode_sqs_payload`, `decode_sns_payload` primitives;

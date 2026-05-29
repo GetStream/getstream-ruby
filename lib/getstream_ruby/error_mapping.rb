@@ -5,9 +5,7 @@ require 'time'
 
 module GetStreamRuby
 
-  # Pure helpers that translate HTTP responses and Faraday errors into the
-  # SDK error hierarchy. Kept out of `Client` so the class stays focused on
-  # request orchestration.
+  # Translates HTTP responses and Faraday errors into SDK exceptions.
   module ErrorMapping
 
     module_function
@@ -32,7 +30,6 @@ module GetStreamRuby
         raise ApiError.new(**attrs)
       end
 
-      # HTTP response received but body is not a parseable APIError envelope.
       raise ApiError.new(
         message: 'failed to parse error response',
         status_code: response.status,
@@ -82,9 +79,8 @@ module GetStreamRuby
       headers[name] || headers[name.downcase] || headers[name.to_s]
     end
 
-    # Parses an HTTP `Retry-After` header per RFC 7231. Returns a Float number
-    # of seconds, or nil when the header is absent or unparseable. Past
-    # HTTP-dates clamp to 0.
+    # Parse Retry-After header. Returns Float seconds. Returns nil when absent or
+    # unparseable. Past HTTP-dates clamp to 0.
     def parse_retry_after(header)
       return nil if header.nil?
 
