@@ -4,6 +4,8 @@ require 'faraday'
 require 'faraday/gzip'
 require 'faraday/retry'
 require 'faraday/multipart'
+require 'faraday/net_http_persistent'
+require 'logger'
 require 'json'
 require 'jwt'
 require_relative 'generated/base_model'
@@ -15,7 +17,9 @@ require_relative 'generated/video_client'
 require_relative 'extensions/moderation_extensions'
 require_relative 'generated/feed'
 require_relative 'generated/webhook'
+require_relative 'generated/models/api_error'
 require_relative 'stream_response'
+require_relative 'error_mapping'
 
 module GetStreamRuby
 
@@ -37,6 +41,7 @@ module GetStreamRuby
 
       @configuration.validate!
       @connection = build_connection
+      @configuration.log_pool_config_to(@configuration.logger)
     end
 
     def feed_resource
@@ -131,7 +136,50 @@ module GetStreamRuby
       request(:post, path, body)
     end
 
-    def make_request(method, path, query_params: nil, body: nil)
+    # Polls the task-status endpoint until the task reaches a terminal state.
+    #
+    # Behaviour:
+    #   - status="completed": returns the task `result` payload.
+    #   - status="failed":    raises `TaskError` populated from the task's
+    #                         `ErrorResult` (`type`, `description`, `stacktrace`,
+    #                         `version`).
+    #   - timeout elapsed:    raises `TransportError` with `error_type:
+    #                         "timeout"`.
+    #
+    # @param task_id [String]
+    # @param poll_interval [Numeric] seconds between polls (default 1)
+    # @param timeout [Numeric] max seconds to wait (default 60)
+    # @return [Object] the task `result` payload on success
+    # @raise [TaskError] when the task reports `status="failed"`
+    # @raise [TransportError] when the timeout elapses (`error_type="timeout"`)
+    def wait_for_task(task_id, poll_interval: 1, timeout: 60)
+      start_time = monotonic_now
+
+      loop do
+
+        response = common.get_task(task_id)
+        status = response.status
+
+        case status
+        when 'completed'
+          return response.result
+        when 'failed'
+          raise ErrorMapping.build_task_error(task_id, response.error)
+        end
+
+        if monotonic_now - start_time >= timeout
+          raise TransportError.new(
+            "wait_for_task timed out after #{timeout}s for task_id=#{task_id}",
+            error_type: 'timeout',
+          )
+        end
+
+        sleep(poll_interval)
+
+      end
+    end
+
+    def make_request(method, path, query_params: nil, body: nil, request_timeout: nil)
       # Handle query parameters
       if query_params && !query_params.empty?
         query_string = query_params.map { |k, v| "#{k}=#{v}" }.join('&')
@@ -139,12 +187,12 @@ module GetStreamRuby
       end
 
       # Make the request
-      request(method, path, body)
+      request(method, path, body, request_timeout: request_timeout)
     end
 
     private
 
-    def request(method, path, data = {})
+    def request(method, path, data = {}, request_timeout: nil)
       # Add API key to query parameters
       query_params = { api_key: @configuration.api_key }
 
@@ -159,15 +207,20 @@ module GetStreamRuby
         req.headers['stream-auth-type'] = 'jwt'
         req.headers['X-Stream-Client'] = user_agent
         req.body = data.to_json
+        req.options.timeout = request_timeout if request_timeout
 
       end
 
       handle_response(response)
     rescue Faraday::Error => e
-      raise APIError, "Request failed: #{e.message}"
+      raise TransportError.new("Request failed: #{e.message}", error_type: ErrorMapping.classify_faraday_error(e))
     end
 
     def build_connection
+      # Escape hatch #1: user supplied a fully-built Faraday::Connection.
+      # Use it as-is; none of the 5 knobs apply.
+      return @configuration.http_client if @configuration.http_client
+
       Faraday.new(url: @configuration.base_url) do |conn|
 
         conn.request :multipart
@@ -180,22 +233,42 @@ module GetStreamRuby
         conn.response :json, content_type: /\bjson$/
         # :gzip must come after :json (Faraday runs response middleware in reverse).
         conn.request :gzip
-        conn.headers['Connection'] = 'keep-alive' if @configuration.connection_keep_alive
         configure_adapter(conn)
-        conn.options.timeout = @configuration.timeout
+
+        conn.options.timeout = @configuration.request_timeout
+        conn.options.open_timeout = @configuration.connect_timeout
 
       end
     end
 
     def configure_adapter(connection)
-      adapter = @configuration.faraday_adapter || Faraday.default_adapter
-      adapter_options = @configuration.faraday_adapter_options || {}
-      connection.adapter(adapter, **adapter_options)
+      # Escape hatch #2: custom adapter symbol. Use it with the user's
+      # adapter_options; do NOT apply pool_size/idle_timeout (those are
+      # net_http_persistent-specific).
+      if @configuration.faraday_adapter
+        adapter = @configuration.faraday_adapter
+        adapter_options = @configuration.faraday_adapter_options || {}
+        # Header-based keep-alive only on the custom-adapter path.
+        # net_http_persistent (default) keeps connections alive natively without any HTTP header.
+        connection.headers['Connection'] = 'keep-alive' if @configuration.connection_keep_alive
+        connection.adapter(adapter, **adapter_options)
+        return
+      end
+
+      # Default: net_http_persistent with the 5-knob config.
+      # Never set Connection: close; net_http_persistent keeps connections alive natively.
+      idle = @configuration.idle_timeout
+      connection.adapter :net_http_persistent, pool_size: @configuration.max_conns_per_host do |http|
+
+        http.idle_timeout = idle
+
+      end
     rescue Faraday::Error, ArgumentError => e
-      @configuration.logger&.warn(
-        "Falling back to #{Faraday.default_adapter}: could not use adapter #{adapter} (#{e.message})",
-      )
+      # A fallback silently disables pooling, so always WARN (never swallow).
+      @configuration.warn_pool_fallback(Faraday.default_adapter, e)
       connection.adapter Faraday.default_adapter
+      # Record the adapter actually built so the INFO log reports it accurately.
+      @configuration.effective_adapter = Faraday.default_adapter.to_s
     end
 
     def generate_auth_header
@@ -214,29 +287,13 @@ module GetStreamRuby
     end
 
     def handle_response(response)
-      case response.status
-      when 200..299
-        StreamResponse.new(response.body)
-      else
-        # Parse JSON response body if it's a string
-        parsed_body = if response.body.is_a?(String)
-                        begin
-                          JSON.parse(response.body)
-                        rescue JSON::ParserError
-                          response.body
-                        end
-                      else
-                        response.body
-                      end
+      return StreamResponse.new(response.body) if (200..299).cover?(response.status)
 
-        error_message = if parsed_body.is_a?(Hash)
-                          parsed_body['message'] || parsed_body['detail'] ||
-                            "Request failed with status #{response.status}"
-                        else
-                          "Request failed with status #{response.status}"
-                        end
-        raise APIError, error_message
-      end
+      ErrorMapping.raise_api_error(response)
+    end
+
+    def monotonic_now
+      Process.clock_gettime(Process::CLOCK_MONOTONIC)
     end
 
     def multipart_request?(data)
@@ -252,10 +309,10 @@ module GetStreamRuby
       payload = {}
 
       # Handle file field
-      raise APIError, 'file name must be provided' if data.file.nil? || data.file.empty?
+      raise ArgumentError, 'file name must be provided' if data.file.nil? || data.file.empty?
 
       file_path = data.file
-      raise APIError, "file not found: #{file_path}" unless File.exist?(file_path)
+      raise ArgumentError, "file not found: #{file_path}" unless File.exist?(file_path)
 
       # Determine content type
       content_type = detect_content_type(file_path)
@@ -291,7 +348,7 @@ module GetStreamRuby
 
       handle_response(response)
     rescue Faraday::Error => e
-      raise APIError, "Request failed: #{e.message}"
+      raise TransportError.new("Request failed: #{e.message}", error_type: ErrorMapping.classify_faraday_error(e))
     end
 
     def detect_content_type(file_path)

@@ -1,45 +1,27 @@
 # frozen_string_literal: true
 
+require 'logger'
+
 module GetStreamRuby
 
   class Configuration
 
     attr_accessor :api_key, :api_secret, :base_url, :timeout, :logger, :faraday_adapter, :faraday_adapter_options,
-                  :connection_keep_alive
+                  :connection_keep_alive, :max_conns_per_host, :idle_timeout, :connect_timeout,
+                  :request_timeout, :http_client, :effective_adapter
 
     def initialize(api_key: nil, api_secret: nil, use_env: true, **options)
-      base_url = options[:base_url]
-      timeout = options[:timeout]
       http_options = options[:http_options] || {}
-      faraday_adapter = options[:faraday_adapter] || http_options[:faraday_adapter]
-      faraday_adapter_options = options[:faraday_adapter_options] || http_options[:faraday_adapter_options]
-      connection_keep_alive = if options.key?(:connection_keep_alive)
-                                options[:connection_keep_alive]
-                              else
-                                http_options[:connection_keep_alive]
-                              end
 
-      if use_env
-        @api_key = api_key || ENV.fetch('STREAM_API_KEY', nil)
-        @api_secret = api_secret || ENV.fetch('STREAM_API_SECRET', nil)
-        @base_url = base_url || ENV['STREAM_BASE_URL'] || 'https://chat.stream-io-api.com'
-        @timeout = timeout || (ENV['STREAM_TIMEOUT'] || 30).to_i
-      else
-        # Manual configuration only - no environment variables
-        @api_key = api_key
-        @api_secret = api_secret
-        @base_url = base_url || 'https://chat.stream-io-api.com'
-        @timeout = timeout || 30
-      end
+      assign_credentials_and_url(api_key, api_secret, options[:base_url], use_env: use_env)
+      assign_timeouts_and_pool(options, use_env: use_env)
+      assign_adapter(options, http_options)
+      assign_keep_alive(options, http_options)
 
-      @faraday_adapter = (faraday_adapter || ENV.fetch('STREAM_FARADAY_ADAPTER', nil))&.to_sym
-      @faraday_adapter_options = faraday_adapter_options || default_adapter_options
-      @connection_keep_alive = if connection_keep_alive.nil?
-                                 ENV.fetch('STREAM_CONNECTION_KEEP_ALIVE', 'true') == 'true'
-                               else
-                                 connection_keep_alive
-                               end
-      @logger = nil
+      # Keep @timeout in sync with @request_timeout for backwards compatibility.
+      @timeout = @request_timeout
+      @http_client = options[:http_client]
+      @logger = options[:logger]
     end
 
     def valid?
@@ -57,9 +39,54 @@ module GetStreamRuby
         api_secret: @api_secret,
         base_url: @base_url,
         timeout: @timeout,
+        request_timeout: @request_timeout,
+        max_conns_per_host: @max_conns_per_host,
+        idle_timeout: @idle_timeout,
+        connect_timeout: @connect_timeout,
+        http_client: @http_client,
         faraday_adapter: @faraday_adapter,
         faraday_adapter_options: @faraday_adapter_options.dup,
         connection_keep_alive: @connection_keep_alive,
+        logger: @logger,
+      )
+    end
+
+    # Emit a single INFO line listing the 5 effective pool knobs plus the active escape hatch (CHA-2956).
+    # If no logger is supplied, a default $stdout INFO logger is used.
+    # The faraday_adapter label reflects the adapter actually built
+    # (effective_adapter, set by Client#configure_adapter) so a silent fallback
+    # to the default adapter is never misreported as the requested adapter.
+    def log_pool_config_to(logger)
+      logger ||= Logger.new($stdout).tap { |l| l.level = Logger::INFO }
+      flag = @http_client ? 'user_http_client=true' : 'user_http_client=false'
+      adapter_label = if @http_client
+                        'user-supplied'
+                      elsif @effective_adapter
+                        @effective_adapter
+                      elsif @faraday_adapter
+                        @faraday_adapter.to_s
+                      else
+                        'default'
+                      end
+      fmt = 'connection pool: max_conns_per_host=%<m>d idle_timeout=%<i>d ' \
+            'connect_timeout=%<c>d request_timeout=%<r>d %<flag>s faraday_adapter=%<a>s'
+      logger.info(
+        format(
+          fmt,
+          m: @max_conns_per_host, i: @idle_timeout, c: @connect_timeout,
+          r: @request_timeout, flag: flag, a: adapter_label
+        ),
+      )
+    end
+
+    # Emit a WARNING that the requested adapter could not be built and pooling
+    # is disabled (CHA-2956). A fallback must never be silent, so when no logger
+    # is configured this uses a default $stdout logger, exactly like
+    # log_pool_config_to.
+    def warn_pool_fallback(fallback_adapter, error)
+      warn_logger = @logger || Logger.new($stdout).tap { |l| l.level = Logger::WARN }
+      warn_logger.warn(
+        "Falling back to #{fallback_adapter}: could not configure net_http_persistent (#{error.message})",
       )
     end
 
@@ -92,6 +119,59 @@ module GetStreamRuby
 
     def blank?(value)
       value.nil? || (value.respond_to?(:empty?) && value.empty?)
+    end
+
+    def assign_credentials_and_url(api_key, api_secret, base_url, use_env:)
+      if use_env
+        @api_key = api_key || ENV.fetch('STREAM_API_KEY', nil)
+        @api_secret = api_secret || ENV.fetch('STREAM_API_SECRET', nil)
+        @base_url = base_url || ENV.fetch('STREAM_BASE_URL', nil) || 'https://chat.stream-io-api.com'
+      else
+        @api_key = api_key
+        @api_secret = api_secret
+        @base_url = base_url || 'https://chat.stream-io-api.com'
+      end
+    end
+
+    def assign_timeouts_and_pool(options, use_env:)
+      timeout = options[:timeout]
+      request_timeout = options[:request_timeout]
+      max_conns_per_host = options[:max_conns_per_host]
+      idle_timeout = options[:idle_timeout]
+      connect_timeout = options[:connect_timeout]
+
+      if use_env
+        env_request_timeout = ENV.fetch('STREAM_REQUEST_TIMEOUT', nil) || ENV.fetch('STREAM_TIMEOUT', nil)
+        @request_timeout = (request_timeout || timeout || env_request_timeout || 30).to_i
+        @max_conns_per_host = (max_conns_per_host || ENV.fetch('STREAM_MAX_CONNS_PER_HOST', nil) || 5).to_i
+        @idle_timeout = (idle_timeout || ENV.fetch('STREAM_IDLE_TIMEOUT', nil) || 55).to_i
+        @connect_timeout = (connect_timeout || ENV.fetch('STREAM_CONNECT_TIMEOUT', nil) || 10).to_i
+      else
+        @request_timeout = (request_timeout || timeout || 30).to_i
+        @max_conns_per_host = (max_conns_per_host || 5).to_i
+        @idle_timeout = (idle_timeout || 55).to_i
+        @connect_timeout = (connect_timeout || 10).to_i
+      end
+    end
+
+    def assign_adapter(options, http_options)
+      faraday_adapter = options[:faraday_adapter] || http_options[:faraday_adapter]
+      faraday_adapter_options = options[:faraday_adapter_options] || http_options[:faraday_adapter_options]
+      @faraday_adapter = (faraday_adapter || ENV.fetch('STREAM_FARADAY_ADAPTER', nil))&.to_sym
+      @faraday_adapter_options = faraday_adapter_options || default_adapter_options
+    end
+
+    def assign_keep_alive(options, http_options)
+      connection_keep_alive = if options.key?(:connection_keep_alive)
+                                options[:connection_keep_alive]
+                              else
+                                http_options[:connection_keep_alive]
+                              end
+      @connection_keep_alive = if connection_keep_alive.nil?
+                                 ENV.fetch('STREAM_CONNECTION_KEEP_ALIVE', 'true') == 'true'
+                               else
+                                 connection_keep_alive
+                               end
     end
 
   end

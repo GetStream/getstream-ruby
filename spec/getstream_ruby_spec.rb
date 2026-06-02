@@ -26,6 +26,13 @@ RSpec.describe GetStreamRuby do
       expect(client.configuration.faraday_adapter).to be_nil
       expect(client.configuration.faraday_adapter_options).to eq({})
       expect(client.configuration.connection_keep_alive).to eq(true)
+      expect(client.configuration.max_conns_per_host).to eq(5)
+      expect(client.configuration.idle_timeout).to eq(55)
+      expect(client.configuration.connect_timeout).to eq(10)
+      expect(client.configuration.request_timeout).to eq(30)
+      expect(client.configuration.http_client).to be_nil
+      # Backwards-compat: timeout: kwarg is an alias for request_timeout:.
+      expect(client.configuration.timeout).to eq(30)
 
     end
 
