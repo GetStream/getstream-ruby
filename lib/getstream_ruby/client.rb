@@ -271,10 +271,20 @@ module GetStreamRuby
       @configuration.effective_adapter = Faraday.default_adapter.to_s
     end
 
+    # Backdate the JWT `iat` claim by this many seconds.
+    #
+    # JWT timestamps are whole-second (RFC 7519 NumericDate), so `Time.now.to_i`
+    # truncates to the second. The server applies minimal forward leeway on
+    # `iat`, so stamping `iat = now` lets a small fraction of requests be
+    # rejected ("token used before issue at (iat)") whenever the caller's clock
+    # is even marginally ahead of the server and the truncation lands on a
+    # second boundary. Backdating absorbs that sub-second skew.
+    AUTH_IAT_LEEWAY_SECONDS = 5
+
     def generate_auth_header
       JWT.encode(
         {
-          iat: Time.now.to_i,
+          iat: Time.now.to_i - AUTH_IAT_LEEWAY_SECONDS,
           server: true,
         },
         @configuration.api_secret,
