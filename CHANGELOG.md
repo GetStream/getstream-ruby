@@ -42,6 +42,13 @@
 
 ### Fixed
 
+- Auth tokens now backdate the JWT `iat` claim by `Client::AUTH_IAT_LEEWAY_SECONDS`
+  (5s). `iat` is a whole-second value (RFC 7519 NumericDate) and the server applies
+  minimal forward leeway, so stamping `iat = Time.now.to_i` caused a small fraction of
+  requests to be rejected with `token used before issue at (iat)` (HTTP 401) whenever the
+  caller's clock was even marginally ahead of the server and the second-truncation landed
+  on a boundary. Backdating keeps the token safely behind the server clock. The legacy
+  `stream-chat-ruby` client never sent `iat`, so upgrades from it newly exposed this.
 - `event_class_for_type` now references `GetStream::Generated::Models::*Event`
   (was `StreamChat::*Event`, which raised `NameError` at runtime). `parse_event`
   resolves known event types correctly.
