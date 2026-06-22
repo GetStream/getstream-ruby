@@ -27,6 +27,9 @@ module GetStream
         # @!attribute disabled_reason
         #   @return [String] Reason explaining why device had been disabled
         attr_accessor :disabled_reason
+        # @!attribute hardware_id
+        #   @return [String] Stable physical device identifier used to deduplicate pushes across push providers
+        attr_accessor :hardware_id
         # @!attribute push_provider_name
         #   @return [String] Push provider name
         attr_accessor :push_provider_name
@@ -43,6 +46,7 @@ module GetStream
           @user_id = attributes[:user_id] || attributes['user_id']
           @disabled = attributes[:disabled] || attributes['disabled'] || nil
           @disabled_reason = attributes[:disabled_reason] || attributes['disabled_reason'] || nil
+          @hardware_id = attributes[:hardware_id] || attributes['hardware_id'] || nil
           @push_provider_name = attributes[:push_provider_name] || attributes['push_provider_name'] || nil
           @voip = attributes[:voip] || attributes['voip'] || nil
         end
@@ -56,6 +60,7 @@ module GetStream
             user_id: 'user_id',
             disabled: 'disabled',
             disabled_reason: 'disabled_reason',
+            hardware_id: 'hardware_id',
             push_provider_name: 'push_provider_name',
             voip: 'voip'
           }

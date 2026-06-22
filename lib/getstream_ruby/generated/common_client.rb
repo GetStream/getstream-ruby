@@ -531,6 +531,22 @@ module GetStream
         )
       end
 
+      # Requests a controlled stop of an import v2 task. Allowed only for tasks in queued or processing state; a processing import stops cleanly on its next progress tick.
+      #
+      # @param _id [String]
+      # @return [Models::CancelImportV2TaskResponse]
+      def cancel_import_v2_task(_id)
+        path = '/api/v2/imports/v2/{id}/cancel'
+        # Replace path parameters
+        path = path.gsub('{id}', _id.to_s)
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path
+        )
+      end
+
       # Gets an import
       #
       # @param _id [String]

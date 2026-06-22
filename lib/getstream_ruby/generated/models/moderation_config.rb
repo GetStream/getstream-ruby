@@ -51,6 +51,9 @@ module GetStream
         # @!attribute block_list_config
         #   @return [BlockListConfig]
         attr_accessor :block_list_config
+        # @!attribute flood_config
+        #   @return [FloodConfig]
+        attr_accessor :flood_config
         # @!attribute google_vision_config
         #   @return [GoogleVisionConfig]
         attr_accessor :google_vision_config
@@ -81,6 +84,7 @@ module GetStream
           @automod_semantic_filters_config = attributes[:automod_semantic_filters_config] || attributes['automod_semantic_filters_config'] || nil
           @automod_toxicity_config = attributes[:automod_toxicity_config] || attributes['automod_toxicity_config'] || nil
           @block_list_config = attributes[:block_list_config] || attributes['block_list_config'] || nil
+          @flood_config = attributes[:flood_config] || attributes['flood_config'] || nil
           @google_vision_config = attributes[:google_vision_config] || attributes['google_vision_config'] || nil
           @llm_config = attributes[:llm_config] || attributes['llm_config'] || nil
           @velocity_filter_config = attributes[:velocity_filter_config] || attributes['velocity_filter_config'] || nil
@@ -104,6 +108,7 @@ module GetStream
             automod_semantic_filters_config: 'automod_semantic_filters_config',
             automod_toxicity_config: 'automod_toxicity_config',
             block_list_config: 'block_list_config',
+            flood_config: 'flood_config',
             google_vision_config: 'google_vision_config',
             llm_config: 'llm_config',
             velocity_filter_config: 'velocity_filter_config',

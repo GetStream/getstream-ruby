@@ -42,6 +42,9 @@ module GetStream
         # @!attribute violation_number
         #   @return [Integer] The violation number for call rules (optional)
         attr_accessor :violation_number
+        # @!attribute matched_contents
+        #   @return [Array<MatchedContent>] Ordered list of contents whose verdicts contributed to an aggregation rule's threshold. Populated only for aggregation rules when callers supplied `content_ids`.
+        attr_accessor :matched_contents
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -57,6 +60,7 @@ module GetStream
           @received_at = attributes[:received_at] || attributes['received_at'] || nil
           @review_queue_item_id = attributes[:review_queue_item_id] || attributes['review_queue_item_id'] || nil
           @violation_number = attributes[:violation_number] || attributes['violation_number'] || nil
+          @matched_contents = attributes[:matched_contents] || attributes['matched_contents'] || nil
         end
 
         # Override field mappings for JSON serialization
@@ -72,7 +76,8 @@ module GetStream
             type: 'type',
             received_at: 'received_at',
             review_queue_item_id: 'review_queue_item_id',
-            violation_number: 'violation_number'
+            violation_number: 'violation_number',
+            matched_contents: 'matched_contents'
           }
         end
       end

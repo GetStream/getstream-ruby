@@ -150,15 +150,24 @@ module GetStream
         # @!attribute push_notifications
         #   @return [PushNotificationFields]
         attr_accessor :push_notifications
+        # @!attribute before_message_send_hook_attempt_timeout_ms
+        #   @return [Integer]
+        attr_accessor :before_message_send_hook_attempt_timeout_ms
         # @!attribute before_message_send_hook_url
         #   @return [String]
         attr_accessor :before_message_send_hook_url
+        # @!attribute moderation_onboarding_complete
+        #   @return [Boolean]
+        attr_accessor :moderation_onboarding_complete
         # @!attribute moderation_s3_image_access_role_arn
         #   @return [String]
         attr_accessor :moderation_s3_image_access_role_arn
         # @!attribute revoke_tokens_issued_before
         #   @return [DateTime]
         attr_accessor :revoke_tokens_issued_before
+        # @!attribute video_primary_use_case
+        #   @return [String]
+        attr_accessor :video_primary_use_case
         # @!attribute allowed_flag_reasons
         #   @return [Array<String>]
         attr_accessor :allowed_flag_reasons
@@ -228,9 +237,12 @@ module GetStream
           @image_upload_config = attributes[:image_upload_config] || attributes['image_upload_config']
           @policies = attributes[:policies] || attributes['policies']
           @push_notifications = attributes[:push_notifications] || attributes['push_notifications']
+          @before_message_send_hook_attempt_timeout_ms = attributes[:before_message_send_hook_attempt_timeout_ms] || attributes['before_message_send_hook_attempt_timeout_ms'] || nil
           @before_message_send_hook_url = attributes[:before_message_send_hook_url] || attributes['before_message_send_hook_url'] || nil
+          @moderation_onboarding_complete = attributes[:moderation_onboarding_complete] || attributes['moderation_onboarding_complete'] || nil
           @moderation_s3_image_access_role_arn = attributes[:moderation_s3_image_access_role_arn] || attributes['moderation_s3_image_access_role_arn'] || nil
           @revoke_tokens_issued_before = attributes[:revoke_tokens_issued_before] || attributes['revoke_tokens_issued_before'] || nil
+          @video_primary_use_case = attributes[:video_primary_use_case] || attributes['video_primary_use_case'] || nil
           @allowed_flag_reasons = attributes[:allowed_flag_reasons] || attributes['allowed_flag_reasons'] || nil
           @geofences = attributes[:geofences] || attributes['geofences'] || nil
           @image_moderation_labels = attributes[:image_moderation_labels] || attributes['image_moderation_labels'] || nil
@@ -289,9 +301,12 @@ module GetStream
             image_upload_config: 'image_upload_config',
             policies: 'policies',
             push_notifications: 'push_notifications',
+            before_message_send_hook_attempt_timeout_ms: 'before_message_send_hook_attempt_timeout_ms',
             before_message_send_hook_url: 'before_message_send_hook_url',
+            moderation_onboarding_complete: 'moderation_onboarding_complete',
             moderation_s3_image_access_role_arn: 'moderation_s3_image_access_role_arn',
             revoke_tokens_issued_before: 'revoke_tokens_issued_before',
+            video_primary_use_case: 'video_primary_use_case',
             allowed_flag_reasons: 'allowed_flag_reasons',
             geofences: 'geofences',
             image_moderation_labels: 'image_moderation_labels',

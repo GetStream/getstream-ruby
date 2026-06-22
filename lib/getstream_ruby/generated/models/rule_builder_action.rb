@@ -9,6 +9,9 @@ module GetStream
       class RuleBuilderAction < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute reason
+        #   @return [String]
+        attr_accessor :reason
         # @!attribute skip_inbox
         #   @return [Boolean]
         attr_accessor :skip_inbox
@@ -28,6 +31,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @reason = attributes[:reason] || attributes['reason'] || nil
           @skip_inbox = attributes[:skip_inbox] || attributes['skip_inbox'] || nil
           @type = attributes[:type] || attributes['type'] || nil
           @ban_options = attributes[:ban_options] || attributes['ban_options'] || nil
@@ -38,6 +42,7 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            reason: 'reason',
             skip_inbox: 'skip_inbox',
             type: 'type',
             ban_options: 'ban_options',

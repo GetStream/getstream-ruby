@@ -133,8 +133,10 @@ require_relative 'models/message_updated_event'
 require_relative 'models/moderation_check_completed_event'
 require_relative 'models/moderation_custom_action_event'
 require_relative 'models/moderation_flagged_event'
+require_relative 'models/moderation_image_analysis_complete_event'
 require_relative 'models/moderation_mark_reviewed_event'
 require_relative 'models/moderation_rules_triggered_event'
+require_relative 'models/moderation_text_analysis_complete_event'
 require_relative 'models/notification_feed_updated_event'
 require_relative 'models/notification_mark_unread_event'
 require_relative 'models/notification_thread_message_new_event'
@@ -350,7 +352,9 @@ module StreamChat
     EVENT_TYPE_MESSAGE_UPDATED = 'message.updated'
     EVENT_TYPE_MODERATION_CUSTOM_ACTION = 'moderation.custom_action'
     EVENT_TYPE_MODERATION_FLAGGED = 'moderation.flagged'
+    EVENT_TYPE_MODERATION_IMAGE_ANALYSIS_COMPLETE = 'moderation.image_analysis.complete'
     EVENT_TYPE_MODERATION_MARK_REVIEWED = 'moderation.mark_reviewed'
+    EVENT_TYPE_MODERATION_TEXT_ANALYSIS_COMPLETE = 'moderation.text_analysis.complete'
     EVENT_TYPE_MODERATION_CHECK_COMPLETED = 'moderation_check.completed'
     EVENT_TYPE_MODERATION_RULE_TRIGGERED = 'moderation_rule.triggered'
     EVENT_TYPE_NOTIFICATION_MARK_UNREAD = 'notification.mark_unread'
@@ -701,8 +705,12 @@ module StreamChat
         GetStream::Generated::Models::ModerationCustomActionEvent
       when 'moderation.flagged'
         GetStream::Generated::Models::ModerationFlaggedEvent
+      when 'moderation.image_analysis.complete'
+        GetStream::Generated::Models::ModerationImageAnalysisCompleteEvent
       when 'moderation.mark_reviewed'
         GetStream::Generated::Models::ModerationMarkReviewedEvent
+      when 'moderation.text_analysis.complete'
+        GetStream::Generated::Models::ModerationTextAnalysisCompleteEvent
       when 'moderation_check.completed'
         GetStream::Generated::Models::ModerationCheckCompletedEvent
       when 'moderation_rule.triggered'

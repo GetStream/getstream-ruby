@@ -970,6 +970,23 @@ module GetStream
         )
       end
 
+      # Reports a batch of client-side telemetry events. Events are processed independently; one invalid event does not block the rest of the batch, but the request fails if any event is invalid.
+      #
+      # @param report_client_event_request [ReportClientEventRequest]
+      # @return [Models::ReportClientEventResponse]
+      def report_client_call_event(report_client_event_request)
+        path = '/api/v2/video/call_client_event'
+        # Build request body
+        body = report_client_event_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
       # 
       #
       # @param query_call_session_stats_request [QueryCallSessionStatsRequest]

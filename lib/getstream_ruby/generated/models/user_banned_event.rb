@@ -45,6 +45,9 @@ module GetStream
         # @!attribute received_at
         #   @return [DateTime]
         attr_accessor :received_at
+        # @!attribute review_queue_item_id
+        #   @return [String] ID of the review queue item (flagged message) that triggered the ban, if the ban was applied from the moderation review queue
+        attr_accessor :review_queue_item_id
         # @!attribute shadow
         #   @return [Boolean] Whether the user was shadow banned
         attr_accessor :shadow
@@ -76,6 +79,7 @@ module GetStream
           @expiration = attributes[:expiration] || attributes['expiration'] || nil
           @reason = attributes[:reason] || attributes['reason'] || nil
           @received_at = attributes[:received_at] || attributes['received_at'] || nil
+          @review_queue_item_id = attributes[:review_queue_item_id] || attributes['review_queue_item_id'] || nil
           @shadow = attributes[:shadow] || attributes['shadow'] || nil
           @team = attributes[:team] || attributes['team'] || nil
           @total_bans = attributes[:total_bans] || attributes['total_bans'] || nil
@@ -98,6 +102,7 @@ module GetStream
             expiration: 'expiration',
             reason: 'reason',
             received_at: 'received_at',
+            review_queue_item_id: 'review_queue_item_id',
             shadow: 'shadow',
             team: 'team',
             total_bans: 'total_bans',

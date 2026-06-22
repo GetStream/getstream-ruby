@@ -15,6 +15,9 @@ module GetStream
         # @!attribute auto_translation_enabled
         #   @return [Boolean]
         attr_accessor :auto_translation_enabled
+        # @!attribute before_message_send_hook_attempt_timeout_ms
+        #   @return [Integer]
+        attr_accessor :before_message_send_hook_attempt_timeout_ms
         # @!attribute before_message_send_hook_url
         #   @return [String]
         attr_accessor :before_message_send_hook_url
@@ -63,6 +66,9 @@ module GetStream
         # @!attribute moderation_enabled
         #   @return [Boolean]
         attr_accessor :moderation_enabled
+        # @!attribute moderation_onboarding_complete
+        #   @return [Boolean]
+        attr_accessor :moderation_onboarding_complete
         # @!attribute moderation_s3_image_access_role_arn
         #   @return [String]
         attr_accessor :moderation_s3_image_access_role_arn
@@ -105,6 +111,9 @@ module GetStream
         # @!attribute user_response_time_enabled
         #   @return [Boolean]
         attr_accessor :user_response_time_enabled
+        # @!attribute video_primary_use_case
+        #   @return [String]
+        attr_accessor :video_primary_use_case
         # @!attribute webhook_url
         #   @return [String]
         attr_accessor :webhook_url
@@ -168,6 +177,7 @@ module GetStream
           super(attributes)
           @async_url_enrich_enabled = attributes[:async_url_enrich_enabled] || attributes['async_url_enrich_enabled'] || nil
           @auto_translation_enabled = attributes[:auto_translation_enabled] || attributes['auto_translation_enabled'] || nil
+          @before_message_send_hook_attempt_timeout_ms = attributes[:before_message_send_hook_attempt_timeout_ms] || attributes['before_message_send_hook_attempt_timeout_ms'] || nil
           @before_message_send_hook_url = attributes[:before_message_send_hook_url] || attributes['before_message_send_hook_url'] || nil
           @cdn_expiration_seconds = attributes[:cdn_expiration_seconds] || attributes['cdn_expiration_seconds'] || nil
           @channel_hide_members_only = attributes[:channel_hide_members_only] || attributes['channel_hide_members_only'] || nil
@@ -184,6 +194,7 @@ module GetStream
           @migrate_permissions_to_v2 = attributes[:migrate_permissions_to_v2] || attributes['migrate_permissions_to_v2'] || nil
           @moderation_analytics_enabled = attributes[:moderation_analytics_enabled] || attributes['moderation_analytics_enabled'] || nil
           @moderation_enabled = attributes[:moderation_enabled] || attributes['moderation_enabled'] || nil
+          @moderation_onboarding_complete = attributes[:moderation_onboarding_complete] || attributes['moderation_onboarding_complete'] || nil
           @moderation_s3_image_access_role_arn = attributes[:moderation_s3_image_access_role_arn] || attributes['moderation_s3_image_access_role_arn'] || nil
           @moderation_webhook_url = attributes[:moderation_webhook_url] || attributes['moderation_webhook_url'] || nil
           @multi_tenant_enabled = attributes[:multi_tenant_enabled] || attributes['multi_tenant_enabled'] || nil
@@ -198,6 +209,7 @@ module GetStream
           @sqs_secret = attributes[:sqs_secret] || attributes['sqs_secret'] || nil
           @sqs_url = attributes[:sqs_url] || attributes['sqs_url'] || nil
           @user_response_time_enabled = attributes[:user_response_time_enabled] || attributes['user_response_time_enabled'] || nil
+          @video_primary_use_case = attributes[:video_primary_use_case] || attributes['video_primary_use_case'] || nil
           @webhook_url = attributes[:webhook_url] || attributes['webhook_url'] || nil
           @allowed_flag_reasons = attributes[:allowed_flag_reasons] || attributes['allowed_flag_reasons'] || nil
           @event_hooks = attributes[:event_hooks] || attributes['event_hooks'] || nil
@@ -224,6 +236,7 @@ module GetStream
           {
             async_url_enrich_enabled: 'async_url_enrich_enabled',
             auto_translation_enabled: 'auto_translation_enabled',
+            before_message_send_hook_attempt_timeout_ms: 'before_message_send_hook_attempt_timeout_ms',
             before_message_send_hook_url: 'before_message_send_hook_url',
             cdn_expiration_seconds: 'cdn_expiration_seconds',
             channel_hide_members_only: 'channel_hide_members_only',
@@ -240,6 +253,7 @@ module GetStream
             migrate_permissions_to_v2: 'migrate_permissions_to_v2',
             moderation_analytics_enabled: 'moderation_analytics_enabled',
             moderation_enabled: 'moderation_enabled',
+            moderation_onboarding_complete: 'moderation_onboarding_complete',
             moderation_s3_image_access_role_arn: 'moderation_s3_image_access_role_arn',
             moderation_webhook_url: 'moderation_webhook_url',
             multi_tenant_enabled: 'multi_tenant_enabled',
@@ -254,6 +268,7 @@ module GetStream
             sqs_secret: 'sqs_secret',
             sqs_url: 'sqs_url',
             user_response_time_enabled: 'user_response_time_enabled',
+            video_primary_use_case: 'video_primary_use_case',
             webhook_url: 'webhook_url',
             allowed_flag_reasons: 'allowed_flag_reasons',
             event_hooks: 'event_hooks',
