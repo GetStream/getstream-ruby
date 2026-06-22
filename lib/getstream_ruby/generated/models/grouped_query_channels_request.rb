@@ -10,11 +10,14 @@ module GetStream
 
         # Model attributes
         # @!attribute limit
-        #   @return [Integer] Max channels per bucket (default 10)
+        #   @return [Integer] Default max channels per group (default 10)
         attr_accessor :limit
         # @!attribute user_id
         #   @return [String]
         attr_accessor :user_id
+        # @!attribute groups
+        #   @return [Hash<String, GroupedChannelsGroupRequest>] Groups to return, keyed by group name. Each group can define limit, next, or prev. 'next' and 'prev' cursors are only allowed when the request contains exactly one group; multi-group pagination is rejected.
+        attr_accessor :groups
         # @!attribute user
         #   @return [UserRequest]
         attr_accessor :user
@@ -24,6 +27,7 @@ module GetStream
           super(attributes)
           @limit = attributes[:limit] || attributes['limit'] || nil
           @user_id = attributes[:user_id] || attributes['user_id'] || nil
+          @groups = attributes[:groups] || attributes['groups'] || nil
           @user = attributes[:user] || attributes['user'] || nil
         end
 
@@ -32,6 +36,7 @@ module GetStream
           {
             limit: 'limit',
             user_id: 'user_id',
+            groups: 'groups',
             user: 'user'
           }
         end

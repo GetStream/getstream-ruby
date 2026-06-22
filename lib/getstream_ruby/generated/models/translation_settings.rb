@@ -19,8 +19,8 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @enabled = attributes[:enabled] || attributes['enabled']
-          @languages = attributes[:languages] || attributes['languages']
+          @enabled = attributes[:enabled] || attributes['enabled'] || nil
+          @languages = attributes[:languages] || attributes['languages'] || nil
         end
 
         # Override field mappings for JSON serialization

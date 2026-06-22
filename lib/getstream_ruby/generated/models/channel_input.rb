@@ -40,7 +40,7 @@ module GetStream
         #   @return [Array<ChannelMemberRequest>]
         attr_accessor :members
         # @!attribute config_overrides
-        #   @return [ChannelConfig]
+        #   @return [ChannelConfigOverrides]
         attr_accessor :config_overrides
         # @!attribute created_by
         #   @return [UserRequest]

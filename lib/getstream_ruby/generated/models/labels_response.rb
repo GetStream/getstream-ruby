@@ -21,6 +21,9 @@ module GetStream
         # @!attribute directed_at
         #   @return [String] Who the content is directed at (USER, GROUP, EVERYONE, NONE, etc.), when the provider exposes it
         attr_accessor :directed_at
+        # @!attribute fully_masked_content
+        #   @return [String] The original content with every non-whitespace character masked. Present only when recommended_action is not 'keep'. Derived at runtime and never stored.
+        attr_accessor :fully_masked_content
         # @!attribute harm_type
         #   @return [String] High-level harm category
         attr_accessor :harm_type
@@ -44,6 +47,7 @@ module GetStream
           @recommended_action = attributes[:recommended_action] || attributes['recommended_action']
           @content_id = attributes[:content_id] || attributes['content_id'] || nil
           @directed_at = attributes[:directed_at] || attributes['directed_at'] || nil
+          @fully_masked_content = attributes[:fully_masked_content] || attributes['fully_masked_content'] || nil
           @harm_type = attributes[:harm_type] || attributes['harm_type'] || nil
           @language = attributes[:language] || attributes['language'] || nil
           @masked_content = attributes[:masked_content] || attributes['masked_content'] || nil
@@ -58,6 +62,7 @@ module GetStream
             recommended_action: 'recommended_action',
             content_id: 'content_id',
             directed_at: 'directed_at',
+            fully_masked_content: 'fully_masked_content',
             harm_type: 'harm_type',
             language: 'language',
             masked_content: 'masked_content',

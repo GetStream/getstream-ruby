@@ -25,7 +25,7 @@ module GetStream
         #   @return [String]
         attr_accessor :team
         # @!attribute config_overrides
-        #   @return [ChannelConfig]
+        #   @return [ChannelConfigOverrides]
         attr_accessor :config_overrides
         # @!attribute custom
         #   @return [Object]

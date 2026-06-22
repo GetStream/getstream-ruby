@@ -24,6 +24,9 @@ module GetStream
         # @!attribute source
         #   @return [String]
         attr_accessor :source
+        # @!attribute use_import_time_as_op_time
+        #   @return [Boolean]
+        attr_accessor :use_import_time_as_op_time
         # @!attribute s3
         #   @return [ImportV2TaskSettingsS3]
         attr_accessor :s3
@@ -36,6 +39,7 @@ module GetStream
           @path = attributes[:path] || attributes['path'] || nil
           @skip_references_check = attributes[:skip_references_check] || attributes['skip_references_check'] || nil
           @source = attributes[:source] || attributes['source'] || nil
+          @use_import_time_as_op_time = attributes[:use_import_time_as_op_time] || attributes['use_import_time_as_op_time'] || nil
           @s3 = attributes[:s3] || attributes['s3'] || nil
         end
 
@@ -47,6 +51,7 @@ module GetStream
             path: 'path',
             skip_references_check: 'skip_references_check',
             source: 'source',
+            use_import_time_as_op_time: 'use_import_time_as_op_time',
             s3: 's3'
           }
         end

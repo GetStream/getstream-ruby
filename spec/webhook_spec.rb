@@ -1045,10 +1045,24 @@ RSpec.describe 'Webhook' do
 
     end
 
+    it 'parses moderation.image_analysis.complete' do
+
+      event = StreamChat::Webhook.parse_webhook_event('{"type":"moderation.image_analysis.complete"}')
+      expect(event.class.name).to eq('GetStream::Generated::Models::ModerationImageAnalysisCompleteEvent')
+
+    end
+
     it 'parses moderation.mark_reviewed' do
 
       event = StreamChat::Webhook.parse_webhook_event('{"type":"moderation.mark_reviewed"}')
       expect(event.class.name).to eq('GetStream::Generated::Models::ModerationMarkReviewedEvent')
+
+    end
+
+    it 'parses moderation.text_analysis.complete' do
+
+      event = StreamChat::Webhook.parse_webhook_event('{"type":"moderation.text_analysis.complete"}')
+      expect(event.class.name).to eq('GetStream::Generated::Models::ModerationTextAnalysisCompleteEvent')
 
     end
 
@@ -1283,7 +1297,7 @@ RSpec.describe 'Webhook' do
   end
 
   # ---------------------------------------------------------------------------
-  # Helpers + composites: parse_event, gunzip_payload, decode_sqs_payload,
+  # Spec §6 helpers + composites: parse_event, gunzip_payload, decode_sqs_payload,
   # decode_sns_payload, verify_and_parse_webhook, parse_sqs, parse_sns.
   # ---------------------------------------------------------------------------
 

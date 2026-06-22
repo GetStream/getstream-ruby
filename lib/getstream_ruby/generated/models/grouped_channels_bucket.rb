@@ -12,6 +12,12 @@ module GetStream
         # @!attribute channels
         #   @return [Array<ChannelStateResponseFields>] Channels returned for this bucket
         attr_accessor :channels
+        # @!attribute next
+        #   @return [String] Cursor for the next page of this group
+        attr_accessor :next
+        # @!attribute prev
+        #   @return [String] Cursor for the previous page of this group
+        attr_accessor :prev
         # @!attribute unread_channels
         #   @return [Integer] Unread channels currently classified into this bucket
         attr_accessor :unread_channels
@@ -20,6 +26,8 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @channels = attributes[:channels] || attributes['channels']
+          @next = attributes[:next] || attributes['next'] || nil
+          @prev = attributes[:prev] || attributes['prev'] || nil
           @unread_channels = attributes[:unread_channels] || attributes['unread_channels'] || nil
         end
 
@@ -27,6 +35,8 @@ module GetStream
         def self.json_field_mappings
           {
             channels: 'channels',
+            next: 'next',
+            prev: 'prev',
             unread_channels: 'unread_channels'
           }
         end

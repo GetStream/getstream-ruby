@@ -30,15 +30,51 @@ module GetStream
         # @!attribute updated_at
         #   @return [DateTime] When the flag was last updated
         attr_accessor :updated_at
+        # @!attribute ai_text_severity
+        #   @return [String] Text severity level assigned by the AI provider
+        attr_accessor :ai_text_severity
+        # @!attribute channel_cid
+        #   @return [String] CID of the channel the entity belongs to, if applicable
+        attr_accessor :channel_cid
+        # @!attribute config_key
+        #   @return [String] Moderation policy key that was applied
+        attr_accessor :config_key
         # @!attribute decision_reason
         #   @return [String] Decision Reason of the Appeal Item
         attr_accessor :decision_reason
+        # @!attribute recommended_action
+        #   @return [String] Action recommended by the automated moderation system (e.g. flag, remove, shadow)
+        attr_accessor :recommended_action
+        # @!attribute review_queue_item_id
+        #   @return [String] ID of the review queue item linked to this appeal, if the appeal was submitted with one
+        attr_accessor :review_queue_item_id
+        # @!attribute severity
+        #   @return [Integer] Overall content severity score (1–100)
+        attr_accessor :severity
+        # @!attribute actions
+        #   @return [Array<ActionLogResponse>] Full chronological history of all moderation actions on the review queue item
+        attr_accessor :actions
         # @!attribute attachments
         #   @return [Array<String>] Attachments(e.g. Images) of the Appeal Item
         attr_accessor :attachments
+        # @!attribute flag_labels
+        #   @return [Array<String>] Classification labels from automated and manual review
+        attr_accessor :flag_labels
+        # @!attribute flag_types
+        #   @return [Array<String>] Types of flags applied to the entity (e.g. user_report, bodyguard)
+        attr_accessor :flag_types
+        # @!attribute flags
+        #   @return [Array<ModerationFlagResponse>] Per-provider flag records explaining why the action was taken
+        attr_accessor :flags
         # @!attribute entity_content
         #   @return [ModerationPayload]
         attr_accessor :entity_content
+        # @!attribute moderation_action
+        #   @return [ActionLogResponse]
+        attr_accessor :moderation_action
+        # @!attribute original_moderation_action
+        #   @return [ActionLogResponse]
+        attr_accessor :original_moderation_action
         # @!attribute user
         #   @return [UserResponse]
         attr_accessor :user
@@ -53,9 +89,21 @@ module GetStream
           @id = attributes[:id] || attributes['id']
           @status = attributes[:status] || attributes['status']
           @updated_at = attributes[:updated_at] || attributes['updated_at']
+          @ai_text_severity = attributes[:ai_text_severity] || attributes['ai_text_severity'] || nil
+          @channel_cid = attributes[:channel_cid] || attributes['channel_cid'] || nil
+          @config_key = attributes[:config_key] || attributes['config_key'] || nil
           @decision_reason = attributes[:decision_reason] || attributes['decision_reason'] || nil
+          @recommended_action = attributes[:recommended_action] || attributes['recommended_action'] || nil
+          @review_queue_item_id = attributes[:review_queue_item_id] || attributes['review_queue_item_id'] || nil
+          @severity = attributes[:severity] || attributes['severity'] || nil
+          @actions = attributes[:actions] || attributes['actions'] || nil
           @attachments = attributes[:attachments] || attributes['attachments'] || nil
+          @flag_labels = attributes[:flag_labels] || attributes['flag_labels'] || nil
+          @flag_types = attributes[:flag_types] || attributes['flag_types'] || nil
+          @flags = attributes[:flags] || attributes['flags'] || nil
           @entity_content = attributes[:entity_content] || attributes['entity_content'] || nil
+          @moderation_action = attributes[:moderation_action] || attributes['moderation_action'] || nil
+          @original_moderation_action = attributes[:original_moderation_action] || attributes['original_moderation_action'] || nil
           @user = attributes[:user] || attributes['user'] || nil
         end
 
@@ -69,9 +117,21 @@ module GetStream
             id: 'id',
             status: 'status',
             updated_at: 'updated_at',
+            ai_text_severity: 'ai_text_severity',
+            channel_cid: 'channel_cid',
+            config_key: 'config_key',
             decision_reason: 'decision_reason',
+            recommended_action: 'recommended_action',
+            review_queue_item_id: 'review_queue_item_id',
+            severity: 'severity',
+            actions: 'actions',
             attachments: 'attachments',
+            flag_labels: 'flag_labels',
+            flag_types: 'flag_types',
+            flags: 'flags',
             entity_content: 'entity_content',
+            moderation_action: 'moderation_action',
+            original_moderation_action: 'original_moderation_action',
             user: 'user'
           }
         end

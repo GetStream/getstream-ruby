@@ -9,30 +9,30 @@ module GetStream
       class TargetResolution < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute bitrate
-        #   @return [Integer]
-        attr_accessor :bitrate
         # @!attribute height
         #   @return [Integer]
         attr_accessor :height
         # @!attribute width
         #   @return [Integer]
         attr_accessor :width
+        # @!attribute bitrate
+        #   @return [Integer]
+        attr_accessor :bitrate
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @bitrate = attributes[:bitrate] || attributes['bitrate']
           @height = attributes[:height] || attributes['height']
           @width = attributes[:width] || attributes['width']
+          @bitrate = attributes[:bitrate] || attributes['bitrate'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            bitrate: 'bitrate',
             height: 'height',
-            width: 'width'
+            width: 'width',
+            bitrate: 'bitrate'
           }
         end
       end

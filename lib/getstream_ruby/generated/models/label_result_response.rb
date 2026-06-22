@@ -45,6 +45,9 @@ module GetStream
         # @!attribute directed_at
         #   @return [String] Who the content is directed at (USER, GROUP, EVERYONE, NONE, etc.)
         attr_accessor :directed_at
+        # @!attribute fully_masked_content
+        #   @return [String] The stored content with every non-whitespace character masked. Present only when recommended_action is not 'keep'. Derived at runtime and never stored.
+        attr_accessor :fully_masked_content
         # @!attribute masked_content
         #   @return [String] Content with blocklisted tokens masked (when a blocklist rule with action=mask rewrote the original)
         attr_accessor :masked_content
@@ -70,6 +73,7 @@ module GetStream
           @labels = attributes[:labels] || attributes['labels']
           @content_id = attributes[:content_id] || attributes['content_id'] || nil
           @directed_at = attributes[:directed_at] || attributes['directed_at'] || nil
+          @fully_masked_content = attributes[:fully_masked_content] || attributes['fully_masked_content'] || nil
           @masked_content = attributes[:masked_content] || attributes['masked_content'] || nil
           @policy = attributes[:policy] || attributes['policy'] || nil
           @user_id = attributes[:user_id] || attributes['user_id'] || nil
@@ -90,6 +94,7 @@ module GetStream
             labels: 'labels',
             content_id: 'content_id',
             directed_at: 'directed_at',
+            fully_masked_content: 'fully_masked_content',
             masked_content: 'masked_content',
             policy: 'policy',
             user_id: 'user_id'

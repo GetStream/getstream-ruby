@@ -9,15 +9,15 @@ module GetStream
       class LLMRule < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute description
-        #   @return [String]
-        attr_accessor :description
         # @!attribute label
         #   @return [String]
         attr_accessor :label
         # @!attribute action
         #   @return [String]
         attr_accessor :action
+        # @!attribute description
+        #   @return [String]
+        attr_accessor :description
         # @!attribute severity_rules
         #   @return [Array<BodyguardSeverityRule>]
         attr_accessor :severity_rules
@@ -25,18 +25,18 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @description = attributes[:description] || attributes['description']
           @label = attributes[:label] || attributes['label']
           @action = attributes[:action] || attributes['action'] || nil
+          @description = attributes[:description] || attributes['description'] || nil
           @severity_rules = attributes[:severity_rules] || attributes['severity_rules'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            description: 'description',
             label: 'label',
             action: 'action',
+            description: 'description',
             severity_rules: 'severity_rules'
           }
         end

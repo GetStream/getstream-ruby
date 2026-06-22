@@ -9,25 +9,85 @@ module GetStream
       class FlagResponse < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute duration
+        # @!attribute created_at
+        #   @return [DateTime]
+        attr_accessor :created_at
+        # @!attribute created_by_automod
+        #   @return [Boolean]
+        attr_accessor :created_by_automod
+        # @!attribute updated_at
+        #   @return [DateTime]
+        attr_accessor :updated_at
+        # @!attribute approved_at
+        #   @return [DateTime]
+        attr_accessor :approved_at
+        # @!attribute reason
         #   @return [String]
-        attr_accessor :duration
-        # @!attribute item_id
-        #   @return [String] Unique identifier of the created moderation item
-        attr_accessor :item_id
+        attr_accessor :reason
+        # @!attribute rejected_at
+        #   @return [DateTime]
+        attr_accessor :rejected_at
+        # @!attribute reviewed_at
+        #   @return [DateTime]
+        attr_accessor :reviewed_at
+        # @!attribute reviewed_by
+        #   @return [String]
+        attr_accessor :reviewed_by
+        # @!attribute target_message_id
+        #   @return [String]
+        attr_accessor :target_message_id
+        # @!attribute custom
+        #   @return [Object]
+        attr_accessor :custom
+        # @!attribute details
+        #   @return [FlagDetails]
+        attr_accessor :details
+        # @!attribute target_message
+        #   @return [MessageResponse]
+        attr_accessor :target_message
+        # @!attribute target_user
+        #   @return [UserResponse]
+        attr_accessor :target_user
+        # @!attribute user
+        #   @return [UserResponse]
+        attr_accessor :user
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @duration = attributes[:duration] || attributes['duration']
-          @item_id = attributes[:item_id] || attributes['item_id']
+          @created_at = attributes[:created_at] || attributes['created_at']
+          @created_by_automod = attributes[:created_by_automod] || attributes['created_by_automod']
+          @updated_at = attributes[:updated_at] || attributes['updated_at']
+          @approved_at = attributes[:approved_at] || attributes['approved_at'] || nil
+          @reason = attributes[:reason] || attributes['reason'] || nil
+          @rejected_at = attributes[:rejected_at] || attributes['rejected_at'] || nil
+          @reviewed_at = attributes[:reviewed_at] || attributes['reviewed_at'] || nil
+          @reviewed_by = attributes[:reviewed_by] || attributes['reviewed_by'] || nil
+          @target_message_id = attributes[:target_message_id] || attributes['target_message_id'] || nil
+          @custom = attributes[:custom] || attributes['custom'] || nil
+          @details = attributes[:details] || attributes['details'] || nil
+          @target_message = attributes[:target_message] || attributes['target_message'] || nil
+          @target_user = attributes[:target_user] || attributes['target_user'] || nil
+          @user = attributes[:user] || attributes['user'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            duration: 'duration',
-            item_id: 'item_id'
+            created_at: 'created_at',
+            created_by_automod: 'created_by_automod',
+            updated_at: 'updated_at',
+            approved_at: 'approved_at',
+            reason: 'reason',
+            rejected_at: 'rejected_at',
+            reviewed_at: 'reviewed_at',
+            reviewed_by: 'reviewed_by',
+            target_message_id: 'target_message_id',
+            custom: 'custom',
+            details: 'details',
+            target_message: 'target_message',
+            target_user: 'target_user',
+            user: 'user'
           }
         end
       end

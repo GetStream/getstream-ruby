@@ -127,6 +127,23 @@ module GetStream
         )
       end
 
+      # Moderate named text fields and raw image bytes via multipart/form-data. Returns a per-field lightweight verdict.
+      #
+      # @param analyze_request [AnalyzeRequest]
+      # @return [Models::AnalyzeResponse]
+      def analyze(analyze_request)
+        path = '/api/v2/moderation/analyze'
+        # Build request body
+        body = analyze_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
       # Appeal against the moderation decision
       #
       # @param appeal_request [AppealRequest]
@@ -177,10 +194,27 @@ module GetStream
         )
       end
 
+      # Process multiple appeals in a single request by applying the specified action to each. Supported actions: unban, restore, unblock, mark_reviewed, reject_appeal. Each appeal goes through the same path as a single submit_action call.
+      #
+      # @param bulk_action_appeals_request [BulkActionAppealsRequest]
+      # @return [Models::BulkActionAppealsResponse]
+      def bulk_action_appeals(bulk_action_appeals_request)
+        path = '/api/v2/moderation/appeals/bulk_action'
+        # Build request body
+        body = bulk_action_appeals_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
       # Ban a user from a channel or the entire app
       #
       # @param ban_request [BanRequest]
-      # @return [Models::BanResponse]
+      # @return [Models::ModerationBanResponse]
       def ban(ban_request)
         path = '/api/v2/moderation/ban'
         # Build request body
@@ -403,7 +437,7 @@ module GetStream
       # Flag any type of content (messages, users, channels, activities) for moderation review. Supports custom content types and additional metadata for flagged content.
       #
       # @param flag_request [FlagRequest]
-      # @return [Models::FlagResponse]
+      # @return [Models::FlagItemResponse]
       def flag(flag_request)
         path = '/api/v2/moderation/flag'
         # Build request body
@@ -614,6 +648,36 @@ module GetStream
         @client.make_request(
           :get,
           path
+        )
+      end
+
+      # Retrieve a setup session for an app
+      #
+      # @return [Models::GetSetupSessionResponse]
+      def get_setup_session()
+        path = '/api/v2/moderation/setup'
+
+        # Make the API request
+        @client.make_request(
+          :get,
+          path
+        )
+      end
+
+      # Update a setup session for an app
+      #
+      # @param upsert_setup_session_request [UpsertSetupSessionRequest]
+      # @return [Models::UpsertSetupSessionResponse]
+      def upsert_setup_session(upsert_setup_session_request)
+        path = '/api/v2/moderation/setup'
+        # Build request body
+        body = upsert_setup_session_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
         )
       end
 

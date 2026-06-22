@@ -10,14 +10,17 @@ module GetStream
 
         # Model attributes
         # @!attribute llm_labels
-        #   @return [Array<String>]
+        #   @return [Array<String>] LLM moderation labels available as filter values
         attr_accessor :llm_labels
         # @!attribute ai_text_labels
-        #   @return [Array<String>]
+        #   @return [Array<String>] AI text moderation labels available as filter values
         attr_accessor :ai_text_labels
         # @!attribute config_keys
-        #   @return [Array<String>]
+        #   @return [Array<String>] Moderation config keys present in the queue, available as filter values
         attr_accessor :config_keys
+        # @!attribute filterable_custom_keys
+        #   @return [Array<String>] The moderation_payload.custom keys the app has configured as review-queue filter chips (via moderation_dashboard_preferences.filterable_custom_keys). Discovery hint for the dashboard only — the filter accepts any custom key regardless of this list.
+        attr_accessor :filterable_custom_keys
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -25,6 +28,7 @@ module GetStream
           @llm_labels = attributes[:llm_labels] || attributes['llm_labels']
           @ai_text_labels = attributes[:ai_text_labels] || attributes['ai_text_labels'] || nil
           @config_keys = attributes[:config_keys] || attributes['config_keys'] || nil
+          @filterable_custom_keys = attributes[:filterable_custom_keys] || attributes['filterable_custom_keys'] || nil
         end
 
         # Override field mappings for JSON serialization
@@ -32,7 +36,8 @@ module GetStream
           {
             llm_labels: 'llm_labels',
             ai_text_labels: 'ai_text_labels',
-            config_keys: 'config_keys'
+            config_keys: 'config_keys',
+            filterable_custom_keys: 'filterable_custom_keys'
           }
         end
       end

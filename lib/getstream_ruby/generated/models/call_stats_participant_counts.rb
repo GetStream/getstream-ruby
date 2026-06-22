@@ -36,6 +36,9 @@ module GetStream
         # @!attribute average_latency_ms
         #   @return [Integer]
         attr_accessor :average_latency_ms
+        # @!attribute avg_user_rating
+        #   @return [Float]
+        attr_accessor :avg_user_rating
         # @!attribute call_event_count
         #   @return [Integer]
         attr_accessor :call_event_count
@@ -45,6 +48,9 @@ module GetStream
         # @!attribute max_freezes_duration_ms
         #   @return [Integer]
         attr_accessor :max_freezes_duration_ms
+        # @!attribute min_user_rating
+        #   @return [Integer]
+        attr_accessor :min_user_rating
         # @!attribute total_participant_duration
         #   @return [Integer]
         attr_accessor :total_participant_duration
@@ -61,9 +67,11 @@ module GetStream
           @sfus_used = attributes[:sfus_used] || attributes['sfus_used']
           @average_jitter_ms = attributes[:average_jitter_ms] || attributes['average_jitter_ms'] || nil
           @average_latency_ms = attributes[:average_latency_ms] || attributes['average_latency_ms'] || nil
+          @avg_user_rating = attributes[:avg_user_rating] || attributes['avg_user_rating'] || nil
           @call_event_count = attributes[:call_event_count] || attributes['call_event_count'] || nil
           @cq_score = attributes[:cq_score] || attributes['cq_score'] || nil
           @max_freezes_duration_ms = attributes[:max_freezes_duration_ms] || attributes['max_freezes_duration_ms'] || nil
+          @min_user_rating = attributes[:min_user_rating] || attributes['min_user_rating'] || nil
           @total_participant_duration = attributes[:total_participant_duration] || attributes['total_participant_duration'] || nil
         end
 
@@ -79,9 +87,11 @@ module GetStream
             sfus_used: 'sfus_used',
             average_jitter_ms: 'average_jitter_ms',
             average_latency_ms: 'average_latency_ms',
+            avg_user_rating: 'avg_user_rating',
             call_event_count: 'call_event_count',
             cq_score: 'cq_score',
             max_freezes_duration_ms: 'max_freezes_duration_ms',
+            min_user_rating: 'min_user_rating',
             total_participant_duration: 'total_participant_duration'
           }
         end

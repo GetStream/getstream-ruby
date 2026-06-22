@@ -12,6 +12,9 @@ module GetStream
         # @!attribute duration
         #   @return [String]
         attr_accessor :duration
+        # @!attribute auto_restore_warning
+        #   @return [String] Present when the appeal was accepted but the entity could not be restored automatically. The moderator should restore it manually.
+        attr_accessor :auto_restore_warning
         # @!attribute appeal_item
         #   @return [AppealItemResponse]
         attr_accessor :appeal_item
@@ -23,6 +26,7 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @duration = attributes[:duration] || attributes['duration']
+          @auto_restore_warning = attributes[:auto_restore_warning] || attributes['auto_restore_warning'] || nil
           @appeal_item = attributes[:appeal_item] || attributes['appeal_item'] || nil
           @item = attributes[:item] || attributes['item'] || nil
         end
@@ -31,6 +35,7 @@ module GetStream
         def self.json_field_mappings
           {
             duration: 'duration',
+            auto_restore_warning: 'auto_restore_warning',
             appeal_item: 'appeal_item',
             item: 'item'
           }

@@ -9,12 +9,18 @@ module GetStream
       class UpdateBlockListRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute is_confusable_folding_enabled
+        #   @return [Boolean]
+        attr_accessor :is_confusable_folding_enabled
         # @!attribute is_leet_check_enabled
         #   @return [Boolean]
         attr_accessor :is_leet_check_enabled
         # @!attribute is_plural_check_enabled
         #   @return [Boolean]
         attr_accessor :is_plural_check_enabled
+        # @!attribute is_substring_matching_enabled
+        #   @return [Boolean]
+        attr_accessor :is_substring_matching_enabled
         # @!attribute team
         #   @return [String]
         attr_accessor :team
@@ -25,8 +31,10 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @is_confusable_folding_enabled = attributes[:is_confusable_folding_enabled] || attributes['is_confusable_folding_enabled'] || nil
           @is_leet_check_enabled = attributes[:is_leet_check_enabled] || attributes['is_leet_check_enabled'] || nil
           @is_plural_check_enabled = attributes[:is_plural_check_enabled] || attributes['is_plural_check_enabled'] || nil
+          @is_substring_matching_enabled = attributes[:is_substring_matching_enabled] || attributes['is_substring_matching_enabled'] || nil
           @team = attributes[:team] || attributes['team'] || nil
           @words = attributes[:words] || attributes['words'] || nil
         end
@@ -34,8 +42,10 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            is_confusable_folding_enabled: 'is_confusable_folding_enabled',
             is_leet_check_enabled: 'is_leet_check_enabled',
             is_plural_check_enabled: 'is_plural_check_enabled',
+            is_substring_matching_enabled: 'is_substring_matching_enabled',
             team: 'team',
             words: 'words'
           }
