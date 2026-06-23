@@ -10,6 +10,8 @@ Add this line to your application's Gemfile:
 gem 'getstream-ruby'
 ```
 
+
+
 And then execute:
 
 ```bash
