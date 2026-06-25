@@ -21,6 +21,9 @@ module GetStream
         # @!attribute keyframe_labels
         #   @return [Array<String>] Deprecated: use keyframe_label_classifications instead. Available L1 harm labels for keyframe rules
         attr_accessor :keyframe_labels
+        # @!attribute ocr_labels
+        #   @return [Array<String>] Available harm labels for keyframe OCR rules. Mirrors `closed_caption_labels` today but kept as a separate field so the two pickers can diverge later.
+        attr_accessor :ocr_labels
         # @!attribute rules
         #   @return [Array<ModerationRuleV2Response>] List of moderation rules
         attr_accessor :rules
@@ -30,6 +33,9 @@ module GetStream
         # @!attribute default_llm_labels
         #   @return [Hash<String, String>] Default LLM label descriptions
         attr_accessor :default_llm_labels
+        # @!attribute default_username_llm_labels
+        #   @return [Hash<String, String>] Recommended LLM label descriptions for username-scoped policies (key starts with 'username:'). Used by /moderation/v2/labels fast-path.
+        attr_accessor :default_username_llm_labels
         # @!attribute keyframe_label_classifications
         #   @return [Hash<String, Array<String>>] L1 to L2 mapping of keyframe harm label classifications
         attr_accessor :keyframe_label_classifications
@@ -47,9 +53,11 @@ module GetStream
           @ai_image_label_definitions = attributes[:ai_image_label_definitions] || attributes['ai_image_label_definitions']
           @closed_caption_labels = attributes[:closed_caption_labels] || attributes['closed_caption_labels']
           @keyframe_labels = attributes[:keyframe_labels] || attributes['keyframe_labels']
+          @ocr_labels = attributes[:ocr_labels] || attributes['ocr_labels']
           @rules = attributes[:rules] || attributes['rules']
           @ai_image_subclassifications = attributes[:ai_image_subclassifications] || attributes['ai_image_subclassifications']
           @default_llm_labels = attributes[:default_llm_labels] || attributes['default_llm_labels']
+          @default_username_llm_labels = attributes[:default_username_llm_labels] || attributes['default_username_llm_labels']
           @keyframe_label_classifications = attributes[:keyframe_label_classifications] || attributes['keyframe_label_classifications']
           @next = attributes[:next] || attributes['next'] || nil
           @prev = attributes[:prev] || attributes['prev'] || nil
@@ -62,9 +70,11 @@ module GetStream
             ai_image_label_definitions: 'ai_image_label_definitions',
             closed_caption_labels: 'closed_caption_labels',
             keyframe_labels: 'keyframe_labels',
+            ocr_labels: 'ocr_labels',
             rules: 'rules',
             ai_image_subclassifications: 'ai_image_subclassifications',
             default_llm_labels: 'default_llm_labels',
+            default_username_llm_labels: 'default_username_llm_labels',
             keyframe_label_classifications: 'keyframe_label_classifications',
             next: 'next',
             prev: 'prev'

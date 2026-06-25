@@ -33,6 +33,12 @@ module GetStream
         # @!attribute content_count_rule_params
         #   @return [ContentCountRuleParameters]
         attr_accessor :content_count_rule_params
+        # @!attribute content_custom_property_count_params
+        #   @return [ContentCustomPropertyCountParameters]
+        attr_accessor :content_custom_property_count_params
+        # @!attribute content_custom_property_params
+        #   @return [ContentCustomPropertyParameters]
+        attr_accessor :content_custom_property_params
         # @!attribute content_flag_count_rule_params
         #   @return [FlagCountRuleParameters]
         attr_accessor :content_flag_count_rule_params
@@ -42,6 +48,9 @@ module GetStream
         # @!attribute image_rule_params
         #   @return [ImageRuleParameters]
         attr_accessor :image_rule_params
+        # @!attribute keyframe_ocr_rule_params
+        #   @return [KeyframeOCRRuleParameters]
+        attr_accessor :keyframe_ocr_rule_params
         # @!attribute keyframe_rule_params
         #   @return [KeyframeRuleParameters]
         attr_accessor :keyframe_rule_params
@@ -87,9 +96,12 @@ module GetStream
           @channel_message_count_rule_params = attributes[:channel_message_count_rule_params] || attributes['channel_message_count_rule_params'] || nil
           @closed_caption_rule_params = attributes[:closed_caption_rule_params] || attributes['closed_caption_rule_params'] || nil
           @content_count_rule_params = attributes[:content_count_rule_params] || attributes['content_count_rule_params'] || nil
+          @content_custom_property_count_params = attributes[:content_custom_property_count_params] || attributes['content_custom_property_count_params'] || nil
+          @content_custom_property_params = attributes[:content_custom_property_params] || attributes['content_custom_property_params'] || nil
           @content_flag_count_rule_params = attributes[:content_flag_count_rule_params] || attributes['content_flag_count_rule_params'] || nil
           @image_content_params = attributes[:image_content_params] || attributes['image_content_params'] || nil
           @image_rule_params = attributes[:image_rule_params] || attributes['image_rule_params'] || nil
+          @keyframe_ocr_rule_params = attributes[:keyframe_ocr_rule_params] || attributes['keyframe_ocr_rule_params'] || nil
           @keyframe_rule_params = attributes[:keyframe_rule_params] || attributes['keyframe_rule_params'] || nil
           @text_content_params = attributes[:text_content_params] || attributes['text_content_params'] || nil
           @text_rule_params = attributes[:text_rule_params] || attributes['text_rule_params'] || nil
@@ -114,9 +126,12 @@ module GetStream
             channel_message_count_rule_params: 'channel_message_count_rule_params',
             closed_caption_rule_params: 'closed_caption_rule_params',
             content_count_rule_params: 'content_count_rule_params',
+            content_custom_property_count_params: 'content_custom_property_count_params',
+            content_custom_property_params: 'content_custom_property_params',
             content_flag_count_rule_params: 'content_flag_count_rule_params',
             image_content_params: 'image_content_params',
             image_rule_params: 'image_rule_params',
+            keyframe_ocr_rule_params: 'keyframe_ocr_rule_params',
             keyframe_rule_params: 'keyframe_rule_params',
             text_content_params: 'text_content_params',
             text_rule_params: 'text_rule_params',

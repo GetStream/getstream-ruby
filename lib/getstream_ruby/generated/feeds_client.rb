@@ -1746,6 +1746,23 @@ module GetStream
         )
       end
 
+      # Creates a follow if it does not exist, or returns the existing one. Broadcasts feeds.follow.created (FollowCreatedEvent) only when the follow is newly created.
+      #
+      # @param follow_request [FollowRequest]
+      # @return [Models::GetOrCreateFollowResponse]
+      def get_or_create_follow(follow_request)
+        path = '/api/v2/feeds/follows/upsert'
+        # Build request body
+        body = follow_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
       # Removes a follow and broadcasts FollowRemovedEvent
       #
       # @param source [String]
@@ -1911,6 +1928,23 @@ module GetStream
         )
       end
 
+      # Removes a follow and broadcasts feeds.follow.deleted (FollowDeletedEvent). Does not return an error if the follow does not exist.
+      #
+      # @param get_or_create_unfollow_request [GetOrCreateUnfollowRequest]
+      # @return [Models::GetOrCreateUnfollowResponse]
+      def get_or_create_unfollow(get_or_create_unfollow_request)
+        path = '/api/v2/feeds/unfollow/upsert'
+        # Build request body
+        body = get_or_create_unfollow_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
       # Delete all feed data for a user including: feeds, activities, follows, comments, feed reactions, bookmark folders, bookmarks, and collections owned by the user
       #
       # @param user_id [String]
@@ -1944,6 +1978,27 @@ module GetStream
         @client.make_request(
           :post,
           path
+        )
+      end
+
+      # Returns the user's most common interest tags ranked by the number of distinct activities they reacted to that carried each tag. Client-side callers may only read their own interests; server-side callers may fetch any user. Results are sorted by descending count, then alphabetically by tag.
+      #
+      # @param user_id [String]
+      # @param limit [Integer]
+      # @return [Models::GetUserInterestsResponse]
+      def get_user_interests(user_id, limit = nil)
+        path = '/api/v2/feeds/users/{user_id}/interests'
+        # Replace path parameters
+        path = path.gsub('{user_id}', user_id.to_s)
+        # Build query parameters
+        query_params = {}
+        query_params['limit'] = limit unless limit.nil?
+
+        # Make the API request
+        @client.make_request(
+          :get,
+          path,
+          query_params: query_params
         )
       end
 

@@ -352,14 +352,14 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/getstr
 
 Releases use two paths, both handled by `.github/workflows/release.yml`:
 
-- **Default**: automatic release when a PR is merged to `main`/`master`. The PR title (and body) drives the semver bump.
+- **Default**: automatic release when a PR is merged to `main`/`master`. The PR title drives the semver bump.
 - **Fallback**: manual release via the `Release` workflow's `workflow_dispatch` (admin use). Select a `version_bump` (`patch`/`minor`/`major`). `use_current_version=true` skips the bump and publishes whatever is already in `lib/getstream_ruby/version.rb`.
 
 Automatic semver bump rules:
 
 - `feat:` -> minor
 - `fix:` (or `bug:`) -> patch
-- `feat!:`, `<type>(scope)!:`, or `BREAKING CHANGE` in the PR body/title -> major
+- `feat!:` or `<type>(scope)!:` (the `!` marker) -> major
 
 PRs with any other prefix do not trigger a release.
 

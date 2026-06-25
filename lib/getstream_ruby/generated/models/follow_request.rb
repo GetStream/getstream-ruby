@@ -26,7 +26,7 @@ module GetStream
         #   @return [Boolean] Whether to create a notification activity for this follow
         attr_accessor :create_notification_activity
         # @!attribute create_users
-        #   @return [Boolean] If true, auto-creates users referenced by the source and target FIDs when they don't already exist. Server-side only. Defaults to false. For FollowBatch/GetOrCreateFollows, use the top-level create_users field; per-item follows[i].create_users is rejected.
+        #   @return [Boolean] If true, auto-creates users referenced by the source and target FIDs when they don't already exist. Server-side only. Defaults to false. Use directly on single follow endpoints (Follow, GetOrCreateFollow). On batch endpoints (FollowBatch, GetOrCreateFollows), use the top-level create_users field; per-item follows[i].create_users is rejected.
         attr_accessor :create_users
         # @!attribute enrich_own_fields
         #   @return [Boolean] If true, enriches the follow's source_feed and target_feed with own_* fields (own_follows, own_followings, own_capabilities, own_membership). Defaults to false for performance.

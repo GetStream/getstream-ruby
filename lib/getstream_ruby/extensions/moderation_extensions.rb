@@ -19,12 +19,13 @@ module GetStream
       # @param profile [Hash] Profile data to be checked
       # @option profile [String] :username Username to be checked
       # @option profile [String] :image Image URL to be checked
+      # @param config_key [String] Moderation config key to use (defaults to 'user_profile:default').
       # @return [Models::CheckResponse]
       #
       # @example
       #   client.moderation.check_user_profile('user-id',
       #     { username: 'bad_username', image: 'https://example.com/profile.jpg' })
-      def check_user_profile(user_id, profile)
+      def check_user_profile(user_id, profile, config_key: 'user_profile:default')
         if profile[:username].nil? && profile[:image].nil?
           raise ArgumentError, 'Either username or image must be provided'
         end
@@ -38,7 +39,7 @@ module GetStream
           entity_id: user_id,
           entity_creator_id: user_id,
           moderation_payload: moderation_payload,
-          config_key: 'user_profile:default',
+          config_key: config_key,
           options: { force_sync: true, test_mode: true },
         )
 

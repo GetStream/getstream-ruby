@@ -19,12 +19,17 @@
     * `TaskError < StreamError`. Raised by `wait_for_task` when an async task finishes with `status="failed"`. Exposes `task_id`, `error_type`, `description`, `stack_trace`, `version`.
 - New `Client#wait_for_task(task_id, poll_interval: 1, timeout: 60)` helper. Polls `/api/v2/tasks/:id` and: returns the task `result` payload when status reaches `completed`; raises `TaskError` when status reaches `failed`; raises `TransportError` with `error_type: "timeout"` when the deadline elapses.
 - `Client#post` (and the multipart upload path) now deserialize the full canonical `APIError` envelope (`code`, `message`, `exception_fields`, `more_info`, `StatusCode`, `details`, `unrecoverable`, `duration`) and populate the new `ApiError` attributes.
+- Regenerated from the latest chat OpenAPI spec. New endpoints: `Moderation#analyze`, `Moderation#bulk_action_appeals`, `Moderation#get_setup_session`, `Moderation#upsert_setup_session`; `Feeds#get_or_create_follow`, `Feeds#get_or_create_unfollow`, `Feeds#get_user_interests`; `Chat#create_segment`, `Chat#update_segment`, `Chat#add_segment_targets`; `Common#cancel_import_v2_task`; `Video#report_client_call_event`, together with the request and response models backing them.
+- New webhook event types `moderation.image_analysis.complete` and `moderation.text_analysis.complete`, parsed into `ModerationImageAnalysisCompleteEvent` and `ModerationTextAnalysisCompleteEvent`.
 
 ### Changed
 
 - The old `GetStreamRuby::APIError` constant remains as a deprecated alias for `GetStreamRuby::ApiError` for one minor cycle, slated for removal in v9.0. First access emits a one-time `Kernel.warn` deprecation notice.
 - The old `GetStreamRuby::Error` constant is preserved as an alias for `StreamError`. Existing `rescue GetStreamRuby::Error` clauses continue to match.
 - Pre-flight multipart validation (`file name must be provided`, `file not found`) now raises `ArgumentError` instead of the old `APIError`. These are caller-side programming errors and don't belong on the API-error surface.
+- `Models::FlagResponse` now represents the full flag record (`created_at`, `updated_at`, `target_message`, `target_user`, `user`, `reason`, `details`, `custom`, and related fields). The moderation flag-action acknowledgement, which carries `item_id` and `duration`, moved to the new `Models::FlagItemResponse`; `Moderation#flag` now returns `FlagItemResponse`. The wire response of `/api/v2/moderation/flag` is unchanged, only the model name changed, so code reading `item_id`/`duration` off the parsed response is unaffected. Code referencing the `FlagResponse` model class for those two fields should switch to `FlagItemResponse`.
+- `ChannelInput#config_overrides` and `ChannelDataUpdate#config_overrides` are now typed as `ChannelConfigOverrides` (the override-specific field set) instead of the full `ChannelConfig`.
+- `LLMRule#description` and `TargetResolution#bitrate` are now optional.
 
 ### Webhook helpers
 
@@ -51,6 +56,13 @@
 
 ### Fixed
 
+- Auth tokens now backdate the JWT `iat` claim by `Client::AUTH_IAT_LEEWAY_SECONDS`
+  (5s). `iat` is a whole-second value (RFC 7519 NumericDate) and the server applies
+  minimal forward leeway, so stamping `iat = Time.now.to_i` caused a small fraction of
+  requests to be rejected with `token used before issue at (iat)` (HTTP 401) whenever the
+  caller's clock was even marginally ahead of the server and the second-truncation landed
+  on a boundary. Backdating keeps the token safely behind the server clock. The legacy
+  `stream-chat-ruby` client never sent `iat`, so upgrades from it newly exposed this.
 - `event_class_for_type` now references `GetStream::Generated::Models::*Event`
   (was `StreamChat::*Event`, which raised `NameError` at runtime). `parse_event`
   resolves known event types correctly.

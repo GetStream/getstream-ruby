@@ -18,6 +18,9 @@ module GetStream
         # @!attribute next
         #   @return [String]
         attr_accessor :next
+        # @!attribute overwrite_interest_weights
+        #   @return [Boolean]
+        attr_accessor :overwrite_interest_weights
         # @!attribute prev
         #   @return [String]
         attr_accessor :prev
@@ -67,6 +70,7 @@ module GetStream
           @id_around = attributes[:id_around] || attributes['id_around'] || nil
           @limit = attributes[:limit] || attributes['limit'] || nil
           @next = attributes[:next] || attributes['next'] || nil
+          @overwrite_interest_weights = attributes[:overwrite_interest_weights] || attributes['overwrite_interest_weights'] || nil
           @prev = attributes[:prev] || attributes['prev'] || nil
           @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @view = attributes[:view] || attributes['view'] || nil
@@ -89,6 +93,7 @@ module GetStream
             id_around: 'id_around',
             limit: 'limit',
             next: 'next',
+            overwrite_interest_weights: 'overwrite_interest_weights',
             prev: 'prev',
             user_id: 'user_id',
             view: 'view',

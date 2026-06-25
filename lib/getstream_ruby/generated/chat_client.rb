@@ -1540,6 +1540,23 @@ module GetStream
         )
       end
 
+      # Create a segment
+      #
+      # @param create_segment_request [CreateSegmentRequest]
+      # @return [Models::CreateSegmentResponse]
+      def create_segment(create_segment_request)
+        path = '/api/v2/chat/segments'
+        # Build request body
+        body = create_segment_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
       # Query segments
       #
       # @param query_segments_request [QuerySegmentsRequest]
@@ -1586,6 +1603,46 @@ module GetStream
         @client.make_request(
           :get,
           path
+        )
+      end
+
+      # Update an existing segment
+      #
+      # @param _id [String]
+      # @param update_segment_request [UpdateSegmentRequest]
+      # @return [Models::UpdateSegmentResponse]
+      def update_segment(_id, update_segment_request)
+        path = '/api/v2/chat/segments/{id}'
+        # Replace path parameters
+        path = path.gsub('{id}', _id.to_s)
+        # Build request body
+        body = update_segment_request
+
+        # Make the API request
+        @client.make_request(
+          :put,
+          path,
+          body: body
+        )
+      end
+
+      # Add targets to a segment
+      #
+      # @param _id [String]
+      # @param add_segment_targets_request [AddSegmentTargetsRequest]
+      # @return [Models::Response]
+      def add_segment_targets(_id, add_segment_targets_request)
+        path = '/api/v2/chat/segments/{id}/addtargets'
+        # Replace path parameters
+        path = path.gsub('{id}', _id.to_s)
+        # Build request body
+        body = add_segment_targets_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
         )
       end
 

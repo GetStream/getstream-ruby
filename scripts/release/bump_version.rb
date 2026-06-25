@@ -15,9 +15,10 @@ def find_latest_semver_tag
   versions.max_by { |version| version.split('.').map(&:to_i) }
 end
 
-def determine_bump_type(title, body)
-  return 'major' if body.match?(/BREAKING[ -]CHANGE/i) || title.match?(/BREAKING[ -]CHANGE/i)
-
+def determine_bump_type(title)
+  # Breaking changes are signalled only by the `!` marker in the title
+  # (e.g. `feat!:`). Free-text body/title prose is not trusted: a PR that
+  # merely mentions "BREAKING CHANGE" must not force a major bump.
   match = title.strip.match(/^([a-z]+)(\([^)]+\))?(!)?:/i)
   return 'none' unless match
 
@@ -76,8 +77,6 @@ end
 
 options = {
   title: '',
-  body: '',
-  body_file: '',
   output: '',
   manual_bump: '',
   use_current_version: 'false',
@@ -86,8 +85,6 @@ options = {
 OptionParser.new do |opts|
 
   opts.on('--title TITLE') { |value| options[:title] = value }
-  opts.on('--body BODY') { |value| options[:body] = value }
-  opts.on('--body-file FILE') { |value| options[:body_file] = value }
   opts.on('--output FILE') { |value| options[:output] = value }
   opts.on('--manual-bump TYPE') { |value| options[:manual_bump] = value }
   opts.on('--use-current-version VAL') { |value| options[:use_current_version] = value }
@@ -123,13 +120,7 @@ unless manual.empty?
   exit(0)
 end
 
-body = if options[:body_file].empty?
-         options[:body].to_s
-       else
-         File.read(options[:body_file])
-       end
-
-bump = determine_bump_type(options[:title].to_s, body.to_s)
+bump = determine_bump_type(options[:title].to_s)
 if bump == 'none'
   write_outputs(options[:output], {
                   'should_release' => 'false',

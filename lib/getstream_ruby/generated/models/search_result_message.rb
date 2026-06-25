@@ -114,6 +114,9 @@ module GetStream
         # @!attribute mentioned_group_ids
         #   @return [Array<String>]
         attr_accessor :mentioned_group_ids
+        # @!attribute mentioned_groups
+        #   @return [Array<UserGroupResponse>]
+        attr_accessor :mentioned_groups
         # @!attribute mentioned_roles
         #   @return [Array<String>]
         attr_accessor :mentioned_roles
@@ -195,6 +198,7 @@ module GetStream
           @quoted_message_id = attributes[:quoted_message_id] || attributes['quoted_message_id'] || nil
           @show_in_channel = attributes[:show_in_channel] || attributes['show_in_channel'] || nil
           @mentioned_group_ids = attributes[:mentioned_group_ids] || attributes['mentioned_group_ids'] || nil
+          @mentioned_groups = attributes[:mentioned_groups] || attributes['mentioned_groups'] || nil
           @mentioned_roles = attributes[:mentioned_roles] || attributes['mentioned_roles'] || nil
           @thread_participants = attributes[:thread_participants] || attributes['thread_participants'] || nil
           @channel = attributes[:channel] || attributes['channel'] || nil
@@ -249,6 +253,7 @@ module GetStream
             quoted_message_id: 'quoted_message_id',
             show_in_channel: 'show_in_channel',
             mentioned_group_ids: 'mentioned_group_ids',
+            mentioned_groups: 'mentioned_groups',
             mentioned_roles: 'mentioned_roles',
             thread_participants: 'thread_participants',
             channel: 'channel',

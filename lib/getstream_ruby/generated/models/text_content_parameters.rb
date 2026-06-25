@@ -18,6 +18,12 @@ module GetStream
         # @!attribute severity
         #   @return [String]
         attr_accessor :severity
+        # @!attribute text_length
+        #   @return [Integer]
+        attr_accessor :text_length
+        # @!attribute text_length_operator
+        #   @return [String]
+        attr_accessor :text_length_operator
         # @!attribute blocklist_match
         #   @return [Array<String>]
         attr_accessor :blocklist_match
@@ -34,6 +40,8 @@ module GetStream
           @contains_url = attributes[:contains_url] || attributes['contains_url'] || nil
           @label_operator = attributes[:label_operator] || attributes['label_operator'] || nil
           @severity = attributes[:severity] || attributes['severity'] || nil
+          @text_length = attributes[:text_length] || attributes['text_length'] || nil
+          @text_length_operator = attributes[:text_length_operator] || attributes['text_length_operator'] || nil
           @blocklist_match = attributes[:blocklist_match] || attributes['blocklist_match'] || nil
           @harm_labels = attributes[:harm_labels] || attributes['harm_labels'] || nil
           @llm_harm_labels = attributes[:llm_harm_labels] || attributes['llm_harm_labels'] || nil
@@ -45,6 +53,8 @@ module GetStream
             contains_url: 'contains_url',
             label_operator: 'label_operator',
             severity: 'severity',
+            text_length: 'text_length',
+            text_length_operator: 'text_length_operator',
             blocklist_match: 'blocklist_match',
             harm_labels: 'harm_labels',
             llm_harm_labels: 'llm_harm_labels'

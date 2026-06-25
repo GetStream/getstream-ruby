@@ -12,6 +12,9 @@ module GetStream
         # @!attribute threshold
         #   @return [Integer]
         attr_accessor :threshold
+        # @!attribute time_window
+        #   @return [String]
+        attr_accessor :time_window
         # @!attribute harm_labels
         #   @return [Array<String>]
         attr_accessor :harm_labels
@@ -23,6 +26,7 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @threshold = attributes[:threshold] || attributes['threshold'] || nil
+          @time_window = attributes[:time_window] || attributes['time_window'] || nil
           @harm_labels = attributes[:harm_labels] || attributes['harm_labels'] || nil
           @llm_harm_labels = attributes[:llm_harm_labels] || attributes['llm_harm_labels'] || nil
         end
@@ -31,6 +35,7 @@ module GetStream
         def self.json_field_mappings
           {
             threshold: 'threshold',
+            time_window: 'time_window',
             harm_labels: 'harm_labels',
             llm_harm_labels: 'llm_harm_labels'
           }

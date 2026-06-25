@@ -15,6 +15,9 @@ module GetStream
         # @!attribute push_provider
         #   @return [String] Push provider
         attr_accessor :push_provider
+        # @!attribute hardware_id
+        #   @return [String] Stable physical device identifier used to deduplicate pushes across push providers (e.g. APNs VoIP and Firebase on the same iOS device). Distinct from 'id', which is the push token.
+        attr_accessor :hardware_id
         # @!attribute push_provider_name
         #   @return [String] Push provider name
         attr_accessor :push_provider_name
@@ -33,6 +36,7 @@ module GetStream
           super(attributes)
           @id = attributes[:id] || attributes['id']
           @push_provider = attributes[:push_provider] || attributes['push_provider']
+          @hardware_id = attributes[:hardware_id] || attributes['hardware_id'] || nil
           @push_provider_name = attributes[:push_provider_name] || attributes['push_provider_name'] || nil
           @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @voip_token = attributes[:voip_token] || attributes['voip_token'] || nil
@@ -44,6 +48,7 @@ module GetStream
           {
             id: 'id',
             push_provider: 'push_provider',
+            hardware_id: 'hardware_id',
             push_provider_name: 'push_provider_name',
             user_id: 'user_id',
             voip_token: 'voip_token',

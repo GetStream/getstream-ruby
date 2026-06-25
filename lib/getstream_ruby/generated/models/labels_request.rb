@@ -25,7 +25,7 @@ module GetStream
         #   @return [Boolean] When true, run moderation and return labels without persisting the result. Useful for one-off checks (e.g. UI testers) that should not be recorded in the stored history.
         attr_accessor :dry_run
         # @!attribute policy
-        #   @return [String] Optional moderation policy key (max 128 chars)
+        #   @return [String] Optional moderation policy key (max 128 chars). For username moderation, set this to a policy whose key starts with 'username:' (e.g. 'username:default') to opt into the low-latency fast-path: blocklists (customer + Stream-managed defaults) short-circuit the LLM, and the LLM fallback uses gpt-4.1-nano with a 24h Valkey verdict cache. Without a 'username:' prefix the request falls through to the standard Bodyguard Analyze v1 username path.
         attr_accessor :policy
         # @!attribute user_id
         #   @return [String] Optional customer-supplied user identifier for the content author (max 256 chars). Enables filtering stored results by user_id.
