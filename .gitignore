@@ -79,6 +79,7 @@ node_modules/
 # Bundle
 vendor/bundle/
 Gemfile.lock
+gemfiles/*.lock
 
 # Temporary files
 tmp/
