@@ -40,7 +40,8 @@ module GetStream
           entity_creator_id: user_id,
           moderation_payload: moderation_payload,
           config_key: config_key,
-          options: { force_sync: true, test_mode: true },
+          options: { force_sync: true },
+          test_mode: true,
         )
 
         check(check_request)
