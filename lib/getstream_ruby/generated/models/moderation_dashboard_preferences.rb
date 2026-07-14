@@ -9,12 +9,15 @@ module GetStream
       class ModerationDashboardPreferences < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute analyze_max_image_size_bytes
-        #   @return [Integer]
-        attr_accessor :analyze_max_image_size_bytes
         # @!attribute async_review_queue_upsert
         #   @return [Boolean]
         attr_accessor :async_review_queue_upsert
+        # @!attribute block_foreign_cdn_attachments
+        #   @return [Boolean]
+        attr_accessor :block_foreign_cdn_attachments
+        # @!attribute custom_views_enabled
+        #   @return [Boolean]
+        attr_accessor :custom_views_enabled
         # @!attribute disable_audit_logs
         #   @return [Boolean]
         attr_accessor :disable_audit_logs
@@ -33,9 +36,6 @@ module GetStream
         # @!attribute media_queue_blur_enabled
         #   @return [Boolean]
         attr_accessor :media_queue_blur_enabled
-        # @!attribute webhook_header_client_request_id_key
-        #   @return [String]
-        attr_accessor :webhook_header_client_request_id_key
         # @!attribute allowed_moderation_action_reasons
         #   @return [Array<String>]
         attr_accessor :allowed_moderation_action_reasons
@@ -55,15 +55,15 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @analyze_max_image_size_bytes = attributes[:analyze_max_image_size_bytes] || attributes['analyze_max_image_size_bytes'] || nil
           @async_review_queue_upsert = attributes[:async_review_queue_upsert] || attributes['async_review_queue_upsert'] || nil
+          @block_foreign_cdn_attachments = attributes[:block_foreign_cdn_attachments] || attributes['block_foreign_cdn_attachments'] || nil
+          @custom_views_enabled = attributes[:custom_views_enabled] || attributes['custom_views_enabled'] || nil
           @disable_audit_logs = attributes[:disable_audit_logs] || attributes['disable_audit_logs'] || nil
           @disable_flagging_reviewed_entity = attributes[:disable_flagging_reviewed_entity] || attributes['disable_flagging_reviewed_entity'] || nil
           @escalation_queue_enabled = attributes[:escalation_queue_enabled] || attributes['escalation_queue_enabled'] || nil
           @flag_user_on_flagged_content = attributes[:flag_user_on_flagged_content] || attributes['flag_user_on_flagged_content'] || nil
           @include_attachment_payload = attributes[:include_attachment_payload] || attributes['include_attachment_payload'] || nil
           @media_queue_blur_enabled = attributes[:media_queue_blur_enabled] || attributes['media_queue_blur_enabled'] || nil
-          @webhook_header_client_request_id_key = attributes[:webhook_header_client_request_id_key] || attributes['webhook_header_client_request_id_key'] || nil
           @allowed_moderation_action_reasons = attributes[:allowed_moderation_action_reasons] || attributes['allowed_moderation_action_reasons'] || nil
           @escalation_reasons = attributes[:escalation_reasons] || attributes['escalation_reasons'] || nil
           @filterable_custom_keys = attributes[:filterable_custom_keys] || attributes['filterable_custom_keys'] || nil
@@ -74,15 +74,15 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            analyze_max_image_size_bytes: 'analyze_max_image_size_bytes',
             async_review_queue_upsert: 'async_review_queue_upsert',
+            block_foreign_cdn_attachments: 'block_foreign_cdn_attachments',
+            custom_views_enabled: 'custom_views_enabled',
             disable_audit_logs: 'disable_audit_logs',
             disable_flagging_reviewed_entity: 'disable_flagging_reviewed_entity',
             escalation_queue_enabled: 'escalation_queue_enabled',
             flag_user_on_flagged_content: 'flag_user_on_flagged_content',
             include_attachment_payload: 'include_attachment_payload',
             media_queue_blur_enabled: 'media_queue_blur_enabled',
-            webhook_header_client_request_id_key: 'webhook_header_client_request_id_key',
             allowed_moderation_action_reasons: 'allowed_moderation_action_reasons',
             escalation_reasons: 'escalation_reasons',
             filterable_custom_keys: 'filterable_custom_keys',

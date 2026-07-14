@@ -12,6 +12,9 @@ module GetStream
         # @!attribute llm_labels
         #   @return [Array<String>] LLM moderation labels available as filter values
         attr_accessor :llm_labels
+        # @!attribute ai_image_labels
+        #   @return [Array<String>] AI image moderation labels available as filter values. Reflects the app's effective image taxonomy: custom Bodyguard taxonomy when enabled, otherwise the standard L1 label set.
+        attr_accessor :ai_image_labels
         # @!attribute ai_text_labels
         #   @return [Array<String>] AI text moderation labels available as filter values
         attr_accessor :ai_text_labels
@@ -26,6 +29,7 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @llm_labels = attributes[:llm_labels] || attributes['llm_labels']
+          @ai_image_labels = attributes[:ai_image_labels] || attributes['ai_image_labels'] || nil
           @ai_text_labels = attributes[:ai_text_labels] || attributes['ai_text_labels'] || nil
           @config_keys = attributes[:config_keys] || attributes['config_keys'] || nil
           @filterable_custom_keys = attributes[:filterable_custom_keys] || attributes['filterable_custom_keys'] || nil
@@ -35,6 +39,7 @@ module GetStream
         def self.json_field_mappings
           {
             llm_labels: 'llm_labels',
+            ai_image_labels: 'ai_image_labels',
             ai_text_labels: 'ai_text_labels',
             config_keys: 'config_keys',
             filterable_custom_keys: 'filterable_custom_keys'

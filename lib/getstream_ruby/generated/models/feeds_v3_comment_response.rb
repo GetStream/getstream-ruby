@@ -81,6 +81,9 @@ module GetStream
         # @!attribute custom
         #   @return [Object]
         attr_accessor :custom
+        # @!attribute i18n
+        #   @return [Hash<String, String>]
+        attr_accessor :i18n
         # @!attribute moderation
         #   @return [ModerationV2Response]
         attr_accessor :moderation
@@ -115,6 +118,7 @@ module GetStream
           @attachments = attributes[:attachments] || attributes['attachments'] || nil
           @latest_reactions = attributes[:latest_reactions] || attributes['latest_reactions'] || nil
           @custom = attributes[:custom] || attributes['custom'] || nil
+          @i18n = attributes[:i18n] || attributes['i18n'] || nil
           @moderation = attributes[:moderation] || attributes['moderation'] || nil
           @reaction_groups = attributes[:reaction_groups] || attributes['reaction_groups'] || nil
         end
@@ -146,6 +150,7 @@ module GetStream
             attachments: 'attachments',
             latest_reactions: 'latest_reactions',
             custom: 'custom',
+            i18n: 'i18n',
             moderation: 'moderation',
             reaction_groups: 'reaction_groups'
           }

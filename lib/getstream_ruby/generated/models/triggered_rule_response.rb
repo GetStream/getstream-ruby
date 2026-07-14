@@ -18,6 +18,9 @@ module GetStream
         # @!attribute rule_name
         #   @return [String] Name of the moderation rule that triggered
         attr_accessor :rule_name
+        # @!attribute type
+        #   @return [String] Type of the moderation rule that triggered (content, user, or call)
+        attr_accessor :type
         # @!attribute violation_number
         #   @return [Integer] Violation count for action sequence rules (1-based)
         attr_accessor :violation_number
@@ -31,6 +34,7 @@ module GetStream
           @rule_id = attributes[:rule_id] || attributes['rule_id']
           @actions = attributes[:actions] || attributes['actions']
           @rule_name = attributes[:rule_name] || attributes['rule_name'] || nil
+          @type = attributes[:type] || attributes['type'] || nil
           @violation_number = attributes[:violation_number] || attributes['violation_number'] || nil
           @call_options = attributes[:call_options] || attributes['call_options'] || nil
         end
@@ -41,6 +45,7 @@ module GetStream
             rule_id: 'rule_id',
             actions: 'actions',
             rule_name: 'rule_name',
+            type: 'type',
             violation_number: 'violation_number',
             call_options: 'call_options'
           }

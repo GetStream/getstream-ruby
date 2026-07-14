@@ -24,6 +24,7 @@ require_relative 'models/async_bulk_image_moderation_event'
 require_relative 'models/async_export_channels_event'
 require_relative 'models/async_export_error_event'
 require_relative 'models/async_export_moderation_logs_event'
+require_relative 'models/async_export_review_queue_event'
 require_relative 'models/async_export_users_event'
 require_relative 'models/blocked_user_event'
 require_relative 'models/bookmark_added_event'
@@ -295,6 +296,8 @@ module StreamChat
     EVENT_TYPE_EXPORT_CHANNELS_SUCCESS = 'export.channels.success'
     EVENT_TYPE_EXPORT_MODERATION_LOGS_ERROR = 'export.moderation_logs.error'
     EVENT_TYPE_EXPORT_MODERATION_LOGS_SUCCESS = 'export.moderation_logs.success'
+    EVENT_TYPE_EXPORT_REVIEW_QUEUE_ERROR = 'export.review_queue.error'
+    EVENT_TYPE_EXPORT_REVIEW_QUEUE_SUCCESS = 'export.review_queue.success'
     EVENT_TYPE_EXPORT_USERS_ERROR = 'export.users.error'
     EVENT_TYPE_EXPORT_USERS_SUCCESS = 'export.users.success'
     EVENT_TYPE_FEEDS_ACTIVITY_ADDED = 'feeds.activity.added'
@@ -591,6 +594,10 @@ module StreamChat
         GetStream::Generated::Models::AsyncExportErrorEvent
       when 'export.moderation_logs.success'
         GetStream::Generated::Models::AsyncExportModerationLogsEvent
+      when 'export.review_queue.error'
+        GetStream::Generated::Models::AsyncExportErrorEvent
+      when 'export.review_queue.success'
+        GetStream::Generated::Models::AsyncExportReviewQueueEvent
       when 'export.users.error'
         GetStream::Generated::Models::AsyncExportErrorEvent
       when 'export.users.success'

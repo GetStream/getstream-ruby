@@ -32,11 +32,17 @@ module GetStream
       # Create a single feed for a given feed group
       #
       # @param get_or_create_feed_request [GetOrCreateFeedRequest]
+      # @param language [String]
+      # @param translate_text [Boolean]
       # @return [Models::GetOrCreateFeedResponse]
-      def get_or_create_feed(get_or_create_feed_request)
+      def get_or_create_feed(get_or_create_feed_request, language = nil, translate_text = nil)
+        # Build query parameters
+        query_params = {}
+        query_params['language'] = language unless language.nil?
+        query_params['translate_text'] = translate_text unless translate_text.nil?
 
         # Delegate to the FeedsClient
-        @client.feeds.get_or_create_feed(@feed_group_id, @feed_id, get_or_create_feed_request)
+        @client.feeds.get_or_create_feed(@feed_group_id, @feed_id, get_or_create_feed_request, query_params)
       end
 
       # Update an existing feed
@@ -139,11 +145,17 @@ module GetStream
       # Query pinned activities for a feed with filter query
       #
       # @param query_pinned_activities_request [QueryPinnedActivitiesRequest]
+      # @param language [String]
+      # @param translate_text [Boolean]
       # @return [Models::QueryPinnedActivitiesResponse]
-      def query_pinned_activities(query_pinned_activities_request)
+      def query_pinned_activities(query_pinned_activities_request, language = nil, translate_text = nil)
+        # Build query parameters
+        query_params = {}
+        query_params['language'] = language unless language.nil?
+        query_params['translate_text'] = translate_text unless translate_text.nil?
 
         # Delegate to the FeedsClient
-        @client.feeds.query_pinned_activities(@feed_group_id, @feed_id, query_pinned_activities_request)
+        @client.feeds.query_pinned_activities(@feed_group_id, @feed_id, query_pinned_activities_request, query_params)
       end
 
     end

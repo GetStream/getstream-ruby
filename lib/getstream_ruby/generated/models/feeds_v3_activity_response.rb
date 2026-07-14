@@ -129,9 +129,15 @@ module GetStream
         # @!attribute friend_reactions
         #   @return [Array<FeedsReactionResponse>]
         attr_accessor :friend_reactions
+        # @!attribute latest_shares
+        #   @return [Array<FeedsShareResponse>]
+        attr_accessor :latest_shares
         # @!attribute current_feed
         #   @return [FeedsFeedResponse]
         attr_accessor :current_feed
+        # @!attribute i18n
+        #   @return [Hash<String, String>]
+        attr_accessor :i18n
         # @!attribute location
         #   @return [FeedsActivityLocation]
         attr_accessor :location
@@ -197,7 +203,9 @@ module GetStream
           @text = attributes[:text] || attributes['text'] || nil
           @visibility_tag = attributes[:visibility_tag] || attributes['visibility_tag'] || nil
           @friend_reactions = attributes[:friend_reactions] || attributes['friend_reactions'] || nil
+          @latest_shares = attributes[:latest_shares] || attributes['latest_shares'] || nil
           @current_feed = attributes[:current_feed] || attributes['current_feed'] || nil
+          @i18n = attributes[:i18n] || attributes['i18n'] || nil
           @location = attributes[:location] || attributes['location'] || nil
           @metrics = attributes[:metrics] || attributes['metrics'] || nil
           @moderation = attributes[:moderation] || attributes['moderation'] || nil
@@ -250,7 +258,9 @@ module GetStream
             text: 'text',
             visibility_tag: 'visibility_tag',
             friend_reactions: 'friend_reactions',
+            latest_shares: 'latest_shares',
             current_feed: 'current_feed',
+            i18n: 'i18n',
             location: 'location',
             metrics: 'metrics',
             moderation: 'moderation',

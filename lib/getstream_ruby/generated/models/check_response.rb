@@ -21,6 +21,9 @@ module GetStream
         # @!attribute task_id
         #   @return [String] ID of the running moderation task
         attr_accessor :task_id
+        # @!attribute triggered_rules
+        #   @return [Array<TriggeredRuleResponse>] All moderation rules triggered by this check (content, user, and call rules), with their resolved actions
+        attr_accessor :triggered_rules
         # @!attribute item
         #   @return [ReviewQueueItemResponse]
         attr_accessor :item
@@ -35,6 +38,7 @@ module GetStream
           @recommended_action = attributes[:recommended_action] || attributes['recommended_action']
           @status = attributes[:status] || attributes['status']
           @task_id = attributes[:task_id] || attributes['task_id'] || nil
+          @triggered_rules = attributes[:triggered_rules] || attributes['triggered_rules'] || nil
           @item = attributes[:item] || attributes['item'] || nil
           @triggered_rule = attributes[:triggered_rule] || attributes['triggered_rule'] || nil
         end
@@ -46,6 +50,7 @@ module GetStream
             recommended_action: 'recommended_action',
             status: 'status',
             task_id: 'task_id',
+            triggered_rules: 'triggered_rules',
             item: 'item',
             triggered_rule: 'triggered_rule'
           }

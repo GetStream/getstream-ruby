@@ -9,6 +9,9 @@ module GetStream
       class ModerationPayloadRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute audios
+        #   @return [Array<String>] Audio URLs to moderate
+        attr_accessor :audios
         # @!attribute images
         #   @return [Array<String>] Image URLs to moderate (max 30)
         attr_accessor :images
@@ -25,6 +28,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @audios = attributes[:audios] || attributes['audios'] || nil
           @images = attributes[:images] || attributes['images'] || nil
           @texts = attributes[:texts] || attributes['texts'] || nil
           @videos = attributes[:videos] || attributes['videos'] || nil
@@ -34,6 +38,7 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            audios: 'audios',
             images: 'images',
             texts: 'texts',
             videos: 'videos',
