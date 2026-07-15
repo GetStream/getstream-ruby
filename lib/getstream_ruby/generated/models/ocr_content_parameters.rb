@@ -6,43 +6,33 @@ module GetStream
   module Generated
     module Models
       # 
-      class ClosedCaptionRuleParameters < GetStream::BaseModel
+      class OCRContentParameters < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute label_operator
+        #   @return [String]
+        attr_accessor :label_operator
         # @!attribute severity
         #   @return [String]
         attr_accessor :severity
-        # @!attribute threshold
-        #   @return [Integer]
-        attr_accessor :threshold
-        # @!attribute time_window
-        #   @return [String]
-        attr_accessor :time_window
         # @!attribute harm_labels
         #   @return [Array<String>]
         attr_accessor :harm_labels
-        # @!attribute llm_harm_labels
-        #   @return [Hash<String, String>]
-        attr_accessor :llm_harm_labels
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @label_operator = attributes[:label_operator] || attributes['label_operator'] || nil
           @severity = attributes[:severity] || attributes['severity'] || nil
-          @threshold = attributes[:threshold] || attributes['threshold'] || nil
-          @time_window = attributes[:time_window] || attributes['time_window'] || nil
           @harm_labels = attributes[:harm_labels] || attributes['harm_labels'] || nil
-          @llm_harm_labels = attributes[:llm_harm_labels] || attributes['llm_harm_labels'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            label_operator: 'label_operator',
             severity: 'severity',
-            threshold: 'threshold',
-            time_window: 'time_window',
-            harm_labels: 'harm_labels',
-            llm_harm_labels: 'llm_harm_labels'
+            harm_labels: 'harm_labels'
           }
         end
       end

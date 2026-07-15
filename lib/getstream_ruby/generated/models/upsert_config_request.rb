@@ -21,6 +21,9 @@ module GetStream
         # @!attribute user_id
         #   @return [String] Optional user ID to associate with the audit log entry
         attr_accessor :user_id
+        # @!attribute ai_audio_config
+        #   @return [AIAudioConfigRequest]
+        attr_accessor :ai_audio_config
         # @!attribute ai_image_config
         #   @return [AIImageConfig]
         attr_accessor :ai_image_config
@@ -77,6 +80,7 @@ module GetStream
           @async = attributes[:async] || attributes['async'] || nil
           @team = attributes[:team] || attributes['team'] || nil
           @user_id = attributes[:user_id] || attributes['user_id'] || nil
+          @ai_audio_config = attributes[:ai_audio_config] || attributes['ai_audio_config'] || nil
           @ai_image_config = attributes[:ai_image_config] || attributes['ai_image_config'] || nil
           @ai_text_config = attributes[:ai_text_config] || attributes['ai_text_config'] || nil
           @ai_video_config = attributes[:ai_video_config] || attributes['ai_video_config'] || nil
@@ -102,6 +106,7 @@ module GetStream
             async: 'async',
             team: 'team',
             user_id: 'user_id',
+            ai_audio_config: 'ai_audio_config',
             ai_image_config: 'ai_image_config',
             ai_text_config: 'ai_text_config',
             ai_video_config: 'ai_video_config',

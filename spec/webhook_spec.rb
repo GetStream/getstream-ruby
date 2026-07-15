@@ -646,6 +646,20 @@ RSpec.describe 'Webhook' do
 
     end
 
+    it 'parses export.review_queue.error' do
+
+      event = StreamChat::Webhook.parse_webhook_event('{"type":"export.review_queue.error"}')
+      expect(event.class.name).to eq('GetStream::Generated::Models::AsyncExportErrorEvent')
+
+    end
+
+    it 'parses export.review_queue.success' do
+
+      event = StreamChat::Webhook.parse_webhook_event('{"type":"export.review_queue.success"}')
+      expect(event.class.name).to eq('GetStream::Generated::Models::AsyncExportReviewQueueEvent')
+
+    end
+
     it 'parses export.users.error' do
 
       event = StreamChat::Webhook.parse_webhook_event('{"type":"export.users.error"}')

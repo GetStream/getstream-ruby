@@ -297,6 +297,35 @@ module GetStream
         )
       end
 
+      # Returns a channel by its CID without creating it. Responds with 404 when the channel does not exist, so it doubles as an existence check. Pass state=true to also load messages, read state and watchers.
+      #
+      # @param _type [String]
+      # @param _id [String]
+      # @param state [Boolean]
+      # @param messages_limit [Integer]
+      # @param members_limit [Integer]
+      # @param watchers_limit [Integer]
+      # @return [Models::ChannelStateResponse]
+      def get_channel(_type, _id, state = nil, messages_limit = nil, members_limit = nil, watchers_limit = nil)
+        path = '/api/v2/chat/channels/{type}/{id}'
+        # Replace path parameters
+        path = path.gsub('{type}', _type.to_s)
+        path = path.gsub('{id}', _id.to_s)
+        # Build query parameters
+        query_params = {}
+        query_params['state'] = state unless state.nil?
+        query_params['messages_limit'] = messages_limit unless messages_limit.nil?
+        query_params['members_limit'] = members_limit unless members_limit.nil?
+        query_params['watchers_limit'] = watchers_limit unless watchers_limit.nil?
+
+        # Make the API request
+        @client.make_request(
+          :get,
+          path,
+          query_params: query_params
+        )
+      end
+
       # Updates certain fields of the channelSends events:- channel.updated
       #
       # @param _type [String]

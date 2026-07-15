@@ -54,6 +54,9 @@ module GetStream
         # @!attribute keyframe_rule_params
         #   @return [KeyframeRuleParameters]
         attr_accessor :keyframe_rule_params
+        # @!attribute ocr_content_params
+        #   @return [OCRContentParameters]
+        attr_accessor :ocr_content_params
         # @!attribute text_content_params
         #   @return [TextContentParameters]
         attr_accessor :text_content_params
@@ -103,6 +106,7 @@ module GetStream
           @image_rule_params = attributes[:image_rule_params] || attributes['image_rule_params'] || nil
           @keyframe_ocr_rule_params = attributes[:keyframe_ocr_rule_params] || attributes['keyframe_ocr_rule_params'] || nil
           @keyframe_rule_params = attributes[:keyframe_rule_params] || attributes['keyframe_rule_params'] || nil
+          @ocr_content_params = attributes[:ocr_content_params] || attributes['ocr_content_params'] || nil
           @text_content_params = attributes[:text_content_params] || attributes['text_content_params'] || nil
           @text_rule_params = attributes[:text_rule_params] || attributes['text_rule_params'] || nil
           @user_created_within_params = attributes[:user_created_within_params] || attributes['user_created_within_params'] || nil
@@ -133,6 +137,7 @@ module GetStream
             image_rule_params: 'image_rule_params',
             keyframe_ocr_rule_params: 'keyframe_ocr_rule_params',
             keyframe_rule_params: 'keyframe_rule_params',
+            ocr_content_params: 'ocr_content_params',
             text_content_params: 'text_content_params',
             text_rule_params: 'text_rule_params',
             user_created_within_params: 'user_created_within_params',

@@ -42,6 +42,9 @@ module GetStream
         # @!attribute enforce_unique_usernames
         #   @return [String]
         attr_accessor :enforce_unique_usernames
+        # @!attribute feed_audit_logs_enabled
+        #   @return [Boolean]
+        attr_accessor :feed_audit_logs_enabled
         # @!attribute feeds_moderation_enabled
         #   @return [Boolean]
         attr_accessor :feeds_moderation_enabled
@@ -87,6 +90,9 @@ module GetStream
         # @!attribute reminders_max_members
         #   @return [Integer]
         attr_accessor :reminders_max_members
+        # @!attribute reminders_max_per_user
+        #   @return [Integer]
+        attr_accessor :reminders_max_per_user
         # @!attribute revoke_tokens_issued_before
         #   @return [DateTime]
         attr_accessor :revoke_tokens_issued_before
@@ -186,6 +192,7 @@ module GetStream
           @disable_permissions_checks = attributes[:disable_permissions_checks] || attributes['disable_permissions_checks'] || nil
           @enable_hook_payload_compression = attributes[:enable_hook_payload_compression] || attributes['enable_hook_payload_compression'] || nil
           @enforce_unique_usernames = attributes[:enforce_unique_usernames] || attributes['enforce_unique_usernames'] || nil
+          @feed_audit_logs_enabled = attributes[:feed_audit_logs_enabled] || attributes['feed_audit_logs_enabled'] || nil
           @feeds_moderation_enabled = attributes[:feeds_moderation_enabled] || attributes['feeds_moderation_enabled'] || nil
           @feeds_v2_region = attributes[:feeds_v2_region] || attributes['feeds_v2_region'] || nil
           @guest_user_creation_disabled = attributes[:guest_user_creation_disabled] || attributes['guest_user_creation_disabled'] || nil
@@ -201,6 +208,7 @@ module GetStream
           @permission_version = attributes[:permission_version] || attributes['permission_version'] || nil
           @reminders_interval = attributes[:reminders_interval] || attributes['reminders_interval'] || nil
           @reminders_max_members = attributes[:reminders_max_members] || attributes['reminders_max_members'] || nil
+          @reminders_max_per_user = attributes[:reminders_max_per_user] || attributes['reminders_max_per_user'] || nil
           @revoke_tokens_issued_before = attributes[:revoke_tokens_issued_before] || attributes['revoke_tokens_issued_before'] || nil
           @sns_key = attributes[:sns_key] || attributes['sns_key'] || nil
           @sns_secret = attributes[:sns_secret] || attributes['sns_secret'] || nil
@@ -245,6 +253,7 @@ module GetStream
             disable_permissions_checks: 'disable_permissions_checks',
             enable_hook_payload_compression: 'enable_hook_payload_compression',
             enforce_unique_usernames: 'enforce_unique_usernames',
+            feed_audit_logs_enabled: 'feed_audit_logs_enabled',
             feeds_moderation_enabled: 'feeds_moderation_enabled',
             feeds_v2_region: 'feeds_v2_region',
             guest_user_creation_disabled: 'guest_user_creation_disabled',
@@ -260,6 +269,7 @@ module GetStream
             permission_version: 'permission_version',
             reminders_interval: 'reminders_interval',
             reminders_max_members: 'reminders_max_members',
+            reminders_max_per_user: 'reminders_max_per_user',
             revoke_tokens_issued_before: 'revoke_tokens_issued_before',
             sns_key: 'sns_key',
             sns_secret: 'sns_secret',

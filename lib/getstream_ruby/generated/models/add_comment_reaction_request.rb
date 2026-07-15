@@ -28,6 +28,9 @@ module GetStream
         # @!attribute user_id
         #   @return [String]
         attr_accessor :user_id
+        # @!attribute target_feeds
+        #   @return [Array<String>] Optional list of feeds to create a reference (share) activity of the commented-on activity in. The reference activity's type mirrors the reaction type.
+        attr_accessor :target_feeds
         # @!attribute custom
         #   @return [Object] Optional custom data to add to the reaction
         attr_accessor :custom
@@ -44,6 +47,7 @@ module GetStream
           @enforce_unique = attributes[:enforce_unique] || attributes['enforce_unique'] || nil
           @skip_push = attributes[:skip_push] || attributes['skip_push'] || nil
           @user_id = attributes[:user_id] || attributes['user_id'] || nil
+          @target_feeds = attributes[:target_feeds] || attributes['target_feeds'] || nil
           @custom = attributes[:custom] || attributes['custom'] || nil
           @user = attributes[:user] || attributes['user'] || nil
         end
@@ -57,6 +61,7 @@ module GetStream
             enforce_unique: 'enforce_unique',
             skip_push: 'skip_push',
             user_id: 'user_id',
+            target_feeds: 'target_feeds',
             custom: 'custom',
             user: 'user'
           }

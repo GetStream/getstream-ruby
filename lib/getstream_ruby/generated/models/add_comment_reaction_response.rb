@@ -18,9 +18,19 @@ module GetStream
         # @!attribute reaction
         #   @return [FeedsReactionResponse]
         attr_accessor :reaction
+        # @!attribute notification_accepted
+        #   @return [Boolean] Whether notification creation was accepted for asynchronous processing
+        attr_accessor :notification_accepted
         # @!attribute notification_created
-        #   @return [Boolean] Whether a notification activity was successfully created
+        # @deprecated This field is deprecated.
+        #   @return [Boolean] Deprecated. Mirrors notification_accepted; use notification_accepted for async enqueue status Deprecated: use notification_accepted
         attr_accessor :notification_created
+        # @!attribute notification_task_id
+        #   @return [String] ID of the async notification-creation task; poll GET /tasks/{id} for its status
+        attr_accessor :notification_task_id
+        # @!attribute reference_activity
+        #   @return [ActivityResponse]
+        attr_accessor :reference_activity
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -28,7 +38,10 @@ module GetStream
           @duration = attributes[:duration] || attributes['duration']
           @comment = attributes[:comment] || attributes['comment']
           @reaction = attributes[:reaction] || attributes['reaction']
+          @notification_accepted = attributes[:notification_accepted] || attributes['notification_accepted'] || nil
           @notification_created = attributes[:notification_created] || attributes['notification_created'] || nil
+          @notification_task_id = attributes[:notification_task_id] || attributes['notification_task_id'] || nil
+          @reference_activity = attributes[:reference_activity] || attributes['reference_activity'] || nil
         end
 
         # Override field mappings for JSON serialization
@@ -37,7 +50,10 @@ module GetStream
             duration: 'duration',
             comment: 'comment',
             reaction: 'reaction',
-            notification_created: 'notification_created'
+            notification_accepted: 'notification_accepted',
+            notification_created: 'notification_created',
+            notification_task_id: 'notification_task_id',
+            reference_activity: 'reference_activity'
           }
         end
       end
