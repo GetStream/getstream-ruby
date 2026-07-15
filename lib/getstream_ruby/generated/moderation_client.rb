@@ -618,6 +618,97 @@ module GetStream
         )
       end
 
+      # 
+      #
+      # @return [Models::ListQueuesResponse]
+      def list_queues()
+        path = '/api/v2/moderation/queues'
+
+        # Make the API request
+        @client.make_request(
+          :get,
+          path
+        )
+      end
+
+      # 
+      #
+      # @param create_queue_request [CreateQueueRequest]
+      # @return [Models::QueueResponse]
+      def create_queue(create_queue_request)
+        path = '/api/v2/moderation/queues'
+        # Build request body
+        body = create_queue_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
+      # 
+      #
+      # @param _id [String]
+      # @param user_id [String]
+      # @return [Models::QueueResponse]
+      def get_queue(_id, user_id = nil)
+        path = '/api/v2/moderation/queues/{id}'
+        # Replace path parameters
+        path = path.gsub('{id}', _id.to_s)
+        # Build query parameters
+        query_params = {}
+        query_params['user_id'] = user_id unless user_id.nil?
+
+        # Make the API request
+        @client.make_request(
+          :get,
+          path,
+          query_params: query_params
+        )
+      end
+
+      # 
+      #
+      # @param _id [String]
+      # @param update_queue_request [UpdateQueueRequest]
+      # @return [Models::QueueResponse]
+      def update_queue(_id, update_queue_request)
+        path = '/api/v2/moderation/queues/{id}'
+        # Replace path parameters
+        path = path.gsub('{id}', _id.to_s)
+        # Build request body
+        body = update_queue_request
+
+        # Make the API request
+        @client.make_request(
+          :patch,
+          path,
+          body: body
+        )
+      end
+
+      # 
+      #
+      # @param _id [String]
+      # @param delete_queue_request [DeleteQueueRequest]
+      # @return [Models::QueueResponse]
+      def delete_queue(_id, delete_queue_request)
+        path = '/api/v2/moderation/queues/{id}/delete'
+        # Replace path parameters
+        path = path.gsub('{id}', _id.to_s)
+        # Build request body
+        body = delete_queue_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
       # Query review queue items allows you to filter the review queue items. This is used for building a moderation dashboard.
       #
       # @param query_review_queue_request [QueryReviewQueueRequest]

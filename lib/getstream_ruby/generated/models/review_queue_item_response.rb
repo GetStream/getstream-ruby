@@ -91,7 +91,7 @@ module GetStream
         #   @return [UserResponse]
         attr_accessor :assigned_to
         # @!attribute call
-        #   @return [CallResponse]
+        #   @return [ModerationCallResponse]
         attr_accessor :call
         # @!attribute entity_creator
         #   @return [EntityCreatorResponse]

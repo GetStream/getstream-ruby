@@ -46,7 +46,7 @@ module GetStream
         )
       end
 
-      # Updates certain fields of multiple activities in a batch. Use 'set' to update specific fields and 'unset' to remove fields. Activities that fail due to not found, permission denied, or no changes detected are silently skipped and not included in the response. However, validation errors (e.g., updating reserved fields, invalid field values) will fail the entire batch request.Sends events:- feeds.activity.updated
+      # Updates certain fields of multiple activities in a batch. Use 'set' to update specific fields and 'unset' to remove fields. Activities that fail due to not found, permission denied, or no changes detected are silently skipped and not included in the response. However, validation errors (e.g., updating reserved fields, invalid field values, exceeding size limits) will fail the entire batch request.Sends events:- feeds.activity.updated
       #
       # @param update_activities_partial_batch_request [UpdateActivitiesPartialBatchRequest]
       # @return [Models::UpdateActivitiesPartialBatchResponse]
@@ -100,11 +100,35 @@ module GetStream
       # Query activities based on filters with pagination and sorting options
       #
       # @param query_activities_request [QueryActivitiesRequest]
+      # @param language [String]
+      # @param translate_text [Boolean]
       # @return [Models::QueryActivitiesResponse]
-      def query_activities(query_activities_request)
+      def query_activities(query_activities_request, language = nil, translate_text = nil)
         path = '/api/v2/feeds/activities/query'
+        # Build query parameters
+        query_params = {}
+        query_params['language'] = language unless language.nil?
+        query_params['translate_text'] = translate_text unless translate_text.nil?
         # Build request body
         body = query_activities_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          query_params: query_params,
+          body: body
+        )
+      end
+
+      # Returns a single user's reactions across a set of activity IDs, without activity payloads
+      #
+      # @param batch_query_activity_reactions_request [BatchQueryActivityReactionsRequest]
+      # @return [Models::BatchQueryActivityReactionsResponse]
+      def batch_query_activity_reactions(batch_query_activity_reactions_request)
+        path = '/api/v2/feeds/activities/reactions/query'
+        # Build request body
+        body = batch_query_activity_reactions_request
 
         # Make the API request
         @client.make_request(
@@ -309,6 +333,31 @@ module GetStream
         )
       end
 
+      # List the shares recorded for an activity, newest-first
+      #
+      # @param activity_id [String]
+      # @param limit [Integer]
+      # @param prev [String]
+      # @param _next [String]
+      # @return [Models::QueryActivitySharesResponse]
+      def query_activity_shares(activity_id, limit = nil, prev = nil, _next = nil)
+        path = '/api/v2/feeds/activities/{activity_id}/shares'
+        # Replace path parameters
+        path = path.gsub('{activity_id}', activity_id.to_s)
+        # Build query parameters
+        query_params = {}
+        query_params['limit'] = limit unless limit.nil?
+        query_params['prev'] = prev unless prev.nil?
+        query_params['next'] = _next unless _next.nil?
+
+        # Make the API request
+        @client.make_request(
+          :get,
+          path,
+          query_params: query_params
+        )
+      end
+
       # Delete a single activity by its ID
       #
       # @param _id [String]
@@ -335,16 +384,20 @@ module GetStream
       # Returns activity by ID
       #
       # @param _id [String]
+      # @param language [String]
+      # @param translate_text [Boolean]
       # @param comment_sort [String]
       # @param comment_limit [Integer]
       # @param user_id [String]
       # @return [Models::GetActivityResponse]
-      def get_activity(_id, comment_sort = nil, comment_limit = nil, user_id = nil)
+      def get_activity(_id, language = nil, translate_text = nil, comment_sort = nil, comment_limit = nil, user_id = nil)
         path = '/api/v2/feeds/activities/{id}'
         # Replace path parameters
         path = path.gsub('{id}', _id.to_s)
         # Build query parameters
         query_params = {}
+        query_params['language'] = language unless language.nil?
+        query_params['translate_text'] = translate_text unless translate_text.nil?
         query_params['comment_sort'] = comment_sort unless comment_sort.nil?
         query_params['comment_limit'] = comment_limit unless comment_limit.nil?
         query_params['user_id'] = user_id unless user_id.nil?
@@ -422,6 +475,26 @@ module GetStream
         )
       end
 
+      # Translates an activity's text to a given language using automated translationSends events:- feeds.activity.updated
+      #
+      # @param _id [String]
+      # @param translate_activity_request [TranslateActivityRequest]
+      # @return [Models::TranslateActivityResponse]
+      def translate_activity(_id, translate_activity_request)
+        path = '/api/v2/feeds/activities/{id}/translate'
+        # Replace path parameters
+        path = path.gsub('{id}', _id.to_s)
+        # Build request body
+        body = translate_activity_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
       # Query bookmark folders with filter query
       #
       # @param query_bookmark_folders_request [QueryBookmarkFoldersRequest]
@@ -478,9 +551,15 @@ module GetStream
       # Query bookmarks with filter query
       #
       # @param query_bookmarks_request [QueryBookmarksRequest]
+      # @param language [String]
+      # @param translate_text [Boolean]
       # @return [Models::QueryBookmarksResponse]
-      def query_bookmarks(query_bookmarks_request)
+      def query_bookmarks(query_bookmarks_request, language = nil, translate_text = nil)
         path = '/api/v2/feeds/bookmarks/query'
+        # Build query parameters
+        query_params = {}
+        query_params['language'] = language unless language.nil?
+        query_params['translate_text'] = translate_text unless translate_text.nil?
         # Build request body
         body = query_bookmarks_request
 
@@ -488,6 +567,7 @@ module GetStream
         @client.make_request(
           :post,
           path,
+          query_params: query_params,
           body: body
         )
       end
@@ -606,12 +686,14 @@ module GetStream
       # @param sort [String]
       # @param replies_limit [Integer]
       # @param id_around [String]
+      # @param language [String]
+      # @param translate_text [Boolean]
       # @param user_id [String]
       # @param limit [Integer]
       # @param prev [String]
       # @param _next [String]
       # @return [Models::GetCommentsResponse]
-      def get_comments(object_id, object_type, depth = nil, sort = nil, replies_limit = nil, id_around = nil, user_id = nil, limit = nil, prev = nil, _next = nil)
+      def get_comments(object_id, object_type, depth = nil, sort = nil, replies_limit = nil, id_around = nil, language = nil, translate_text = nil, user_id = nil, limit = nil, prev = nil, _next = nil)
         path = '/api/v2/feeds/comments'
         # Build query parameters
         query_params = {}
@@ -621,6 +703,8 @@ module GetStream
         query_params['sort'] = sort unless sort.nil?
         query_params['replies_limit'] = replies_limit unless replies_limit.nil?
         query_params['id_around'] = id_around unless id_around.nil?
+        query_params['language'] = language unless language.nil?
+        query_params['translate_text'] = translate_text unless translate_text.nil?
         query_params['user_id'] = user_id unless user_id.nil?
         query_params['limit'] = limit unless limit.nil?
         query_params['prev'] = prev unless prev.nil?
@@ -671,11 +755,35 @@ module GetStream
       # Query comments using MongoDB-style filters with pagination and sorting options
       #
       # @param query_comments_request [QueryCommentsRequest]
+      # @param language [String]
+      # @param translate_text [Boolean]
       # @return [Models::QueryCommentsResponse]
-      def query_comments(query_comments_request)
+      def query_comments(query_comments_request, language = nil, translate_text = nil)
         path = '/api/v2/feeds/comments/query'
+        # Build query parameters
+        query_params = {}
+        query_params['language'] = language unless language.nil?
+        query_params['translate_text'] = translate_text unless translate_text.nil?
         # Build request body
         body = query_comments_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          query_params: query_params,
+          body: body
+        )
+      end
+
+      # Returns a single user's reactions across a set of comment IDs, without comment payloads
+      #
+      # @param batch_query_comment_reactions_request [BatchQueryCommentReactionsRequest]
+      # @return [Models::BatchQueryCommentReactionsResponse]
+      def batch_query_comment_reactions(batch_query_comment_reactions_request)
+        path = '/api/v2/feeds/comments/reactions/query'
+        # Build request body
+        body = batch_query_comment_reactions_request
 
         # Make the API request
         @client.make_request(
@@ -774,14 +882,18 @@ module GetStream
       # Get a comment by ID
       #
       # @param _id [String]
+      # @param language [String]
+      # @param translate_text [Boolean]
       # @param user_id [String]
       # @return [Models::GetCommentResponse]
-      def get_comment(_id, user_id = nil)
+      def get_comment(_id, language = nil, translate_text = nil, user_id = nil)
         path = '/api/v2/feeds/comments/{id}'
         # Replace path parameters
         path = path.gsub('{id}', _id.to_s)
         # Build query parameters
         query_params = {}
+        query_params['language'] = language unless language.nil?
+        query_params['translate_text'] = translate_text unless translate_text.nil?
         query_params['user_id'] = user_id unless user_id.nil?
 
         # Make the API request
@@ -904,12 +1016,14 @@ module GetStream
       # @param sort [String]
       # @param replies_limit [Integer]
       # @param id_around [String]
+      # @param language [String]
+      # @param translate_text [Boolean]
       # @param user_id [String]
       # @param limit [Integer]
       # @param prev [String]
       # @param _next [String]
       # @return [Models::GetCommentRepliesResponse]
-      def get_comment_replies(_id, depth = nil, sort = nil, replies_limit = nil, id_around = nil, user_id = nil, limit = nil, prev = nil, _next = nil)
+      def get_comment_replies(_id, depth = nil, sort = nil, replies_limit = nil, id_around = nil, language = nil, translate_text = nil, user_id = nil, limit = nil, prev = nil, _next = nil)
         path = '/api/v2/feeds/comments/{id}/replies'
         # Replace path parameters
         path = path.gsub('{id}', _id.to_s)
@@ -919,6 +1033,8 @@ module GetStream
         query_params['sort'] = sort unless sort.nil?
         query_params['replies_limit'] = replies_limit unless replies_limit.nil?
         query_params['id_around'] = id_around unless id_around.nil?
+        query_params['language'] = language unless language.nil?
+        query_params['translate_text'] = translate_text unless translate_text.nil?
         query_params['user_id'] = user_id unless user_id.nil?
         query_params['limit'] = limit unless limit.nil?
         query_params['prev'] = prev unless prev.nil?
@@ -943,6 +1059,26 @@ module GetStream
         path = path.gsub('{id}', _id.to_s)
         # Build request body
         body = restore_comment_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
+      # Translates a comment's text to a given language using automated translationSends events:- feeds.comment.updated
+      #
+      # @param _id [String]
+      # @param translate_comment_request [TranslateCommentRequest]
+      # @return [Models::TranslateCommentResponse]
+      def translate_comment(_id, translate_comment_request)
+        path = '/api/v2/feeds/comments/{id}/translate'
+        # Replace path parameters
+        path = path.gsub('{id}', _id.to_s)
+        # Build request body
+        body = translate_comment_request
 
         # Make the API request
         @client.make_request(
@@ -1017,12 +1153,18 @@ module GetStream
       # @param feed_group_id [String]
       # @param feed_id [String]
       # @param get_or_create_feed_request [GetOrCreateFeedRequest]
+      # @param language [String]
+      # @param translate_text [Boolean]
       # @return [Models::GetOrCreateFeedResponse]
-      def get_or_create_feed(feed_group_id, feed_id, get_or_create_feed_request)
+      def get_or_create_feed(feed_group_id, feed_id, get_or_create_feed_request, language = nil, translate_text = nil)
         path = '/api/v2/feeds/feed_groups/{feed_group_id}/feeds/{feed_id}'
         # Replace path parameters
         path = path.gsub('{feed_group_id}', feed_group_id.to_s)
         path = path.gsub('{feed_id}', feed_id.to_s)
+        # Build query parameters
+        query_params = {}
+        query_params['language'] = language unless language.nil?
+        query_params['translate_text'] = translate_text unless translate_text.nil?
         # Build request body
         body = get_or_create_feed_request
 
@@ -1030,6 +1172,7 @@ module GetStream
         @client.make_request(
           :post,
           path,
+          query_params: query_params,
           body: body
         )
       end
@@ -1244,12 +1387,18 @@ module GetStream
       # @param feed_group_id [String]
       # @param feed_id [String]
       # @param query_pinned_activities_request [QueryPinnedActivitiesRequest]
+      # @param language [String]
+      # @param translate_text [Boolean]
       # @return [Models::QueryPinnedActivitiesResponse]
-      def query_pinned_activities(feed_group_id, feed_id, query_pinned_activities_request)
+      def query_pinned_activities(feed_group_id, feed_id, query_pinned_activities_request, language = nil, translate_text = nil)
         path = '/api/v2/feeds/feed_groups/{feed_group_id}/feeds/{feed_id}/pinned_activities/query'
         # Replace path parameters
         path = path.gsub('{feed_group_id}', feed_group_id.to_s)
         path = path.gsub('{feed_id}', feed_id.to_s)
+        # Build query parameters
+        query_params = {}
+        query_params['language'] = language unless language.nil?
+        query_params['translate_text'] = translate_text unless translate_text.nil?
         # Build request body
         body = query_pinned_activities_request
 
@@ -1257,6 +1406,7 @@ module GetStream
         @client.make_request(
           :post,
           path,
+          query_params: query_params,
           body: body
         )
       end

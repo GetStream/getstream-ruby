@@ -22,7 +22,7 @@ module GetStream
         #   @return [Array<String>] Deprecated: use keyframe_label_classifications instead. Available L1 harm labels for keyframe rules
         attr_accessor :keyframe_labels
         # @!attribute ocr_labels
-        #   @return [Array<String>] Available harm labels for keyframe OCR rules. Mirrors `closed_caption_labels` today but kept as a separate field so the two pickers can diverge later.
+        #   @return [Array<String>] Available harm labels for OCR-based rule conditions (keyframe_ocr_rule and ocr_content). Mirrors `closed_caption_labels` today but kept as a separate field so the pickers can diverge later.
         attr_accessor :ocr_labels
         # @!attribute rules
         #   @return [Array<ModerationRuleV2Response>] List of moderation rules

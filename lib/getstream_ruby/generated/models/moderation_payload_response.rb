@@ -9,9 +9,18 @@ module GetStream
       class ModerationPayloadResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute audios
+        #   @return [Array<String>] Audio URLs to moderate
+        attr_accessor :audios
+        # @!attribute image_ordered_keys
+        #   @return [Array<String>] Caller-supplied keys for images, index-aligned with images[]
+        attr_accessor :image_ordered_keys
         # @!attribute images
         #   @return [Array<String>] Image URLs to moderate
         attr_accessor :images
+        # @!attribute text_ordered_keys
+        #   @return [Array<String>] Caller-supplied keys for texts (e.g. "title", "description"), index-aligned with texts[]
+        attr_accessor :text_ordered_keys
         # @!attribute texts
         #   @return [Array<String>] Text content to moderate
         attr_accessor :texts
@@ -21,23 +30,39 @@ module GetStream
         # @!attribute custom
         #   @return [Object] Custom data for moderation
         attr_accessor :custom
+        # @!attribute image_ids
+        #   @return [Hash<String, String>] Caller-supplied content IDs per image key (from content_ids on /analyze)
+        attr_accessor :image_ids
+        # @!attribute text_ids
+        #   @return [Hash<String, String>] Caller-supplied content IDs per text key (from content_ids on /analyze)
+        attr_accessor :text_ids
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @audios = attributes[:audios] || attributes['audios'] || nil
+          @image_ordered_keys = attributes[:image_ordered_keys] || attributes['image_ordered_keys'] || nil
           @images = attributes[:images] || attributes['images'] || nil
+          @text_ordered_keys = attributes[:text_ordered_keys] || attributes['text_ordered_keys'] || nil
           @texts = attributes[:texts] || attributes['texts'] || nil
           @videos = attributes[:videos] || attributes['videos'] || nil
           @custom = attributes[:custom] || attributes['custom'] || nil
+          @image_ids = attributes[:image_ids] || attributes['image_ids'] || nil
+          @text_ids = attributes[:text_ids] || attributes['text_ids'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            audios: 'audios',
+            image_ordered_keys: 'image_ordered_keys',
             images: 'images',
+            text_ordered_keys: 'text_ordered_keys',
             texts: 'texts',
             videos: 'videos',
-            custom: 'custom'
+            custom: 'custom',
+            image_ids: 'image_ids',
+            text_ids: 'text_ids'
           }
         end
       end

@@ -6,15 +6,12 @@ module GetStream
   module Generated
     module Models
       # 
-      class AsyncExportErrorEvent < GetStream::BaseModel
+      class AsyncExportReviewQueueEvent < GetStream::BaseModel
 
         # Model attributes
         # @!attribute created_at
         #   @return [DateTime]
         attr_accessor :created_at
-        # @!attribute error
-        #   @return [String]
-        attr_accessor :error
         # @!attribute finished_at
         #   @return [DateTime]
         attr_accessor :finished_at
@@ -24,6 +21,9 @@ module GetStream
         # @!attribute task_id
         #   @return [String]
         attr_accessor :task_id
+        # @!attribute url
+        #   @return [String]
+        attr_accessor :url
         # @!attribute custom
         #   @return [Object]
         attr_accessor :custom
@@ -38,12 +38,12 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @created_at = attributes[:created_at] || attributes['created_at']
-          @error = attributes[:error] || attributes['error']
           @finished_at = attributes[:finished_at] || attributes['finished_at']
           @started_at = attributes[:started_at] || attributes['started_at']
           @task_id = attributes[:task_id] || attributes['task_id']
+          @url = attributes[:url] || attributes['url']
           @custom = attributes[:custom] || attributes['custom']
-          @type = attributes[:type] || attributes['type'] || "export.channels.error"
+          @type = attributes[:type] || attributes['type'] || "export.review_queue.success"
           @received_at = attributes[:received_at] || attributes['received_at'] || nil
         end
 
@@ -51,10 +51,10 @@ module GetStream
         def self.json_field_mappings
           {
             created_at: 'created_at',
-            error: 'error',
             finished_at: 'finished_at',
             started_at: 'started_at',
             task_id: 'task_id',
+            url: 'url',
             custom: 'custom',
             type: 'type',
             received_at: 'received_at'

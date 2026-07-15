@@ -30,6 +30,9 @@ module GetStream
         # @!attribute owner
         #   @return [Boolean] Whether this permission applies to resource owner or not
         attr_accessor :owner
+        # @!attribute owner_resource
+        #   @return [String] Resource type that defines ownership for this permission's action (e.g. 'Channel' for CreateMessage, 'Message' for UpdateMessage). Identical across all variants of an action; primarily meaningful for owner grants.
+        attr_accessor :owner_resource
         # @!attribute same_team
         #   @return [Boolean] Whether this permission applies to teammates (multi-tenancy mode only)
         attr_accessor :same_team
@@ -50,6 +53,7 @@ module GetStream
           @level = attributes[:level] || attributes['level']
           @name = attributes[:name] || attributes['name']
           @owner = attributes[:owner] || attributes['owner']
+          @owner_resource = attributes[:owner_resource] || attributes['owner_resource']
           @same_team = attributes[:same_team] || attributes['same_team']
           @tags = attributes[:tags] || attributes['tags']
           @condition = attributes[:condition] || attributes['condition'] || nil
@@ -65,6 +69,7 @@ module GetStream
             level: 'level',
             name: 'name',
             owner: 'owner',
+            owner_resource: 'owner_resource',
             same_team: 'same_team',
             tags: 'tags',
             condition: 'condition'
