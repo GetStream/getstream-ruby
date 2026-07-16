@@ -25,12 +25,12 @@ module GetStreamRuby
     end
 
     def valid?
-      api_key && api_secret
+      !blank?(api_key) && !blank?(api_secret)
     end
 
     def validate!
-      raise ConfigurationError, 'API key is required' unless api_key
-      raise ConfigurationError, 'API secret is required' unless api_secret
+      raise ConfigurationError, 'API key is required' if blank?(api_key)
+      raise ConfigurationError, 'API secret is required' if blank?(api_secret)
     end
 
     def dup
@@ -115,6 +115,10 @@ module GetStreamRuby
 
     def default_adapter_options
       {}
+    end
+
+    def blank?(value)
+      value.nil? || (value.respond_to?(:empty?) && value.empty?)
     end
 
     def assign_credentials_and_url(api_key, api_secret, base_url, use_env:)
