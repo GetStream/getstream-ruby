@@ -17,8 +17,9 @@ module GetStreamRuby
 
       @configuration.logger.warn do
 
-        'log_bodies is enabled: request and response bodies will be logged ' \
-          '(secrets are key-redacted, but treat log storage as sensitive).'
+        'HTTP request/response bodies will be logged. Auth headers and ' \
+          'known-secret fields are still redacted, but other sensitive ' \
+          'data (messages, PII) may appear in logs. Disable for production.'
 
       end
     end
