@@ -20,10 +20,14 @@ require_relative 'generated/webhook'
 require_relative 'generated/models/api_error'
 require_relative 'stream_response'
 require_relative 'error_mapping'
+require_relative 'log_redaction'
+require_relative 'request_logging'
 
 module GetStreamRuby
 
   class Client
+
+    include RequestLogging
 
     # Backdate the JWT `iat` claim by this many seconds.
     #
@@ -38,20 +42,23 @@ module GetStreamRuby
     attr_reader :configuration
 
     def initialize(config = nil, api_key: nil, api_secret: nil, **options)
-      @configuration = config || GetStreamRuby.configuration
-
-      # Create new configuration with overrides if any parameters provided
-      if api_key || api_secret || !options.empty?
-        @configuration = Configuration.with_overrides(
-          api_key: api_key,
-          api_secret: api_secret,
-          **options,
-        )
-      end
+      # Overrides win over an explicit config, matching prior behavior. Only
+      # fall back to GetStreamRuby.configuration when neither is given, so
+      # that path (currently unimplemented) isn't evaluated needlessly.
+      @configuration = if api_key || api_secret || !options.empty?
+                         Configuration.with_overrides(
+                           api_key: api_key,
+                           api_secret: api_secret,
+                           **options,
+                         )
+                       else
+                         config || GetStreamRuby.configuration
+                       end
 
       @configuration.validate!
       @connection = build_connection
       @configuration.log_pool_config_to(@configuration.logger)
+      warn_log_bodies_enabled
     end
 
     def feed_resource
@@ -209,6 +216,10 @@ module GetStreamRuby
       # Check if this is a file upload request that needs multipart
       return make_multipart_request(method, path, query_params, data) if multipart_request?(data)
 
+      started = monotonic_now
+      body_json = data.to_json
+      log_request_sent(method, path, query_params, body_json)
+
       response = @connection.send(method) do |req|
 
         req.url path, query_params
@@ -216,13 +227,15 @@ module GetStreamRuby
         req.headers['Content-Type'] = 'application/json'
         req.headers['stream-auth-type'] = 'jwt'
         req.headers['X-Stream-Client'] = user_agent
-        req.body = data.to_json
+        req.body = body_json
         req.options.timeout = request_timeout if request_timeout
 
       end
 
+      log_response_received(response, started)
       handle_response(response)
     rescue Faraday::Error => e
+      log_request_failed(method, path, e, started)
       raise TransportError.new("Request failed: #{e.message}", error_type: ErrorMapping.classify_faraday_error(e))
     end
 
@@ -240,7 +253,10 @@ module GetStreamRuby
           interval_randomness: 0.5,
           backoff_factor: 2,
         }
-        conn.response :json, content_type: /\bjson$/
+        # preserve_raw: true keeps the wire string in env[:raw_body] alongside
+        # the parsed body, so response logging can report size/content
+        # without re-serializing an already-parsed Hash.
+        conn.response :json, content_type: /\bjson$/, preserve_raw: true
         # :gzip must come after :json (Faraday runs response middleware in reverse).
         conn.request :gzip
         configure_adapter(conn)
@@ -277,8 +293,6 @@ module GetStreamRuby
       # A fallback silently disables pooling, so always WARN (never swallow).
       @configuration.warn_pool_fallback(Faraday.default_adapter, e)
       connection.adapter Faraday.default_adapter
-      # Record the adapter actually built so the INFO log reports it accurately.
-      @configuration.effective_adapter = Faraday.default_adapter.to_s
     end
 
     def generate_auth_header
@@ -346,6 +360,9 @@ module GetStreamRuby
         payload[:upload_sizes] = upload_sizes_json
       end
 
+      started = monotonic_now
+      log_request_sent(method, path, query_params)
+
       response = @connection.send(method) do |req|
 
         req.url path, query_params
@@ -356,8 +373,10 @@ module GetStreamRuby
 
       end
 
+      log_response_received(response, started)
       handle_response(response)
     rescue Faraday::Error => e
+      log_request_failed(method, path, e, started)
       raise TransportError.new("Request failed: #{e.message}", error_type: ErrorMapping.classify_faraday_error(e))
     end
 

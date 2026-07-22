@@ -204,15 +204,14 @@ RSpec.describe 'CHA-2956 connection pooling' do
 
     end
 
-    it 'reports the EFFECTIVE adapter in the INFO log, not the requested one' do
+    it 'still emits exactly one client.initialized INFO line (adapter identity lives in the WARN above, not here)' do
 
       log_io = StringIO.new
       logger = Logger.new(log_io).tap { |l| l.level = Logger::INFO }
       GetStreamRuby.manual(api_key: 'k', api_secret: 's', faraday_adapter: bogus, logger: logger)
       info_lines = log_io.string.lines.select { |l| l.include?('INFO') }
       expect(info_lines.size).to eq(1)
-      expect(info_lines.first).to include("faraday_adapter=#{Faraday.default_adapter}")
-      expect(info_lines.first).not_to include("faraday_adapter=#{bogus}")
+      expect(info_lines.first).to include('client.initialized')
 
     end
 
@@ -223,34 +222,26 @@ RSpec.describe 'CHA-2956 connection pooling' do
     let(:log_io) { StringIO.new }
     let(:logger) { Logger.new(log_io).tap { |l| l.level = Logger::INFO } }
 
-    it 'emits exactly one INFO line listing the 5 effective values' do
+    it 'emits exactly one client.initialized INFO line with the 5 effective pool values' do
 
       GetStreamRuby.manual(api_key: 'k', api_secret: 's', logger: logger)
       info_lines = log_io.string.lines.select { |l| l.include?('INFO') }
       expect(info_lines.size).to eq(1)
       line = info_lines.first
-      expect(line).to include('connection pool')
-      expect(line).to include('max_conns_per_host=5')
-      expect(line).to include('idle_timeout=55')
-      expect(line).to include('connect_timeout=10')
-      expect(line).to include('request_timeout=30')
-      expect(line).to include('user_http_client=false')
-      expect(line).to include('faraday_adapter=default')
+      expect(line).to include('client.initialized')
+      expect(line).to include('stream.client.max_conns_per_host=5')
+      expect(line).to include('stream.client.idle_timeout_seconds=55')
+      expect(line).to include('stream.client.connect_timeout_seconds=10')
+      expect(line).to include('stream.client.request_timeout_seconds=30')
+      expect(line).to include('stream.client.user_http_client=false')
 
     end
 
-    it 'reports user_http_client=true when http_client is supplied' do
+    it 'reports stream.client.user_http_client=true when http_client is supplied' do
 
       custom = Faraday.new(url: 'https://example.invalid') { |c| c.adapter :test }
       GetStreamRuby.manual(api_key: 'k', api_secret: 's', logger: logger, http_client: custom)
-      expect(log_io.string).to include('user_http_client=true')
-
-    end
-
-    it 'reports the adapter symbol when faraday_adapter is supplied' do
-
-      GetStreamRuby.manual(api_key: 'k', api_secret: 's', logger: logger, faraday_adapter: :net_http)
-      expect(log_io.string).to include('faraday_adapter=net_http')
+      expect(log_io.string).to include('stream.client.user_http_client=true')
 
     end
 

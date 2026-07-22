@@ -163,6 +163,29 @@ rescue GetStreamRuby::APIError => e
 end
 ```
 
+## Logging
+
+Pass a stdlib `Logger` via `logger:` to get structured, single-line log events. With no `logger:`, the SDK produces zero output; the SDK never sets the logger's level either, that's the caller's call.
+
+```ruby
+require 'logger'
+
+client = GetStreamRuby.manual(
+  api_key: "your_api_key",
+  api_secret: "your_api_secret",
+  logger: Logger.new($stdout)
+)
+```
+
+Four events are emitted:
+
+- `client.initialized` (INFO, once at construction): SDK version and the effective client config (pool size, timeouts, gzip, whether a custom `http_client`/`log_bodies` is set).
+- `http.request.sent` (DEBUG, before each request).
+- `http.response.received` (DEBUG, after any response including 4xx/5xx — those are just data, not a failure).
+- `http.request.failed` (ERROR, transport failure only: no HTTP response was received at all, e.g. connection reset, timeout, DNS failure, TLS handshake failure).
+
+Query values for `api_key`/`api_secret`/`token` are always redacted to `<redacted>`, and the same keys are redacted (shallowly, top-level only) in JSON body logging. No headers are ever logged. Request/response bodies are not logged by default; pass `log_bodies: true` to opt in (values for the keys above are still redacted). Enabling it emits one WARN at construction as a reminder that your logs will now contain body content.
+
 ## Development
 
 ### Quick Start

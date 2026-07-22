@@ -8,7 +8,7 @@ module GetStreamRuby
 
     attr_accessor :api_key, :api_secret, :base_url, :timeout, :logger, :faraday_adapter, :faraday_adapter_options,
                   :connection_keep_alive, :max_conns_per_host, :idle_timeout, :connect_timeout,
-                  :request_timeout, :http_client, :effective_adapter
+                  :request_timeout, :http_client, :log_bodies
 
     def initialize(api_key: nil, api_secret: nil, use_env: true, **options)
       http_options = options[:http_options] || {}
@@ -22,6 +22,7 @@ module GetStreamRuby
       @timeout = @request_timeout
       @http_client = options[:http_client]
       @logger = options[:logger]
+      @log_bodies = options[:log_bodies] || false
     end
 
     def valid?
@@ -48,41 +49,35 @@ module GetStreamRuby
         faraday_adapter_options: @faraday_adapter_options.dup,
         connection_keep_alive: @connection_keep_alive,
         logger: @logger,
+        log_bodies: @log_bodies,
       )
     end
 
-    # Emit a single INFO line listing the 5 effective pool knobs plus the active escape hatch (CHA-2956).
-    # If no logger is supplied, a default $stdout INFO logger is used.
-    # The faraday_adapter label reflects the adapter actually built
-    # (effective_adapter, set by Client#configure_adapter) so a silent fallback
-    # to the default adapter is never misreported as the requested adapter.
+    # Emit the `client.initialized` INFO event once at construction (structured
+    # logging spec §6.1). A no-op when no logger is configured: unlike
+    # `warn_pool_fallback` below, a quiet start-up here is expected, not a
+    # silently-swallowed problem, so there is no $stdout fallback.
     def log_pool_config_to(logger)
-      logger ||= Logger.new($stdout).tap { |l| l.level = Logger::INFO }
-      flag = @http_client ? 'user_http_client=true' : 'user_http_client=false'
-      adapter_label = if @http_client
-                        'user-supplied'
-                      elsif @effective_adapter
-                        @effective_adapter
-                      elsif @faraday_adapter
-                        @faraday_adapter.to_s
-                      else
-                        'default'
-                      end
-      fmt = 'connection pool: max_conns_per_host=%<m>d idle_timeout=%<i>d ' \
-            'connect_timeout=%<c>d request_timeout=%<r>d %<flag>s faraday_adapter=%<a>s'
-      logger.info(
-        format(
-          fmt,
-          m: @max_conns_per_host, i: @idle_timeout, c: @connect_timeout,
-          r: @request_timeout, flag: flag, a: adapter_label
-        ),
-      )
+      return if logger.nil?
+
+      fields = {
+        'stream.sdk.name' => 'getstream-ruby',
+        'stream.sdk.version' => VERSION,
+        'stream.client.max_conns_per_host' => @max_conns_per_host,
+        'stream.client.idle_timeout_seconds' => @idle_timeout,
+        'stream.client.connect_timeout_seconds' => @connect_timeout,
+        'stream.client.request_timeout_seconds' => @request_timeout,
+        'stream.client.gzip_enabled' => true,
+        'stream.client.user_http_client' => !@http_client.nil?,
+        'stream.client.log_bodies' => @log_bodies,
+      }
+      logger.info { "client.initialized #{fields.map { |k, v| "#{k}=#{v}" }.join(' ')}" }
     end
 
     # Emit a WARNING that the requested adapter could not be built and pooling
-    # is disabled (CHA-2956). A fallback must never be silent, so when no logger
-    # is configured this uses a default $stdout logger, exactly like
-    # log_pool_config_to.
+    # is disabled (CHA-2956). A fallback must never be silent, so unlike the
+    # structured-logging events below, this uses a default $stdout logger when
+    # none is configured.
     def warn_pool_fallback(fallback_adapter, error)
       warn_logger = @logger || Logger.new($stdout).tap { |l| l.level = Logger::WARN }
       warn_logger.warn(
