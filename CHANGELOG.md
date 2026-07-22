@@ -12,6 +12,7 @@
 - `Client#post` (and the multipart upload path) now deserialize the full canonical `APIError` envelope (`code`, `message`, `exception_fields`, `more_info`, `StatusCode`, `details`, `unrecoverable`, `duration`) and populate the new `ApiError` attributes.
 - Regenerated from the latest chat OpenAPI spec. New endpoints: `Moderation#analyze`, `Moderation#bulk_action_appeals`, `Moderation#get_setup_session`, `Moderation#upsert_setup_session`; `Feeds#get_or_create_follow`, `Feeds#get_or_create_unfollow`, `Feeds#get_user_interests`; `Chat#create_segment`, `Chat#update_segment`, `Chat#add_segment_targets`; `Common#cancel_import_v2_task`; `Video#report_client_call_event`, together with the request and response models backing them.
 - New webhook event types `moderation.image_analysis.complete` and `moderation.text_analysis.complete`, parsed into `ModerationImageAnalysisCompleteEvent` and `ModerationTextAnalysisCompleteEvent`.
+- Structured logging (CHA-2957): the existing `logger:` kwarg on `GetStreamRuby::Client.new`/`Configuration` now drives 4 events: `client.initialized` (INFO, once at construction), `http.request.sent` and `http.response.received` (DEBUG, the latter fires for every response including 4xx/5xx), and `http.request.failed` (ERROR, transport failures only, no HTTP response received). Query values and top-level JSON body keys for `api_key`/`api_secret`/`token`/`password` are always redacted to `<redacted>`; no headers are ever logged. New `log_bodies:` option (default `false`) opts into logging request/response bodies (still key-redacted) and emits one WARN at construction. New `GetStreamRuby::LogRedaction` module (`redact_query`, `redact_json_body`, `redact_message`).
 
 ### Changed
 
@@ -21,6 +22,7 @@
 - `Models::FlagResponse` now represents the full flag record (`created_at`, `updated_at`, `target_message`, `target_user`, `user`, `reason`, `details`, `custom`, and related fields). The moderation flag-action acknowledgement, which carries `item_id` and `duration`, moved to the new `Models::FlagItemResponse`; `Moderation#flag` now returns `FlagItemResponse`. The wire response of `/api/v2/moderation/flag` is unchanged, only the model name changed, so code reading `item_id`/`duration` off the parsed response is unaffected. Code referencing the `FlagResponse` model class for those two fields should switch to `FlagItemResponse`.
 - `ChannelInput#config_overrides` and `ChannelDataUpdate#config_overrides` are now typed as `ChannelConfigOverrides` (the override-specific field set) instead of the full `ChannelConfig`.
 - `LLMRule#description` and `TargetResolution#bitrate` are now optional.
+- The former "connection pool" INFO line (CHA-2956) is now `client.initialized` and carries the structured-logging field set above (adapter identity is no longer part of it; a silent adapter fallback still always WARNs, see `warn_pool_fallback`). Its old `$stdout` fallback is removed: with no `logger:` configured, the SDK now produces zero log output.
 
 ### Webhook helpers
 
