@@ -13,6 +13,7 @@
 - Regenerated from the latest chat OpenAPI spec. New endpoints: `Moderation#analyze`, `Moderation#bulk_action_appeals`, `Moderation#get_setup_session`, `Moderation#upsert_setup_session`; `Feeds#get_or_create_follow`, `Feeds#get_or_create_unfollow`, `Feeds#get_user_interests`; `Chat#create_segment`, `Chat#update_segment`, `Chat#add_segment_targets`; `Common#cancel_import_v2_task`; `Video#report_client_call_event`, together with the request and response models backing them.
 - New webhook event types `moderation.image_analysis.complete` and `moderation.text_analysis.complete`, parsed into `ModerationImageAnalysisCompleteEvent` and `ModerationTextAnalysisCompleteEvent`.
 - Structured logging (CHA-2957): the existing `logger:` kwarg on `GetStreamRuby::Client.new`/`Configuration` now drives 4 events: `client.initialized` (INFO, once at construction), `http.request.sent` and `http.response.received` (DEBUG, the latter fires for every response including 4xx/5xx), and `http.request.failed` (ERROR, transport failures only, no HTTP response received). Query values and top-level JSON body keys for `api_key`/`api_secret`/`token`/`password` are always redacted to `<redacted>`; no headers are ever logged. New `log_bodies:` option (default `false`) opts into logging request/response bodies (still key-redacted) and emits one WARN at construction. New `GetStreamRuby::LogRedaction` module (`redact_query`, `redact_json_body`, `redact_message`).
+- New opt-in retry policy (CHA-2959): `GetStreamRuby::RetryConfig` (`enabled:`, `max_attempts:`, `max_backoff:`) passed via the new `retry_config:` option on `Client.new`/`Configuration`. Disabled by default. When enabled, only `GET`/`HEAD` requests are retried, and only on HTTP 429 (unless `unrecoverable`) or a transport error, honoring `Retry-After` (clamped to `max_backoff`, no jitter) or otherwise waiting a full-jitter delay up to `min(max_backoff, 2**attempt)`. Each retried attempt logs `http.request.failed` at DEBUG with a `retry.attempt` field.
 
 ### Changed
 
@@ -23,6 +24,7 @@
 - `ChannelInput#config_overrides` and `ChannelDataUpdate#config_overrides` are now typed as `ChannelConfigOverrides` (the override-specific field set) instead of the full `ChannelConfig`.
 - `LLMRule#description` and `TargetResolution#bitrate` are now optional.
 - The former "connection pool" INFO line (CHA-2956) is now `client.initialized` and carries the structured-logging field set above (adapter identity is no longer part of it; a silent adapter fallback still always WARNs, see `warn_pool_fallback`). Its old `$stdout` fallback is removed: with no `logger:` configured, the SDK now produces zero log output.
+- **Breaking**: removed the always-on `faraday-retry` middleware (and the `faraday-retry` runtime dependency). It used to silently retry `GET`/`HEAD`/`PUT`/`DELETE`/`OPTIONS` requests up to 3 times on a timeout exception only (never on 429 or other HTTP status codes). Retries are now opt-in via `retry_config:` (see Added), apply only to `GET`/`HEAD`, and additionally cover 429. Pass `retry_config: GetStreamRuby::RetryConfig.new(enabled: true)` to restore retry-on-timeout behavior.
 
 ### Webhook helpers
 

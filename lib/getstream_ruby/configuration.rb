@@ -8,7 +8,7 @@ module GetStreamRuby
 
     attr_accessor :api_key, :api_secret, :base_url, :timeout, :logger, :faraday_adapter, :faraday_adapter_options,
                   :connection_keep_alive, :max_conns_per_host, :idle_timeout, :connect_timeout,
-                  :request_timeout, :http_client, :log_bodies
+                  :request_timeout, :http_client, :log_bodies, :retry_config
 
     def initialize(api_key: nil, api_secret: nil, use_env: true, **options)
       http_options = options[:http_options] || {}
@@ -23,6 +23,7 @@ module GetStreamRuby
       @http_client = options[:http_client]
       @logger = options[:logger]
       @log_bodies = options[:log_bodies] || false
+      @retry_config = options[:retry_config] || RetryConfig.new
     end
 
     def valid?
@@ -50,6 +51,7 @@ module GetStreamRuby
         connection_keep_alive: @connection_keep_alive,
         logger: @logger,
         log_bodies: @log_bodies,
+        retry_config: @retry_config,
       )
     end
 
