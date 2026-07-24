@@ -1,5 +1,7 @@
 ## [Unreleased]
 
+## [9.0.0] - 2026-07-24
+
 ### Added
 
 - New error class hierarchy under `GetStreamRuby`:
