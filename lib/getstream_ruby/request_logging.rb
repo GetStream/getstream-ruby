@@ -59,6 +59,23 @@ module GetStreamRuby
       end
     end
 
+    # DEBUG-level counterpart to `log_request_failed`, emitted before each
+    # retry backoff sleep (opt-in RetryConfig). `error.type` is the closed
+    # transport-classifier enum (see ErrorMapping.classify_faraday_error /
+    # TRANSPORT_ERROR_TYPES) and is only meaningful for TransportError; a 429
+    # retry omits it rather than invent a value; the paired
+    # http.response.received log already recorded the 429 status.
+    def log_retry_attempt(method, path, error, attempt, started)
+      logger = @configuration.logger
+      return unless logger
+
+      message = LogRedaction.redact_message(error.message)
+      line = +"http.request.failed http.request.method=#{method} url.path=#{path} retry.attempt=#{attempt + 1}"
+      line << " error.type=#{error.error_type}" if error.is_a?(TransportError)
+      line << " error.message=#{message} duration_ms=#{elapsed_ms(started)}"
+      logger.debug { line }
+    end
+
     def elapsed_ms(started)
       ((monotonic_now - started) * 1000).round
     end

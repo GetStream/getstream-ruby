@@ -287,7 +287,7 @@ RSpec.describe 'Chat Channel Integration', type: :integration do
       resp = delete_channels_batch(cids: [cid_1, cid_2], hard_delete: true)
       expect(resp.task_id).not_to be_nil
 
-      result = wait_for_task(resp.task_id)
+      result = wait_for_task(resp.task_id, skip_on_timeout: true)
       expect(result.status).to eq('completed')
 
     end

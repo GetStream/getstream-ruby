@@ -2,7 +2,6 @@
 
 require 'faraday'
 require 'faraday/gzip'
-require 'faraday/retry'
 require 'faraday/multipart'
 require 'faraday/net_http_persistent'
 require 'logger'
@@ -216,27 +215,76 @@ module GetStreamRuby
       # Check if this is a file upload request that needs multipart
       return make_multipart_request(method, path, query_params, data) if multipart_request?(data)
 
-      started = monotonic_now
       body_json = data.to_json
-      log_request_sent(method, path, query_params, body_json)
+      attempt = 0
 
-      response = @connection.send(method) do |req|
+      begin
+        started = monotonic_now
+        log_request_sent(method, path, query_params, body_json)
 
-        req.url path, query_params
-        req.headers['Authorization'] = generate_auth_header
-        req.headers['Content-Type'] = 'application/json'
-        req.headers['stream-auth-type'] = 'jwt'
-        req.headers['X-Stream-Client'] = user_agent
-        req.body = body_json
-        req.options.timeout = request_timeout if request_timeout
+        response = @connection.send(method) do |req|
 
+          req.url path, query_params
+          req.headers['Authorization'] = generate_auth_header
+          req.headers['Content-Type'] = 'application/json'
+          req.headers['stream-auth-type'] = 'jwt'
+          req.headers['X-Stream-Client'] = user_agent
+          req.body = body_json
+          req.options.timeout = request_timeout if request_timeout
+
+        end
+
+        log_response_received(response, started)
+        handle_response(response)
+      rescue Faraday::Error => e
+        error = TransportError.new("Request failed: #{e.message}", error_type: ErrorMapping.classify_faraday_error(e))
+        if retry_eligible?(method, error, attempt)
+          wait_before_retry(method, path, error, attempt, started)
+          attempt += 1
+          retry
+        end
+        log_request_failed(method, path, e, started)
+        raise error
+      rescue RateLimitError => e
+        if retry_eligible?(method, e, attempt)
+          wait_before_retry(method, path, e, attempt, started)
+          attempt += 1
+          retry
+        end
+        raise
       end
+    end
 
-      log_response_received(response, started)
-      handle_response(response)
-    rescue Faraday::Error => e
-      log_request_failed(method, path, e, started)
-      raise TransportError.new("Request failed: #{e.message}", error_type: ErrorMapping.classify_faraday_error(e))
+    # True when the opt-in retry policy (GetStreamRuby::RetryConfig) allows
+    # another attempt for this failure: disabled by default (single attempt,
+    # errors surface unchanged); enabled only retries idempotent GET/HEAD
+    # requests that failed with a recoverable RateLimitError or a
+    # TransportError, and only while attempts remain.
+    def retry_eligible?(method, error, attempt)
+      config = @configuration.retry_config
+      return false unless config&.enabled?
+      return false unless %i[get head].include?(method)
+      return false if error.is_a?(RateLimitError) && error.unrecoverable
+      return false unless attempt + 1 < config.max_attempts
+
+      true
+    end
+
+    # Emits the retry-attempt log, then blocks for the backoff delay:
+    # RateLimitError#retry_after (if positive) capped at max_backoff, no
+    # jitter; otherwise full jitter over 2**attempt capped at max_backoff.
+    # `sleep` is called on self so specs can stub it.
+    def wait_before_retry(method, path, error, attempt, started)
+      log_retry_attempt(method, path, error, attempt, started)
+      config = @configuration.retry_config
+      delay =
+        if error.is_a?(RateLimitError) && error.retry_after&.positive?
+          [error.retry_after, config.max_backoff].min
+        else
+          ceiling = [config.max_backoff, 2.0**attempt].min
+          ceiling <= 0 ? 0.0 : rand * ceiling
+        end
+      sleep(delay)
     end
 
     def build_connection
@@ -247,12 +295,6 @@ module GetStreamRuby
       Faraday.new(url: @configuration.base_url) do |conn|
 
         conn.request :multipart
-        conn.request :retry, {
-          max: 3,
-          interval: 0.05,
-          interval_randomness: 0.5,
-          backoff_factor: 2,
-        }
         # preserve_raw: true keeps the wire string in env[:raw_body] alongside
         # the parsed body, so response logging can report size/content
         # without re-serializing an already-parsed Hash.

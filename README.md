@@ -163,6 +163,19 @@ rescue GetStreamRuby::APIError => e
 end
 ```
 
+## Retries
+
+Retries are opt-in via `retry_config:` and disabled by default (the client makes exactly one attempt; errors surface unchanged). When enabled, only `GET`/`HEAD` requests are retried, and only when they fail with HTTP 429 (unless the error is marked `unrecoverable`) or a transport-level error (connection reset, timeout, DNS failure, TLS handshake failure). Writes, 5xx responses, and other 4xx responses are never retried.
+
+```ruby
+client = GetStreamRuby::Client.new(
+  api_key: '...', api_secret: '...',
+  retry_config: GetStreamRuby::RetryConfig.new(enabled: true, max_attempts: 3, max_backoff: 30.0)
+)
+```
+
+`max_attempts` caps the total number of attempts (default 3). `max_backoff` caps the wait between attempts (default 30.0 seconds). A 429 with a `Retry-After` header waits exactly that long, clamped to `max_backoff`, with no jitter. Otherwise the wait is full jitter: a random delay between 0 and `min(max_backoff, 2**attempt)` seconds.
+
 ## Logging
 
 Pass a stdlib `Logger` via `logger:` to get structured, single-line log events. With no `logger:`, the SDK produces zero output; the SDK never sets the logger's level either, that's the caller's call.
@@ -182,7 +195,7 @@ Four events are emitted:
 - `client.initialized` (INFO, once at construction): SDK version and the effective client config (pool size, timeouts, gzip, whether a custom `http_client`/`log_bodies` is set).
 - `http.request.sent` (DEBUG, before each request).
 - `http.response.received` (DEBUG, after any response including 4xx/5xx — those are just data, not a failure).
-- `http.request.failed` (ERROR, transport failure only: no HTTP response was received at all, e.g. connection reset, timeout, DNS failure, TLS handshake failure).
+- `http.request.failed` (ERROR, transport failure only: no HTTP response was received at all, e.g. connection reset, timeout, DNS failure, TLS handshake failure). When [retries](#retries) are enabled, each retried attempt also emits `http.request.failed` at DEBUG with a `retry.attempt` field (1-indexed) before its backoff sleep; a 429 retry omits `error.type` (the paired `http.response.received` already recorded the status), a transport-error retry includes it.
 
 Query values for `api_key`/`api_secret`/`token` are always redacted to `<redacted>`, and the same keys are redacted (shallowly, top-level only) in JSON body logging. No headers are ever logged. Request/response bodies are not logged by default; pass `log_bodies: true` to opt in (values for the keys above are still redacted). Enabling it emits one WARN at construction as a reminder that your logs will now contain body content.
 

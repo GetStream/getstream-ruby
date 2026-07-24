@@ -3,6 +3,7 @@
 # Only load dotenv for .env method, not for system env method
 require 'getstream_ruby/version'
 require 'getstream_ruby/log_redaction'
+require 'getstream_ruby/retry_config'
 require 'getstream_ruby/client'
 require 'getstream_ruby/configuration'
 require 'getstream_ruby/errors'
