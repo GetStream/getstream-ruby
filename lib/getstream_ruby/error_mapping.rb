@@ -31,7 +31,7 @@ module GetStreamRuby
       end
 
       raise ApiError.new(
-        message: 'failed to parse error response',
+        message: "failed to parse error response: unexpected server response code #{response.status}",
         status_code: response.status,
         code: 0,
         exception_fields: {},
