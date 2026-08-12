@@ -307,7 +307,7 @@ RSpec.describe 'GetStreamRuby::Client error wrapping' do
 
         expect(err.status_code).to eq(500)
         expect(err.code).to eq(0)
-        expect(err.message).to eq('failed to parse error response')
+        expect(err.message).to eq('failed to parse error response: unexpected server response code 500')
         expect(err.raw_response_body).to eq('oops')
 
       end

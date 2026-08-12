@@ -13,7 +13,8 @@ module GetStreamRuby
 
   # Raised on any HTTP 4xx/5xx response. Also raised when an HTTP response is
   # received but its body is not a parseable `APIError` envelope, with `code = 0`
-  # and `message = "failed to parse error response"`.
+  # and `message = "failed to parse error response: unexpected server response
+  # code <status>"`.
   class ApiError < StreamError
 
     attr_reader :status_code, :code, :exception_fields, :unrecoverable,
