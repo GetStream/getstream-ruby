@@ -34,7 +34,7 @@ module GetStream
         #   @return [String]
         attr_accessor :user_id
         # @!attribute user
-        #   @return [UserRequest]
+        #   @return [UserRequest] User request object
         attr_accessor :user
 
         # Initialize with attributes

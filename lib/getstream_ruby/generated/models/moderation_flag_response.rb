@@ -46,13 +46,13 @@ module GetStream
         #   @return [Object]
         attr_accessor :custom
         # @!attribute moderation_payload
-        #   @return [ModerationPayloadResponse]
+        #   @return [ModerationPayloadResponse] Content payload for moderation
         attr_accessor :moderation_payload
         # @!attribute review_queue_item
         #   @return [ReviewQueueItemResponse]
         attr_accessor :review_queue_item
         # @!attribute user
-        #   @return [UserResponse]
+        #   @return [UserResponse] User response object
         attr_accessor :user
 
         # Initialize with attributes

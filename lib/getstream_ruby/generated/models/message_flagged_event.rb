@@ -16,7 +16,7 @@ module GetStream
         #   @return [String]
         attr_accessor :message_id
         # @!attribute message
-        #   @return [MessageResponse]
+        #   @return [MessageResponse] Represents any chat message
         attr_accessor :message
         # @!attribute type
         #   @return [String] The type of event: "message.flagged" in this case
@@ -55,7 +55,7 @@ module GetStream
         #   @return [Object] Custom data
         attr_accessor :custom
         # @!attribute details
-        #   @return [MessageModerationResult]
+        #   @return [MessageModerationResult] Result of the message moderation
         attr_accessor :details
         # @!attribute flag
         #   @return [FlagResponse]

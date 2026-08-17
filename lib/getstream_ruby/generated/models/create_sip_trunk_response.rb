@@ -13,7 +13,7 @@ module GetStream
         #   @return [String]
         attr_accessor :duration
         # @!attribute sip_trunk
-        #   @return [SIPTrunkResponse]
+        #   @return [SIPTrunkResponse] SIP trunk information
         attr_accessor :sip_trunk
 
         # Initialize with attributes

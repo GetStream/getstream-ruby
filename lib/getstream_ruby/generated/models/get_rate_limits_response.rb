@@ -21,6 +21,9 @@ module GetStream
         # @!attribute server_side
         #   @return [Hash<String, LimitInfoResponse>] Map of endpoint rate limits for the server-side platform
         attr_accessor :server_side
+        # @!attribute unity
+        #   @return [Hash<String, LimitInfoResponse>] Map of endpoint rate limits for the Unity platform
+        attr_accessor :unity
         # @!attribute web
         #   @return [Hash<String, LimitInfoResponse>] Map of endpoint rate limits for the web platform
         attr_accessor :web
@@ -32,6 +35,7 @@ module GetStream
           @android = attributes[:android] || attributes['android'] || nil
           @ios = attributes[:ios] || attributes['ios'] || nil
           @server_side = attributes[:server_side] || attributes['server_side'] || nil
+          @unity = attributes[:unity] || attributes['unity'] || nil
           @web = attributes[:web] || attributes['web'] || nil
         end
 
@@ -42,6 +46,7 @@ module GetStream
             android: 'android',
             ios: 'ios',
             server_side: 'server_side',
+            unity: 'unity',
             web: 'web'
           }
         end

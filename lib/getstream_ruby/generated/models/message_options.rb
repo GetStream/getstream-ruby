@@ -12,17 +12,22 @@ module GetStream
         # @!attribute include_thread_participants
         #   @return [Boolean]
         attr_accessor :include_thread_participants
+        # @!attribute member_custom_include
+        #   @return [Array<String>]
+        attr_accessor :member_custom_include
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @include_thread_participants = attributes[:include_thread_participants] || attributes['include_thread_participants'] || nil
+          @member_custom_include = attributes[:member_custom_include] || attributes['member_custom_include'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            include_thread_participants: 'include_thread_participants'
+            include_thread_participants: 'include_thread_participants',
+            member_custom_include: 'member_custom_include'
           }
         end
       end

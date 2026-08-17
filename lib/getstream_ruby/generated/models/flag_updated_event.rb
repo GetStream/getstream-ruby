@@ -22,13 +22,13 @@ module GetStream
         #   @return [DateTime]
         attr_accessor :received_at
         # @!attribute created_by
-        #   @return [UserResponse]
+        #   @return [UserResponse] User response object
         attr_accessor :created_by
         # @!attribute message
-        #   @return [MessageResponse]
+        #   @return [MessageResponse] Represents any chat message
         attr_accessor :message
         # @!attribute user
-        #   @return [UserResponse]
+        #   @return [UserResponse] User response object
         attr_accessor :user
 
         # Initialize with attributes

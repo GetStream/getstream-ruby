@@ -148,7 +148,10 @@ module ChatTestHelpers
   # Helper 6: wait_for_task
   # ---------------------------------------------------------------------------
 
-  def wait_for_task(task_id, max_attempts: 60, interval_seconds: 1, skip_on_timeout: false)
+  # Hard-delete style tasks sit in a shared async queue and regularly take
+  # minutes under load, so the budget is 5 minutes rather than the 1 minute
+  # that kept timing out in CI.
+  def wait_for_task(task_id, max_attempts: 60, interval_seconds: 5, skip_on_timeout: false)
     max_attempts.times do
 
       result = @client.common.get_task(task_id)
@@ -174,6 +177,12 @@ module ChatTestHelpers
 
   def get_or_create_channel(type, id, body = {})
     @client.make_request(:post, "/api/v2/chat/channels/#{type}/#{id}/query", body: body)
+  end
+
+  # Reads the channel back from the API. The channel returned by a partial update can lag the
+  # write it just applied, so state assertions read the channel instead of trusting that response.
+  def read_channel(id, type = 'messaging')
+    get_or_create_channel(type, id).channel.to_h
   end
 
   def delete_channel(type, id, hard: false)

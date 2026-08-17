@@ -30,6 +30,9 @@ module GetStream
         # @!attribute user_id
         #   @return [String]
         attr_accessor :user_id
+        # @!attribute member_custom_include
+        #   @return [Array<String>] Top-level keys of the message sender's channel-member custom data to include under member.custom (max 8 keys, 64 chars each)
+        attr_accessor :member_custom_include
         # @!attribute sort
         #   @return [Array<SortParamRequest>] List of sort parameters
         attr_accessor :sort
@@ -43,7 +46,7 @@ module GetStream
         #   @return [Object]
         attr_accessor :sort_values
         # @!attribute user
-        #   @return [UserRequest]
+        #   @return [UserRequest] User request object
         attr_accessor :user
 
         # Initialize with attributes
@@ -56,6 +59,7 @@ module GetStream
           @predefined_filter = attributes[:predefined_filter] || attributes['predefined_filter'] || nil
           @state = attributes[:state] || attributes['state'] || nil
           @user_id = attributes[:user_id] || attributes['user_id'] || nil
+          @member_custom_include = attributes[:member_custom_include] || attributes['member_custom_include'] || nil
           @sort = attributes[:sort] || attributes['sort'] || nil
           @filter_conditions = attributes[:filter_conditions] || attributes['filter_conditions'] || nil
           @filter_values = attributes[:filter_values] || attributes['filter_values'] || nil
@@ -73,6 +77,7 @@ module GetStream
             predefined_filter: 'predefined_filter',
             state: 'state',
             user_id: 'user_id',
+            member_custom_include: 'member_custom_include',
             sort: 'sort',
             filter_conditions: 'filter_conditions',
             filter_values: 'filter_values',

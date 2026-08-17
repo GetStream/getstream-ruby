@@ -43,10 +43,10 @@ module GetStream
         #   @return [Array<PollOptionRequest>] Poll options
         attr_accessor :options
         # @!attribute custom
-        #   @return [Object]
+        #   @return [Object] Custom data for this object
         attr_accessor :custom
         # @!attribute user
-        #   @return [UserRequest]
+        #   @return [UserRequest] User request object
         attr_accessor :user
 
         # Initialize with attributes
@@ -63,7 +63,7 @@ module GetStream
           @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @voting_visibility = attributes[:voting_visibility] || attributes['voting_visibility'] || nil
           @options = attributes[:options] || attributes['options'] || nil
-          @custom = attributes[:custom] || attributes['Custom'] || nil
+          @custom = attributes[:custom] || attributes['custom'] || nil
           @user = attributes[:user] || attributes['user'] || nil
         end
 
@@ -81,7 +81,7 @@ module GetStream
             user_id: 'user_id',
             voting_visibility: 'voting_visibility',
             options: 'options',
-            custom: 'Custom',
+            custom: 'custom',
             user: 'user'
           }
         end

@@ -9,9 +9,6 @@ module GetStream
       class ThreadParticipant < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute app_pk
-        #   @return [Integer]
-        attr_accessor :app_pk
         # @!attribute channel_cid
         #   @return [String]
         attr_accessor :channel_cid
@@ -37,13 +34,12 @@ module GetStream
         #   @return [String] User ID is unique string identifier of the user
         attr_accessor :user_id
         # @!attribute user
-        #   @return [UserResponse]
+        #   @return [UserResponse] User response object
         attr_accessor :user
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @app_pk = attributes[:app_pk] || attributes['app_pk']
           @channel_cid = attributes[:channel_cid] || attributes['channel_cid']
           @created_at = attributes[:created_at] || attributes['created_at']
           @last_read_at = attributes[:last_read_at] || attributes['last_read_at']
@@ -58,7 +54,6 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            app_pk: 'app_pk',
             channel_cid: 'channel_cid',
             created_at: 'created_at',
             last_read_at: 'last_read_at',

@@ -22,7 +22,7 @@ module GetStream
         #   @return [DateTime] When the folder was last updated
         attr_accessor :updated_at
         # @!attribute user
-        #   @return [UserResponse]
+        #   @return [UserResponse] User response object
         attr_accessor :user
         # @!attribute custom
         #   @return [Object] Custom data for the folder

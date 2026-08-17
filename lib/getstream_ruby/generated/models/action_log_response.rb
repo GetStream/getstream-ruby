@@ -40,10 +40,10 @@ module GetStream
         #   @return [ReviewQueueItemResponse]
         attr_accessor :review_queue_item
         # @!attribute target_user
-        #   @return [UserResponse]
+        #   @return [UserResponse] User response object
         attr_accessor :target_user
         # @!attribute user
-        #   @return [UserResponse]
+        #   @return [UserResponse] User response object
         attr_accessor :user
 
         # Initialize with attributes

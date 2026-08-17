@@ -16,7 +16,7 @@ module GetStream
         #   @return [Integer]
         attr_accessor :unread_messages
         # @!attribute user
-        #   @return [UserResponse]
+        #   @return [UserResponse] User response object
         attr_accessor :user
         # @!attribute last_delivered_at
         #   @return [DateTime]

@@ -53,7 +53,7 @@ module GetStream
         #   @return [Object] Custom data for the comment
         attr_accessor :custom
         # @!attribute user
-        #   @return [UserRequest]
+        #   @return [UserRequest] User request object
         attr_accessor :user
 
         # Initialize with attributes

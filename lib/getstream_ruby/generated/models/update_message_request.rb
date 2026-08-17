@@ -10,7 +10,7 @@ module GetStream
 
         # Model attributes
         # @!attribute message
-        #   @return [MessageRequest]
+        #   @return [MessageRequest] Message data for creating or updating a message
         attr_accessor :message
         # @!attribute skip_enrich_url
         #   @return [Boolean] Skip enrich URL

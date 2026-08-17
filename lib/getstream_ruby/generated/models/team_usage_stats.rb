@@ -13,52 +13,52 @@ module GetStream
         #   @return [String] Team identifier (empty string for users not assigned to any team)
         attr_accessor :team
         # @!attribute concurrent_connections
-        #   @return [MetricStats]
+        #   @return [MetricStats] Statistics for a single metric with optional daily breakdown
         attr_accessor :concurrent_connections
         # @!attribute concurrent_users
-        #   @return [MetricStats]
+        #   @return [MetricStats] Statistics for a single metric with optional daily breakdown
         attr_accessor :concurrent_users
         # @!attribute image_moderations_daily
-        #   @return [MetricStats]
+        #   @return [MetricStats] Statistics for a single metric with optional daily breakdown
         attr_accessor :image_moderations_daily
         # @!attribute messages_daily
-        #   @return [MetricStats]
+        #   @return [MetricStats] Statistics for a single metric with optional daily breakdown
         attr_accessor :messages_daily
         # @!attribute messages_last_24_hours
-        #   @return [MetricStats]
+        #   @return [MetricStats] Statistics for a single metric with optional daily breakdown
         attr_accessor :messages_last_24_hours
         # @!attribute messages_last_30_days
-        #   @return [MetricStats]
+        #   @return [MetricStats] Statistics for a single metric with optional daily breakdown
         attr_accessor :messages_last_30_days
         # @!attribute messages_month_to_date
-        #   @return [MetricStats]
+        #   @return [MetricStats] Statistics for a single metric with optional daily breakdown
         attr_accessor :messages_month_to_date
         # @!attribute messages_total
-        #   @return [MetricStats]
+        #   @return [MetricStats] Statistics for a single metric with optional daily breakdown
         attr_accessor :messages_total
         # @!attribute translations_daily
-        #   @return [MetricStats]
+        #   @return [MetricStats] Statistics for a single metric with optional daily breakdown
         attr_accessor :translations_daily
         # @!attribute users_daily
-        #   @return [MetricStats]
+        #   @return [MetricStats] Statistics for a single metric with optional daily breakdown
         attr_accessor :users_daily
         # @!attribute users_engaged_last_30_days
-        #   @return [MetricStats]
+        #   @return [MetricStats] Statistics for a single metric with optional daily breakdown
         attr_accessor :users_engaged_last_30_days
         # @!attribute users_engaged_month_to_date
-        #   @return [MetricStats]
+        #   @return [MetricStats] Statistics for a single metric with optional daily breakdown
         attr_accessor :users_engaged_month_to_date
         # @!attribute users_last_24_hours
-        #   @return [MetricStats]
+        #   @return [MetricStats] Statistics for a single metric with optional daily breakdown
         attr_accessor :users_last_24_hours
         # @!attribute users_last_30_days
-        #   @return [MetricStats]
+        #   @return [MetricStats] Statistics for a single metric with optional daily breakdown
         attr_accessor :users_last_30_days
         # @!attribute users_month_to_date
-        #   @return [MetricStats]
+        #   @return [MetricStats] Statistics for a single metric with optional daily breakdown
         attr_accessor :users_month_to_date
         # @!attribute users_total
-        #   @return [MetricStats]
+        #   @return [MetricStats] Statistics for a single metric with optional daily breakdown
         attr_accessor :users_total
 
         # Initialize with attributes

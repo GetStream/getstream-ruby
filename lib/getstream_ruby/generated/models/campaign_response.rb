@@ -76,7 +76,7 @@ module GetStream
         #   @return [CampaignMessageTemplate]
         attr_accessor :message_template
         # @!attribute sender
-        #   @return [UserResponse]
+        #   @return [UserResponse] User response object
         attr_accessor :sender
 
         # Initialize with attributes

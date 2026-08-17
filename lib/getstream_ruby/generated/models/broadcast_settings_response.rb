@@ -13,10 +13,10 @@ module GetStream
         #   @return [Boolean]
         attr_accessor :enabled
         # @!attribute hls
-        #   @return [HLSSettingsResponse]
+        #   @return [HLSSettingsResponse] HLSSettings is the payload for HLS settings
         attr_accessor :hls
         # @!attribute rtmp
-        #   @return [RTMPSettingsResponse]
+        #   @return [RTMPSettingsResponse] RTMPSettingsResponse is the payload for RTMP settings
         attr_accessor :rtmp
 
         # Initialize with attributes

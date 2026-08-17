@@ -31,7 +31,7 @@ module GetStream
         #   @return [Array<SortParamRequest>] Array of sort parameters
         attr_accessor :sort
         # @!attribute user
-        #   @return [UserRequest]
+        #   @return [UserRequest] User request object
         attr_accessor :user
 
         # Initialize with attributes

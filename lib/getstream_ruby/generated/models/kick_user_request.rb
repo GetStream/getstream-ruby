@@ -19,7 +19,7 @@ module GetStream
         #   @return [String] Server-side: ID of the user performing the action
         attr_accessor :kicked_by_id
         # @!attribute kicked_by
-        #   @return [UserRequest]
+        #   @return [UserRequest] User request object
         attr_accessor :kicked_by
 
         # Initialize with attributes

@@ -55,7 +55,7 @@ module GetStream
         #   @return [Array<FeedsReactionResponse>]
         attr_accessor :own_reactions
         # @!attribute user
-        #   @return [UserResponse]
+        #   @return [UserResponse] User response object
         attr_accessor :user
         # @!attribute controversy_score
         #   @return [Float]
@@ -88,7 +88,7 @@ module GetStream
         #   @return [Hash<String, String>]
         attr_accessor :i18n
         # @!attribute meta
-        #   @return [RepliesMeta]
+        #   @return [RepliesMeta] Cursor & depth information for a comment's direct replies. Mirrors Reddit's 'load more replies' semantics.
         attr_accessor :meta
         # @!attribute moderation
         #   @return [ModerationV2Response]

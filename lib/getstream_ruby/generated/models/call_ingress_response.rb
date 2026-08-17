@@ -10,7 +10,7 @@ module GetStream
 
         # Model attributes
         # @!attribute rtmp
-        #   @return [RTMPIngress]
+        #   @return [RTMPIngress] RTMP input settings
         attr_accessor :rtmp
         # @!attribute srt
         #   @return [SRTIngress]

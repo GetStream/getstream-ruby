@@ -16,7 +16,7 @@ module GetStream
         #   @return [String] Duration of the request in milliseconds
         attr_accessor :duration
         # @!attribute user
-        #   @return [UserResponse]
+        #   @return [UserResponse] User response object
         attr_accessor :user
 
         # Initialize with attributes

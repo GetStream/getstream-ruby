@@ -13,7 +13,7 @@ module GetStream
         #   @return [String]
         attr_accessor :duration
         # @!attribute sip_inbound_routing_rule
-        #   @return [SIPInboundRoutingRuleResponse]
+        #   @return [SIPInboundRoutingRuleResponse] SIP Inbound Routing Rule response
         attr_accessor :sip_inbound_routing_rule
 
         # Initialize with attributes

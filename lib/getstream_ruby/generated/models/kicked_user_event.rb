@@ -16,13 +16,13 @@ module GetStream
         #   @return [DateTime]
         attr_accessor :created_at
         # @!attribute user
-        #   @return [UserResponse]
+        #   @return [UserResponse] User response object
         attr_accessor :user
         # @!attribute type
         #   @return [String] The type of event: "call.kicked_user" in this case
         attr_accessor :type
         # @!attribute kicked_by_user
-        #   @return [UserResponse]
+        #   @return [UserResponse] User response object
         attr_accessor :kicked_by_user
 
         # Initialize with attributes

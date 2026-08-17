@@ -22,7 +22,7 @@ module GetStream
         #   @return [FlagMessageDetailsResponse]
         attr_accessor :message_details
         # @!attribute result
-        #   @return [MessageModerationResult]
+        #   @return [MessageModerationResult] Result of the message moderation
         attr_accessor :result
 
         # Initialize with attributes

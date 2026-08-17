@@ -19,7 +19,7 @@ module GetStream
         #   @return [Object] Custom data for this object
         attr_accessor :custom
         # @!attribute user
-        #   @return [UserResponse]
+        #   @return [UserResponse] User response object
         attr_accessor :user
         # @!attribute type
         #   @return [String] The type of event, "custom" in this case

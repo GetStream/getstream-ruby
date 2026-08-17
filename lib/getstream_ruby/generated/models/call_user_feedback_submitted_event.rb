@@ -22,7 +22,7 @@ module GetStream
         #   @return [String] Call session ID
         attr_accessor :session_id
         # @!attribute user
-        #   @return [UserResponse]
+        #   @return [UserResponse] User response object
         attr_accessor :user
         # @!attribute type
         #   @return [String] The type of event, "call.user_feedback" in this case

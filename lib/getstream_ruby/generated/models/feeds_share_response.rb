@@ -16,7 +16,7 @@ module GetStream
         #   @return [DateTime]
         attr_accessor :created_at
         # @!attribute user
-        #   @return [UserResponse]
+        #   @return [UserResponse] User response object
         attr_accessor :user
 
         # Initialize with attributes

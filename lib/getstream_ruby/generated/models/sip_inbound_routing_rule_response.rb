@@ -34,19 +34,19 @@ module GetStream
         #   @return [Array<String>] List of caller numbers
         attr_accessor :caller_numbers
         # @!attribute call_configs
-        #   @return [SIPCallConfigsResponse]
+        #   @return [SIPCallConfigsResponse] SIP call configuration response
         attr_accessor :call_configs
         # @!attribute caller_configs
-        #   @return [SIPCallerConfigsResponse]
+        #   @return [SIPCallerConfigsResponse] SIP caller configuration response
         attr_accessor :caller_configs
         # @!attribute direct_routing_configs
-        #   @return [SIPDirectRoutingRuleCallConfigsResponse]
+        #   @return [SIPDirectRoutingRuleCallConfigsResponse] Direct routing rule call configuration response
         attr_accessor :direct_routing_configs
         # @!attribute pin_protection_configs
-        #   @return [SIPPinProtectionConfigsResponse]
+        #   @return [SIPPinProtectionConfigsResponse] PIN protection configuration response
         attr_accessor :pin_protection_configs
         # @!attribute pin_routing_configs
-        #   @return [SIPInboundRoutingRulePinConfigsResponse]
+        #   @return [SIPInboundRoutingRulePinConfigsResponse] PIN routing rule call configuration response
         attr_accessor :pin_routing_configs
 
         # Initialize with attributes

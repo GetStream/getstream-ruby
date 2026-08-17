@@ -15,19 +15,24 @@ module GetStream
         # @!attribute aws_s3
         #   @return [UpsertExternalStorageAWSS3Request]
         attr_accessor :aws_s3
+        # @!attribute gcs
+        #   @return [UpsertExternalStorageGCSRequest]
+        attr_accessor :gcs
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @type = attributes[:type] || attributes['type']
           @aws_s3 = attributes[:aws_s3] || attributes['aws_s3'] || nil
+          @gcs = attributes[:gcs] || attributes['gcs'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
             type: 'type',
-            aws_s3: 'aws_s3'
+            aws_s3: 'aws_s3',
+            gcs: 'gcs'
           }
         end
       end

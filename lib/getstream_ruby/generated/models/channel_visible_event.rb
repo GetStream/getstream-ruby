@@ -13,7 +13,7 @@ module GetStream
         #   @return [DateTime] Date/time of creation
         attr_accessor :created_at
         # @!attribute channel
-        #   @return [ChannelResponse]
+        #   @return [ChannelResponse] Represents channel in chat
         attr_accessor :channel
         # @!attribute custom
         #   @return [Object]

@@ -16,7 +16,7 @@ module GetStream
         #   @return [Array<ChannelMemberResponse>] List of updated members
         attr_accessor :members
         # @!attribute channel
-        #   @return [ChannelResponse]
+        #   @return [ChannelResponse] Represents channel in chat
         attr_accessor :channel
 
         # Initialize with attributes

@@ -16,7 +16,7 @@ module GetStream
         #   @return [DateTime]
         attr_accessor :created_at
         # @!attribute call
-        #   @return [CallResponse]
+        #   @return [CallResponse] Represents a call
         attr_accessor :call
         # @!attribute type
         #   @return [String] The type of event: "call.ended" in this case
@@ -28,7 +28,7 @@ module GetStream
         #   @return [Array<MemberResponse>] The list of members in the call
         attr_accessor :members
         # @!attribute user
-        #   @return [UserResponse]
+        #   @return [UserResponse] User response object
         attr_accessor :user
 
         # Initialize with attributes

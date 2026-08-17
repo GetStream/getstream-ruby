@@ -10,7 +10,7 @@ module GetStream
 
         # Model attributes
         # @!attribute action_type
-        #   @return [String] Type of moderation action to perform. One of: mark_reviewed, delete_message, delete_activity, delete_comment, delete_reaction, ban, custom, unban, restore, delete_user, unblock, block, shadow_block, unmask, kick_user, end_call, escalate, de_escalate
+        #   @return [String] Type of moderation action to perform. One of: mark_reviewed, delete_message, delete_activity, delete_comment, delete_reaction, ban, custom, unban, restore, delete_user, delete_user_messages, unblock, block, shadow_block, unmask, kick_user, end_call, escalate, de_escalate
         attr_accessor :action_type
         # @!attribute appeal_id
         #   @return [String] UUID of the appeal to act on (required for reject_appeal, optional for other actions)
@@ -22,58 +22,61 @@ module GetStream
         #   @return [String]
         attr_accessor :user_id
         # @!attribute ban
-        #   @return [BanActionRequestPayload]
+        #   @return [BanActionRequestPayload] Configuration for ban moderation action
         attr_accessor :ban
         # @!attribute block
-        #   @return [BlockActionRequestPayload]
+        #   @return [BlockActionRequestPayload] Configuration for block action
         attr_accessor :block
         # @!attribute bypass
         #   @return [BypassActionRequest]
         attr_accessor :bypass
         # @!attribute custom
-        #   @return [CustomActionRequestPayload]
+        #   @return [CustomActionRequestPayload] Configuration for custom moderation action
         attr_accessor :custom
         # @!attribute delete_activity
-        #   @return [DeleteActivityRequestPayload]
+        #   @return [DeleteActivityRequestPayload] Configuration for activity deletion action
         attr_accessor :delete_activity
         # @!attribute delete_comment
-        #   @return [DeleteCommentRequestPayload]
+        #   @return [DeleteCommentRequestPayload] Configuration for comment deletion action
         attr_accessor :delete_comment
         # @!attribute delete_message
-        #   @return [DeleteMessageRequestPayload]
+        #   @return [DeleteMessageRequestPayload] Configuration for message deletion action
         attr_accessor :delete_message
         # @!attribute delete_reaction
-        #   @return [DeleteReactionRequestPayload]
+        #   @return [DeleteReactionRequestPayload] Configuration for reaction deletion action
         attr_accessor :delete_reaction
         # @!attribute delete_user
-        #   @return [DeleteUserRequestPayload]
+        #   @return [DeleteUserRequestPayload] Configuration for user deletion action
         attr_accessor :delete_user
+        # @!attribute delete_user_messages
+        #   @return [DeleteUserMessagesRequestPayload] Configuration for deleting all of a user's chat messages without banning them or deleting their account
+        attr_accessor :delete_user_messages
         # @!attribute escalate
-        #   @return [EscalatePayload]
+        #   @return [EscalatePayload] Configuration for escalation action
         attr_accessor :escalate
         # @!attribute flag
         #   @return [FlagRequest]
         attr_accessor :flag
         # @!attribute mark_reviewed
-        #   @return [MarkReviewedRequestPayload]
+        #   @return [MarkReviewedRequestPayload] Configuration for mark reviewed action
         attr_accessor :mark_reviewed
         # @!attribute reject_appeal
-        #   @return [RejectAppealRequestPayload]
+        #   @return [RejectAppealRequestPayload] Configuration for rejecting an appeal
         attr_accessor :reject_appeal
         # @!attribute restore
-        #   @return [RestoreActionRequestPayload]
+        #   @return [RestoreActionRequestPayload] Configuration for restore action
         attr_accessor :restore
         # @!attribute shadow_block
-        #   @return [ShadowBlockActionRequestPayload]
+        #   @return [ShadowBlockActionRequestPayload] Configuration for shadow block action
         attr_accessor :shadow_block
         # @!attribute unban
-        #   @return [UnbanActionRequestPayload]
+        #   @return [UnbanActionRequestPayload] Configuration for unban moderation action
         attr_accessor :unban
         # @!attribute unblock
-        #   @return [UnblockActionRequestPayload]
+        #   @return [UnblockActionRequestPayload] Configuration for unblock action
         attr_accessor :unblock
         # @!attribute user
-        #   @return [UserRequest]
+        #   @return [UserRequest] User request object
         attr_accessor :user
 
         # Initialize with attributes
@@ -92,6 +95,7 @@ module GetStream
           @delete_message = attributes[:delete_message] || attributes['delete_message'] || nil
           @delete_reaction = attributes[:delete_reaction] || attributes['delete_reaction'] || nil
           @delete_user = attributes[:delete_user] || attributes['delete_user'] || nil
+          @delete_user_messages = attributes[:delete_user_messages] || attributes['delete_user_messages'] || nil
           @escalate = attributes[:escalate] || attributes['escalate'] || nil
           @flag = attributes[:flag] || attributes['flag'] || nil
           @mark_reviewed = attributes[:mark_reviewed] || attributes['mark_reviewed'] || nil
@@ -119,6 +123,7 @@ module GetStream
             delete_message: 'delete_message',
             delete_reaction: 'delete_reaction',
             delete_user: 'delete_user',
+            delete_user_messages: 'delete_user_messages',
             escalate: 'escalate',
             flag: 'flag',
             mark_reviewed: 'mark_reviewed',

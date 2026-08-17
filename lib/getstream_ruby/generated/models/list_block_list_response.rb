@@ -15,19 +15,24 @@ module GetStream
         # @!attribute blocklists
         #   @return [Array<BlockListResponse>]
         attr_accessor :blocklists
+        # @!attribute next_cursor
+        #   @return [String]
+        attr_accessor :next_cursor
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @duration = attributes[:duration] || attributes['duration']
           @blocklists = attributes[:blocklists] || attributes['blocklists']
+          @next_cursor = attributes[:next_cursor] || attributes['next_cursor'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
             duration: 'duration',
-            blocklists: 'blocklists'
+            blocklists: 'blocklists',
+            next_cursor: 'next_cursor'
           }
         end
       end

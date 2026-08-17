@@ -28,7 +28,7 @@ module GetStream
         #   @return [DateTime] When the digit press ended and was detected
         attr_accessor :timestamp
         # @!attribute user
-        #   @return [UserResponse]
+        #   @return [UserResponse] User response object
         attr_accessor :user
         # @!attribute type
         #   @return [String] The type of event: "call.dtmf" in this case

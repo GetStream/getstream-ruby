@@ -19,7 +19,7 @@ module GetStream
         #   @return [Array<OwnCapability>] The capabilities of the current user
         attr_accessor :own_capabilities
         # @!attribute user
-        #   @return [UserResponse]
+        #   @return [UserResponse] User response object
         attr_accessor :user
         # @!attribute type
         #   @return [String] The type of event: "call.permissions_updated" in this case

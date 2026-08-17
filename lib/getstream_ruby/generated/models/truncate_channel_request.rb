@@ -25,10 +25,10 @@ module GetStream
         #   @return [Array<String>] List of member IDs to hide message history for. If empty, truncates the channel for all members
         attr_accessor :member_ids
         # @!attribute message
-        #   @return [MessageRequest]
+        #   @return [MessageRequest] Message data for creating or updating a message
         attr_accessor :message
         # @!attribute user
-        #   @return [UserRequest]
+        #   @return [UserRequest] User request object
         attr_accessor :user
 
         # Initialize with attributes

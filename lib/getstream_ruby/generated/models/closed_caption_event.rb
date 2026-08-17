@@ -16,7 +16,7 @@ module GetStream
         #   @return [DateTime]
         attr_accessor :created_at
         # @!attribute closed_caption
-        #   @return [CallClosedCaption]
+        #   @return [CallClosedCaption] CallClosedCaption represents a closed caption of a call.
         attr_accessor :closed_caption
         # @!attribute type
         #   @return [String] The type of event: "call.closed_caption" in this case

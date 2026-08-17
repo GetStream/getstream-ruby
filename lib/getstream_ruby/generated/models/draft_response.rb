@@ -16,19 +16,19 @@ module GetStream
         #   @return [DateTime]
         attr_accessor :created_at
         # @!attribute message
-        #   @return [DraftPayloadResponse]
+        #   @return [DraftPayloadResponse] Contains the draft message content
         attr_accessor :message
         # @!attribute parent_id
         #   @return [String]
         attr_accessor :parent_id
         # @!attribute channel
-        #   @return [ChannelResponse]
+        #   @return [ChannelResponse] Represents channel in chat
         attr_accessor :channel
         # @!attribute parent_message
-        #   @return [MessageResponse]
+        #   @return [MessageResponse] Represents any chat message
         attr_accessor :parent_message
         # @!attribute quoted_message
-        #   @return [MessageResponse]
+        #   @return [MessageResponse] Represents any chat message
         attr_accessor :quoted_message
 
         # Initialize with attributes

@@ -28,7 +28,7 @@ module GetStream
         #   @return [Array<String>] List of activity IDs to mark as watched (for stories)
         attr_accessor :mark_watched
         # @!attribute user
-        #   @return [UserRequest]
+        #   @return [UserRequest] User request object
         attr_accessor :user
 
         # Initialize with attributes

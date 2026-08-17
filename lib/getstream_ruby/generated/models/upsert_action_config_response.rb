@@ -13,7 +13,7 @@ module GetStream
         #   @return [String]
         attr_accessor :duration
         # @!attribute action_config
-        #   @return [ModerationActionConfigResponse]
+        #   @return [ModerationActionConfigResponse] Configuration for a moderation action
         attr_accessor :action_config
 
         # Initialize with attributes

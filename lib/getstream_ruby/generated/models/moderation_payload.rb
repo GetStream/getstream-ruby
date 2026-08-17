@@ -18,6 +18,9 @@ module GetStream
         # @!attribute images
         #   @return [Array<String>]
         attr_accessor :images
+        # @!attribute other_media
+        #   @return [Array<String>]
+        attr_accessor :other_media
         # @!attribute text_ordered_keys
         #   @return [Array<String>]
         attr_accessor :text_ordered_keys
@@ -43,6 +46,7 @@ module GetStream
           @audios = attributes[:audios] || attributes['audios'] || nil
           @image_ordered_keys = attributes[:image_ordered_keys] || attributes['image_ordered_keys'] || nil
           @images = attributes[:images] || attributes['images'] || nil
+          @other_media = attributes[:other_media] || attributes['other_media'] || nil
           @text_ordered_keys = attributes[:text_ordered_keys] || attributes['text_ordered_keys'] || nil
           @texts = attributes[:texts] || attributes['texts'] || nil
           @videos = attributes[:videos] || attributes['videos'] || nil
@@ -57,6 +61,7 @@ module GetStream
             audios: 'audios',
             image_ordered_keys: 'image_ordered_keys',
             images: 'images',
+            other_media: 'other_media',
             text_ordered_keys: 'text_ordered_keys',
             texts: 'texts',
             videos: 'videos',

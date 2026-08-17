@@ -46,7 +46,7 @@ module GetStream
         #   @return [Array<UserResponse>]
         attr_accessor :watchers
         # @!attribute channel
-        #   @return [ChannelResponse]
+        #   @return [ChannelResponse] Represents channel in chat
         attr_accessor :channel
         # @!attribute draft
         #   @return [DraftResponse]

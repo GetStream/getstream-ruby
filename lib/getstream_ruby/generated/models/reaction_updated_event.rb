@@ -16,13 +16,13 @@ module GetStream
         #   @return [String]
         attr_accessor :message_id
         # @!attribute channel
-        #   @return [ChannelResponse]
+        #   @return [ChannelResponse] Represents channel in chat
         attr_accessor :channel
         # @!attribute custom
         #   @return [Object]
         attr_accessor :custom
         # @!attribute message
-        #   @return [MessageResponse]
+        #   @return [MessageResponse] Represents any chat message
         attr_accessor :message
         # @!attribute type
         #   @return [String] The type of event: "reaction.updated" in this case

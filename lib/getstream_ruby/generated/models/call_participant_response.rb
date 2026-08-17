@@ -19,7 +19,7 @@ module GetStream
         #   @return [String]
         attr_accessor :user_session_id
         # @!attribute user
-        #   @return [UserResponse]
+        #   @return [UserResponse] User response object
         attr_accessor :user
 
         # Initialize with attributes

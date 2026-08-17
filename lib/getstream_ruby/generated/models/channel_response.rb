@@ -37,7 +37,7 @@ module GetStream
         #   @return [Boolean] Whether auto translation is enabled or not
         attr_accessor :auto_translation_enabled
         # @!attribute auto_translation_language
-        #   @return [String] Language to translate to when auto translation is active
+        #   @return [String] Language (or comma-separated list of languages) to translate to when auto translation is active
         attr_accessor :auto_translation_language
         # @!attribute blocked
         #   @return [Boolean] Whether this channel is blocked by current user or not
@@ -88,10 +88,10 @@ module GetStream
         #   @return [ChannelConfigWithInfo]
         attr_accessor :config
         # @!attribute created_by
-        #   @return [UserResponse]
+        #   @return [UserResponse] User response object
         attr_accessor :created_by
         # @!attribute truncated_by
-        #   @return [UserResponse]
+        #   @return [UserResponse] User response object
         attr_accessor :truncated_by
 
         # Initialize with attributes

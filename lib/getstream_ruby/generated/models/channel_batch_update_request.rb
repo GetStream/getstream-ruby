@@ -13,7 +13,7 @@ module GetStream
         #   @return [String]
         attr_accessor :operation
         # @!attribute filter
-        #   @return [Object]
+        #   @return [Object] Filter to apply to the query
         attr_accessor :filter
         # @!attribute members
         #   @return [Array<ChannelBatchMemberRequest>]

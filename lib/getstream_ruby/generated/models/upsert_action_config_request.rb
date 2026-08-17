@@ -37,7 +37,7 @@ module GetStream
         #   @return [Object] Action-specific parameters passed to the action handler
         attr_accessor :custom
         # @!attribute user
-        #   @return [UserRequest]
+        #   @return [UserRequest] User request object
         attr_accessor :user
 
         # Initialize with attributes

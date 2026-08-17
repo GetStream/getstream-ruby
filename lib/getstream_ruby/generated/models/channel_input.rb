@@ -13,7 +13,7 @@ module GetStream
         #   @return [Boolean] Enable or disable auto translation
         attr_accessor :auto_translation_enabled
         # @!attribute auto_translation_language
-        #   @return [String] Switch auto translation language
+        #   @return [String] Language (or comma-separated list of languages) to translate to when auto translation is active
         attr_accessor :auto_translation_language
         # @!attribute created_by_id
         #   @return [String]
@@ -40,10 +40,10 @@ module GetStream
         #   @return [Array<ChannelMemberRequest>]
         attr_accessor :members
         # @!attribute config_overrides
-        #   @return [ChannelConfigOverrides]
+        #   @return [ChannelConfigOverrides] Channel configuration overrides
         attr_accessor :config_overrides
         # @!attribute created_by
-        #   @return [UserRequest]
+        #   @return [UserRequest] User request object
         attr_accessor :created_by
         # @!attribute custom
         #   @return [Object]

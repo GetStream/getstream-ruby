@@ -19,10 +19,10 @@ module GetStream
         #   @return [DateTime]
         attr_accessor :expires
         # @!attribute target
-        #   @return [UserResponse]
+        #   @return [UserResponse] User response object
         attr_accessor :target
         # @!attribute user
-        #   @return [UserResponse]
+        #   @return [UserResponse] User response object
         attr_accessor :user
 
         # Initialize with attributes

@@ -76,7 +76,7 @@ module GetStream
         #   @return [Hash<String, Integer>]
         attr_accessor :reaction_scores
         # @!attribute user
-        #   @return [UserResponse]
+        #   @return [UserResponse] User response object
         attr_accessor :user
         # @!attribute command
         #   @return [String]
@@ -133,13 +133,13 @@ module GetStream
         #   @return [Hash<String, Array<String>>]
         attr_accessor :image_labels
         # @!attribute member
-        #   @return [ChannelMemberResponse]
+        #   @return [ChannelMemberPartialResponse]
         attr_accessor :member
         # @!attribute moderation
         #   @return [ChatModerationV2Response]
         attr_accessor :moderation
         # @!attribute pinned_by
-        #   @return [UserResponse]
+        #   @return [UserResponse] User response object
         attr_accessor :pinned_by
         # @!attribute poll
         #   @return [PollResponseData]

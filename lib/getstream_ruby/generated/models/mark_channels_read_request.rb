@@ -16,7 +16,7 @@ module GetStream
         #   @return [Hash<String, String>] Map of channel ID to last read message ID
         attr_accessor :read_by_channel
         # @!attribute user
-        #   @return [UserRequest]
+        #   @return [UserRequest] User request object
         attr_accessor :user
 
         # Initialize with attributes

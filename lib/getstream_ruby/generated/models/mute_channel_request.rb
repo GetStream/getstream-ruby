@@ -19,7 +19,7 @@ module GetStream
         #   @return [Array<String>] Channel CIDs to mute (if multiple channels)
         attr_accessor :channel_cids
         # @!attribute user
-        #   @return [UserRequest]
+        #   @return [UserRequest] User request object
         attr_accessor :user
 
         # Initialize with attributes

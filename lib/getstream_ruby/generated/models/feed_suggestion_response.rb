@@ -46,7 +46,7 @@ module GetStream
         #   @return [DateTime] When the feed was last updated
         attr_accessor :updated_at
         # @!attribute created_by
-        #   @return [UserResponse]
+        #   @return [UserResponse] User response object
         attr_accessor :created_by
         # @!attribute deleted_at
         #   @return [DateTime] When the feed was deleted

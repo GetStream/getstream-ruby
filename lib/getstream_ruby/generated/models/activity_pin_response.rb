@@ -22,7 +22,7 @@ module GetStream
         #   @return [ActivityResponse]
         attr_accessor :activity
         # @!attribute user
-        #   @return [UserResponse]
+        #   @return [UserResponse] User response object
         attr_accessor :user
 
         # Initialize with attributes

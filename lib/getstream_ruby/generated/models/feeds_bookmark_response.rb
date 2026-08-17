@@ -22,7 +22,7 @@ module GetStream
         #   @return [DateTime]
         attr_accessor :updated_at
         # @!attribute user
-        #   @return [UserResponse]
+        #   @return [UserResponse] User response object
         attr_accessor :user
         # @!attribute activity_id
         #   @return [String]

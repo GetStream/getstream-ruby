@@ -113,8 +113,8 @@ RSpec.describe 'Chat Client Integration', type: :integration do
           set: { 'color' => 'blue', 'topic' => 'testing' },
         )
       )
-      ch = resp.channel.to_h
-      custom = ch['custom'] || {}
+      expect(resp.channel).not_to be_nil
+      custom = read_channel(channel_id)['custom'] || {}
       expect(custom['color']).to eq('blue')
 
       resp_b = @client.chat.update_channel_partial(
@@ -123,8 +123,8 @@ RSpec.describe 'Chat Client Integration', type: :integration do
           unset: ['color'],
         )
       )
-      ch_b = resp_b.channel.to_h
-      custom_b = ch_b['custom'] || {}
+      expect(resp_b.channel).not_to be_nil
+      custom_b = read_channel(channel_id)['custom'] || {}
       expect(custom_b).not_to have_key('color')
 
     end

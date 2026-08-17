@@ -15,19 +15,24 @@ module GetStream
         # @!attribute bans
         #   @return [Array<FutureChannelBanResponse>] List of found future channel bans
         attr_accessor :bans
+        # @!attribute total
+        #   @return [Integer] Total number of bans matching the query filter, computed at query time and capped at 100000. Only present when include_total is set on the request; omitted when computing the total timed out
+        attr_accessor :total
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @duration = attributes[:duration] || attributes['duration']
           @bans = attributes[:bans] || attributes['bans']
+          @total = attributes[:total] || attributes['total'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
             duration: 'duration',
-            bans: 'bans'
+            bans: 'bans',
+            total: 'total'
           }
         end
       end

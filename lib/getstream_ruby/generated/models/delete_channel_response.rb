@@ -13,7 +13,7 @@ module GetStream
         #   @return [String] Duration of the request in milliseconds
         attr_accessor :duration
         # @!attribute channel
-        #   @return [ChannelResponse]
+        #   @return [ChannelResponse] Represents channel in chat
         attr_accessor :channel
 
         # Initialize with attributes

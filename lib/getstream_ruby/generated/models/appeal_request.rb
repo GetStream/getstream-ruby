@@ -28,7 +28,7 @@ module GetStream
         #   @return [Array<String>] Array of Attachment URLs(e.g., images)
         attr_accessor :attachments
         # @!attribute user
-        #   @return [UserRequest]
+        #   @return [UserRequest] User request object
         attr_accessor :user
 
         # Initialize with attributes

@@ -27,6 +27,9 @@ module GetStream
         # @!attribute channel_hide_members_only
         #   @return [Boolean]
         attr_accessor :channel_hide_members_only
+        # @!attribute chat_primary_use_case
+        #   @return [String]
+        attr_accessor :chat_primary_use_case
         # @!attribute custom_action_handler_url
         #   @return [String]
         attr_accessor :custom_action_handler_url
@@ -60,6 +63,9 @@ module GetStream
         # @!attribute max_aggregated_activities_length
         #   @return [Integer]
         attr_accessor :max_aggregated_activities_length
+        # @!attribute member_custom_on_messages_enabled
+        #   @return [Boolean]
+        attr_accessor :member_custom_on_messages_enabled
         # @!attribute migrate_permissions_to_v2
         #   @return [Boolean]
         attr_accessor :migrate_permissions_to_v2
@@ -187,6 +193,7 @@ module GetStream
           @before_message_send_hook_url = attributes[:before_message_send_hook_url] || attributes['before_message_send_hook_url'] || nil
           @cdn_expiration_seconds = attributes[:cdn_expiration_seconds] || attributes['cdn_expiration_seconds'] || nil
           @channel_hide_members_only = attributes[:channel_hide_members_only] || attributes['channel_hide_members_only'] || nil
+          @chat_primary_use_case = attributes[:chat_primary_use_case] || attributes['chat_primary_use_case'] || nil
           @custom_action_handler_url = attributes[:custom_action_handler_url] || attributes['custom_action_handler_url'] || nil
           @disable_auth_checks = attributes[:disable_auth_checks] || attributes['disable_auth_checks'] || nil
           @disable_permissions_checks = attributes[:disable_permissions_checks] || attributes['disable_permissions_checks'] || nil
@@ -198,6 +205,7 @@ module GetStream
           @guest_user_creation_disabled = attributes[:guest_user_creation_disabled] || attributes['guest_user_creation_disabled'] || nil
           @image_moderation_enabled = attributes[:image_moderation_enabled] || attributes['image_moderation_enabled'] || nil
           @max_aggregated_activities_length = attributes[:max_aggregated_activities_length] || attributes['max_aggregated_activities_length'] || nil
+          @member_custom_on_messages_enabled = attributes[:member_custom_on_messages_enabled] || attributes['member_custom_on_messages_enabled'] || nil
           @migrate_permissions_to_v2 = attributes[:migrate_permissions_to_v2] || attributes['migrate_permissions_to_v2'] || nil
           @moderation_analytics_enabled = attributes[:moderation_analytics_enabled] || attributes['moderation_analytics_enabled'] || nil
           @moderation_enabled = attributes[:moderation_enabled] || attributes['moderation_enabled'] || nil
@@ -248,6 +256,7 @@ module GetStream
             before_message_send_hook_url: 'before_message_send_hook_url',
             cdn_expiration_seconds: 'cdn_expiration_seconds',
             channel_hide_members_only: 'channel_hide_members_only',
+            chat_primary_use_case: 'chat_primary_use_case',
             custom_action_handler_url: 'custom_action_handler_url',
             disable_auth_checks: 'disable_auth_checks',
             disable_permissions_checks: 'disable_permissions_checks',
@@ -259,6 +268,7 @@ module GetStream
             guest_user_creation_disabled: 'guest_user_creation_disabled',
             image_moderation_enabled: 'image_moderation_enabled',
             max_aggregated_activities_length: 'max_aggregated_activities_length',
+            member_custom_on_messages_enabled: 'member_custom_on_messages_enabled',
             migrate_permissions_to_v2: 'migrate_permissions_to_v2',
             moderation_analytics_enabled: 'moderation_analytics_enabled',
             moderation_enabled: 'moderation_enabled',

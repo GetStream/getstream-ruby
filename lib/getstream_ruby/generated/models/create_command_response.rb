@@ -13,7 +13,7 @@ module GetStream
         #   @return [String]
         attr_accessor :duration
         # @!attribute command
-        #   @return [Command]
+        #   @return [Command] Represents custom chat command
         attr_accessor :command
 
         # Initialize with attributes

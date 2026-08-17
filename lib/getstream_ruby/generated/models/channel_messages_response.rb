@@ -13,7 +13,7 @@ module GetStream
         #   @return [Array<MessageResponse>] List of messages
         attr_accessor :messages
         # @!attribute channel
-        #   @return [ChannelResponse]
+        #   @return [ChannelResponse] Represents channel in chat
         attr_accessor :channel
 
         # Initialize with attributes

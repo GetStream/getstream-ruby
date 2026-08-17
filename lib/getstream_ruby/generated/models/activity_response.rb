@@ -91,7 +91,7 @@ module GetStream
         #   @return [Object] Data for search indexing
         attr_accessor :search_data
         # @!attribute user
-        #   @return [UserResponse]
+        #   @return [UserResponse] User response object
         attr_accessor :user
         # @!attribute deleted_at
         #   @return [DateTime] When the activity was deleted

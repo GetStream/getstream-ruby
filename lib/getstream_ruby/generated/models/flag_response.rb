@@ -43,13 +43,13 @@ module GetStream
         #   @return [FlagDetails]
         attr_accessor :details
         # @!attribute target_message
-        #   @return [MessageResponse]
+        #   @return [MessageResponse] Represents any chat message
         attr_accessor :target_message
         # @!attribute target_user
-        #   @return [UserResponse]
+        #   @return [UserResponse] User response object
         attr_accessor :target_user
         # @!attribute user
-        #   @return [UserResponse]
+        #   @return [UserResponse] User response object
         attr_accessor :user
 
         # Initialize with attributes

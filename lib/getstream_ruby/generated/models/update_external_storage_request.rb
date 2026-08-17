@@ -22,10 +22,10 @@ module GetStream
         #   @return [String] The path prefix to use for storing files
         attr_accessor :path
         # @!attribute aws_s3
-        #   @return [S3Request]
+        #   @return [S3Request] Config for creating Amazon S3 storage.
         attr_accessor :aws_s3
         # @!attribute azure_blob
-        #   @return [AzureRequest]
+        #   @return [AzureRequest] Config for creating Azure Blob Storage storage
         attr_accessor :azure_blob
 
         # Initialize with attributes

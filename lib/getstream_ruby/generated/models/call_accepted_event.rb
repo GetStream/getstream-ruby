@@ -16,10 +16,10 @@ module GetStream
         #   @return [DateTime]
         attr_accessor :created_at
         # @!attribute call
-        #   @return [CallResponse]
+        #   @return [CallResponse] Represents a call
         attr_accessor :call
         # @!attribute user
-        #   @return [UserResponse]
+        #   @return [UserResponse] User response object
         attr_accessor :user
         # @!attribute type
         #   @return [String] The type of event: "call.accepted" in this case

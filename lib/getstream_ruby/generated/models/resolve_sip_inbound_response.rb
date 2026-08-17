@@ -13,13 +13,13 @@ module GetStream
         #   @return [String]
         attr_accessor :duration
         # @!attribute credentials
-        #   @return [SipInboundCredentials]
+        #   @return [SipInboundCredentials] Credentials for SIP inbound call authentication
         attr_accessor :credentials
         # @!attribute sip_routing_rule
-        #   @return [SIPInboundRoutingRuleResponse]
+        #   @return [SIPInboundRoutingRuleResponse] SIP Inbound Routing Rule response
         attr_accessor :sip_routing_rule
         # @!attribute sip_trunk
-        #   @return [SIPTrunkResponse]
+        #   @return [SIPTrunkResponse] SIP trunk information
         attr_accessor :sip_trunk
 
         # Initialize with attributes

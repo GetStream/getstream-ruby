@@ -28,7 +28,7 @@ module GetStream
         #   @return [Boolean] When true the token is for Apple VoIP push notifications
         attr_accessor :voip_token
         # @!attribute user
-        #   @return [UserRequest]
+        #   @return [UserRequest] User request object
         attr_accessor :user
 
         # Initialize with attributes

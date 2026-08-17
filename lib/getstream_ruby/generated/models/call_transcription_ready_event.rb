@@ -19,7 +19,7 @@ module GetStream
         #   @return [String]
         attr_accessor :egress_id
         # @!attribute call_transcription
-        #   @return [CallTranscription]
+        #   @return [CallTranscription] CallTranscription represents a transcription of a call.
         attr_accessor :call_transcription
         # @!attribute type
         #   @return [String] The type of event: "call.transcription_ready" in this case

@@ -16,7 +16,7 @@ module GetStream
         #   @return [DateTime]
         attr_accessor :created_at
         # @!attribute call
-        #   @return [CallResponse]
+        #   @return [CallResponse] Represents a call
         attr_accessor :call
         # @!attribute capabilities_by_role
         #   @return [Hash<String, Array<String>>] The capabilities by role for this call

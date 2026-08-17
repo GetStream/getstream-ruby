@@ -555,10 +555,13 @@ module GetStream
 
       # Delete an existing moderation rule
       #
+      # @param _id [String]
       # @param user_id [String]
       # @return [Models::DeleteModerationRuleResponse]
-      def delete_moderation_rule(user_id = nil)
+      def delete_moderation_rule(_id, user_id = nil)
         path = '/api/v2/moderation/moderation_rule/{id}'
+        # Replace path parameters
+        path = path.gsub('{id}', _id.to_s)
         # Build query parameters
         query_params = {}
         query_params['user_id'] = user_id unless user_id.nil?
@@ -573,9 +576,12 @@ module GetStream
 
       # Get a specific moderation rule by ID
       #
+      # @param _id [String]
       # @return [Models::GetModerationRuleResponse]
-      def get_moderation_rule()
+      def get_moderation_rule(_id)
         path = '/api/v2/moderation/moderation_rule/{id}'
+        # Replace path parameters
+        path = path.gsub('{id}', _id.to_s)
 
         # Make the API request
         @client.make_request(
@@ -620,14 +626,113 @@ module GetStream
 
       # 
       #
-      # @return [Models::ListQueuesResponse]
-      def list_queues()
-        path = '/api/v2/moderation/queues'
+      # @param _id [String]
+      # @return [Models::PolicyTestRunResponse]
+      def get_policy_test_run(_id)
+        path = '/api/v2/moderation/policy_tests/runs/{id}'
+        # Replace path parameters
+        path = path.gsub('{id}', _id.to_s)
 
         # Make the API request
         @client.make_request(
           :get,
           path
+        )
+      end
+
+      # 
+      #
+      # @return [Models::PolicyTestSetListResponse]
+      def list_policy_test_sets()
+        path = '/api/v2/moderation/policy_tests/sets'
+
+        # Make the API request
+        @client.make_request(
+          :get,
+          path
+        )
+      end
+
+      # Save a labeled set of messages that can be re-run against the moderation policy.
+      #
+      # @param create_policy_test_set_request [CreatePolicyTestSetRequest]
+      # @return [Models::PolicyTestSetResponse]
+      def create_policy_test_set(create_policy_test_set_request)
+        path = '/api/v2/moderation/policy_tests/sets'
+        # Build request body
+        body = create_policy_test_set_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
+      # 
+      #
+      # @param _id [String]
+      # @return [Models::Response]
+      def delete_policy_test_set(_id)
+        path = '/api/v2/moderation/policy_tests/sets/{id}'
+        # Replace path parameters
+        path = path.gsub('{id}', _id.to_s)
+
+        # Make the API request
+        @client.make_request(
+          :delete,
+          path
+        )
+      end
+
+      # 
+      #
+      # @param _id [String]
+      # @return [Models::PolicyTestSetResponse]
+      def get_policy_test_set(_id)
+        path = '/api/v2/moderation/policy_tests/sets/{id}'
+        # Replace path parameters
+        path = path.gsub('{id}', _id.to_s)
+
+        # Make the API request
+        @client.make_request(
+          :get,
+          path
+        )
+      end
+
+      # Enqueue a background run of the set against the saved live moderation config.
+      #
+      # @param _id [String]
+      # @return [Models::PolicyTestRunResponse]
+      def start_policy_test_run(_id)
+        path = '/api/v2/moderation/policy_tests/sets/{id}/runs'
+        # Replace path parameters
+        path = path.gsub('{id}', _id.to_s)
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path
+        )
+      end
+
+      # 
+      #
+      # @param user_id [String]
+      # @return [Models::ListQueuesResponse]
+      def list_queues(user_id = nil)
+        path = '/api/v2/moderation/queues'
+        # Build query parameters
+        query_params = {}
+        query_params['user_id'] = user_id unless user_id.nil?
+
+        # Make the API request
+        @client.make_request(
+          :get,
+          path,
+          query_params: query_params
         )
       end
 

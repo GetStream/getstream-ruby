@@ -34,7 +34,7 @@ module GetStream
         #   @return [String]
         attr_accessor :team
         # @!attribute channel
-        #   @return [ChannelResponse]
+        #   @return [ChannelResponse] Represents channel in chat
         attr_accessor :channel
         # @!attribute thread
         #   @return [ThreadResponse]

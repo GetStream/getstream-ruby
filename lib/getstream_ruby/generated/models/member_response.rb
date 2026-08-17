@@ -22,7 +22,7 @@ module GetStream
         #   @return [Object] Custom member response data
         attr_accessor :custom
         # @!attribute user
-        #   @return [UserResponse]
+        #   @return [UserResponse] User response object
         attr_accessor :user
         # @!attribute deleted_at
         #   @return [DateTime] Date/time of deletion

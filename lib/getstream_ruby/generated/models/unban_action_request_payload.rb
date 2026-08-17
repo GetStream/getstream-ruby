@@ -18,6 +18,9 @@ module GetStream
         # @!attribute remove_future_channels_ban
         #   @return [Boolean] Also remove the future channels ban for this user
         attr_accessor :remove_future_channels_ban
+        # @!attribute target_user_id
+        #   @return [String] Optional: unban user directly without review item
+        attr_accessor :target_user_id
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -25,6 +28,7 @@ module GetStream
           @channel_cid = attributes[:channel_cid] || attributes['channel_cid'] || nil
           @decision_reason = attributes[:decision_reason] || attributes['decision_reason'] || nil
           @remove_future_channels_ban = attributes[:remove_future_channels_ban] || attributes['remove_future_channels_ban'] || nil
+          @target_user_id = attributes[:target_user_id] || attributes['target_user_id'] || nil
         end
 
         # Override field mappings for JSON serialization
@@ -32,7 +36,8 @@ module GetStream
           {
             channel_cid: 'channel_cid',
             decision_reason: 'decision_reason',
-            remove_future_channels_ban: 'remove_future_channels_ban'
+            remove_future_channels_ban: 'remove_future_channels_ban',
+            target_user_id: 'target_user_id'
           }
         end
       end

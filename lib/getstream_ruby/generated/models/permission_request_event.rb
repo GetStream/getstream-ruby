@@ -19,7 +19,7 @@ module GetStream
         #   @return [Array<String>] The list of permissions requested by the user
         attr_accessor :permissions
         # @!attribute user
-        #   @return [UserResponse]
+        #   @return [UserResponse] User response object
         attr_accessor :user
         # @!attribute type
         #   @return [String] The type of event: "call.permission_request" in this case

@@ -37,7 +37,7 @@ module GetStream
         #   @return [FeedInput]
         attr_accessor :data
         # @!attribute enrichment_options
-        #   @return [EnrichmentOptions]
+        #   @return [EnrichmentOptions] Options to skip specific enrichments to improve performance. Default is false (enrichments are included). Setting a field to true skips that enrichment.
         attr_accessor :enrichment_options
         # @!attribute external_ranking
         #   @return [Object]
@@ -52,7 +52,7 @@ module GetStream
         #   @return [PagerRequest]
         attr_accessor :following_pagination
         # @!attribute friend_reactions_options
-        #   @return [FriendReactionsOptions]
+        #   @return [FriendReactionsOptions] Options to control fetching reactions from friends (users you follow or have mutual follows with).
         attr_accessor :friend_reactions_options
         # @!attribute interest_weights
         #   @return [Hash<String, Float>]
@@ -61,7 +61,7 @@ module GetStream
         #   @return [PagerRequest]
         attr_accessor :member_pagination
         # @!attribute user
-        #   @return [UserRequest]
+        #   @return [UserRequest] User request object
         attr_accessor :user
 
         # Initialize with attributes

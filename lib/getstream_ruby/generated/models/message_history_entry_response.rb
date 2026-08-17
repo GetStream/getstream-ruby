@@ -40,7 +40,7 @@ module GetStream
           @message_updated_by_id = attributes[:message_updated_by_id] || attributes['message_updated_by_id']
           @text = attributes[:text] || attributes['text']
           @attachments = attributes[:attachments] || attributes['attachments']
-          @custom = attributes[:custom] || attributes['Custom']
+          @custom = attributes[:custom] || attributes['custom']
         end
 
         # Override field mappings for JSON serialization
@@ -52,7 +52,7 @@ module GetStream
             message_updated_by_id: 'message_updated_by_id',
             text: 'text',
             attachments: 'attachments',
-            custom: 'Custom'
+            custom: 'custom'
           }
         end
       end

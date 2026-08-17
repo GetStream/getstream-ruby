@@ -25,7 +25,7 @@ module GetStream
         #   @return [Array<CallParticipantResponse>] List of call participants
         attr_accessor :participants
         # @!attribute call
-        #   @return [CallResponse]
+        #   @return [CallResponse] Represents a call
         attr_accessor :call
 
         # Initialize with attributes

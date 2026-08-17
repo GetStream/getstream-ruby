@@ -67,7 +67,7 @@ module GetStream
         #   @return [String]
         attr_accessor :team
         # @!attribute created_by
-        #   @return [UserResponse]
+        #   @return [UserResponse] User response object
         attr_accessor :created_by
 
         # Initialize with attributes

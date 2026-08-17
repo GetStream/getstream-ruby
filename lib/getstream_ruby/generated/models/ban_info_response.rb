@@ -12,6 +12,9 @@ module GetStream
         # @!attribute created_at
         #   @return [DateTime] When the ban was created
         attr_accessor :created_at
+        # @!attribute channel_cid
+        #   @return [String] The channel this ban applies to. Empty if this is an app-wide (global) ban rather than a per-channel ban.
+        attr_accessor :channel_cid
         # @!attribute expires
         #   @return [DateTime] When the ban expires
         attr_accessor :expires
@@ -21,20 +24,25 @@ module GetStream
         # @!attribute shadow
         #   @return [Boolean] Whether this is a shadow ban
         attr_accessor :shadow
+        # @!attribute channel
+        #   @return [ChannelMetadata]
+        attr_accessor :channel
         # @!attribute created_by
-        #   @return [UserResponse]
+        #   @return [UserResponse] User response object
         attr_accessor :created_by
         # @!attribute user
-        #   @return [UserResponse]
+        #   @return [UserResponse] User response object
         attr_accessor :user
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @created_at = attributes[:created_at] || attributes['created_at']
+          @channel_cid = attributes[:channel_cid] || attributes['channel_cid'] || nil
           @expires = attributes[:expires] || attributes['expires'] || nil
           @reason = attributes[:reason] || attributes['reason'] || nil
           @shadow = attributes[:shadow] || attributes['shadow'] || nil
+          @channel = attributes[:channel] || attributes['channel'] || nil
           @created_by = attributes[:created_by] || attributes['created_by'] || nil
           @user = attributes[:user] || attributes['user'] || nil
         end
@@ -43,9 +51,11 @@ module GetStream
         def self.json_field_mappings
           {
             created_at: 'created_at',
+            channel_cid: 'channel_cid',
             expires: 'expires',
             reason: 'reason',
             shadow: 'shadow',
+            channel: 'channel',
             created_by: 'created_by',
             user: 'user'
           }

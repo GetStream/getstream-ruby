@@ -25,7 +25,7 @@ module GetStream
         #   @return [AddFolderRequest]
         attr_accessor :new_folder
         # @!attribute user
-        #   @return [UserRequest]
+        #   @return [UserRequest] User request object
         attr_accessor :user
 
         # Initialize with attributes

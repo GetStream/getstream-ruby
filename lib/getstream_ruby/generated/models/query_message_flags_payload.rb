@@ -28,7 +28,7 @@ module GetStream
         #   @return [Object] Filter conditions to apply to the query
         attr_accessor :filter_conditions
         # @!attribute user
-        #   @return [UserRequest]
+        #   @return [UserRequest] User request object
         attr_accessor :user
 
         # Initialize with attributes

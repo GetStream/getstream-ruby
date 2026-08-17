@@ -58,10 +58,10 @@ module GetStream
         #   @return [ChannelInputRequest]
         attr_accessor :data
         # @!attribute message
-        #   @return [MessageRequest]
+        #   @return [MessageRequest] Message data for creating or updating a message
         attr_accessor :message
         # @!attribute user
-        #   @return [UserRequest]
+        #   @return [UserRequest] User request object
         attr_accessor :user
 
         # Initialize with attributes

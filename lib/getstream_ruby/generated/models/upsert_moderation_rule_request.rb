@@ -13,7 +13,7 @@ module GetStream
         #   @return [String] Unique rule name
         attr_accessor :name
         # @!attribute rule_type
-        #   @return [String] Type of rule: user, content, or call
+        #   @return [String] Type of rule: user, content, call, or flood
         attr_accessor :rule_type
         # @!attribute cooldown_period
         #   @return [String] Duration before rule can trigger again (e.g. 24h, 7d)
@@ -49,7 +49,7 @@ module GetStream
         #   @return [RuleBuilderAction]
         attr_accessor :action
         # @!attribute user
-        #   @return [UserRequest]
+        #   @return [UserRequest] User request object
         attr_accessor :user
 
         # Initialize with attributes

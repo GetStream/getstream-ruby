@@ -297,7 +297,7 @@ module GetStream
         )
       end
 
-      # Returns a channel by its CID without creating it. Responds with 404 when the channel does not exist, so it doubles as an existence check. Pass state=true to also load messages, read state and watchers.
+      # Returns a channel by its CID without creating it. Responds with 404 when the channel does not exist, so it doubles as an existence check. Pass state=true to also load messages, read state and watchers, and the messages_id_* parameters to page those messages by message ID.
       #
       # @param _type [String]
       # @param _id [String]
@@ -305,8 +305,14 @@ module GetStream
       # @param messages_limit [Integer]
       # @param members_limit [Integer]
       # @param watchers_limit [Integer]
+      # @param messages_id_lt [String]
+      # @param messages_id_lte [String]
+      # @param messages_id_gt [String]
+      # @param messages_id_gte [String]
+      # @param messages_id_around [String]
+      # @param user_id [String]
       # @return [Models::ChannelStateResponse]
-      def get_channel(_type, _id, state = nil, messages_limit = nil, members_limit = nil, watchers_limit = nil)
+      def get_channel(_type, _id, state = nil, messages_limit = nil, members_limit = nil, watchers_limit = nil, messages_id_lt = nil, messages_id_lte = nil, messages_id_gt = nil, messages_id_gte = nil, messages_id_around = nil, user_id = nil)
         path = '/api/v2/chat/channels/{type}/{id}'
         # Replace path parameters
         path = path.gsub('{type}', _type.to_s)
@@ -317,6 +323,12 @@ module GetStream
         query_params['messages_limit'] = messages_limit unless messages_limit.nil?
         query_params['members_limit'] = members_limit unless members_limit.nil?
         query_params['watchers_limit'] = watchers_limit unless watchers_limit.nil?
+        query_params['messages_id_lt'] = messages_id_lt unless messages_id_lt.nil?
+        query_params['messages_id_lte'] = messages_id_lte unless messages_id_lte.nil?
+        query_params['messages_id_gt'] = messages_id_gt unless messages_id_gt.nil?
+        query_params['messages_id_gte'] = messages_id_gte unless messages_id_gte.nil?
+        query_params['messages_id_around'] = messages_id_around unless messages_id_around.nil?
+        query_params['user_id'] = user_id unless user_id.nil?
 
         # Make the API request
         @client.make_request(
@@ -581,7 +593,7 @@ module GetStream
         )
       end
 
-      # Sends new message to the specified channelSends events:- message.new- message.updated
+      # Sends new message to the specified channelSends events:- channel.visible- message.new- message.updated
       #
       # @param _type [String]
       # @param _id [String]
@@ -608,8 +620,9 @@ module GetStream
       # @param _type [String]
       # @param _id [String]
       # @param ids [Array<String>]
+      # @param member_custom_include [Array<String>]
       # @return [Models::GetManyMessagesResponse]
-      def get_many_messages(_type, _id, ids)
+      def get_many_messages(_type, _id, ids, member_custom_include = nil)
         path = '/api/v2/chat/channels/{type}/{id}/messages'
         # Replace path parameters
         path = path.gsub('{type}', _type.to_s)
@@ -617,6 +630,7 @@ module GetStream
         # Build query parameters
         query_params = {}
         query_params['ids'] = ids unless ids.nil?
+        query_params['member_custom_include'] = member_custom_include unless member_custom_include.nil?
 
         # Make the API request
         @client.make_request(
@@ -917,7 +931,7 @@ module GetStream
         )
       end
 
-      # Exports channel data to JSON file
+      # Exports channel data to a JSON or CSV file (CSV requires version=v2)
       #
       # @param export_channels_request [ExportChannelsRequest]
       # @return [Models::ExportChannelsResponse]
@@ -1359,8 +1373,9 @@ module GetStream
       # @param id_lt [String]
       # @param id_around [String]
       # @param sort [Array<SortParamRequest>]
+      # @param member_custom_include [Array<String>]
       # @return [Models::GetRepliesResponse]
-      def get_replies(parent_id, limit = nil, id_gte = nil, id_gt = nil, id_lte = nil, id_lt = nil, id_around = nil, sort = nil)
+      def get_replies(parent_id, limit = nil, id_gte = nil, id_gt = nil, id_lte = nil, id_lt = nil, id_around = nil, sort = nil, member_custom_include = nil)
         path = '/api/v2/chat/messages/{parent_id}/replies'
         # Replace path parameters
         path = path.gsub('{parent_id}', parent_id.to_s)
@@ -1373,6 +1388,7 @@ module GetStream
         query_params['id_lt'] = id_lt unless id_lt.nil?
         query_params['id_around'] = id_around unless id_around.nil?
         query_params['sort'] = sort unless sort.nil?
+        query_params['member_custom_include'] = member_custom_include unless member_custom_include.nil?
 
         # Make the API request
         @client.make_request(

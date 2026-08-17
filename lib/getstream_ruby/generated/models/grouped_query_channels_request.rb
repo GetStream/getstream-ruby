@@ -19,7 +19,7 @@ module GetStream
         #   @return [Hash<String, GroupedChannelsGroupRequest>] Groups to return, keyed by group name. Each group can define limit, next, or prev. 'next' and 'prev' cursors are only allowed when the request contains exactly one group; multi-group pagination is rejected.
         attr_accessor :groups
         # @!attribute user
-        #   @return [UserRequest]
+        #   @return [UserRequest] User request object
         attr_accessor :user
 
         # Initialize with attributes

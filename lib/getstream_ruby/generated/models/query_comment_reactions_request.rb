@@ -22,7 +22,7 @@ module GetStream
         #   @return [Array<SortParamRequest>]
         attr_accessor :sort
         # @!attribute filter
-        #   @return [Object]
+        #   @return [Object] Filters to apply to the query
         attr_accessor :filter
 
         # Initialize with attributes
