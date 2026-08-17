@@ -148,7 +148,10 @@ module ChatTestHelpers
   # Helper 6: wait_for_task
   # ---------------------------------------------------------------------------
 
-  def wait_for_task(task_id, max_attempts: 60, interval_seconds: 1, skip_on_timeout: false)
+  # Hard-delete style tasks sit in a shared async queue and regularly take
+  # minutes under load, so the budget is 5 minutes rather than the 1 minute
+  # that kept timing out in CI.
+  def wait_for_task(task_id, max_attempts: 60, interval_seconds: 5, skip_on_timeout: false)
     max_attempts.times do
 
       result = @client.common.get_task(task_id)
