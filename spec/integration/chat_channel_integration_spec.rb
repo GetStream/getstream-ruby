@@ -239,15 +239,13 @@ RSpec.describe 'Chat Channel Integration', type: :integration do
       resp = update_channel_partial('messaging', channel_id,
                                     set: { 'color' => 'red', 'description' => 'A test channel' })
       expect(resp.channel).not_to be_nil
-      ch = resp.channel.to_h
-      custom = ch['custom'] || {}
+      custom = read_channel(channel_id)['custom'] || {}
       expect(custom['color']).to eq('red')
 
       # Unset fields
       resp_2 = update_channel_partial('messaging', channel_id, unset: ['color'])
       expect(resp_2.channel).not_to be_nil
-      ch_2 = resp_2.channel.to_h
-      custom_2 = ch_2['custom'] || {}
+      custom_2 = read_channel(channel_id)['custom'] || {}
       expect(custom_2).not_to have_key('color')
 
     end
@@ -418,11 +416,13 @@ RSpec.describe 'Chat Channel Integration', type: :integration do
 
       # Freeze
       resp = update_channel_partial('messaging', channel_id, set: { 'frozen' => true })
-      expect(resp.channel.to_h['frozen']).to eq(true)
+      expect(resp.channel).not_to be_nil
+      expect(read_channel(channel_id)['frozen']).to eq(true)
 
       # Unfreeze
       resp_2 = update_channel_partial('messaging', channel_id, set: { 'frozen' => false })
-      expect(resp_2.channel.to_h['frozen']).to eq(false)
+      expect(resp_2.channel).not_to be_nil
+      expect(read_channel(channel_id)['frozen']).to eq(false)
 
     end
 

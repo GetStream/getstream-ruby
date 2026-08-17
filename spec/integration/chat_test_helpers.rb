@@ -176,6 +176,12 @@ module ChatTestHelpers
     @client.make_request(:post, "/api/v2/chat/channels/#{type}/#{id}/query", body: body)
   end
 
+  # Reads the channel back from the API. The channel returned by a partial update can lag the
+  # write it just applied, so state assertions read the channel instead of trusting that response.
+  def read_channel(id, type = 'messaging')
+    get_or_create_channel(type, id).channel.to_h
+  end
+
   def delete_channel(type, id, hard: false)
     query_params = hard ? { 'hard_delete' => 'true' } : {}
     retry_on_rate_limit do
