@@ -19,22 +19,22 @@ module GetStream
         #   @return [String]
         attr_accessor :user_id
         # @!attribute mark_reviewed
-        #   @return [MarkReviewedRequestPayload]
+        #   @return [MarkReviewedRequestPayload] Configuration for mark reviewed action
         attr_accessor :mark_reviewed
         # @!attribute reject_appeal
-        #   @return [RejectAppealRequestPayload]
+        #   @return [RejectAppealRequestPayload] Configuration for rejecting an appeal
         attr_accessor :reject_appeal
         # @!attribute restore
-        #   @return [RestoreActionRequestPayload]
+        #   @return [RestoreActionRequestPayload] Configuration for restore action
         attr_accessor :restore
         # @!attribute unban
-        #   @return [UnbanActionRequestPayload]
+        #   @return [UnbanActionRequestPayload] Configuration for unban moderation action
         attr_accessor :unban
         # @!attribute unblock
-        #   @return [UnblockActionRequestPayload]
+        #   @return [UnblockActionRequestPayload] Configuration for unblock action
         attr_accessor :unblock
         # @!attribute user
-        #   @return [UserRequest]
+        #   @return [UserRequest] User request object
         attr_accessor :user
 
         # Initialize with attributes

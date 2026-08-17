@@ -70,6 +70,9 @@ module GetStream
         # @!attribute collection_refs
         #   @return [Array<String>] Collections that this activity references
         attr_accessor :collection_refs
+        # @!attribute collections
+        #   @return [Array<CollectionRequest>] Collections to create or update as part of this request, so an activity and the collections it references can be written in one call. Their refs (name:id) are added to collection_refs automatically; you do not need to restate them, and they count toward the same per-activity collection-reference limit, which is the effective cap here. A collection that already exists has its custom data updated. Use collection_refs instead when the collection already exists and you are only referencing it, which requires no collection permissions.
+        attr_accessor :collections
         # @!attribute filter_tags
         #   @return [Array<String>] Tags for filtering activities
         attr_accessor :filter_tags
@@ -112,6 +115,7 @@ module GetStream
           @visibility_tag = attributes[:visibility_tag] || attributes['visibility_tag'] || nil
           @attachments = attributes[:attachments] || attributes['attachments'] || nil
           @collection_refs = attributes[:collection_refs] || attributes['collection_refs'] || nil
+          @collections = attributes[:collections] || attributes['collections'] || nil
           @filter_tags = attributes[:filter_tags] || attributes['filter_tags'] || nil
           @interest_tags = attributes[:interest_tags] || attributes['interest_tags'] || nil
           @mentioned_user_ids = attributes[:mentioned_user_ids] || attributes['mentioned_user_ids'] || nil
@@ -143,6 +147,7 @@ module GetStream
             visibility_tag: 'visibility_tag',
             attachments: 'attachments',
             collection_refs: 'collection_refs',
+            collections: 'collections',
             filter_tags: 'filter_tags',
             interest_tags: 'interest_tags',
             mentioned_user_ids: 'mentioned_user_ids',

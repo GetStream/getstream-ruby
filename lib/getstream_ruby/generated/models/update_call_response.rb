@@ -19,7 +19,7 @@ module GetStream
         #   @return [Array<OwnCapability>]
         attr_accessor :own_capabilities
         # @!attribute call
-        #   @return [CallResponse]
+        #   @return [CallResponse] Represents a call
         attr_accessor :call
 
         # Initialize with attributes

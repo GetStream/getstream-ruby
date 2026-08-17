@@ -13,7 +13,7 @@ module GetStream
         #   @return [String] Duration of the request in milliseconds
         attr_accessor :duration
         # @!attribute blocklist
-        #   @return [BlockListResponse]
+        #   @return [BlockListResponse] Block list contains restricted words
         attr_accessor :blocklist
 
         # Initialize with attributes

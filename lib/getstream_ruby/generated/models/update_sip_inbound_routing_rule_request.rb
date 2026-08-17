@@ -16,7 +16,7 @@ module GetStream
         #   @return [Array<String>] List of SIP trunk IDs
         attr_accessor :trunk_ids
         # @!attribute caller_configs
-        #   @return [SIPCallerConfigsRequest]
+        #   @return [SIPCallerConfigsRequest] Configuration for SIP caller settings
         attr_accessor :caller_configs
         # @!attribute called_numbers
         #   @return [Array<String>] List of called numbers
@@ -25,16 +25,16 @@ module GetStream
         #   @return [Array<String>] List of caller numbers (optional)
         attr_accessor :caller_numbers
         # @!attribute call_configs
-        #   @return [SIPCallConfigsRequest]
+        #   @return [SIPCallConfigsRequest] Configuration for SIP call settings
         attr_accessor :call_configs
         # @!attribute direct_routing_configs
-        #   @return [SIPDirectRoutingRuleCallConfigsRequest]
+        #   @return [SIPDirectRoutingRuleCallConfigsRequest] Configuration for direct routing rule calls
         attr_accessor :direct_routing_configs
         # @!attribute pin_protection_configs
-        #   @return [SIPPinProtectionConfigsRequest]
+        #   @return [SIPPinProtectionConfigsRequest] Configuration for PIN protection settings
         attr_accessor :pin_protection_configs
         # @!attribute pin_routing_configs
-        #   @return [SIPInboundRoutingRulePinConfigsRequest]
+        #   @return [SIPInboundRoutingRulePinConfigsRequest] Configuration for PIN routing rule calls
         attr_accessor :pin_routing_configs
 
         # Initialize with attributes

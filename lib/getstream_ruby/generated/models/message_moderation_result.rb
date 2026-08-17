@@ -40,7 +40,7 @@ module GetStream
         #   @return [ModerationResponse]
         attr_accessor :ai_moderation_response
         # @!attribute moderation_thresholds
-        #   @return [Thresholds]
+        #   @return [Thresholds] Sets thresholds for AI moderation
         attr_accessor :moderation_thresholds
 
         # Initialize with attributes

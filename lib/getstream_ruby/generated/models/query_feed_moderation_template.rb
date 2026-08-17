@@ -19,7 +19,7 @@ module GetStream
         #   @return [DateTime] When the template was last updated
         attr_accessor :updated_at
         # @!attribute config
-        #   @return [FeedsModerationTemplateConfigPayload]
+        #   @return [FeedsModerationTemplateConfigPayload] Configuration for a feeds moderation template
         attr_accessor :config
 
         # Initialize with attributes

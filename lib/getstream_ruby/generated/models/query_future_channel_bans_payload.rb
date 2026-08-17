@@ -12,6 +12,9 @@ module GetStream
         # @!attribute exclude_expired_bans
         #   @return [Boolean] Whether to exclude expired bans or not
         attr_accessor :exclude_expired_bans
+        # @!attribute include_total
+        #   @return [Boolean] When true, the response includes the total number of bans matching the query filter (independent of limit and offset, capped at 100000)
+        attr_accessor :include_total
         # @!attribute limit
         #   @return [Integer] Number of records to return
         attr_accessor :limit
@@ -19,19 +22,20 @@ module GetStream
         #   @return [Integer] Number of records to offset
         attr_accessor :offset
         # @!attribute target_user_id
-        #   @return [String] Filter by the target user ID. For server-side requests only.
+        #   @return [String] Filter by the target user ID. Server-side: returns all bans against this user. Client-side: narrows the authenticated user's own bans to this target.
         attr_accessor :target_user_id
         # @!attribute user_id
         #   @return [String]
         attr_accessor :user_id
         # @!attribute user
-        #   @return [UserRequest]
+        #   @return [UserRequest] User request object
         attr_accessor :user
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @exclude_expired_bans = attributes[:exclude_expired_bans] || attributes['exclude_expired_bans'] || nil
+          @include_total = attributes[:include_total] || attributes['include_total'] || nil
           @limit = attributes[:limit] || attributes['limit'] || nil
           @offset = attributes[:offset] || attributes['offset'] || nil
           @target_user_id = attributes[:target_user_id] || attributes['target_user_id'] || nil
@@ -43,6 +47,7 @@ module GetStream
         def self.json_field_mappings
           {
             exclude_expired_bans: 'exclude_expired_bans',
+            include_total: 'include_total',
             limit: 'limit',
             offset: 'offset',
             target_user_id: 'target_user_id',

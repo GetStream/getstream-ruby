@@ -36,9 +36,15 @@ module GetStream
         # @!attribute ban_expires
         #   @return [DateTime] Expiration date of the ban
         attr_accessor :ban_expires
+        # @!attribute ban_from_future_channels
+        #   @return [Boolean] Whether the member's ban also applies to channels the channel's creator will create in the future (an active future channel ban by the creator targets this member)
+        attr_accessor :ban_from_future_channels
         # @!attribute deleted_at
         #   @return [DateTime]
         attr_accessor :deleted_at
+        # @!attribute future_channel_ban_expires
+        #   @return [DateTime] Expiration date of the future channel ban; absent when the future channel ban is permanent
+        attr_accessor :future_channel_ban_expires
         # @!attribute invite_accepted_at
         #   @return [DateTime] Date when invite was accepted
         attr_accessor :invite_accepted_at
@@ -67,7 +73,7 @@ module GetStream
         #   @return [Array<String>]
         attr_accessor :deleted_messages
         # @!attribute user
-        #   @return [UserResponse]
+        #   @return [UserResponse] User response object
         attr_accessor :user
 
         # Initialize with attributes
@@ -82,7 +88,9 @@ module GetStream
           @custom = attributes[:custom] || attributes['custom']
           @archived_at = attributes[:archived_at] || attributes['archived_at'] || nil
           @ban_expires = attributes[:ban_expires] || attributes['ban_expires'] || nil
+          @ban_from_future_channels = attributes[:ban_from_future_channels] || attributes['ban_from_future_channels'] || nil
           @deleted_at = attributes[:deleted_at] || attributes['deleted_at'] || nil
+          @future_channel_ban_expires = attributes[:future_channel_ban_expires] || attributes['future_channel_ban_expires'] || nil
           @invite_accepted_at = attributes[:invite_accepted_at] || attributes['invite_accepted_at'] || nil
           @invite_rejected_at = attributes[:invite_rejected_at] || attributes['invite_rejected_at'] || nil
           @invited = attributes[:invited] || attributes['invited'] || nil
@@ -107,7 +115,9 @@ module GetStream
             custom: 'custom',
             archived_at: 'archived_at',
             ban_expires: 'ban_expires',
+            ban_from_future_channels: 'ban_from_future_channels',
             deleted_at: 'deleted_at',
+            future_channel_ban_expires: 'future_channel_ban_expires',
             invite_accepted_at: 'invite_accepted_at',
             invite_rejected_at: 'invite_rejected_at',
             invited: 'invited',

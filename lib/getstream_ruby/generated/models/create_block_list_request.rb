@@ -33,6 +33,12 @@ module GetStream
         # @!attribute type
         #   @return [String] Block list type. One of: regex, domain, domain_allowlist, email, email_allowlist, word
         attr_accessor :type
+        # @!attribute user_id
+        #   @return [String]
+        attr_accessor :user_id
+        # @!attribute user
+        #   @return [UserRequest] User request object
+        attr_accessor :user
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -45,6 +51,8 @@ module GetStream
           @is_substring_matching_enabled = attributes[:is_substring_matching_enabled] || attributes['is_substring_matching_enabled'] || nil
           @team = attributes[:team] || attributes['team'] || nil
           @type = attributes[:type] || attributes['type'] || nil
+          @user_id = attributes[:user_id] || attributes['user_id'] || nil
+          @user = attributes[:user] || attributes['user'] || nil
         end
 
         # Override field mappings for JSON serialization
@@ -57,7 +65,9 @@ module GetStream
             is_plural_check_enabled: 'is_plural_check_enabled',
             is_substring_matching_enabled: 'is_substring_matching_enabled',
             team: 'team',
-            type: 'type'
+            type: 'type',
+            user_id: 'user_id',
+            user: 'user'
           }
         end
       end

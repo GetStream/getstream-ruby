@@ -31,7 +31,7 @@ module GetStream
         #   @return [Object] Additional options passed to the custom action
         attr_accessor :action_options
         # @!attribute message
-        #   @return [MessageResponse]
+        #   @return [MessageResponse] Represents any chat message
         attr_accessor :message
 
         # Initialize with attributes

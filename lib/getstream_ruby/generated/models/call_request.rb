@@ -28,7 +28,7 @@ module GetStream
         #   @return [Array<MemberRequest>]
         attr_accessor :members
         # @!attribute created_by
-        #   @return [UserRequest]
+        #   @return [UserRequest] User request object
         attr_accessor :created_by
         # @!attribute custom
         #   @return [Object]

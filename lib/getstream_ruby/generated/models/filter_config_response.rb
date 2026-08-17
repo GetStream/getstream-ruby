@@ -24,6 +24,9 @@ module GetStream
         # @!attribute filterable_custom_keys
         #   @return [Array<String>] The moderation_payload.custom keys the app has configured as review-queue filter chips (via moderation_dashboard_preferences.filterable_custom_keys). Discovery hint for the dashboard only — the filter accepts any custom key regardless of this list.
         attr_accessor :filterable_custom_keys
+        # @!attribute ai_image_taxonomy
+        #   @return [Hash<String, Array<String>>] AI image moderation labels available as filter values, as a map of L1 label to its L2 sub-labels. Reflects the app's effective image taxonomy: custom Bodyguard taxonomy when enabled, otherwise the standard catalogue of the org's enabled image providers.
+        attr_accessor :ai_image_taxonomy
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -33,6 +36,7 @@ module GetStream
           @ai_text_labels = attributes[:ai_text_labels] || attributes['ai_text_labels'] || nil
           @config_keys = attributes[:config_keys] || attributes['config_keys'] || nil
           @filterable_custom_keys = attributes[:filterable_custom_keys] || attributes['filterable_custom_keys'] || nil
+          @ai_image_taxonomy = attributes[:ai_image_taxonomy] || attributes['ai_image_taxonomy'] || nil
         end
 
         # Override field mappings for JSON serialization
@@ -42,7 +46,8 @@ module GetStream
             ai_image_labels: 'ai_image_labels',
             ai_text_labels: 'ai_text_labels',
             config_keys: 'config_keys',
-            filterable_custom_keys: 'filterable_custom_keys'
+            filterable_custom_keys: 'filterable_custom_keys',
+            ai_image_taxonomy: 'ai_image_taxonomy'
           }
         end
       end

@@ -25,10 +25,10 @@ module GetStream
         #   @return [Array<MemberResponse>] List of members who missed the call
         attr_accessor :members
         # @!attribute call
-        #   @return [CallResponse]
+        #   @return [CallResponse] Represents a call
         attr_accessor :call
         # @!attribute user
-        #   @return [UserResponse]
+        #   @return [UserResponse] User response object
         attr_accessor :user
         # @!attribute type
         #   @return [String] The type of event: "call.notification" in this case

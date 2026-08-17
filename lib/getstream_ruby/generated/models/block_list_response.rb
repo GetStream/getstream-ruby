@@ -36,6 +36,9 @@ module GetStream
         # @!attribute id
         #   @return [String]
         attr_accessor :id
+        # @!attribute owner_user_id
+        #   @return [String]
+        attr_accessor :owner_user_id
         # @!attribute team
         #   @return [String]
         attr_accessor :team
@@ -55,6 +58,7 @@ module GetStream
           @words = attributes[:words] || attributes['words']
           @created_at = attributes[:created_at] || attributes['created_at'] || nil
           @id = attributes[:id] || attributes['id'] || nil
+          @owner_user_id = attributes[:owner_user_id] || attributes['owner_user_id'] || nil
           @team = attributes[:team] || attributes['team'] || nil
           @updated_at = attributes[:updated_at] || attributes['updated_at'] || nil
         end
@@ -71,6 +75,7 @@ module GetStream
             words: 'words',
             created_at: 'created_at',
             id: 'id',
+            owner_user_id: 'owner_user_id',
             team: 'team',
             updated_at: 'updated_at'
           }

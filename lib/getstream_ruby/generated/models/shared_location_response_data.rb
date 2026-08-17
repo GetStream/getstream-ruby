@@ -37,10 +37,10 @@ module GetStream
         #   @return [DateTime]
         attr_accessor :end_at
         # @!attribute channel
-        #   @return [ChannelResponse]
+        #   @return [ChannelResponse] Represents channel in chat
         attr_accessor :channel
         # @!attribute message
-        #   @return [MessageResponse]
+        #   @return [MessageResponse] Represents any chat message
         attr_accessor :message
 
         # Initialize with attributes

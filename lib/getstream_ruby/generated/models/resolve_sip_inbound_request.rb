@@ -22,7 +22,7 @@ module GetStream
         #   @return [String] Optional pre-authenticated trunk ID (from PreAuth no-auth flow)
         attr_accessor :trunk_id
         # @!attribute challenge
-        #   @return [SIPChallengeRequest]
+        #   @return [SIPChallengeRequest] SIP digest challenge authentication data
         attr_accessor :challenge
         # @!attribute sip_headers
         #   @return [Hash<String, String>] Optional SIP headers as key-value pairs

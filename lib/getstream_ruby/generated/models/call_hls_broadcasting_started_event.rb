@@ -19,7 +19,7 @@ module GetStream
         #   @return [String]
         attr_accessor :hls_playlist_url
         # @!attribute call
-        #   @return [CallResponse]
+        #   @return [CallResponse] Represents a call
         attr_accessor :call
         # @!attribute type
         #   @return [String] The type of event: "call.hls_broadcasting_started" in this case

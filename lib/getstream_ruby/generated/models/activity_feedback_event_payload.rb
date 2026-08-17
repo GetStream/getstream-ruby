@@ -25,7 +25,7 @@ module GetStream
         #   @return [String] The feedback value (true/false)
         attr_accessor :value
         # @!attribute user
-        #   @return [UserResponse]
+        #   @return [UserResponse] User response object
         attr_accessor :user
 
         # Initialize with attributes

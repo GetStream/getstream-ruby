@@ -16,10 +16,10 @@ module GetStream
         #   @return [String]
         attr_accessor :id
         # @!attribute coordinates
-        #   @return [CoordinatesResponse]
+        #   @return [CoordinatesResponse] Geographic coordinates
         attr_accessor :coordinates
         # @!attribute location
-        #   @return [LocationResponse]
+        #   @return [LocationResponse] Geographic location metadata
         attr_accessor :location
         # @!attribute count
         #   @return [Integer]

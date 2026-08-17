@@ -19,10 +19,10 @@ module GetStream
         #   @return [DateTime] Date/time of mute expiration
         attr_accessor :expires
         # @!attribute channel
-        #   @return [ChannelResponse]
+        #   @return [ChannelResponse] Represents channel in chat
         attr_accessor :channel
         # @!attribute user
-        #   @return [UserResponse]
+        #   @return [UserResponse] User response object
         attr_accessor :user
 
         # Initialize with attributes

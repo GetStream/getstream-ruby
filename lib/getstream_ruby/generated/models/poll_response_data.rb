@@ -70,7 +70,7 @@ module GetStream
         #   @return [Integer]
         attr_accessor :max_votes_allowed
         # @!attribute created_by
-        #   @return [UserResponse]
+        #   @return [UserResponse] User response object
         attr_accessor :created_by
 
         # Initialize with attributes

@@ -40,7 +40,7 @@ module GetStream
         #   @return [Hash<String, String>] Named text fields to moderate, keyed by caller label (e.g. title, description).
         attr_accessor :texts
         # @!attribute user
-        #   @return [UserRequest]
+        #   @return [UserRequest] User request object
         attr_accessor :user
 
         # Initialize with attributes

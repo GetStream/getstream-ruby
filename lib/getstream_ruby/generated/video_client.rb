@@ -1431,6 +1431,26 @@ module GetStream
         )
       end
 
+      # Returns the app's per-broadcast daily digest bundle for one UTC day, with an explicit readiness status (ready, pending, failed, future_date, expired). Payload keys are only present when status is ready.
+      #
+      # @param date [String]
+      # @param app_id [String]
+      # @return [Models::GetDailyDigestResponse]
+      def get_daily_digest(date = nil, app_id = nil)
+        path = '/api/v2/video/stats/daily_digest'
+        # Build query parameters
+        query_params = {}
+        query_params['date'] = date unless date.nil?
+        query_params['app_id'] = app_id unless app_id.nil?
+
+        # Make the API request
+        @client.make_request(
+          :get,
+          path,
+          query_params: query_params
+        )
+      end
+
     end
   end
 end

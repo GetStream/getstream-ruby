@@ -22,7 +22,7 @@ module GetStream
         #   @return [Object]
         attr_accessor :custom
         # @!attribute message
-        #   @return [MessageResponse]
+        #   @return [MessageResponse] Represents any chat message
         attr_accessor :message
         # @!attribute type
         #   @return [String] The type of event: "message.new" in this case
@@ -64,7 +64,7 @@ module GetStream
         #   @return [Array<UserResponseCommonFields>] The participants of the thread
         attr_accessor :thread_participants
         # @!attribute channel
-        #   @return [ChannelResponse]
+        #   @return [ChannelResponse] Represents channel in chat
         attr_accessor :channel
         # @!attribute channel_custom
         #   @return [Object]

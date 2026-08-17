@@ -46,7 +46,7 @@ module GetStream
         #   @return [Array<String>]
         attr_accessor :blocked_user_ids
         # @!attribute created_by
-        #   @return [UserResponse]
+        #   @return [UserResponse] User response object
         attr_accessor :created_by
         # @!attribute custom
         #   @return [Object] Custom data for this object
@@ -55,7 +55,7 @@ module GetStream
         #   @return [EgressResponse]
         attr_accessor :egress
         # @!attribute ingress
-        #   @return [CallIngressResponse]
+        #   @return [CallIngressResponse] CallIngressResponse is the payload for ingress settings
         attr_accessor :ingress
         # @!attribute settings
         #   @return [CallSettingsResponse]

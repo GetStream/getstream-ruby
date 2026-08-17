@@ -10,7 +10,7 @@ module GetStream
 
         # Model attributes
         # @!attribute reaction
-        #   @return [ReactionRequest]
+        #   @return [ReactionRequest] Represents user reaction to a message
         attr_accessor :reaction
         # @!attribute enforce_unique
         #   @return [Boolean] Whether to replace all existing user reactions

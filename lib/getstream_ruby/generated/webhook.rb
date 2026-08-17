@@ -131,6 +131,7 @@ require_relative 'models/message_read_event'
 require_relative 'models/message_unblocked_event'
 require_relative 'models/message_undeleted_event'
 require_relative 'models/message_updated_event'
+require_relative 'models/moderation_analysis_failed_event'
 require_relative 'models/moderation_check_completed_event'
 require_relative 'models/moderation_custom_action_event'
 require_relative 'models/moderation_flagged_event'
@@ -353,6 +354,7 @@ module StreamChat
     EVENT_TYPE_MESSAGE_UNBLOCKED = 'message.unblocked'
     EVENT_TYPE_MESSAGE_UNDELETED = 'message.undeleted'
     EVENT_TYPE_MESSAGE_UPDATED = 'message.updated'
+    EVENT_TYPE_MODERATION_ANALYSIS_FAILED = 'moderation.analysis.failed'
     EVENT_TYPE_MODERATION_CUSTOM_ACTION = 'moderation.custom_action'
     EVENT_TYPE_MODERATION_FLAGGED = 'moderation.flagged'
     EVENT_TYPE_MODERATION_IMAGE_ANALYSIS_COMPLETE = 'moderation.image_analysis.complete'
@@ -708,6 +710,8 @@ module StreamChat
         GetStream::Generated::Models::MessageUndeletedEvent
       when 'message.updated'
         GetStream::Generated::Models::MessageUpdatedEvent
+      when 'moderation.analysis.failed'
+        GetStream::Generated::Models::ModerationAnalysisFailedEvent
       when 'moderation.custom_action'
         GetStream::Generated::Models::ModerationCustomActionEvent
       when 'moderation.flagged'

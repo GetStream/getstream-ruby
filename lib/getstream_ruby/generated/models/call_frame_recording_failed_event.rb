@@ -19,7 +19,7 @@ module GetStream
         #   @return [String]
         attr_accessor :egress_id
         # @!attribute call
-        #   @return [CallResponse]
+        #   @return [CallResponse] Represents a call
         attr_accessor :call
         # @!attribute type
         #   @return [String] The type of event: "call.frame_recording_failed" in this case

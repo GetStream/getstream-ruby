@@ -88,7 +88,7 @@ module GetStream
         #   @return [AppealItemResponse]
         attr_accessor :appeal
         # @!attribute assigned_to
-        #   @return [UserResponse]
+        #   @return [UserResponse] User response object
         attr_accessor :assigned_to
         # @!attribute call
         #   @return [ModerationCallResponse]
@@ -115,7 +115,7 @@ module GetStream
         #   @return [ChatMessageResponse]
         attr_accessor :message
         # @!attribute moderation_payload
-        #   @return [ModerationPayloadResponse]
+        #   @return [ModerationPayloadResponse] Content payload for moderation
         attr_accessor :moderation_payload
         # @!attribute reaction
         #   @return [Reaction]

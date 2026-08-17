@@ -19,7 +19,7 @@ module GetStream
         #   @return [Object] Sets new field values
         attr_accessor :set
         # @!attribute user
-        #   @return [UserRequest]
+        #   @return [UserRequest] User request object
         attr_accessor :user
 
         # Initialize with attributes

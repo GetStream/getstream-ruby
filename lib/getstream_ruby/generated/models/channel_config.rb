@@ -112,7 +112,7 @@ module GetStream
         #   @return [Array<BlockListOptions>]
         attr_accessor :blocklists
         # @!attribute automod_thresholds
-        #   @return [Thresholds]
+        #   @return [Thresholds] Sets thresholds for AI moderation
         attr_accessor :automod_thresholds
         # @!attribute chat_preferences
         #   @return [ChatPreferences]

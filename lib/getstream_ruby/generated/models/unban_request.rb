@@ -13,7 +13,7 @@ module GetStream
         #   @return [String] ID of the user performing the unban
         attr_accessor :unbanned_by_id
         # @!attribute unbanned_by
-        #   @return [UserRequest]
+        #   @return [UserRequest] User request object
         attr_accessor :unbanned_by
 
         # Initialize with attributes

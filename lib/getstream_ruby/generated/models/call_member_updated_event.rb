@@ -19,7 +19,7 @@ module GetStream
         #   @return [Array<MemberResponse>] The list of members that were updated
         attr_accessor :members
         # @!attribute call
-        #   @return [CallResponse]
+        #   @return [CallResponse] Represents a call
         attr_accessor :call
         # @!attribute type
         #   @return [String] The type of event: "call.member_updated" in this case

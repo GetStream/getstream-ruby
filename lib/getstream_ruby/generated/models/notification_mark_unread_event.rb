@@ -70,7 +70,7 @@ module GetStream
         #   @return [Integer] The number of unread threads
         attr_accessor :unread_threads
         # @!attribute channel
-        #   @return [ChannelResponse]
+        #   @return [ChannelResponse] Represents channel in chat
         attr_accessor :channel
         # @!attribute channel_custom
         #   @return [Object]

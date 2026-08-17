@@ -13,7 +13,7 @@ module GetStream
         #   @return [String]
         attr_accessor :type
         # @!attribute user
-        #   @return [UserResponse]
+        #   @return [UserResponse] User response object
         attr_accessor :user
         # @!attribute emoji_code
         #   @return [String]

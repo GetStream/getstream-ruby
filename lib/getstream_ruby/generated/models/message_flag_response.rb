@@ -37,19 +37,19 @@ module GetStream
         #   @return [FlagDetailsResponse]
         attr_accessor :details
         # @!attribute message
-        #   @return [MessageResponse]
+        #   @return [MessageResponse] Represents any chat message
         attr_accessor :message
         # @!attribute moderation_feedback
         #   @return [FlagFeedbackResponse]
         attr_accessor :moderation_feedback
         # @!attribute moderation_result
-        #   @return [MessageModerationResult]
+        #   @return [MessageModerationResult] Result of the message moderation
         attr_accessor :moderation_result
         # @!attribute reviewed_by
-        #   @return [UserResponse]
+        #   @return [UserResponse] User response object
         attr_accessor :reviewed_by
         # @!attribute user
-        #   @return [UserResponse]
+        #   @return [UserResponse] User response object
         attr_accessor :user
 
         # Initialize with attributes

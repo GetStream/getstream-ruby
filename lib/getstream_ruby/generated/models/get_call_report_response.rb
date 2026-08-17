@@ -24,6 +24,9 @@ module GetStream
         # @!attribute chat_activity
         #   @return [ChatActivityStatsResponse]
         attr_accessor :chat_activity
+        # @!attribute digest
+        #   @return [BroadcastDigest]
+        attr_accessor :digest
         # @!attribute session
         #   @return [CallSessionResponse]
         attr_accessor :session
@@ -36,6 +39,7 @@ module GetStream
           @report = attributes[:report] || attributes['report']
           @video_reactions = attributes[:video_reactions] || attributes['video_reactions'] || nil
           @chat_activity = attributes[:chat_activity] || attributes['chat_activity'] || nil
+          @digest = attributes[:digest] || attributes['digest'] || nil
           @session = attributes[:session] || attributes['session'] || nil
         end
 
@@ -47,6 +51,7 @@ module GetStream
             report: 'report',
             video_reactions: 'video_reactions',
             chat_activity: 'chat_activity',
+            digest: 'digest',
             session: 'session'
           }
         end

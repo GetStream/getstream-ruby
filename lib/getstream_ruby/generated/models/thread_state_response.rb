@@ -27,6 +27,9 @@ module GetStream
         # @!attribute participant_count
         #   @return [Integer] Participant Count
         attr_accessor :participant_count
+        # @!attribute reply_count
+        #   @return [Integer] Reply Count
+        attr_accessor :reply_count
         # @!attribute title
         #   @return [String] Title
         attr_accessor :title
@@ -45,9 +48,6 @@ module GetStream
         # @!attribute last_message_at
         #   @return [DateTime] Last Message At
         attr_accessor :last_message_at
-        # @!attribute reply_count
-        #   @return [Integer] Reply Count
-        attr_accessor :reply_count
         # @!attribute read
         #   @return [Array<ReadStateResponse>]
         attr_accessor :read
@@ -55,16 +55,16 @@ module GetStream
         #   @return [Array<ThreadParticipant>] Thread Participants
         attr_accessor :thread_participants
         # @!attribute channel
-        #   @return [ChannelResponse]
+        #   @return [ChannelResponse] Represents channel in chat
         attr_accessor :channel
         # @!attribute created_by
-        #   @return [UserResponse]
+        #   @return [UserResponse] User response object
         attr_accessor :created_by
         # @!attribute draft
         #   @return [DraftResponse]
         attr_accessor :draft
         # @!attribute parent_message
-        #   @return [MessageResponse]
+        #   @return [MessageResponse] Represents any chat message
         attr_accessor :parent_message
 
         # Initialize with attributes
@@ -76,13 +76,13 @@ module GetStream
           @created_by_user_id = attributes[:created_by_user_id] || attributes['created_by_user_id']
           @parent_message_id = attributes[:parent_message_id] || attributes['parent_message_id']
           @participant_count = attributes[:participant_count] || attributes['participant_count']
+          @reply_count = attributes[:reply_count] || attributes['reply_count']
           @title = attributes[:title] || attributes['title']
           @updated_at = attributes[:updated_at] || attributes['updated_at']
           @latest_replies = attributes[:latest_replies] || attributes['latest_replies']
           @custom = attributes[:custom] || attributes['custom']
           @deleted_at = attributes[:deleted_at] || attributes['deleted_at'] || nil
           @last_message_at = attributes[:last_message_at] || attributes['last_message_at'] || nil
-          @reply_count = attributes[:reply_count] || attributes['reply_count'] || nil
           @read = attributes[:read] || attributes['read'] || nil
           @thread_participants = attributes[:thread_participants] || attributes['thread_participants'] || nil
           @channel = attributes[:channel] || attributes['channel'] || nil
@@ -100,13 +100,13 @@ module GetStream
             created_by_user_id: 'created_by_user_id',
             parent_message_id: 'parent_message_id',
             participant_count: 'participant_count',
+            reply_count: 'reply_count',
             title: 'title',
             updated_at: 'updated_at',
             latest_replies: 'latest_replies',
             custom: 'custom',
             deleted_at: 'deleted_at',
             last_message_at: 'last_message_at',
-            reply_count: 'reply_count',
             read: 'read',
             thread_participants: 'thread_participants',
             channel: 'channel',

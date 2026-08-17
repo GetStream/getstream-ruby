@@ -76,7 +76,7 @@ module GetStream
         #   @return [ActionLogResponse]
         attr_accessor :original_moderation_action
         # @!attribute user
-        #   @return [UserResponse]
+        #   @return [UserResponse] User response object
         attr_accessor :user
 
         # Initialize with attributes

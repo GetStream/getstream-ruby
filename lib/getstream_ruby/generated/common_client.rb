@@ -45,12 +45,16 @@ module GetStream
       # Returns all available block lists
       #
       # @param team [String]
+      # @param cursor [String]
+      # @param limit [Integer]
       # @return [Models::ListBlockListResponse]
-      def list_block_lists(team = nil)
+      def list_block_lists(team = nil, cursor = nil, limit = nil)
         path = '/api/v2/blocklists'
         # Build query parameters
         query_params = {}
         query_params['team'] = team unless team.nil?
+        query_params['cursor'] = cursor unless cursor.nil?
+        query_params['limit'] = limit unless limit.nil?
 
         # Make the API request
         @client.make_request(
@@ -77,18 +81,40 @@ module GetStream
         )
       end
 
+      # Enqueues an asynchronous bulk import of items into an existing blocklist.Returns a task ID that can be polled via GET /tasks/{id} to observe progress.AddItems is idempotent: items already present are skipped without error.For lists exceeding the HTTP request-body cap, issue repeated import calls eachcarrying a bounded slice of items — the task result accumulates correctly.
+      #
+      # @param _id [String]
+      # @param import_block_list_request [ImportBlockListRequest]
+      # @return [Models::ImportBlockListResponse]
+      def import_block_list(_id, import_block_list_request)
+        path = '/api/v2/blocklists/{id}/import'
+        # Replace path parameters
+        path = path.gsub('{id}', _id.to_s)
+        # Build request body
+        body = import_block_list_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
       # Deletes previously created application blocklist
       #
       # @param name [String]
       # @param team [String]
+      # @param user_id [String]
       # @return [Models::Response]
-      def delete_block_list(name, team = nil)
+      def delete_block_list(name, team = nil, user_id = nil)
         path = '/api/v2/blocklists/{name}'
         # Replace path parameters
         path = path.gsub('{name}', name.to_s)
         # Build query parameters
         query_params = {}
         query_params['team'] = team unless team.nil?
+        query_params['user_id'] = user_id unless user_id.nil?
 
         # Make the API request
         @client.make_request(
@@ -469,7 +495,7 @@ module GetStream
         )
       end
 
-      # Creates or updates the external storage configuration for the app. Currently only AWS S3 (via cross-account IAM role assumption) is supported.
+      # Creates or updates the external storage configuration for the app. Supports AWS S3 (via cross-account IAM role assumption) and GCS (via service-account JSON credentials).
       #
       # @param upsert_external_storage_request [UpsertExternalStorageRequest]
       # @return [Models::UpsertExternalStorageResponse]
@@ -486,7 +512,7 @@ module GetStream
         )
       end
 
-      # Validates the configured external S3 storage by performing a live STS AssumeRole and S3 ListObjectsV2 check.
+      # Validates the configured external storage. For AWS S3, performs a live STS AssumeRole and S3 ListObjectsV2 check. For GCS, performs a live bucket listing check using the configured service-account credentials.
       #
       # @return [Models::ValidateExternalStorageResponse]
       def validate_importer_external_storage()
@@ -795,22 +821,17 @@ module GetStream
       #
       # @param poll_id [String]
       # @param option_id [String]
-      # @param user_id [String]
       # @return [Models::PollOptionResponse]
-      def get_poll_option(poll_id, option_id, user_id = nil)
+      def get_poll_option(poll_id, option_id)
         path = '/api/v2/polls/{poll_id}/options/{option_id}'
         # Replace path parameters
         path = path.gsub('{poll_id}', poll_id.to_s)
         path = path.gsub('{option_id}', option_id.to_s)
-        # Build query parameters
-        query_params = {}
-        query_params['user_id'] = user_id unless user_id.nil?
 
         # Make the API request
         @client.make_request(
           :get,
-          path,
-          query_params: query_params
+          path
         )
       end
 
@@ -947,9 +968,10 @@ module GetStream
       # @param android [Boolean]
       # @param ios [Boolean]
       # @param web [Boolean]
+      # @param unity [Boolean]
       # @param endpoints [String]
       # @return [Models::GetRateLimitsResponse]
-      def get_rate_limits(server_side = nil, android = nil, ios = nil, web = nil, endpoints = nil)
+      def get_rate_limits(server_side = nil, android = nil, ios = nil, web = nil, unity = nil, endpoints = nil)
         path = '/api/v2/rate_limits'
         # Build query parameters
         query_params = {}
@@ -957,6 +979,7 @@ module GetStream
         query_params['android'] = android unless android.nil?
         query_params['ios'] = ios unless ios.nil?
         query_params['web'] = web unless web.nil?
+        query_params['unity'] = unity unless unity.nil?
         query_params['endpoints'] = endpoints unless endpoints.nil?
 
         # Make the API request

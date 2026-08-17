@@ -18,6 +18,9 @@ module GetStream
         # @!attribute thread_unread_counts
         #   @return [Boolean]
         attr_accessor :thread_unread_counts
+        # @!attribute member_custom_include
+        #   @return [Array<String>] Top-level keys of the message sender's channel-member custom data to include under member.custom (max 8 keys, 64 chars each)
+        attr_accessor :member_custom_include
         # @!attribute data
         #   @return [ChannelInput]
         attr_accessor :data
@@ -37,6 +40,7 @@ module GetStream
           @hide_for_creator = attributes[:hide_for_creator] || attributes['hide_for_creator'] || nil
           @state = attributes[:state] || attributes['state'] || nil
           @thread_unread_counts = attributes[:thread_unread_counts] || attributes['thread_unread_counts'] || nil
+          @member_custom_include = attributes[:member_custom_include] || attributes['member_custom_include'] || nil
           @data = attributes[:data] || attributes['data'] || nil
           @members = attributes[:members] || attributes['members'] || nil
           @messages = attributes[:messages] || attributes['messages'] || nil
@@ -49,6 +53,7 @@ module GetStream
             hide_for_creator: 'hide_for_creator',
             state: 'state',
             thread_unread_counts: 'thread_unread_counts',
+            member_custom_include: 'member_custom_include',
             data: 'data',
             members: 'members',
             messages: 'messages',

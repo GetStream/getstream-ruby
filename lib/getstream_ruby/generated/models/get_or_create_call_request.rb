@@ -22,7 +22,7 @@ module GetStream
         #   @return [Boolean]
         attr_accessor :video
         # @!attribute data
-        #   @return [CallRequest]
+        #   @return [CallRequest] CallRequest is the payload for creating a call.
         attr_accessor :data
 
         # Initialize with attributes

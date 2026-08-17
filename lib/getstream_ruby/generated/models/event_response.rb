@@ -13,7 +13,7 @@ module GetStream
         #   @return [String] Duration of the request in milliseconds
         attr_accessor :duration
         # @!attribute event
-        #   @return [WSEvent]
+        #   @return [WSEvent] Represents an BaseEvent that happened in Stream Chat
         attr_accessor :event
 
         # Initialize with attributes

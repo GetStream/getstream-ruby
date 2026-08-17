@@ -55,7 +55,7 @@ module GetStream
         #   @return [Array<FeedsReactionResponse>]
         attr_accessor :own_reactions
         # @!attribute user
-        #   @return [UserResponse]
+        #   @return [UserResponse] User response object
         attr_accessor :user
         # @!attribute controversy_score
         #   @return [Float]

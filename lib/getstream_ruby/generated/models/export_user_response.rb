@@ -19,7 +19,7 @@ module GetStream
         #   @return [Array<ReactionResponse>] List of exported reactions
         attr_accessor :reactions
         # @!attribute user
-        #   @return [UserResponse]
+        #   @return [UserResponse] User response object
         attr_accessor :user
 
         # Initialize with attributes

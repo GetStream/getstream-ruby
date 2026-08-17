@@ -19,7 +19,7 @@ module GetStream
         #   @return [Array<String>] the list of member IDs removed from the call
         attr_accessor :members
         # @!attribute call
-        #   @return [CallResponse]
+        #   @return [CallResponse] Represents a call
         attr_accessor :call
         # @!attribute type
         #   @return [String] The type of event: "call.member_removed" in this case

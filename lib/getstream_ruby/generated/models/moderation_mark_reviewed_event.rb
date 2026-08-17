@@ -25,7 +25,7 @@ module GetStream
         #   @return [DateTime]
         attr_accessor :received_at
         # @!attribute message
-        #   @return [MessageResponse]
+        #   @return [MessageResponse] Represents any chat message
         attr_accessor :message
 
         # Initialize with attributes

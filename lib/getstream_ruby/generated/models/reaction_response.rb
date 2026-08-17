@@ -31,7 +31,7 @@ module GetStream
         #   @return [Object] Custom data for this object
         attr_accessor :custom
         # @!attribute user
-        #   @return [UserResponse]
+        #   @return [UserResponse] User response object
         attr_accessor :user
 
         # Initialize with attributes

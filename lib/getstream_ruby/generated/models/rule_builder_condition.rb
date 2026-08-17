@@ -42,12 +42,24 @@ module GetStream
         # @!attribute content_flag_count_rule_params
         #   @return [FlagCountRuleParameters]
         attr_accessor :content_flag_count_rule_params
+        # @!attribute flood_identical_params
+        #   @return [FloodIdenticalRuleParameters]
+        attr_accessor :flood_identical_params
+        # @!attribute flood_similar_params
+        #   @return [FloodSimilarRuleParameters]
+        attr_accessor :flood_similar_params
         # @!attribute image_content_params
         #   @return [ImageContentParameters]
         attr_accessor :image_content_params
         # @!attribute image_rule_params
         #   @return [ImageRuleParameters]
         attr_accessor :image_rule_params
+        # @!attribute ip_content_count_rule_params
+        #   @return [IPContentCountRuleParameters]
+        attr_accessor :ip_content_count_rule_params
+        # @!attribute ip_flag_count_rule_params
+        #   @return [IPFlagCountRuleParameters]
+        attr_accessor :ip_flag_count_rule_params
         # @!attribute keyframe_ocr_rule_params
         #   @return [KeyframeOCRRuleParameters]
         attr_accessor :keyframe_ocr_rule_params
@@ -102,8 +114,12 @@ module GetStream
           @content_custom_property_count_params = attributes[:content_custom_property_count_params] || attributes['content_custom_property_count_params'] || nil
           @content_custom_property_params = attributes[:content_custom_property_params] || attributes['content_custom_property_params'] || nil
           @content_flag_count_rule_params = attributes[:content_flag_count_rule_params] || attributes['content_flag_count_rule_params'] || nil
+          @flood_identical_params = attributes[:flood_identical_params] || attributes['flood_identical_params'] || nil
+          @flood_similar_params = attributes[:flood_similar_params] || attributes['flood_similar_params'] || nil
           @image_content_params = attributes[:image_content_params] || attributes['image_content_params'] || nil
           @image_rule_params = attributes[:image_rule_params] || attributes['image_rule_params'] || nil
+          @ip_content_count_rule_params = attributes[:ip_content_count_rule_params] || attributes['ip_content_count_rule_params'] || nil
+          @ip_flag_count_rule_params = attributes[:ip_flag_count_rule_params] || attributes['ip_flag_count_rule_params'] || nil
           @keyframe_ocr_rule_params = attributes[:keyframe_ocr_rule_params] || attributes['keyframe_ocr_rule_params'] || nil
           @keyframe_rule_params = attributes[:keyframe_rule_params] || attributes['keyframe_rule_params'] || nil
           @ocr_content_params = attributes[:ocr_content_params] || attributes['ocr_content_params'] || nil
@@ -133,8 +149,12 @@ module GetStream
             content_custom_property_count_params: 'content_custom_property_count_params',
             content_custom_property_params: 'content_custom_property_params',
             content_flag_count_rule_params: 'content_flag_count_rule_params',
+            flood_identical_params: 'flood_identical_params',
+            flood_similar_params: 'flood_similar_params',
             image_content_params: 'image_content_params',
             image_rule_params: 'image_rule_params',
+            ip_content_count_rule_params: 'ip_content_count_rule_params',
+            ip_flag_count_rule_params: 'ip_flag_count_rule_params',
             keyframe_ocr_rule_params: 'keyframe_ocr_rule_params',
             keyframe_rule_params: 'keyframe_rule_params',
             ocr_content_params: 'ocr_content_params',

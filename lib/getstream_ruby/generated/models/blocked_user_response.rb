@@ -19,10 +19,10 @@ module GetStream
         #   @return [String] ID of the user who blocked another user
         attr_accessor :user_id
         # @!attribute blocked_user
-        #   @return [UserResponse]
+        #   @return [UserResponse] User response object
         attr_accessor :blocked_user
         # @!attribute user
-        #   @return [UserResponse]
+        #   @return [UserResponse] User response object
         attr_accessor :user
 
         # Initialize with attributes

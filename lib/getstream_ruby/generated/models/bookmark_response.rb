@@ -25,7 +25,7 @@ module GetStream
         #   @return [ActivityResponse]
         attr_accessor :activity
         # @!attribute user
-        #   @return [UserResponse]
+        #   @return [UserResponse] User response object
         attr_accessor :user
         # @!attribute activity_id
         #   @return [String]

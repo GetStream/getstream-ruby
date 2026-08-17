@@ -22,7 +22,7 @@ module GetStream
         #   @return [String] The type of recording
         attr_accessor :recording_type
         # @!attribute call_recording
-        #   @return [CallRecording]
+        #   @return [CallRecording] CallRecording represents a recording of a call.
         attr_accessor :call_recording
         # @!attribute type
         #   @return [String] The type of event: "call.recording_ready" in this case

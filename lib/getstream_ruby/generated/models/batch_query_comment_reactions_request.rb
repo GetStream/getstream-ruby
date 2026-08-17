@@ -31,7 +31,7 @@ module GetStream
         #   @return [Object] Optional filter on reaction_type or created_at
         attr_accessor :filter
         # @!attribute user
-        #   @return [UserRequest]
+        #   @return [UserRequest] User request object
         attr_accessor :user
 
         # Initialize with attributes

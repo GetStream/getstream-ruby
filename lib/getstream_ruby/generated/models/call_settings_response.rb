@@ -16,8 +16,11 @@ module GetStream
         #   @return [BackstageSettingsResponse]
         attr_accessor :backstage
         # @!attribute broadcasting
-        #   @return [BroadcastSettingsResponse]
+        #   @return [BroadcastSettingsResponse] BroadcastSettingsResponse is the payload for broadcasting settings
         attr_accessor :broadcasting
+        # @!attribute encryption
+        #   @return [EncryptionSettingsResponse] EncryptionSettings is the payload for end-to-end encryption settings
+        attr_accessor :encryption
         # @!attribute frame_recording
         #   @return [FrameRecordingSettingsResponse]
         attr_accessor :frame_recording
@@ -34,7 +37,7 @@ module GetStream
         #   @return [RawRecordingSettingsResponse]
         attr_accessor :raw_recording
         # @!attribute recording
-        #   @return [RecordSettingsResponse]
+        #   @return [RecordSettingsResponse] RecordSettings is the payload for recording settings
         attr_accessor :recording
         # @!attribute ring
         #   @return [RingSettingsResponse]
@@ -64,6 +67,7 @@ module GetStream
           @audio = attributes[:audio] || attributes['audio']
           @backstage = attributes[:backstage] || attributes['backstage']
           @broadcasting = attributes[:broadcasting] || attributes['broadcasting']
+          @encryption = attributes[:encryption] || attributes['encryption']
           @frame_recording = attributes[:frame_recording] || attributes['frame_recording']
           @geofencing = attributes[:geofencing] || attributes['geofencing']
           @individual_recording = attributes[:individual_recording] || attributes['individual_recording']
@@ -85,6 +89,7 @@ module GetStream
             audio: 'audio',
             backstage: 'backstage',
             broadcasting: 'broadcasting',
+            encryption: 'encryption',
             frame_recording: 'frame_recording',
             geofencing: 'geofencing',
             individual_recording: 'individual_recording',

@@ -19,7 +19,7 @@ module GetStream
         #   @return [String] Call session ID
         attr_accessor :session_id
         # @!attribute call
-        #   @return [CallResponse]
+        #   @return [CallResponse] Represents a call
         attr_accessor :call
         # @!attribute type
         #   @return [String] The type of event: "call.session_ended" in this case

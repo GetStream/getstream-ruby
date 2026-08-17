@@ -22,13 +22,13 @@ module GetStream
         #   @return [Boolean]
         attr_accessor :shadow
         # @!attribute banned_by
-        #   @return [UserResponse]
+        #   @return [UserResponse] User response object
         attr_accessor :banned_by
         # @!attribute channel
-        #   @return [ChannelResponse]
+        #   @return [ChannelResponse] Represents channel in chat
         attr_accessor :channel
         # @!attribute user
-        #   @return [UserResponse]
+        #   @return [UserResponse] User response object
         attr_accessor :user
 
         # Initialize with attributes

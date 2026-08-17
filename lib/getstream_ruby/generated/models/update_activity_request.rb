@@ -77,7 +77,7 @@ module GetStream
         #   @return [Object] Additional data for search indexing
         attr_accessor :search_data
         # @!attribute user
-        #   @return [UserRequest]
+        #   @return [UserRequest] User request object
         attr_accessor :user
 
         # Initialize with attributes

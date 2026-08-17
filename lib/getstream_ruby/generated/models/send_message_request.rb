@@ -10,11 +10,17 @@ module GetStream
 
         # Model attributes
         # @!attribute message
-        #   @return [MessageRequest]
+        #   @return [MessageRequest] Message data for creating or updating a message
         attr_accessor :message
         # @!attribute force_moderation
         #   @return [Boolean]
         attr_accessor :force_moderation
+        # @!attribute include_channel_context
+        #   @return [Boolean] When true, the response includes channel_context: a slim channel object with cid, type, id and created_by
+        attr_accessor :include_channel_context
+        # @!attribute include_mentioned_members
+        #   @return [Boolean] When true, the response includes mentioned_members: for each mentioned user, whether that user is currently a channel member. Requires the ReadChannelMembers permission
+        attr_accessor :include_mentioned_members
         # @!attribute keep_channel_hidden
         #   @return [Boolean]
         attr_accessor :keep_channel_hidden
@@ -36,6 +42,8 @@ module GetStream
           super(attributes)
           @message = attributes[:message] || attributes['message']
           @force_moderation = attributes[:force_moderation] || attributes['force_moderation'] || nil
+          @include_channel_context = attributes[:include_channel_context] || attributes['include_channel_context'] || nil
+          @include_mentioned_members = attributes[:include_mentioned_members] || attributes['include_mentioned_members'] || nil
           @keep_channel_hidden = attributes[:keep_channel_hidden] || attributes['keep_channel_hidden'] || nil
           @pending = attributes[:pending] || attributes['pending'] || nil
           @skip_enrich_url = attributes[:skip_enrich_url] || attributes['skip_enrich_url'] || nil
@@ -48,6 +56,8 @@ module GetStream
           {
             message: 'message',
             force_moderation: 'force_moderation',
+            include_channel_context: 'include_channel_context',
+            include_mentioned_members: 'include_mentioned_members',
             keep_channel_hidden: 'keep_channel_hidden',
             pending: 'pending',
             skip_enrich_url: 'skip_enrich_url',

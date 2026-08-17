@@ -13,8 +13,14 @@ module GetStream
         #   @return [String] Duration of the request in milliseconds
         attr_accessor :duration
         # @!attribute message
-        #   @return [MessageResponse]
+        #   @return [MessageResponse] Represents any chat message
         attr_accessor :message
+        # @!attribute channel_context
+        #   @return [ChannelContextResponse] Slim channel object: identity plus creator
+        attr_accessor :channel_context
+        # @!attribute mentioned_members
+        #   @return [Hash<String, Boolean>] Map of mentioned user ID to whether that user is currently an active channel member. Only set when include_mentioned_members was requested; omitted when the message has no mentions or the membership lookup failed
+        attr_accessor :mentioned_members
         # @!attribute pending_message_metadata
         #   @return [Hash<String, String>] Pending message metadata
         attr_accessor :pending_message_metadata
@@ -24,6 +30,8 @@ module GetStream
           super(attributes)
           @duration = attributes[:duration] || attributes['duration']
           @message = attributes[:message] || attributes['message']
+          @channel_context = attributes[:channel_context] || attributes['channel_context'] || nil
+          @mentioned_members = attributes[:mentioned_members] || attributes['mentioned_members'] || nil
           @pending_message_metadata = attributes[:pending_message_metadata] || attributes['pending_message_metadata'] || nil
         end
 
@@ -32,6 +40,8 @@ module GetStream
           {
             duration: 'duration',
             message: 'message',
+            channel_context: 'channel_context',
+            mentioned_members: 'mentioned_members',
             pending_message_metadata: 'pending_message_metadata'
           }
         end

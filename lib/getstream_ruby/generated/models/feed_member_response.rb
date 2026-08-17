@@ -22,7 +22,7 @@ module GetStream
         #   @return [DateTime] When the membership was last updated
         attr_accessor :updated_at
         # @!attribute user
-        #   @return [UserResponse]
+        #   @return [UserResponse] User response object
         attr_accessor :user
         # @!attribute invite_accepted_at
         #   @return [DateTime] When the invite was accepted

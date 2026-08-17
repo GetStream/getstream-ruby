@@ -22,13 +22,13 @@ module GetStream
         #   @return [Integer] The number of watchers
         attr_accessor :watcher_count
         # @!attribute channel
-        #   @return [ChannelResponse]
+        #   @return [ChannelResponse] Represents channel in chat
         attr_accessor :channel
         # @!attribute custom
         #   @return [Object]
         attr_accessor :custom
         # @!attribute message
-        #   @return [MessageResponse]
+        #   @return [MessageResponse] Represents any chat message
         attr_accessor :message
         # @!attribute type
         #   @return [String] The type of event: "notification.message_new" in this case

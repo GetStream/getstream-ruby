@@ -34,7 +34,7 @@ module GetStream
         #   @return [Integer] Duration of the ban in minutes
         attr_accessor :timeout
         # @!attribute banned_by
-        #   @return [UserRequest]
+        #   @return [UserRequest] User request object
         attr_accessor :banned_by
 
         # Initialize with attributes

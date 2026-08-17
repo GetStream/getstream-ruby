@@ -9,6 +9,9 @@ module GetStream
       class FloodConfig < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute allowlist
+        #   @return [Array<String>]
+        attr_accessor :allowlist
         # @!attribute identical
         #   @return [FloodIdenticalConfig]
         attr_accessor :identical
@@ -19,6 +22,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @allowlist = attributes[:allowlist] || attributes['allowlist'] || nil
           @identical = attributes[:identical] || attributes['identical'] || nil
           @similar = attributes[:similar] || attributes['similar'] || nil
         end
@@ -26,6 +30,7 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            allowlist: 'allowlist',
             identical: 'identical',
             similar: 'similar'
           }

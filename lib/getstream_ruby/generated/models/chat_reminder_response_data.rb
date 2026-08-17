@@ -31,7 +31,7 @@ module GetStream
         #   @return [ChatMessageResponse]
         attr_accessor :message
         # @!attribute user
-        #   @return [UserResponse]
+        #   @return [UserResponse] User response object
         attr_accessor :user
 
         # Initialize with attributes

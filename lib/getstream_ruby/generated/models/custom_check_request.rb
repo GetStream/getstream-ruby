@@ -25,10 +25,10 @@ module GetStream
         #   @return [String]
         attr_accessor :user_id
         # @!attribute moderation_payload
-        #   @return [ModerationPayloadRequest]
+        #   @return [ModerationPayloadRequest] Content payload for moderation
         attr_accessor :moderation_payload
         # @!attribute user
-        #   @return [UserRequest]
+        #   @return [UserRequest] User request object
         attr_accessor :user
 
         # Initialize with attributes

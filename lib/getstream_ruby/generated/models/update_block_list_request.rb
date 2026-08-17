@@ -24,9 +24,15 @@ module GetStream
         # @!attribute team
         #   @return [String]
         attr_accessor :team
+        # @!attribute user_id
+        #   @return [String]
+        attr_accessor :user_id
         # @!attribute words
         #   @return [Array<String>] List of words to block
         attr_accessor :words
+        # @!attribute user
+        #   @return [UserRequest] User request object
+        attr_accessor :user
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -36,7 +42,9 @@ module GetStream
           @is_plural_check_enabled = attributes[:is_plural_check_enabled] || attributes['is_plural_check_enabled'] || nil
           @is_substring_matching_enabled = attributes[:is_substring_matching_enabled] || attributes['is_substring_matching_enabled'] || nil
           @team = attributes[:team] || attributes['team'] || nil
+          @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @words = attributes[:words] || attributes['words'] || nil
+          @user = attributes[:user] || attributes['user'] || nil
         end
 
         # Override field mappings for JSON serialization
@@ -47,7 +55,9 @@ module GetStream
             is_plural_check_enabled: 'is_plural_check_enabled',
             is_substring_matching_enabled: 'is_substring_matching_enabled',
             team: 'team',
-            words: 'words'
+            user_id: 'user_id',
+            words: 'words',
+            user: 'user'
           }
         end
       end

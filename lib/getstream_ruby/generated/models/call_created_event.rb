@@ -19,7 +19,7 @@ module GetStream
         #   @return [Array<MemberResponse>] the members added to this call
         attr_accessor :members
         # @!attribute call
-        #   @return [CallResponse]
+        #   @return [CallResponse] Represents a call
         attr_accessor :call
         # @!attribute type
         #   @return [String] The type of event: "call.created" in this case

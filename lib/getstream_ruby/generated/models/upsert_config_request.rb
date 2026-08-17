@@ -64,7 +64,7 @@ module GetStream
         #   @return [RuleBuilderConfig]
         attr_accessor :rule_builder_config
         # @!attribute user
-        #   @return [UserRequest]
+        #   @return [UserRequest] User request object
         attr_accessor :user
         # @!attribute velocity_filter_config
         #   @return [VelocityFilterConfig]

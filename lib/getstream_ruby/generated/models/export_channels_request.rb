@@ -18,6 +18,9 @@ module GetStream
         # @!attribute export_users
         #   @return [Boolean]
         attr_accessor :export_users
+        # @!attribute format
+        #   @return [String] Output format: 'json' (default) or 'csv'. csv requires version=v2 and is incompatible with export_users
+        attr_accessor :format
         # @!attribute include_soft_deleted_channels
         #   @return [Boolean] Set if you want to include deleted channels
         attr_accessor :include_soft_deleted_channels
@@ -27,6 +30,9 @@ module GetStream
         # @!attribute version
         #   @return [String] Export version
         attr_accessor :version
+        # @!attribute include_fields
+        #   @return [Array<String>] For csv format: subset of message columns to include (defaults to a standard set)
+        attr_accessor :include_fields
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -34,9 +40,11 @@ module GetStream
           @channels = attributes[:channels] || attributes['channels']
           @clear_deleted_message_text = attributes[:clear_deleted_message_text] || attributes['clear_deleted_message_text'] || nil
           @export_users = attributes[:export_users] || attributes['export_users'] || nil
+          @format = attributes[:format] || attributes['format'] || nil
           @include_soft_deleted_channels = attributes[:include_soft_deleted_channels] || attributes['include_soft_deleted_channels'] || nil
           @include_truncated_messages = attributes[:include_truncated_messages] || attributes['include_truncated_messages'] || nil
           @version = attributes[:version] || attributes['version'] || nil
+          @include_fields = attributes[:include_fields] || attributes['include_fields'] || nil
         end
 
         # Override field mappings for JSON serialization
@@ -45,9 +53,11 @@ module GetStream
             channels: 'channels',
             clear_deleted_message_text: 'clear_deleted_message_text',
             export_users: 'export_users',
+            format: 'format',
             include_soft_deleted_channels: 'include_soft_deleted_channels',
             include_truncated_messages: 'include_truncated_messages',
-            version: 'version'
+            version: 'version',
+            include_fields: 'include_fields'
           }
         end
       end

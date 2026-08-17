@@ -18,6 +18,9 @@ module GetStream
         # @!attribute broadcasting
         #   @return [BroadcastSettingsRequest]
         attr_accessor :broadcasting
+        # @!attribute encryption
+        #   @return [EncryptionSettingsRequest]
+        attr_accessor :encryption
         # @!attribute frame_recording
         #   @return [FrameRecordingSettingsRequest]
         attr_accessor :frame_recording
@@ -64,6 +67,7 @@ module GetStream
           @audio = attributes[:audio] || attributes['audio'] || nil
           @backstage = attributes[:backstage] || attributes['backstage'] || nil
           @broadcasting = attributes[:broadcasting] || attributes['broadcasting'] || nil
+          @encryption = attributes[:encryption] || attributes['encryption'] || nil
           @frame_recording = attributes[:frame_recording] || attributes['frame_recording'] || nil
           @geofencing = attributes[:geofencing] || attributes['geofencing'] || nil
           @individual_recording = attributes[:individual_recording] || attributes['individual_recording'] || nil
@@ -85,6 +89,7 @@ module GetStream
             audio: 'audio',
             backstage: 'backstage',
             broadcasting: 'broadcasting',
+            encryption: 'encryption',
             frame_recording: 'frame_recording',
             geofencing: 'geofencing',
             individual_recording: 'individual_recording',

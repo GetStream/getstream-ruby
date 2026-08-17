@@ -384,23 +384,23 @@ module GetStream
       # Returns activity by ID
       #
       # @param _id [String]
-      # @param language [String]
-      # @param translate_text [Boolean]
       # @param comment_sort [String]
       # @param comment_limit [Integer]
       # @param user_id [String]
+      # @param language [String]
+      # @param translate_text [Boolean]
       # @return [Models::GetActivityResponse]
-      def get_activity(_id, language = nil, translate_text = nil, comment_sort = nil, comment_limit = nil, user_id = nil)
+      def get_activity(_id, comment_sort = nil, comment_limit = nil, user_id = nil, language = nil, translate_text = nil)
         path = '/api/v2/feeds/activities/{id}'
         # Replace path parameters
         path = path.gsub('{id}', _id.to_s)
         # Build query parameters
         query_params = {}
-        query_params['language'] = language unless language.nil?
-        query_params['translate_text'] = translate_text unless translate_text.nil?
         query_params['comment_sort'] = comment_sort unless comment_sort.nil?
         query_params['comment_limit'] = comment_limit unless comment_limit.nil?
         query_params['user_id'] = user_id unless user_id.nil?
+        query_params['language'] = language unless language.nil?
+        query_params['translate_text'] = translate_text unless translate_text.nil?
 
         # Make the API request
         @client.make_request(
@@ -882,19 +882,19 @@ module GetStream
       # Get a comment by ID
       #
       # @param _id [String]
+      # @param user_id [String]
       # @param language [String]
       # @param translate_text [Boolean]
-      # @param user_id [String]
       # @return [Models::GetCommentResponse]
-      def get_comment(_id, language = nil, translate_text = nil, user_id = nil)
+      def get_comment(_id, user_id = nil, language = nil, translate_text = nil)
         path = '/api/v2/feeds/comments/{id}'
         # Replace path parameters
         path = path.gsub('{id}', _id.to_s)
         # Build query parameters
         query_params = {}
+        query_params['user_id'] = user_id unless user_id.nil?
         query_params['language'] = language unless language.nil?
         query_params['translate_text'] = translate_text unless translate_text.nil?
-        query_params['user_id'] = user_id unless user_id.nil?
 
         # Make the API request
         @client.make_request(
@@ -1757,9 +1757,10 @@ module GetStream
       # @param android [Boolean]
       # @param ios [Boolean]
       # @param web [Boolean]
+      # @param unity [Boolean]
       # @param server_side [Boolean]
       # @return [Models::GetFeedsRateLimitsResponse]
-      def get_feeds_rate_limits(endpoints = nil, android = nil, ios = nil, web = nil, server_side = nil)
+      def get_feeds_rate_limits(endpoints = nil, android = nil, ios = nil, web = nil, unity = nil, server_side = nil)
         path = '/api/v2/feeds/feeds/rate_limits'
         # Build query parameters
         query_params = {}
@@ -1767,6 +1768,7 @@ module GetStream
         query_params['android'] = android unless android.nil?
         query_params['ios'] = ios unless ios.nil?
         query_params['web'] = web unless web.nil?
+        query_params['unity'] = unity unless unity.nil?
         query_params['server_side'] = server_side unless server_side.nil?
 
         # Make the API request

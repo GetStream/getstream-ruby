@@ -31,7 +31,7 @@ module GetStream
         #   @return [Boolean]
         attr_accessor :translated
         # @!attribute user
-        #   @return [UserResponse]
+        #   @return [UserResponse] User response object
         attr_accessor :user
         # @!attribute service
         #   @return [String]

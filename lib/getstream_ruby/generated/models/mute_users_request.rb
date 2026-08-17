@@ -31,7 +31,7 @@ module GetStream
         #   @return [Array<String>]
         attr_accessor :user_ids
         # @!attribute muted_by
-        #   @return [UserRequest]
+        #   @return [UserRequest] User request object
         attr_accessor :muted_by
 
         # Initialize with attributes

@@ -24,6 +24,9 @@ module GetStream
         # @!attribute severity
         #   @return [String] Text and OCR entries. Aggregate (max) Bodyguard severity level (`LOW` / `MEDIUM` / `HIGH` / `CRITICAL`). Absent on image-classification entries.
         attr_accessor :severity
+        # @!attribute text
+        #   @return [String]
+        attr_accessor :text
         # @!attribute classifications
         #   @return [Array<Classification>] Image-classification entries (keyframe rule, Type=image) carry nested L1 → L2 classifications. Text entries (closed_caption rule, Type=text) carry flat label + severity. Resolved against the app's effective taxonomy on the image side.
         attr_accessor :classifications
@@ -39,6 +42,7 @@ module GetStream
           @type = attributes[:type] || attributes['type']
           @confidence = attributes[:confidence] || attributes['confidence'] || nil
           @severity = attributes[:severity] || attributes['severity'] || nil
+          @text = attributes[:text] || attributes['text'] || nil
           @classifications = attributes[:classifications] || attributes['classifications'] || nil
           @ocr_classifications = attributes[:ocr_classifications] || attributes['ocr_classifications'] || nil
         end
@@ -51,6 +55,7 @@ module GetStream
             type: 'type',
             confidence: 'confidence',
             severity: 'severity',
+            text: 'text',
             classifications: 'classifications',
             ocr_classifications: 'ocr_classifications'
           }

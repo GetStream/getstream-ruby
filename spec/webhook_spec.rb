@@ -1045,6 +1045,13 @@ RSpec.describe 'Webhook' do
 
     end
 
+    it 'parses moderation.analysis.failed' do
+
+      event = StreamChat::Webhook.parse_webhook_event('{"type":"moderation.analysis.failed"}')
+      expect(event.class.name).to eq('GetStream::Generated::Models::ModerationAnalysisFailedEvent')
+
+    end
+
     it 'parses moderation.custom_action' do
 
       event = StreamChat::Webhook.parse_webhook_event('{"type":"moderation.custom_action"}')

@@ -58,10 +58,10 @@ module GetStream
         #   @return [ModerationResponse]
         attr_accessor :automoderation_scores
         # @!attribute channel
-        #   @return [ChannelResponse]
+        #   @return [ChannelResponse] Represents channel in chat
         attr_accessor :channel
         # @!attribute created_by
-        #   @return [UserResponse]
+        #   @return [UserResponse] User response object
         attr_accessor :created_by
         # @!attribute me
         #   @return [OwnUserResponse]
@@ -70,7 +70,7 @@ module GetStream
         #   @return [ChannelMemberResponse]
         attr_accessor :member
         # @!attribute message
-        #   @return [MessageResponse]
+        #   @return [MessageResponse] Represents any chat message
         attr_accessor :message
         # @!attribute message_update
         #   @return [MessageUpdate]
@@ -88,7 +88,7 @@ module GetStream
         #   @return [ThreadResponse]
         attr_accessor :thread
         # @!attribute user
-        #   @return [UserResponse]
+        #   @return [UserResponse] User response object
         attr_accessor :user
 
         # Initialize with attributes

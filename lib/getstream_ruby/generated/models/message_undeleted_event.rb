@@ -19,7 +19,7 @@ module GetStream
         #   @return [Object]
         attr_accessor :custom
         # @!attribute message
-        #   @return [MessageResponse]
+        #   @return [MessageResponse] Represents any chat message
         attr_accessor :message
         # @!attribute type
         #   @return [String] The type of event: "message.undeleted" in this case

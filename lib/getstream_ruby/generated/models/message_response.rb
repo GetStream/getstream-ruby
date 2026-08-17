@@ -76,7 +76,7 @@ module GetStream
         #   @return [Hash<String, Integer>] An object containing scores of reactions of each type. Key: reaction type (string), value: total score of reactions (int)
         attr_accessor :reaction_scores
         # @!attribute user
-        #   @return [UserResponse]
+        #   @return [UserResponse] User response object
         attr_accessor :user
         # @!attribute command
         #   @return [String] Contains provided slash command
@@ -133,19 +133,19 @@ module GetStream
         #   @return [Hash<String, Array<String>>] Contains image moderation information
         attr_accessor :image_labels
         # @!attribute member
-        #   @return [ChannelMemberResponse]
+        #   @return [ChannelMemberPartialResponse]
         attr_accessor :member
         # @!attribute moderation
         #   @return [ModerationV2Response]
         attr_accessor :moderation
         # @!attribute pinned_by
-        #   @return [UserResponse]
+        #   @return [UserResponse] User response object
         attr_accessor :pinned_by
         # @!attribute poll
         #   @return [PollResponseData]
         attr_accessor :poll
         # @!attribute quoted_message
-        #   @return [MessageResponse]
+        #   @return [MessageResponse] Represents any chat message
         attr_accessor :quoted_message
         # @!attribute reaction_groups
         #   @return [Hash<String, ReactionGroupResponse>]

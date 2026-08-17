@@ -40,7 +40,7 @@ module GetStream
         #   @return [Object] Filters to apply to the query. Supports location-based queries with 'near' and 'within_bounds' operators.
         attr_accessor :filter
         # @!attribute user
-        #   @return [UserRequest]
+        #   @return [UserRequest] User request object
         attr_accessor :user
 
         # Initialize with attributes

@@ -28,7 +28,7 @@ module GetStream
         #   @return [Object] Filter conditions for moderation logs
         attr_accessor :filter
         # @!attribute user
-        #   @return [UserRequest]
+        #   @return [UserRequest] User request object
         attr_accessor :user
 
         # Initialize with attributes

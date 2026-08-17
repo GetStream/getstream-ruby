@@ -51,6 +51,9 @@ module GetStream
         # @!attribute max_aggregated_activities_length
         #   @return [Integer]
         attr_accessor :max_aggregated_activities_length
+        # @!attribute member_custom_on_messages_enabled
+        #   @return [Boolean]
+        attr_accessor :member_custom_on_messages_enabled
         # @!attribute moderation_audio_call_moderation_enabled
         #   @return [Boolean]
         attr_accessor :moderation_audio_call_moderation_enabled
@@ -156,6 +159,9 @@ module GetStream
         # @!attribute before_message_send_hook_url
         #   @return [String]
         attr_accessor :before_message_send_hook_url
+        # @!attribute chat_primary_use_case
+        #   @return [String]
+        attr_accessor :chat_primary_use_case
         # @!attribute moderation_onboarding_complete
         #   @return [Boolean]
         attr_accessor :moderation_onboarding_complete
@@ -204,6 +210,7 @@ module GetStream
           @id = attributes[:id] || attributes['id']
           @image_moderation_enabled = attributes[:image_moderation_enabled] || attributes['image_moderation_enabled']
           @max_aggregated_activities_length = attributes[:max_aggregated_activities_length] || attributes['max_aggregated_activities_length']
+          @member_custom_on_messages_enabled = attributes[:member_custom_on_messages_enabled] || attributes['member_custom_on_messages_enabled']
           @moderation_audio_call_moderation_enabled = attributes[:moderation_audio_call_moderation_enabled] || attributes['moderation_audio_call_moderation_enabled']
           @moderation_enabled = attributes[:moderation_enabled] || attributes['moderation_enabled']
           @moderation_llm_configurability_enabled = attributes[:moderation_llm_configurability_enabled] || attributes['moderation_llm_configurability_enabled']
@@ -239,6 +246,7 @@ module GetStream
           @push_notifications = attributes[:push_notifications] || attributes['push_notifications']
           @before_message_send_hook_attempt_timeout_ms = attributes[:before_message_send_hook_attempt_timeout_ms] || attributes['before_message_send_hook_attempt_timeout_ms'] || nil
           @before_message_send_hook_url = attributes[:before_message_send_hook_url] || attributes['before_message_send_hook_url'] || nil
+          @chat_primary_use_case = attributes[:chat_primary_use_case] || attributes['chat_primary_use_case'] || nil
           @moderation_onboarding_complete = attributes[:moderation_onboarding_complete] || attributes['moderation_onboarding_complete'] || nil
           @moderation_s3_image_access_role_arn = attributes[:moderation_s3_image_access_role_arn] || attributes['moderation_s3_image_access_role_arn'] || nil
           @revoke_tokens_issued_before = attributes[:revoke_tokens_issued_before] || attributes['revoke_tokens_issued_before'] || nil
@@ -268,6 +276,7 @@ module GetStream
             id: 'id',
             image_moderation_enabled: 'image_moderation_enabled',
             max_aggregated_activities_length: 'max_aggregated_activities_length',
+            member_custom_on_messages_enabled: 'member_custom_on_messages_enabled',
             moderation_audio_call_moderation_enabled: 'moderation_audio_call_moderation_enabled',
             moderation_enabled: 'moderation_enabled',
             moderation_llm_configurability_enabled: 'moderation_llm_configurability_enabled',
@@ -303,6 +312,7 @@ module GetStream
             push_notifications: 'push_notifications',
             before_message_send_hook_attempt_timeout_ms: 'before_message_send_hook_attempt_timeout_ms',
             before_message_send_hook_url: 'before_message_send_hook_url',
+            chat_primary_use_case: 'chat_primary_use_case',
             moderation_onboarding_complete: 'moderation_onboarding_complete',
             moderation_s3_image_access_role_arn: 'moderation_s3_image_access_role_arn',
             revoke_tokens_issued_before: 'revoke_tokens_issued_before',
