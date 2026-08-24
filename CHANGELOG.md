@@ -1,5 +1,13 @@
 ## [Unreleased]
 
+### Fixed
+
+- Default `idle_timeout` for `net_http_persistent` is now `25` seconds (was `55`).
+  GCP SSL-proxy load balancers close idle TLS around ~30s; keeping pooled
+  connections for 55s (AWS ALB idle minus 5s) caused
+  `SSL_read: unexpected eof while reading` (`GetStreamRuby::TransportError`)
+  on the next request. Override with `idle_timeout:` or `STREAM_IDLE_TIMEOUT`.
+
 ## [10.0.0] - 2026-07-24
 
 ### Added

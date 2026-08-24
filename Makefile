@@ -1,6 +1,6 @@
 # GetStream Ruby SDK Makefile
 
-.PHONY: help install test test-unit test-integration test-integration-chat test-integration-video lint format clean setup
+.PHONY: help install test test-unit test-integration test-integration-chat test-integration-video test-integration-gcp-lb lint format clean setup
 
 # Default target
 help: ## Show this help message
@@ -39,6 +39,9 @@ test-integration-feed: ## Run feed integration tests only
 
 test-integration-video: ## Run video integration tests only
 	bundle exec rspec spec/integration/video_integration_spec.rb spec/integration/video_client_integration_spec.rb
+
+test-integration-gcp-lb: ## Run GCP load-balancer keep-alive integration test
+	bundle exec rspec spec/integration/gcp_lb_keepalive_spec.rb
 
 test-all: ## Run all tests (unit + integration)
 	bundle exec rspec spec/
