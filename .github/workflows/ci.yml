@@ -118,7 +118,6 @@ jobs:
     name: GCP load balancer keep-alive
     runs-on: ubuntu-latest
     environment: ci
-    if: vars.STREAM_GCP_BASE_URL != ''
 
     steps:
     - name: Checkout code
