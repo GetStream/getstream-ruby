@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'rspec'
+require 'uri'
 require_relative 'chat_test_helpers'
 
 # CHA-4943: GCP SSL-proxy LBs close idle TLS around ~30s. The SDK pool must
@@ -13,8 +14,13 @@ RSpec.describe 'GCP load balancer keep-alive', type: :integration do
 
   include ChatTestHelpers
 
+  # Match on the parsed host suffix rather than a substring so a URL like
+  # https://gcp.stream-io-api.com.example.com does not slip through.
   def gcp_edge_base_url?
-    ENV.fetch('STREAM_BASE_URL', '').include?('.gcp.stream-io-api.com')
+    host = URI(ENV.fetch('STREAM_BASE_URL', '')).host.to_s
+    host.end_with?('.gcp.stream-io-api.com')
+  rescue URI::InvalidURIError
+    false
   end
 
   before(:all) do
