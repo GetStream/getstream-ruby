@@ -325,6 +325,7 @@ module GetStreamRuby
 
       # Default: net_http_persistent with the 5-knob config.
       # Never set Connection: close; net_http_persistent keeps connections alive natively.
+      # idle_timeout must be below the GCP SSL-proxy idle (~30s); AWS ALB is 60s.
       idle = @configuration.idle_timeout
       connection.adapter :net_http_persistent, pool_size: @configuration.max_conns_per_host do |http|
 

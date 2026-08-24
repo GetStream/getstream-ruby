@@ -230,7 +230,7 @@ RSpec.describe 'CHA-2956 connection pooling' do
       line = info_lines.first
       expect(line).to include('client.initialized')
       expect(line).to include('stream.client.max_conns_per_host=5')
-      expect(line).to include('stream.client.idle_timeout_seconds=55')
+      expect(line).to include('stream.client.idle_timeout_seconds=25')
       expect(line).to include('stream.client.connect_timeout_seconds=10')
       expect(line).to include('stream.client.request_timeout_seconds=30')
       expect(line).to include('stream.client.user_http_client=false')

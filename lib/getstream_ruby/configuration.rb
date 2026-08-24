@@ -137,12 +137,14 @@ module GetStreamRuby
         env_request_timeout = ENV.fetch('STREAM_REQUEST_TIMEOUT', nil) || ENV.fetch('STREAM_TIMEOUT', nil)
         @request_timeout = (request_timeout || timeout || env_request_timeout || 30).to_i
         @max_conns_per_host = (max_conns_per_host || ENV.fetch('STREAM_MAX_CONNS_PER_HOST', nil) || 5).to_i
-        @idle_timeout = (idle_timeout || ENV.fetch('STREAM_IDLE_TIMEOUT', nil) || 55).to_i
+        # 25s sits under GCP SSL-proxy idle (~30s) and AWS ALB idle (60s) so
+        # net_http_persistent drops the conn before the LB does (CHA-4943).
+        @idle_timeout = (idle_timeout || ENV.fetch('STREAM_IDLE_TIMEOUT', nil) || 25).to_i
         @connect_timeout = (connect_timeout || ENV.fetch('STREAM_CONNECT_TIMEOUT', nil) || 10).to_i
       else
         @request_timeout = (request_timeout || timeout || 30).to_i
         @max_conns_per_host = (max_conns_per_host || 5).to_i
-        @idle_timeout = (idle_timeout || 55).to_i
+        @idle_timeout = (idle_timeout || 25).to_i
         @connect_timeout = (connect_timeout || 10).to_i
       end
     end
