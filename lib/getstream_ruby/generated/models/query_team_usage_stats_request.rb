@@ -24,6 +24,9 @@ module GetStream
         # @!attribute start_date
         #   @return [String] Start date in YYYY-MM-DD format. Used with end_date for custom date range. Returns daily breakdown.
         attr_accessor :start_date
+        # @!attribute team
+        #   @return [String] Filter results to a single team ID. Empty string selects users not assigned to any team. Mutually exclusive with 'next'.
+        attr_accessor :team
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -33,6 +36,7 @@ module GetStream
           @month = attributes[:month] || attributes['month'] || nil
           @next = attributes[:next] || attributes['next'] || nil
           @start_date = attributes[:start_date] || attributes['start_date'] || nil
+          @team = attributes[:team] || attributes['team'] || nil
         end
 
         # Override field mappings for JSON serialization
@@ -42,7 +46,8 @@ module GetStream
             limit: 'limit',
             month: 'month',
             next: 'next',
-            start_date: 'start_date'
+            start_date: 'start_date',
+            team: 'team'
           }
         end
       end

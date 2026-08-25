@@ -13,7 +13,7 @@ module GetStream
         #   @return [Boolean] Whether push notifications are enabled for this feed group
         attr_accessor :enable_push
         # @!attribute push_types
-        #   @return [Array<String>] List of notification types that should trigger push notifications (e.g., follow, comment, reaction, comment_reaction, mention)
+        #   @return [Array<String>] Allowlist of notification types that may trigger push (e.g. follow, comment, reaction, comment_reaction, mention, or any custom activity.type). Empty or omitted means no types. Built-in notifications match notification_context.trigger.type; manually added notification activities match activity.type.
         attr_accessor :push_types
 
         # Initialize with attributes

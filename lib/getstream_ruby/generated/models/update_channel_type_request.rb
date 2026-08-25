@@ -39,6 +39,9 @@ module GetStream
         # @!attribute mark_messages_pending
         #   @return [Boolean]
         attr_accessor :mark_messages_pending
+        # @!attribute message_retention
+        #   @return [String]
+        attr_accessor :message_retention
         # @!attribute mutes
         #   @return [Boolean]
         attr_accessor :mutes
@@ -128,6 +131,7 @@ module GetStream
           @custom_events = attributes[:custom_events] || attributes['custom_events'] || nil
           @delivery_events = attributes[:delivery_events] || attributes['delivery_events'] || nil
           @mark_messages_pending = attributes[:mark_messages_pending] || attributes['mark_messages_pending'] || nil
+          @message_retention = attributes[:message_retention] || attributes['message_retention'] || nil
           @mutes = attributes[:mutes] || attributes['mutes'] || nil
           @partition_size = attributes[:partition_size] || attributes['partition_size'] || nil
           @partition_ttl = attributes[:partition_ttl] || attributes['partition_ttl'] || nil
@@ -168,6 +172,7 @@ module GetStream
             custom_events: 'custom_events',
             delivery_events: 'delivery_events',
             mark_messages_pending: 'mark_messages_pending',
+            message_retention: 'message_retention',
             mutes: 'mutes',
             partition_size: 'partition_size',
             partition_ttl: 'partition_ttl',
