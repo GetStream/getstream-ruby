@@ -64,7 +64,7 @@ module GetStream
         #   @return [RejectAppealRequestPayload] Configuration for rejecting an appeal
         attr_accessor :reject_appeal
         # @!attribute restore
-        #   @return [RestoreActionRequestPayload] Configuration for restore action
+        #   @return [RestoreActionRequestPayload] Configuration for restore action. State-aware: reverses whichever of a delete, a block, or a shadow block currently applies to the content (including both a delete and a block/shadow block at once).
         attr_accessor :restore
         # @!attribute shadow_block
         #   @return [ShadowBlockActionRequestPayload] Configuration for shadow block action
@@ -73,7 +73,7 @@ module GetStream
         #   @return [UnbanActionRequestPayload] Configuration for unban moderation action
         attr_accessor :unban
         # @!attribute unblock
-        #   @return [UnblockActionRequestPayload] Configuration for unblock action
+        #   @return [UnblockActionRequestPayload] Deprecated: use restore instead — it now also reverses a block or shadow block. Configuration for unblock action.
         attr_accessor :unblock
         # @!attribute user
         #   @return [UserRequest] User request object

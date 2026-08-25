@@ -5,7 +5,7 @@
 module GetStream
   module Generated
     module Models
-      # Configuration for unblock action
+      # Deprecated: use restore instead — it now also reverses a block or shadow block. Configuration for unblock action.
       class UnblockActionRequestPayload < GetStream::BaseModel
 
         # Model attributes

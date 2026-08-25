@@ -640,6 +640,57 @@ module GetStream
         )
       end
 
+      # Returns pinned messages for the channel
+      #
+      # @param _type [String]
+      # @param _id [String]
+      # @param limit [Integer]
+      # @param offset [Integer]
+      # @param id_gte [String]
+      # @param id_gt [String]
+      # @param id_lte [String]
+      # @param id_lt [String]
+      # @param pinned_at_after_or_equal [DateTime]
+      # @param pinned_at_after [DateTime]
+      # @param pinned_at_before_or_equal [DateTime]
+      # @param pinned_at_before [DateTime]
+      # @param id_around [String]
+      # @param pinned_at_around [DateTime]
+      # @param user_id [String]
+      # @param sort [Array<SortParamRequest>]
+      # @param member_custom_include [Array<String>]
+      # @return [Models::GetPinnedMessagesResponse]
+      def get_pinned_messages(_type, _id, limit = nil, offset = nil, id_gte = nil, id_gt = nil, id_lte = nil, id_lt = nil, pinned_at_after_or_equal = nil, pinned_at_after = nil, pinned_at_before_or_equal = nil, pinned_at_before = nil, id_around = nil, pinned_at_around = nil, user_id = nil, sort = nil, member_custom_include = nil)
+        path = '/api/v2/chat/channels/{type}/{id}/pinned_messages'
+        # Replace path parameters
+        path = path.gsub('{type}', _type.to_s)
+        path = path.gsub('{id}', _id.to_s)
+        # Build query parameters
+        query_params = {}
+        query_params['limit'] = limit unless limit.nil?
+        query_params['offset'] = offset unless offset.nil?
+        query_params['id_gte'] = id_gte unless id_gte.nil?
+        query_params['id_gt'] = id_gt unless id_gt.nil?
+        query_params['id_lte'] = id_lte unless id_lte.nil?
+        query_params['id_lt'] = id_lt unless id_lt.nil?
+        query_params['pinned_at_after_or_equal'] = pinned_at_after_or_equal unless pinned_at_after_or_equal.nil?
+        query_params['pinned_at_after'] = pinned_at_after unless pinned_at_after.nil?
+        query_params['pinned_at_before_or_equal'] = pinned_at_before_or_equal unless pinned_at_before_or_equal.nil?
+        query_params['pinned_at_before'] = pinned_at_before unless pinned_at_before.nil?
+        query_params['id_around'] = id_around unless id_around.nil?
+        query_params['pinned_at_around'] = pinned_at_around unless pinned_at_around.nil?
+        query_params['user_id'] = user_id unless user_id.nil?
+        query_params['sort'] = sort unless sort.nil?
+        query_params['member_custom_include'] = member_custom_include unless member_custom_include.nil?
+
+        # Make the API request
+        @client.make_request(
+          :get,
+          path,
+          query_params: query_params
+        )
+      end
+
       # This Method creates a channel or returns an existing one with matching attributesSends events:- channel.created- member.added- member.removed- member.updated- user.watching.start
       #
       # @param _type [String]
@@ -1450,6 +1501,95 @@ module GetStream
         )
       end
 
+      # Get all predefined filters with optional sorting by created_at, updated_at, name, or operation
+      #
+      # @param include_stats [Boolean]
+      # @param sort [Array<SortParamRequest>]
+      # @return [Models::QueryPredefinedFiltersResponse]
+      def get_predefined_filters(include_stats = nil, sort = nil)
+        path = '/api/v2/chat/predefined_filters'
+        # Build query parameters
+        query_params = {}
+        query_params['include_stats'] = include_stats unless include_stats.nil?
+        query_params['sort'] = sort unless sort.nil?
+
+        # Make the API request
+        @client.make_request(
+          :get,
+          path,
+          query_params: query_params
+        )
+      end
+
+      # Create a predefined filter that can be used in Query endpoints
+      #
+      # @param create_predefined_filter_request [CreatePredefinedFilterRequest]
+      # @return [Models::CreatePredefinedFilterResponse]
+      def create_predefined_filter(create_predefined_filter_request)
+        path = '/api/v2/chat/predefined_filters'
+        # Build request body
+        body = create_predefined_filter_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
+      # Delete a predefined filter by name
+      #
+      # @param name [String]
+      # @return [Models::Response]
+      def delete_predefined_filter(name)
+        path = '/api/v2/chat/predefined_filters/{name}'
+        # Replace path parameters
+        path = path.gsub('{name}', name.to_s)
+
+        # Make the API request
+        @client.make_request(
+          :delete,
+          path
+        )
+      end
+
+      # Get a predefined filter by name
+      #
+      # @param name [String]
+      # @return [Models::GetPredefinedFilterResponse]
+      def get_predefined_filter(name)
+        path = '/api/v2/chat/predefined_filters/{name}'
+        # Replace path parameters
+        path = path.gsub('{name}', name.to_s)
+
+        # Make the API request
+        @client.make_request(
+          :get,
+          path
+        )
+      end
+
+      # Update a predefined filter by name
+      #
+      # @param name [String]
+      # @param update_predefined_filter_request [UpdatePredefinedFilterRequest]
+      # @return [Models::UpdatePredefinedFilterResponse]
+      def update_predefined_filter(name, update_predefined_filter_request)
+        path = '/api/v2/chat/predefined_filters/{name}'
+        # Replace path parameters
+        path = path.gsub('{name}', name.to_s)
+        # Build request body
+        body = update_predefined_filter_request
+
+        # Make the API request
+        @client.make_request(
+          :put,
+          path,
+          body: body
+        )
+      end
+
       # Find and filter channel scoped or global user bans
       #
       # @param payload [QueryBannedUsersPayload]
@@ -1749,7 +1889,7 @@ module GetStream
         )
       end
 
-      # Retrieve team-level usage statistics from the warehouse database.Returns all 16 metrics grouped by team with cursor-based pagination.**Date Range Options (mutually exclusive):**- Use 'month' parameter (YYYY-MM format) for monthly aggregated values- Use 'start_date'/'end_date' parameters (YYYY-MM-DD format) for daily breakdown- If neither provided, defaults to current month (monthly mode)This endpoint is server-side only.
+      # Retrieve team-level usage statistics from the warehouse database.Returns all 16 metrics grouped by team with cursor-based pagination.**Date Range Options (mutually exclusive):**- Use 'month' parameter (YYYY-MM format) for monthly aggregated values- Use 'start_date'/'end_date' parameters (YYYY-MM-DD format) for daily breakdown- If neither provided, defaults to current month (monthly mode)**Team Filter:**- Use 'team' to return a single team's stats (empty string selects users not assigned to any team)- Mutually exclusive with the 'next' pagination cursorThis endpoint is server-side only.
       #
       # @param query_team_usage_stats_request [QueryTeamUsageStatsRequest]
       # @return [Models::QueryTeamUsageStatsResponse]

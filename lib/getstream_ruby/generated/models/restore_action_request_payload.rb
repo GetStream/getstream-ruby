@@ -5,7 +5,7 @@
 module GetStream
   module Generated
     module Models
-      # Configuration for restore action
+      # Configuration for restore action. State-aware: reverses whichever of a delete, a block, or a shadow block currently applies to the content (including both a delete and a block/shadow block at once).
       class RestoreActionRequestPayload < GetStream::BaseModel
 
         # Model attributes

@@ -102,6 +102,15 @@ module GetStream
         @client.feeds.change_feed_visibility(@feed_group_id, @feed_id, change_feed_visibility_request)
       end
 
+      # Returns the number of activities in a feed, the total number of comments on those activities (including nested replies), and the sum of both. The comment total is cached for a few seconds on large feeds.
+      #
+      # @return [Models::GetFeedCountsResponse]
+      def get_feed_counts()
+
+        # Delegate to the FeedsClient
+        @client.feeds.get_feed_counts(@feed_group_id, @feed_id)
+      end
+
       # Add, remove, or set members for a feed
       #
       # @param update_feed_members_request [UpdateFeedMembersRequest]

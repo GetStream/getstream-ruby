@@ -18,6 +18,9 @@ module GetStream
         # @!attribute severity
         #   @return [String]
         attr_accessor :severity
+        # @!attribute matched_contributors
+        #   @return [Array<String>]
+        attr_accessor :matched_contributors
         # @!attribute subclassifications
         #   @return [Array<Classification>]
         attr_accessor :subclassifications
@@ -28,6 +31,7 @@ module GetStream
           @name = attributes[:name] || attributes['name']
           @confidence = attributes[:confidence] || attributes['confidence'] || nil
           @severity = attributes[:severity] || attributes['severity'] || nil
+          @matched_contributors = attributes[:matched_contributors] || attributes['matched_contributors'] || nil
           @subclassifications = attributes[:subclassifications] || attributes['subclassifications'] || nil
         end
 
@@ -37,6 +41,7 @@ module GetStream
             name: 'name',
             confidence: 'confidence',
             severity: 'severity',
+            matched_contributors: 'matched_contributors',
             subclassifications: 'subclassifications'
           }
         end

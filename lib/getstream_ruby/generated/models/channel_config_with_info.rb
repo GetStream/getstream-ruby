@@ -36,6 +36,9 @@ module GetStream
         # @!attribute max_message_length
         #   @return [Integer]
         attr_accessor :max_message_length
+        # @!attribute message_retention
+        #   @return [String]
+        attr_accessor :message_retention
         # @!attribute mutes
         #   @return [Boolean]
         attr_accessor :mutes
@@ -133,6 +136,7 @@ module GetStream
           @delivery_events = attributes[:delivery_events] || attributes['delivery_events']
           @mark_messages_pending = attributes[:mark_messages_pending] || attributes['mark_messages_pending']
           @max_message_length = attributes[:max_message_length] || attributes['max_message_length']
+          @message_retention = attributes[:message_retention] || attributes['message_retention']
           @mutes = attributes[:mutes] || attributes['mutes']
           @name = attributes[:name] || attributes['name']
           @polls = attributes[:polls] || attributes['polls']
@@ -175,6 +179,7 @@ module GetStream
             delivery_events: 'delivery_events',
             mark_messages_pending: 'mark_messages_pending',
             max_message_length: 'max_message_length',
+            message_retention: 'message_retention',
             mutes: 'mutes',
             name: 'name',
             polls: 'polls',

@@ -620,6 +620,39 @@ module GetStream
         )
       end
 
+      # Creates permission
+      #
+      # @param create_permission_request [CreatePermissionRequest]
+      # @return [Models::Response]
+      def create_permission(create_permission_request)
+        path = '/api/v2/permissions'
+        # Build request body
+        body = create_permission_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
+      # Deletes custom permission
+      #
+      # @param _id [String]
+      # @return [Models::Response]
+      def delete_permission(_id)
+        path = '/api/v2/permissions/{id}'
+        # Replace path parameters
+        path = path.gsub('{id}', _id.to_s)
+
+        # Make the API request
+        @client.make_request(
+          :delete,
+          path
+        )
+      end
+
       # Gets custom permission
       #
       # @param _id [String]
@@ -633,6 +666,26 @@ module GetStream
         @client.make_request(
           :get,
           path
+        )
+      end
+
+      # Updates custom permission
+      #
+      # @param _id [String]
+      # @param permission_request [PermissionRequest]
+      # @return [Models::Response]
+      def update_permission(_id, permission_request)
+        path = '/api/v2/permissions/{id}'
+        # Replace path parameters
+        path = path.gsub('{id}', _id.to_s)
+        # Build request body
+        body = permission_request
+
+        # Make the API request
+        @client.make_request(
+          :put,
+          path,
+          body: body
         )
       end
 

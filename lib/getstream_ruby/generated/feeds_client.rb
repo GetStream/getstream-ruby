@@ -1294,6 +1294,24 @@ module GetStream
         )
       end
 
+      # Returns the number of activities in a feed, the total number of comments on those activities (including nested replies), and the sum of both. The comment total is cached for a few seconds on large feeds.
+      #
+      # @param feed_group_id [String]
+      # @param feed_id [String]
+      # @return [Models::GetFeedCountsResponse]
+      def get_feed_counts(feed_group_id, feed_id)
+        path = '/api/v2/feeds/feed_groups/{feed_group_id}/feeds/{feed_id}/counts'
+        # Replace path parameters
+        path = path.gsub('{feed_group_id}', feed_group_id.to_s)
+        path = path.gsub('{feed_id}', feed_id.to_s)
+
+        # Make the API request
+        @client.make_request(
+          :get,
+          path
+        )
+      end
+
       # Add, remove, or set members for a feed
       #
       # @param feed_group_id [String]

@@ -12,17 +12,27 @@ module GetStream
         # @!attribute type
         #   @return [String] Type of activity processor (required)
         attr_accessor :type
+        # @!attribute min_text_length
+        #   @return [Integer] Minimum number of characters the activity text must have before this processor runs. 0 (the default) disables the check. Only applies to text_interest_tags.
+        attr_accessor :min_text_length
+        # @!attribute min_word_count
+        #   @return [Integer] Minimum number of words the activity text must have before this processor runs. 0 (the default) disables the check. Only applies to text_interest_tags. Words are whitespace-separated, so scripts written without word spacing (Chinese, Japanese, Thai) always count as 1 word regardless of length — use min_text_length for those.
+        attr_accessor :min_word_count
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @type = attributes[:type] || attributes['type']
+          @min_text_length = attributes[:min_text_length] || attributes['min_text_length'] || nil
+          @min_word_count = attributes[:min_word_count] || attributes['min_word_count'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            type: 'type'
+            type: 'type',
+            min_text_length: 'min_text_length',
+            min_word_count: 'min_word_count'
           }
         end
       end
