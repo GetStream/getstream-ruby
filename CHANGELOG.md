@@ -2,6 +2,12 @@
 
 ### Fixed
 
+- Retry a request **once** when the pooled keep-alive socket is already dead
+  (`SSL_read` EOF, `Connection reset by peer`, `TCPSocket:(closed)`). Matches
+  Go `net/http` (retry unused idle connections). Applies to POST as well as
+  GET; DNS failures and real read timeouts are not retried. No backoff; the
+  opt-in `retry_config:` policy is unchanged.
+
 - Default `idle_timeout` for `net_http_persistent` is now `25` seconds (was `55`).
   GCP SSL-proxy load balancers close idle TLS around ~30s; keeping pooled
   connections for 55s (AWS ALB idle minus 5s) caused

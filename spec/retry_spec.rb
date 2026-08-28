@@ -84,6 +84,138 @@ RSpec.describe 'opt-in retry' do
 
   end
 
+  describe 'stale keep-alive retry' do
+
+    it 'retries POST once on Connection reset by peer without retry_config' do
+
+      calls = 0
+      stubs = Faraday::Adapter::Test::Stubs.new do |stub|
+
+        stub.post(%r{/x}) do
+
+          calls += 1
+          raise Faraday::ConnectionFailed, 'Connection reset by peer' if calls == 1
+
+          [200, {}, '{"ok":true}']
+
+        end
+
+      end
+      client = build_client(stubs)
+      client.make_request(:post, '/x')
+      expect(calls).to eq(2)
+      expect(client).not_to have_received(:sleep)
+
+    end
+
+    it 'retries POST once on SSL_read unexpected eof' do
+
+      calls = 0
+      stubs = Faraday::Adapter::Test::Stubs.new do |stub|
+
+        stub.post(%r{/x}) do
+
+          calls += 1
+          raise Faraday::SSLError, 'SSL_read: unexpected eof while reading' if calls == 1
+
+          [200, {}, '{"ok":true}']
+
+        end
+
+      end
+      client = build_client(stubs)
+      client.make_request(:post, '/x')
+      expect(calls).to eq(2)
+
+    end
+
+    it 'retries POST once on ReadTimeout with a closed TCPSocket' do
+
+      calls = 0
+      stubs = Faraday::Adapter::Test::Stubs.new do |stub|
+
+        stub.post(%r{/x}) do
+
+          calls += 1
+          raise Faraday::TimeoutError, 'Net::ReadTimeout with #<TCPSocket:(closed)>' if calls == 1
+
+          [200, {}, '{"ok":true}']
+
+        end
+
+      end
+      client = build_client(stubs)
+      client.make_request(:post, '/x')
+      expect(calls).to eq(2)
+
+    end
+
+    it 'does not retry POST on a real read timeout' do
+
+      calls = 0
+      stubs = Faraday::Adapter::Test::Stubs.new do |stub|
+
+        stub.post(%r{/x}) do
+
+          calls += 1
+          raise Faraday::TimeoutError, 'Net::ReadTimeout'
+
+        end
+
+      end
+      client = build_client(stubs)
+      expect { client.make_request(:post, '/x') }.to raise_error(GetStreamRuby::TransportError)
+      expect(calls).to eq(1)
+
+    end
+
+    it 'does not retry a DNS failure' do
+
+      calls = 0
+      stubs = Faraday::Adapter::Test::Stubs.new do |stub|
+
+        stub.post(%r{/x}) do
+
+          calls += 1
+          # Faraday needs the SocketError as wrapped_exception for DNS classification.
+          raise Faraday::ConnectionFailed.new( # rubocop:disable Style/RaiseArgs
+            SocketError.new('getaddrinfo: nodename nor servname provided'),
+          )
+
+        end
+
+      end
+      client = build_client(stubs)
+      expect { client.make_request(:post, '/x') }.to raise_error(GetStreamRuby::TransportError) do |err|
+
+        expect(err.error_type).to eq('dns_failure')
+
+      end
+      expect(calls).to eq(1)
+
+    end
+
+    it 'retries a stale connection only once' do
+
+      calls = 0
+      stubs = Faraday::Adapter::Test::Stubs.new do |stub|
+
+        stub.post(%r{/x}) do
+
+          calls += 1
+          raise Faraday::ConnectionFailed, 'Connection reset by peer'
+
+        end
+
+      end
+      client = build_client(stubs)
+      expect { client.make_request(:post, '/x') }.to raise_error(GetStreamRuby::TransportError)
+      expect(calls).to eq(2)
+
+    end
+
+  end
+
   it 'never retries an unrecoverable 429' do
 
     calls = 0
@@ -202,11 +334,8 @@ RSpec.describe 'opt-in retry' do
     end
     client = build_client(stubs, retry_config: enabled)
     file = GetStream::Generated::Models::FileUploadRequest.new(file: __FILE__)
-    expect do
-
-      client.send(:make_multipart_request, :post, '/upload', {}, file)
-
-    end.to raise_error(GetStreamRuby::RateLimitError)
+    expect { client.send(:make_multipart_request, :post, '/upload', {}, file) }
+      .to raise_error(GetStreamRuby::RateLimitError)
     expect(calls).to eq(1)
 
   end

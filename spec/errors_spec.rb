@@ -316,6 +316,30 @@ RSpec.describe 'GetStreamRuby::Client error wrapping' do
 
   end
 
+  describe 'ErrorMapping.stale_keep_alive?' do
+
+    it 'treats SSL EOF and connection reset as stale keep-alive' do
+
+      ssl = Faraday::SSLError.new('SSL_read: unexpected eof while reading')
+      reset = Faraday::ConnectionFailed.new('Connection reset by peer')
+      closed = Faraday::TimeoutError.new('Net::ReadTimeout with #<TCPSocket:(closed)>')
+      expect(GetStreamRuby::ErrorMapping.stale_keep_alive?(ssl)).to be(true)
+      expect(GetStreamRuby::ErrorMapping.stale_keep_alive?(reset)).to be(true)
+      expect(GetStreamRuby::ErrorMapping.stale_keep_alive?(closed)).to be(true)
+
+    end
+
+    it 'does not treat a real timeout or DNS failure as stale keep-alive' do
+
+      timeout = Faraday::TimeoutError.new('Net::ReadTimeout')
+      dns = Faraday::ConnectionFailed.new(SocketError.new('getaddrinfo failed'))
+      expect(GetStreamRuby::ErrorMapping.stale_keep_alive?(timeout)).to be(false)
+      expect(GetStreamRuby::ErrorMapping.stale_keep_alive?(dns)).to be(false)
+
+    end
+
+  end
+
   describe 'transport-layer failures' do
 
     it 'wraps Faraday::ConnectionFailed as TransportError with cause preserved' do

@@ -216,7 +216,7 @@ module GetStreamRuby
       return make_multipart_request(method, path, query_params, data) if multipart_request?(data)
 
       body_json = data.to_json
-      attempt = 0
+      attempt = stale_retries = 0
 
       begin
         started = monotonic_now
@@ -238,6 +238,11 @@ module GetStreamRuby
         handle_response(response)
       rescue Faraday::Error => e
         error = TransportError.new("Request failed: #{e.message}", error_type: ErrorMapping.classify_faraday_error(e))
+        if stale_retries.zero? && ErrorMapping.stale_keep_alive?(e)
+          log_retry_attempt(method, path, error, stale_retries, started)
+          stale_retries += 1
+          retry
+        end
         if retry_eligible?(method, error, attempt)
           wait_before_retry(method, path, error, attempt, started)
           attempt += 1

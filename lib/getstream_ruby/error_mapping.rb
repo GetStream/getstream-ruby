@@ -10,6 +10,17 @@ module GetStreamRuby
 
     module_function
 
+    STALE_KEEP_ALIVE_PATTERN = /
+      connection\ reset\ by\ peer
+      |unexpected\ eof
+      |ssl_read
+      |tcpsocket:\(closed\)
+      |broken\ pipe
+      |connection\ is\ closed
+      |end\ of\ file\ reached
+      |tls_retry_write_records
+    /ix.freeze
+
     # Raises the appropriate `ApiError` / `RateLimitError` for a non-2xx
     # `Faraday::Response`.
     def raise_api_error(response)
@@ -111,13 +122,37 @@ module GetStreamRuby
     end
 
     def classify_connection_failure(error)
-      wrapped = error.respond_to?(:wrapped_exception) ? error.wrapped_exception : nil
+      wrapped = wrapped_exception(error)
       case wrapped
       when SocketError
         'dns_failure'
       else
         'connection_reset'
       end
+    end
+
+    # True when the failure looks like a reused keep-alive socket that the peer
+    # already closed (Go net/http `errServerClosedIdle` / `nothingWrittenError`).
+    # DNS failures and real read timeouts are not stale-pool errors.
+    def stale_keep_alive?(error)
+      return false if error.nil?
+      return false if classify_faraday_error(error) == 'dns_failure'
+      return true if error.is_a?(Faraday::SSLError) || error.is_a?(Faraday::ConnectionFailed)
+
+      stale_keep_alive_message?(error)
+    end
+
+    def wrapped_exception(error)
+      return nil unless error.respond_to?(:wrapped_exception)
+
+      error.wrapped_exception
+    end
+
+    def stale_keep_alive_message?(error)
+      texts = [error.message]
+      wrapped = wrapped_exception(error)
+      texts << wrapped.message if wrapped.respond_to?(:message)
+      texts.compact.any? { |text| text.match?(STALE_KEEP_ALIVE_PATTERN) }
     end
 
     def build_task_error(task_id, error_payload)
