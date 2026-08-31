@@ -338,6 +338,17 @@ RSpec.describe 'GetStreamRuby::Client error wrapping' do
 
     end
 
+    it 'does not treat connection refused or cert failures as stale keep-alive' do
+
+      refused = Faraday::ConnectionFailed.new('Connection refused')
+      cert = Faraday::SSLError.new('certificate verify failed')
+      ssl_read = Faraday::SSLError.new('SSL_read: wrong version number')
+      expect(GetStreamRuby::ErrorMapping.stale_keep_alive?(refused)).to be(false)
+      expect(GetStreamRuby::ErrorMapping.stale_keep_alive?(cert)).to be(false)
+      expect(GetStreamRuby::ErrorMapping.stale_keep_alive?(ssl_read)).to be(false)
+
+    end
+
   end
 
   describe 'transport-layer failures' do

@@ -13,7 +13,6 @@ module GetStreamRuby
     STALE_KEEP_ALIVE_PATTERN = /
       connection\ reset\ by\ peer
       |unexpected\ eof
-      |ssl_read
       |tcpsocket:\(closed\)
       |broken\ pipe
       |connection\ is\ closed
@@ -132,12 +131,12 @@ module GetStreamRuby
     end
 
     # True when the failure looks like a reused keep-alive socket that the peer
-    # already closed (Go net/http `errServerClosedIdle` / `nothingWrittenError`).
+    # already closed. Match the error text, not Faraday class: SSLError and
+    # ConnectionFailed also cover cert failures and connection refused.
     # DNS failures and real read timeouts are not stale-pool errors.
     def stale_keep_alive?(error)
       return false if error.nil?
       return false if classify_faraday_error(error) == 'dns_failure'
-      return true if error.is_a?(Faraday::SSLError) || error.is_a?(Faraday::ConnectionFailed)
 
       stale_keep_alive_message?(error)
     end

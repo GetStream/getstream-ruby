@@ -169,6 +169,44 @@ RSpec.describe 'opt-in retry' do
 
     end
 
+    it 'does not retry POST on connection refused' do
+
+      calls = 0
+      stubs = Faraday::Adapter::Test::Stubs.new do |stub|
+
+        stub.post(%r{/x}) do
+
+          calls += 1
+          raise Faraday::ConnectionFailed, 'Connection refused'
+
+        end
+
+      end
+      client = build_client(stubs)
+      expect { client.make_request(:post, '/x') }.to raise_error(GetStreamRuby::TransportError)
+      expect(calls).to eq(1)
+
+    end
+
+    it 'does not retry POST on an SSL certificate failure' do
+
+      calls = 0
+      stubs = Faraday::Adapter::Test::Stubs.new do |stub|
+
+        stub.post(%r{/x}) do
+
+          calls += 1
+          raise Faraday::SSLError, 'certificate verify failed'
+
+        end
+
+      end
+      client = build_client(stubs)
+      expect { client.make_request(:post, '/x') }.to raise_error(GetStreamRuby::TransportError)
+      expect(calls).to eq(1)
+
+    end
+
     it 'does not retry a DNS failure' do
 
       calls = 0
