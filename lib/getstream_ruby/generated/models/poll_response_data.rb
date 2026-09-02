@@ -43,7 +43,7 @@ module GetStream
         #   @return [Integer]
         attr_accessor :vote_count
         # @!attribute voting_visibility
-        #   @return [String]
+        #   @return [String] Voting visibility of the poll
         attr_accessor :voting_visibility
         # @!attribute latest_answers
         #   @return [Array<PollVoteResponseData>]

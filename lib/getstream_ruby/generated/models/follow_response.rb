@@ -13,7 +13,7 @@ module GetStream
         #   @return [DateTime] When the follow relationship was created
         attr_accessor :created_at
         # @!attribute follower_role
-        #   @return [String] Role of the follower (source user) in the follow relationship
+        #   @return [String] Role of the follower (source user) in the follow relationship, as stored. A reserved name, or a role your app no longer defines, is reported as stored but evaluated as 'feed_follower'.
         attr_accessor :follower_role
         # @!attribute push_preference
         #   @return [String] Push preference for notifications. One of: all, none

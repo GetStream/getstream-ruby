@@ -18,6 +18,9 @@ module GetStream
         # @!attribute updated_at
         #   @return [DateTime] When the feed group was last updated
         attr_accessor :updated_at
+        # @!attribute default_follower_role
+        #   @return [String] Role new followers of feeds in this group are given. Either a built-in (feed_follower, feed_member_viewer) or any role your app has defined. Empty means feed_follower. Applied when the follow is accepted, so a follow that starts pending picks it up on approval
+        attr_accessor :default_follower_role
         # @!attribute default_visibility
         #   @return [String] Default visibility for activities. One of: public, visible, followers, members, private
         attr_accessor :default_visibility
@@ -33,6 +36,9 @@ module GetStream
         # @!attribute activity_filter
         #   @return [ActivityFilterConfig]
         attr_accessor :activity_filter
+        # @!attribute activity_processing
+        #   @return [ActivityProcessingConfig]
+        attr_accessor :activity_processing
         # @!attribute aggregation
         #   @return [AggregationConfig]
         attr_accessor :aggregation
@@ -58,11 +64,13 @@ module GetStream
           @created_at = attributes[:created_at] || attributes['created_at']
           @id = attributes[:id] || attributes['id']
           @updated_at = attributes[:updated_at] || attributes['updated_at']
+          @default_follower_role = attributes[:default_follower_role] || attributes['default_follower_role'] || nil
           @default_visibility = attributes[:default_visibility] || attributes['default_visibility'] || nil
           @deleted_at = attributes[:deleted_at] || attributes['deleted_at'] || nil
           @activity_processors = attributes[:activity_processors] || attributes['activity_processors'] || nil
           @activity_selectors = attributes[:activity_selectors] || attributes['activity_selectors'] || nil
           @activity_filter = attributes[:activity_filter] || attributes['activity_filter'] || nil
+          @activity_processing = attributes[:activity_processing] || attributes['activity_processing'] || nil
           @aggregation = attributes[:aggregation] || attributes['aggregation'] || nil
           @custom = attributes[:custom] || attributes['custom'] || nil
           @notification = attributes[:notification] || attributes['notification'] || nil
@@ -77,11 +85,13 @@ module GetStream
             created_at: 'created_at',
             id: 'id',
             updated_at: 'updated_at',
+            default_follower_role: 'default_follower_role',
             default_visibility: 'default_visibility',
             deleted_at: 'deleted_at',
             activity_processors: 'activity_processors',
             activity_selectors: 'activity_selectors',
             activity_filter: 'activity_filter',
+            activity_processing: 'activity_processing',
             aggregation: 'aggregation',
             custom: 'custom',
             notification: 'notification',

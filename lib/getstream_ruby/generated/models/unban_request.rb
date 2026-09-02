@@ -10,7 +10,8 @@ module GetStream
 
         # Model attributes
         # @!attribute unbanned_by_id
-        #   @return [String] ID of the user performing the unban
+        # @deprecated This field is deprecated.
+        #   @return [String] ID of the user performing the unban Deprecated: not used by the unban flow
         attr_accessor :unbanned_by_id
         # @!attribute unbanned_by
         #   @return [UserRequest] User request object

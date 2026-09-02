@@ -12,9 +12,6 @@ module GetStream
         # @!attribute type
         #   @return [String]
         attr_accessor :type
-        # @!attribute filter_conditions
-        #   @return [Object] Filter conditions to apply to the query
-        attr_accessor :filter_conditions
         # @!attribute id
         #   @return [String]
         attr_accessor :id
@@ -33,6 +30,9 @@ module GetStream
         # @!attribute sort
         #   @return [Array<SortParamRequest>] Array of sort parameters
         attr_accessor :sort
+        # @!attribute filter_conditions
+        #   @return [Object] Filter conditions to apply to the query
+        attr_accessor :filter_conditions
         # @!attribute user
         #   @return [UserRequest] User request object
         attr_accessor :user
@@ -41,13 +41,13 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @type = attributes[:type] || attributes['type']
-          @filter_conditions = attributes[:filter_conditions] || attributes['filter_conditions']
           @id = attributes[:id] || attributes['id'] || nil
           @limit = attributes[:limit] || attributes['limit'] || nil
           @offset = attributes[:offset] || attributes['offset'] || nil
           @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @members = attributes[:members] || attributes['members'] || nil
           @sort = attributes[:sort] || attributes['sort'] || nil
+          @filter_conditions = attributes[:filter_conditions] || attributes['filter_conditions'] || nil
           @user = attributes[:user] || attributes['user'] || nil
         end
 
@@ -55,13 +55,13 @@ module GetStream
         def self.json_field_mappings
           {
             type: 'type',
-            filter_conditions: 'filter_conditions',
             id: 'id',
             limit: 'limit',
             offset: 'offset',
             user_id: 'user_id',
             members: 'members',
             sort: 'sort',
+            filter_conditions: 'filter_conditions',
             user: 'user'
           }
         end

@@ -6,38 +6,33 @@ module GetStream
   module Generated
     module Models
       # 
-      class AIVideoConfig < GetStream::BaseModel
+      class AIVideoConfigResponse < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute async
-        #   @return [Boolean]
-        attr_accessor :async
         # @!attribute enabled
         #   @return [Boolean]
         attr_accessor :enabled
-        # @!attribute provider
-        #   @return [String]
-        attr_accessor :provider
         # @!attribute rules
         #   @return [Array<AWSRekognitionRule>]
         attr_accessor :rules
+        # @!attribute async
+        #   @return [Boolean]
+        attr_accessor :async
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @enabled = attributes[:enabled] || attributes['enabled']
+          @rules = attributes[:rules] || attributes['rules']
           @async = attributes[:async] || attributes['async'] || nil
-          @enabled = attributes[:enabled] || attributes['enabled'] || nil
-          @provider = attributes[:provider] || attributes['provider'] || nil
-          @rules = attributes[:rules] || attributes['rules'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            async: 'async',
             enabled: 'enabled',
-            provider: 'provider',
-            rules: 'rules'
+            rules: 'rules',
+            async: 'async'
           }
         end
       end

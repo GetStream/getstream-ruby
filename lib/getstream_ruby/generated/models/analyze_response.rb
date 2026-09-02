@@ -13,7 +13,7 @@ module GetStream
         #   @return [String]
         attr_accessor :duration
         # @!attribute status
-        #   @return [String] Always `complete` — /analyze is sync-only and the full verdict is in the response.
+        #   @return [String] `complete` (all fields screened), `partial` (mix of verdicts and per-field errors), or `pending` (async).
         attr_accessor :status
         # @!attribute images
         #   @return [Hash<String, AnalyzeImageField>] Per-image moderation verdicts keyed by caller label.

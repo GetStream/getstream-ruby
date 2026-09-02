@@ -1550,7 +1550,7 @@ module GetStream
         )
       end
 
-      # List all feed views for a feed group
+      # List persisted feed views for the application.
       #
       # @return [Models::ListFeedViewsResponse]
       def list_feed_views()
@@ -1831,7 +1831,7 @@ module GetStream
         )
       end
 
-      # Accepts a pending follow request
+      # Accepts a pending follow request. Follower role can only be set via server-side requests.
       #
       # @param accept_follow_request [AcceptFollowRequest]
       # @return [Models::AcceptFollowResponse]

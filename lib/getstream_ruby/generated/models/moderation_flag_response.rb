@@ -30,6 +30,9 @@ module GetStream
         # @!attribute result
         #   @return [Array<Object>]
         attr_accessor :result
+        # @!attribute content_published_at
+        #   @return [DateTime]
+        attr_accessor :content_published_at
         # @!attribute entity_creator_id
         #   @return [String]
         attr_accessor :entity_creator_id
@@ -65,6 +68,7 @@ module GetStream
           @updated_at = attributes[:updated_at] || attributes['updated_at']
           @user_id = attributes[:user_id] || attributes['user_id']
           @result = attributes[:result] || attributes['result']
+          @content_published_at = attributes[:content_published_at] || attributes['content_published_at'] || nil
           @entity_creator_id = attributes[:entity_creator_id] || attributes['entity_creator_id'] || nil
           @reason = attributes[:reason] || attributes['reason'] || nil
           @review_queue_item_id = attributes[:review_queue_item_id] || attributes['review_queue_item_id'] || nil
@@ -85,6 +89,7 @@ module GetStream
             updated_at: 'updated_at',
             user_id: 'user_id',
             result: 'result',
+            content_published_at: 'content_published_at',
             entity_creator_id: 'entity_creator_id',
             reason: 'reason',
             review_queue_item_id: 'review_queue_item_id',

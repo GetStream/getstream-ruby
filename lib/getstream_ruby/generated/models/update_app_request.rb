@@ -63,9 +63,15 @@ module GetStream
         # @!attribute max_aggregated_activities_length
         #   @return [Integer]
         attr_accessor :max_aggregated_activities_length
+        # @!attribute member_custom_on_mentioned_users_enabled
+        #   @return [Boolean]
+        attr_accessor :member_custom_on_mentioned_users_enabled
         # @!attribute member_custom_on_messages_enabled
         #   @return [Boolean]
         attr_accessor :member_custom_on_messages_enabled
+        # @!attribute member_custom_on_typing_events_enabled
+        #   @return [Boolean]
+        attr_accessor :member_custom_on_typing_events_enabled
         # @!attribute migrate_permissions_to_v2
         #   @return [Boolean]
         attr_accessor :migrate_permissions_to_v2
@@ -205,7 +211,9 @@ module GetStream
           @guest_user_creation_disabled = attributes[:guest_user_creation_disabled] || attributes['guest_user_creation_disabled'] || nil
           @image_moderation_enabled = attributes[:image_moderation_enabled] || attributes['image_moderation_enabled'] || nil
           @max_aggregated_activities_length = attributes[:max_aggregated_activities_length] || attributes['max_aggregated_activities_length'] || nil
+          @member_custom_on_mentioned_users_enabled = attributes[:member_custom_on_mentioned_users_enabled] || attributes['member_custom_on_mentioned_users_enabled'] || nil
           @member_custom_on_messages_enabled = attributes[:member_custom_on_messages_enabled] || attributes['member_custom_on_messages_enabled'] || nil
+          @member_custom_on_typing_events_enabled = attributes[:member_custom_on_typing_events_enabled] || attributes['member_custom_on_typing_events_enabled'] || nil
           @migrate_permissions_to_v2 = attributes[:migrate_permissions_to_v2] || attributes['migrate_permissions_to_v2'] || nil
           @moderation_analytics_enabled = attributes[:moderation_analytics_enabled] || attributes['moderation_analytics_enabled'] || nil
           @moderation_enabled = attributes[:moderation_enabled] || attributes['moderation_enabled'] || nil
@@ -268,7 +276,9 @@ module GetStream
             guest_user_creation_disabled: 'guest_user_creation_disabled',
             image_moderation_enabled: 'image_moderation_enabled',
             max_aggregated_activities_length: 'max_aggregated_activities_length',
+            member_custom_on_mentioned_users_enabled: 'member_custom_on_mentioned_users_enabled',
             member_custom_on_messages_enabled: 'member_custom_on_messages_enabled',
+            member_custom_on_typing_events_enabled: 'member_custom_on_typing_events_enabled',
             migrate_permissions_to_v2: 'migrate_permissions_to_v2',
             moderation_analytics_enabled: 'moderation_analytics_enabled',
             moderation_enabled: 'moderation_enabled',

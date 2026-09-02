@@ -1270,7 +1270,7 @@ module GetStream
       #
       # @param _id [String]
       # @param translate_message_request [TranslateMessageRequest]
-      # @return [Models::MessageActionResponse]
+      # @return [Models::TranslateMessageResponse]
       def translate_message(_id, translate_message_request)
         path = '/api/v2/chat/messages/{id}/translate'
         # Replace path parameters
@@ -1398,7 +1398,7 @@ module GetStream
       #
       # @param message_id [String]
       # @param create_reminder_request [CreateReminderRequest]
-      # @return [Models::ReminderResponseData]
+      # @return [Models::CreateReminderResponse]
       def create_reminder(message_id, create_reminder_request)
         path = '/api/v2/chat/messages/{message_id}/reminders'
         # Replace path parameters

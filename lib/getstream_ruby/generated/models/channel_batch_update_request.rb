@@ -15,9 +15,15 @@ module GetStream
         # @!attribute filter
         #   @return [Object] Filter to apply to the query
         attr_accessor :filter
+        # @!attribute custom_unset
+        #   @return [Array<String>] `updateData` only. Deletes these keys from each channel's existing custom object, leaving every other custom key untouched. Keys are dot-paths; deleting a key that does not exist is a no-op. Cannot be combined with `data.custom`
+        attr_accessor :custom_unset
         # @!attribute members
         #   @return [Array<ChannelBatchMemberRequest>]
         attr_accessor :members
+        # @!attribute custom_set
+        #   @return [Object] `updateData` only. Merges these keys into each channel's existing custom object, leaving every other custom key untouched. Keys are dot-paths, so `a.b` sets key `b` inside object `a` (the parent object must already exist). Cannot be combined with `data.custom`
+        attr_accessor :custom_set
         # @!attribute data
         #   @return [ChannelDataUpdate]
         attr_accessor :data
@@ -27,7 +33,9 @@ module GetStream
           super(attributes)
           @operation = attributes[:operation] || attributes['operation']
           @filter = attributes[:filter] || attributes['filter']
+          @custom_unset = attributes[:custom_unset] || attributes['custom_unset'] || nil
           @members = attributes[:members] || attributes['members'] || nil
+          @custom_set = attributes[:custom_set] || attributes['custom_set'] || nil
           @data = attributes[:data] || attributes['data'] || nil
         end
 
@@ -36,7 +44,9 @@ module GetStream
           {
             operation: 'operation',
             filter: 'filter',
+            custom_unset: 'custom_unset',
             members: 'members',
+            custom_set: 'custom_set',
             data: 'data'
           }
         end

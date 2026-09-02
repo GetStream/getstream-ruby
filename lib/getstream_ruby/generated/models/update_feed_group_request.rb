@@ -9,8 +9,11 @@ module GetStream
       class UpdateFeedGroupRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute default_follower_role
+        #   @return [String] Role new followers of feeds in this group are given. Either a built-in (feed_follower, feed_member_viewer) or any role your app has defined. Empty means feed_follower. Applied when the follow is accepted, so a follow that starts pending picks it up on approval
+        attr_accessor :default_follower_role
         # @!attribute default_visibility
-        #   @return [String]
+        #   @return [String] Default visibility for the feed group. One of: public, visible, followers, members, private
         attr_accessor :default_visibility
         # @!attribute activity_processors
         #   @return [Array<ActivityProcessorConfig>] Configuration for activity processors
@@ -21,6 +24,9 @@ module GetStream
         # @!attribute activity_filter
         #   @return [ActivityFilterConfig]
         attr_accessor :activity_filter
+        # @!attribute activity_processing
+        #   @return [ActivityProcessingConfig]
+        attr_accessor :activity_processing
         # @!attribute aggregation
         #   @return [AggregationConfig]
         attr_accessor :aggregation
@@ -43,10 +49,12 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @default_follower_role = attributes[:default_follower_role] || attributes['default_follower_role'] || nil
           @default_visibility = attributes[:default_visibility] || attributes['default_visibility'] || nil
           @activity_processors = attributes[:activity_processors] || attributes['activity_processors'] || nil
           @activity_selectors = attributes[:activity_selectors] || attributes['activity_selectors'] || nil
           @activity_filter = attributes[:activity_filter] || attributes['activity_filter'] || nil
+          @activity_processing = attributes[:activity_processing] || attributes['activity_processing'] || nil
           @aggregation = attributes[:aggregation] || attributes['aggregation'] || nil
           @custom = attributes[:custom] || attributes['custom'] || nil
           @notification = attributes[:notification] || attributes['notification'] || nil
@@ -58,10 +66,12 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            default_follower_role: 'default_follower_role',
             default_visibility: 'default_visibility',
             activity_processors: 'activity_processors',
             activity_selectors: 'activity_selectors',
             activity_filter: 'activity_filter',
+            activity_processing: 'activity_processing',
             aggregation: 'aggregation',
             custom: 'custom',
             notification: 'notification',

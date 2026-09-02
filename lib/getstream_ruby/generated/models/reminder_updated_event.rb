@@ -24,6 +24,9 @@ module GetStream
         # @!attribute custom
         #   @return [Object]
         attr_accessor :custom
+        # @!attribute reminder
+        #   @return [ReminderResponseData]
+        attr_accessor :reminder
         # @!attribute type
         #   @return [String] The type of event: "reminder.updated" in this case
         attr_accessor :type
@@ -33,9 +36,6 @@ module GetStream
         # @!attribute received_at
         #   @return [DateTime]
         attr_accessor :received_at
-        # @!attribute reminder
-        #   @return [ReminderResponseData]
-        attr_accessor :reminder
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -45,10 +45,10 @@ module GetStream
           @message_id = attributes[:message_id] || attributes['message_id']
           @user_id = attributes[:user_id] || attributes['user_id']
           @custom = attributes[:custom] || attributes['custom']
+          @reminder = attributes[:reminder] || attributes['reminder']
           @type = attributes[:type] || attributes['type'] || "reminder.updated"
           @parent_id = attributes[:parent_id] || attributes['parent_id'] || nil
           @received_at = attributes[:received_at] || attributes['received_at'] || nil
-          @reminder = attributes[:reminder] || attributes['reminder'] || nil
         end
 
         # Override field mappings for JSON serialization
@@ -59,10 +59,10 @@ module GetStream
             message_id: 'message_id',
             user_id: 'user_id',
             custom: 'custom',
+            reminder: 'reminder',
             type: 'type',
             parent_id: 'parent_id',
-            received_at: 'received_at',
-            reminder: 'reminder'
+            received_at: 'received_at'
           }
         end
       end
