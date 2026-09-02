@@ -18,6 +18,9 @@ module GetStream
         # @!attribute created_at
         #   @return [DateTime]
         attr_accessor :created_at
+        # @!attribute default_follower_role
+        #   @return [String]
+        attr_accessor :default_follower_role
         # @!attribute default_visibility
         #   @return [String]
         attr_accessor :default_visibility
@@ -67,6 +70,7 @@ module GetStream
           @aggregation_version = attributes[:aggregation_version] || attributes['aggregation_version']
           @app_pk = attributes[:app_pk] || attributes['app_pk']
           @created_at = attributes[:created_at] || attributes['created_at']
+          @default_follower_role = attributes[:default_follower_role] || attributes['default_follower_role']
           @default_visibility = attributes[:default_visibility] || attributes['default_visibility']
           @group_id = attributes[:group_id] || attributes['group_id']
           @updated_at = attributes[:updated_at] || attributes['updated_at']
@@ -89,6 +93,7 @@ module GetStream
             aggregation_version: 'aggregation_version',
             app_pk: 'app_pk',
             created_at: 'created_at',
+            default_follower_role: 'default_follower_role',
             default_visibility: 'default_visibility',
             group_id: 'group_id',
             updated_at: 'updated_at',

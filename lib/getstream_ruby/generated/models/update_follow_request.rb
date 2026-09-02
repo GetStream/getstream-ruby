@@ -32,7 +32,7 @@ module GetStream
         #   @return [Boolean] If true, enriches the follow's source_feed and target_feed with own_* fields (own_follows, own_followings, own_capabilities, own_membership). Defaults to false for performance.
         attr_accessor :enrich_own_fields
         # @!attribute follower_role
-        #   @return [String]
+        #   @return [String] Optional role for the follower in the follow relationship. Server-side only. Either a built-in ('feed_follower' (the default) or 'feed_member_viewer') or any role your app has defined; grants are not inspected.
         attr_accessor :follower_role
         # @!attribute push_preference
         #   @return [String] Push preference for the follow relationship

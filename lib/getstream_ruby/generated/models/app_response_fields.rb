@@ -51,15 +51,24 @@ module GetStream
         # @!attribute max_aggregated_activities_length
         #   @return [Integer]
         attr_accessor :max_aggregated_activities_length
+        # @!attribute member_custom_on_mentioned_users_enabled
+        #   @return [Boolean]
+        attr_accessor :member_custom_on_mentioned_users_enabled
         # @!attribute member_custom_on_messages_enabled
         #   @return [Boolean]
         attr_accessor :member_custom_on_messages_enabled
+        # @!attribute member_custom_on_typing_events_enabled
+        #   @return [Boolean]
+        attr_accessor :member_custom_on_typing_events_enabled
         # @!attribute moderation_audio_call_moderation_enabled
         #   @return [Boolean]
         attr_accessor :moderation_audio_call_moderation_enabled
         # @!attribute moderation_enabled
         #   @return [Boolean]
         attr_accessor :moderation_enabled
+        # @!attribute moderation_keyframe_video_enabled
+        #   @return [Boolean]
+        attr_accessor :moderation_keyframe_video_enabled
         # @!attribute moderation_llm_configurability_enabled
         #   @return [Boolean]
         attr_accessor :moderation_llm_configurability_enabled
@@ -210,9 +219,12 @@ module GetStream
           @id = attributes[:id] || attributes['id']
           @image_moderation_enabled = attributes[:image_moderation_enabled] || attributes['image_moderation_enabled']
           @max_aggregated_activities_length = attributes[:max_aggregated_activities_length] || attributes['max_aggregated_activities_length']
+          @member_custom_on_mentioned_users_enabled = attributes[:member_custom_on_mentioned_users_enabled] || attributes['member_custom_on_mentioned_users_enabled']
           @member_custom_on_messages_enabled = attributes[:member_custom_on_messages_enabled] || attributes['member_custom_on_messages_enabled']
+          @member_custom_on_typing_events_enabled = attributes[:member_custom_on_typing_events_enabled] || attributes['member_custom_on_typing_events_enabled']
           @moderation_audio_call_moderation_enabled = attributes[:moderation_audio_call_moderation_enabled] || attributes['moderation_audio_call_moderation_enabled']
           @moderation_enabled = attributes[:moderation_enabled] || attributes['moderation_enabled']
+          @moderation_keyframe_video_enabled = attributes[:moderation_keyframe_video_enabled] || attributes['moderation_keyframe_video_enabled']
           @moderation_llm_configurability_enabled = attributes[:moderation_llm_configurability_enabled] || attributes['moderation_llm_configurability_enabled']
           @moderation_multitenant_blocklist_enabled = attributes[:moderation_multitenant_blocklist_enabled] || attributes['moderation_multitenant_blocklist_enabled']
           @moderation_video_call_moderation_enabled = attributes[:moderation_video_call_moderation_enabled] || attributes['moderation_video_call_moderation_enabled']
@@ -276,9 +288,12 @@ module GetStream
             id: 'id',
             image_moderation_enabled: 'image_moderation_enabled',
             max_aggregated_activities_length: 'max_aggregated_activities_length',
+            member_custom_on_mentioned_users_enabled: 'member_custom_on_mentioned_users_enabled',
             member_custom_on_messages_enabled: 'member_custom_on_messages_enabled',
+            member_custom_on_typing_events_enabled: 'member_custom_on_typing_events_enabled',
             moderation_audio_call_moderation_enabled: 'moderation_audio_call_moderation_enabled',
             moderation_enabled: 'moderation_enabled',
+            moderation_keyframe_video_enabled: 'moderation_keyframe_video_enabled',
             moderation_llm_configurability_enabled: 'moderation_llm_configurability_enabled',
             moderation_multitenant_blocklist_enabled: 'moderation_multitenant_blocklist_enabled',
             moderation_video_call_moderation_enabled: 'moderation_video_call_moderation_enabled',

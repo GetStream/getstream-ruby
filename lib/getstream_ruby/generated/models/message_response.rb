@@ -135,6 +135,9 @@ module GetStream
         # @!attribute member
         #   @return [ChannelMemberPartialResponse]
         attr_accessor :member
+        # @!attribute mentioned_channel_members
+        #   @return [Hash<String, ChannelMemberPartialResponse>] Channel member data for the users mentioned in the message, keyed by user id. Only present when the app has member custom on mentioned users enabled, and only for the first two mentioned users of each message
+        attr_accessor :mentioned_channel_members
         # @!attribute moderation
         #   @return [ModerationV2Response]
         attr_accessor :moderation
@@ -202,6 +205,7 @@ module GetStream
           @i18n = attributes[:i18n] || attributes['i18n'] || nil
           @image_labels = attributes[:image_labels] || attributes['image_labels'] || nil
           @member = attributes[:member] || attributes['member'] || nil
+          @mentioned_channel_members = attributes[:mentioned_channel_members] || attributes['mentioned_channel_members'] || nil
           @moderation = attributes[:moderation] || attributes['moderation'] || nil
           @pinned_by = attributes[:pinned_by] || attributes['pinned_by'] || nil
           @poll = attributes[:poll] || attributes['poll'] || nil
@@ -256,6 +260,7 @@ module GetStream
             i18n: 'i18n',
             image_labels: 'image_labels',
             member: 'member',
+            mentioned_channel_members: 'mentioned_channel_members',
             moderation: 'moderation',
             pinned_by: 'pinned_by',
             poll: 'poll',

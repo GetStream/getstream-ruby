@@ -12,6 +12,9 @@ module GetStream
         # @!attribute feeds
         #   @return [Array<FeedRequest>] List of feeds to create
         attr_accessor :feeds
+        # @!attribute create_users
+        #   @return [Boolean] Server-side only. If true, auto-creates users referenced by feeds[].created_by_id that don't already exist. Default: false.
+        attr_accessor :create_users
         # @!attribute enrich_own_fields
         #   @return [Boolean] If true, enriches the created feeds with own_* fields (own_follows, own_followings, own_capabilities, own_membership). Defaults to false for performance.
         attr_accessor :enrich_own_fields
@@ -20,6 +23,7 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @feeds = attributes[:feeds] || attributes['feeds']
+          @create_users = attributes[:create_users] || attributes['create_users'] || nil
           @enrich_own_fields = attributes[:enrich_own_fields] || attributes['enrich_own_fields'] || nil
         end
 
@@ -27,6 +31,7 @@ module GetStream
         def self.json_field_mappings
           {
             feeds: 'feeds',
+            create_users: 'create_users',
             enrich_own_fields: 'enrich_own_fields'
           }
         end

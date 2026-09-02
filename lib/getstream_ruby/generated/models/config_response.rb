@@ -46,7 +46,7 @@ module GetStream
         #   @return [AITextConfig]
         attr_accessor :ai_text_config
         # @!attribute ai_video_config
-        #   @return [AIVideoConfig]
+        #   @return [AIVideoConfigResponse]
         attr_accessor :ai_video_config
         # @!attribute automod_platform_circumvention_config
         #   @return [AutomodPlatformCircumventionConfig]

@@ -9,24 +9,24 @@ module GetStream
       class ChannelMemberRequest < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute user_id
-        #   @return [String]
-        attr_accessor :user_id
         # @!attribute channel_role
         #   @return [String] Role of the member in the channel
         attr_accessor :channel_role
+        # @!attribute user_id
+        #   @return [String]
+        attr_accessor :user_id
         # @!attribute custom
         #   @return [Object]
         attr_accessor :custom
         # @!attribute user
-        #   @return [UserResponse] User response object
+        #   @return [MemberUserRequest]
         attr_accessor :user
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @user_id = attributes[:user_id] || attributes['user_id']
           @channel_role = attributes[:channel_role] || attributes['channel_role'] || nil
+          @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @custom = attributes[:custom] || attributes['custom'] || nil
           @user = attributes[:user] || attributes['user'] || nil
         end
@@ -34,8 +34,8 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            user_id: 'user_id',
             channel_role: 'channel_role',
+            user_id: 'user_id',
             custom: 'custom',
             user: 'user'
           }

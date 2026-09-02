@@ -6,7 +6,7 @@ module GetStream
   module Generated
     module Models
       # 
-      class AIVideoConfig < GetStream::BaseModel
+      class AIVideoConfigRequest < GetStream::BaseModel
 
         # Model attributes
         # @!attribute async
@@ -15,9 +15,6 @@ module GetStream
         # @!attribute enabled
         #   @return [Boolean]
         attr_accessor :enabled
-        # @!attribute provider
-        #   @return [String]
-        attr_accessor :provider
         # @!attribute rules
         #   @return [Array<AWSRekognitionRule>]
         attr_accessor :rules
@@ -27,7 +24,6 @@ module GetStream
           super(attributes)
           @async = attributes[:async] || attributes['async'] || nil
           @enabled = attributes[:enabled] || attributes['enabled'] || nil
-          @provider = attributes[:provider] || attributes['provider'] || nil
           @rules = attributes[:rules] || attributes['rules'] || nil
         end
 
@@ -36,7 +32,6 @@ module GetStream
           {
             async: 'async',
             enabled: 'enabled',
-            provider: 'provider',
             rules: 'rules'
           }
         end

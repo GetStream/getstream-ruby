@@ -16,7 +16,7 @@ module GetStream
         #   @return [String] Fully qualified ID of the target feed
         attr_accessor :target
         # @!attribute follower_role
-        #   @return [String] Optional role for the follower in the follow relationship
+        #   @return [String] Optional role for the follower in the follow relationship. Server-side only. Either a built-in ('feed_follower' (the default) or 'feed_member_viewer') or any role your app has defined; grants are not inspected.
         attr_accessor :follower_role
 
         # Initialize with attributes
