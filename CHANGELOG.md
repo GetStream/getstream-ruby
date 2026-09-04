@@ -7,6 +7,14 @@
   connections for 55s (AWS ALB idle minus 5s) caused
   `SSL_read: unexpected eof while reading` (`GetStreamRuby::TransportError`)
   on the next request. Override with `idle_timeout:` or `STREAM_IDLE_TIMEOUT`.
+- Recover when a GCP load balancer half-closes a pooled TLS connection without
+  `close_notify` (CHA-4943). OpenSSL 3 made Net::HTTP's dead-socket probe raise
+  `SSL_read: unexpected eof while reading` instead of reconnecting. The SDK now
+  sets `OpenSSL::SSL::OP_IGNORE_UNEXPECTED_EOF` (process-global; restores the
+  OpenSSL 1.1.1 probe so GET and POST reconnect before the request is sent) and
+  restores `max_retries=1` (Faraday had forced 0) as a GET/HEAD backstop.
+  `TransportError#error_type` for that EOF is `connection_reset`, not
+  `tls_handshake_failed`.
 
 ## [10.0.0] - 2026-07-24
 

@@ -355,6 +355,18 @@ RSpec.describe 'GetStreamRuby::Client error wrapping' do
 
     end
 
+    it 'classifies unexpected-eof SSLError as connection_reset' do
+
+      stubs.post('/api/v2/x') { raise Faraday::SSLError, 'SSL_read: unexpected eof while reading' }
+
+      expect { client.post('/api/v2/x') }.to raise_error(GetStreamRuby::TransportError) do |err|
+
+        expect(err.error_type).to eq('connection_reset')
+
+      end
+
+    end
+
     it 'classifies a ConnectionFailed wrapping SocketError as dns_failure' do
 
       # Pass the underlying exception as the first arg so Faraday::Error
