@@ -12,6 +12,18 @@ module GetStream
         # @!attribute filter_conditions
         #   @return [Object] Filter conditions to apply to the query
         attr_accessor :filter_conditions
+        # @!attribute created_at_after
+        #   @return [DateTime]
+        attr_accessor :created_at_after
+        # @!attribute created_at_after_or_equal
+        #   @return [DateTime]
+        attr_accessor :created_at_after_or_equal
+        # @!attribute created_at_before
+        #   @return [DateTime]
+        attr_accessor :created_at_before
+        # @!attribute created_at_before_or_equal
+        #   @return [DateTime]
+        attr_accessor :created_at_before_or_equal
         # @!attribute exclude_expired_bans
         #   @return [Boolean] Whether to exclude expired bans or not
         attr_accessor :exclude_expired_bans
@@ -35,6 +47,10 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @filter_conditions = attributes[:filter_conditions] || attributes['filter_conditions']
+          @created_at_after = attributes[:created_at_after] || attributes['created_at_after'] || nil
+          @created_at_after_or_equal = attributes[:created_at_after_or_equal] || attributes['created_at_after_or_equal'] || nil
+          @created_at_before = attributes[:created_at_before] || attributes['created_at_before'] || nil
+          @created_at_before_or_equal = attributes[:created_at_before_or_equal] || attributes['created_at_before_or_equal'] || nil
           @exclude_expired_bans = attributes[:exclude_expired_bans] || attributes['exclude_expired_bans'] || nil
           @limit = attributes[:limit] || attributes['limit'] || nil
           @offset = attributes[:offset] || attributes['offset'] || nil
@@ -47,6 +63,10 @@ module GetStream
         def self.json_field_mappings
           {
             filter_conditions: 'filter_conditions',
+            created_at_after: 'created_at_after',
+            created_at_after_or_equal: 'created_at_after_or_equal',
+            created_at_before: 'created_at_before',
+            created_at_before_or_equal: 'created_at_before_or_equal',
             exclude_expired_bans: 'exclude_expired_bans',
             limit: 'limit',
             offset: 'offset',

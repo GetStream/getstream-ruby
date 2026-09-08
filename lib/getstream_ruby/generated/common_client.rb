@@ -1022,9 +1022,11 @@ module GetStream
       # @param ios [Boolean]
       # @param web [Boolean]
       # @param unity [Boolean]
+      # @param unity_desktop [Boolean]
+      # @param unity_console [Boolean]
       # @param endpoints [String]
       # @return [Models::GetRateLimitsResponse]
-      def get_rate_limits(server_side = nil, android = nil, ios = nil, web = nil, unity = nil, endpoints = nil)
+      def get_rate_limits(server_side = nil, android = nil, ios = nil, web = nil, unity = nil, unity_desktop = nil, unity_console = nil, endpoints = nil)
         path = '/api/v2/rate_limits'
         # Build query parameters
         query_params = {}
@@ -1033,6 +1035,8 @@ module GetStream
         query_params['ios'] = ios unless ios.nil?
         query_params['web'] = web unless web.nil?
         query_params['unity'] = unity unless unity.nil?
+        query_params['unity_desktop'] = unity_desktop unless unity_desktop.nil?
+        query_params['unity_console'] = unity_console unless unity_console.nil?
         query_params['endpoints'] = endpoints unless endpoints.nil?
 
         # Make the API request

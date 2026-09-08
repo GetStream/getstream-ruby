@@ -24,6 +24,12 @@ module GetStream
         # @!attribute unity
         #   @return [Hash<String, LimitInfoResponse>] Map of endpoint rate limits for the Unity platform
         attr_accessor :unity
+        # @!attribute unity_console
+        #   @return [Hash<String, LimitInfoResponse>] Map of endpoint rate limits for the Unity console platform
+        attr_accessor :unity_console
+        # @!attribute unity_desktop
+        #   @return [Hash<String, LimitInfoResponse>] Map of endpoint rate limits for the Unity desktop platform
+        attr_accessor :unity_desktop
         # @!attribute web
         #   @return [Hash<String, LimitInfoResponse>] Map of endpoint rate limits for the web platform
         attr_accessor :web
@@ -36,6 +42,8 @@ module GetStream
           @ios = attributes[:ios] || attributes['ios'] || nil
           @server_side = attributes[:server_side] || attributes['server_side'] || nil
           @unity = attributes[:unity] || attributes['unity'] || nil
+          @unity_console = attributes[:unity_console] || attributes['unity_console'] || nil
+          @unity_desktop = attributes[:unity_desktop] || attributes['unity_desktop'] || nil
           @web = attributes[:web] || attributes['web'] || nil
         end
 
@@ -47,6 +55,8 @@ module GetStream
             ios: 'ios',
             server_side: 'server_side',
             unity: 'unity',
+            unity_console: 'unity_console',
+            unity_desktop: 'unity_desktop',
             web: 'web'
           }
         end

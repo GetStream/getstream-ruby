@@ -9,6 +9,9 @@ module GetStream
       class RunStats < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute activities_deleted
+        #   @return [Integer]
+        attr_accessor :activities_deleted
         # @!attribute channels_deleted
         #   @return [Integer]
         attr_accessor :channels_deleted
@@ -19,6 +22,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @activities_deleted = attributes[:activities_deleted] || attributes['activities_deleted'] || nil
           @channels_deleted = attributes[:channels_deleted] || attributes['channels_deleted'] || nil
           @messages_deleted = attributes[:messages_deleted] || attributes['messages_deleted'] || nil
         end
@@ -26,6 +30,7 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            activities_deleted: 'activities_deleted',
             channels_deleted: 'channels_deleted',
             messages_deleted: 'messages_deleted'
           }

@@ -27,6 +27,9 @@ module GetStream
         # @!attribute activity_filter
         #   @return [ActivityFilterConfig]
         attr_accessor :activity_filter
+        # @!attribute activity_marks
+        #   @return [ActivityMarksConfig]
+        attr_accessor :activity_marks
         # @!attribute activity_processing
         #   @return [ActivityProcessingConfig]
         attr_accessor :activity_processing
@@ -58,6 +61,7 @@ module GetStream
           @activity_processors = attributes[:activity_processors] || attributes['activity_processors'] || nil
           @activity_selectors = attributes[:activity_selectors] || attributes['activity_selectors'] || nil
           @activity_filter = attributes[:activity_filter] || attributes['activity_filter'] || nil
+          @activity_marks = attributes[:activity_marks] || attributes['activity_marks'] || nil
           @activity_processing = attributes[:activity_processing] || attributes['activity_processing'] || nil
           @aggregation = attributes[:aggregation] || attributes['aggregation'] || nil
           @custom = attributes[:custom] || attributes['custom'] || nil
@@ -76,6 +80,7 @@ module GetStream
             activity_processors: 'activity_processors',
             activity_selectors: 'activity_selectors',
             activity_filter: 'activity_filter',
+            activity_marks: 'activity_marks',
             activity_processing: 'activity_processing',
             aggregation: 'aggregation',
             custom: 'custom',

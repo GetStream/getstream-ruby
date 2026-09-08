@@ -12,6 +12,18 @@ module GetStream
         # @!attribute filter_conditions
         #   @return [Object] Filter conditions to apply to the query
         attr_accessor :filter_conditions
+        # @!attribute id_gt
+        #   @return [String]
+        attr_accessor :id_gt
+        # @!attribute id_gte
+        #   @return [String]
+        attr_accessor :id_gte
+        # @!attribute id_lt
+        #   @return [String]
+        attr_accessor :id_lt
+        # @!attribute id_lte
+        #   @return [String]
+        attr_accessor :id_lte
         # @!attribute include_deactivated_users
         #   @return [Boolean]
         attr_accessor :include_deactivated_users
@@ -38,6 +50,10 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @filter_conditions = attributes[:filter_conditions] || attributes['filter_conditions']
+          @id_gt = attributes[:id_gt] || attributes['id_gt'] || nil
+          @id_gte = attributes[:id_gte] || attributes['id_gte'] || nil
+          @id_lt = attributes[:id_lt] || attributes['id_lt'] || nil
+          @id_lte = attributes[:id_lte] || attributes['id_lte'] || nil
           @include_deactivated_users = attributes[:include_deactivated_users] || attributes['include_deactivated_users'] || nil
           @limit = attributes[:limit] || attributes['limit'] || nil
           @offset = attributes[:offset] || attributes['offset'] || nil
@@ -51,6 +67,10 @@ module GetStream
         def self.json_field_mappings
           {
             filter_conditions: 'filter_conditions',
+            id_gt: 'id_gt',
+            id_gte: 'id_gte',
+            id_lt: 'id_lt',
+            id_lte: 'id_lte',
             include_deactivated_users: 'include_deactivated_users',
             limit: 'limit',
             offset: 'offset',
