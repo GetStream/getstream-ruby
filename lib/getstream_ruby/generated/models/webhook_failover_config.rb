@@ -18,6 +18,24 @@ module GetStream
         # @!attribute gcs_path
         #   @return [String]
         attr_accessor :gcs_path
+        # @!attribute s3_api_key
+        #   @return [String]
+        attr_accessor :s3_api_key
+        # @!attribute s3_bucket
+        #   @return [String]
+        attr_accessor :s3_bucket
+        # @!attribute s3_path
+        #   @return [String]
+        attr_accessor :s3_path
+        # @!attribute s3_region
+        #   @return [String]
+        attr_accessor :s3_region
+        # @!attribute s3_role_arn
+        #   @return [String]
+        attr_accessor :s3_role_arn
+        # @!attribute s3_secret
+        #   @return [String]
+        attr_accessor :s3_secret
         # @!attribute type
         #   @return [String]
         attr_accessor :type
@@ -28,6 +46,12 @@ module GetStream
           @gcs_bucket = attributes[:gcs_bucket] || attributes['gcs_bucket'] || nil
           @gcs_credentials = attributes[:gcs_credentials] || attributes['gcs_credentials'] || nil
           @gcs_path = attributes[:gcs_path] || attributes['gcs_path'] || nil
+          @s3_api_key = attributes[:s3_api_key] || attributes['s3_api_key'] || nil
+          @s3_bucket = attributes[:s3_bucket] || attributes['s3_bucket'] || nil
+          @s3_path = attributes[:s3_path] || attributes['s3_path'] || nil
+          @s3_region = attributes[:s3_region] || attributes['s3_region'] || nil
+          @s3_role_arn = attributes[:s3_role_arn] || attributes['s3_role_arn'] || nil
+          @s3_secret = attributes[:s3_secret] || attributes['s3_secret'] || nil
           @type = attributes[:type] || attributes['type'] || nil
         end
 
@@ -37,6 +61,12 @@ module GetStream
             gcs_bucket: 'gcs_bucket',
             gcs_credentials: 'gcs_credentials',
             gcs_path: 'gcs_path',
+            s3_api_key: 's3_api_key',
+            s3_bucket: 's3_bucket',
+            s3_path: 's3_path',
+            s3_region: 's3_region',
+            s3_role_arn: 's3_role_arn',
+            s3_secret: 's3_secret',
             type: 'type'
           }
         end

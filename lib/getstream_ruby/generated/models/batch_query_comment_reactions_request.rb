@@ -9,9 +9,6 @@ module GetStream
       class BatchQueryCommentReactionsRequest < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute comment_ids
-        #   @return [Array<String>] Comment IDs to fetch the user's reactions for (max 100)
-        attr_accessor :comment_ids
         # @!attribute limit
         #   @return [Integer]
         attr_accessor :limit
@@ -24,11 +21,14 @@ module GetStream
         # @!attribute user_id
         #   @return [String] Server-side only. The user whose reactions to fetch; defaults to the authenticated user for client-side requests
         attr_accessor :user_id
+        # @!attribute comment_ids
+        #   @return [Array<String>] Comment IDs to fetch the user's reactions for (max 100). Omit to page over all of the user's comment reactions
+        attr_accessor :comment_ids
         # @!attribute sort
         #   @return [Array<SortParamRequest>]
         attr_accessor :sort
         # @!attribute filter
-        #   @return [Object] Optional filter on reaction_type or created_at
+        #   @return [Object] Optional filter on reaction_type or created_at. To restrict by comment, prefer comment_ids over filter.comment_id: comment_ids is capped at 100 and served by the per-comment index, and filter.comment_id is rejected when comment_ids is omitted
         attr_accessor :filter
         # @!attribute user
         #   @return [UserRequest] User request object
@@ -37,11 +37,11 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @comment_ids = attributes[:comment_ids] || attributes['comment_ids']
           @limit = attributes[:limit] || attributes['limit'] || nil
           @next = attributes[:next] || attributes['next'] || nil
           @prev = attributes[:prev] || attributes['prev'] || nil
           @user_id = attributes[:user_id] || attributes['user_id'] || nil
+          @comment_ids = attributes[:comment_ids] || attributes['comment_ids'] || nil
           @sort = attributes[:sort] || attributes['sort'] || nil
           @filter = attributes[:filter] || attributes['filter'] || nil
           @user = attributes[:user] || attributes['user'] || nil
@@ -50,11 +50,11 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            comment_ids: 'comment_ids',
             limit: 'limit',
             next: 'next',
             prev: 'prev',
             user_id: 'user_id',
+            comment_ids: 'comment_ids',
             sort: 'sort',
             filter: 'filter',
             user: 'user'

@@ -15,9 +15,6 @@ module GetStream
         # @!attribute automod_behavior
         #   @return [String]
         attr_accessor :automod_behavior
-        # @!attribute max_message_length
-        #   @return [Integer]
-        attr_accessor :max_message_length
         # @!attribute blocklist
         #   @return [String]
         attr_accessor :blocklist
@@ -39,6 +36,9 @@ module GetStream
         # @!attribute mark_messages_pending
         #   @return [Boolean]
         attr_accessor :mark_messages_pending
+        # @!attribute max_message_length
+        #   @return [Integer]
+        attr_accessor :max_message_length
         # @!attribute message_retention
         #   @return [String]
         attr_accessor :message_retention
@@ -121,9 +121,8 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @automod = attributes[:automod] || attributes['automod']
-          @automod_behavior = attributes[:automod_behavior] || attributes['automod_behavior']
-          @max_message_length = attributes[:max_message_length] || attributes['max_message_length']
+          @automod = attributes[:automod] || attributes['automod'] || nil
+          @automod_behavior = attributes[:automod_behavior] || attributes['automod_behavior'] || nil
           @blocklist = attributes[:blocklist] || attributes['blocklist'] || nil
           @blocklist_behavior = attributes[:blocklist_behavior] || attributes['blocklist_behavior'] || nil
           @connect_events = attributes[:connect_events] || attributes['connect_events'] || nil
@@ -131,6 +130,7 @@ module GetStream
           @custom_events = attributes[:custom_events] || attributes['custom_events'] || nil
           @delivery_events = attributes[:delivery_events] || attributes['delivery_events'] || nil
           @mark_messages_pending = attributes[:mark_messages_pending] || attributes['mark_messages_pending'] || nil
+          @max_message_length = attributes[:max_message_length] || attributes['max_message_length'] || nil
           @message_retention = attributes[:message_retention] || attributes['message_retention'] || nil
           @mutes = attributes[:mutes] || attributes['mutes'] || nil
           @partition_size = attributes[:partition_size] || attributes['partition_size'] || nil
@@ -164,7 +164,6 @@ module GetStream
           {
             automod: 'automod',
             automod_behavior: 'automod_behavior',
-            max_message_length: 'max_message_length',
             blocklist: 'blocklist',
             blocklist_behavior: 'blocklist_behavior',
             connect_events: 'connect_events',
@@ -172,6 +171,7 @@ module GetStream
             custom_events: 'custom_events',
             delivery_events: 'delivery_events',
             mark_messages_pending: 'mark_messages_pending',
+            max_message_length: 'max_message_length',
             message_retention: 'message_retention',
             mutes: 'mutes',
             partition_size: 'partition_size',

@@ -12,6 +12,18 @@ module GetStream
         # @!attribute type
         #   @return [String]
         attr_accessor :type
+        # @!attribute created_at_after
+        #   @return [DateTime]
+        attr_accessor :created_at_after
+        # @!attribute created_at_after_or_equal
+        #   @return [DateTime]
+        attr_accessor :created_at_after_or_equal
+        # @!attribute created_at_before
+        #   @return [DateTime]
+        attr_accessor :created_at_before
+        # @!attribute created_at_before_or_equal
+        #   @return [DateTime]
+        attr_accessor :created_at_before_or_equal
         # @!attribute id
         #   @return [String]
         attr_accessor :id
@@ -24,6 +36,18 @@ module GetStream
         # @!attribute user_id
         #   @return [String]
         attr_accessor :user_id
+        # @!attribute user_id_gt
+        #   @return [String]
+        attr_accessor :user_id_gt
+        # @!attribute user_id_gte
+        #   @return [String]
+        attr_accessor :user_id_gte
+        # @!attribute user_id_lt
+        #   @return [String]
+        attr_accessor :user_id_lt
+        # @!attribute user_id_lte
+        #   @return [String]
+        attr_accessor :user_id_lte
         # @!attribute members
         #   @return [Array<ChannelMemberRequest>]
         attr_accessor :members
@@ -41,10 +65,18 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @type = attributes[:type] || attributes['type']
+          @created_at_after = attributes[:created_at_after] || attributes['created_at_after'] || nil
+          @created_at_after_or_equal = attributes[:created_at_after_or_equal] || attributes['created_at_after_or_equal'] || nil
+          @created_at_before = attributes[:created_at_before] || attributes['created_at_before'] || nil
+          @created_at_before_or_equal = attributes[:created_at_before_or_equal] || attributes['created_at_before_or_equal'] || nil
           @id = attributes[:id] || attributes['id'] || nil
           @limit = attributes[:limit] || attributes['limit'] || nil
           @offset = attributes[:offset] || attributes['offset'] || nil
           @user_id = attributes[:user_id] || attributes['user_id'] || nil
+          @user_id_gt = attributes[:user_id_gt] || attributes['user_id_gt'] || nil
+          @user_id_gte = attributes[:user_id_gte] || attributes['user_id_gte'] || nil
+          @user_id_lt = attributes[:user_id_lt] || attributes['user_id_lt'] || nil
+          @user_id_lte = attributes[:user_id_lte] || attributes['user_id_lte'] || nil
           @members = attributes[:members] || attributes['members'] || nil
           @sort = attributes[:sort] || attributes['sort'] || nil
           @filter_conditions = attributes[:filter_conditions] || attributes['filter_conditions'] || nil
@@ -55,10 +87,18 @@ module GetStream
         def self.json_field_mappings
           {
             type: 'type',
+            created_at_after: 'created_at_after',
+            created_at_after_or_equal: 'created_at_after_or_equal',
+            created_at_before: 'created_at_before',
+            created_at_before_or_equal: 'created_at_before_or_equal',
             id: 'id',
             limit: 'limit',
             offset: 'offset',
             user_id: 'user_id',
+            user_id_gt: 'user_id_gt',
+            user_id_gte: 'user_id_gte',
+            user_id_lt: 'user_id_lt',
+            user_id_lte: 'user_id_lte',
             members: 'members',
             sort: 'sort',
             filter_conditions: 'filter_conditions',

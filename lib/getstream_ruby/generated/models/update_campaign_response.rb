@@ -5,34 +5,33 @@
 module GetStream
   module Generated
     module Models
-      # 
-      class UpdateUsersResponse < GetStream::BaseModel
+      # Basic response information
+      class UpdateCampaignResponse < GetStream::BaseModel
 
         # Model attributes
         # @!attribute duration
         #   @return [String] Duration of the request in milliseconds
         attr_accessor :duration
-        # @!attribute membership_deletion_task_id
-        # @deprecated This field is deprecated.
-        #   @return [String] Deprecated: always empty. Removing a user from a team no longer deletes their memberships in that team's channels, so there is no task to poll
-        attr_accessor :membership_deletion_task_id
+        # @!attribute campaign
+        #   @return [CampaignResponse]
+        attr_accessor :campaign
         # @!attribute users
-        #   @return [Hash<String, FullUserResponse>] Object containing users
+        #   @return [PagerResponse]
         attr_accessor :users
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @duration = attributes[:duration] || attributes['duration']
-          @membership_deletion_task_id = attributes[:membership_deletion_task_id] || attributes['membership_deletion_task_id']
-          @users = attributes[:users] || attributes['users']
+          @campaign = attributes[:campaign] || attributes['campaign'] || nil
+          @users = attributes[:users] || attributes['users'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
             duration: 'duration',
-            membership_deletion_task_id: 'membership_deletion_task_id',
+            campaign: 'campaign',
             users: 'users'
           }
         end

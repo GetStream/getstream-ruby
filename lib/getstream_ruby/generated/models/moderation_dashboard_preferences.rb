@@ -24,6 +24,9 @@ module GetStream
         # @!attribute disable_flagging_reviewed_entity
         #   @return [Boolean]
         attr_accessor :disable_flagging_reviewed_entity
+        # @!attribute enforce_shadow_server_side
+        #   @return [Boolean]
+        attr_accessor :enforce_shadow_server_side
         # @!attribute escalation_queue_enabled
         #   @return [Boolean]
         attr_accessor :escalation_queue_enabled
@@ -60,6 +63,7 @@ module GetStream
           @custom_views_enabled = attributes[:custom_views_enabled] || attributes['custom_views_enabled'] || nil
           @disable_audit_logs = attributes[:disable_audit_logs] || attributes['disable_audit_logs'] || nil
           @disable_flagging_reviewed_entity = attributes[:disable_flagging_reviewed_entity] || attributes['disable_flagging_reviewed_entity'] || nil
+          @enforce_shadow_server_side = attributes[:enforce_shadow_server_side] || attributes['enforce_shadow_server_side'] || nil
           @escalation_queue_enabled = attributes[:escalation_queue_enabled] || attributes['escalation_queue_enabled'] || nil
           @flag_user_on_flagged_content = attributes[:flag_user_on_flagged_content] || attributes['flag_user_on_flagged_content'] || nil
           @include_attachment_payload = attributes[:include_attachment_payload] || attributes['include_attachment_payload'] || nil
@@ -79,6 +83,7 @@ module GetStream
             custom_views_enabled: 'custom_views_enabled',
             disable_audit_logs: 'disable_audit_logs',
             disable_flagging_reviewed_entity: 'disable_flagging_reviewed_entity',
+            enforce_shadow_server_side: 'enforce_shadow_server_side',
             escalation_queue_enabled: 'escalation_queue_enabled',
             flag_user_on_flagged_content: 'flag_user_on_flagged_content',
             include_attachment_payload: 'include_attachment_payload',
