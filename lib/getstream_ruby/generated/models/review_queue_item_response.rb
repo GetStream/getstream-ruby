@@ -63,6 +63,9 @@ module GetStream
         # @!attribute completed_at
         #   @return [DateTime] When the review was completed
         attr_accessor :completed_at
+        # @!attribute confidence_score
+        #   @return [Float] Highest per-label confidence (0-1) any provider reported across the item's flags; absent when no flag carried one
+        attr_accessor :confidence_score
         # @!attribute config_key
         #   @return [String]
         attr_accessor :config_key
@@ -142,6 +145,7 @@ module GetStream
           @flags = attributes[:flags] || attributes['flags']
           @languages = attributes[:languages] || attributes['languages']
           @completed_at = attributes[:completed_at] || attributes['completed_at'] || nil
+          @confidence_score = attributes[:confidence_score] || attributes['confidence_score'] || nil
           @config_key = attributes[:config_key] || attributes['config_key'] || nil
           @entity_creator_id = attributes[:entity_creator_id] || attributes['entity_creator_id'] || nil
           @escalated_at = attributes[:escalated_at] || attributes['escalated_at'] || nil
@@ -184,6 +188,7 @@ module GetStream
             flags: 'flags',
             languages: 'languages',
             completed_at: 'completed_at',
+            confidence_score: 'confidence_score',
             config_key: 'config_key',
             entity_creator_id: 'entity_creator_id',
             escalated_at: 'escalated_at',

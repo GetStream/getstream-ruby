@@ -13,21 +13,26 @@ module GetStream
         #   @return [Array<String>] All channels that should be deleted
         attr_accessor :cids
         # @!attribute hard_delete
-        #   @return [Boolean] Specify if channels and all ressources should be hard deleted
+        #   @return [Boolean] Server-side only. When true, the channels and all their resources are permanently deleted instead of soft-deleted.
         attr_accessor :hard_delete
+        # @!attribute skip_truncate
+        #   @return [Boolean] Server-side only. When true, the soft delete preserves message history instead of hiding it, so a later recreation of any of these channel IDs restores the full history. Only supported for distinct channels. Cannot be combined with hard_delete.
+        attr_accessor :skip_truncate
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @cids = attributes[:cids] || attributes['cids']
           @hard_delete = attributes[:hard_delete] || attributes['hard_delete'] || nil
+          @skip_truncate = attributes[:skip_truncate] || attributes['skip_truncate'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
             cids: 'cids',
-            hard_delete: 'hard_delete'
+            hard_delete: 'hard_delete',
+            skip_truncate: 'skip_truncate'
           }
         end
       end
