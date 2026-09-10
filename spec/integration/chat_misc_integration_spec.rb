@@ -267,12 +267,12 @@ RSpec.describe 'Chat Misc Integration', type: :integration do
 
       # Create channel type with a lower max_message_length so the update below
       # can demonstrate the value actually changes. The test app plan caps at
-      # 4000, so stay within that ceiling to avoid silent truncation.
+      # 3000, so stay within that ceiling to avoid silent truncation.
       create_resp = @client.make_request(:post, '/api/v2/chat/channeltypes', body: {
                                            name: type_name,
                                            automod: 'disabled',
                                            automod_behavior: 'flag',
-                                           max_message_length: 3000,
+                                           max_message_length: 2000,
                                          })
       expect(create_resp.name).to eq(type_name)
       @created_channel_type_names << type_name
@@ -284,14 +284,14 @@ RSpec.describe 'Chat Misc Integration', type: :integration do
       get_resp = @client.make_request(:get, "/api/v2/chat/channeltypes/#{type_name}")
       expect(get_resp.name).to eq(type_name)
 
-      # Update channel type — raise to 4000 (plan maximum) to verify the
+      # Update channel type — raise to 3000 (plan maximum) to verify the
       # update is applied. The update response can lag the write it just made,
       # and a re-fetch is eventually consistent, so poll until the new value
       # shows up rather than asserting on either one directly.
       @client.make_request(:put, "/api/v2/chat/channeltypes/#{type_name}", body: {
                              automod: 'disabled',
                              automod_behavior: 'flag',
-                             max_message_length: 4000,
+                             max_message_length: 3000,
                              typing_events: false,
                            })
 
@@ -301,12 +301,12 @@ RSpec.describe 'Chat Misc Integration', type: :integration do
         max_message_length = @client.make_request(
           :get, "/api/v2/chat/channeltypes/#{type_name}"
         ).max_message_length
-        break if max_message_length == 4000
+        break if max_message_length == 3000
 
         sleep(0.5)
 
       end
-      expect(max_message_length).to eq(4000)
+      expect(max_message_length).to eq(3000)
 
       # Delete a separate channel type
       del_name = "testdeltype#{random_string(6)}"
@@ -314,7 +314,7 @@ RSpec.describe 'Chat Misc Integration', type: :integration do
                              name: del_name,
                              automod: 'disabled',
                              automod_behavior: 'flag',
-                             max_message_length: 4000,
+                             max_message_length: 3000,
                            })
       @created_channel_type_names << del_name
 

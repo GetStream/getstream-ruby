@@ -279,8 +279,9 @@ module GetStream
       # @param _type [String]
       # @param _id [String]
       # @param hard_delete [Boolean]
+      # @param skip_truncate [Boolean]
       # @return [Models::DeleteChannelResponse]
-      def delete_channel(_type, _id, hard_delete = nil)
+      def delete_channel(_type, _id, hard_delete = nil, skip_truncate = nil)
         path = '/api/v2/chat/channels/{type}/{id}'
         # Replace path parameters
         path = path.gsub('{type}', _type.to_s)
@@ -288,6 +289,7 @@ module GetStream
         # Build query parameters
         query_params = {}
         query_params['hard_delete'] = hard_delete unless hard_delete.nil?
+        query_params['skip_truncate'] = skip_truncate unless skip_truncate.nil?
 
         # Make the API request
         @client.make_request(

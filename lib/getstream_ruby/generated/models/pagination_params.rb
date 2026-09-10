@@ -9,6 +9,18 @@ module GetStream
       class PaginationParams < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute id_gt
+        #   @return [Integer]
+        attr_accessor :id_gt
+        # @!attribute id_gte
+        #   @return [Integer]
+        attr_accessor :id_gte
+        # @!attribute id_lt
+        #   @return [Integer]
+        attr_accessor :id_lt
+        # @!attribute id_lte
+        #   @return [Integer]
+        attr_accessor :id_lte
         # @!attribute limit
         #   @return [Integer]
         attr_accessor :limit
@@ -19,6 +31,10 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @id_gt = attributes[:id_gt] || attributes['id_gt'] || nil
+          @id_gte = attributes[:id_gte] || attributes['id_gte'] || nil
+          @id_lt = attributes[:id_lt] || attributes['id_lt'] || nil
+          @id_lte = attributes[:id_lte] || attributes['id_lte'] || nil
           @limit = attributes[:limit] || attributes['limit'] || nil
           @offset = attributes[:offset] || attributes['offset'] || nil
         end
@@ -26,6 +42,10 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            id_gt: 'id_gt',
+            id_gte: 'id_gte',
+            id_lt: 'id_lt',
+            id_lte: 'id_lte',
             limit: 'limit',
             offset: 'offset'
           }

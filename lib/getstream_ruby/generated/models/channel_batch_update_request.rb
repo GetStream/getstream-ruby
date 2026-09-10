@@ -15,6 +15,9 @@ module GetStream
         # @!attribute filter
         #   @return [Object] Filter to apply to the query
         attr_accessor :filter
+        # @!attribute hide_history_before
+        #   @return [DateTime] Required with the `addMembersHideHistory` operation, and rejected with every other operation including `addMembers`. Hides each matched channel's history before this time from the members the operation adds. Members that already belong to a matched channel are never affected. Must be in RFC3339 format (e.g., "2024-01-01T10:00:00Z") and in the past.
+        attr_accessor :hide_history_before
         # @!attribute custom_unset
         #   @return [Array<String>] `updateData` only. Deletes these keys from each channel's existing custom object, leaving every other custom key untouched. Keys are dot-paths; deleting a key that does not exist is a no-op. Cannot be combined with `data.custom`
         attr_accessor :custom_unset
@@ -33,6 +36,7 @@ module GetStream
           super(attributes)
           @operation = attributes[:operation] || attributes['operation']
           @filter = attributes[:filter] || attributes['filter']
+          @hide_history_before = attributes[:hide_history_before] || attributes['hide_history_before'] || nil
           @custom_unset = attributes[:custom_unset] || attributes['custom_unset'] || nil
           @members = attributes[:members] || attributes['members'] || nil
           @custom_set = attributes[:custom_set] || attributes['custom_set'] || nil
@@ -44,6 +48,7 @@ module GetStream
           {
             operation: 'operation',
             filter: 'filter',
+            hide_history_before: 'hide_history_before',
             custom_unset: 'custom_unset',
             members: 'members',
             custom_set: 'custom_set',

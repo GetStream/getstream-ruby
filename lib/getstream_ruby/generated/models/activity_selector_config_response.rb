@@ -24,6 +24,9 @@ module GetStream
         # @!attribute sort
         #   @return [Array<SortParamRequest>] Sort parameters for activity selection
         attr_accessor :sort
+        # @!attribute feed_groups
+        #   @return [FeedGroupScope]
+        attr_accessor :feed_groups
         # @!attribute filter
         #   @return [Object] Filter for activity selection
         attr_accessor :filter
@@ -39,6 +42,7 @@ module GetStream
           @cutoff_window = attributes[:cutoff_window] || attributes['cutoff_window'] || nil
           @min_popularity = attributes[:min_popularity] || attributes['min_popularity'] || nil
           @sort = attributes[:sort] || attributes['sort'] || nil
+          @feed_groups = attributes[:feed_groups] || attributes['feed_groups'] || nil
           @filter = attributes[:filter] || attributes['filter'] || nil
           @params = attributes[:params] || attributes['params'] || nil
         end
@@ -51,6 +55,7 @@ module GetStream
             cutoff_window: 'cutoff_window',
             min_popularity: 'min_popularity',
             sort: 'sort',
+            feed_groups: 'feed_groups',
             filter: 'filter',
             params: 'params'
           }
