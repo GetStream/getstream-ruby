@@ -1,0 +1,146 @@
+name: _run-tests
+
+on:
+  workflow_call:
+    secrets:
+      STREAM_API_SECRET:
+        required: true
+      STREAM_VIDEO_API_SECRET:
+        required: true
+      STREAM_GCP_API_SECRET:
+        required: false
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  unit:
+    name: Unit Tests & Code Quality
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1.0'
+
+      - name: Install dependencies
+        run: bundle install --jobs 4 --retry 3
+
+      - name: Run unit tests
+        run: make test
+
+      - name: Run code quality checks
+        run: |
+          make format-check
+          make lint
+          make security
+
+  integration-chat:
+    name: Chat Integration Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    environment: ci
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1.0'
+
+      - name: Install dependencies
+        run: bundle install --jobs 4 --retry 3
+
+      - name: Run chat integration tests
+        env:
+          STREAM_API_KEY: ${{ vars.STREAM_API_KEY }}
+          STREAM_API_SECRET: ${{ secrets.STREAM_API_SECRET }}
+          STREAM_BASE_URL: ${{ vars.STREAM_BASE_URL }}
+        run: make test-integration-chat
+
+  integration-feed:
+    name: Feed Integration Tests
+    # Runs after chat rather than beside it: both blank and restore the app-global
+    # file_upload_config, so in parallel one suite's restore lands mid-assertion in
+    # the other. !cancelled() keeps the ordering without inheriting the implicit
+    # success(), so a red chat no longer hides whether feed passes.
+    needs: integration-chat
+    if: '!cancelled()'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    environment: ci
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1.0'
+
+      - name: Install dependencies
+        run: bundle install --jobs 4 --retry 3
+
+      - name: Run feed integration tests
+        env:
+          STREAM_API_KEY: ${{ vars.STREAM_API_KEY }}
+          STREAM_API_SECRET: ${{ secrets.STREAM_API_SECRET }}
+          STREAM_BASE_URL: ${{ vars.STREAM_BASE_URL }}
+        run: make test-integration-feed
+
+  integration-video:
+    name: Video Integration Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    environment: ci
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1.0'
+
+      - name: Install dependencies
+        run: bundle install --jobs 4 --retry 3
+
+      - name: Run video integration tests
+        env:
+          STREAM_API_KEY: ${{ vars.STREAM_VIDEO_API_KEY }}
+          STREAM_API_SECRET: ${{ secrets.STREAM_VIDEO_API_SECRET }}
+          STREAM_BASE_URL: ${{ vars.STREAM_VIDEO_BASE_URL }}
+        run: make test-integration-video
+
+  integration-gcp-lb:
+    name: GCP load balancer keep-alive
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    environment: ci
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1.0'
+
+      - name: Install dependencies
+        run: bundle install --jobs 4 --retry 3
+
+      - name: Run GCP keep-alive integration test
+        env:
+          STREAM_API_KEY: ${{ vars.STREAM_GCP_API_KEY || vars.STREAM_API_KEY }}
+          STREAM_API_SECRET: ${{ secrets.STREAM_GCP_API_SECRET || secrets.STREAM_API_SECRET }}
+          STREAM_BASE_URL: ${{ vars.STREAM_GCP_BASE_URL }}
+        run: make test-integration-gcp-lb

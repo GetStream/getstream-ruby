@@ -386,20 +386,47 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/getstr
 
 ## Release Process
 
-Releases use two paths, both handled by `.github/workflows/release.yml`:
+Releases are driven by [release-please](https://github.com/googleapis/release-please).
 
-- **Default**: automatic release when a PR is merged to `main`/`master`. The PR title drives the semver bump.
-- **Fallback**: manual release via the `Release` workflow's `workflow_dispatch` (admin use). Select a `version_bump` (`patch`/`minor`/`major`). `use_current_version=true` skips the bump and publishes whatever is already in `lib/getstream_ruby/version.rb`.
+- Merge PRs to `master` with conventional-commit titles, using **Squash and merge**. The
+  title becomes the commit subject and decides the next version: `feat:` is a minor,
+  `fix:` and `perf:` are a patch, `feat!:` or `<type>(scope)!:` is a major. Other types
+  (`chore`, `ci`, `docs`, `test`, `refactor`) ship nothing.
+- Squashing is a convention here, not yet enforced. The repo still has
+  `allow_merge_commit: true`, `allow_rebase_merge: true` and
+  `squash_merge_commit_title: COMMIT_OR_PR_TITLE`, and until someone with admin sets
+  those to `false`, `false` and `PR_TITLE` (as getstream-go has), two things silently
+  skip a release: a merge commit, whose subject is not conventional and whose body only
+  yields a plain `feat:`/`fix:` prefix, never `feat!:`; and a single-commit PR, which
+  squashes to that commit's subject rather than the PR title. `pr_title.yml` only checks
+  the PR title field, so it passes in both cases.
+- release-please keeps a Release PR open with the version bump in
+  `lib/getstream_ruby/version.rb` and `CHANGELOG.md`. It is opened by
+  `github-actions[bot]`, so approve it and run its held checks like any other PR. Never
+  edit the version by hand.
+- Merging the Release PR runs `make format-check`, `make lint`, `make security`,
+  `make test` and the four integration suites (chat, feed, video, GCP load balancer) on
+  that merge commit, which is the commit the tag will point at. Only if that is green does the workflow create the tag and the
+  GitHub Release and push the gem to RubyGems. The order matters: a tag, a GitHub
+  Release and a gem push cannot be withdrawn, a failed push can be retried.
 
-Automatic semver bump rules:
+If the suite goes red after the Release PR merged, the release stays pending and every
+later push to `master` logs a warning naming the commit to go back to, rather than
+failing. Recovery in both that case and a failed gem push is "Re-run failed jobs" on the
+run for that merge commit. Once GitHub has retired the run, dispatch `Release` from `master`
+with `publish_tag` set to the tag (for example `v12.1.1`), which builds and pushes that
+tag without touching release-please.
 
-- `feat:` -> minor
-- `fix:` (or `bug:`) -> patch
-- `feat!:` or `<type>(scope)!:` (the `!` marker) -> major
+To force a specific version, type `Release-As: X.Y.Z` in the commit message box of the
+squash dialog when merging a PR; the PR description is not copied there. To hotfix while
+`master` carries unreleased work, branch `N.x` from the last tag, cherry-pick the fix,
+and merge the Release PR that release-please opens against that branch.
 
-PRs with any other prefix do not trigger a release.
-
-The release pipeline runs lint (`make format-check && make lint && make security`), the unit suite (`make test`), and all three integration suites (chat, feed, video) on the merged commit before publishing to RubyGems. Each step is idempotent; a failed run can be re-dispatched from the Actions UI.
+`last-release-sha` in `release-please-config.json` is temporary. `v12.1.0` sits on a bump
+commit the previous workflow created off-branch and never pushed, so release-please
+cannot reach it by walking `master` and would otherwise treat the whole history as
+unreleased. Delete the key once a release-please-created release exists on `master`; the
+walk stops at that release commit before it reaches the pin.
 
 ## License
 

@@ -1,139 +1,18 @@
 name: CI
 
+# pull_request only. A push trigger alongside it ran the whole suite twice on the same
+# SHA, and the duplicate integration legs raced each other against the Stream app
+# several SDK repos share. The trade is that a merge to master, and a direct push to it,
+# now run nothing: release.yml runs this same workflow only when a release is pending,
+# so the gate before a tag is covered but the routine post-merge signal is gone.
 on:
-  push:
-    branches: [ master, main ]
   pull_request:
-    branches: [ master, main ]
-
-concurrency:
-  group: ${{ github.workflow }}-${{ github.head_ref || github.ref_name }}
-  cancel-in-progress: true
+    branches: [ master, main, '*.x' ]
 
 permissions:
   contents: read
 
 jobs:
-  unit:
-    name: Unit Tests & Code Quality
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-
-    - name: Set up Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: '3.1.0'
-
-    - name: Install dependencies
-      run: bundle install --jobs 4 --retry 3
-
-    - name: Run unit tests
-      run: make test
-
-    - name: Run code quality checks
-      run: |
-        make format-check
-        make lint
-        make security
-
-  integration-chat:
-    name: Chat Integration Tests
-    runs-on: ubuntu-latest
-    environment: ci
-    if: github.event_name == 'push' || github.event_name == 'pull_request'
-
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-
-    - name: Set up Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: '3.1.0'
-
-    - name: Install dependencies
-      run: bundle install --jobs 4 --retry 3
-
-    - name: Run chat integration tests
-      env:
-        STREAM_API_KEY: ${{ vars.STREAM_API_KEY }}
-        STREAM_API_SECRET: ${{ secrets.STREAM_API_SECRET }}
-        STREAM_BASE_URL: ${{ vars.STREAM_BASE_URL }}
-      run: make test-integration-chat
-
-  integration-feed:
-    name: Feed Integration Tests
-    runs-on: ubuntu-latest
-    environment: ci
-    if: github.event_name == 'push' || github.event_name == 'pull_request'
-
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-
-    - name: Set up Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: '3.1.0'
-
-    - name: Install dependencies
-      run: bundle install --jobs 4 --retry 3
-
-    - name: Run feed integration tests
-      env:
-        STREAM_API_KEY: ${{ vars.STREAM_API_KEY }}
-        STREAM_API_SECRET: ${{ secrets.STREAM_API_SECRET }}
-        STREAM_BASE_URL: ${{ vars.STREAM_BASE_URL }}
-      run: make test-integration-feed
-
-  integration-video:
-    name: Video Integration Tests
-    runs-on: ubuntu-latest
-    environment: ci
-    if: github.event_name == 'push' || github.event_name == 'pull_request'
-
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-
-    - name: Set up Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: '3.1.0'
-
-    - name: Install dependencies
-      run: bundle install --jobs 4 --retry 3
-
-    - name: Run video integration tests
-      env:
-        STREAM_API_KEY: ${{ vars.STREAM_VIDEO_API_KEY }}
-        STREAM_API_SECRET: ${{ secrets.STREAM_VIDEO_API_SECRET }}
-        STREAM_BASE_URL: ${{ vars.STREAM_VIDEO_BASE_URL }}
-      run: make test-integration-video
-
-  integration-gcp-lb:
-    name: GCP load balancer keep-alive
-    runs-on: ubuntu-latest
-    environment: ci
-
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-
-    - name: Set up Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: '3.1.0'
-
-    - name: Install dependencies
-      run: bundle install --jobs 4 --retry 3
-
-    - name: Run GCP keep-alive integration test
-      env:
-        STREAM_API_KEY: ${{ vars.STREAM_GCP_API_KEY || vars.STREAM_API_KEY }}
-        STREAM_API_SECRET: ${{ secrets.STREAM_GCP_API_SECRET || secrets.STREAM_API_SECRET }}
-        STREAM_BASE_URL: ${{ vars.STREAM_GCP_BASE_URL }}
-      run: make test-integration-gcp-lb
+  tests:
+    uses: ./.github/workflows/run_tests.yml
+    secrets: inherit
