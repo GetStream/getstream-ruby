@@ -7,6 +7,8 @@ on:
         required: true
       STREAM_VIDEO_API_SECRET:
         required: true
+      STREAM_GCP_API_SECRET:
+        required: false
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -67,6 +69,10 @@ jobs:
 
   integration-feed:
     name: Feed Integration Tests
+    # Runs after chat rather than beside it: both blank and restore the app-global
+    # file_upload_config, so in parallel one suite's restore lands mid-assertion in
+    # the other.
+    needs: integration-chat
     runs-on: ubuntu-latest
     timeout-minutes: 30
     environment: ci
@@ -112,3 +118,27 @@ jobs:
           STREAM_API_SECRET: ${{ secrets.STREAM_VIDEO_API_SECRET }}
           STREAM_BASE_URL: ${{ vars.STREAM_VIDEO_BASE_URL }}
         run: make test-integration-video
+
+  integration-gcp-lb:
+    name: GCP load balancer keep-alive
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    environment: ci
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1.0'
+
+      - name: Install dependencies
+        run: bundle install --jobs 4 --retry 3
+
+      - name: Run GCP keep-alive integration test
+        env:
+          STREAM_API_KEY: ${{ vars.STREAM_GCP_API_KEY || vars.STREAM_API_KEY }}
+          STREAM_API_SECRET: ${{ secrets.STREAM_GCP_API_SECRET || secrets.STREAM_API_SECRET }}
+          STREAM_BASE_URL: ${{ vars.STREAM_GCP_BASE_URL }}
+        run: make test-integration-gcp-lb

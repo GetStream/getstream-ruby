@@ -2,11 +2,12 @@ name: CI
 
 # pull_request only. A push trigger alongside it ran the whole suite twice on the same
 # SHA, and the duplicate integration legs raced each other against the Stream app
-# several SDK repos share. master is covered by release.yml, which runs this same
-# reusable workflow as the gate before tagging.
+# several SDK repos share. The trade is that a merge to master, and a direct push to it,
+# now run nothing: release.yml runs this same workflow only when a release is pending,
+# so the gate before a tag is covered but the routine post-merge signal is gone.
 on:
   pull_request:
-    branches: [ master, main ]
+    branches: [ master, main, '*.x' ]
 
 permissions:
   contents: read

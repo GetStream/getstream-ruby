@@ -38,6 +38,8 @@ ones were written by hand.
 
 - **Breaking:** regenerated from chat v235.17.1.
 
+## [10.1.0] - 2026-08-12
+
 ### Fixed
 
 - Name the HTTP status when the error body is not JSON (#76).

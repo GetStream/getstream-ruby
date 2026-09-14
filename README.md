@@ -388,24 +388,32 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/getstr
 
 Releases are driven by [release-please](https://github.com/googleapis/release-please).
 
-- Merge PRs to `master` with conventional-commit titles. The repo is squash-only with
-  `squash_merge_commit_title: PR_TITLE`, so the PR title becomes the commit subject and
-  decides the next version: `feat:` is a minor, `fix:` and `perf:` are a patch, `feat!:`
-  or `<type>(scope)!:` is a major. Other types (`chore`, `ci`, `docs`, `test`,
-  `refactor`) ship nothing. Both settings are load-bearing: release-please reads commit
-  messages, never PR titles, and a merge commit's subject is not conventional.
+- Merge PRs to `master` with conventional-commit titles, using **Squash and merge**. The
+  title becomes the commit subject and decides the next version: `feat:` is a minor,
+  `fix:` and `perf:` are a patch, `feat!:` or `<type>(scope)!:` is a major. Other types
+  (`chore`, `ci`, `docs`, `test`, `refactor`) ship nothing.
+- Squashing is a convention here, not yet enforced. The repo still has
+  `allow_merge_commit: true`, `allow_rebase_merge: true` and
+  `squash_merge_commit_title: COMMIT_OR_PR_TITLE`, and until someone with admin sets
+  those to `false`, `false` and `PR_TITLE` (as getstream-go has), two things silently
+  skip a release: a merge commit, whose subject is not conventional and whose body only
+  yields a plain `feat:`/`fix:` prefix, never `feat!:`; and a single-commit PR, which
+  squashes to that commit's subject rather than the PR title. `pr_title.yml` only checks
+  the PR title field, so it passes in both cases.
 - release-please keeps a Release PR open with the version bump in
   `lib/getstream_ruby/version.rb` and `CHANGELOG.md`. It is opened by
   `github-actions[bot]`, so approve it and run its held checks like any other PR. Never
   edit the version by hand.
 - Merging the Release PR runs `make format-check`, `make lint`, `make security`,
-  `make test` and all three integration suites on that merge commit, which is the commit
-  the tag will point at. Only if that is green does the workflow create the tag and the
+  `make test` and the four integration suites (chat, feed, video, GCP load balancer) on
+  that merge commit, which is the commit the tag will point at. Only if that is green does the workflow create the tag and the
   GitHub Release and push the gem to RubyGems. The order matters: a tag, a GitHub
   Release and a gem push cannot be withdrawn, a failed push can be retried.
 
-To retry a gem push that failed after the release was tagged, use "Re-run failed jobs"
-on that workflow run. Once GitHub has retired the run, dispatch `Release` from `master`
+If the suite goes red after the Release PR merged, the release stays pending and every
+later push to `master` logs a warning naming the commit to go back to, rather than
+failing. Recovery in both that case and a failed gem push is "Re-run failed jobs" on the
+run for that merge commit. Once GitHub has retired the run, dispatch `Release` from `master`
 with `publish_tag` set to the tag (for example `v12.1.1`), which builds and pushes that
 tag without touching release-please.
 
