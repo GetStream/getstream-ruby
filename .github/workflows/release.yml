@@ -73,16 +73,23 @@ jobs:
 
           # Query the label directly. Listing closed PRs and filtering client-side loses
           # a release that has slipped past the first page, which reads as "nothing to
-          # release" and passes.
-          num="$(gh api "repos/${GITHUB_REPOSITORY}/issues" \
+          # release" and passes. Filter before picking, too: a hotfix branch can hold
+          # its own pending release, and taking the newest label match would drop this
+          # branch's release on every run until the other one clears.
+          nums="$(gh api "repos/${GITHUB_REPOSITORY}/issues" \
             -X GET -f state=closed -f labels='autorelease: pending' -f per_page=20 \
-            --jq '[.[] | select(.pull_request != null)] | .[0].number // empty')"
+            --jq '.[] | select(.pull_request != null) | .number')"
 
+          num=""
           sha=""
-          if [ -n "$num" ]; then
-            sha="$(gh api "repos/${GITHUB_REPOSITORY}/pulls/${num}" \
+          for n in $nums; do
+            sha="$(gh api "repos/${GITHUB_REPOSITORY}/pulls/${n}" \
               --jq 'select(.merged_at != null and .base.ref == env.BASE) | .merge_commit_sha // empty')"
-          fi
+            if [ -n "$sha" ]; then
+              num="$n"
+              break
+            fi
+          done
 
           if [ -z "$sha" ]; then
             echo "No pending release on ${BASE}."

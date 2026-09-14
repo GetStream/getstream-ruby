@@ -71,8 +71,10 @@ jobs:
     name: Feed Integration Tests
     # Runs after chat rather than beside it: both blank and restore the app-global
     # file_upload_config, so in parallel one suite's restore lands mid-assertion in
-    # the other.
+    # the other. !cancelled() keeps the ordering without inheriting the implicit
+    # success(), so a red chat no longer hides whether feed passes.
     needs: integration-chat
+    if: '!cancelled()'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     environment: ci
