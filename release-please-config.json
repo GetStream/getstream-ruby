@@ -1,0 +1,12 @@
+{
+  "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
+  "last-release-sha": "283aabc8a7d1886caf0bde9aa7a8ae77f8098a6f",
+  "packages": {
+    ".": {
+      "release-type": "ruby",
+      "package-name": "getstream-ruby",
+      "version-file": "lib/getstream_ruby/version.rb",
+      "include-component-in-tag": false
+    }
+  }
+}

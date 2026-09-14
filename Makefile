@@ -72,16 +72,6 @@ console: ## Start IRB console with SDK loaded
 version: ## Show current version
 	@ruby -e "require './lib/getstream_ruby/version'; puts GetStreamRuby::VERSION"
 
-# Version management
-patch: ## Bump patch version (0.0.1 -> 0.0.2)
-	@./scripts/version-bump.sh patch
-
-minor: ## Bump minor version (0.0.1 -> 0.1.0)
-	@./scripts/version-bump.sh minor
-
-major: ## Bump major version (0.0.1 -> 1.0.0)
-	@./scripts/version-bump.sh major
-
 # Development helpers
 dev-setup: setup ## Complete development setup
 	@echo "Development setup complete!"
