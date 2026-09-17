@@ -152,9 +152,11 @@ jobs:
         run: make test-integration-video
 
   integration-gcp-lb:
-    # Not guarded below: this is a keep-alive probe, not a gate. It runs beside the other
-    # integration jobs rather than after them, so skipping it shortens nothing, and each
-    # skipped run is one fewer exercise of the GCP load balancer path it exists to keep warm.
+    if: >-
+      ${{ !(github.actor == 'github-actions[bot]'
+      && github.event.pull_request.user.login == 'github-actions[bot]'
+      && github.event.pull_request.head.repo.full_name == github.repository
+      && startsWith(github.head_ref, 'release-please--')) }}
     name: GCP load balancer keep-alive
     runs-on: ubuntu-latest
     timeout-minutes: 30
