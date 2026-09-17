@@ -17,8 +17,23 @@ concurrency:
 permissions:
   contents: read
 
+# Every job below skips on a Release PR. release-please only bumps the version and rewrites
+# the changelog, and every source commit in one already passed this suite on the PR it came
+# from. The guard sits on each job rather than on the calling job in ci.yml, because a job
+# skipped by `if:` reports success and satisfies a required status check, while a reusable
+# workflow that is never called produces no check at all. It tests the author as well as the
+# branch name: on its own, the name would let any PR, a fork's included, call its branch
+# release-please--x and skip every required check, which branch protection counts as met.
+# github.actor is the third clause, and it is the pusher rather than the PR author, so a
+# human commit pushed onto the Release PR to fix a conflict or a changelog entry is tested
+# like any other commit instead of riding the skip into main untested.
 jobs:
   unit:
+    if: >-
+      ${{ !(github.actor == 'github-actions[bot]'
+      && github.event.pull_request.user.login == 'github-actions[bot]'
+      && github.event.pull_request.head.repo.full_name == github.repository
+      && startsWith(github.head_ref, 'release-please--')) }}
     name: Unit Tests & Code Quality
     runs-on: ubuntu-latest
     timeout-minutes: 20
@@ -44,6 +59,11 @@ jobs:
           make security
 
   integration-chat:
+    if: >-
+      ${{ !(github.actor == 'github-actions[bot]'
+      && github.event.pull_request.user.login == 'github-actions[bot]'
+      && github.event.pull_request.head.repo.full_name == github.repository
+      && startsWith(github.head_ref, 'release-please--')) }}
     name: Chat Integration Tests
     runs-on: ubuntu-latest
     timeout-minutes: 30
@@ -74,7 +94,12 @@ jobs:
     # the other. !cancelled() keeps the ordering without inheriting the implicit
     # success(), so a red chat no longer hides whether feed passes.
     needs: integration-chat
-    if: '!cancelled()'
+    if: >-
+      ${{ !cancelled()
+      && !(github.actor == 'github-actions[bot]'
+      && github.event.pull_request.user.login == 'github-actions[bot]'
+      && github.event.pull_request.head.repo.full_name == github.repository
+      && startsWith(github.head_ref, 'release-please--')) }}
     runs-on: ubuntu-latest
     timeout-minutes: 30
     environment: ci
@@ -98,6 +123,11 @@ jobs:
         run: make test-integration-feed
 
   integration-video:
+    if: >-
+      ${{ !(github.actor == 'github-actions[bot]'
+      && github.event.pull_request.user.login == 'github-actions[bot]'
+      && github.event.pull_request.head.repo.full_name == github.repository
+      && startsWith(github.head_ref, 'release-please--')) }}
     name: Video Integration Tests
     runs-on: ubuntu-latest
     timeout-minutes: 30
@@ -122,6 +152,9 @@ jobs:
         run: make test-integration-video
 
   integration-gcp-lb:
+    # Not guarded below: this is a keep-alive probe, not a gate. It runs beside the other
+    # integration jobs rather than after them, so skipping it shortens nothing, and each
+    # skipped run is one fewer exercise of the GCP load balancer path it exists to keep warm.
     name: GCP load balancer keep-alive
     runs-on: ubuntu-latest
     timeout-minutes: 30
