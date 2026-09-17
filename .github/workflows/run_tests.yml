@@ -17,8 +17,12 @@ concurrency:
 permissions:
   contents: read
 
+# Release PRs only bump the version and rewrite the changelog, and every commit in one
+# already passed this suite on its own PR. The guard sits on each job, not on the caller,
+# so a skipped job still reports success to a required status check.
 jobs:
   unit:
+    if: ${{ !startsWith(github.head_ref, 'release-please--') }}
     name: Unit Tests & Code Quality
     runs-on: ubuntu-latest
     timeout-minutes: 20
@@ -44,6 +48,7 @@ jobs:
           make security
 
   integration-chat:
+    if: ${{ !startsWith(github.head_ref, 'release-please--') }}
     name: Chat Integration Tests
     runs-on: ubuntu-latest
     timeout-minutes: 30
@@ -74,7 +79,7 @@ jobs:
     # the other. !cancelled() keeps the ordering without inheriting the implicit
     # success(), so a red chat no longer hides whether feed passes.
     needs: integration-chat
-    if: '!cancelled()'
+    if: ${{ !cancelled() && !startsWith(github.head_ref, 'release-please--') }}
     runs-on: ubuntu-latest
     timeout-minutes: 30
     environment: ci
@@ -98,6 +103,7 @@ jobs:
         run: make test-integration-feed
 
   integration-video:
+    if: ${{ !startsWith(github.head_ref, 'release-please--') }}
     name: Video Integration Tests
     runs-on: ubuntu-latest
     timeout-minutes: 30
@@ -122,6 +128,7 @@ jobs:
         run: make test-integration-video
 
   integration-gcp-lb:
+    if: ${{ !startsWith(github.head_ref, 'release-please--') }}
     name: GCP load balancer keep-alive
     runs-on: ubuntu-latest
     timeout-minutes: 30
