@@ -102,7 +102,7 @@ module GetStreamRuby
       when Faraday::TimeoutError
         'timeout'
       when Faraday::SSLError
-        'tls_handshake_failed'
+        unexpected_eof?(error) ? 'connection_reset' : 'tls_handshake_failed'
       when Faraday::ConnectionFailed
         classify_connection_failure(error)
       else
@@ -118,6 +118,20 @@ module GetStreamRuby
       else
         'connection_reset'
       end
+    end
+
+    def unexpected_eof?(error)
+      eof_message?(error.message) || eof_message?(wrapped_message(error))
+    end
+
+    def eof_message?(message)
+      message.to_s.include?('unexpected eof')
+    end
+
+    def wrapped_message(error)
+      return nil unless error.respond_to?(:wrapped_exception)
+
+      error.wrapped_exception&.message
     end
 
     def build_task_error(task_id, error_payload)
