@@ -249,6 +249,22 @@ make test-integration # Run integration tests only
 make test-all         # Run all tests (unit + integration)
 ```
 
+Anything under `spec/integration/` talks to a live Stream app and needs credentials.
+`make test` excludes that directory and needs none.
+
+CI follows the same split:
+
+| When | What runs | Gates |
+| --- | --- | --- |
+| Pull request | `make test`, `format-check`, `lint`, `security` | yes, `🧪 Tests` is required on `master` |
+| Daily at 09:00 UTC | `spec/integration/` | no, a red run opens an issue |
+| Push to `master` with a release pending | both | only the unit half gates the tag |
+
+A Release PR skips the unit lane, and `🧪 Tests` still reports satisfied. Its checks sit
+Pending until someone clicks **Approve and run**, because a PR opened with `GITHUB_TOKEN`
+starts no workflow runs. **Update branch** does not bring the suite back, and neither does
+pushing a commit by hand, so a commit pushed onto a Release PR reaches `master` untested.
+
 #### Code Quality
 ```bash
 make format           # Auto-format code with RuboCop
