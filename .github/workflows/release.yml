@@ -164,7 +164,6 @@ jobs:
     needs: detect
     if: needs.detect.outputs.ready == 'true'
     uses: ./.github/workflows/run_tests.yml
-    secrets: inherit
 
   # Irreversible half.
   release:

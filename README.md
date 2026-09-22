@@ -249,6 +249,28 @@ make test-integration # Run integration tests only
 make test-all         # Run all tests (unit + integration)
 ```
 
+Anything under `spec/integration/` talks to a live Stream app and needs credentials.
+`make test` excludes that directory and needs none.
+
+CI follows the same split:
+
+| When | What runs | Gates |
+| --- | --- | --- |
+| Pull request | `make test`, `format-check`, `lint`, `security` | `🧪 Tests`, once it is required on `master` |
+| Daily at 11:00 UTC | `spec/integration/` | no, a red run opens an issue |
+| Push to `master` with a release pending | the unit lane | yes, it gates the tag |
+
+`master` has no branch protection yet. `🧪 Tests` is the single check to require there,
+alongside `👮 Conventional PR title`.
+
+A Release PR skips the unit lane and `🧪 Tests` still reports satisfied: release-please
+only bumps the version and rewrites the changelog. Its runs are created held at
+`action_required` until someone clicks **Approve and run**, because release-please opens
+the PR with `GITHUB_TOKEN`. The skip keys on the PR author, not the pusher, so **Update
+branch** does not bring the suite back and neither does pushing a commit by hand, and such
+a commit reaches `master` untested. It does not ship untested: `release.yml` runs the unit
+lane on the merge commit and gates the tag on it.
+
 #### Code Quality
 ```bash
 make format           # Auto-format code with RuboCop
