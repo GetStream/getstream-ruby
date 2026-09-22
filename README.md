@@ -263,11 +263,13 @@ CI follows the same split:
 `master` has no branch protection yet. `🧪 Tests` is the single check to require there,
 alongside `👮 Conventional PR title`.
 
-A Release PR skips the unit lane, and `🧪 Tests` still reports satisfied. Its runs are
-created held at `action_required` until someone clicks **Approve and run**, because
-release-please opens the PR with `GITHUB_TOKEN`. **Update branch** does not bring the suite
-back, and neither does pushing a commit by hand, so a commit pushed onto a Release PR
-reaches `master` untested.
+A Release PR skips the unit lane and `🧪 Tests` still reports satisfied: release-please
+only bumps the version and rewrites the changelog. Its runs are created held at
+`action_required` until someone clicks **Approve and run**, because release-please opens
+the PR with `GITHUB_TOKEN`. The skip keys on the PR author, not the pusher, so **Update
+branch** does not bring the suite back and neither does pushing a commit by hand, and such
+a commit reaches `master` untested. It does not ship untested: `release.yml` runs the unit
+lane on the merge commit and gates the tag on it.
 
 #### Code Quality
 ```bash
