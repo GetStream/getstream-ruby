@@ -1,8 +1,10 @@
 name: Scheduled tests
-# The integration lane's home. Advisory: see CONTRIBUTING.md.
+# The integration lane's home. Advisory: see README.md.
 on:
   schedule:
-    - cron: "0 9 * * *"
+    # 11:00, not 09:00: stream-py and stream-sdk-java both run at 09:00 against the same
+    # shared Stream app, and all three mutate app-global settings.
+    - cron: "0 11 * * *"
   workflow_dispatch:
 
 permissions:
@@ -29,8 +31,13 @@ jobs:
           TITLE: Daily integration run is red
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         run: |
-          num="$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --search "in:title \"$TITLE\"" \
-            --json number,title --jq "map(select(.title == \"$TITLE\")) | .[0].number // empty")"
+          # Unguarded, a non-2xx would abort the step under `bash -e` and a red run would
+          # report nothing at all. Fail toward creating the issue, which is the loud way.
+          if ! num="$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --search "in:title \"$TITLE\"" \
+            --json number,title --jq "map(select(.title == \"$TITLE\")) | .[0].number // empty")"; then
+            echo "::warning::Could not list open issues; creating a new one."
+            num=""
+          fi
           if [ -n "$num" ]; then
             gh issue comment "$num" --repo "$GITHUB_REPOSITORY" --body "Still red: $RUN_URL"
           else

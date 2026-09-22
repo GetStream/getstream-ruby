@@ -9,6 +9,13 @@ on:
   pull_request:
     branches: [ master, main, '*.x' ]
 
+# Needed at this level, not only in run_tests.yml: cancelling the reusable workflow's job
+# does not cancel this run, so tests-passed would still run, read `cancelled` and publish a
+# red aggregator for a push that has already been superseded.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
 

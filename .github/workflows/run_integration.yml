@@ -11,10 +11,11 @@ on:
         required: false
 
 concurrency:
-  # A constant, not `github.workflow`, which inside a reusable workflow resolves to the
-  # caller's name and would let the daily run and the pre-tag gate hit the shared Stream
-  # app at once. Not cancel-in-progress: a half-run leaves users and channels behind.
-  group: run-integration-${{ github.ref }}
+  # Repository-wide, on purpose. The contended resource is the Stream app, not the branch,
+  # so keying on github.ref would let a *.x release run beside the daily run on master.
+  # Not `github.workflow` either: inside a reusable workflow that resolves to the caller's
+  # name. Not cancel-in-progress: a half-run leaves users and channels behind.
+  group: run-integration
   cancel-in-progress: false
 
 permissions:
@@ -34,9 +35,7 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.1.0'
-
-      - name: Install dependencies
-        run: bundle install --jobs 4 --retry 3
+          bundler-cache: true
 
       - name: Run chat integration tests
         env:
@@ -64,9 +63,7 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.1.0'
-
-      - name: Install dependencies
-        run: bundle install --jobs 4 --retry 3
+          bundler-cache: true
 
       - name: Run feed integration tests
         env:
@@ -88,9 +85,7 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.1.0'
-
-      - name: Install dependencies
-        run: bundle install --jobs 4 --retry 3
+          bundler-cache: true
 
       - name: Run video integration tests
         env:
@@ -112,9 +107,7 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.1.0'
-
-      - name: Install dependencies
-        run: bundle install --jobs 4 --retry 3
+          bundler-cache: true
 
       - name: Run GCP keep-alive integration test
         env:

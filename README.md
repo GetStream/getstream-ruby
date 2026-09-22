@@ -256,14 +256,18 @@ CI follows the same split:
 
 | When | What runs | Gates |
 | --- | --- | --- |
-| Pull request | `make test`, `format-check`, `lint`, `security` | yes, `🧪 Tests` is required on `master` |
-| Daily at 09:00 UTC | `spec/integration/` | no, a red run opens an issue |
-| Push to `master` with a release pending | both | only the unit half gates the tag |
+| Pull request | `make test`, `format-check`, `lint`, `security` | `🧪 Tests`, once it is required on `master` |
+| Daily at 11:00 UTC | `spec/integration/` | no, a red run opens an issue |
+| Push to `master` with a release pending | the unit lane | yes, it gates the tag |
 
-A Release PR skips the unit lane, and `🧪 Tests` still reports satisfied. Its checks sit
-Pending until someone clicks **Approve and run**, because a PR opened with `GITHUB_TOKEN`
-starts no workflow runs. **Update branch** does not bring the suite back, and neither does
-pushing a commit by hand, so a commit pushed onto a Release PR reaches `master` untested.
+`master` has no branch protection yet. `🧪 Tests` is the single check to require there,
+alongside `👮 Conventional PR title`.
+
+A Release PR skips the unit lane, and `🧪 Tests` still reports satisfied. Its runs are
+created held at `action_required` until someone clicks **Approve and run**, because
+release-please opens the PR with `GITHUB_TOKEN`. **Update branch** does not bring the suite
+back, and neither does pushing a commit by hand, so a commit pushed onto a Release PR
+reaches `master` untested.
 
 #### Code Quality
 ```bash
