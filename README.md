@@ -266,7 +266,7 @@ alongside `👮 Conventional PR title`.
 A Release PR skips the unit lane and `🧪 Tests` still reports satisfied: release-please
 only bumps the version and rewrites the changelog. Its runs are created held at
 `action_required` until someone clicks **Approve and run**, because release-please opens
-the PR with `GITHUB_TOKEN`. The skip only applies while every changed file is one release-please writes, so a code change pushed onto a Release PR by hand runs the unit lane like any other PR.
+the PR with `GITHUB_TOKEN`. The skip only applies while the diff is nothing but what release-please writes, down to the version line in each version file, so a code or dependency change pushed onto a Release PR by hand runs the unit lane like any other PR.
 
 #### Code Quality
 ```bash
