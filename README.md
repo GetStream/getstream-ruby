@@ -258,7 +258,7 @@ CI follows the same split:
 | --- | --- | --- |
 | Pull request | `make test`, `format-check`, `lint`, `security` | `🧪 Tests`, once it is required on `master` |
 | Daily at 11:00 UTC | `spec/integration/` | no, a red run opens an issue |
-| Push to `master` with a release pending | the unit lane | yes, it gates the tag |
+| Release PR merged | nothing, it tags and publishes | no |
 
 `master` has no branch protection yet. `🧪 Tests` is the single check to require there,
 alongside `👮 Conventional PR title`.
@@ -268,8 +268,7 @@ only bumps the version and rewrites the changelog. Its runs are created held at
 `action_required` until someone clicks **Approve and run**, because release-please opens
 the PR with `GITHUB_TOKEN`. The skip keys on the PR author, not the pusher, so **Update
 branch** does not bring the suite back and neither does pushing a commit by hand, and such
-a commit reaches `master` untested. It does not ship untested: `release.yml` runs the unit
-lane on the merge commit and gates the tag on it.
+a commit reaches `master` untested and is released untested.
 
 #### Code Quality
 ```bash
@@ -426,13 +425,9 @@ Releases are driven by [release-please](https://github.com/googleapis/release-pl
   `lib/getstream_ruby/version.rb` and `CHANGELOG.md`. It is opened by
   `github-actions[bot]`, so approve it and run its held checks like any other PR. Never
   edit the version by hand.
-- Merging the Release PR runs `make format-check`, `make lint`, `make security`,
-  `make test` and the four integration suites (chat, feed, video, GCP load balancer) on
-  that merge commit, which is the commit the tag will point at. Only if that is green does the workflow create the tag and the
-  GitHub Release and push the gem to RubyGems. The order matters: a tag, a GitHub
-  Release and a gem push cannot be withdrawn, a failed push can be retried.
+- Merging the Release PR creates the tag and the GitHub Release on that merge commit and pushes the gem to RubyGems, with no further test run: the Release PR adds only the version bump and changelog to an already-tested `master`. A tag, a GitHub Release and a gem push cannot be withdrawn, a failed push can be retried.
 
-If the suite goes red after the Release PR merged, the release stays pending and every
+If the release job fails after the Release PR merged, the release stays pending and every
 later push to `master` logs a warning naming the commit to go back to, rather than
 failing. Recovery in both that case and a failed gem push is "Re-run failed jobs" on the
 run for that merge commit. Once GitHub has retired the run, dispatch `Release` from `master`
