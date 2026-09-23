@@ -6,43 +6,38 @@ module GetStream
   module Generated
     module Models
       # 
-      class FloodIdenticalRuleParameters < GetStream::BaseModel
+      class UserIdenticalImageCountParameters < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute min_text_length
+        # @!attribute match
+        #   @return [String]
+        attr_accessor :match
+        # @!attribute similarity_distance
         #   @return [Integer]
-        attr_accessor :min_text_length
+        attr_accessor :similarity_distance
         # @!attribute threshold
         #   @return [Integer]
         attr_accessor :threshold
         # @!attribute time_window
         #   @return [String]
         attr_accessor :time_window
-        # @!attribute track_across_users
-        #   @return [Boolean]
-        attr_accessor :track_across_users
-        # @!attribute allowlist
-        #   @return [Array<String>]
-        attr_accessor :allowlist
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @min_text_length = attributes[:min_text_length] || attributes['min_text_length'] || nil
+          @match = attributes[:match] || attributes['match'] || nil
+          @similarity_distance = attributes[:similarity_distance] || attributes['similarity_distance'] || nil
           @threshold = attributes[:threshold] || attributes['threshold'] || nil
           @time_window = attributes[:time_window] || attributes['time_window'] || nil
-          @track_across_users = attributes[:track_across_users] || attributes['track_across_users'] || nil
-          @allowlist = attributes[:allowlist] || attributes['allowlist'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            min_text_length: 'min_text_length',
+            match: 'match',
+            similarity_distance: 'similarity_distance',
             threshold: 'threshold',
-            time_window: 'time_window',
-            track_across_users: 'track_across_users',
-            allowlist: 'allowlist'
+            time_window: 'time_window'
           }
         end
       end

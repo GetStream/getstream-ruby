@@ -18,6 +18,9 @@ module GetStream
         # @!attribute auto_translation_enabled
         #   @return [Boolean]
         attr_accessor :auto_translation_enabled
+        # @!attribute before_message_send_hook_system_messages
+        #   @return [Boolean]
+        attr_accessor :before_message_send_hook_system_messages
         # @!attribute campaign_enabled
         #   @return [Boolean]
         attr_accessor :campaign_enabled
@@ -208,6 +211,7 @@ module GetStream
           @allow_multi_user_devices = attributes[:allow_multi_user_devices] || attributes['allow_multi_user_devices']
           @async_url_enrich_enabled = attributes[:async_url_enrich_enabled] || attributes['async_url_enrich_enabled']
           @auto_translation_enabled = attributes[:auto_translation_enabled] || attributes['auto_translation_enabled']
+          @before_message_send_hook_system_messages = attributes[:before_message_send_hook_system_messages] || attributes['before_message_send_hook_system_messages']
           @campaign_enabled = attributes[:campaign_enabled] || attributes['campaign_enabled']
           @cdn_expiration_seconds = attributes[:cdn_expiration_seconds] || attributes['cdn_expiration_seconds']
           @custom_action_handler_url = attributes[:custom_action_handler_url] || attributes['custom_action_handler_url']
@@ -277,6 +281,7 @@ module GetStream
             allow_multi_user_devices: 'allow_multi_user_devices',
             async_url_enrich_enabled: 'async_url_enrich_enabled',
             auto_translation_enabled: 'auto_translation_enabled',
+            before_message_send_hook_system_messages: 'before_message_send_hook_system_messages',
             campaign_enabled: 'campaign_enabled',
             cdn_expiration_seconds: 'cdn_expiration_seconds',
             custom_action_handler_url: 'custom_action_handler_url',

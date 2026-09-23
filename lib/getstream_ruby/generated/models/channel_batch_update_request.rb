@@ -18,6 +18,9 @@ module GetStream
         # @!attribute hide_history_before
         #   @return [DateTime] Required with the `addMembersHideHistory` operation, and rejected with every other operation including `addMembers`. Hides each matched channel's history before this time from the members the operation adds. Members that already belong to a matched channel are never affected. Must be in RFC3339 format (e.g., "2024-01-01T10:00:00Z") and in the past.
         attr_accessor :hide_history_before
+        # @!attribute synchronous
+        #   @return [Boolean] For updateData only. Requires a root cids $eq or $in filter with at most 100 CIDs and no root $or/$and. Split larger selections into requests of at most 100 CIDs. A success_channels_count response means the database update completed; a task_id response means it was queued and must be polled, including on older API nodes.
+        attr_accessor :synchronous
         # @!attribute custom_unset
         #   @return [Array<String>] `updateData` only. Deletes these keys from each channel's existing custom object, leaving every other custom key untouched. Keys are dot-paths; deleting a key that does not exist is a no-op. Cannot be combined with `data.custom`
         attr_accessor :custom_unset
@@ -37,6 +40,7 @@ module GetStream
           @operation = attributes[:operation] || attributes['operation']
           @filter = attributes[:filter] || attributes['filter']
           @hide_history_before = attributes[:hide_history_before] || attributes['hide_history_before'] || nil
+          @synchronous = attributes[:synchronous] || attributes['synchronous'] || nil
           @custom_unset = attributes[:custom_unset] || attributes['custom_unset'] || nil
           @members = attributes[:members] || attributes['members'] || nil
           @custom_set = attributes[:custom_set] || attributes['custom_set'] || nil
@@ -49,6 +53,7 @@ module GetStream
             operation: 'operation',
             filter: 'filter',
             hide_history_before: 'hide_history_before',
+            synchronous: 'synchronous',
             custom_unset: 'custom_unset',
             members: 'members',
             custom_set: 'custom_set',

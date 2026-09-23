@@ -15,6 +15,9 @@ module GetStream
         # @!attribute format
         #   @return [String] Format for activity aggregation
         attr_accessor :format
+        # @!attribute group_size
+        #   @return [Integer] Maximum number of activities kept in each aggregated group. Omit to use the default of 100. Must be between 1 and 100 when set.
+        attr_accessor :group_size
         # @!attribute score_strategy
         #   @return [String] Strategy for computing aggregated group scores from member activity scores when ranking is enabled. Valid values: sum, max, avg
         attr_accessor :score_strategy
@@ -24,6 +27,7 @@ module GetStream
           super(attributes)
           @activities_sort = attributes[:activities_sort] || attributes['activities_sort'] || nil
           @format = attributes[:format] || attributes['format'] || nil
+          @group_size = attributes[:group_size] || attributes['group_size'] || nil
           @score_strategy = attributes[:score_strategy] || attributes['score_strategy'] || nil
         end
 
@@ -32,6 +36,7 @@ module GetStream
           {
             activities_sort: 'activities_sort',
             format: 'format',
+            group_size: 'group_size',
             score_strategy: 'score_strategy'
           }
         end

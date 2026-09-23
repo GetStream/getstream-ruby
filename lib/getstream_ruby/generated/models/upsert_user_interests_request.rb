@@ -5,28 +5,23 @@
 module GetStream
   module Generated
     module Models
-      # User's interest tags ordered by descending weight, then manually set tags before computed ones, then descending count, then ascending tag name
-      class GetUserInterestsResponse < GetStream::BaseModel
+      # Adds or updates manually set interest tags on a user. Tags already present are updated with the supplied weight; other tags on the user are left untouched. Manually set tags are never overwritten by the reaction-based computation. A user holds at most 50 interest tags in total.
+      class UpsertUserInterestsRequest < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute duration
-        #   @return [String]
-        attr_accessor :duration
         # @!attribute interests
-        #   @return [Array<InterestTagResponse>] Interest tags sorted by descending weight, then manually set tags before computed ones, then descending count, then alphabetically by tag
+        #   @return [Array<UserInterestRequest>] Interest tags to add or update (1-50)
         attr_accessor :interests
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @duration = attributes[:duration] || attributes['duration']
           @interests = attributes[:interests] || attributes['interests']
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            duration: 'duration',
             interests: 'interests'
           }
         end

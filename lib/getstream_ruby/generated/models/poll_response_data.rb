@@ -72,6 +72,12 @@ module GetStream
         # @!attribute created_by
         #   @return [UserResponse] User response object
         attr_accessor :created_by
+        # @!attribute description_i18n
+        #   @return [Hash<String, String>]
+        attr_accessor :description_i18n
+        # @!attribute name_i18n
+        #   @return [Hash<String, String>]
+        attr_accessor :name_i18n
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -97,6 +103,8 @@ module GetStream
           @is_closed = attributes[:is_closed] || attributes['is_closed'] || nil
           @max_votes_allowed = attributes[:max_votes_allowed] || attributes['max_votes_allowed'] || nil
           @created_by = attributes[:created_by] || attributes['created_by'] || nil
+          @description_i18n = attributes[:description_i18n] || attributes['description_i18n'] || nil
+          @name_i18n = attributes[:name_i18n] || attributes['name_i18n'] || nil
         end
 
         # Override field mappings for JSON serialization
@@ -122,7 +130,9 @@ module GetStream
             vote_counts_by_option: 'vote_counts_by_option',
             is_closed: 'is_closed',
             max_votes_allowed: 'max_votes_allowed',
-            created_by: 'created_by'
+            created_by: 'created_by',
+            description_i18n: 'description_i18n',
+            name_i18n: 'name_i18n'
           }
         end
       end

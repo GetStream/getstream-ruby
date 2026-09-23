@@ -874,17 +874,22 @@ module GetStream
       #
       # @param poll_id [String]
       # @param option_id [String]
+      # @param user_id [String]
       # @return [Models::PollOptionResponse]
-      def get_poll_option(poll_id, option_id)
+      def get_poll_option(poll_id, option_id, user_id = nil)
         path = '/api/v2/polls/{poll_id}/options/{option_id}'
         # Replace path parameters
         path = path.gsub('{poll_id}', poll_id.to_s)
         path = path.gsub('{option_id}', option_id.to_s)
+        # Build query parameters
+        query_params = {}
+        query_params['user_id'] = user_id unless user_id.nil?
 
         # Make the API request
         @client.make_request(
           :get,
-          path
+          path,
+          query_params: query_params
         )
       end
 

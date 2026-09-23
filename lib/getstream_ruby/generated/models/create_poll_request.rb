@@ -33,6 +33,9 @@ module GetStream
         # @!attribute max_votes_allowed
         #   @return [Integer] Indicates the maximum amount of votes a user can cast
         attr_accessor :max_votes_allowed
+        # @!attribute team
+        #   @return [String]
+        attr_accessor :team
         # @!attribute user_id
         #   @return [String]
         attr_accessor :user_id
@@ -60,6 +63,7 @@ module GetStream
           @id = attributes[:id] || attributes['id'] || nil
           @is_closed = attributes[:is_closed] || attributes['is_closed'] || nil
           @max_votes_allowed = attributes[:max_votes_allowed] || attributes['max_votes_allowed'] || nil
+          @team = attributes[:team] || attributes['team'] || nil
           @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @voting_visibility = attributes[:voting_visibility] || attributes['voting_visibility'] || nil
           @options = attributes[:options] || attributes['options'] || nil
@@ -78,6 +82,7 @@ module GetStream
             id: 'id',
             is_closed: 'is_closed',
             max_votes_allowed: 'max_votes_allowed',
+            team: 'team',
             user_id: 'user_id',
             voting_visibility: 'voting_visibility',
             options: 'options',

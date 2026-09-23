@@ -24,6 +24,9 @@ module GetStream
         # @!attribute filterable_custom_keys
         #   @return [Array<String>] The moderation_payload.custom keys the app has configured as review-queue filter chips (via moderation_dashboard_preferences.filterable_custom_keys). Discovery hint for the dashboard only — the filter accepts any custom key regardless of this list.
         attr_accessor :filterable_custom_keys
+        # @!attribute rule_names
+        #   @return [Array<String>] Names of the app's moderation rules, available as filter values on the `label` field when filtering rule-flagged content. Includes disabled rules, since items flagged before a rule was turned off still carry its name; excludes deleted ones. Scoped to the caller's teams on a multi-tenant app. Capped at 30 names, ordered by name, so an app above that cap is listed partially.
+        attr_accessor :rule_names
         # @!attribute ai_image_taxonomy
         #   @return [Hash<String, Array<String>>] AI image moderation labels available as filter values, as a map of L1 label to its L2 sub-labels. Reflects the app's effective image taxonomy: custom Bodyguard taxonomy when enabled, otherwise the standard catalogue of the org's enabled image providers.
         attr_accessor :ai_image_taxonomy
@@ -36,6 +39,7 @@ module GetStream
           @ai_text_labels = attributes[:ai_text_labels] || attributes['ai_text_labels'] || nil
           @config_keys = attributes[:config_keys] || attributes['config_keys'] || nil
           @filterable_custom_keys = attributes[:filterable_custom_keys] || attributes['filterable_custom_keys'] || nil
+          @rule_names = attributes[:rule_names] || attributes['rule_names'] || nil
           @ai_image_taxonomy = attributes[:ai_image_taxonomy] || attributes['ai_image_taxonomy'] || nil
         end
 
@@ -47,6 +51,7 @@ module GetStream
             ai_text_labels: 'ai_text_labels',
             config_keys: 'config_keys',
             filterable_custom_keys: 'filterable_custom_keys',
+            rule_names: 'rule_names',
             ai_image_taxonomy: 'ai_image_taxonomy'
           }
         end

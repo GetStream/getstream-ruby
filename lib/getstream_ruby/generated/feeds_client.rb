@@ -386,11 +386,12 @@ module GetStream
       # @param _id [String]
       # @param comment_sort [String]
       # @param comment_limit [Integer]
+      # @param skip_own_followings [Boolean]
       # @param user_id [String]
       # @param language [String]
       # @param translate_text [Boolean]
       # @return [Models::GetActivityResponse]
-      def get_activity(_id, comment_sort = nil, comment_limit = nil, user_id = nil, language = nil, translate_text = nil)
+      def get_activity(_id, comment_sort = nil, comment_limit = nil, skip_own_followings = nil, user_id = nil, language = nil, translate_text = nil)
         path = '/api/v2/feeds/activities/{id}'
         # Replace path parameters
         path = path.gsub('{id}', _id.to_s)
@@ -398,6 +399,7 @@ module GetStream
         query_params = {}
         query_params['comment_sort'] = comment_sort unless comment_sort.nil?
         query_params['comment_limit'] = comment_limit unless comment_limit.nil?
+        query_params['skip_own_followings'] = skip_own_followings unless skip_own_followings.nil?
         query_params['user_id'] = user_id unless user_id.nil?
         query_params['language'] = language unless language.nil?
         query_params['translate_text'] = translate_text unless translate_text.nil?
@@ -410,7 +412,7 @@ module GetStream
         )
       end
 
-      # Updates certain fields of the activity. Use 'set' to update specific fields and 'unset' to remove fields. This allows you to update only the fields you need without replacing the entire activity. Useful for updating reply restrictions ('restrict_replies'), mentioned users, or custom data.Sends events:- feeds.activity.updated
+      # Updates certain fields of the activity. Use 'set' to update specific fields and 'unset' to remove fields. This allows you to update only the fields you need without replacing the entire activity. Useful for updating reply restrictions ('restrict_replies'), mentioned users, or custom data. Changing `feeds` is a placement change (add/delete on those feeds), not an activity content update.Sends events:- feeds.activity.updated
       #
       # @param _id [String]
       # @param update_activity_partial_request [UpdateActivityPartialRequest]
@@ -430,7 +432,7 @@ module GetStream
         )
       end
 
-      # Replaces an activity with the provided data. Use this to update text, attachments, reply restrictions ('restrict_replies'), mentioned users, and other activity fields. Note: This is a full update - any fields not provided will be cleared.Sends events:- feeds.activity.updated
+      # Replaces an activity with the provided data. Use this to update text, attachments, reply restrictions ('restrict_replies'), mentioned users, and other activity fields. Note: This is a full update - any fields not provided will be cleared. Changing `feeds` is a placement change (add/delete on those feeds), not an activity content update.Sends events:- feeds.activity.updated
       #
       # @param _id [String]
       # @param update_activity_request [UpdateActivityRequest]
@@ -2155,7 +2157,28 @@ module GetStream
         )
       end
 
-      # Returns the user's most common interest tags ranked by the number of distinct activities they reacted to that carried each tag. Client-side callers may only read their own interests; server-side callers may fetch any user. Results are sorted by descending count, then alphabetically by tag.
+      # Removes the given interest tags from a user, whether they were set manually or computed from reactions. A removed computed tag returns on the next recomputation if the user's reactions still support it; to keep a tag out of ranking for good, set it with a weight of 0 or below instead. Client-side callers may only manage their own interests; server-side callers may manage any user. Returns the user's remaining interests.
+      #
+      # @param user_id [String]
+      # @param tags [Array<String>]
+      # @return [Models::DeleteUserInterestsResponse]
+      def delete_user_interests(user_id, tags)
+        path = '/api/v2/feeds/users/{user_id}/interests'
+        # Replace path parameters
+        path = path.gsub('{user_id}', user_id.to_s)
+        # Build query parameters
+        query_params = {}
+        query_params['tags'] = tags unless tags.nil?
+
+        # Make the API request
+        @client.make_request(
+          :delete,
+          path,
+          query_params: query_params
+        )
+      end
+
+      # Returns the user's interest tags with their ranking weights: tags computed from the activities the user reacted to and tags set manually through the API. Client-side callers may only read their own interests; server-side callers may fetch any user. Results are sorted by descending weight, then manually set tags before computed ones, then descending count, then alphabetically by tag.
       #
       # @param user_id [String]
       # @param limit [Integer]
@@ -2173,6 +2196,26 @@ module GetStream
           :get,
           path,
           query_params: query_params
+        )
+      end
+
+      # Adds or updates interest tags on a user with explicit ranking weights. Tags set this way rank above the tags computed from the user's reactions at equal weight and are never overwritten by them. Client-side callers may only manage their own interests; server-side callers may manage any user. Returns the user's full interest list after the write.
+      #
+      # @param user_id [String]
+      # @param upsert_user_interests_request [UpsertUserInterestsRequest]
+      # @return [Models::UpsertUserInterestsResponse]
+      def upsert_user_interests(user_id, upsert_user_interests_request)
+        path = '/api/v2/feeds/users/{user_id}/interests'
+        # Replace path parameters
+        path = path.gsub('{user_id}', user_id.to_s)
+        # Build request body
+        body = upsert_user_interests_request
+
+        # Make the API request
+        @client.make_request(
+          :put,
+          path,
+          body: body
         )
       end
 

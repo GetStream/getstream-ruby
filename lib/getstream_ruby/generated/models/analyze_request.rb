@@ -18,6 +18,9 @@ module GetStream
         # @!attribute content_published_at
         #   @return [DateTime] Original timestamp when the content was produced. Used as the `published_at` timestamp on per-content log entries that surface in `matched_contents` on aggregation-rule webhooks.
         attr_accessor :content_published_at
+        # @!attribute country_code
+        #   @return [String] ISO 3166-1 alpha-2 country the content is aimed at (e.g. US, DE). Forwarded to the AI text provider as country context so it can resolve words whose meaning changes between countries.
+        attr_accessor :country_code
         # @!attribute entity_creator_id
         #   @return [String] ID of the user who created the content. Required with entity_type + entity_id; omit all three for stateless mode.
         attr_accessor :entity_creator_id
@@ -49,6 +52,7 @@ module GetStream
           @async_response = attributes[:async_response] || attributes['async_response'] || nil
           @config_key = attributes[:config_key] || attributes['config_key'] || nil
           @content_published_at = attributes[:content_published_at] || attributes['content_published_at'] || nil
+          @country_code = attributes[:country_code] || attributes['country_code'] || nil
           @entity_creator_id = attributes[:entity_creator_id] || attributes['entity_creator_id'] || nil
           @entity_id = attributes[:entity_id] || attributes['entity_id'] || nil
           @entity_type = attributes[:entity_type] || attributes['entity_type'] || nil
@@ -65,6 +69,7 @@ module GetStream
             async_response: 'async_response',
             config_key: 'config_key',
             content_published_at: 'content_published_at',
+            country_code: 'country_code',
             entity_creator_id: 'entity_creator_id',
             entity_id: 'entity_id',
             entity_type: 'entity_type',

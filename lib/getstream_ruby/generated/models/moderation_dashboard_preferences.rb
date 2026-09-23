@@ -18,6 +18,9 @@ module GetStream
         # @!attribute custom_views_enabled
         #   @return [Boolean]
         attr_accessor :custom_views_enabled
+        # @!attribute disable_action_logs
+        #   @return [Boolean]
+        attr_accessor :disable_action_logs
         # @!attribute disable_audit_logs
         #   @return [Boolean]
         attr_accessor :disable_audit_logs
@@ -61,6 +64,7 @@ module GetStream
           @async_review_queue_upsert = attributes[:async_review_queue_upsert] || attributes['async_review_queue_upsert'] || nil
           @block_foreign_cdn_attachments = attributes[:block_foreign_cdn_attachments] || attributes['block_foreign_cdn_attachments'] || nil
           @custom_views_enabled = attributes[:custom_views_enabled] || attributes['custom_views_enabled'] || nil
+          @disable_action_logs = attributes[:disable_action_logs] || attributes['disable_action_logs'] || nil
           @disable_audit_logs = attributes[:disable_audit_logs] || attributes['disable_audit_logs'] || nil
           @disable_flagging_reviewed_entity = attributes[:disable_flagging_reviewed_entity] || attributes['disable_flagging_reviewed_entity'] || nil
           @enforce_shadow_server_side = attributes[:enforce_shadow_server_side] || attributes['enforce_shadow_server_side'] || nil
@@ -81,6 +85,7 @@ module GetStream
             async_review_queue_upsert: 'async_review_queue_upsert',
             block_foreign_cdn_attachments: 'block_foreign_cdn_attachments',
             custom_views_enabled: 'custom_views_enabled',
+            disable_action_logs: 'disable_action_logs',
             disable_audit_logs: 'disable_audit_logs',
             disable_flagging_reviewed_entity: 'disable_flagging_reviewed_entity',
             enforce_shadow_server_side: 'enforce_shadow_server_side',

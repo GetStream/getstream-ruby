@@ -51,6 +51,9 @@ module GetStream
         # @!attribute sqs_auth_type
         #   @return [String]
         attr_accessor :sqs_auth_type
+        # @!attribute sqs_event_based_message_group_id_enabled
+        #   @return [Boolean]
+        attr_accessor :sqs_event_based_message_group_id_enabled
         # @!attribute sqs_key
         #   @return [String]
         attr_accessor :sqs_key
@@ -102,6 +105,7 @@ module GetStream
           @sns_secret = attributes[:sns_secret] || attributes['sns_secret'] || nil
           @sns_topic_arn = attributes[:sns_topic_arn] || attributes['sns_topic_arn'] || nil
           @sqs_auth_type = attributes[:sqs_auth_type] || attributes['sqs_auth_type'] || nil
+          @sqs_event_based_message_group_id_enabled = attributes[:sqs_event_based_message_group_id_enabled] || attributes['sqs_event_based_message_group_id_enabled'] || nil
           @sqs_key = attributes[:sqs_key] || attributes['sqs_key'] || nil
           @sqs_queue_url = attributes[:sqs_queue_url] || attributes['sqs_queue_url'] || nil
           @sqs_region = attributes[:sqs_region] || attributes['sqs_region'] || nil
@@ -132,6 +136,7 @@ module GetStream
             sns_secret: 'sns_secret',
             sns_topic_arn: 'sns_topic_arn',
             sqs_auth_type: 'sqs_auth_type',
+            sqs_event_based_message_group_id_enabled: 'sqs_event_based_message_group_id_enabled',
             sqs_key: 'sqs_key',
             sqs_queue_url: 'sqs_queue_url',
             sqs_region: 'sqs_region',

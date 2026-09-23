@@ -5,34 +5,29 @@
 module GetStream
   module Generated
     module Models
-      # 
-      class RingCallResponse < GetStream::BaseModel
+      # The user's interest tags after the write, ordered by descending weight, then manually set tags before computed ones, then descending count, then ascending tag name
+      class UpsertUserInterestsResponse < GetStream::BaseModel
 
         # Model attributes
         # @!attribute duration
         #   @return [String]
         attr_accessor :duration
-        # @!attribute members_ids
-        #   @return [Array<String>] List of members ringing notification was sent to
-        attr_accessor :members_ids
-        # @!attribute ring_id
-        #   @return [String] The ring this call created, for correlating the accept, reject and missed outcomes that follow
-        attr_accessor :ring_id
+        # @!attribute interests
+        #   @return [Array<InterestTagResponse>] All interest tags of the user after the write
+        attr_accessor :interests
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @duration = attributes[:duration] || attributes['duration']
-          @members_ids = attributes[:members_ids] || attributes['members_ids']
-          @ring_id = attributes[:ring_id] || attributes['ring_id'] || nil
+          @interests = attributes[:interests] || attributes['interests']
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
             duration: 'duration',
-            members_ids: 'members_ids',
-            ring_id: 'ring_id'
+            interests: 'interests'
           }
         end
       end

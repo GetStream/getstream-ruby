@@ -9,9 +9,15 @@ module GetStream
       class AddCommentReactionResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute counter_delta
+        #   @return [Integer] The change this write made to the number of reactions the user holds on this target: 1 when outcome is 'created', 0 when it is 'replaced' or 'unchanged'. These endpoints never return -1; a successful delete-reaction call is what decrements the count. With enforce_unique this is the delta of the user's reaction on the target; without it, the delta of reactions of this type.
+        attr_accessor :counter_delta
         # @!attribute duration
         #   @return [String] Duration of the request
         attr_accessor :duration
+        # @!attribute outcome
+        #   @return [String] What this write did to the user's reaction on this target. One of: created, replaced, unchanged. 'created' means a new reaction was written and nothing was replaced; 'replaced' means enforce_unique removed one or more of the user's other reaction types; 'unchanged' means the user already held this reaction type (its custom data may still have been updated). Without enforce_unique a user can hold several reaction types on one target, so 'created' then means 'this reaction type was newly added', not 'the user's first reaction on this target'.
+        attr_accessor :outcome
         # @!attribute comment
         #   @return [CommentResponse]
         attr_accessor :comment
@@ -28,6 +34,9 @@ module GetStream
         # @!attribute notification_task_id
         #   @return [String] ID of the async notification-creation task; poll GET /tasks/{id} for its status
         attr_accessor :notification_task_id
+        # @!attribute previous_reaction_type
+        #   @return [String] The reaction type this write replaced, or null when nothing was replaced. Non-null exactly when outcome is 'replaced'. If enforce_unique removed several reactions — possible only for data created before enforce_unique was adopted — this is the most recently created one.
+        attr_accessor :previous_reaction_type
         # @!attribute reference_activity
         #   @return [ActivityResponse]
         attr_accessor :reference_activity
@@ -35,24 +44,30 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @counter_delta = attributes[:counter_delta] || attributes['counter_delta']
           @duration = attributes[:duration] || attributes['duration']
+          @outcome = attributes[:outcome] || attributes['outcome']
           @comment = attributes[:comment] || attributes['comment']
           @reaction = attributes[:reaction] || attributes['reaction']
           @notification_accepted = attributes[:notification_accepted] || attributes['notification_accepted'] || nil
           @notification_created = attributes[:notification_created] || attributes['notification_created'] || nil
           @notification_task_id = attributes[:notification_task_id] || attributes['notification_task_id'] || nil
+          @previous_reaction_type = attributes[:previous_reaction_type] || attributes['previous_reaction_type'] || nil
           @reference_activity = attributes[:reference_activity] || attributes['reference_activity'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            counter_delta: 'counter_delta',
             duration: 'duration',
+            outcome: 'outcome',
             comment: 'comment',
             reaction: 'reaction',
             notification_accepted: 'notification_accepted',
             notification_created: 'notification_created',
             notification_task_id: 'notification_task_id',
+            previous_reaction_type: 'previous_reaction_type',
             reference_activity: 'reference_activity'
           }
         end

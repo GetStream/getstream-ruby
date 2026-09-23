@@ -15,19 +15,24 @@ module GetStream
         # @!attribute members_ids
         #   @return [Array<String>] Members that should receive the ring. If no ids are provided, all call members who are not already in the call will receive ring notifications.
         attr_accessor :members_ids
+        # @!attribute custom
+        #   @return [Object] Opaque context stored on the ring attempt; refs and IDs only
+        attr_accessor :custom
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @video = attributes[:video] || attributes['video'] || nil
           @members_ids = attributes[:members_ids] || attributes['members_ids'] || nil
+          @custom = attributes[:custom] || attributes['custom'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
             video: 'video',
-            members_ids: 'members_ids'
+            members_ids: 'members_ids',
+            custom: 'custom'
           }
         end
       end

@@ -66,6 +66,9 @@ module GetStream
         # @!attribute sfu_id
         #   @return [String] Identifier of the SFU the client was attempting to connect to. Required on WSJoin and PeerConnectionConnect failure, and on FirstAudioFrame and FirstVideoFrame.
         attr_accessor :sfu_id
+        # @!attribute source
+        #   @return [String] Source of the coordinator join. Optional on CoordinatorJoin events; omitted when not provided.
+        attr_accessor :source
         # @!attribute stage
         #   @return [String] Discriminator identifying the event kind. JoinInitiated marks the start of a join attempt; join-lifecycle events use CoordinatorJoin, CoordinatorWS, WSJoin, or PeerConnectionConnect; media-readiness events use FirstAudioFrame or FirstVideoFrame; MediaDevicePermission reports device permission results; other values denote generic client events.
         attr_accessor :stage
@@ -113,6 +116,7 @@ module GetStream
           @screen_share_status = attributes[:screen_share_status] || attributes['screen_share_status'] || nil
           @sdk_version = attributes[:sdk_version] || attributes['sdk_version'] || nil
           @sfu_id = attributes[:sfu_id] || attributes['sfu_id'] || nil
+          @source = attributes[:source] || attributes['source'] || nil
           @stage = attributes[:stage] || attributes['stage'] || nil
           @stage_id = attributes[:stage_id] || attributes['stage_id'] || nil
           @timestamp = attributes[:timestamp] || attributes['timestamp'] || nil
@@ -145,6 +149,7 @@ module GetStream
             screen_share_status: 'screen_share_status',
             sdk_version: 'sdk_version',
             sfu_id: 'sfu_id',
+            source: 'source',
             stage: 'stage',
             stage_id: 'stage_id',
             timestamp: 'timestamp',
