@@ -258,7 +258,7 @@ CI follows the same split:
 | --- | --- | --- |
 | Pull request | `make test`, `format-check`, `lint`, `security` | `🧪 Tests`, once it is required on `master` |
 | Daily at 11:00 UTC | `spec/integration/` | no, a red run opens an issue |
-| Release PR merged | nothing, it tags and publishes | no |
+| Release PR merged | nothing on the default branch, the unit lane on `N.x` | `N.x` only |
 
 `master` has no branch protection yet. `🧪 Tests` is the single check to require there,
 alongside `👮 Conventional PR title`.
@@ -266,9 +266,7 @@ alongside `👮 Conventional PR title`.
 A Release PR skips the unit lane and `🧪 Tests` still reports satisfied: release-please
 only bumps the version and rewrites the changelog. Its runs are created held at
 `action_required` until someone clicks **Approve and run**, because release-please opens
-the PR with `GITHUB_TOKEN`. The skip keys on the PR author, not the pusher, so **Update
-branch** does not bring the suite back and neither does pushing a commit by hand, and such
-a commit reaches `master` untested and is released untested.
+the PR with `GITHUB_TOKEN`. The skip only applies while every changed file is one release-please writes, so a code change pushed onto a Release PR by hand runs the unit lane like any other PR.
 
 #### Code Quality
 ```bash
@@ -425,7 +423,7 @@ Releases are driven by [release-please](https://github.com/googleapis/release-pl
   `lib/getstream_ruby/version.rb` and `CHANGELOG.md`. It is opened by
   `github-actions[bot]`, so approve it and run its held checks like any other PR. Never
   edit the version by hand.
-- Merging the Release PR creates the tag and the GitHub Release on that merge commit and pushes the gem to RubyGems, with no further test run: the Release PR adds only the version bump and changelog to an already-tested `master`. A tag, a GitHub Release and a gem push cannot be withdrawn, a failed push can be retried.
+- Merging the Release PR creates the tag and the GitHub Release on that merge commit and pushes the gem to RubyGems, with no further test run: the Release PR adds only the version bump and changelog to an already-tested `master`. A hotfix release from `N.x` runs the unit lane first, since its commits were pushed without a PR. A tag, a GitHub Release and a gem push cannot be withdrawn, a failed push can be retried.
 
 If the release job fails after the Release PR merged, the release stays pending and every
 later push to `master` logs a warning naming the commit to go back to, rather than
