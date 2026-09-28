@@ -19,10 +19,10 @@ fi
 set -ex
 
 # cd in API repo, generate new spec and then generate code from it
-( cd $SOURCE_PATH ; make openapi ; ./build/chat-manager openapi generate-client --language ruby --spec ./releases/v2/serverside-api.yaml --output $DST_PATH )
+( cd $SOURCE_PATH ; make openapi ; make -C tools/openapi build ; ./build/openapi generate-client --language ruby --spec ./releases/v2/serverside-api.yaml --output $DST_PATH )
 
 # Generate webhook conformance fixtures (CHA-2961)
-( cd $SOURCE_PATH ; ./build/chat-manager openapi generate-webhook-fixtures --output $DST_PATH/test/fixtures/webhooks )
+( cd $SOURCE_PATH ; ./build/openapi generate-webhook-fixtures --output $DST_PATH/test/fixtures/webhooks )
 
 # Fix any potential issues in generated code
 echo "Applying Ruby-specific fixes..."
