@@ -21,6 +21,7 @@ require_relative 'stream_response'
 require_relative 'error_mapping'
 require_relative 'log_redaction'
 require_relative 'request_logging'
+require_relative 'tls'
 
 module GetStreamRuby
 
@@ -292,6 +293,8 @@ module GetStreamRuby
       # Use it as-is; none of the 5 knobs apply.
       return @configuration.http_client if @configuration.http_client
 
+      Tls.tolerate_unclean_shutdown!
+
       Faraday.new(url: @configuration.base_url) do |conn|
 
         conn.request :multipart
@@ -330,6 +333,10 @@ module GetStreamRuby
       connection.adapter :net_http_persistent, pool_size: @configuration.max_conns_per_host do |http|
 
         http.idle_timeout = idle
+        # Faraday forces max_retries=0 on every request. Restore Net::HTTP's
+        # default of 1 so an idempotent retry can cover GET/HEAD if the
+        # OpenSSL EOF probe is unavailable (pre-OpenSSL 3).
+        http.max_retries = 1 if http.respond_to?(:max_retries=)
 
       end
     rescue Faraday::Error, ArgumentError => e

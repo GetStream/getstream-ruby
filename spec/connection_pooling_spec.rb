@@ -51,6 +51,28 @@ RSpec.describe 'CHA-2956 connection pooling' do
 
     end
 
+    it 'restores max_retries=1 on the persistent adapter' do
+
+      handler = client.instance_variable_get(:@connection).builder.adapter
+      http = Net::HTTP::Persistent.new(name: 'spec-max-retries')
+      handler.instance_variable_get(:@block).call(http)
+      expect(http.max_retries).to eq(1)
+
+    end
+
+    it 'enables OpenSSL OP_IGNORE_UNEXPECTED_EOF when available' do
+
+      skip 'OpenSSL::SSL::OP_IGNORE_UNEXPECTED_EOF is not defined' unless
+        defined?(OpenSSL::SSL::OP_IGNORE_UNEXPECTED_EOF)
+
+      GetStreamRuby.manual(api_key: 'k', api_secret: 's')
+      options = OpenSSL::SSL::SSLContext::DEFAULT_PARAMS[:options]
+      expect(options & OpenSSL::SSL::OP_IGNORE_UNEXPECTED_EOF).to eq(
+        OpenSSL::SSL::OP_IGNORE_UNEXPECTED_EOF,
+      )
+
+    end
+
   end
 
   describe 'individual knob overrides' do
