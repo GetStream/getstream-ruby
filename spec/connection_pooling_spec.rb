@@ -43,11 +43,11 @@ RSpec.describe 'CHA-2956 connection pooling' do
 
     end
 
-    it 'passes pool_size=5 to the net_http_persistent adapter' do
+    it 'passes pool_size=100 to the net_http_persistent adapter' do
 
       captured = capture_adapter_call { GetStreamRuby.manual(api_key: 'k', api_secret: 's') }
       expect(captured[:args].first).to eq(:net_http_persistent)
-      expect(captured[:kwargs]).to include(pool_size: 5)
+      expect(captured[:kwargs]).to include(pool_size: 100)
 
     end
 
@@ -229,7 +229,7 @@ RSpec.describe 'CHA-2956 connection pooling' do
       expect(info_lines.size).to eq(1)
       line = info_lines.first
       expect(line).to include('client.initialized')
-      expect(line).to include('stream.client.max_conns_per_host=5')
+      expect(line).to include('stream.client.max_conns_per_host=100')
       expect(line).to include('stream.client.idle_timeout_seconds=25')
       expect(line).to include('stream.client.connect_timeout_seconds=10')
       expect(line).to include('stream.client.request_timeout_seconds=30')
