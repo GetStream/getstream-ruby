@@ -5,7 +5,7 @@
 module GetStream
   module Generated
     module Models
-      # 
+      # Basic response information
       class UpdateChannelTypeResponse < GetStream::BaseModel
 
         # Model attributes
@@ -31,7 +31,7 @@ module GetStream
         #   @return [Boolean]
         attr_accessor :delivery_events
         # @!attribute duration
-        #   @return [String]
+        #   @return [String] Duration of the request in milliseconds
         attr_accessor :duration
         # @!attribute mark_messages_pending
         #   @return [Boolean]
@@ -115,7 +115,7 @@ module GetStream
         #   @return [String]
         attr_accessor :partition_ttl
         # @!attribute push_level
-        #   @return [String]
+        #   @return [String] Sets the push notification level for a channel type
         attr_accessor :push_level
         # @!attribute allowed_flag_reasons
         #   @return [Array<String>]

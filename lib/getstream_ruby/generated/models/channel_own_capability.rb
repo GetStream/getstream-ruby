@@ -5,7 +5,7 @@
 module GetStream
   module Generated
     module Models
-      # All possibility of string to use
+      # An action that can be performed in a channel.
       class ChannelOwnCapability < GetStream::BaseModel
         # Empty model - inherits all functionality from BaseModel
       end

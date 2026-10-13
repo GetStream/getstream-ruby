@@ -12,6 +12,9 @@ module GetStream
         # @!attribute target_user_id
         #   @return [String] ID of the user to ban
         attr_accessor :target_user_id
+        # @!attribute ban_from_future_channels
+        #   @return [Boolean] Whether to also ban the user from future channels created by the banner
+        attr_accessor :ban_from_future_channels
         # @!attribute banned_by_id
         #   @return [String] ID of the user performing the ban
         attr_accessor :banned_by_id
@@ -21,6 +24,9 @@ module GetStream
         # @!attribute delete_messages
         #   @return [String]
         attr_accessor :delete_messages
+        # @!attribute delete_reactions
+        #   @return [Boolean] Whether to delete reactions by the banned user on other users' messages
+        attr_accessor :delete_reactions
         # @!attribute ip_ban
         #   @return [Boolean] Whether to ban the user's IP address
         attr_accessor :ip_ban
@@ -41,9 +47,11 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @target_user_id = attributes[:target_user_id] || attributes['target_user_id']
+          @ban_from_future_channels = attributes[:ban_from_future_channels] || attributes['ban_from_future_channels'] || nil
           @banned_by_id = attributes[:banned_by_id] || attributes['banned_by_id'] || nil
           @channel_cid = attributes[:channel_cid] || attributes['channel_cid'] || nil
           @delete_messages = attributes[:delete_messages] || attributes['delete_messages'] || nil
+          @delete_reactions = attributes[:delete_reactions] || attributes['delete_reactions'] || nil
           @ip_ban = attributes[:ip_ban] || attributes['ip_ban'] || nil
           @reason = attributes[:reason] || attributes['reason'] || nil
           @shadow = attributes[:shadow] || attributes['shadow'] || nil
@@ -55,9 +63,11 @@ module GetStream
         def self.json_field_mappings
           {
             target_user_id: 'target_user_id',
+            ban_from_future_channels: 'ban_from_future_channels',
             banned_by_id: 'banned_by_id',
             channel_cid: 'channel_cid',
             delete_messages: 'delete_messages',
+            delete_reactions: 'delete_reactions',
             ip_ban: 'ip_ban',
             reason: 'reason',
             shadow: 'shadow',

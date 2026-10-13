@@ -5,7 +5,7 @@
 module GetStream
   module Generated
     module Models
-      # Client request
+      # 
       class GetOrCreateFeedRequest < GetStream::BaseModel
 
         # Model attributes
@@ -33,6 +33,9 @@ module GetStream
         # @!attribute watch
         #   @return [Boolean]
         attr_accessor :watch
+        # @!attribute discard_actors
+        #   @return [Array<String>] Feature-gated; not available for all apps. Request-scoped list of actor/user IDs whose activities are filtered from this GetOrCreateFeed response only. Merged (union) into the viewing user's in-memory blocked authors for this request; never persisted to blocked_users. Max: 1000.
+        attr_accessor :discard_actors
         # @!attribute data
         #   @return [FeedInput]
         attr_accessor :data
@@ -75,6 +78,7 @@ module GetStream
           @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @view = attributes[:view] || attributes['view'] || nil
           @watch = attributes[:watch] || attributes['watch'] || nil
+          @discard_actors = attributes[:discard_actors] || attributes['discard_actors'] || nil
           @data = attributes[:data] || attributes['data'] || nil
           @enrichment_options = attributes[:enrichment_options] || attributes['enrichment_options'] || nil
           @external_ranking = attributes[:external_ranking] || attributes['external_ranking'] || nil
@@ -98,6 +102,7 @@ module GetStream
             user_id: 'user_id',
             view: 'view',
             watch: 'watch',
+            discard_actors: 'discard_actors',
             data: 'data',
             enrichment_options: 'enrichment_options',
             external_ranking: 'external_ranking',

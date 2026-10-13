@@ -12,6 +12,12 @@ module GetStream
         # @!attribute text
         #   @return [String] Option text
         attr_accessor :text
+        # @!attribute config_key
+        #   @return [String] Key of the moderation configuration to use. Server-side only.
+        attr_accessor :config_key
+        # @!attribute config_team
+        #   @return [String] Team associated with the configuration. Server-side only.
+        attr_accessor :config_team
         # @!attribute user_id
         #   @return [String]
         attr_accessor :user_id
@@ -26,6 +32,8 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @text = attributes[:text] || attributes['text']
+          @config_key = attributes[:config_key] || attributes['config_key'] || nil
+          @config_team = attributes[:config_team] || attributes['config_team'] || nil
           @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @custom = attributes[:custom] || attributes['custom'] || nil
           @user = attributes[:user] || attributes['user'] || nil
@@ -35,6 +43,8 @@ module GetStream
         def self.json_field_mappings
           {
             text: 'text',
+            config_key: 'config_key',
+            config_team: 'config_team',
             user_id: 'user_id',
             custom: 'custom',
             user: 'user'

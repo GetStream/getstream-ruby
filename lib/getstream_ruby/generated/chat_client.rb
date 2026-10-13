@@ -164,7 +164,7 @@ module GetStream
         )
       end
 
-      # Update channels in batchSends events:- channel.frozen- channel.hidden- channel.unfrozen- channel.updated- channel.visible- member.added- member.removed- member.updated
+      # Update channels in batch. By default returns task_id for an asynchronous task. With synchronous: true, updateData accepts at most 100 explicit CIDs and returns a positive success_channels_count of channels selected for update after the database write completes, without task_id. Always poll a returned task_id, including when an older node ignores synchronous.Sends events:- channel.frozen- channel.hidden- channel.unfrozen- channel.updated- channel.visible- member.added- member.removed- member.updated
       #
       # @param channel_batch_update_request [ChannelBatchUpdateRequest]
       # @return [Models::ChannelBatchUpdateResponse]
@@ -1376,7 +1376,7 @@ module GetStream
         )
       end
 
-      # Updates an existing reminderSends events:- reminder.updated
+      # Updates an existing reminder. remind_at and expires_at are both replaced on every call: omitting either one clears itSends events:- reminder.updated
       #
       # @param message_id [String]
       # @param update_reminder_request [UpdateReminderRequest]
@@ -1396,7 +1396,7 @@ module GetStream
         )
       end
 
-      # Creates a new reminderSends events:- reminder.created
+      # Creates a new reminder. An optional expires_at hides the reminder from every read once it passes and stops it counting against the per-user reminder capSends events:- reminder.created
       #
       # @param message_id [String]
       # @param create_reminder_request [CreateReminderRequest]

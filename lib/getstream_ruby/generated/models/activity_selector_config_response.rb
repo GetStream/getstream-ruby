@@ -21,6 +21,12 @@ module GetStream
         # @!attribute min_popularity
         #   @return [Integer] Minimum popularity threshold. For the 'popular' selector, values below 1 are normalized to the default (5) at read time.
         attr_accessor :min_popularity
+        # @!attribute ranking_candidate_limit
+        #   @return [Integer] Maximum number of candidate activities this selector contributes to a ranked feed
+        attr_accessor :ranking_candidate_limit
+        # @!attribute time_budget_ms
+        #   @return [Integer] Maximum time in milliseconds this selector may take before it is dropped from the read
+        attr_accessor :time_budget_ms
         # @!attribute sort
         #   @return [Array<SortParamRequest>] Sort parameters for activity selection
         attr_accessor :sort
@@ -41,6 +47,8 @@ module GetStream
           @cutoff_time = attributes[:cutoff_time] || attributes['cutoff_time'] || nil
           @cutoff_window = attributes[:cutoff_window] || attributes['cutoff_window'] || nil
           @min_popularity = attributes[:min_popularity] || attributes['min_popularity'] || nil
+          @ranking_candidate_limit = attributes[:ranking_candidate_limit] || attributes['ranking_candidate_limit'] || nil
+          @time_budget_ms = attributes[:time_budget_ms] || attributes['time_budget_ms'] || nil
           @sort = attributes[:sort] || attributes['sort'] || nil
           @feed_groups = attributes[:feed_groups] || attributes['feed_groups'] || nil
           @filter = attributes[:filter] || attributes['filter'] || nil
@@ -54,6 +62,8 @@ module GetStream
             cutoff_time: 'cutoff_time',
             cutoff_window: 'cutoff_window',
             min_popularity: 'min_popularity',
+            ranking_candidate_limit: 'ranking_candidate_limit',
+            time_budget_ms: 'time_budget_ms',
             sort: 'sort',
             feed_groups: 'feed_groups',
             filter: 'filter',

@@ -69,6 +69,9 @@ module GetStream
         # @!attribute config_key
         #   @return [String]
         attr_accessor :config_key
+        # @!attribute country_code
+        #   @return [String]
+        attr_accessor :country_code
         # @!attribute entity_creator_id
         #   @return [String] ID of who created the entity
         attr_accessor :entity_creator_id
@@ -120,6 +123,9 @@ module GetStream
         # @!attribute moderation_payload
         #   @return [ModerationPayloadResponse] Content payload for moderation
         attr_accessor :moderation_payload
+        # @!attribute poll
+        #   @return [PollResponseData]
+        attr_accessor :poll
         # @!attribute reaction
         #   @return [Reaction]
         attr_accessor :reaction
@@ -147,6 +153,7 @@ module GetStream
           @completed_at = attributes[:completed_at] || attributes['completed_at'] || nil
           @confidence_score = attributes[:confidence_score] || attributes['confidence_score'] || nil
           @config_key = attributes[:config_key] || attributes['config_key'] || nil
+          @country_code = attributes[:country_code] || attributes['country_code'] || nil
           @entity_creator_id = attributes[:entity_creator_id] || attributes['entity_creator_id'] || nil
           @escalated_at = attributes[:escalated_at] || attributes['escalated_at'] || nil
           @escalated_by = attributes[:escalated_by] || attributes['escalated_by'] || nil
@@ -164,6 +171,7 @@ module GetStream
           @feeds_v3_comment = attributes[:feeds_v3_comment] || attributes['feeds_v3_comment'] || nil
           @message = attributes[:message] || attributes['message'] || nil
           @moderation_payload = attributes[:moderation_payload] || attributes['moderation_payload'] || nil
+          @poll = attributes[:poll] || attributes['poll'] || nil
           @reaction = attributes[:reaction] || attributes['reaction'] || nil
         end
 
@@ -190,6 +198,7 @@ module GetStream
             completed_at: 'completed_at',
             confidence_score: 'confidence_score',
             config_key: 'config_key',
+            country_code: 'country_code',
             entity_creator_id: 'entity_creator_id',
             escalated_at: 'escalated_at',
             escalated_by: 'escalated_by',
@@ -207,6 +216,7 @@ module GetStream
             feeds_v3_comment: 'feeds_v3_comment',
             message: 'message',
             moderation_payload: 'moderation_payload',
+            poll: 'poll',
             reaction: 'reaction'
           }
         end

@@ -5,18 +5,18 @@
 module GetStream
   module Generated
     module Models
-      # 
+      # The privacy settings of the user.
       class PrivacySettingsResponse < GetStream::BaseModel
 
         # Model attributes
         # @!attribute delivery_receipts
-        #   @return [DeliveryReceiptsResponse]
+        #   @return [DeliveryReceiptsResponse] The settings for the delivery receipt events.
         attr_accessor :delivery_receipts
         # @!attribute read_receipts
-        #   @return [ReadReceiptsResponse]
+        #   @return [ReadReceiptsResponse] The settings for the read receipt events.
         attr_accessor :read_receipts
         # @!attribute typing_indicators
-        #   @return [TypingIndicatorsResponse]
+        #   @return [TypingIndicatorsResponse] The settings for typing indicator events.
         attr_accessor :typing_indicators
 
         # Initialize with attributes

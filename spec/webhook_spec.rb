@@ -373,6 +373,13 @@ RSpec.describe 'Webhook' do
 
     end
 
+    it 'parses call.ring_settled' do
+
+      event = StreamChat::Webhook.parse_webhook_event('{"type":"call.ring_settled"}')
+      expect(event.class.name).to eq('GetStream::Generated::Models::CallRingSettledEvent')
+
+    end
+
     it 'parses call.rtmp_broadcast_failed' do
 
       event = StreamChat::Webhook.parse_webhook_event('{"type":"call.rtmp_broadcast_failed"}')
@@ -632,6 +639,20 @@ RSpec.describe 'Webhook' do
 
     end
 
+    it 'parses export.label_results.error' do
+
+      event = StreamChat::Webhook.parse_webhook_event('{"type":"export.label_results.error"}')
+      expect(event.class.name).to eq('GetStream::Generated::Models::AsyncExportErrorEvent')
+
+    end
+
+    it 'parses export.label_results.success' do
+
+      event = StreamChat::Webhook.parse_webhook_event('{"type":"export.label_results.success"}')
+      expect(event.class.name).to eq('GetStream::Generated::Models::AsyncExportLabelResultsEvent')
+
+    end
+
     it 'parses export.moderation_logs.error' do
 
       event = StreamChat::Webhook.parse_webhook_event('{"type":"export.moderation_logs.error"}')
@@ -807,6 +828,13 @@ RSpec.describe 'Webhook' do
 
     end
 
+    it 'parses feeds.comment.feedback' do
+
+      event = StreamChat::Webhook.parse_webhook_event('{"type":"feeds.comment.feedback"}')
+      expect(event.class.name).to eq('GetStream::Generated::Models::CommentFeedbackEvent')
+
+    end
+
     it 'parses feeds.comment.reaction.added' do
 
       event = StreamChat::Webhook.parse_webhook_event('{"type":"feeds.comment.reaction.added"}')
@@ -944,6 +972,20 @@ RSpec.describe 'Webhook' do
 
       event = StreamChat::Webhook.parse_webhook_event('{"type":"flag.updated"}')
       expect(event.class.name).to eq('GetStream::Generated::Models::FlagUpdatedEvent')
+
+    end
+
+    it 'parses import.error' do
+
+      event = StreamChat::Webhook.parse_webhook_event('{"type":"import.error"}')
+      expect(event.class.name).to eq('GetStream::Generated::Models::AsyncImportErrorEvent')
+
+    end
+
+    it 'parses import.success' do
+
+      event = StreamChat::Webhook.parse_webhook_event('{"type":"import.success"}')
+      expect(event.class.name).to eq('GetStream::Generated::Models::AsyncImportSuccessEvent')
 
     end
 

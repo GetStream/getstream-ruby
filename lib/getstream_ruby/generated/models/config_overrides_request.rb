@@ -22,7 +22,7 @@ module GetStream
         #   @return [Integer] Maximum message length
         attr_accessor :max_message_length
         # @!attribute push_level
-        #   @return [String]
+        #   @return [String] Overrides the push notification level for this channel
         attr_accessor :push_level
         # @!attribute quotes
         #   @return [Boolean] Enable/disable quotes

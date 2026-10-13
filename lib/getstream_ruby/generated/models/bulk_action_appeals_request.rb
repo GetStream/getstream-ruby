@@ -31,7 +31,8 @@ module GetStream
         #   @return [UnbanActionRequestPayload] Configuration for unban moderation action
         attr_accessor :unban
         # @!attribute unblock
-        #   @return [UnblockActionRequestPayload] Deprecated: use restore instead — it now also reverses a block or shadow block. Configuration for unblock action.
+        # @deprecated This field is deprecated.
+        #   @return [UnblockActionRequestPayload] Deprecated: Use restore instead, which now also reverses a block or shadow block. Configuration for unblock action.
         attr_accessor :unblock
         # @!attribute user
         #   @return [UserRequest] User request object

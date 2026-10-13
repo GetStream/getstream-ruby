@@ -5,21 +5,25 @@
 module GetStream
   module Generated
     module Models
-      # Basic response information
+      # 
       class ChannelBatchUpdateResponse < GetStream::BaseModel
 
         # Model attributes
         # @!attribute duration
-        #   @return [String] Duration of the request in milliseconds
-        attr_accessor :duration
-        # @!attribute task_id
         #   @return [String]
+        attr_accessor :duration
+        # @!attribute success_channels_count
+        #   @return [Integer] Positive count of channels selected for a completed synchronous database update, not an affected-row count. Concurrent deletion may reduce the rows written. task_id is absent.
+        attr_accessor :success_channels_count
+        # @!attribute task_id
+        #   @return [String] Present for asynchronous updates. Poll this task even if synchronous was requested: an older API node may have queued the update.
         attr_accessor :task_id
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @duration = attributes[:duration] || attributes['duration']
+          @success_channels_count = attributes[:success_channels_count] || attributes['success_channels_count'] || nil
           @task_id = attributes[:task_id] || attributes['task_id'] || nil
         end
 
@@ -27,6 +31,7 @@ module GetStream
         def self.json_field_mappings
           {
             duration: 'duration',
+            success_channels_count: 'success_channels_count',
             task_id: 'task_id'
           }
         end

@@ -55,7 +55,7 @@ module GetStream
         #   @return [Boolean]
         attr_accessor :polls
         # @!attribute push_level
-        #   @return [String]
+        #   @return [String] Sets the push notification level for a channel type
         attr_accessor :push_level
         # @!attribute push_notifications
         #   @return [Boolean]
