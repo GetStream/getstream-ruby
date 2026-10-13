@@ -9,6 +9,9 @@ module GetStream
       class GetCommentsResponse < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute comment_count
+        #   @return [Integer] Total number of comments on the object, including replies at every depth
+        attr_accessor :comment_count
         # @!attribute duration
         #   @return [String]
         attr_accessor :duration
@@ -24,25 +27,32 @@ module GetStream
         # @!attribute prev
         #   @return [String]
         attr_accessor :prev
+        # @!attribute top_level_comment_count
+        #   @return [Integer] Number of comments directly on the object, excluding replies. Independent of depth, replies_limit and id_around, and not adjusted per viewer. Only present when include_top_level_comment_count is set
+        attr_accessor :top_level_comment_count
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @comment_count = attributes[:comment_count] || attributes['comment_count']
           @duration = attributes[:duration] || attributes['duration']
           @sort = attributes[:sort] || attributes['sort']
           @comments = attributes[:comments] || attributes['comments']
           @next = attributes[:next] || attributes['next'] || nil
           @prev = attributes[:prev] || attributes['prev'] || nil
+          @top_level_comment_count = attributes[:top_level_comment_count] || attributes['top_level_comment_count'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            comment_count: 'comment_count',
             duration: 'duration',
             sort: 'sort',
             comments: 'comments',
             next: 'next',
-            prev: 'prev'
+            prev: 'prev',
+            top_level_comment_count: 'top_level_comment_count'
           }
         end
       end

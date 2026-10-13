@@ -24,6 +24,9 @@ module GetStream
         # @!attribute threads
         #   @return [Array<ThreadStateResponse>]
         attr_accessor :threads
+        # @!attribute cooldown_remaining_ms
+        #   @return [Integer]
+        attr_accessor :cooldown_remaining_ms
         # @!attribute hidden
         #   @return [Boolean]
         attr_accessor :hidden
@@ -55,7 +58,7 @@ module GetStream
         #   @return [ChannelMemberResponse]
         attr_accessor :membership
         # @!attribute push_preferences
-        #   @return [ChannelPushPreferencesResponse]
+        #   @return [ChannelPushPreferencesResponse] The push preference details.
         attr_accessor :push_preferences
 
         # Initialize with attributes
@@ -66,6 +69,7 @@ module GetStream
           @messages = attributes[:messages] || attributes['messages']
           @pinned_messages = attributes[:pinned_messages] || attributes['pinned_messages']
           @threads = attributes[:threads] || attributes['threads']
+          @cooldown_remaining_ms = attributes[:cooldown_remaining_ms] || attributes['cooldown_remaining_ms'] || nil
           @hidden = attributes[:hidden] || attributes['hidden'] || nil
           @hide_messages_before = attributes[:hide_messages_before] || attributes['hide_messages_before'] || nil
           @watcher_count = attributes[:watcher_count] || attributes['watcher_count'] || nil
@@ -87,6 +91,7 @@ module GetStream
             messages: 'messages',
             pinned_messages: 'pinned_messages',
             threads: 'threads',
+            cooldown_remaining_ms: 'cooldown_remaining_ms',
             hidden: 'hidden',
             hide_messages_before: 'hide_messages_before',
             watcher_count: 'watcher_count',

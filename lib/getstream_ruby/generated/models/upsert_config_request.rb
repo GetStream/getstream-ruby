@@ -57,6 +57,9 @@ module GetStream
         # @!attribute google_vision_config
         #   @return [GoogleVisionConfig]
         attr_accessor :google_vision_config
+        # @!attribute intent_config
+        #   @return [IntentConfigRequest]
+        attr_accessor :intent_config
         # @!attribute llm_config
         #   @return [LLMConfig]
         attr_accessor :llm_config
@@ -92,6 +95,7 @@ module GetStream
           @bodyguard_config = attributes[:bodyguard_config] || attributes['bodyguard_config'] || nil
           @flood_config = attributes[:flood_config] || attributes['flood_config'] || nil
           @google_vision_config = attributes[:google_vision_config] || attributes['google_vision_config'] || nil
+          @intent_config = attributes[:intent_config] || attributes['intent_config'] || nil
           @llm_config = attributes[:llm_config] || attributes['llm_config'] || nil
           @rule_builder_config = attributes[:rule_builder_config] || attributes['rule_builder_config'] || nil
           @user = attributes[:user] || attributes['user'] || nil
@@ -118,6 +122,7 @@ module GetStream
             bodyguard_config: 'bodyguard_config',
             flood_config: 'flood_config',
             google_vision_config: 'google_vision_config',
+            intent_config: 'intent_config',
             llm_config: 'llm_config',
             rule_builder_config: 'rule_builder_config',
             user: 'user',

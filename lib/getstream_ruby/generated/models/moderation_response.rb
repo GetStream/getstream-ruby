@@ -5,21 +5,21 @@
 module GetStream
   module Generated
     module Models
-      # 
+      # Response from AI moderation
       class ModerationResponse < GetStream::BaseModel
 
         # Model attributes
         # @!attribute action
-        #   @return [String]
+        #   @return [String] Action taken by automod
         attr_accessor :action
         # @!attribute explicit
-        #   @return [Float]
+        #   @return [Float] Explicit score
         attr_accessor :explicit
         # @!attribute spam
-        #   @return [Float]
+        #   @return [Float] Spam score
         attr_accessor :spam
         # @!attribute toxic
-        #   @return [Float]
+        #   @return [Float] Toxicity score
         attr_accessor :toxic
 
         # Initialize with attributes

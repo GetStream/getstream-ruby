@@ -165,6 +165,23 @@ module GetStream
         )
       end
 
+      # Validates that Stream can publish to a customer-owned GCP Pub/Sub topic
+      #
+      # @param check_gcp_pub_sub_request [CheckGCPPubSubRequest]
+      # @return [Models::CheckGCPPubSubResponse]
+      def check_gcp_pub_sub(check_gcp_pub_sub_request)
+        path = '/api/v2/check_gcp_pubsub'
+        # Build request body
+        body = check_gcp_pub_sub_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
       # Sends a test message via push, this is a test endpoint to verify your push settings
       #
       # @param check_push_request [CheckPushRequest]
@@ -874,17 +891,22 @@ module GetStream
       #
       # @param poll_id [String]
       # @param option_id [String]
+      # @param user_id [String]
       # @return [Models::PollOptionResponse]
-      def get_poll_option(poll_id, option_id)
+      def get_poll_option(poll_id, option_id, user_id = nil)
         path = '/api/v2/polls/{poll_id}/options/{option_id}'
         # Replace path parameters
         path = path.gsub('{poll_id}', poll_id.to_s)
         path = path.gsub('{option_id}', option_id.to_s)
+        # Build query parameters
+        query_params = {}
+        query_params['user_id'] = user_id unless user_id.nil?
 
         # Make the API request
         @client.make_request(
           :get,
-          path
+          path,
+          query_params: query_params
         )
       end
 

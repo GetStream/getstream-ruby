@@ -5,7 +5,7 @@
 module GetStream
   module Generated
     module Models
-      # 
+      # The settings for the read receipt events.
       class ReadReceiptsResponse < GetStream::BaseModel
 
         # Model attributes

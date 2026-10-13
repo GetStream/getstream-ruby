@@ -12,6 +12,9 @@ module GetStream
         # @!attribute follows
         #   @return [Array<UnfollowPair>] List of follow relationships to remove, each with optional keep_history
         attr_accessor :follows
+        # @!attribute async
+        #   @return [Boolean] If true, the batch is queued as a background task, paced per app, and the response has empty follows and a task_id. Server-side only. Supported by the get-or-create endpoint (GetOrCreateUnfollows); UnfollowBatch rejects it. Async batches can apply out of order with other follow writes. Defaults to false.
+        attr_accessor :async
         # @!attribute delete_notification_activity
         #   @return [Boolean] Whether to delete the corresponding notification activity (default: false)
         attr_accessor :delete_notification_activity
@@ -23,6 +26,7 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @follows = attributes[:follows] || attributes['follows']
+          @async = attributes[:async] || attributes['async'] || nil
           @delete_notification_activity = attributes[:delete_notification_activity] || attributes['delete_notification_activity'] || nil
           @enrich_own_fields = attributes[:enrich_own_fields] || attributes['enrich_own_fields'] || nil
         end
@@ -31,6 +35,7 @@ module GetStream
         def self.json_field_mappings
           {
             follows: 'follows',
+            async: 'async',
             delete_notification_activity: 'delete_notification_activity',
             enrich_own_fields: 'enrich_own_fields'
           }

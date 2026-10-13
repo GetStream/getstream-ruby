@@ -31,7 +31,7 @@ module GetStream
         #   @return [String]
         attr_accessor :team
         # @!attribute type
-        #   @return [String] Block list type. One of: regex, domain, domain_allowlist, email, email_allowlist, word
+        #   @return [String] Block list type. One of: regex, domain, domain_allowlist, email, email_allowlist, word, word_allowlist
         attr_accessor :type
         # @!attribute user_id
         #   @return [String]

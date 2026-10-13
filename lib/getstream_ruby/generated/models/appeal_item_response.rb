@@ -33,8 +33,11 @@ module GetStream
         # @!attribute ai_text_severity
         #   @return [String] Text severity level assigned by the AI provider
         attr_accessor :ai_text_severity
+        # @!attribute appeal_reason_language
+        #   @return [String] Detected language of the appeal_reason text itself
+        attr_accessor :appeal_reason_language
         # @!attribute channel_cid
-        #   @return [String] CID of the channel the entity belongs to, if applicable
+        #   @return [String] CID of the channel the entity belongs to (content appeals), or of the channel ban being appealed (stream:user appeals). Empty for a global ban appeal.
         attr_accessor :channel_cid
         # @!attribute config_key
         #   @return [String] Moderation policy key that was applied
@@ -66,6 +69,9 @@ module GetStream
         # @!attribute flags
         #   @return [Array<ModerationFlagResponse>] Per-provider flag records explaining why the action was taken
         attr_accessor :flags
+        # @!attribute languages
+        #   @return [Array<String>] Detected languages in the content
+        attr_accessor :languages
         # @!attribute entity_content
         #   @return [ModerationPayload]
         attr_accessor :entity_content
@@ -90,6 +96,7 @@ module GetStream
           @status = attributes[:status] || attributes['status']
           @updated_at = attributes[:updated_at] || attributes['updated_at']
           @ai_text_severity = attributes[:ai_text_severity] || attributes['ai_text_severity'] || nil
+          @appeal_reason_language = attributes[:appeal_reason_language] || attributes['appeal_reason_language'] || nil
           @channel_cid = attributes[:channel_cid] || attributes['channel_cid'] || nil
           @config_key = attributes[:config_key] || attributes['config_key'] || nil
           @decision_reason = attributes[:decision_reason] || attributes['decision_reason'] || nil
@@ -101,6 +108,7 @@ module GetStream
           @flag_labels = attributes[:flag_labels] || attributes['flag_labels'] || nil
           @flag_types = attributes[:flag_types] || attributes['flag_types'] || nil
           @flags = attributes[:flags] || attributes['flags'] || nil
+          @languages = attributes[:languages] || attributes['languages'] || nil
           @entity_content = attributes[:entity_content] || attributes['entity_content'] || nil
           @moderation_action = attributes[:moderation_action] || attributes['moderation_action'] || nil
           @original_moderation_action = attributes[:original_moderation_action] || attributes['original_moderation_action'] || nil
@@ -118,6 +126,7 @@ module GetStream
             status: 'status',
             updated_at: 'updated_at',
             ai_text_severity: 'ai_text_severity',
+            appeal_reason_language: 'appeal_reason_language',
             channel_cid: 'channel_cid',
             config_key: 'config_key',
             decision_reason: 'decision_reason',
@@ -129,6 +138,7 @@ module GetStream
             flag_labels: 'flag_labels',
             flag_types: 'flag_types',
             flags: 'flags',
+            languages: 'languages',
             entity_content: 'entity_content',
             moderation_action: 'moderation_action',
             original_moderation_action: 'original_moderation_action',

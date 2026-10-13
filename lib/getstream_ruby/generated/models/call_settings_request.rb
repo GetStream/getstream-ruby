@@ -33,6 +33,9 @@ module GetStream
         # @!attribute ingress
         #   @return [IngressSettingsRequest]
         attr_accessor :ingress
+        # @!attribute lifecycle
+        #   @return [LifecycleSettingsRequest]
+        attr_accessor :lifecycle
         # @!attribute limits
         #   @return [LimitsSettingsRequest]
         attr_accessor :limits
@@ -72,6 +75,7 @@ module GetStream
           @geofencing = attributes[:geofencing] || attributes['geofencing'] || nil
           @individual_recording = attributes[:individual_recording] || attributes['individual_recording'] || nil
           @ingress = attributes[:ingress] || attributes['ingress'] || nil
+          @lifecycle = attributes[:lifecycle] || attributes['lifecycle'] || nil
           @limits = attributes[:limits] || attributes['limits'] || nil
           @raw_recording = attributes[:raw_recording] || attributes['raw_recording'] || nil
           @recording = attributes[:recording] || attributes['recording'] || nil
@@ -94,6 +98,7 @@ module GetStream
             geofencing: 'geofencing',
             individual_recording: 'individual_recording',
             ingress: 'ingress',
+            lifecycle: 'lifecycle',
             limits: 'limits',
             raw_recording: 'raw_recording',
             recording: 'recording',

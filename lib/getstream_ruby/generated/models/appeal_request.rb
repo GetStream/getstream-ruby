@@ -18,6 +18,9 @@ module GetStream
         # @!attribute entity_type
         #   @return [String] Type of entity being appealed (e.g., message, user)
         attr_accessor :entity_type
+        # @!attribute channel_cid
+        #   @return [String] CID of the channel ban being appealed. Only used when entity_type is stream:user; omit to appeal the global ban.
+        attr_accessor :channel_cid
         # @!attribute review_queue_item_id
         #   @return [String] ID of the review queue item (flagged message) that triggered the ban. Applicable only for user ban appeals.
         attr_accessor :review_queue_item_id
@@ -37,6 +40,7 @@ module GetStream
           @appeal_reason = attributes[:appeal_reason] || attributes['appeal_reason']
           @entity_id = attributes[:entity_id] || attributes['entity_id']
           @entity_type = attributes[:entity_type] || attributes['entity_type']
+          @channel_cid = attributes[:channel_cid] || attributes['channel_cid'] || nil
           @review_queue_item_id = attributes[:review_queue_item_id] || attributes['review_queue_item_id'] || nil
           @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @attachments = attributes[:attachments] || attributes['attachments'] || nil
@@ -49,6 +53,7 @@ module GetStream
             appeal_reason: 'appeal_reason',
             entity_id: 'entity_id',
             entity_type: 'entity_type',
+            channel_cid: 'channel_cid',
             review_queue_item_id: 'review_queue_item_id',
             user_id: 'user_id',
             attachments: 'attachments',

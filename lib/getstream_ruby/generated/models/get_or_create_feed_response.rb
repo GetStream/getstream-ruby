@@ -5,7 +5,7 @@
 module GetStream
   module Generated
     module Models
-      # Basic response information
+      # 
       class GetOrCreateFeedResponse < GetStream::BaseModel
 
         # Model attributes
@@ -42,6 +42,9 @@ module GetStream
         # @!attribute prev
         #   @return [String]
         attr_accessor :prev
+        # @!attribute degraded_selectors
+        #   @return [Array<String>] Activity selectors dropped from this read because they exceeded their time budget (see the time_budget_ms selector setting). Their activities are missing from this page, and they stay out for the rest of this pagination session. Omitted when every selector completed
+        attr_accessor :degraded_selectors
         # @!attribute followers_pagination
         #   @return [PagerResponse]
         attr_accessor :followers_pagination
@@ -54,6 +57,9 @@ module GetStream
         # @!attribute notification_status
         #   @return [NotificationStatusResponse]
         attr_accessor :notification_status
+        # @!attribute ranking_config
+        #   @return [RankingConfig]
+        attr_accessor :ranking_config
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -69,10 +75,12 @@ module GetStream
           @feed = attributes[:feed] || attributes['feed']
           @next = attributes[:next] || attributes['next'] || nil
           @prev = attributes[:prev] || attributes['prev'] || nil
+          @degraded_selectors = attributes[:degraded_selectors] || attributes['degraded_selectors'] || nil
           @followers_pagination = attributes[:followers_pagination] || attributes['followers_pagination'] || nil
           @following_pagination = attributes[:following_pagination] || attributes['following_pagination'] || nil
           @member_pagination = attributes[:member_pagination] || attributes['member_pagination'] || nil
           @notification_status = attributes[:notification_status] || attributes['notification_status'] || nil
+          @ranking_config = attributes[:ranking_config] || attributes['ranking_config'] || nil
         end
 
         # Override field mappings for JSON serialization
@@ -89,10 +97,12 @@ module GetStream
             feed: 'feed',
             next: 'next',
             prev: 'prev',
+            degraded_selectors: 'degraded_selectors',
             followers_pagination: 'followers_pagination',
             following_pagination: 'following_pagination',
             member_pagination: 'member_pagination',
-            notification_status: 'notification_status'
+            notification_status: 'notification_status',
+            ranking_config: 'ranking_config'
           }
         end
       end

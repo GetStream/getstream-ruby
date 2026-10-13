@@ -27,6 +27,9 @@ module GetStream
         # @!attribute content_published_at
         #   @return [DateTime] Original timestamp when the content was produced (for correlating flagged content with source video timeline)
         attr_accessor :content_published_at
+        # @!attribute country_code
+        #   @return [String] ISO 3166-1 alpha-2 country the content is aimed at (e.g. US, DE), used as country context by AI text providers
+        attr_accessor :country_code
         # @!attribute test_mode
         #   @return [Boolean] Whether to run moderation in test mode
         attr_accessor :test_mode
@@ -55,6 +58,7 @@ module GetStream
           @config_key = attributes[:config_key] || attributes['config_key'] || nil
           @config_team = attributes[:config_team] || attributes['config_team'] || nil
           @content_published_at = attributes[:content_published_at] || attributes['content_published_at'] || nil
+          @country_code = attributes[:country_code] || attributes['country_code'] || nil
           @test_mode = attributes[:test_mode] || attributes['test_mode'] || nil
           @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @config = attributes[:config] || attributes['config'] || nil
@@ -72,6 +76,7 @@ module GetStream
             config_key: 'config_key',
             config_team: 'config_team',
             content_published_at: 'content_published_at',
+            country_code: 'country_code',
             test_mode: 'test_mode',
             user_id: 'user_id',
             config: 'config',

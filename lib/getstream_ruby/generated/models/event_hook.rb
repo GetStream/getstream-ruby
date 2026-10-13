@@ -15,6 +15,18 @@ module GetStream
         # @!attribute enabled
         #   @return [Boolean]
         attr_accessor :enabled
+        # @!attribute gcp_pubsub_auth_type
+        #   @return [String]
+        attr_accessor :gcp_pubsub_auth_type
+        # @!attribute gcp_pubsub_event_based_ordering_key_enabled
+        #   @return [Boolean]
+        attr_accessor :gcp_pubsub_event_based_ordering_key_enabled
+        # @!attribute gcp_pubsub_region
+        #   @return [String]
+        attr_accessor :gcp_pubsub_region
+        # @!attribute gcp_pubsub_topic
+        #   @return [String]
+        attr_accessor :gcp_pubsub_topic
         # @!attribute hook_type
         #   @return [String]
         attr_accessor :hook_type
@@ -51,6 +63,9 @@ module GetStream
         # @!attribute sqs_auth_type
         #   @return [String]
         attr_accessor :sqs_auth_type
+        # @!attribute sqs_event_based_message_group_id_enabled
+        #   @return [Boolean]
+        attr_accessor :sqs_event_based_message_group_id_enabled
         # @!attribute sqs_key
         #   @return [String]
         attr_accessor :sqs_key
@@ -90,6 +105,10 @@ module GetStream
           super(attributes)
           @created_at = attributes[:created_at] || attributes['created_at'] || nil
           @enabled = attributes[:enabled] || attributes['enabled'] || nil
+          @gcp_pubsub_auth_type = attributes[:gcp_pubsub_auth_type] || attributes['gcp_pubsub_auth_type'] || nil
+          @gcp_pubsub_event_based_ordering_key_enabled = attributes[:gcp_pubsub_event_based_ordering_key_enabled] || attributes['gcp_pubsub_event_based_ordering_key_enabled'] || nil
+          @gcp_pubsub_region = attributes[:gcp_pubsub_region] || attributes['gcp_pubsub_region'] || nil
+          @gcp_pubsub_topic = attributes[:gcp_pubsub_topic] || attributes['gcp_pubsub_topic'] || nil
           @hook_type = attributes[:hook_type] || attributes['hook_type'] || nil
           @id = attributes[:id] || attributes['id'] || nil
           @product = attributes[:product] || attributes['product'] || nil
@@ -102,6 +121,7 @@ module GetStream
           @sns_secret = attributes[:sns_secret] || attributes['sns_secret'] || nil
           @sns_topic_arn = attributes[:sns_topic_arn] || attributes['sns_topic_arn'] || nil
           @sqs_auth_type = attributes[:sqs_auth_type] || attributes['sqs_auth_type'] || nil
+          @sqs_event_based_message_group_id_enabled = attributes[:sqs_event_based_message_group_id_enabled] || attributes['sqs_event_based_message_group_id_enabled'] || nil
           @sqs_key = attributes[:sqs_key] || attributes['sqs_key'] || nil
           @sqs_queue_url = attributes[:sqs_queue_url] || attributes['sqs_queue_url'] || nil
           @sqs_region = attributes[:sqs_region] || attributes['sqs_region'] || nil
@@ -120,6 +140,10 @@ module GetStream
           {
             created_at: 'created_at',
             enabled: 'enabled',
+            gcp_pubsub_auth_type: 'gcp_pubsub_auth_type',
+            gcp_pubsub_event_based_ordering_key_enabled: 'gcp_pubsub_event_based_ordering_key_enabled',
+            gcp_pubsub_region: 'gcp_pubsub_region',
+            gcp_pubsub_topic: 'gcp_pubsub_topic',
             hook_type: 'hook_type',
             id: 'id',
             product: 'product',
@@ -132,6 +156,7 @@ module GetStream
             sns_secret: 'sns_secret',
             sns_topic_arn: 'sns_topic_arn',
             sqs_auth_type: 'sqs_auth_type',
+            sqs_event_based_message_group_id_enabled: 'sqs_event_based_message_group_id_enabled',
             sqs_key: 'sqs_key',
             sqs_queue_url: 'sqs_queue_url',
             sqs_region: 'sqs_region',

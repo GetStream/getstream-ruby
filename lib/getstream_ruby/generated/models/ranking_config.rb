@@ -12,6 +12,9 @@ module GetStream
         # @!attribute type
         #   @return [String] Type of ranking algorithm. Required. One of: expression, interest
         attr_accessor :type
+        # @!attribute exclude_below
+        #   @return [Float] Activities scoring strictly below this value are dropped from the ranked feed. Not supported on aggregated feeds
+        attr_accessor :exclude_below
         # @!attribute score
         #   @return [String] Scoring formula. Required when type is 'expression' or 'interest'
         attr_accessor :score
@@ -26,6 +29,7 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @type = attributes[:type] || attributes['type']
+          @exclude_below = attributes[:exclude_below] || attributes['exclude_below'] || nil
           @score = attributes[:score] || attributes['score'] || nil
           @defaults = attributes[:defaults] || attributes['defaults'] || nil
           @functions = attributes[:functions] || attributes['functions'] || nil
@@ -35,6 +39,7 @@ module GetStream
         def self.json_field_mappings
           {
             type: 'type',
+            exclude_below: 'exclude_below',
             score: 'score',
             defaults: 'defaults',
             functions: 'functions'

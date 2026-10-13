@@ -37,7 +37,7 @@ module GetStream
         #   @return [String] User who moderated the message
         attr_accessor :moderated_by
         # @!attribute ai_moderation_response
-        #   @return [ModerationResponse]
+        #   @return [ModerationResponse] Response from AI moderation
         attr_accessor :ai_moderation_response
         # @!attribute moderation_thresholds
         #   @return [Thresholds] Sets thresholds for AI moderation

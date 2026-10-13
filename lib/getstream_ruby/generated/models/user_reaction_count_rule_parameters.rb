@@ -9,6 +9,9 @@ module GetStream
       class UserReactionCountRuleParameters < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute count
+        #   @return [String]
+        attr_accessor :count
         # @!attribute threshold
         #   @return [Integer]
         attr_accessor :threshold
@@ -19,6 +22,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @count = attributes[:count] || attributes['count'] || nil
           @threshold = attributes[:threshold] || attributes['threshold'] || nil
           @time_window = attributes[:time_window] || attributes['time_window'] || nil
         end
@@ -26,6 +30,7 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            count: 'count',
             threshold: 'threshold',
             time_window: 'time_window'
           }
