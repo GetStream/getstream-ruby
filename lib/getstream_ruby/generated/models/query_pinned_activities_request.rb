@@ -12,6 +12,15 @@ module GetStream
         # @!attribute enrich_own_fields
         #   @return [Boolean]
         attr_accessor :enrich_own_fields
+        # @!attribute include_expired_activities
+        #   @return [Boolean] When true, return pinned activities even if they have expired. Server-side only; not allowed when a user is set.
+        attr_accessor :include_expired_activities
+        # @!attribute include_moderated_activities
+        #   @return [Boolean] When true, return pinned activities even if moderation hides them (shadowed or removed). Server-side only; not allowed when a user is set.
+        attr_accessor :include_moderated_activities
+        # @!attribute include_soft_deleted_activities
+        #   @return [Boolean] When true, return pinned activities even if they are soft-deleted. Server-side only; not allowed when a user is set.
+        attr_accessor :include_soft_deleted_activities
         # @!attribute limit
         #   @return [Integer]
         attr_accessor :limit
@@ -21,33 +30,49 @@ module GetStream
         # @!attribute prev
         #   @return [String]
         attr_accessor :prev
+        # @!attribute user_id
+        #   @return [String]
+        attr_accessor :user_id
         # @!attribute sort
         #   @return [Array<SortParamRequest>] Sorting parameters for the query
         attr_accessor :sort
         # @!attribute filter
         #   @return [Object] Filters to apply to the query
         attr_accessor :filter
+        # @!attribute user
+        #   @return [UserRequest] User request object
+        attr_accessor :user
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @enrich_own_fields = attributes[:enrich_own_fields] || attributes['enrich_own_fields'] || nil
+          @include_expired_activities = attributes[:include_expired_activities] || attributes['include_expired_activities'] || nil
+          @include_moderated_activities = attributes[:include_moderated_activities] || attributes['include_moderated_activities'] || nil
+          @include_soft_deleted_activities = attributes[:include_soft_deleted_activities] || attributes['include_soft_deleted_activities'] || nil
           @limit = attributes[:limit] || attributes['limit'] || nil
           @next = attributes[:next] || attributes['next'] || nil
           @prev = attributes[:prev] || attributes['prev'] || nil
+          @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @sort = attributes[:sort] || attributes['sort'] || nil
           @filter = attributes[:filter] || attributes['filter'] || nil
+          @user = attributes[:user] || attributes['user'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
             enrich_own_fields: 'enrich_own_fields',
+            include_expired_activities: 'include_expired_activities',
+            include_moderated_activities: 'include_moderated_activities',
+            include_soft_deleted_activities: 'include_soft_deleted_activities',
             limit: 'limit',
             next: 'next',
             prev: 'prev',
+            user_id: 'user_id',
             sort: 'sort',
-            filter: 'filter'
+            filter: 'filter',
+            user: 'user'
           }
         end
       end

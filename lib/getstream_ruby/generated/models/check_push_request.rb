@@ -13,7 +13,7 @@ module GetStream
         #   @return [String] Push message template for APN
         attr_accessor :apn_template
         # @!attribute event_type
-        #   @return [String] Type of event for push templates (default: message.new). One of: message.new, message.updated, reaction.new, reaction.updated, notification.reminder_due
+        #   @return [String] Type of event for push templates (default: message.new). One of: message.new, message.updated, reaction.new, reaction.updated, notification.reminder_due, feeds.activity.added, feeds.comment.added, feeds.activity.reaction.added, feeds.comment.reaction.added, feeds.follow.created, feeds.notification_feed.updated
         attr_accessor :event_type
         # @!attribute firebase_data_template
         #   @return [String] Push message data template for Firebase

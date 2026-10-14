@@ -24,6 +24,9 @@ module GetStream
         # @!attribute pending_message_metadata
         #   @return [Hash<String, String>] Pending message metadata
         attr_accessor :pending_message_metadata
+        # @!attribute scheduled_message
+        #   @return [ScheduledMessageResponse] A message scheduled to be sent later
+        attr_accessor :scheduled_message
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -33,6 +36,7 @@ module GetStream
           @channel_context = attributes[:channel_context] || attributes['channel_context'] || nil
           @mentioned_members = attributes[:mentioned_members] || attributes['mentioned_members'] || nil
           @pending_message_metadata = attributes[:pending_message_metadata] || attributes['pending_message_metadata'] || nil
+          @scheduled_message = attributes[:scheduled_message] || attributes['scheduled_message'] || nil
         end
 
         # Override field mappings for JSON serialization
@@ -42,7 +46,8 @@ module GetStream
             message: 'message',
             channel_context: 'channel_context',
             mentioned_members: 'mentioned_members',
-            pending_message_metadata: 'pending_message_metadata'
+            pending_message_metadata: 'pending_message_metadata',
+            scheduled_message: 'scheduled_message'
           }
         end
       end

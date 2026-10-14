@@ -15,8 +15,11 @@ module GetStream
         # @!attribute user_id
         #   @return [String]
         attr_accessor :user_id
+        # @!attribute sort
+        #   @return [Array<SortParamRequest>] Optional query_timestamp descending with NULLS LAST when enabled. Omitted sort preserves existing last_updated ordering and cursor formats
+        attr_accessor :sort
         # @!attribute groups
-        #   @return [Hash<String, GroupedChannelsGroupRequest>] Groups to return, keyed by group name. Each group can define limit, next, or prev. 'next' and 'prev' cursors are only allowed when the request contains exactly one group; multi-group pagination is rejected.
+        #   @return [Hash<String, GroupedChannelsGroupRequest>] Groups to return, keyed by stored group name. Each entry can define limit, next, prev, and optional filter_conditions: date bounds for stored groups; all supports combined group/date branches or one group $ne exclusion. Cursors are only allowed when requesting exactly one group. Omitted or null filters preserve legacy grouping, including all.
         attr_accessor :groups
         # @!attribute user
         #   @return [UserRequest] User request object
@@ -27,6 +30,7 @@ module GetStream
           super(attributes)
           @limit = attributes[:limit] || attributes['limit'] || nil
           @user_id = attributes[:user_id] || attributes['user_id'] || nil
+          @sort = attributes[:sort] || attributes['sort'] || nil
           @groups = attributes[:groups] || attributes['groups'] || nil
           @user = attributes[:user] || attributes['user'] || nil
         end
@@ -36,6 +40,7 @@ module GetStream
           {
             limit: 'limit',
             user_id: 'user_id',
+            sort: 'sort',
             groups: 'groups',
             user: 'user'
           }

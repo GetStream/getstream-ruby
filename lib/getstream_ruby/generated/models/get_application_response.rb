@@ -13,7 +13,7 @@ module GetStream
         #   @return [String] Duration of the request in milliseconds
         attr_accessor :duration
         # @!attribute app
-        #   @return [AppResponseFields]
+        #   @return [AppResponseFields] A type representing the app settings.
         attr_accessor :app
 
         # Initialize with attributes

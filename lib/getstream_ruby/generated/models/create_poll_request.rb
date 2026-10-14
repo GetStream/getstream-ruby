@@ -18,6 +18,12 @@ module GetStream
         # @!attribute allow_user_suggested_options
         #   @return [Boolean]
         attr_accessor :allow_user_suggested_options
+        # @!attribute config_key
+        #   @return [String] Key of the moderation configuration to use. Server-side only.
+        attr_accessor :config_key
+        # @!attribute config_team
+        #   @return [String] Team associated with the configuration. Server-side only.
+        attr_accessor :config_team
         # @!attribute description
         #   @return [String] A description of the poll
         attr_accessor :description
@@ -33,11 +39,14 @@ module GetStream
         # @!attribute max_votes_allowed
         #   @return [Integer] Indicates the maximum amount of votes a user can cast
         attr_accessor :max_votes_allowed
+        # @!attribute team
+        #   @return [String]
+        attr_accessor :team
         # @!attribute user_id
         #   @return [String]
         attr_accessor :user_id
         # @!attribute voting_visibility
-        #   @return [String]
+        #   @return [String] Represents the visibility of votes in a poll.
         attr_accessor :voting_visibility
         # @!attribute options
         #   @return [Array<PollOptionInput>]
@@ -55,11 +64,14 @@ module GetStream
           @name = attributes[:name] || attributes['name']
           @allow_answers = attributes[:allow_answers] || attributes['allow_answers'] || nil
           @allow_user_suggested_options = attributes[:allow_user_suggested_options] || attributes['allow_user_suggested_options'] || nil
+          @config_key = attributes[:config_key] || attributes['config_key'] || nil
+          @config_team = attributes[:config_team] || attributes['config_team'] || nil
           @description = attributes[:description] || attributes['description'] || nil
           @enforce_unique_vote = attributes[:enforce_unique_vote] || attributes['enforce_unique_vote'] || nil
           @id = attributes[:id] || attributes['id'] || nil
           @is_closed = attributes[:is_closed] || attributes['is_closed'] || nil
           @max_votes_allowed = attributes[:max_votes_allowed] || attributes['max_votes_allowed'] || nil
+          @team = attributes[:team] || attributes['team'] || nil
           @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @voting_visibility = attributes[:voting_visibility] || attributes['voting_visibility'] || nil
           @options = attributes[:options] || attributes['options'] || nil
@@ -73,11 +85,14 @@ module GetStream
             name: 'name',
             allow_answers: 'allow_answers',
             allow_user_suggested_options: 'allow_user_suggested_options',
+            config_key: 'config_key',
+            config_team: 'config_team',
             description: 'description',
             enforce_unique_vote: 'enforce_unique_vote',
             id: 'id',
             is_closed: 'is_closed',
             max_votes_allowed: 'max_votes_allowed',
+            team: 'team',
             user_id: 'user_id',
             voting_visibility: 'voting_visibility',
             options: 'options',

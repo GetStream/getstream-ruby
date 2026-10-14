@@ -5,21 +5,21 @@
 module GetStream
   module Generated
     module Models
-      # 
+      # The unread information of a thread.
       class UnreadCountsThread < GetStream::BaseModel
 
         # Model attributes
         # @!attribute last_read
-        #   @return [DateTime]
+        #   @return [DateTime] The date which the current user last read the thread.
         attr_accessor :last_read
         # @!attribute last_read_message_id
-        #   @return [String]
+        #   @return [String] The id of the last reply which the current user read in the thread.
         attr_accessor :last_read_message_id
         # @!attribute parent_message_id
-        #   @return [String]
+        #   @return [String] The message id of the root of the thread.
         attr_accessor :parent_message_id
         # @!attribute unread_count
-        #   @return [Integer]
+        #   @return [Integer] The number of unread replies inside the thread.
         attr_accessor :unread_count
 
         # Initialize with attributes

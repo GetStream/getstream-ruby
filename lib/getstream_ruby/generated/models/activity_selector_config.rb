@@ -21,6 +21,12 @@ module GetStream
         # @!attribute min_popularity
         #   @return [Integer] Minimum popularity threshold. For the 'popular' selector, omit to use the default (5); values below 1 are rejected
         attr_accessor :min_popularity
+        # @!attribute ranking_candidate_limit
+        #   @return [Integer] Maximum number of candidate activities this selector contributes to a ranked feed (1-1000). Omit to use the default ranking buffer. Only supported on the popular, proximity, interest and query selectors, and ignored on feeds without ranking
+        attr_accessor :ranking_candidate_limit
+        # @!attribute time_budget_ms
+        #   @return [Integer] Maximum time in milliseconds this selector may take (25-5000). A selector that runs over its budget is dropped from that read instead of failing it, and stays out for the rest of that pagination session. The budget can only tighten the default, never extend it. Omit to use the default. Only supported on the popular, proximity, interest, query and follow_suggestion selectors
+        attr_accessor :time_budget_ms
         # @!attribute sort
         #   @return [Array<SortParamRequest>] Sort parameters for activity selection
         attr_accessor :sort
@@ -41,6 +47,8 @@ module GetStream
           @cutoff_time = attributes[:cutoff_time] || attributes['cutoff_time'] || nil
           @cutoff_window = attributes[:cutoff_window] || attributes['cutoff_window'] || nil
           @min_popularity = attributes[:min_popularity] || attributes['min_popularity'] || nil
+          @ranking_candidate_limit = attributes[:ranking_candidate_limit] || attributes['ranking_candidate_limit'] || nil
+          @time_budget_ms = attributes[:time_budget_ms] || attributes['time_budget_ms'] || nil
           @sort = attributes[:sort] || attributes['sort'] || nil
           @feed_groups = attributes[:feed_groups] || attributes['feed_groups'] || nil
           @filter = attributes[:filter] || attributes['filter'] || nil
@@ -54,6 +62,8 @@ module GetStream
             cutoff_time: 'cutoff_time',
             cutoff_window: 'cutoff_window',
             min_popularity: 'min_popularity',
+            ranking_candidate_limit: 'ranking_candidate_limit',
+            time_budget_ms: 'time_budget_ms',
             sort: 'sort',
             feed_groups: 'feed_groups',
             filter: 'filter',

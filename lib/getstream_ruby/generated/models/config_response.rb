@@ -63,6 +63,9 @@ module GetStream
         # @!attribute flood_config
         #   @return [FloodConfig]
         attr_accessor :flood_config
+        # @!attribute intent_config
+        #   @return [IntentConfigResponse]
+        attr_accessor :intent_config
         # @!attribute llm_config
         #   @return [LLMConfig]
         attr_accessor :llm_config
@@ -94,6 +97,7 @@ module GetStream
           @automod_toxicity_config = attributes[:automod_toxicity_config] || attributes['automod_toxicity_config'] || nil
           @block_list_config = attributes[:block_list_config] || attributes['block_list_config'] || nil
           @flood_config = attributes[:flood_config] || attributes['flood_config'] || nil
+          @intent_config = attributes[:intent_config] || attributes['intent_config'] || nil
           @llm_config = attributes[:llm_config] || attributes['llm_config'] || nil
           @velocity_filter_config = attributes[:velocity_filter_config] || attributes['velocity_filter_config'] || nil
           @video_call_rule_config = attributes[:video_call_rule_config] || attributes['video_call_rule_config'] || nil
@@ -120,6 +124,7 @@ module GetStream
             automod_toxicity_config: 'automod_toxicity_config',
             block_list_config: 'block_list_config',
             flood_config: 'flood_config',
+            intent_config: 'intent_config',
             llm_config: 'llm_config',
             velocity_filter_config: 'velocity_filter_config',
             video_call_rule_config: 'video_call_rule_config'

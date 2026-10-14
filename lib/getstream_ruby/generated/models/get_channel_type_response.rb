@@ -115,7 +115,7 @@ module GetStream
         #   @return [String]
         attr_accessor :partition_ttl
         # @!attribute push_level
-        #   @return [String]
+        #   @return [String] Sets the push notification level for a channel type
         attr_accessor :push_level
         # @!attribute allowed_flag_reasons
         #   @return [Array<String>]

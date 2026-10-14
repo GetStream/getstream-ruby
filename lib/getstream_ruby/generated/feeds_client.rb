@@ -386,11 +386,15 @@ module GetStream
       # @param _id [String]
       # @param comment_sort [String]
       # @param comment_limit [Integer]
+      # @param skip_own_followings [Boolean]
       # @param user_id [String]
       # @param language [String]
       # @param translate_text [Boolean]
+      # @param include_top_level_comment_count [Boolean]
+      # @param include_soft_deleted_activities [Boolean]
+      # @param include_moderated_activities [Boolean]
       # @return [Models::GetActivityResponse]
-      def get_activity(_id, comment_sort = nil, comment_limit = nil, user_id = nil, language = nil, translate_text = nil)
+      def get_activity(_id, comment_sort = nil, comment_limit = nil, skip_own_followings = nil, user_id = nil, language = nil, translate_text = nil, include_top_level_comment_count = nil, include_soft_deleted_activities = nil, include_moderated_activities = nil)
         path = '/api/v2/feeds/activities/{id}'
         # Replace path parameters
         path = path.gsub('{id}', _id.to_s)
@@ -398,9 +402,13 @@ module GetStream
         query_params = {}
         query_params['comment_sort'] = comment_sort unless comment_sort.nil?
         query_params['comment_limit'] = comment_limit unless comment_limit.nil?
+        query_params['skip_own_followings'] = skip_own_followings unless skip_own_followings.nil?
         query_params['user_id'] = user_id unless user_id.nil?
         query_params['language'] = language unless language.nil?
         query_params['translate_text'] = translate_text unless translate_text.nil?
+        query_params['include_top_level_comment_count'] = include_top_level_comment_count unless include_top_level_comment_count.nil?
+        query_params['include_soft_deleted_activities'] = include_soft_deleted_activities unless include_soft_deleted_activities.nil?
+        query_params['include_moderated_activities'] = include_moderated_activities unless include_moderated_activities.nil?
 
         # Make the API request
         @client.make_request(
@@ -410,7 +418,7 @@ module GetStream
         )
       end
 
-      # Updates certain fields of the activity. Use 'set' to update specific fields and 'unset' to remove fields. This allows you to update only the fields you need without replacing the entire activity. Useful for updating reply restrictions ('restrict_replies'), mentioned users, or custom data.Sends events:- feeds.activity.updated
+      # Updates certain fields of the activity. Use 'set' to update specific fields and 'unset' to remove fields. This allows you to update only the fields you need without replacing the entire activity. Useful for updating reply restrictions ('restrict_replies'), mentioned users, or custom data. Changing `feeds` is a placement change (add/delete on those feeds), not an activity content update.Sends events:- feeds.activity.updated
       #
       # @param _id [String]
       # @param update_activity_partial_request [UpdateActivityPartialRequest]
@@ -430,7 +438,7 @@ module GetStream
         )
       end
 
-      # Replaces an activity with the provided data. Use this to update text, attachments, reply restrictions ('restrict_replies'), mentioned users, and other activity fields. Note: This is a full update - any fields not provided will be cleared.Sends events:- feeds.activity.updated
+      # Replaces an activity with the provided data. Use this to update text, attachments, reply restrictions ('restrict_replies'), mentioned users, and other activity fields. Note: This is a full update - any fields not provided will be cleared. Changing `feeds` is a placement change (add/delete on those feeds), not an activity content update.Sends events:- feeds.activity.updated
       #
       # @param _id [String]
       # @param update_activity_request [UpdateActivityRequest]
@@ -575,12 +583,14 @@ module GetStream
       # Delete collections in a batch operation. Users can only delete their own collections.
       #
       # @param collection_refs [Array<String>]
+      # @param hard_delete [Boolean]
       # @return [Models::DeleteCollectionsResponse]
-      def delete_collections(collection_refs)
+      def delete_collections(collection_refs, hard_delete = nil)
         path = '/api/v2/feeds/collections'
         # Build query parameters
         query_params = {}
         query_params['collection_refs'] = collection_refs unless collection_refs.nil?
+        query_params['hard_delete'] = hard_delete unless hard_delete.nil?
 
         # Make the API request
         @client.make_request(
@@ -692,8 +702,9 @@ module GetStream
       # @param limit [Integer]
       # @param prev [String]
       # @param _next [String]
+      # @param include_top_level_comment_count [Boolean]
       # @return [Models::GetCommentsResponse]
-      def get_comments(object_id, object_type, depth = nil, sort = nil, replies_limit = nil, id_around = nil, language = nil, translate_text = nil, user_id = nil, limit = nil, prev = nil, _next = nil)
+      def get_comments(object_id, object_type, depth = nil, sort = nil, replies_limit = nil, id_around = nil, language = nil, translate_text = nil, user_id = nil, limit = nil, prev = nil, _next = nil, include_top_level_comment_count = nil)
         path = '/api/v2/feeds/comments'
         # Build query parameters
         query_params = {}
@@ -709,6 +720,7 @@ module GetStream
         query_params['limit'] = limit unless limit.nil?
         query_params['prev'] = prev unless prev.nil?
         query_params['next'] = _next unless _next.nil?
+        query_params['include_top_level_comment_count'] = include_top_level_comment_count unless include_top_level_comment_count.nil?
 
         # Make the API request
         @client.make_request(
@@ -919,6 +931,26 @@ module GetStream
         # Make the API request
         @client.make_request(
           :patch,
+          path,
+          body: body
+        )
+      end
+
+      # Hide or unhide a comment for the current user
+      #
+      # @param _id [String]
+      # @param comment_feedback_request [CommentFeedbackRequest]
+      # @return [Models::CommentFeedbackResponse]
+      def comment_feedback(_id, comment_feedback_request)
+        path = '/api/v2/feeds/comments/{id}/feedback'
+        # Replace path parameters
+        path = path.gsub('{id}', _id.to_s)
+        # Build request body
+        body = comment_feedback_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
           path,
           body: body
         )
@@ -1886,7 +1918,7 @@ module GetStream
         )
       end
 
-      # Query follows based on filters with pagination and sorting options
+      # Query follows based on filters with pagination and sorting options. Server-side callers may set include_group_counts to also receive accepted following counts keyed by followed feed group. Requires exactly one source_feed / source_fid string equality. HTTP 400 if target_feed appears, if two source FIDs are given, or if $in / $or / $nor mentions those keys.
       #
       # @param query_follows_request [QueryFollowsRequest]
       # @return [Models::QueryFollowsResponse]
@@ -2034,6 +2066,70 @@ module GetStream
         )
       end
 
+      # Returns the feeds retention policies configured for the app. Server-side only.
+      #
+      # @return [Models::GetFeedsRetentionPolicyResponse]
+      def feeds_get_retention_policy()
+        path = '/api/v2/feeds/retention_policy'
+
+        # Make the API request
+        @client.make_request(
+          :get,
+          path
+        )
+      end
+
+      # Creates or updates a feeds retention policy for the app (an app may have multiple, each scoped to feed groups). Server-side only.
+      #
+      # @param set_feeds_retention_policy_request [SetFeedsRetentionPolicyRequest]
+      # @return [Models::SetFeedsRetentionPolicyResponse]
+      def feeds_set_retention_policy(set_feeds_retention_policy_request)
+        path = '/api/v2/feeds/retention_policy'
+        # Build request body
+        body = set_feeds_retention_policy_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
+      # Removes the named feeds retention policy for the app (an app may hold several). Server-side only.
+      #
+      # @param delete_feeds_retention_policy_request [DeleteFeedsRetentionPolicyRequest]
+      # @return [Models::DeleteFeedsRetentionPolicyResponse]
+      def feeds_delete_retention_policy(delete_feeds_retention_policy_request)
+        path = '/api/v2/feeds/retention_policy/delete'
+        # Build request body
+        body = delete_feeds_retention_policy_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
+      # Returns filtered and sorted feeds retention cleanup run history for the app. Supports filter_conditions on 'policy' and 'date' fields. Server-side only.
+      #
+      # @param get_feeds_retention_policy_runs_request [GetFeedsRetentionPolicyRunsRequest]
+      # @return [Models::GetFeedsRetentionPolicyRunsResponse]
+      def feeds_get_retention_policy_runs(get_feeds_retention_policy_runs_request)
+        path = '/api/v2/feeds/retention_policy/runs'
+        # Build request body
+        body = get_feeds_retention_policy_runs_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
       # Queries revision history for activities and comments
       #
       # @param query_revision_history_request [QueryRevisionHistoryRequest]
@@ -2155,7 +2251,28 @@ module GetStream
         )
       end
 
-      # Returns the user's most common interest tags ranked by the number of distinct activities they reacted to that carried each tag. Client-side callers may only read their own interests; server-side callers may fetch any user. Results are sorted by descending count, then alphabetically by tag.
+      # Removes the given interest tags from a user, whether they were set manually or computed from reactions. A removed computed tag returns on the next recomputation if the user's reactions still support it; to keep a tag out of ranking for good, set it with a weight of 0 or below instead. Client-side callers may only manage their own interests; server-side callers may manage any user. Returns the user's remaining interests.
+      #
+      # @param user_id [String]
+      # @param tags [Array<String>]
+      # @return [Models::DeleteUserInterestsResponse]
+      def delete_user_interests(user_id, tags)
+        path = '/api/v2/feeds/users/{user_id}/interests'
+        # Replace path parameters
+        path = path.gsub('{user_id}', user_id.to_s)
+        # Build query parameters
+        query_params = {}
+        query_params['tags'] = tags unless tags.nil?
+
+        # Make the API request
+        @client.make_request(
+          :delete,
+          path,
+          query_params: query_params
+        )
+      end
+
+      # Returns the user's interest tags with their ranking weights: tags computed from the activities the user reacted to and tags set manually through the API. Client-side callers may only read their own interests; server-side callers may fetch any user. Results are sorted by descending weight, then manually set tags before computed ones, then descending count, then alphabetically by tag.
       #
       # @param user_id [String]
       # @param limit [Integer]
@@ -2173,6 +2290,26 @@ module GetStream
           :get,
           path,
           query_params: query_params
+        )
+      end
+
+      # Adds or updates interest tags on a user with explicit ranking weights. Tags set this way rank above the tags computed from the user's reactions at equal weight and are never overwritten by them. Client-side callers may only manage their own interests; server-side callers may manage any user. Returns the user's full interest list after the write.
+      #
+      # @param user_id [String]
+      # @param upsert_user_interests_request [UpsertUserInterestsRequest]
+      # @return [Models::UpsertUserInterestsResponse]
+      def upsert_user_interests(user_id, upsert_user_interests_request)
+        path = '/api/v2/feeds/users/{user_id}/interests'
+        # Replace path parameters
+        path = path.gsub('{user_id}', user_id.to_s)
+        # Build request body
+        body = upsert_user_interests_request
+
+        # Make the API request
+        @client.make_request(
+          :put,
+          path,
+          body: body
         )
       end
 

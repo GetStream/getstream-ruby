@@ -164,7 +164,7 @@ module GetStream
         )
       end
 
-      # Update channels in batchSends events:- channel.frozen- channel.hidden- channel.unfrozen- channel.updated- channel.visible- member.added- member.removed- member.updated
+      # Update channels in batch. By default returns task_id for an asynchronous task. With synchronous: true, updateData accepts at most 100 explicit CIDs and returns a positive success_channels_count of channels selected for update after the database write completes, without task_id. Always poll a returned task_id, including when an older node ignores synchronous.Sends events:- channel.frozen- channel.hidden- channel.unfrozen- channel.updated- channel.visible- member.added- member.removed- member.updated
       #
       # @param channel_batch_update_request [ChannelBatchUpdateRequest]
       # @return [Models::ChannelBatchUpdateResponse]
@@ -375,6 +375,28 @@ module GetStream
         path = path.gsub('{id}', _id.to_s)
         # Build request body
         body = update_channel_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
+      # Lists the users banned from a channel, by a ban on the channel or by a future channel ban issued by the channel's creator, with one entry per user
+      #
+      # @param _type [String]
+      # @param _id [String]
+      # @param query_channel_bans_request [QueryChannelBansRequest]
+      # @return [Models::QueryChannelBansResponse]
+      def query_channel_bans(_type, _id, query_channel_bans_request)
+        path = '/api/v2/chat/channels/{type}/{id}/bans/query'
+        # Replace path parameters
+        path = path.gsub('{type}', _type.to_s)
+        path = path.gsub('{id}', _id.to_s)
+        # Build request body
+        body = query_channel_bans_request
 
         # Make the API request
         @client.make_request(
@@ -595,7 +617,7 @@ module GetStream
         )
       end
 
-      # Sends new message to the specified channelSends events:- channel.visible- message.new- message.updated
+      # Sends new message to the specified channelSends events:- channel.visible- message.new- message.updated- scheduled_message.created
       #
       # @param _type [String]
       # @param _id [String]
@@ -1376,7 +1398,7 @@ module GetStream
         )
       end
 
-      # Updates an existing reminderSends events:- reminder.updated
+      # Updates an existing reminder. remind_at and expires_at are both replaced on every call: omitting either one clears itSends events:- reminder.updated
       #
       # @param message_id [String]
       # @param update_reminder_request [UpdateReminderRequest]
@@ -1396,7 +1418,7 @@ module GetStream
         )
       end
 
-      # Creates a new reminderSends events:- reminder.created
+      # Creates a new reminder. An optional expires_at hides the reminder from every read once it passes and stops it counting against the per-user reminder capSends events:- reminder.created
       #
       # @param message_id [String]
       # @param create_reminder_request [CreateReminderRequest]
@@ -1700,6 +1722,79 @@ module GetStream
         path = '/api/v2/chat/retention_policy/runs'
         # Build request body
         body = get_retention_policy_runs_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
+      # Lists the scheduled messages of one user across channels: pending ones first, then failed ones, each by scheduled_at. Client-side requests return the caller's own; server-side requests require user_id
+      #
+      # @param query_scheduled_messages_request [QueryScheduledMessagesRequest]
+      # @return [Models::QueryScheduledMessagesResponse]
+      def query_scheduled_messages(query_scheduled_messages_request)
+        path = '/api/v2/chat/scheduled_messages/query'
+        # Build request body
+        body = query_scheduled_messages_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
+      # Cancels a scheduled message so it is never sent, or removes a failed one. Returns 409 while the message is being sentSends events:- scheduled_message.deleted
+      #
+      # @param _id [String]
+      # @return [Models::DeleteScheduledMessageResponse]
+      def delete_scheduled_message(_id)
+        path = '/api/v2/chat/scheduled_messages/{id}'
+        # Replace path parameters
+        path = path.gsub('{id}', _id.to_s)
+
+        # Make the API request
+        @client.make_request(
+          :delete,
+          path
+        )
+      end
+
+      # Replaces the message and/or the send time of a scheduled message. The scheduling checks run again, and the message is then sent, under the caller's auth mode. A request that changes only scheduled_at keeps the auth mode the message was scheduled with. Returns 409 while the message is being sentSends events:- scheduled_message.updated
+      #
+      # @param _id [String]
+      # @param update_scheduled_message_request [UpdateScheduledMessageRequest]
+      # @return [Models::UpdateScheduledMessageResponse]
+      def update_scheduled_message(_id, update_scheduled_message_request)
+        path = '/api/v2/chat/scheduled_messages/{id}'
+        # Replace path parameters
+        path = path.gsub('{id}', _id.to_s)
+        # Build request body
+        body = update_scheduled_message_request
+
+        # Make the API request
+        @client.make_request(
+          :patch,
+          path,
+          body: body
+        )
+      end
+
+      # Moves the send time of a scheduled message to now and queues the send. Every send check runs when it is sent. Returns 409 while the message is being sentSends events:- scheduled_message.updated
+      #
+      # @param _id [String]
+      # @param send_scheduled_message_now_request [SendScheduledMessageNowRequest]
+      # @return [Models::SendScheduledMessageNowResponse]
+      def send_scheduled_message_now(_id, send_scheduled_message_now_request)
+        path = '/api/v2/chat/scheduled_messages/{id}/send_now'
+        # Replace path parameters
+        path = path.gsub('{id}', _id.to_s)
+        # Build request body
+        body = send_scheduled_message_now_request
 
         # Make the API request
         @client.make_request(

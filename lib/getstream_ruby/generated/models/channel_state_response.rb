@@ -13,37 +13,43 @@ module GetStream
         #   @return [String]
         attr_accessor :duration
         # @!attribute members
-        #   @return [Array<ChannelMemberResponse>]
+        #   @return [Array<ChannelMemberResponse>] List of channel members
         attr_accessor :members
         # @!attribute messages
-        #   @return [Array<MessageResponse>]
+        #   @return [Array<MessageResponse>] List of channel messages
         attr_accessor :messages
         # @!attribute pinned_messages
-        #   @return [Array<MessageResponse>]
+        #   @return [Array<MessageResponse>] List of pinned messages in the channel
         attr_accessor :pinned_messages
         # @!attribute threads
         #   @return [Array<ThreadStateResponse>]
         attr_accessor :threads
+        # @!attribute cooldown_remaining_ms
+        #   @return [Integer] Milliseconds until the current user's slow mode cool down period ends. Only set on client-side get or create channel and get channel requests while the user is under cool down
+        attr_accessor :cooldown_remaining_ms
         # @!attribute hidden
-        #   @return [Boolean]
+        #   @return [Boolean] Whether this channel is hidden or not
         attr_accessor :hidden
         # @!attribute hide_messages_before
-        #   @return [DateTime]
+        #   @return [DateTime] Messages before this date are hidden from the user
         attr_accessor :hide_messages_before
         # @!attribute watcher_count
-        #   @return [Integer]
+        #   @return [Integer] Number of channel watchers
         attr_accessor :watcher_count
         # @!attribute active_live_locations
-        #   @return [Array<SharedLocationResponseData>]
+        #   @return [Array<SharedLocationResponseData>] Active live locations in the channel
         attr_accessor :active_live_locations
         # @!attribute pending_messages
-        #   @return [Array<PendingMessageResponse>]
+        #   @return [Array<PendingMessageResponse>] Pending messages that this user has sent
         attr_accessor :pending_messages
         # @!attribute read
-        #   @return [Array<ReadStateResponse>]
+        #   @return [Array<ReadStateResponse>] List of read states
         attr_accessor :read
+        # @!attribute scheduled_messages
+        #   @return [Array<ScheduledMessageResponse>] The caller's own scheduled, sending and failed messages in this channel. Set only by a client-side GetOrCreateChannel with include_scheduled_messages; absent when not requested or not known, in which case use the scheduled messages query
+        attr_accessor :scheduled_messages
         # @!attribute watchers
-        #   @return [Array<UserResponse>]
+        #   @return [Array<UserResponse>] List of user who is watching the channel
         attr_accessor :watchers
         # @!attribute channel
         #   @return [ChannelResponse] Represents channel in chat
@@ -55,7 +61,7 @@ module GetStream
         #   @return [ChannelMemberResponse]
         attr_accessor :membership
         # @!attribute push_preferences
-        #   @return [ChannelPushPreferencesResponse]
+        #   @return [ChannelPushPreferencesResponse] The push preference details.
         attr_accessor :push_preferences
 
         # Initialize with attributes
@@ -66,12 +72,14 @@ module GetStream
           @messages = attributes[:messages] || attributes['messages']
           @pinned_messages = attributes[:pinned_messages] || attributes['pinned_messages']
           @threads = attributes[:threads] || attributes['threads']
+          @cooldown_remaining_ms = attributes[:cooldown_remaining_ms] || attributes['cooldown_remaining_ms'] || nil
           @hidden = attributes[:hidden] || attributes['hidden'] || nil
           @hide_messages_before = attributes[:hide_messages_before] || attributes['hide_messages_before'] || nil
           @watcher_count = attributes[:watcher_count] || attributes['watcher_count'] || nil
           @active_live_locations = attributes[:active_live_locations] || attributes['active_live_locations'] || nil
           @pending_messages = attributes[:pending_messages] || attributes['pending_messages'] || nil
           @read = attributes[:read] || attributes['read'] || nil
+          @scheduled_messages = attributes[:scheduled_messages] || attributes['scheduled_messages'] || nil
           @watchers = attributes[:watchers] || attributes['watchers'] || nil
           @channel = attributes[:channel] || attributes['channel'] || nil
           @draft = attributes[:draft] || attributes['draft'] || nil
@@ -87,12 +95,14 @@ module GetStream
             messages: 'messages',
             pinned_messages: 'pinned_messages',
             threads: 'threads',
+            cooldown_remaining_ms: 'cooldown_remaining_ms',
             hidden: 'hidden',
             hide_messages_before: 'hide_messages_before',
             watcher_count: 'watcher_count',
             active_live_locations: 'active_live_locations',
             pending_messages: 'pending_messages',
             read: 'read',
+            scheduled_messages: 'scheduled_messages',
             watchers: 'watchers',
             channel: 'channel',
             draft: 'draft',

@@ -14,7 +14,7 @@ module GetStream
         attr_accessor :duration
         # @!attribute membership_deletion_task_id
         # @deprecated This field is deprecated.
-        #   @return [String] Deprecated: always empty. Removing a user from a team no longer deletes their memberships in that team's channels, so there is no task to poll
+        #   @return [String] Deprecated: Always empty. Removing a user from a team no longer deletes their memberships in that team's channels, so there is no task to poll.
         attr_accessor :membership_deletion_task_id
         # @!attribute users
         #   @return [Hash<String, FullUserResponse>] Object containing users

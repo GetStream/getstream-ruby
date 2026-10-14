@@ -18,6 +18,9 @@ module GetStream
         # @!attribute custom
         #   @return [Object]
         attr_accessor :custom
+        # @!attribute text_i18n
+        #   @return [Hash<String, String>]
+        attr_accessor :text_i18n
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -25,6 +28,7 @@ module GetStream
           @id = attributes[:id] || attributes['id']
           @text = attributes[:text] || attributes['text']
           @custom = attributes[:custom] || attributes['custom']
+          @text_i18n = attributes[:text_i18n] || attributes['text_i18n'] || nil
         end
 
         # Override field mappings for JSON serialization
@@ -32,7 +36,8 @@ module GetStream
           {
             id: 'id',
             text: 'text',
-            custom: 'custom'
+            custom: 'custom',
+            text_i18n: 'text_i18n'
           }
         end
       end

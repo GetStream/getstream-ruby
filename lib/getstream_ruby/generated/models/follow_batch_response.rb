@@ -18,6 +18,9 @@ module GetStream
         # @!attribute follows
         #   @return [Array<FollowResponse>] List of current follow relationships
         attr_accessor :follows
+        # @!attribute task_id
+        #   @return [String] ID of the background task when the request was sent with async: true
+        attr_accessor :task_id
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -25,6 +28,7 @@ module GetStream
           @duration = attributes[:duration] || attributes['duration']
           @created = attributes[:created] || attributes['created']
           @follows = attributes[:follows] || attributes['follows']
+          @task_id = attributes[:task_id] || attributes['task_id'] || nil
         end
 
         # Override field mappings for JSON serialization
@@ -32,7 +36,8 @@ module GetStream
           {
             duration: 'duration',
             created: 'created',
-            follows: 'follows'
+            follows: 'follows',
+            task_id: 'task_id'
           }
         end
       end
