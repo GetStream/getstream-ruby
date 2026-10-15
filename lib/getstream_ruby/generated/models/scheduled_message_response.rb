@@ -22,7 +22,7 @@ module GetStream
         #   @return [DateTime] Date/time the message is scheduled to be sent
         attr_accessor :scheduled_at
         # @!attribute status
-        #   @return [String] Status of the scheduled message. One of: scheduled, sending, failed, canceled, sent
+        #   @return [String] Status of the scheduled message. One of: scheduled, sending, failed, canceled, sent. A message is sending from its first send attempt until it is sent or fails, including while it waits to retry a failed attempt; it cannot be edited, canceled or sent now while sending
         attr_accessor :status
         # @!attribute updated_at
         #   @return [DateTime] Date/time of the last update

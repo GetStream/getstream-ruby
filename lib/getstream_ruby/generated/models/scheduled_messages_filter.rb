@@ -13,7 +13,7 @@ module GetStream
         #   @return [String] Only scheduled messages of this channel
         attr_accessor :cid
         # @!attribute status
-        #   @return [Array<String>] Only these statuses. One or more of: scheduled, sending, failed
+        #   @return [Array<String>] Only these statuses, as reported in each scheduled message's status. One or more of: scheduled, sending, failed
         attr_accessor :status
 
         # Initialize with attributes
