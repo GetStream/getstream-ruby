@@ -9,6 +9,9 @@ module GetStream
       class ModerationPayload < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute country_code
+        #   @return [String]
+        attr_accessor :country_code
         # @!attribute audios
         #   @return [Array<String>]
         attr_accessor :audios
@@ -43,6 +46,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @country_code = attributes[:country_code] || attributes['country_code'] || nil
           @audios = attributes[:audios] || attributes['audios'] || nil
           @image_ordered_keys = attributes[:image_ordered_keys] || attributes['image_ordered_keys'] || nil
           @images = attributes[:images] || attributes['images'] || nil
@@ -58,6 +62,7 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            country_code: 'country_code',
             audios: 'audios',
             image_ordered_keys: 'image_ordered_keys',
             images: 'images',

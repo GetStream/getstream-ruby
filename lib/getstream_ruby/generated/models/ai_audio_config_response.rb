@@ -10,14 +10,20 @@ module GetStream
 
         # Model attributes
         # @!attribute enabled
-        #   @return [Boolean]
+        #   @return [Boolean] Whether the engine selected by the application's LLM configurability flag has a rule that does something. Derived, not stored
         attr_accessor :enabled
         # @!attribute profile
-        #   @return [String]
+        #   @return [String] Bodyguard credentials profile transcripts are classified with. Applies to the NLP engine only
         attr_accessor :profile
         # @!attribute rules
-        #   @return [Array<BodyguardRule>]
+        #   @return [Array<BodyguardRule>] The active engine's rules, flattened into the pre-split shape for clients that predate the per-engine configs. This is the whole config for a policy that has no per-engine config stored
         attr_accessor :rules
+        # @!attribute ai_text_config
+        #   @return [AITextConfig]
+        attr_accessor :ai_text_config
+        # @!attribute llm_config
+        #   @return [LLMConfig]
+        attr_accessor :llm_config
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -25,6 +31,8 @@ module GetStream
           @enabled = attributes[:enabled] || attributes['enabled']
           @profile = attributes[:profile] || attributes['profile']
           @rules = attributes[:rules] || attributes['rules']
+          @ai_text_config = attributes[:ai_text_config] || attributes['ai_text_config'] || nil
+          @llm_config = attributes[:llm_config] || attributes['llm_config'] || nil
         end
 
         # Override field mappings for JSON serialization
@@ -32,7 +40,9 @@ module GetStream
           {
             enabled: 'enabled',
             profile: 'profile',
-            rules: 'rules'
+            rules: 'rules',
+            ai_text_config: 'ai_text_config',
+            llm_config: 'llm_config'
           }
         end
       end

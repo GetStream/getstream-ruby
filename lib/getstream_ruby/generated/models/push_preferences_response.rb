@@ -5,7 +5,7 @@
 module GetStream
   module Generated
     module Models
-      # 
+      # The push preference details.
       class PushPreferencesResponse < GetStream::BaseModel
 
         # Model attributes
@@ -13,10 +13,10 @@ module GetStream
         #   @return [String]
         attr_accessor :call_level
         # @!attribute chat_level
-        #   @return [String]
+        #   @return [String] The scope level of the push notifications.
         attr_accessor :chat_level
         # @!attribute disabled_until
-        #   @return [DateTime]
+        #   @return [DateTime] If provided the notifications will be disabled until the set date.
         attr_accessor :disabled_until
         # @!attribute feeds_level
         #   @return [String]

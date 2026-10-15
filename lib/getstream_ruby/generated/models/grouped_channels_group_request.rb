@@ -10,14 +10,17 @@ module GetStream
 
         # Model attributes
         # @!attribute limit
-        #   @return [Integer]
+        #   @return [Integer] Max channels for this group; omitted or zero uses the request limit
         attr_accessor :limit
         # @!attribute next
-        #   @return [String]
+        #   @return [String] Cursor for the next page; only allowed when requesting one group
         attr_accessor :next
         # @!attribute prev
-        #   @return [String]
+        #   @return [String] Cursor for the previous page; only allowed when requesting one group
         attr_accessor :prev
+        # @!attribute filter_conditions
+        #   @return [Object] Optional query_timestamp $gte bound for a stored group, requiring query_timestamp sort; do not repeat its group name. For all, combine group equality/$in and date bounds with $or, or use one standalone group $ne exclusion. An empty object matches a stored group; omitted or null preserves legacy grouping.
+        attr_accessor :filter_conditions
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -25,6 +28,7 @@ module GetStream
           @limit = attributes[:limit] || attributes['limit'] || nil
           @next = attributes[:next] || attributes['next'] || nil
           @prev = attributes[:prev] || attributes['prev'] || nil
+          @filter_conditions = attributes[:filter_conditions] || attributes['filter_conditions'] || nil
         end
 
         # Override field mappings for JSON serialization
@@ -32,7 +36,8 @@ module GetStream
           {
             limit: 'limit',
             next: 'next',
-            prev: 'prev'
+            prev: 'prev',
+            filter_conditions: 'filter_conditions'
           }
         end
       end

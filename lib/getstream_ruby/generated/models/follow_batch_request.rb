@@ -12,6 +12,9 @@ module GetStream
         # @!attribute follows
         #   @return [Array<FollowRequest>] List of follow relationships to create
         attr_accessor :follows
+        # @!attribute async
+        #   @return [Boolean] If true, the batch is queued as a background task, paced per app, and the response has empty follows and a task_id. Server-side only. Supported by the get-or-create endpoint (GetOrCreateFollows); FollowBatch rejects it. Async batches can apply out of order with other follow writes. Defaults to false.
+        attr_accessor :async
         # @!attribute create_users
         #   @return [Boolean] If true, auto-creates users referenced by source/target FIDs in the batch when they don't already exist. Server-side only. Defaults to false. This top-level field is the only supported batch/upsert create_users control.
         attr_accessor :create_users
@@ -23,6 +26,7 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @follows = attributes[:follows] || attributes['follows']
+          @async = attributes[:async] || attributes['async'] || nil
           @create_users = attributes[:create_users] || attributes['create_users'] || nil
           @enrich_own_fields = attributes[:enrich_own_fields] || attributes['enrich_own_fields'] || nil
         end
@@ -31,6 +35,7 @@ module GetStream
         def self.json_field_mappings
           {
             follows: 'follows',
+            async: 'async',
             create_users: 'create_users',
             enrich_own_fields: 'enrich_own_fields'
           }

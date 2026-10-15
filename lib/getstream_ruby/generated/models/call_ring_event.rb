@@ -33,6 +33,9 @@ module GetStream
         # @!attribute type
         #   @return [String] The type of event: "call.notification" in this case
         attr_accessor :type
+        # @!attribute ring_id
+        #   @return [String] Identifies this ring of the call session
+        attr_accessor :ring_id
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -45,6 +48,7 @@ module GetStream
           @call = attributes[:call] || attributes['call']
           @user = attributes[:user] || attributes['user']
           @type = attributes[:type] || attributes['type'] || "call.ring"
+          @ring_id = attributes[:ring_id] || attributes['ring_id'] || nil
         end
 
         # Override field mappings for JSON serialization
@@ -57,7 +61,8 @@ module GetStream
             members: 'members',
             call: 'call',
             user: 'user',
-            type: 'type'
+            type: 'type',
+            ring_id: 'ring_id'
           }
         end
       end

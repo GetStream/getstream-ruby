@@ -27,6 +27,9 @@ module GetStream
         # @!attribute updated_at
         #   @return [DateTime] Date/time of the last update
         attr_accessor :updated_at
+        # @!attribute user_id
+        #   @return [String]
+        attr_accessor :user_id
         # @!attribute custom
         #   @return [Object]
         attr_accessor :custom
@@ -66,9 +69,6 @@ module GetStream
         # @!attribute status
         #   @return [String]
         attr_accessor :status
-        # @!attribute user_id
-        #   @return [String]
-        attr_accessor :user_id
         # @!attribute deleted_messages
         #   @return [Array<String>]
         attr_accessor :deleted_messages
@@ -85,6 +85,7 @@ module GetStream
           @notifications_muted = attributes[:notifications_muted] || attributes['notifications_muted']
           @shadow_banned = attributes[:shadow_banned] || attributes['shadow_banned']
           @updated_at = attributes[:updated_at] || attributes['updated_at']
+          @user_id = attributes[:user_id] || attributes['user_id']
           @custom = attributes[:custom] || attributes['custom']
           @archived_at = attributes[:archived_at] || attributes['archived_at'] || nil
           @ban_expires = attributes[:ban_expires] || attributes['ban_expires'] || nil
@@ -98,7 +99,6 @@ module GetStream
           @pinned_at = attributes[:pinned_at] || attributes['pinned_at'] || nil
           @role = attributes[:role] || attributes['role'] || nil
           @status = attributes[:status] || attributes['status'] || nil
-          @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @deleted_messages = attributes[:deleted_messages] || attributes['deleted_messages'] || nil
           @user = attributes[:user] || attributes['user'] || nil
         end
@@ -112,6 +112,7 @@ module GetStream
             notifications_muted: 'notifications_muted',
             shadow_banned: 'shadow_banned',
             updated_at: 'updated_at',
+            user_id: 'user_id',
             custom: 'custom',
             archived_at: 'archived_at',
             ban_expires: 'ban_expires',
@@ -125,7 +126,6 @@ module GetStream
             pinned_at: 'pinned_at',
             role: 'role',
             status: 'status',
-            user_id: 'user_id',
             deleted_messages: 'deleted_messages',
             user: 'user'
           }

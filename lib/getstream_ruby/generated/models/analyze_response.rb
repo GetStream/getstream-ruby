@@ -15,6 +15,12 @@ module GetStream
         # @!attribute status
         #   @return [String] `complete` (all fields screened), `partial` (mix of verdicts and per-field errors), or `pending` (async).
         attr_accessor :status
+        # @!attribute llm_model
+        #   @return [String] ID of the LLM model that scored the content (e.g. gpt-4o-mini). Omitted when no LLM verdict was used (e.g. Bodyguard-only, or `pending`).
+        attr_accessor :llm_model
+        # @!attribute llm_reasoning_effort
+        #   @return [String] reasoning_effort sent with the LLM request. Omitted when the request did not send one.
+        attr_accessor :llm_reasoning_effort
         # @!attribute images
         #   @return [Hash<String, AnalyzeImageField>] Per-image moderation verdicts keyed by caller label.
         attr_accessor :images
@@ -27,6 +33,8 @@ module GetStream
           super(attributes)
           @duration = attributes[:duration] || attributes['duration']
           @status = attributes[:status] || attributes['status']
+          @llm_model = attributes[:llm_model] || attributes['llm_model'] || nil
+          @llm_reasoning_effort = attributes[:llm_reasoning_effort] || attributes['llm_reasoning_effort'] || nil
           @images = attributes[:images] || attributes['images'] || nil
           @texts = attributes[:texts] || attributes['texts'] || nil
         end
@@ -36,6 +44,8 @@ module GetStream
           {
             duration: 'duration',
             status: 'status',
+            llm_model: 'llm_model',
+            llm_reasoning_effort: 'llm_reasoning_effort',
             images: 'images',
             texts: 'texts'
           }

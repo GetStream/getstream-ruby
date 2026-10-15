@@ -37,7 +37,8 @@ module GetStream
         #   @return [Integer]
         attr_accessor :unread_channels
         # @!attribute unread_count
-        #   @return [Integer]
+        # @deprecated This field is deprecated.
+        #   @return [Integer] Deprecated: Use total_unread_count instead.
         attr_accessor :unread_count
         # @!attribute unread_threads
         #   @return [Integer]
@@ -45,6 +46,9 @@ module GetStream
         # @!attribute updated_at
         #   @return [DateTime]
         attr_accessor :updated_at
+        # @!attribute blocked_user_ids
+        #   @return [Array<String>]
+        attr_accessor :blocked_user_ids
         # @!attribute channel_mutes
         #   @return [Array<ChannelMute>]
         attr_accessor :channel_mutes
@@ -81,17 +85,14 @@ module GetStream
         # @!attribute revoke_tokens_issued_before
         #   @return [DateTime]
         attr_accessor :revoke_tokens_issued_before
-        # @!attribute blocked_user_ids
-        #   @return [Array<String>]
-        attr_accessor :blocked_user_ids
         # @!attribute latest_hidden_channels
         #   @return [Array<String>]
         attr_accessor :latest_hidden_channels
         # @!attribute privacy_settings
-        #   @return [PrivacySettingsResponse]
+        #   @return [PrivacySettingsResponse] The privacy settings of the user.
         attr_accessor :privacy_settings
         # @!attribute push_preferences
-        #   @return [PushPreferencesResponse]
+        #   @return [PushPreferencesResponse] The push preference details.
         attr_accessor :push_preferences
         # @!attribute teams_role
         #   @return [Hash<String, String>]
@@ -115,6 +116,7 @@ module GetStream
           @unread_count = attributes[:unread_count] || attributes['unread_count']
           @unread_threads = attributes[:unread_threads] || attributes['unread_threads']
           @updated_at = attributes[:updated_at] || attributes['updated_at']
+          @blocked_user_ids = attributes[:blocked_user_ids] || attributes['blocked_user_ids']
           @channel_mutes = attributes[:channel_mutes] || attributes['channel_mutes']
           @devices = attributes[:devices] || attributes['devices']
           @mutes = attributes[:mutes] || attributes['mutes']
@@ -127,7 +129,6 @@ module GetStream
           @last_active = attributes[:last_active] || attributes['last_active'] || nil
           @name = attributes[:name] || attributes['name'] || nil
           @revoke_tokens_issued_before = attributes[:revoke_tokens_issued_before] || attributes['revoke_tokens_issued_before'] || nil
-          @blocked_user_ids = attributes[:blocked_user_ids] || attributes['blocked_user_ids'] || nil
           @latest_hidden_channels = attributes[:latest_hidden_channels] || attributes['latest_hidden_channels'] || nil
           @privacy_settings = attributes[:privacy_settings] || attributes['privacy_settings'] || nil
           @push_preferences = attributes[:push_preferences] || attributes['push_preferences'] || nil
@@ -150,6 +151,7 @@ module GetStream
             unread_count: 'unread_count',
             unread_threads: 'unread_threads',
             updated_at: 'updated_at',
+            blocked_user_ids: 'blocked_user_ids',
             channel_mutes: 'channel_mutes',
             devices: 'devices',
             mutes: 'mutes',
@@ -162,7 +164,6 @@ module GetStream
             last_active: 'last_active',
             name: 'name',
             revoke_tokens_issued_before: 'revoke_tokens_issued_before',
-            blocked_user_ids: 'blocked_user_ids',
             latest_hidden_channels: 'latest_hidden_channels',
             privacy_settings: 'privacy_settings',
             push_preferences: 'push_preferences',

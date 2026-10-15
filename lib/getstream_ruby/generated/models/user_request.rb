@@ -34,7 +34,7 @@ module GetStream
         #   @return [Object] Custom user data
         attr_accessor :custom
         # @!attribute privacy_settings
-        #   @return [PrivacySettingsResponse]
+        #   @return [PrivacySettingsResponse] The privacy settings of the user.
         attr_accessor :privacy_settings
         # @!attribute teams_role
         #   @return [Hash<String, String>] Map of team-specific roles for the user

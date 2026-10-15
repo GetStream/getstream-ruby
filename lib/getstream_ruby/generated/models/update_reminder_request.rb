@@ -9,6 +9,9 @@ module GetStream
       class UpdateReminderRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute expires_at
+        #   @return [DateTime]
+        attr_accessor :expires_at
         # @!attribute remind_at
         #   @return [DateTime]
         attr_accessor :remind_at
@@ -22,6 +25,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @expires_at = attributes[:expires_at] || attributes['expires_at'] || nil
           @remind_at = attributes[:remind_at] || attributes['remind_at'] || nil
           @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @user = attributes[:user] || attributes['user'] || nil
@@ -30,6 +34,7 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            expires_at: 'expires_at',
             remind_at: 'remind_at',
             user_id: 'user_id',
             user: 'user'

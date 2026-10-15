@@ -18,6 +18,9 @@ module GetStream
         # @!attribute mention_notifications_created
         #   @return [Integer] Total number of mention notification activities created for mentioned users across all activities
         attr_accessor :mention_notifications_created
+        # @!attribute skipped_existing
+        #   @return [Array<String>] IDs of activities left unchanged because they already existed. Only set when skip_existing is true.
+        attr_accessor :skipped_existing
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -25,6 +28,7 @@ module GetStream
           @duration = attributes[:duration] || attributes['duration']
           @activities = attributes[:activities] || attributes['activities']
           @mention_notifications_created = attributes[:mention_notifications_created] || attributes['mention_notifications_created'] || nil
+          @skipped_existing = attributes[:skipped_existing] || attributes['skipped_existing'] || nil
         end
 
         # Override field mappings for JSON serialization
@@ -32,7 +36,8 @@ module GetStream
           {
             duration: 'duration',
             activities: 'activities',
-            mention_notifications_created: 'mention_notifications_created'
+            mention_notifications_created: 'mention_notifications_created',
+            skipped_existing: 'skipped_existing'
           }
         end
       end

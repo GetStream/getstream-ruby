@@ -13,7 +13,7 @@ module GetStream
         #   @return [String] Duration of the request in milliseconds
         attr_accessor :duration
         # @!attribute groups
-        #   @return [Hash<String, GroupedChannelsBucket>] Predefined channel groups keyed by group name
+        #   @return [Hash<String, GroupedChannelsBucket>] Groups keyed by the requested stored group name
         attr_accessor :groups
 
         # Initialize with attributes

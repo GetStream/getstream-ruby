@@ -5,18 +5,18 @@
 module GetStream
   module Generated
     module Models
-      # 
+      # The unread information from channels with a specific type.
       class UnreadCountsChannelType < GetStream::BaseModel
 
         # Model attributes
         # @!attribute channel_count
-        #   @return [Integer]
+        #   @return [Integer] The number of unread channels of this channel type.
         attr_accessor :channel_count
         # @!attribute channel_type
-        #   @return [String]
+        #   @return [String] The channel type.
         attr_accessor :channel_type
         # @!attribute unread_count
-        #   @return [Integer]
+        #   @return [Integer] The number of unread messages of all the channels with this type.
         attr_accessor :unread_count
 
         # Initialize with attributes

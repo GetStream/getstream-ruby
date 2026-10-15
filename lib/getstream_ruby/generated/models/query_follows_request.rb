@@ -9,6 +9,9 @@ module GetStream
       class QueryFollowsRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute include_group_counts
+        #   @return [Boolean] When true (server-side only), the response includes group_counts: accepted following counts keyed by the followed feed's group. Requires exactly one source_feed / source_fid string equality. HTTP 400 if target_feed appears, if two source FIDs are given, or if $in / $or / $nor mentions those keys. Independent of paging and of other filters, including status.
+        attr_accessor :include_group_counts
         # @!attribute limit
         #   @return [Integer]
         attr_accessor :limit
@@ -28,6 +31,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @include_group_counts = attributes[:include_group_counts] || attributes['include_group_counts'] || nil
           @limit = attributes[:limit] || attributes['limit'] || nil
           @next = attributes[:next] || attributes['next'] || nil
           @prev = attributes[:prev] || attributes['prev'] || nil
@@ -38,6 +42,7 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            include_group_counts: 'include_group_counts',
             limit: 'limit',
             next: 'next',
             prev: 'prev',

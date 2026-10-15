@@ -5,29 +5,39 @@
 module GetStream
   module Generated
     module Models
-      # An interest tag with the number of distinct activities the user reacted to that carried it
+      # An interest tag of a user with its ranking weight and, for computed tags, how many distinct reacted-to activities carried it
       class InterestTagResponse < GetStream::BaseModel
 
         # Model attributes
         # @!attribute count
-        #   @return [Integer] Number of distinct reacted-to activities tagged with this value
+        #   @return [Integer] Lifetime number of distinct reacted-to activities tagged with this value, without decay; 0 for manually set tags
         attr_accessor :count
+        # @!attribute source
+        #   @return [String] How the tag was set: computed (from the user's reactions) or manual (through the API)
+        attr_accessor :source
         # @!attribute tag
         #   @return [String] The interest tag value
         attr_accessor :tag
+        # @!attribute weight
+        #   @return [Float] Ranking weight between -1.0 and 1.0. Computed tags carry a recency-decayed weight in (0, 1.0]: the user's strongest tag is 1.0 and every other a proportional share
+        attr_accessor :weight
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @count = attributes[:count] || attributes['count']
+          @source = attributes[:source] || attributes['source']
           @tag = attributes[:tag] || attributes['tag']
+          @weight = attributes[:weight] || attributes['weight']
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
             count: 'count',
-            tag: 'tag'
+            source: 'source',
+            tag: 'tag',
+            weight: 'weight'
           }
         end
       end

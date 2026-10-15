@@ -23,9 +23,12 @@ require_relative 'models/appeal_rejected_event'
 require_relative 'models/async_bulk_image_moderation_event'
 require_relative 'models/async_export_channels_event'
 require_relative 'models/async_export_error_event'
+require_relative 'models/async_export_label_results_event'
 require_relative 'models/async_export_moderation_logs_event'
 require_relative 'models/async_export_review_queue_event'
 require_relative 'models/async_export_users_event'
+require_relative 'models/async_import_error_event'
+require_relative 'models/async_import_success_event'
 require_relative 'models/blocked_user_event'
 require_relative 'models/bookmark_added_event'
 require_relative 'models/bookmark_deleted_event'
@@ -63,6 +66,7 @@ require_relative 'models/call_recording_started_event'
 require_relative 'models/call_recording_stopped_event'
 require_relative 'models/call_rejected_event'
 require_relative 'models/call_ring_event'
+require_relative 'models/call_ring_settled_event'
 require_relative 'models/call_rtmp_broadcast_failed_event'
 require_relative 'models/call_rtmp_broadcast_started_event'
 require_relative 'models/call_rtmp_broadcast_stopped_event'
@@ -96,6 +100,7 @@ require_relative 'models/channel_visible_event'
 require_relative 'models/closed_caption_event'
 require_relative 'models/comment_added_event'
 require_relative 'models/comment_deleted_event'
+require_relative 'models/comment_feedback_event'
 require_relative 'models/comment_reaction_added_event'
 require_relative 'models/comment_reaction_deleted_event'
 require_relative 'models/comment_reaction_updated_event'
@@ -144,6 +149,12 @@ require_relative 'models/notification_mark_unread_event'
 require_relative 'models/notification_thread_message_new_event'
 require_relative 'models/pending_message_event'
 require_relative 'models/permission_request_event'
+require_relative 'models/poll_closed_event'
+require_relative 'models/poll_deleted_event'
+require_relative 'models/poll_updated_event'
+require_relative 'models/poll_vote_casted_event'
+require_relative 'models/poll_vote_changed_event'
+require_relative 'models/poll_vote_removed_event'
 require_relative 'models/reaction_deleted_event'
 require_relative 'models/reaction_new_event'
 require_relative 'models/reaction_updated_event'
@@ -153,6 +164,8 @@ require_relative 'models/reminder_notification_event'
 require_relative 'models/reminder_updated_event'
 require_relative 'models/review_queue_item_new_event'
 require_relative 'models/review_queue_item_updated_event'
+require_relative 'models/scheduled_message_failed_event'
+require_relative 'models/scheduled_message_sent_event'
 require_relative 'models/stories_feed_updated_event'
 require_relative 'models/thread_updated_event'
 require_relative 'models/unblocked_user_event'
@@ -258,6 +271,7 @@ module StreamChat
     EVENT_TYPE_CALL_RECORDING_STOPPED = 'call.recording_stopped'
     EVENT_TYPE_CALL_REJECTED = 'call.rejected'
     EVENT_TYPE_CALL_RING = 'call.ring'
+    EVENT_TYPE_CALL_RING_SETTLED = 'call.ring_settled'
     EVENT_TYPE_CALL_RTMP_BROADCAST_FAILED = 'call.rtmp_broadcast_failed'
     EVENT_TYPE_CALL_RTMP_BROADCAST_STARTED = 'call.rtmp_broadcast_started'
     EVENT_TYPE_CALL_RTMP_BROADCAST_STOPPED = 'call.rtmp_broadcast_stopped'
@@ -295,6 +309,8 @@ module StreamChat
     EVENT_TYPE_EXPORT_BULK_IMAGE_MODERATION_SUCCESS = 'export.bulk_image_moderation.success'
     EVENT_TYPE_EXPORT_CHANNELS_ERROR = 'export.channels.error'
     EVENT_TYPE_EXPORT_CHANNELS_SUCCESS = 'export.channels.success'
+    EVENT_TYPE_EXPORT_LABEL_RESULTS_ERROR = 'export.label_results.error'
+    EVENT_TYPE_EXPORT_LABEL_RESULTS_SUCCESS = 'export.label_results.success'
     EVENT_TYPE_EXPORT_MODERATION_LOGS_ERROR = 'export.moderation_logs.error'
     EVENT_TYPE_EXPORT_MODERATION_LOGS_SUCCESS = 'export.moderation_logs.success'
     EVENT_TYPE_EXPORT_REVIEW_QUEUE_ERROR = 'export.review_queue.error'
@@ -320,6 +336,7 @@ module StreamChat
     EVENT_TYPE_FEEDS_BOOKMARK_FOLDER_UPDATED = 'feeds.bookmark_folder.updated'
     EVENT_TYPE_FEEDS_COMMENT_ADDED = 'feeds.comment.added'
     EVENT_TYPE_FEEDS_COMMENT_DELETED = 'feeds.comment.deleted'
+    EVENT_TYPE_FEEDS_COMMENT_FEEDBACK = 'feeds.comment.feedback'
     EVENT_TYPE_FEEDS_COMMENT_REACTION_ADDED = 'feeds.comment.reaction.added'
     EVENT_TYPE_FEEDS_COMMENT_REACTION_DELETED = 'feeds.comment.reaction.deleted'
     EVENT_TYPE_FEEDS_COMMENT_REACTION_UPDATED = 'feeds.comment.reaction.updated'
@@ -340,6 +357,8 @@ module StreamChat
     EVENT_TYPE_FEEDS_NOTIFICATION_FEED_UPDATED = 'feeds.notification_feed.updated'
     EVENT_TYPE_FEEDS_STORIES_FEED_UPDATED = 'feeds.stories_feed.updated'
     EVENT_TYPE_FLAG_UPDATED = 'flag.updated'
+    EVENT_TYPE_IMPORT_ERROR = 'import.error'
+    EVENT_TYPE_IMPORT_SUCCESS = 'import.success'
     EVENT_TYPE_INGRESS_ERROR = 'ingress.error'
     EVENT_TYPE_INGRESS_STARTED = 'ingress.started'
     EVENT_TYPE_INGRESS_STOPPED = 'ingress.stopped'
@@ -365,6 +384,12 @@ module StreamChat
     EVENT_TYPE_NOTIFICATION_MARK_UNREAD = 'notification.mark_unread'
     EVENT_TYPE_NOTIFICATION_REMINDER_DUE = 'notification.reminder_due'
     EVENT_TYPE_NOTIFICATION_THREAD_MESSAGE_NEW = 'notification.thread_message_new'
+    EVENT_TYPE_POLL_CLOSED = 'poll.closed'
+    EVENT_TYPE_POLL_DELETED = 'poll.deleted'
+    EVENT_TYPE_POLL_UPDATED = 'poll.updated'
+    EVENT_TYPE_POLL_VOTE_CASTED = 'poll.vote_casted'
+    EVENT_TYPE_POLL_VOTE_CHANGED = 'poll.vote_changed'
+    EVENT_TYPE_POLL_VOTE_REMOVED = 'poll.vote_removed'
     EVENT_TYPE_REACTION_DELETED = 'reaction.deleted'
     EVENT_TYPE_REACTION_NEW = 'reaction.new'
     EVENT_TYPE_REACTION_UPDATED = 'reaction.updated'
@@ -373,6 +398,8 @@ module StreamChat
     EVENT_TYPE_REMINDER_UPDATED = 'reminder.updated'
     EVENT_TYPE_REVIEW_QUEUE_ITEM_NEW = 'review_queue_item.new'
     EVENT_TYPE_REVIEW_QUEUE_ITEM_UPDATED = 'review_queue_item.updated'
+    EVENT_TYPE_SCHEDULED_MESSAGE_FAILED = 'scheduled_message.failed'
+    EVENT_TYPE_SCHEDULED_MESSAGE_SENT = 'scheduled_message.sent'
     EVENT_TYPE_THREAD_UPDATED = 'thread.updated'
     EVENT_TYPE_USER_BANNED = 'user.banned'
     EVENT_TYPE_USER_DEACTIVATED = 'user.deactivated'
@@ -518,6 +545,8 @@ module StreamChat
         GetStream::Generated::Models::CallRejectedEvent
       when 'call.ring'
         GetStream::Generated::Models::CallRingEvent
+      when 'call.ring_settled'
+        GetStream::Generated::Models::CallRingSettledEvent
       when 'call.rtmp_broadcast_failed'
         GetStream::Generated::Models::CallRtmpBroadcastFailedEvent
       when 'call.rtmp_broadcast_started'
@@ -592,6 +621,10 @@ module StreamChat
         GetStream::Generated::Models::AsyncExportErrorEvent
       when 'export.channels.success'
         GetStream::Generated::Models::AsyncExportChannelsEvent
+      when 'export.label_results.error'
+        GetStream::Generated::Models::AsyncExportErrorEvent
+      when 'export.label_results.success'
+        GetStream::Generated::Models::AsyncExportLabelResultsEvent
       when 'export.moderation_logs.error'
         GetStream::Generated::Models::AsyncExportErrorEvent
       when 'export.moderation_logs.success'
@@ -642,6 +675,8 @@ module StreamChat
         GetStream::Generated::Models::CommentAddedEvent
       when 'feeds.comment.deleted'
         GetStream::Generated::Models::CommentDeletedEvent
+      when 'feeds.comment.feedback'
+        GetStream::Generated::Models::CommentFeedbackEvent
       when 'feeds.comment.reaction.added'
         GetStream::Generated::Models::CommentReactionAddedEvent
       when 'feeds.comment.reaction.deleted'
@@ -682,6 +717,10 @@ module StreamChat
         GetStream::Generated::Models::StoriesFeedUpdatedEvent
       when 'flag.updated'
         GetStream::Generated::Models::FlagUpdatedEvent
+      when 'import.error'
+        GetStream::Generated::Models::AsyncImportErrorEvent
+      when 'import.success'
+        GetStream::Generated::Models::AsyncImportSuccessEvent
       when 'ingress.error'
         GetStream::Generated::Models::IngressErrorEvent
       when 'ingress.started'
@@ -732,6 +771,18 @@ module StreamChat
         GetStream::Generated::Models::ReminderNotificationEvent
       when 'notification.thread_message_new'
         GetStream::Generated::Models::NotificationThreadMessageNewEvent
+      when 'poll.closed'
+        GetStream::Generated::Models::PollClosedEvent
+      when 'poll.deleted'
+        GetStream::Generated::Models::PollDeletedEvent
+      when 'poll.updated'
+        GetStream::Generated::Models::PollUpdatedEvent
+      when 'poll.vote_casted'
+        GetStream::Generated::Models::PollVoteCastedEvent
+      when 'poll.vote_changed'
+        GetStream::Generated::Models::PollVoteChangedEvent
+      when 'poll.vote_removed'
+        GetStream::Generated::Models::PollVoteRemovedEvent
       when 'reaction.deleted'
         GetStream::Generated::Models::ReactionDeletedEvent
       when 'reaction.new'
@@ -748,6 +799,10 @@ module StreamChat
         GetStream::Generated::Models::ReviewQueueItemNewEvent
       when 'review_queue_item.updated'
         GetStream::Generated::Models::ReviewQueueItemUpdatedEvent
+      when 'scheduled_message.failed'
+        GetStream::Generated::Models::ScheduledMessageFailedEvent
+      when 'scheduled_message.sent'
+        GetStream::Generated::Models::ScheduledMessageSentEvent
       when 'thread.updated'
         GetStream::Generated::Models::ThreadUpdatedEvent
       when 'user.banned'

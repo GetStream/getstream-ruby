@@ -24,6 +24,9 @@ module GetStream
         # @!attribute downvote_count
         #   @return [Integer] Number of downvotes for this comment
         attr_accessor :downvote_count
+        # @!attribute hidden
+        #   @return [Boolean] Only true in QueryComments results filtered with hidden: true
+        attr_accessor :hidden
         # @!attribute id
         #   @return [String] Unique identifier for the comment
         attr_accessor :id
@@ -99,6 +102,7 @@ module GetStream
           @confidence_score = attributes[:confidence_score] || attributes['confidence_score']
           @created_at = attributes[:created_at] || attributes['created_at']
           @downvote_count = attributes[:downvote_count] || attributes['downvote_count']
+          @hidden = attributes[:hidden] || attributes['hidden']
           @id = attributes[:id] || attributes['id']
           @object_type = attributes[:object_type] || attributes['object_type']
           @reaction_count = attributes[:reaction_count] || attributes['reaction_count']
@@ -131,6 +135,7 @@ module GetStream
             confidence_score: 'confidence_score',
             created_at: 'created_at',
             downvote_count: 'downvote_count',
+            hidden: 'hidden',
             id: 'id',
             object_type: 'object_type',
             reaction_count: 'reaction_count',

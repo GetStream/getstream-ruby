@@ -5,15 +5,15 @@
 module GetStream
   module Generated
     module Models
-      # Response for Device
+      # An object representing a device which can receive push notifications.
       class DeviceResponse < GetStream::BaseModel
 
         # Model attributes
         # @!attribute created_at
-        #   @return [DateTime] Date/time of creation
+        #   @return [DateTime] The date when the device was created.
         attr_accessor :created_at
         # @!attribute id
-        #   @return [String] Device ID
+        #   @return [String] The device identifier.
         attr_accessor :id
         # @!attribute push_provider
         #   @return [String] Push provider

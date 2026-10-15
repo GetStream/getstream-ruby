@@ -19,7 +19,7 @@ module GetStream
         #   @return [String] Cursor for the previous page of this group
         attr_accessor :prev
         # @!attribute unread_channels
-        #   @return [Integer] Unread channels currently classified into this bucket
+        #   @return [Integer] Total unread channels matching this bucket and its filters, independent of page size
         attr_accessor :unread_channels
 
         # Initialize with attributes

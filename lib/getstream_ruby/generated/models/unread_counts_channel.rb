@@ -5,18 +5,18 @@
 module GetStream
   module Generated
     module Models
-      # 
+      # The unread information of a channel.
       class UnreadCountsChannel < GetStream::BaseModel
 
         # Model attributes
         # @!attribute channel_id
-        #   @return [String]
+        #   @return [String] The channel CID (type:id).
         attr_accessor :channel_id
         # @!attribute last_read
-        #   @return [DateTime]
+        #   @return [DateTime] The date which the current user last read the channel.
         attr_accessor :last_read
         # @!attribute unread_count
-        #   @return [Integer]
+        #   @return [Integer] The number of unread messages inside the channel.
         attr_accessor :unread_count
 
         # Initialize with attributes
