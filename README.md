@@ -24,7 +24,7 @@ $ gem install getstream-ruby
 
 ## Upgrading from v12?
 
-See [v12 → v13](MIGRATION_v12_to_v13.md). HTTP JSON is unchanged. `stop_campaign`, `commit_message`, and `get_activity` changed arguments.
+See [v12 → v13](MIGRATION_v12_to_v13.md). HTTP JSON is unchanged. `stop_campaign`, `commit_message`, and `get_activity` changed arguments. Named enum fields are still strings.
 
 ## Migrating from stream-chat-ruby?
 

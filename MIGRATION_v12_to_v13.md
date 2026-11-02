@@ -51,7 +51,35 @@ These gained an optional argument at the end, so existing positional calls stay 
 
 ## Named enums
 
-New types such as `PushLevel`, `ChannelModerationBehavior`, and `ActivityVisibility` are empty marker classes. The fields that use them are still plain strings, so existing assignments keep working. The server still accepts the same values (`"all"`, `"flag"`, `"public"`).
+The spec now names these values instead of leaving them as anonymous strings. **Keep assigning and comparing strings.** Ruby has no constants for them, and the generated classes are empty markers. YARD `@return` changed from `String` to the marker (`PushLevel`, `ActivityVisibility`, …). The value you get back is still `"all"` or `"public"`.
+
+```ruby
+# v12 and v13 — same code
+request.push_level = 'all'
+request.automod_behavior = 'flag'
+request.visibility = 'public'
+
+if channel.push_level == 'none'
+end
+```
+
+`ChannelOwnCapability`, `FeedOwnCapability`, and `OwnCapability` stay empty subclasses of `BaseModel`. Capability lists are still arrays of strings (`"send-message"`, `"join-call"`).
+
+On `CampaignResponse`, `sender_mode` and `sender_visibility` are documented as `CampaignSenderMode` and `CampaignSenderVisibility`. A campaign that omits those keys still loads them as `nil`, not `""`.
+
+### New marker types
+
+`ActivitySelectorType`, `ActivityVisibility`, `AudioDefaultDevice`, `AutomodMode`, `BlocklistBehavior`, `CallLifecycleMode`, `CameraFacing`, `CampaignSenderMode`, `CampaignSenderVisibility`, `ChannelModerationBehavior`, `ChannelOwnCapability`, `CollectionStatus`, `CommentStatus`, `DeleteMessages`, `FeatureActivationMode`, `FeedMemberStatus`, `FeedOwnCapability`, `FeedVisibility`, `FollowPushPreference`, `FollowStatus`, `FriendReactionType`, `LayoutName`, `ModerationAction`, `OwnCapability`, `PushLevel`, `PushProviderName`, `RecordingType`, `RestrictReplies`, `RetentionPolicyType`, `ScheduledMessageFailureReason`, `ScheduledMessageQueryStatus`, `ScheduledMessageStatus`, `SetupStatus`, `SetupStep`, `SortParamType`, `TranscriptionLanguage`, `VideoCodec`, `VotingVisibility`.
+
+| Field | v12 YARD | v13 YARD | Runtime value |
+|---|---|---|---|
+| `push_level` | `String` | `PushLevel` | `"all"`, `"none"`, … |
+| `automod_behavior` | `String` | `ChannelModerationBehavior` | `"flag"`, `"block"`, `"shadow_block"` |
+| `blocklist_behavior` | `String` | `BlocklistBehavior` | `"flag"`, `"block"` |
+| feeds `visibility` | `String` | `FeedVisibility` or `ActivityVisibility` | `"public"`, `"private"`, … |
+| `voting_visibility` | `String` | `VotingVisibility` | `"public"`, `"anonymous"` |
+| push provider name | `String` | `PushProviderName` | `"firebase"`, `"apn"`, `"huawei"`, `"xiaomi"` |
+| `sender_mode`, `sender_visibility` | `String` | `CampaignSenderMode`, `CampaignSenderVisibility` | `"exclude"` / `"include"`, `"hidden"` / `"archived"`, or `nil` |
 
 ## When to stay on v12
 
