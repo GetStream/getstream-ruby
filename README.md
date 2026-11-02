@@ -22,6 +22,10 @@ Or install it yourself as:
 $ gem install getstream-ruby
 ```
 
+## Upgrading from v12?
+
+See [v12 → v13](MIGRATION_v12_to_v13.md). HTTP JSON is unchanged. `stop_campaign`, `commit_message`, and `get_activity` changed arguments.
+
 ## Migrating from stream-chat-ruby?
 
 If you are currently using [`stream-chat-ruby`](https://github.com/GetStream/stream-chat-ruby), we have a detailed migration guide with side-by-side code examples for common Chat use cases. See the [Migration Guide](docs/migration-from-stream-chat-ruby/README.md).
