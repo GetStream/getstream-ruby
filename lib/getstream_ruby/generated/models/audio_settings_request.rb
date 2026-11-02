@@ -10,7 +10,7 @@ module GetStream
 
         # Model attributes
         # @!attribute default_device
-        #   @return [String]
+        #   @return [AudioDefaultDevice] The device a call routes audio to by default.
         attr_accessor :default_device
         # @!attribute access_request_enabled
         #   @return [Boolean]

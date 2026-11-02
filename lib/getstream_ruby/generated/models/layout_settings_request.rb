@@ -10,7 +10,7 @@ module GetStream
 
         # Model attributes
         # @!attribute name
-        #   @return [String]
+        #   @return [LayoutName] The layout a call recording or broadcast is composed with.
         attr_accessor :name
         # @!attribute detect_orientation
         #   @return [Boolean]

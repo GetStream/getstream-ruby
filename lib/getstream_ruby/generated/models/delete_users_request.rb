@@ -16,7 +16,7 @@ module GetStream
         #   @return [String] Calls delete mode.,  Affected calls are those that include exactly two members, one of whom is the user being deleted.,  * null or empty string - doesn't delete any calls,  * soft - marks user's calls and their related data as deleted (soft-delete),  * hard - deletes user's calls and their data completely (hard-delete)
         attr_accessor :calls
         # @!attribute conversations
-        #   @return [String] Conversation channels delete mode.,  Conversation channel is any channel which only has two members one of which is the user being deleted.,  * null or empty string - doesn't delete any conversation channels,  * soft - marks all conversation channels as deleted (same effect as Delete Channels with 'hard' option disabled),  * hard - deletes channel and all its data completely including messages (same effect as Delete Channels with 'hard' option enabled)
+        #   @return [String] Conversation channels delete mode.,  Conversation channel is any channel which only has two members one of which is the user being deleted.,  * null or empty string - doesn't delete any conversation channels, unless user is 'hard', in which case it defaults to 'hard',  * soft - marks all conversation channels as deleted (same effect as Delete Channels with 'hard' option disabled),  * hard - deletes channel and all its data completely including messages (same effect as Delete Channels with 'hard' option enabled),  * keep - doesn't delete any conversation channels. Use it with user 'hard', where null or empty string defaults to 'hard'
         attr_accessor :conversations
         # @!attribute files
         #   @return [Boolean] Delete user files.,  * false or empty string - doesn't delete any files,  * true - deletes all files uploaded by the user, including images and attachments.
@@ -31,7 +31,7 @@ module GetStream
         #   @return [String]
         attr_accessor :new_channel_owner_id
         # @!attribute user
-        #   @return [String] User delete mode.,  * soft - marks user as deleted and retains all user data,  * pruning - marks user as deleted and nullifies user information,  * hard - deletes user completely. Requires 'hard' option for messages and conversations as well
+        #   @return [String] User delete mode.,  * soft - marks user as deleted and retains all user data,  * pruning - marks user as deleted and nullifies user information,  * hard - deletes user completely. Requires 'hard' option for messages, and 'hard' or 'keep' option for conversations
         attr_accessor :user
 
         # Initialize with attributes

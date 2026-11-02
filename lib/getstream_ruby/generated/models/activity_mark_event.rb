@@ -22,7 +22,7 @@ module GetStream
         #   @return [String] The type of event: "feeds.activity.marked" in this case
         attr_accessor :type
         # @!attribute feed_visibility
-        #   @return [String]
+        #   @return [FeedVisibility] Who can see and follow a feed.
         attr_accessor :feed_visibility
         # @!attribute mark_all_read
         #   @return [Boolean] Whether all activities were marked as read

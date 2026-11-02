@@ -16,7 +16,7 @@ module GetStream
         #   @return [String]
         attr_accessor :external_css_url
         # @!attribute name
-        #   @return [String]
+        #   @return [LayoutName] The layout a call recording or broadcast is composed with.
         attr_accessor :name
         # @!attribute detect_orientation
         #   @return [Boolean]

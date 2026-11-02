@@ -18,21 +18,24 @@ module GetStream
         # @!attribute user_id
         #   @return [String]
         attr_accessor :user_id
+        # @!attribute created_at
+        #   @return [String]
+        attr_accessor :created_at
         # @!attribute id
         #   @return [String]
         attr_accessor :id
         # @!attribute parent
         #   @return [String]
         attr_accessor :parent
+        # @!attribute updated_at
+        #   @return [String]
+        attr_accessor :updated_at
         # @!attribute target_feeds
         #   @return [Array<String>]
         attr_accessor :target_feeds
         # @!attribute children_counts
         #   @return [Hash<String, Integer>]
         attr_accessor :children_counts
-        # @!attribute created_at
-        #   @return [Time]
-        attr_accessor :created_at
         # @!attribute data
         #   @return [Object]
         attr_accessor :data
@@ -42,9 +45,6 @@ module GetStream
         # @!attribute own_children
         #   @return [Hash<String, Array<EnrichedReaction>>]
         attr_accessor :own_children
-        # @!attribute updated_at
-        #   @return [Time]
-        attr_accessor :updated_at
         # @!attribute user
         #   @return [Data]
         attr_accessor :user
@@ -55,15 +55,15 @@ module GetStream
           @activity_id = attributes[:activity_id] || attributes['activity_id']
           @kind = attributes[:kind] || attributes['kind']
           @user_id = attributes[:user_id] || attributes['user_id']
+          @created_at = attributes[:created_at] || attributes['created_at'] || nil
           @id = attributes[:id] || attributes['id'] || nil
           @parent = attributes[:parent] || attributes['parent'] || nil
+          @updated_at = attributes[:updated_at] || attributes['updated_at'] || nil
           @target_feeds = attributes[:target_feeds] || attributes['target_feeds'] || nil
           @children_counts = attributes[:children_counts] || attributes['children_counts'] || nil
-          @created_at = attributes[:created_at] || attributes['created_at'] || nil
           @data = attributes[:data] || attributes['data'] || nil
           @latest_children = attributes[:latest_children] || attributes['latest_children'] || nil
           @own_children = attributes[:own_children] || attributes['own_children'] || nil
-          @updated_at = attributes[:updated_at] || attributes['updated_at'] || nil
           @user = attributes[:user] || attributes['user'] || nil
         end
 
@@ -73,15 +73,15 @@ module GetStream
             activity_id: 'activity_id',
             kind: 'kind',
             user_id: 'user_id',
+            created_at: 'created_at',
             id: 'id',
             parent: 'parent',
+            updated_at: 'updated_at',
             target_feeds: 'target_feeds',
             children_counts: 'children_counts',
-            created_at: 'created_at',
             data: 'data',
             latest_children: 'latest_children',
             own_children: 'own_children',
-            updated_at: 'updated_at',
             user: 'user'
           }
         end

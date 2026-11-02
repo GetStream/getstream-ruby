@@ -13,7 +13,7 @@ module GetStream
         #   @return [String] Device ID
         attr_accessor :id
         # @!attribute push_provider
-        #   @return [String] Push provider
+        #   @return [PushProviderName] Push provider
         attr_accessor :push_provider
         # @!attribute hardware_id
         #   @return [String] Stable physical device identifier used to deduplicate pushes across push providers (e.g. APNs VoIP and Firebase on the same iOS device). Distinct from 'id', which is the push token.

@@ -5,7 +5,7 @@
 module GetStream
   module Generated
     module Models
-      # 
+      # The push preference details.
       class PushPreferencesResponse < GetStream::BaseModel
 
         # Model attributes
@@ -13,10 +13,10 @@ module GetStream
         #   @return [String]
         attr_accessor :call_level
         # @!attribute chat_level
-        #   @return [String]
+        #   @return [String] The scope level of the push notifications.
         attr_accessor :chat_level
         # @!attribute disabled_until
-        #   @return [DateTime]
+        #   @return [DateTime] If provided the notifications will be disabled until the set date.
         attr_accessor :disabled_until
         # @!attribute feeds_level
         #   @return [String]
@@ -27,6 +27,9 @@ module GetStream
         # @!attribute feeds_preferences
         #   @return [FeedsPreferencesResponse]
         attr_accessor :feeds_preferences
+        # @!attribute schedule
+        #   @return [PushScheduleResponse] A recurring quiet-hours schedule: while any quiet window is active, push notifications for the user are suppressed. Suppressed notifications are dropped, not delayed.
+        attr_accessor :schedule
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -37,6 +40,7 @@ module GetStream
           @feeds_level = attributes[:feeds_level] || attributes['feeds_level'] || nil
           @chat_preferences = attributes[:chat_preferences] || attributes['chat_preferences'] || nil
           @feeds_preferences = attributes[:feeds_preferences] || attributes['feeds_preferences'] || nil
+          @schedule = attributes[:schedule] || attributes['schedule'] || nil
         end
 
         # Override field mappings for JSON serialization
@@ -47,7 +51,8 @@ module GetStream
             disabled_until: 'disabled_until',
             feeds_level: 'feeds_level',
             chat_preferences: 'chat_preferences',
-            feeds_preferences: 'feeds_preferences'
+            feeds_preferences: 'feeds_preferences',
+            schedule: 'schedule'
           }
         end
       end

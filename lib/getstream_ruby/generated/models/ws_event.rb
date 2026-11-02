@@ -55,7 +55,7 @@ module GetStream
         #   @return [Integer]
         attr_accessor :watcher_count
         # @!attribute automoderation_scores
-        #   @return [ModerationResponse]
+        #   @return [ModerationResponse] Response from AI moderation
         attr_accessor :automoderation_scores
         # @!attribute channel
         #   @return [ChannelResponse] Represents channel in chat

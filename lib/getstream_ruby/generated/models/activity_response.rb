@@ -34,7 +34,7 @@ module GetStream
         #   @return [Integer] Number of reactions to the activity
         attr_accessor :reaction_count
         # @!attribute restrict_replies
-        #   @return [String] Controls who can add comments/replies to this activity. One of: everyone, people_i_follow, nobody
+        #   @return [RestrictReplies] Controls who can add comments/replies to this activity. One of: everyone, people_i_follow, nobody
         attr_accessor :restrict_replies
         # @!attribute score
         #   @return [Float] Ranking score for this activity
@@ -49,7 +49,7 @@ module GetStream
         #   @return [DateTime] When the activity was last updated
         attr_accessor :updated_at
         # @!attribute visibility
-        #   @return [String] Visibility setting for the activity. One of: public, private, tag
+        #   @return [ActivityVisibility] Visibility setting for the activity. One of: public, private, tag
         attr_accessor :visibility
         # @!attribute attachments
         #   @return [Array<Attachment>] Media attachments for the activity
@@ -123,6 +123,9 @@ module GetStream
         # @!attribute text
         #   @return [String] Text content of the activity
         attr_accessor :text
+        # @!attribute top_level_comment_count
+        #   @return [Integer] Number of top-level comments (comments directly on the activity, excluding replies). Only returned by GetActivity when include_top_level_comment_count=true; never set on feed reads or events. Same status/deletion rules as comment_count; not adjusted per viewer.
+        attr_accessor :top_level_comment_count
         # @!attribute visibility_tag
         #   @return [String] If visibility is 'tag', this is the tag name
         attr_accessor :visibility_tag
@@ -201,6 +204,7 @@ module GetStream
           @moderation_action = attributes[:moderation_action] || attributes['moderation_action'] || nil
           @selector_source = attributes[:selector_source] || attributes['selector_source'] || nil
           @text = attributes[:text] || attributes['text'] || nil
+          @top_level_comment_count = attributes[:top_level_comment_count] || attributes['top_level_comment_count'] || nil
           @visibility_tag = attributes[:visibility_tag] || attributes['visibility_tag'] || nil
           @friend_reactions = attributes[:friend_reactions] || attributes['friend_reactions'] || nil
           @latest_shares = attributes[:latest_shares] || attributes['latest_shares'] || nil
@@ -256,6 +260,7 @@ module GetStream
             moderation_action: 'moderation_action',
             selector_source: 'selector_source',
             text: 'text',
+            top_level_comment_count: 'top_level_comment_count',
             visibility_tag: 'visibility_tag',
             friend_reactions: 'friend_reactions',
             latest_shares: 'latest_shares',

@@ -24,6 +24,9 @@ module GetStream
         # @!attribute classifications
         #   @return [Array<Classification>] Hierarchical list of L1 (parent) classifications. Each entry: `name`, `confidence` (0–1), and nested `subclassifications` (L2 leaves with their own confidence). Resolved against the app's effective taxonomy (custom taxonomy when configured, otherwise the standard Bodyguard catalogue).
         attr_accessor :classifications
+        # @!attribute detected_urls
+        #   @return [Array<DetectedURLResponse>] URLs found in the image, as `{url, source}` objects: `source` is `qr` (decoded from a QR code) or `ocr` (in text visible in the image). Independent of the action; omitted when none were found.
+        attr_accessor :detected_urls
         # @!attribute ocr_classifications
         #   @return [Array<Classification>] Flat list of Bodyguard OCR text-moderation labels on the image's extracted text (e.g. VULGARITY, PII). Each entry: `name` + `severity`. Populated when BG's OCR pipeline returned non-empty results for this image.
         attr_accessor :ocr_classifications
@@ -36,6 +39,7 @@ module GetStream
           @error = attributes[:error] || attributes['error'] || nil
           @id = attributes[:id] || attributes['id'] || nil
           @classifications = attributes[:classifications] || attributes['classifications'] || nil
+          @detected_urls = attributes[:detected_urls] || attributes['detected_urls'] || nil
           @ocr_classifications = attributes[:ocr_classifications] || attributes['ocr_classifications'] || nil
         end
 
@@ -47,6 +51,7 @@ module GetStream
             error: 'error',
             id: 'id',
             classifications: 'classifications',
+            detected_urls: 'detected_urls',
             ocr_classifications: 'ocr_classifications'
           }
         end

@@ -5,24 +5,28 @@
 module GetStream
   module Generated
     module Models
-      # 
+      # The unread information of a channel.
       class UnreadCountsChannel < GetStream::BaseModel
 
         # Model attributes
         # @!attribute channel_id
-        #   @return [String]
+        #   @return [String] The channel CID (type:id).
         attr_accessor :channel_id
+        # @!attribute has_unread
+        #   @return [Boolean] Whether the channel has messages newer than the user's last read. Large channels have no unread_count and only report this.
+        attr_accessor :has_unread
         # @!attribute last_read
-        #   @return [DateTime]
+        #   @return [DateTime] The date which the current user last read the channel.
         attr_accessor :last_read
         # @!attribute unread_count
-        #   @return [Integer]
+        #   @return [Integer] The number of unread messages inside the channel.
         attr_accessor :unread_count
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @channel_id = attributes[:channel_id] || attributes['channel_id']
+          @has_unread = attributes[:has_unread] || attributes['has_unread']
           @last_read = attributes[:last_read] || attributes['last_read']
           @unread_count = attributes[:unread_count] || attributes['unread_count']
         end
@@ -31,6 +35,7 @@ module GetStream
         def self.json_field_mappings
           {
             channel_id: 'channel_id',
+            has_unread: 'has_unread',
             last_read: 'last_read',
             unread_count: 'unread_count'
           }

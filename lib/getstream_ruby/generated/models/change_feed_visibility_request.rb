@@ -10,7 +10,7 @@ module GetStream
 
         # Model attributes
         # @!attribute visibility
-        #   @return [String] Feed visibility level: public, visible, followers, members, or private
+        #   @return [FeedVisibility] Feed visibility level: public, visible, followers, members, or private
         attr_accessor :visibility
         # @!attribute pending_follows_action
         #   @return [String] What to do with existing pending follows when loosening visibility from 'followers': auto_approve (default) or reject

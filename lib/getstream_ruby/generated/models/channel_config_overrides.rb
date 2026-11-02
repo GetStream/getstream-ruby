@@ -13,7 +13,7 @@ module GetStream
         #   @return [String]
         attr_accessor :blocklist
         # @!attribute blocklist_behavior
-        #   @return [String]
+        #   @return [BlocklistBehavior] What a blocklist does when it matches. shadow_block is not accepted on a channel override.
         attr_accessor :blocklist_behavior
         # @!attribute count_messages
         #   @return [Boolean] Enable/disable message counting
@@ -22,7 +22,7 @@ module GetStream
         #   @return [Integer] Overrides max message length
         attr_accessor :max_message_length
         # @!attribute push_level
-        #   @return [String] Overrides the push notification level for this channel
+        #   @return [PushLevel] Overrides the push notification level for this channel
         attr_accessor :push_level
         # @!attribute quotes
         #   @return [Boolean] Enables message quotes

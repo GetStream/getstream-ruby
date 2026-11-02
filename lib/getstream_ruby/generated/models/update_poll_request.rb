@@ -21,6 +21,12 @@ module GetStream
         # @!attribute allow_user_suggested_options
         #   @return [Boolean] Allow user suggested options
         attr_accessor :allow_user_suggested_options
+        # @!attribute config_key
+        #   @return [String] Key of the moderation configuration to use. Server-side only.
+        attr_accessor :config_key
+        # @!attribute config_team
+        #   @return [String] Team associated with the configuration. Server-side only.
+        attr_accessor :config_team
         # @!attribute description
         #   @return [String] Poll description
         attr_accessor :description
@@ -37,7 +43,7 @@ module GetStream
         #   @return [String]
         attr_accessor :user_id
         # @!attribute voting_visibility
-        #   @return [String] Voting visibility
+        #   @return [VotingVisibility] Voting visibility
         attr_accessor :voting_visibility
         # @!attribute options
         #   @return [Array<PollOptionRequest>] Poll options
@@ -56,6 +62,8 @@ module GetStream
           @name = attributes[:name] || attributes['name']
           @allow_answers = attributes[:allow_answers] || attributes['allow_answers'] || nil
           @allow_user_suggested_options = attributes[:allow_user_suggested_options] || attributes['allow_user_suggested_options'] || nil
+          @config_key = attributes[:config_key] || attributes['config_key'] || nil
+          @config_team = attributes[:config_team] || attributes['config_team'] || nil
           @description = attributes[:description] || attributes['description'] || nil
           @enforce_unique_vote = attributes[:enforce_unique_vote] || attributes['enforce_unique_vote'] || nil
           @is_closed = attributes[:is_closed] || attributes['is_closed'] || nil
@@ -74,6 +82,8 @@ module GetStream
             name: 'name',
             allow_answers: 'allow_answers',
             allow_user_suggested_options: 'allow_user_suggested_options',
+            config_key: 'config_key',
+            config_team: 'config_team',
             description: 'description',
             enforce_unique_vote: 'enforce_unique_vote',
             is_closed: 'is_closed',

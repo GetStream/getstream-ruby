@@ -31,7 +31,7 @@ module GetStream
         #   @return [String] The type of event: "feeds.comment.reaction.updated" in this case
         attr_accessor :type
         # @!attribute feed_visibility
-        #   @return [String]
+        #   @return [FeedVisibility] Who can see and follow a feed.
         attr_accessor :feed_visibility
         # @!attribute received_at
         #   @return [DateTime]

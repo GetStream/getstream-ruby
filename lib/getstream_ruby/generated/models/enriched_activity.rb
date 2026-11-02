@@ -18,6 +18,9 @@ module GetStream
         # @!attribute score
         #   @return [Float]
         attr_accessor :score
+        # @!attribute time
+        #   @return [String]
+        attr_accessor :time
         # @!attribute verb
         #   @return [String]
         attr_accessor :verb
@@ -52,6 +55,7 @@ module GetStream
           @foreign_id = attributes[:foreign_id] || attributes['foreign_id'] || nil
           @id = attributes[:id] || attributes['id'] || nil
           @score = attributes[:score] || attributes['score'] || nil
+          @time = attributes[:time] || attributes['time'] || nil
           @verb = attributes[:verb] || attributes['verb'] || nil
           @to = attributes[:to] || attributes['to'] || nil
           @actor = attributes[:actor] || attributes['actor'] || nil
@@ -69,6 +73,7 @@ module GetStream
             foreign_id: 'foreign_id',
             id: 'id',
             score: 'score',
+            time: 'time',
             verb: 'verb',
             to: 'to',
             actor: 'actor',

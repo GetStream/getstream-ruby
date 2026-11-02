@@ -22,7 +22,7 @@ module GetStream
         #   @return [String]
         attr_accessor :default_follower_role
         # @!attribute default_visibility
-        #   @return [String]
+        #   @return [FeedVisibility] Who can see and follow a feed.
         attr_accessor :default_visibility
         # @!attribute group_id
         #   @return [String]

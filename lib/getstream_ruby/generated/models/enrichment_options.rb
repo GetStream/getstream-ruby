@@ -15,6 +15,9 @@ module GetStream
         # @!attribute include_flat_activities
         #   @return [Boolean] Controls the top-level flat 'activities' array for aggregated feeds. For new apps, defaults to false (excluded); set to true to include. For older apps, defaults to true (included) for backward compatibility; set to false to exclude.
         attr_accessor :include_flat_activities
+        # @!attribute include_ranking_config
+        #   @return [Boolean] Default: false. Server-side only. When true, the response includes ranking_config: the ranking configuration (from the feed view, or the feed group as fallback) used to rank this read.
+        attr_accessor :include_ranking_config
         # @!attribute include_score_vars
         #   @return [Boolean] Default: false. When true, includes score_vars in activity responses containing variable values used at ranking time.
         attr_accessor :include_score_vars
@@ -75,6 +78,7 @@ module GetStream
           super(attributes)
           @enrich_own_followings = attributes[:enrich_own_followings] || attributes['enrich_own_followings'] || nil
           @include_flat_activities = attributes[:include_flat_activities] || attributes['include_flat_activities'] || nil
+          @include_ranking_config = attributes[:include_ranking_config] || attributes['include_ranking_config'] || nil
           @include_score_vars = attributes[:include_score_vars] || attributes['include_score_vars'] || nil
           @skip_activity = attributes[:skip_activity] || attributes['skip_activity'] || nil
           @skip_activity_collections = attributes[:skip_activity_collections] || attributes['skip_activity_collections'] || nil
@@ -100,6 +104,7 @@ module GetStream
           {
             enrich_own_followings: 'enrich_own_followings',
             include_flat_activities: 'include_flat_activities',
+            include_ranking_config: 'include_ranking_config',
             include_score_vars: 'include_score_vars',
             skip_activity: 'skip_activity',
             skip_activity_collections: 'skip_activity_collections',

@@ -10,7 +10,7 @@ module GetStream
 
         # Model attributes
         # @!attribute action
-        #   @return [String]
+        #   @return [ModerationAction] What a moderation rule does when it matches.
         attr_accessor :action
         # @!attribute name
         #   @return [String]

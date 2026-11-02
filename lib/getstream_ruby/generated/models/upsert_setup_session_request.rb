@@ -10,10 +10,10 @@ module GetStream
 
         # Model attributes
         # @!attribute current_step
-        #   @return [String] The current step of the setup wizard. One of: welcome, input, configure, live
+        #   @return [SetupStep] The current step of the setup wizard. One of: welcome, input, configure, live
         attr_accessor :current_step
         # @!attribute status
-        #   @return [String] The status of the setup session. One of: in_progress, completed
+        #   @return [SetupStatus] The status of the setup session. One of: in_progress, completed
         attr_accessor :status
         # @!attribute setup_data
         #   @return [Object] Per-step data keyed by step name (welcome, input, configure, live)

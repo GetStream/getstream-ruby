@@ -16,7 +16,7 @@ module GetStream
         #   @return [String] Name of field to sort by
         attr_accessor :field
         # @!attribute type
-        #   @return [String] Type of field to sort by. Empty string or omitted means string type (default). One of: number, boolean
+        #   @return [SortParamType] Type of field to sort by. Empty string or omitted means string type (default). One of: number, boolean
         attr_accessor :type
 
         # Initialize with attributes

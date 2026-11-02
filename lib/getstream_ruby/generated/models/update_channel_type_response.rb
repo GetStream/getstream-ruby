@@ -5,15 +5,15 @@
 module GetStream
   module Generated
     module Models
-      # 
+      # Basic response information
       class UpdateChannelTypeResponse < GetStream::BaseModel
 
         # Model attributes
         # @!attribute automod
-        #   @return [String]
+        #   @return [AutomodMode] Automod level applied to a channel type.
         attr_accessor :automod
         # @!attribute automod_behavior
-        #   @return [String]
+        #   @return [ChannelModerationBehavior] What automod or a blocklist does when it matches.
         attr_accessor :automod_behavior
         # @!attribute connect_events
         #   @return [Boolean]
@@ -31,7 +31,7 @@ module GetStream
         #   @return [Boolean]
         attr_accessor :delivery_events
         # @!attribute duration
-        #   @return [String]
+        #   @return [String] Duration of the request in milliseconds
         attr_accessor :duration
         # @!attribute mark_messages_pending
         #   @return [Boolean]
@@ -106,7 +106,7 @@ module GetStream
         #   @return [String]
         attr_accessor :blocklist
         # @!attribute blocklist_behavior
-        #   @return [String]
+        #   @return [ChannelModerationBehavior] What automod or a blocklist does when it matches.
         attr_accessor :blocklist_behavior
         # @!attribute partition_size
         #   @return [Integer]
@@ -115,7 +115,7 @@ module GetStream
         #   @return [String]
         attr_accessor :partition_ttl
         # @!attribute push_level
-        #   @return [String]
+        #   @return [PushLevel] Sets the push notification level for a channel type
         attr_accessor :push_level
         # @!attribute allowed_flag_reasons
         #   @return [Array<String>]

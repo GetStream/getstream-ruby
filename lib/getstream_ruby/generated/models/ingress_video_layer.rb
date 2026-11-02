@@ -13,7 +13,7 @@ module GetStream
         #   @return [Integer]
         attr_accessor :bitrate
         # @!attribute codec
-        #   @return [String]
+        #   @return [VideoCodec] The codec an ingress video layer is encoded with.
         attr_accessor :codec
         # @!attribute frame_rate
         #   @return [Integer]

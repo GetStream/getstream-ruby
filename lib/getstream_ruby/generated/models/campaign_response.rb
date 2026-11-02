@@ -27,12 +27,6 @@ module GetStream
         # @!attribute sender_id
         #   @return [String]
         attr_accessor :sender_id
-        # @!attribute sender_mode
-        #   @return [String]
-        attr_accessor :sender_mode
-        # @!attribute sender_visibility
-        #   @return [String]
-        attr_accessor :sender_visibility
         # @!attribute show_channels
         #   @return [Boolean]
         attr_accessor :show_channels
@@ -66,6 +60,12 @@ module GetStream
         # @!attribute scheduled_for
         #   @return [DateTime]
         attr_accessor :scheduled_for
+        # @!attribute sender_mode
+        #   @return [CampaignSenderMode] Whether a campaign includes or excludes its sender.
+        attr_accessor :sender_mode
+        # @!attribute sender_visibility
+        #   @return [CampaignSenderVisibility] How a campaign appears to its sender.
+        attr_accessor :sender_visibility
         # @!attribute stop_at
         #   @return [DateTime]
         attr_accessor :stop_at
@@ -88,8 +88,6 @@ module GetStream
           @id = attributes[:id] || attributes['id']
           @name = attributes[:name] || attributes['name']
           @sender_id = attributes[:sender_id] || attributes['sender_id']
-          @sender_mode = attributes[:sender_mode] || attributes['sender_mode']
-          @sender_visibility = attributes[:sender_visibility] || attributes['sender_visibility']
           @show_channels = attributes[:show_channels] || attributes['show_channels']
           @skip_push = attributes[:skip_push] || attributes['skip_push']
           @skip_webhook = attributes[:skip_webhook] || attributes['skip_webhook']
@@ -101,6 +99,8 @@ module GetStream
           @users = attributes[:users] || attributes['users']
           @stats = attributes[:stats] || attributes['stats']
           @scheduled_for = attributes[:scheduled_for] || attributes['scheduled_for'] || nil
+          @sender_mode = attributes[:sender_mode] || attributes['sender_mode'] || nil
+          @sender_visibility = attributes[:sender_visibility] || attributes['sender_visibility'] || nil
           @stop_at = attributes[:stop_at] || attributes['stop_at'] || nil
           @channel_template = attributes[:channel_template] || attributes['channel_template'] || nil
           @message_template = attributes[:message_template] || attributes['message_template'] || nil
@@ -116,8 +116,6 @@ module GetStream
             id: 'id',
             name: 'name',
             sender_id: 'sender_id',
-            sender_mode: 'sender_mode',
-            sender_visibility: 'sender_visibility',
             show_channels: 'show_channels',
             skip_push: 'skip_push',
             skip_webhook: 'skip_webhook',
@@ -129,6 +127,8 @@ module GetStream
             users: 'users',
             stats: 'stats',
             scheduled_for: 'scheduled_for',
+            sender_mode: 'sender_mode',
+            sender_visibility: 'sender_visibility',
             stop_at: 'stop_at',
             channel_template: 'channel_template',
             message_template: 'message_template',

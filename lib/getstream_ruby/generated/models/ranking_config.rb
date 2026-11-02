@@ -12,12 +12,21 @@ module GetStream
         # @!attribute type
         #   @return [String] Type of ranking algorithm. Required. One of: expression, interest
         attr_accessor :type
+        # @!attribute exclude_below
+        #   @return [Float] Activities scoring strictly below this value are dropped from the ranked feed. Not supported on aggregated feeds
+        attr_accessor :exclude_below
         # @!attribute score
-        #   @return [String] Scoring formula. Required when type is 'expression' or 'interest'
+        #   @return [String] Scoring formula. Required when type is 'expression' (unless for_you.preset is set) or 'interest'
         attr_accessor :score
+        # @!attribute arrange
+        #   @return [ArrangeConfig]
+        attr_accessor :arrange
         # @!attribute defaults
         #   @return [Object] Default values for ranking
         attr_accessor :defaults
+        # @!attribute for_you
+        #   @return [ForYouConfig]
+        attr_accessor :for_you
         # @!attribute functions
         #   @return [Hash<String, DecayFunctionConfig>] Decay functions configuration
         attr_accessor :functions
@@ -26,8 +35,11 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @type = attributes[:type] || attributes['type']
+          @exclude_below = attributes[:exclude_below] || attributes['exclude_below'] || nil
           @score = attributes[:score] || attributes['score'] || nil
+          @arrange = attributes[:arrange] || attributes['arrange'] || nil
           @defaults = attributes[:defaults] || attributes['defaults'] || nil
+          @for_you = attributes[:for_you] || attributes['for_you'] || nil
           @functions = attributes[:functions] || attributes['functions'] || nil
         end
 
@@ -35,8 +47,11 @@ module GetStream
         def self.json_field_mappings
           {
             type: 'type',
+            exclude_below: 'exclude_below',
             score: 'score',
+            arrange: 'arrange',
             defaults: 'defaults',
+            for_you: 'for_you',
             functions: 'functions'
           }
         end

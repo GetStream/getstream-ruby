@@ -13,7 +13,7 @@ module GetStream
         #   @return [Integer]
         attr_accessor :max_age_hours
         # @!attribute policy
-        #   @return [String]
+        #   @return [RetentionPolicyType] What a retention policy applies to.
         attr_accessor :policy
 
         # Initialize with attributes

@@ -10,13 +10,13 @@ module GetStream
 
         # Model attributes
         # @!attribute closed_caption_mode
-        #   @return [String]
+        #   @return [FeatureActivationMode] Whether a call feature is available, disabled, or turned on automatically.
         attr_accessor :closed_caption_mode
         # @!attribute language
-        #   @return [String]
+        #   @return [TranscriptionLanguage] Language a call is transcribed or captioned in.
         attr_accessor :language
         # @!attribute mode
-        #   @return [String]
+        #   @return [FeatureActivationMode] Whether a call feature is available, disabled, or turned on automatically.
         attr_accessor :mode
         # @!attribute speech_segment_config
         #   @return [SpeechSegmentConfig]

@@ -18,9 +18,18 @@ module GetStream
         # @!attribute status
         #   @return [String] Status of the moderation check (completed or pending)
         attr_accessor :status
+        # @!attribute llm_model
+        #   @return [String] ID of the LLM model that produced the verdict (e.g. gpt-4o-mini). Omitted when no LLM ran synchronously (e.g. Bodyguard-only checks or async moderation)
+        attr_accessor :llm_model
+        # @!attribute llm_reasoning_effort
+        #   @return [String] reasoning_effort sent with the LLM request that produced the verdict. Omitted when the request did not send one
+        attr_accessor :llm_reasoning_effort
         # @!attribute task_id
         #   @return [String] ID of the running moderation task
         attr_accessor :task_id
+        # @!attribute intent_scores
+        #   @return [Array<IntentScoreResponse>] Score (0-100) of each policy intent topic against this request's text, in policy order (test mode only; omitted when the policy has no topics or scoring failed)
+        attr_accessor :intent_scores
         # @!attribute triggered_rules
         #   @return [Array<TriggeredRuleResponse>] All moderation rules triggered by this check (content, user, and call rules), with their resolved actions
         attr_accessor :triggered_rules
@@ -28,6 +37,7 @@ module GetStream
         #   @return [ReviewQueueItemResponse]
         attr_accessor :item
         # @!attribute triggered_rule
+        # @deprecated This field is deprecated.
         #   @return [TriggeredRuleResponse]
         attr_accessor :triggered_rule
 
@@ -37,7 +47,10 @@ module GetStream
           @duration = attributes[:duration] || attributes['duration']
           @recommended_action = attributes[:recommended_action] || attributes['recommended_action']
           @status = attributes[:status] || attributes['status']
+          @llm_model = attributes[:llm_model] || attributes['llm_model'] || nil
+          @llm_reasoning_effort = attributes[:llm_reasoning_effort] || attributes['llm_reasoning_effort'] || nil
           @task_id = attributes[:task_id] || attributes['task_id'] || nil
+          @intent_scores = attributes[:intent_scores] || attributes['intent_scores'] || nil
           @triggered_rules = attributes[:triggered_rules] || attributes['triggered_rules'] || nil
           @item = attributes[:item] || attributes['item'] || nil
           @triggered_rule = attributes[:triggered_rule] || attributes['triggered_rule'] || nil
@@ -49,7 +62,10 @@ module GetStream
             duration: 'duration',
             recommended_action: 'recommended_action',
             status: 'status',
+            llm_model: 'llm_model',
+            llm_reasoning_effort: 'llm_reasoning_effort',
             task_id: 'task_id',
+            intent_scores: 'intent_scores',
             triggered_rules: 'triggered_rules',
             item: 'item',
             triggered_rule: 'triggered_rule'

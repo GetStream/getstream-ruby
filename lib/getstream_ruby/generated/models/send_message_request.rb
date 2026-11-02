@@ -27,6 +27,9 @@ module GetStream
         # @!attribute pending
         #   @return [Boolean]
         attr_accessor :pending
+        # @!attribute scheduled_at
+        #   @return [DateTime] When set to a future time, the message is not sent now: it is stored and sent at that time (UTC), rounded up to the first whole minute that is at least 1 minute from now, never earlier than requested. The response then carries scheduled_message with the rounded time. Must be at most the app's maximum lead time (120 days by default) from now. A time that is now or in the past sends the message now as if scheduled_at was not set, unless the request's message ID belongs to a scheduled message that was canceled or already sent. Slash commands cannot be scheduled
+        attr_accessor :scheduled_at
         # @!attribute skip_enrich_url
         #   @return [Boolean]
         attr_accessor :skip_enrich_url
@@ -46,6 +49,7 @@ module GetStream
           @include_mentioned_members = attributes[:include_mentioned_members] || attributes['include_mentioned_members'] || nil
           @keep_channel_hidden = attributes[:keep_channel_hidden] || attributes['keep_channel_hidden'] || nil
           @pending = attributes[:pending] || attributes['pending'] || nil
+          @scheduled_at = attributes[:scheduled_at] || attributes['scheduled_at'] || nil
           @skip_enrich_url = attributes[:skip_enrich_url] || attributes['skip_enrich_url'] || nil
           @skip_push = attributes[:skip_push] || attributes['skip_push'] || nil
           @pending_message_metadata = attributes[:pending_message_metadata] || attributes['pending_message_metadata'] || nil
@@ -60,6 +64,7 @@ module GetStream
             include_mentioned_members: 'include_mentioned_members',
             keep_channel_hidden: 'keep_channel_hidden',
             pending: 'pending',
+            scheduled_at: 'scheduled_at',
             skip_enrich_url: 'skip_enrich_url',
             skip_push: 'skip_push',
             pending_message_metadata: 'pending_message_metadata'

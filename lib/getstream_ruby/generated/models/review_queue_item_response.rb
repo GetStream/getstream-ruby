@@ -60,6 +60,9 @@ module GetStream
         # @!attribute languages
         #   @return [Array<String>] Detected languages in the content
         attr_accessor :languages
+        # @!attribute media_display
+        #   @return [MediaDisplayResponse] Display policy for a review queue item's images and video
+        attr_accessor :media_display
         # @!attribute completed_at
         #   @return [DateTime] When the review was completed
         attr_accessor :completed_at
@@ -69,6 +72,9 @@ module GetStream
         # @!attribute config_key
         #   @return [String]
         attr_accessor :config_key
+        # @!attribute country_code
+        #   @return [String]
+        attr_accessor :country_code
         # @!attribute entity_creator_id
         #   @return [String] ID of who created the entity
         attr_accessor :entity_creator_id
@@ -81,6 +87,12 @@ module GetStream
         # @!attribute reviewed_at
         #   @return [DateTime] When the item was reviewed
         attr_accessor :reviewed_at
+        # @!attribute country_codes
+        #   @return [Array<String>]
+        attr_accessor :country_codes
+        # @!attribute false_positive_flags
+        #   @return [Array<String>] IDs of the item's flags a moderator marked as false positives
+        attr_accessor :false_positive_flags
         # @!attribute teams
         #   @return [Array<String>] Teams associated with this item
         attr_accessor :teams
@@ -120,6 +132,9 @@ module GetStream
         # @!attribute moderation_payload
         #   @return [ModerationPayloadResponse] Content payload for moderation
         attr_accessor :moderation_payload
+        # @!attribute poll
+        #   @return [PollResponseData]
+        attr_accessor :poll
         # @!attribute reaction
         #   @return [Reaction]
         attr_accessor :reaction
@@ -144,13 +159,17 @@ module GetStream
           @bans = attributes[:bans] || attributes['bans']
           @flags = attributes[:flags] || attributes['flags']
           @languages = attributes[:languages] || attributes['languages']
+          @media_display = attributes[:media_display] || attributes['media_display']
           @completed_at = attributes[:completed_at] || attributes['completed_at'] || nil
           @confidence_score = attributes[:confidence_score] || attributes['confidence_score'] || nil
           @config_key = attributes[:config_key] || attributes['config_key'] || nil
+          @country_code = attributes[:country_code] || attributes['country_code'] || nil
           @entity_creator_id = attributes[:entity_creator_id] || attributes['entity_creator_id'] || nil
           @escalated_at = attributes[:escalated_at] || attributes['escalated_at'] || nil
           @escalated_by = attributes[:escalated_by] || attributes['escalated_by'] || nil
           @reviewed_at = attributes[:reviewed_at] || attributes['reviewed_at'] || nil
+          @country_codes = attributes[:country_codes] || attributes['country_codes'] || nil
+          @false_positive_flags = attributes[:false_positive_flags] || attributes['false_positive_flags'] || nil
           @teams = attributes[:teams] || attributes['teams'] || nil
           @activity = attributes[:activity] || attributes['activity'] || nil
           @appeal = attributes[:appeal] || attributes['appeal'] || nil
@@ -164,6 +183,7 @@ module GetStream
           @feeds_v3_comment = attributes[:feeds_v3_comment] || attributes['feeds_v3_comment'] || nil
           @message = attributes[:message] || attributes['message'] || nil
           @moderation_payload = attributes[:moderation_payload] || attributes['moderation_payload'] || nil
+          @poll = attributes[:poll] || attributes['poll'] || nil
           @reaction = attributes[:reaction] || attributes['reaction'] || nil
         end
 
@@ -187,13 +207,17 @@ module GetStream
             bans: 'bans',
             flags: 'flags',
             languages: 'languages',
+            media_display: 'media_display',
             completed_at: 'completed_at',
             confidence_score: 'confidence_score',
             config_key: 'config_key',
+            country_code: 'country_code',
             entity_creator_id: 'entity_creator_id',
             escalated_at: 'escalated_at',
             escalated_by: 'escalated_by',
             reviewed_at: 'reviewed_at',
+            country_codes: 'country_codes',
+            false_positive_flags: 'false_positive_flags',
             teams: 'teams',
             activity: 'activity',
             appeal: 'appeal',
@@ -207,6 +231,7 @@ module GetStream
             feeds_v3_comment: 'feeds_v3_comment',
             message: 'message',
             moderation_payload: 'moderation_payload',
+            poll: 'poll',
             reaction: 'reaction'
           }
         end

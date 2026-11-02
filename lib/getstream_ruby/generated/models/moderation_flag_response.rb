@@ -36,6 +36,9 @@ module GetStream
         # @!attribute entity_creator_id
         #   @return [String]
         attr_accessor :entity_creator_id
+        # @!attribute id
+        #   @return [String] Unique identifier of the flag
+        attr_accessor :id
         # @!attribute reason
         #   @return [String]
         attr_accessor :reason
@@ -70,6 +73,7 @@ module GetStream
           @result = attributes[:result] || attributes['result']
           @content_published_at = attributes[:content_published_at] || attributes['content_published_at'] || nil
           @entity_creator_id = attributes[:entity_creator_id] || attributes['entity_creator_id'] || nil
+          @id = attributes[:id] || attributes['id'] || nil
           @reason = attributes[:reason] || attributes['reason'] || nil
           @review_queue_item_id = attributes[:review_queue_item_id] || attributes['review_queue_item_id'] || nil
           @labels = attributes[:labels] || attributes['labels'] || nil
@@ -91,6 +95,7 @@ module GetStream
             result: 'result',
             content_published_at: 'content_published_at',
             entity_creator_id: 'entity_creator_id',
+            id: 'id',
             reason: 'reason',
             review_queue_item_id: 'review_queue_item_id',
             labels: 'labels',

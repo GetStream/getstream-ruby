@@ -13,7 +13,7 @@ module GetStream
         #   @return [Boolean]
         attr_accessor :access_request_enabled
         # @!attribute default_device
-        #   @return [String]
+        #   @return [AudioDefaultDevice] The device a call routes audio to by default.
         attr_accessor :default_device
         # @!attribute hifi_audio_enabled
         #   @return [Boolean]

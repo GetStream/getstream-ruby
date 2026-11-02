@@ -16,7 +16,7 @@ module GetStream
         #   @return [String]
         attr_accessor :name
         # @!attribute visibility
-        #   @return [String]
+        #   @return [FeedVisibility] Who can see and follow a feed.
         attr_accessor :visibility
         # @!attribute filter_tags
         #   @return [Array<String>]

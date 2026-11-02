@@ -10,7 +10,7 @@ module GetStream
 
         # Model attributes
         # @!attribute delete_messages
-        #   @return [String] Message deletion mode: soft, pruning, or hard
+        #   @return [DeleteMessages] Message deletion mode: soft, pruning, or hard
         attr_accessor :delete_messages
         # @!attribute channel_cid
         #   @return [String] Optional: scope deletion to a single channel (alternative to app-wide deletion)

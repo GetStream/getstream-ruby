@@ -9,6 +9,12 @@ module GetStream
       class CastPollVoteRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute config_key
+        #   @return [String] Key of the moderation configuration to use. Server-side only.
+        attr_accessor :config_key
+        # @!attribute config_team
+        #   @return [String] Team associated with the configuration. Server-side only.
+        attr_accessor :config_team
         # @!attribute user_id
         #   @return [String]
         attr_accessor :user_id
@@ -22,6 +28,8 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @config_key = attributes[:config_key] || attributes['config_key'] || nil
+          @config_team = attributes[:config_team] || attributes['config_team'] || nil
           @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @user = attributes[:user] || attributes['user'] || nil
           @vote = attributes[:vote] || attributes['vote'] || nil
@@ -30,6 +38,8 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            config_key: 'config_key',
+            config_team: 'config_team',
             user_id: 'user_id',
             user: 'user',
             vote: 'vote'

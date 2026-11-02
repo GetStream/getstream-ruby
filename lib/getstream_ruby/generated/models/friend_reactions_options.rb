@@ -16,7 +16,7 @@ module GetStream
         #   @return [Integer] Default: 3, Max: 10. The maximum number of friend reactions to return per activity.
         attr_accessor :limit
         # @!attribute type
-        #   @return [String] Default: 'following'. The type of friend relationship to use. 'following' = users you follow, 'mutual' = users with mutual follows. One of: following, mutual
+        #   @return [FriendReactionType] Default: 'following'. The type of friend relationship to use. 'following' = users you follow, 'mutual' = users with mutual follows. One of: following, mutual
         attr_accessor :type
 
         # Initialize with attributes

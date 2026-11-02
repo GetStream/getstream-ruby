@@ -15,6 +15,12 @@ module GetStream
         # @!attribute type
         #   @return [String]
         attr_accessor :type
+        # @!attribute app_channel_count_params
+        #   @return [AppChannelCountParameters] app_channel_count params: fires when the app creates at least threshold distinct channels within time_window
+        attr_accessor :app_channel_count_params
+        # @!attribute app_message_count_params
+        #   @return [AppMessageCountParameters] app_message_count params: fires when the app sends at least threshold chat messages within time_window
+        attr_accessor :app_message_count_params
         # @!attribute call_custom_property_params
         #   @return [CallCustomPropertyParameters]
         attr_accessor :call_custom_property_params
@@ -33,6 +39,9 @@ module GetStream
         # @!attribute content_count_rule_params
         #   @return [ContentCountRuleParameters]
         attr_accessor :content_count_rule_params
+        # @!attribute content_country_code_params
+        #   @return [ContentCountryCodeParameters]
+        attr_accessor :content_country_code_params
         # @!attribute content_custom_property_count_params
         #   @return [ContentCustomPropertyCountParameters]
         attr_accessor :content_custom_property_count_params
@@ -54,6 +63,9 @@ module GetStream
         # @!attribute image_rule_params
         #   @return [ImageRuleParameters]
         attr_accessor :image_rule_params
+        # @!attribute intent_rule_params
+        #   @return [IntentRuleParameters] intent_rule params: policy intent topic label and the minimum final score (1-100) that fires the condition
+        attr_accessor :intent_rule_params
         # @!attribute ip_content_count_rule_params
         #   @return [IPContentCountRuleParameters]
         attr_accessor :ip_content_count_rule_params
@@ -75,6 +87,12 @@ module GetStream
         # @!attribute text_rule_params
         #   @return [TextRuleParameters]
         attr_accessor :text_rule_params
+        # @!attribute user_channel_ban_count_params
+        #   @return [UserChannelBanCountRuleParameters]
+        attr_accessor :user_channel_ban_count_params
+        # @!attribute user_channel_count_params
+        #   @return [UserChannelCountRuleParameters]
+        attr_accessor :user_channel_count_params
         # @!attribute user_created_within_params
         #   @return [UserCreatedWithinParameters]
         attr_accessor :user_created_within_params
@@ -87,6 +105,9 @@ module GetStream
         # @!attribute user_identical_content_count_params
         #   @return [UserIdenticalContentCountParameters]
         attr_accessor :user_identical_content_count_params
+        # @!attribute user_identical_image_count_params
+        #   @return [UserIdenticalImageCountParameters]
+        attr_accessor :user_identical_image_count_params
         # @!attribute user_reaction_count_params
         #   @return [UserReactionCountRuleParameters]
         attr_accessor :user_reaction_count_params
@@ -108,12 +129,15 @@ module GetStream
           super(attributes)
           @confidence = attributes[:confidence] || attributes['confidence'] || nil
           @type = attributes[:type] || attributes['type'] || nil
+          @app_channel_count_params = attributes[:app_channel_count_params] || attributes['app_channel_count_params'] || nil
+          @app_message_count_params = attributes[:app_message_count_params] || attributes['app_message_count_params'] || nil
           @call_custom_property_params = attributes[:call_custom_property_params] || attributes['call_custom_property_params'] || nil
           @call_type_rule_params = attributes[:call_type_rule_params] || attributes['call_type_rule_params'] || nil
           @call_violation_count_params = attributes[:call_violation_count_params] || attributes['call_violation_count_params'] || nil
           @channel_message_count_rule_params = attributes[:channel_message_count_rule_params] || attributes['channel_message_count_rule_params'] || nil
           @closed_caption_rule_params = attributes[:closed_caption_rule_params] || attributes['closed_caption_rule_params'] || nil
           @content_count_rule_params = attributes[:content_count_rule_params] || attributes['content_count_rule_params'] || nil
+          @content_country_code_params = attributes[:content_country_code_params] || attributes['content_country_code_params'] || nil
           @content_custom_property_count_params = attributes[:content_custom_property_count_params] || attributes['content_custom_property_count_params'] || nil
           @content_custom_property_params = attributes[:content_custom_property_params] || attributes['content_custom_property_params'] || nil
           @content_flag_count_rule_params = attributes[:content_flag_count_rule_params] || attributes['content_flag_count_rule_params'] || nil
@@ -121,6 +145,7 @@ module GetStream
           @flood_similar_params = attributes[:flood_similar_params] || attributes['flood_similar_params'] || nil
           @image_content_params = attributes[:image_content_params] || attributes['image_content_params'] || nil
           @image_rule_params = attributes[:image_rule_params] || attributes['image_rule_params'] || nil
+          @intent_rule_params = attributes[:intent_rule_params] || attributes['intent_rule_params'] || nil
           @ip_content_count_rule_params = attributes[:ip_content_count_rule_params] || attributes['ip_content_count_rule_params'] || nil
           @ip_flag_count_rule_params = attributes[:ip_flag_count_rule_params] || attributes['ip_flag_count_rule_params'] || nil
           @keyframe_ocr_rule_params = attributes[:keyframe_ocr_rule_params] || attributes['keyframe_ocr_rule_params'] || nil
@@ -128,10 +153,13 @@ module GetStream
           @ocr_content_params = attributes[:ocr_content_params] || attributes['ocr_content_params'] || nil
           @text_content_params = attributes[:text_content_params] || attributes['text_content_params'] || nil
           @text_rule_params = attributes[:text_rule_params] || attributes['text_rule_params'] || nil
+          @user_channel_ban_count_params = attributes[:user_channel_ban_count_params] || attributes['user_channel_ban_count_params'] || nil
+          @user_channel_count_params = attributes[:user_channel_count_params] || attributes['user_channel_count_params'] || nil
           @user_created_within_params = attributes[:user_created_within_params] || attributes['user_created_within_params'] || nil
           @user_custom_property_params = attributes[:user_custom_property_params] || attributes['user_custom_property_params'] || nil
           @user_flag_count_rule_params = attributes[:user_flag_count_rule_params] || attributes['user_flag_count_rule_params'] || nil
           @user_identical_content_count_params = attributes[:user_identical_content_count_params] || attributes['user_identical_content_count_params'] || nil
+          @user_identical_image_count_params = attributes[:user_identical_image_count_params] || attributes['user_identical_image_count_params'] || nil
           @user_reaction_count_params = attributes[:user_reaction_count_params] || attributes['user_reaction_count_params'] || nil
           @user_role_params = attributes[:user_role_params] || attributes['user_role_params'] || nil
           @user_rule_params = attributes[:user_rule_params] || attributes['user_rule_params'] || nil
@@ -144,12 +172,15 @@ module GetStream
           {
             confidence: 'confidence',
             type: 'type',
+            app_channel_count_params: 'app_channel_count_params',
+            app_message_count_params: 'app_message_count_params',
             call_custom_property_params: 'call_custom_property_params',
             call_type_rule_params: 'call_type_rule_params',
             call_violation_count_params: 'call_violation_count_params',
             channel_message_count_rule_params: 'channel_message_count_rule_params',
             closed_caption_rule_params: 'closed_caption_rule_params',
             content_count_rule_params: 'content_count_rule_params',
+            content_country_code_params: 'content_country_code_params',
             content_custom_property_count_params: 'content_custom_property_count_params',
             content_custom_property_params: 'content_custom_property_params',
             content_flag_count_rule_params: 'content_flag_count_rule_params',
@@ -157,6 +188,7 @@ module GetStream
             flood_similar_params: 'flood_similar_params',
             image_content_params: 'image_content_params',
             image_rule_params: 'image_rule_params',
+            intent_rule_params: 'intent_rule_params',
             ip_content_count_rule_params: 'ip_content_count_rule_params',
             ip_flag_count_rule_params: 'ip_flag_count_rule_params',
             keyframe_ocr_rule_params: 'keyframe_ocr_rule_params',
@@ -164,10 +196,13 @@ module GetStream
             ocr_content_params: 'ocr_content_params',
             text_content_params: 'text_content_params',
             text_rule_params: 'text_rule_params',
+            user_channel_ban_count_params: 'user_channel_ban_count_params',
+            user_channel_count_params: 'user_channel_count_params',
             user_created_within_params: 'user_created_within_params',
             user_custom_property_params: 'user_custom_property_params',
             user_flag_count_rule_params: 'user_flag_count_rule_params',
             user_identical_content_count_params: 'user_identical_content_count_params',
+            user_identical_image_count_params: 'user_identical_image_count_params',
             user_reaction_count_params: 'user_reaction_count_params',
             user_role_params: 'user_role_params',
             user_rule_params: 'user_rule_params',

@@ -10,7 +10,7 @@ module GetStream
 
         # Model attributes
         # @!attribute action_type
-        #   @return [String] Type of moderation action to perform. One of: mark_reviewed, delete_message, delete_activity, delete_comment, delete_reaction, ban, custom, unban, restore, delete_user, delete_user_messages, unblock, block, shadow_block, unmask, kick_user, end_call, escalate, de_escalate
+        #   @return [String] Type of moderation action to perform. One of: mark_reviewed, delete_message, delete_activity, delete_comment, delete_reaction, delete_poll, delete_poll_option, delete_poll_answer, ban, custom, unban, restore, delete_user, delete_user_messages, unblock, block, shadow_block, unmask, kick_user, end_call, escalate, de_escalate
         attr_accessor :action_type
         # @!attribute appeal_id
         #   @return [String] UUID of the appeal to act on (required for reject_appeal, optional for other actions)
@@ -42,6 +42,15 @@ module GetStream
         # @!attribute delete_message
         #   @return [DeleteMessageRequestPayload] Configuration for message deletion action
         attr_accessor :delete_message
+        # @!attribute delete_poll
+        #   @return [DeletePollRequestPayload] Configuration for poll deletion action. Poll deletion is always permanent.
+        attr_accessor :delete_poll
+        # @!attribute delete_poll_answer
+        #   @return [DeletePollAnswerRequestPayload] Configuration for deleting the free-text poll answer a review item was raised for. Chat polls only. Deletion is permanent; the poll and other votes are kept.
+        attr_accessor :delete_poll_answer
+        # @!attribute delete_poll_option
+        #   @return [DeletePollOptionRequestPayload] Configuration for deleting the single poll option a review item was raised for. Deletion is permanent; the rest of the poll is kept.
+        attr_accessor :delete_poll_option
         # @!attribute delete_reaction
         #   @return [DeleteReactionRequestPayload] Configuration for reaction deletion action
         attr_accessor :delete_reaction
@@ -73,7 +82,8 @@ module GetStream
         #   @return [UnbanActionRequestPayload] Configuration for unban moderation action
         attr_accessor :unban
         # @!attribute unblock
-        #   @return [UnblockActionRequestPayload] Deprecated: use restore instead — it now also reverses a block or shadow block. Configuration for unblock action.
+        # @deprecated This field is deprecated.
+        #   @return [UnblockActionRequestPayload] Deprecated: Use restore instead, which now also reverses a block or shadow block. Configuration for unblock action.
         attr_accessor :unblock
         # @!attribute user
         #   @return [UserRequest] User request object
@@ -93,6 +103,9 @@ module GetStream
           @delete_activity = attributes[:delete_activity] || attributes['delete_activity'] || nil
           @delete_comment = attributes[:delete_comment] || attributes['delete_comment'] || nil
           @delete_message = attributes[:delete_message] || attributes['delete_message'] || nil
+          @delete_poll = attributes[:delete_poll] || attributes['delete_poll'] || nil
+          @delete_poll_answer = attributes[:delete_poll_answer] || attributes['delete_poll_answer'] || nil
+          @delete_poll_option = attributes[:delete_poll_option] || attributes['delete_poll_option'] || nil
           @delete_reaction = attributes[:delete_reaction] || attributes['delete_reaction'] || nil
           @delete_user = attributes[:delete_user] || attributes['delete_user'] || nil
           @delete_user_messages = attributes[:delete_user_messages] || attributes['delete_user_messages'] || nil
@@ -121,6 +134,9 @@ module GetStream
             delete_activity: 'delete_activity',
             delete_comment: 'delete_comment',
             delete_message: 'delete_message',
+            delete_poll: 'delete_poll',
+            delete_poll_answer: 'delete_poll_answer',
+            delete_poll_option: 'delete_poll_option',
             delete_reaction: 'delete_reaction',
             delete_user: 'delete_user',
             delete_user_messages: 'delete_user_messages',

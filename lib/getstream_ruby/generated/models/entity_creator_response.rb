@@ -85,7 +85,7 @@ module GetStream
         #   @return [Array<DeviceResponse>]
         attr_accessor :devices
         # @!attribute privacy_settings
-        #   @return [PrivacySettingsResponse]
+        #   @return [PrivacySettingsResponse] The privacy settings of the user.
         attr_accessor :privacy_settings
         # @!attribute push_notifications
         #   @return [PushNotificationSettingsResponse]

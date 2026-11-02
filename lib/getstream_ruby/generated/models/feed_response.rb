@@ -52,7 +52,7 @@ module GetStream
         #   @return [DateTime] When the feed was deleted
         attr_accessor :deleted_at
         # @!attribute visibility
-        #   @return [String] Visibility setting for the feed
+        #   @return [FeedVisibility] Visibility setting for the feed
         attr_accessor :visibility
         # @!attribute filter_tags
         #   @return [Array<String>] Tags used for filtering feeds

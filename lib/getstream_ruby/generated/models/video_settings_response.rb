@@ -16,7 +16,7 @@ module GetStream
         #   @return [Boolean]
         attr_accessor :camera_default_on
         # @!attribute camera_facing
-        #   @return [String]
+        #   @return [CameraFacing] Which camera a call opens with.
         attr_accessor :camera_facing
         # @!attribute enabled
         #   @return [Boolean]

@@ -13,7 +13,7 @@ module GetStream
         #   @return [String] Blocklist name
         attr_accessor :blocklist
         # @!attribute blocklist_behavior
-        #   @return [String] Blocklist behavior. One of: flag, block
+        #   @return [BlocklistBehavior] Blocklist behavior. One of: flag, block
         attr_accessor :blocklist_behavior
         # @!attribute count_messages
         #   @return [Boolean] Enable/disable message counting
@@ -22,7 +22,7 @@ module GetStream
         #   @return [Integer] Maximum message length
         attr_accessor :max_message_length
         # @!attribute push_level
-        #   @return [String]
+        #   @return [PushLevel] Overrides the push notification level for this channel
         attr_accessor :push_level
         # @!attribute quotes
         #   @return [Boolean] Enable/disable quotes

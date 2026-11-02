@@ -5,7 +5,7 @@
 module GetStream
   module Generated
     module Models
-      # 
+      # The settings for typing indicator events.
       class TypingIndicatorsResponse < GetStream::BaseModel
 
         # Model attributes

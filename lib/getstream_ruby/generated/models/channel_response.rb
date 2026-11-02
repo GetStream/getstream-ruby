@@ -33,6 +33,9 @@ module GetStream
         # @!attribute custom
         #   @return [Object] Custom data for this object
         attr_accessor :custom
+        # @!attribute active_member_count
+        #   @return [Integer] Number of members who are not deactivated or deleted
+        attr_accessor :active_member_count
         # @!attribute auto_translation_enabled
         #   @return [Boolean] Whether auto translation is enabled or not
         attr_accessor :auto_translation_enabled
@@ -90,6 +93,9 @@ module GetStream
         # @!attribute created_by
         #   @return [UserResponse] User response object
         attr_accessor :created_by
+        # @!attribute fork
+        #   @return [ChannelForkSummary] A fork of an agent channel
+        attr_accessor :fork
         # @!attribute truncated_by
         #   @return [UserResponse] User response object
         attr_accessor :truncated_by
@@ -105,6 +111,7 @@ module GetStream
           @type = attributes[:type] || attributes['type']
           @updated_at = attributes[:updated_at] || attributes['updated_at']
           @custom = attributes[:custom] || attributes['custom']
+          @active_member_count = attributes[:active_member_count] || attributes['active_member_count'] || nil
           @auto_translation_enabled = attributes[:auto_translation_enabled] || attributes['auto_translation_enabled'] || nil
           @auto_translation_language = attributes[:auto_translation_language] || attributes['auto_translation_language'] || nil
           @blocked = attributes[:blocked] || attributes['blocked'] || nil
@@ -124,6 +131,7 @@ module GetStream
           @own_capabilities = attributes[:own_capabilities] || attributes['own_capabilities'] || nil
           @config = attributes[:config] || attributes['config'] || nil
           @created_by = attributes[:created_by] || attributes['created_by'] || nil
+          @fork = attributes[:fork] || attributes['fork'] || nil
           @truncated_by = attributes[:truncated_by] || attributes['truncated_by'] || nil
         end
 
@@ -138,6 +146,7 @@ module GetStream
             type: 'type',
             updated_at: 'updated_at',
             custom: 'custom',
+            active_member_count: 'active_member_count',
             auto_translation_enabled: 'auto_translation_enabled',
             auto_translation_language: 'auto_translation_language',
             blocked: 'blocked',
@@ -157,6 +166,7 @@ module GetStream
             own_capabilities: 'own_capabilities',
             config: 'config',
             created_by: 'created_by',
+            fork: 'fork',
             truncated_by: 'truncated_by'
           }
         end

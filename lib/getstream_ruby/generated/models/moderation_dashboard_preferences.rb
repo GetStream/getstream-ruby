@@ -18,6 +18,9 @@ module GetStream
         # @!attribute custom_views_enabled
         #   @return [Boolean]
         attr_accessor :custom_views_enabled
+        # @!attribute disable_action_logs
+        #   @return [Boolean]
+        attr_accessor :disable_action_logs
         # @!attribute disable_audit_logs
         #   @return [Boolean]
         attr_accessor :disable_audit_logs
@@ -39,6 +42,9 @@ module GetStream
         # @!attribute media_queue_blur_enabled
         #   @return [Boolean]
         attr_accessor :media_queue_blur_enabled
+        # @!attribute text_redaction_enabled
+        #   @return [Boolean]
+        attr_accessor :text_redaction_enabled
         # @!attribute allowed_moderation_action_reasons
         #   @return [Array<String>]
         attr_accessor :allowed_moderation_action_reasons
@@ -51,6 +57,9 @@ module GetStream
         # @!attribute keyframe_classifications_map
         #   @return [Hash<String, Hash<String, Boolean>>]
         attr_accessor :keyframe_classifications_map
+        # @!attribute media_label_display
+        #   @return [Hash<String, String>]
+        attr_accessor :media_label_display
         # @!attribute overview_dashboard
         #   @return [OverviewDashboardConfig]
         attr_accessor :overview_dashboard
@@ -61,6 +70,7 @@ module GetStream
           @async_review_queue_upsert = attributes[:async_review_queue_upsert] || attributes['async_review_queue_upsert'] || nil
           @block_foreign_cdn_attachments = attributes[:block_foreign_cdn_attachments] || attributes['block_foreign_cdn_attachments'] || nil
           @custom_views_enabled = attributes[:custom_views_enabled] || attributes['custom_views_enabled'] || nil
+          @disable_action_logs = attributes[:disable_action_logs] || attributes['disable_action_logs'] || nil
           @disable_audit_logs = attributes[:disable_audit_logs] || attributes['disable_audit_logs'] || nil
           @disable_flagging_reviewed_entity = attributes[:disable_flagging_reviewed_entity] || attributes['disable_flagging_reviewed_entity'] || nil
           @enforce_shadow_server_side = attributes[:enforce_shadow_server_side] || attributes['enforce_shadow_server_side'] || nil
@@ -68,10 +78,12 @@ module GetStream
           @flag_user_on_flagged_content = attributes[:flag_user_on_flagged_content] || attributes['flag_user_on_flagged_content'] || nil
           @include_attachment_payload = attributes[:include_attachment_payload] || attributes['include_attachment_payload'] || nil
           @media_queue_blur_enabled = attributes[:media_queue_blur_enabled] || attributes['media_queue_blur_enabled'] || nil
+          @text_redaction_enabled = attributes[:text_redaction_enabled] || attributes['text_redaction_enabled'] || nil
           @allowed_moderation_action_reasons = attributes[:allowed_moderation_action_reasons] || attributes['allowed_moderation_action_reasons'] || nil
           @escalation_reasons = attributes[:escalation_reasons] || attributes['escalation_reasons'] || nil
           @filterable_custom_keys = attributes[:filterable_custom_keys] || attributes['filterable_custom_keys'] || nil
           @keyframe_classifications_map = attributes[:keyframe_classifications_map] || attributes['keyframe_classifications_map'] || nil
+          @media_label_display = attributes[:media_label_display] || attributes['media_label_display'] || nil
           @overview_dashboard = attributes[:overview_dashboard] || attributes['overview_dashboard'] || nil
         end
 
@@ -81,6 +93,7 @@ module GetStream
             async_review_queue_upsert: 'async_review_queue_upsert',
             block_foreign_cdn_attachments: 'block_foreign_cdn_attachments',
             custom_views_enabled: 'custom_views_enabled',
+            disable_action_logs: 'disable_action_logs',
             disable_audit_logs: 'disable_audit_logs',
             disable_flagging_reviewed_entity: 'disable_flagging_reviewed_entity',
             enforce_shadow_server_side: 'enforce_shadow_server_side',
@@ -88,10 +101,12 @@ module GetStream
             flag_user_on_flagged_content: 'flag_user_on_flagged_content',
             include_attachment_payload: 'include_attachment_payload',
             media_queue_blur_enabled: 'media_queue_blur_enabled',
+            text_redaction_enabled: 'text_redaction_enabled',
             allowed_moderation_action_reasons: 'allowed_moderation_action_reasons',
             escalation_reasons: 'escalation_reasons',
             filterable_custom_keys: 'filterable_custom_keys',
             keyframe_classifications_map: 'keyframe_classifications_map',
+            media_label_display: 'media_label_display',
             overview_dashboard: 'overview_dashboard'
           }
         end

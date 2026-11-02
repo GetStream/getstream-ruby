@@ -7,6 +7,7 @@ require 'faraday/net_http_persistent'
 require 'logger'
 require 'json'
 require 'jwt'
+require_relative 'multipart_request'
 require_relative 'generated/base_model'
 require_relative 'generated/common_client'
 require_relative 'generated/feeds_client'
@@ -366,9 +367,7 @@ module GetStreamRuby
     def multipart_request?(data)
       return false if data.nil? || data == {}
 
-      # Check if data is a FileUploadRequest or ImageUploadRequest
-      data.is_a?(GetStream::Generated::Models::FileUploadRequest) ||
-        data.is_a?(GetStream::Generated::Models::ImageUploadRequest)
+      data.is_a?(GetStream::MultipartRequest)
     end
 
     def make_multipart_request(method, path, query_params, data)

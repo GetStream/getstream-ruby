@@ -32,13 +32,13 @@ module GetStream
         #   @return [Boolean] If true, enriches the follow's source_feed and target_feed with own_* fields (own_follows, own_followings, own_capabilities, own_membership). Defaults to false for performance.
         attr_accessor :enrich_own_fields
         # @!attribute push_preference
-        #   @return [String] Push preference for the follow relationship
+        #   @return [FollowPushPreference] Push preference for the follow relationship
         attr_accessor :push_preference
         # @!attribute skip_push
         #   @return [Boolean] Whether to skip push for this follow
         attr_accessor :skip_push
         # @!attribute status
-        #   @return [String] Status of the follow relationship. One of: accepted, pending, rejected
+        #   @return [FollowStatus] Status of the follow relationship. One of: accepted, pending, rejected
         attr_accessor :status
         # @!attribute custom
         #   @return [Object] Custom data for the follow relationship

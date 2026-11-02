@@ -373,6 +373,13 @@ RSpec.describe 'Webhook' do
 
     end
 
+    it 'parses call.ring_settled' do
+
+      event = StreamChat::Webhook.parse_webhook_event('{"type":"call.ring_settled"}')
+      expect(event.class.name).to eq('GetStream::Generated::Models::CallRingSettledEvent')
+
+    end
+
     it 'parses call.rtmp_broadcast_failed' do
 
       event = StreamChat::Webhook.parse_webhook_event('{"type":"call.rtmp_broadcast_failed"}')
@@ -520,6 +527,13 @@ RSpec.describe 'Webhook' do
 
     end
 
+    it 'parses channel.forked' do
+
+      event = StreamChat::Webhook.parse_webhook_event('{"type":"channel.forked"}')
+      expect(event.class.name).to eq('GetStream::Generated::Models::ChannelForkedEvent')
+
+    end
+
     it 'parses channel.frozen' do
 
       event = StreamChat::Webhook.parse_webhook_event('{"type":"channel.frozen"}')
@@ -545,6 +559,13 @@ RSpec.describe 'Webhook' do
 
       event = StreamChat::Webhook.parse_webhook_event('{"type":"channel.muted"}')
       expect(event.class.name).to eq('GetStream::Generated::Models::ChannelMutedEvent')
+
+    end
+
+    it 'parses channel.rewound' do
+
+      event = StreamChat::Webhook.parse_webhook_event('{"type":"channel.rewound"}')
+      expect(event.class.name).to eq('GetStream::Generated::Models::ChannelRewoundEvent')
 
     end
 
@@ -629,6 +650,20 @@ RSpec.describe 'Webhook' do
 
       event = StreamChat::Webhook.parse_webhook_event('{"type":"export.channels.success"}')
       expect(event.class.name).to eq('GetStream::Generated::Models::AsyncExportChannelsEvent')
+
+    end
+
+    it 'parses export.label_results.error' do
+
+      event = StreamChat::Webhook.parse_webhook_event('{"type":"export.label_results.error"}')
+      expect(event.class.name).to eq('GetStream::Generated::Models::AsyncExportErrorEvent')
+
+    end
+
+    it 'parses export.label_results.success' do
+
+      event = StreamChat::Webhook.parse_webhook_event('{"type":"export.label_results.success"}')
+      expect(event.class.name).to eq('GetStream::Generated::Models::AsyncExportLabelResultsEvent')
 
     end
 
@@ -807,6 +842,13 @@ RSpec.describe 'Webhook' do
 
     end
 
+    it 'parses feeds.comment.feedback' do
+
+      event = StreamChat::Webhook.parse_webhook_event('{"type":"feeds.comment.feedback"}')
+      expect(event.class.name).to eq('GetStream::Generated::Models::CommentFeedbackEvent')
+
+    end
+
     it 'parses feeds.comment.reaction.added' do
 
       event = StreamChat::Webhook.parse_webhook_event('{"type":"feeds.comment.reaction.added"}')
@@ -839,6 +881,20 @@ RSpec.describe 'Webhook' do
 
       event = StreamChat::Webhook.parse_webhook_event('{"type":"feeds.comment.updated"}')
       expect(event.class.name).to eq('GetStream::Generated::Models::CommentUpdatedEvent')
+
+    end
+
+    it 'parses feeds.export.error' do
+
+      event = StreamChat::Webhook.parse_webhook_event('{"type":"feeds.export.error"}')
+      expect(event.class.name).to eq('GetStream::Generated::Models::AsyncExportErrorEvent')
+
+    end
+
+    it 'parses feeds.export.success' do
+
+      event = StreamChat::Webhook.parse_webhook_event('{"type":"feeds.export.success"}')
+      expect(event.class.name).to eq('GetStream::Generated::Models::AsyncExportFeedsSuccessEvent')
 
     end
 
@@ -944,6 +1000,20 @@ RSpec.describe 'Webhook' do
 
       event = StreamChat::Webhook.parse_webhook_event('{"type":"flag.updated"}')
       expect(event.class.name).to eq('GetStream::Generated::Models::FlagUpdatedEvent')
+
+    end
+
+    it 'parses import.error' do
+
+      event = StreamChat::Webhook.parse_webhook_event('{"type":"import.error"}')
+      expect(event.class.name).to eq('GetStream::Generated::Models::AsyncImportErrorEvent')
+
+    end
+
+    it 'parses import.success' do
+
+      event = StreamChat::Webhook.parse_webhook_event('{"type":"import.success"}')
+      expect(event.class.name).to eq('GetStream::Generated::Models::AsyncImportSuccessEvent')
 
     end
 
@@ -1122,6 +1192,48 @@ RSpec.describe 'Webhook' do
 
     end
 
+    it 'parses poll.closed' do
+
+      event = StreamChat::Webhook.parse_webhook_event('{"type":"poll.closed"}')
+      expect(event.class.name).to eq('GetStream::Generated::Models::PollClosedEvent')
+
+    end
+
+    it 'parses poll.deleted' do
+
+      event = StreamChat::Webhook.parse_webhook_event('{"type":"poll.deleted"}')
+      expect(event.class.name).to eq('GetStream::Generated::Models::PollDeletedEvent')
+
+    end
+
+    it 'parses poll.updated' do
+
+      event = StreamChat::Webhook.parse_webhook_event('{"type":"poll.updated"}')
+      expect(event.class.name).to eq('GetStream::Generated::Models::PollUpdatedEvent')
+
+    end
+
+    it 'parses poll.vote_casted' do
+
+      event = StreamChat::Webhook.parse_webhook_event('{"type":"poll.vote_casted"}')
+      expect(event.class.name).to eq('GetStream::Generated::Models::PollVoteCastedEvent')
+
+    end
+
+    it 'parses poll.vote_changed' do
+
+      event = StreamChat::Webhook.parse_webhook_event('{"type":"poll.vote_changed"}')
+      expect(event.class.name).to eq('GetStream::Generated::Models::PollVoteChangedEvent')
+
+    end
+
+    it 'parses poll.vote_removed' do
+
+      event = StreamChat::Webhook.parse_webhook_event('{"type":"poll.vote_removed"}')
+      expect(event.class.name).to eq('GetStream::Generated::Models::PollVoteRemovedEvent')
+
+    end
+
     it 'parses reaction.deleted' do
 
       event = StreamChat::Webhook.parse_webhook_event('{"type":"reaction.deleted"}')
@@ -1178,6 +1290,20 @@ RSpec.describe 'Webhook' do
 
     end
 
+    it 'parses scheduled_message.failed' do
+
+      event = StreamChat::Webhook.parse_webhook_event('{"type":"scheduled_message.failed"}')
+      expect(event.class.name).to eq('GetStream::Generated::Models::ScheduledMessageFailedEvent')
+
+    end
+
+    it 'parses scheduled_message.sent' do
+
+      event = StreamChat::Webhook.parse_webhook_event('{"type":"scheduled_message.sent"}')
+      expect(event.class.name).to eq('GetStream::Generated::Models::ScheduledMessageSentEvent')
+
+    end
+
     it 'parses thread.updated' do
 
       event = StreamChat::Webhook.parse_webhook_event('{"type":"thread.updated"}')
@@ -1189,6 +1315,13 @@ RSpec.describe 'Webhook' do
 
       event = StreamChat::Webhook.parse_webhook_event('{"type":"user.banned"}')
       expect(event.class.name).to eq('GetStream::Generated::Models::UserBannedEvent')
+
+    end
+
+    it 'parses user.claimed' do
+
+      event = StreamChat::Webhook.parse_webhook_event('{"type":"user.claimed"}')
+      expect(event.class.name).to eq('GetStream::Generated::Models::UserClaimedEvent')
 
     end
 

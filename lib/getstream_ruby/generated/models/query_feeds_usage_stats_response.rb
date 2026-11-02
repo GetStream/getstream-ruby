@@ -18,12 +18,21 @@ module GetStream
         # @!attribute api_requests
         #   @return [DailyMetricStatsResponse]
         attr_accessor :api_requests
+        # @!attribute collections
+        #   @return [DailyMetricStatsResponse]
+        attr_accessor :collections
+        # @!attribute comments
+        #   @return [DailyMetricStatsResponse]
+        attr_accessor :comments
         # @!attribute follows
         #   @return [DailyMetricStatsResponse]
         attr_accessor :follows
         # @!attribute openai_requests
         #   @return [DailyMetricStatsResponse]
         attr_accessor :openai_requests
+        # @!attribute reactions
+        #   @return [DailyMetricStatsResponse]
+        attr_accessor :reactions
         # @!attribute emau
         #   @return [EMAUStatsResponse]
         attr_accessor :emau
@@ -34,8 +43,11 @@ module GetStream
           @duration = attributes[:duration] || attributes['duration']
           @activities = attributes[:activities] || attributes['activities']
           @api_requests = attributes[:api_requests] || attributes['api_requests']
+          @collections = attributes[:collections] || attributes['collections']
+          @comments = attributes[:comments] || attributes['comments']
           @follows = attributes[:follows] || attributes['follows']
           @openai_requests = attributes[:openai_requests] || attributes['openai_requests']
+          @reactions = attributes[:reactions] || attributes['reactions']
           @emau = attributes[:emau] || attributes['emau'] || nil
         end
 
@@ -45,8 +57,11 @@ module GetStream
             duration: 'duration',
             activities: 'activities',
             api_requests: 'api_requests',
+            collections: 'collections',
+            comments: 'comments',
             follows: 'follows',
             openai_requests: 'openai_requests',
+            reactions: 'reactions',
             emau: 'emau'
           }
         end
