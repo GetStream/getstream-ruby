@@ -64,6 +64,23 @@ module GetStream
         )
       end
 
+      # Returns a call's ring attempts, newest first. A session can be rung more than once, and the session-level accepted_by / rejected_by / missed_by maps flatten every ring together; an attempt says which ring a user acted on, which devices it reached, and who settled it and why. Pass call_session_id to limit the read to one session.
+      #
+      # @param query_call_ring_attempts_request [QueryCallRingAttemptsRequest]
+      # @return [Models::QueryCallRingAttemptsResponse]
+      def query_call_ring_attempts(query_call_ring_attempts_request)
+        path = '/api/v2/video/call/ring_attempts'
+        # Build request body
+        body = query_call_ring_attempts_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
       # 
       #
       # @param query_call_stats_request [QueryCallStatsRequest]
@@ -441,7 +458,7 @@ module GetStream
       #
       # @param _type [String]
       # @param _id [String]
-      # @param recording_type [String]
+      # @param recording_type [RecordingType]
       # @param start_recording_request [StartRecordingRequest]
       # @return [Models::StartRecordingResponse]
       def start_recording(_type, _id, recording_type, start_recording_request)
@@ -465,7 +482,7 @@ module GetStream
       #
       # @param _type [String]
       # @param _id [String]
-      # @param recording_type [String]
+      # @param recording_type [RecordingType]
       # @param stop_recording_request [StopRecordingRequest]
       # @return [Models::StopRecordingResponse]
       def stop_recording(_type, _id, recording_type, stop_recording_request)

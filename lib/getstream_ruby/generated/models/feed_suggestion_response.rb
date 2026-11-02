@@ -58,7 +58,7 @@ module GetStream
         #   @return [Float]
         attr_accessor :recommendation_score
         # @!attribute visibility
-        #   @return [String] Visibility setting for the feed
+        #   @return [FeedVisibility] Visibility setting for the feed
         attr_accessor :visibility
         # @!attribute filter_tags
         #   @return [Array<String>] Tags used for filtering feeds

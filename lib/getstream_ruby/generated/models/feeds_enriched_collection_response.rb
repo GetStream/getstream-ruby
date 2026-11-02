@@ -19,7 +19,7 @@ module GetStream
         #   @return [String]
         attr_accessor :name
         # @!attribute status
-        #   @return [String]
+        #   @return [CollectionStatus] Enrichment status of a collection entry.
         attr_accessor :status
         # @!attribute updated_at
         #   @return [DateTime]

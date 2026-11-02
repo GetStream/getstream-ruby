@@ -33,6 +33,9 @@ module GetStream
         # @!attribute user_id
         #   @return [String]
         attr_accessor :user_id
+        # @!attribute answer_text_i18n
+        #   @return [Hash<String, String>]
+        attr_accessor :answer_text_i18n
         # @!attribute user
         #   @return [UserResponse] User response object
         attr_accessor :user
@@ -48,6 +51,7 @@ module GetStream
           @answer_text = attributes[:answer_text] || attributes['answer_text'] || nil
           @is_answer = attributes[:is_answer] || attributes['is_answer'] || nil
           @user_id = attributes[:user_id] || attributes['user_id'] || nil
+          @answer_text_i18n = attributes[:answer_text_i18n] || attributes['answer_text_i18n'] || nil
           @user = attributes[:user] || attributes['user'] || nil
         end
 
@@ -62,6 +66,7 @@ module GetStream
             answer_text: 'answer_text',
             is_answer: 'is_answer',
             user_id: 'user_id',
+            answer_text_i18n: 'answer_text_i18n',
             user: 'user'
           }
         end

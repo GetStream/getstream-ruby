@@ -21,6 +21,9 @@ module GetStream
         # @!attribute force_moderation
         #   @return [Boolean] If true, forces moderation to run for server-side requests. By default, server-side requests skip moderation. Client-side requests always run moderation regardless of this field.
         attr_accessor :force_moderation
+        # @!attribute skip_existing
+        #   @return [Boolean] Server-side only. If true, activities whose id already exists are left unchanged instead of updated: no write, events or notifications. They are listed in skipped_existing and returned as stored. Soft-deleted activities count as existing and are returned with deleted_at set. Default: false.
+        attr_accessor :skip_existing
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -29,6 +32,7 @@ module GetStream
           @create_users = attributes[:create_users] || attributes['create_users'] || nil
           @enrich_own_fields = attributes[:enrich_own_fields] || attributes['enrich_own_fields'] || nil
           @force_moderation = attributes[:force_moderation] || attributes['force_moderation'] || nil
+          @skip_existing = attributes[:skip_existing] || attributes['skip_existing'] || nil
         end
 
         # Override field mappings for JSON serialization
@@ -37,7 +41,8 @@ module GetStream
             activities: 'activities',
             create_users: 'create_users',
             enrich_own_fields: 'enrich_own_fields',
-            force_moderation: 'force_moderation'
+            force_moderation: 'force_moderation',
+            skip_existing: 'skip_existing'
           }
         end
       end

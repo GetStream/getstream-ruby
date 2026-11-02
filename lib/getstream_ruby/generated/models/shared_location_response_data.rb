@@ -10,31 +10,31 @@ module GetStream
 
         # Model attributes
         # @!attribute channel_cid
-        #   @return [String]
+        #   @return [String] The CID (type:id) of the channel that the location is attached to.
         attr_accessor :channel_cid
         # @!attribute created_at
-        #   @return [DateTime]
+        #   @return [DateTime] The date when the location was created.
         attr_accessor :created_at
         # @!attribute created_by_device_id
-        #   @return [String]
+        #   @return [String] The ID of the device that created the location.
         attr_accessor :created_by_device_id
         # @!attribute latitude
-        #   @return [Float]
+        #   @return [Float] The latitude of the location.
         attr_accessor :latitude
         # @!attribute longitude
-        #   @return [Float]
+        #   @return [Float] The longitude of the location.
         attr_accessor :longitude
         # @!attribute message_id
-        #   @return [String]
+        #   @return [String] The ID of the message that the location is attached to.
         attr_accessor :message_id
         # @!attribute updated_at
-        #   @return [DateTime]
+        #   @return [DateTime] The date when the location was updated.
         attr_accessor :updated_at
         # @!attribute user_id
-        #   @return [String]
+        #   @return [String] The ID of the user that created the location.
         attr_accessor :user_id
         # @!attribute end_at
-        #   @return [DateTime]
+        #   @return [DateTime] The date when the location sharing ends.,  If it's empty, it means the location sharing is static instead of live.
         attr_accessor :end_at
         # @!attribute channel
         #   @return [ChannelResponse] Represents channel in chat

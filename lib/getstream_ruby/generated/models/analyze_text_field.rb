@@ -27,6 +27,9 @@ module GetStream
         # @!attribute classifications
         #   @return [Array<Classification>] Flat list of detected Bodyguard text labels (e.g. INSULT, VULGARITY). Each entry carries `name` and `severity`.
         attr_accessor :classifications
+        # @!attribute detected_urls
+        #   @return [Array<DetectedURLResponse>] URLs found in the text, as `{url, source}` objects with `source` = `text`. Independent of the action; omitted when none were found.
+        attr_accessor :detected_urls
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -37,6 +40,7 @@ module GetStream
           @language = attributes[:language] || attributes['language'] || nil
           @severity = attributes[:severity] || attributes['severity'] || nil
           @classifications = attributes[:classifications] || attributes['classifications'] || nil
+          @detected_urls = attributes[:detected_urls] || attributes['detected_urls'] || nil
         end
 
         # Override field mappings for JSON serialization
@@ -47,7 +51,8 @@ module GetStream
             id: 'id',
             language: 'language',
             severity: 'severity',
-            classifications: 'classifications'
+            classifications: 'classifications',
+            detected_urls: 'detected_urls'
           }
         end
       end

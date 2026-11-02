@@ -13,7 +13,7 @@ module GetStream
         #   @return [Boolean]
         attr_accessor :audio_only
         # @!attribute mode
-        #   @return [String]
+        #   @return [FeatureActivationMode] Whether a call feature is available, disabled, or turned on automatically.
         attr_accessor :mode
         # @!attribute quality
         #   @return [String]

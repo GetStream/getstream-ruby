@@ -9,6 +9,9 @@ module GetStream
       class QueryChannelsRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute include_active_member_count
+        #   @return [Boolean] Whether to include active_member_count for each channel
+        attr_accessor :include_active_member_count
         # @!attribute limit
         #   @return [Integer] Number of channels to limit
         attr_accessor :limit
@@ -52,6 +55,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @include_active_member_count = attributes[:include_active_member_count] || attributes['include_active_member_count'] || nil
           @limit = attributes[:limit] || attributes['limit'] || nil
           @member_limit = attributes[:member_limit] || attributes['member_limit'] || nil
           @message_limit = attributes[:message_limit] || attributes['message_limit'] || nil
@@ -70,6 +74,7 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            include_active_member_count: 'include_active_member_count',
             limit: 'limit',
             member_limit: 'member_limit',
             message_limit: 'message_limit',

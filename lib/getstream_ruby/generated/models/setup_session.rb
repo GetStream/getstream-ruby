@@ -13,10 +13,10 @@ module GetStream
         #   @return [DateTime]
         attr_accessor :created_at
         # @!attribute current_step
-        #   @return [String]
+        #   @return [SetupStep] A step in the moderation setup wizard.
         attr_accessor :current_step
         # @!attribute status
-        #   @return [String]
+        #   @return [SetupStatus] Whether a moderation setup session is still in progress.
         attr_accessor :status
         # @!attribute updated_at
         #   @return [DateTime]

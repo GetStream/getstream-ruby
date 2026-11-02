@@ -9,60 +9,110 @@ module GetStream
       class SubmitModerationFeedbackRequest < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute message
-        #   @return [String] The moderated content the moderator is providing feedback on
-        attr_accessor :message
-        # @!attribute published_at
-        #   @return [String] Original publication time of the moderated content (RFC3339)
-        attr_accessor :published_at
-        # @!attribute reference
-        #   @return [String] Provider-side reference identifying the moderated content
-        attr_accessor :reference
         # @!attribute channel_id
         #   @return [String] Optional moderation channel UUID for context
         attr_accessor :channel_id
+        # @!attribute confidence
+        #   @return [String] Moderator's confidence in this feedback (LOW, MEDIUM, HIGH, VERY_HIGH); forwarded to the moderation provider. Optional
+        attr_accessor :confidence
         # @!attribute current_recommended_action
         #   @return [String] Action originally produced by the moderation system
         attr_accessor :current_recommended_action
         # @!attribute description
         #   @return [String] Optional free-form note explaining why the classification was wrong
         attr_accessor :description
+        # @!attribute entity_creator_id
+        #   @return [String] ID of the user who created the entity
+        attr_accessor :entity_creator_id
+        # @!attribute entity_id
+        #   @return [String] ID of the entity the items belong to
+        attr_accessor :entity_id
+        # @!attribute entity_type
+        #   @return [String] Type of the entity the items belong to
+        attr_accessor :entity_type
         # @!attribute expected_recommended_action
         #   @return [String] Optional moderator-supplied action
         attr_accessor :expected_recommended_action
+        # @!attribute false_positive
+        #   @return [Boolean] Whether the referenced flags are marked (true, default) or unmarked (false) as false positives
+        attr_accessor :false_positive
+        # @!attribute feedback_type
+        #   @return [String] false_positive (default) disputes existing detections; false_negative reports missed content: items carry the content, expected_labels is required and flag_id is not allowed
+        attr_accessor :feedback_type
+        # @!attribute message
+        #   @return [String] The moderated content the moderator is providing feedback on. Required unless items is provided
+        attr_accessor :message
+        # @!attribute published_at
+        #   @return [String] Original publication time of the moderated content (RFC3339). Required unless items is provided
+        attr_accessor :published_at
+        # @!attribute reference
+        #   @return [String] Provider-side reference identifying the moderated content. Required unless items is provided
+        attr_accessor :reference
+        # @!attribute review_queue_item_id
+        #   @return [String] Review queue item the feedback targets, as an alternative to entity_type and entity_id
+        attr_accessor :review_queue_item_id
+        # @!attribute user_id
+        #   @return [String]
+        attr_accessor :user_id
         # @!attribute current_labels
         #   @return [Array<String>] Classifications originally produced by the moderation system
         attr_accessor :current_labels
         # @!attribute expected_labels
         #   @return [Array<String>] Optional moderator-supplied classifications (up to 16 entries)
         attr_accessor :expected_labels
+        # @!attribute items
+        #   @return [Array<SubmitModerationFeedbackItem>] Pieces of content of one entity the feedback is about (1 to 50)
+        attr_accessor :items
+        # @!attribute user
+        #   @return [UserRequest] User request object
+        attr_accessor :user
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @message = attributes[:message] || attributes['message']
-          @published_at = attributes[:published_at] || attributes['published_at']
-          @reference = attributes[:reference] || attributes['reference']
           @channel_id = attributes[:channel_id] || attributes['channel_id'] || nil
+          @confidence = attributes[:confidence] || attributes['confidence'] || nil
           @current_recommended_action = attributes[:current_recommended_action] || attributes['current_recommended_action'] || nil
           @description = attributes[:description] || attributes['description'] || nil
+          @entity_creator_id = attributes[:entity_creator_id] || attributes['entity_creator_id'] || nil
+          @entity_id = attributes[:entity_id] || attributes['entity_id'] || nil
+          @entity_type = attributes[:entity_type] || attributes['entity_type'] || nil
           @expected_recommended_action = attributes[:expected_recommended_action] || attributes['expected_recommended_action'] || nil
+          @false_positive = attributes[:false_positive] || attributes['false_positive'] || nil
+          @feedback_type = attributes[:feedback_type] || attributes['feedback_type'] || nil
+          @message = attributes[:message] || attributes['message'] || nil
+          @published_at = attributes[:published_at] || attributes['published_at'] || nil
+          @reference = attributes[:reference] || attributes['reference'] || nil
+          @review_queue_item_id = attributes[:review_queue_item_id] || attributes['review_queue_item_id'] || nil
+          @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @current_labels = attributes[:current_labels] || attributes['current_labels'] || nil
           @expected_labels = attributes[:expected_labels] || attributes['expected_labels'] || nil
+          @items = attributes[:items] || attributes['items'] || nil
+          @user = attributes[:user] || attributes['user'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            channel_id: 'channel_id',
+            confidence: 'confidence',
+            current_recommended_action: 'current_recommended_action',
+            description: 'description',
+            entity_creator_id: 'entity_creator_id',
+            entity_id: 'entity_id',
+            entity_type: 'entity_type',
+            expected_recommended_action: 'expected_recommended_action',
+            false_positive: 'false_positive',
+            feedback_type: 'feedback_type',
             message: 'message',
             published_at: 'published_at',
             reference: 'reference',
-            channel_id: 'channel_id',
-            current_recommended_action: 'current_recommended_action',
-            description: 'description',
-            expected_recommended_action: 'expected_recommended_action',
+            review_queue_item_id: 'review_queue_item_id',
+            user_id: 'user_id',
             current_labels: 'current_labels',
-            expected_labels: 'expected_labels'
+            expected_labels: 'expected_labels',
+            items: 'items',
+            user: 'user'
           }
         end
       end

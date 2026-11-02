@@ -10,7 +10,7 @@ module GetStream
 
         # Model attributes
         # @!attribute policy
-        #   @return [String]
+        #   @return [RetentionPolicyType] What a retention policy applies to.
         attr_accessor :policy
 
         # Initialize with attributes

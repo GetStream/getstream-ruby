@@ -18,6 +18,10 @@ module GetStream
         # @!attribute content_published_at
         #   @return [DateTime] Original timestamp when the content was produced. Used as the `published_at` timestamp on per-content log entries that surface in `matched_contents` on aggregation-rule webhooks.
         attr_accessor :content_published_at
+        # @!attribute country_code
+        # @deprecated This field is deprecated.
+        #   @return [String] ISO 3166-1 alpha-2 country the content is aimed at (e.g. US, DE). Ignored when country_codes is set, but an invalid value is still rejected with 400.
+        attr_accessor :country_code
         # @!attribute entity_creator_id
         #   @return [String] ID of the user who created the content. Required with entity_type + entity_id; omit all three for stateless mode.
         attr_accessor :entity_creator_id
@@ -30,6 +34,9 @@ module GetStream
         # @!attribute user_id
         #   @return [String]
         attr_accessor :user_id
+        # @!attribute country_codes
+        #   @return [Array<String>] ISO 3166-1 alpha-2 countries the content is aimed at (e.g. US, DE), up to 300. The first is the primary country, which AI text providers receive as country context. Takes precedence over country_code.
+        attr_accessor :country_codes
         # @!attribute content_ids
         #   @return [Hash<String, String>] Optional map from a content label (either a `texts` key or an `image:<key>` multipart label) to a caller-supplied per-instance identifier. Echoed on per-field verdicts and surfaced in `matched_contents` when an aggregation rule fires.
         attr_accessor :content_ids
@@ -49,10 +56,12 @@ module GetStream
           @async_response = attributes[:async_response] || attributes['async_response'] || nil
           @config_key = attributes[:config_key] || attributes['config_key'] || nil
           @content_published_at = attributes[:content_published_at] || attributes['content_published_at'] || nil
+          @country_code = attributes[:country_code] || attributes['country_code'] || nil
           @entity_creator_id = attributes[:entity_creator_id] || attributes['entity_creator_id'] || nil
           @entity_id = attributes[:entity_id] || attributes['entity_id'] || nil
           @entity_type = attributes[:entity_type] || attributes['entity_type'] || nil
           @user_id = attributes[:user_id] || attributes['user_id'] || nil
+          @country_codes = attributes[:country_codes] || attributes['country_codes'] || nil
           @content_ids = attributes[:content_ids] || attributes['content_ids'] || nil
           @custom = attributes[:custom] || attributes['custom'] || nil
           @texts = attributes[:texts] || attributes['texts'] || nil
@@ -65,10 +74,12 @@ module GetStream
             async_response: 'async_response',
             config_key: 'config_key',
             content_published_at: 'content_published_at',
+            country_code: 'country_code',
             entity_creator_id: 'entity_creator_id',
             entity_id: 'entity_id',
             entity_type: 'entity_type',
             user_id: 'user_id',
+            country_codes: 'country_codes',
             content_ids: 'content_ids',
             custom: 'custom',
             texts: 'texts',

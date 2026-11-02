@@ -30,6 +30,9 @@ module GetStream
         # @!attribute individual_recording
         #   @return [IndividualRecordingSettingsResponse]
         attr_accessor :individual_recording
+        # @!attribute lifecycle
+        #   @return [LifecycleSettingsResponse] LifecycleSettings is the payload for call lifecycle settings
+        attr_accessor :lifecycle
         # @!attribute limits
         #   @return [LimitsSettingsResponse]
         attr_accessor :limits
@@ -71,6 +74,7 @@ module GetStream
           @frame_recording = attributes[:frame_recording] || attributes['frame_recording']
           @geofencing = attributes[:geofencing] || attributes['geofencing']
           @individual_recording = attributes[:individual_recording] || attributes['individual_recording']
+          @lifecycle = attributes[:lifecycle] || attributes['lifecycle']
           @limits = attributes[:limits] || attributes['limits']
           @raw_recording = attributes[:raw_recording] || attributes['raw_recording']
           @recording = attributes[:recording] || attributes['recording']
@@ -93,6 +97,7 @@ module GetStream
             frame_recording: 'frame_recording',
             geofencing: 'geofencing',
             individual_recording: 'individual_recording',
+            lifecycle: 'lifecycle',
             limits: 'limits',
             raw_recording: 'raw_recording',
             recording: 'recording',

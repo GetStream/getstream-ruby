@@ -5,7 +5,7 @@
 module GetStream
   module Generated
     module Models
-      # 
+      # The settings for the delivery receipt events.
       class DeliveryReceiptsResponse < GetStream::BaseModel
 
         # Model attributes

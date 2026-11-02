@@ -35,7 +35,7 @@ module GetStream
         #   @return [String] ID of a poll to attach to activity
         attr_accessor :poll_id
         # @!attribute restrict_replies
-        #   @return [String] Controls who can add comments/replies to this activity. One of: everyone, people_i_follow, nobody
+        #   @return [RestrictReplies] Controls who can add comments/replies to this activity. One of: everyone, people_i_follow, nobody
         attr_accessor :restrict_replies
         # @!attribute skip_enrich_url
         #   @return [Boolean] Whether to skip URL enrichment for the activity
@@ -50,7 +50,7 @@ module GetStream
         #   @return [String] ID of the user creating the activity
         attr_accessor :user_id
         # @!attribute visibility
-        #   @return [String] Visibility setting for the activity. One of: public, private, tag
+        #   @return [ActivityVisibility] Visibility setting for the activity. One of: public, private, tag
         attr_accessor :visibility
         # @!attribute visibility_tag
         #   @return [String] If visibility is 'tag', this is the tag name and is required

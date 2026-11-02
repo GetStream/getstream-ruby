@@ -10,7 +10,7 @@ module GetStream
 
         # Model attributes
         # @!attribute mode
-        #   @return [String] Recording mode. One of: available, disabled, auto-on
+        #   @return [FeatureActivationMode] Recording mode. One of: available, disabled, auto-on
         attr_accessor :mode
         # @!attribute output_types
         #   @return [Array<String>] Output types to include: audio_only, video_only, audio_video, screenshare_audio_only, screenshare_video_only, screenshare_audio_video

@@ -27,6 +27,9 @@ module GetStream
         # @!attribute details
         #   @return [Array<Integer>] Additional error-specific information
         attr_accessor :details
+        # @!attribute cooldown_remaining_ms
+        #   @return [Integer] Milliseconds until the user's slow mode cool down period ends. Only set on code 60 (cool down) errors
+        attr_accessor :cooldown_remaining_ms
         # @!attribute unrecoverable
         #   @return [Boolean] Flag that indicates if the error is unrecoverable, requests that return unrecoverable errors should not be retried, this error only applies to the request that caused it
         attr_accessor :unrecoverable
@@ -43,6 +46,7 @@ module GetStream
           @more_info = attributes[:more_info] || attributes['more_info']
           @status_code = attributes[:status_code] || attributes['StatusCode']
           @details = attributes[:details] || attributes['details']
+          @cooldown_remaining_ms = attributes[:cooldown_remaining_ms] || attributes['cooldown_remaining_ms'] || nil
           @unrecoverable = attributes[:unrecoverable] || attributes['unrecoverable'] || nil
           @exception_fields = attributes[:exception_fields] || attributes['exception_fields'] || nil
         end
@@ -56,6 +60,7 @@ module GetStream
             more_info: 'more_info',
             status_code: 'StatusCode',
             details: 'details',
+            cooldown_remaining_ms: 'cooldown_remaining_ms',
             unrecoverable: 'unrecoverable',
             exception_fields: 'exception_fields'
           }

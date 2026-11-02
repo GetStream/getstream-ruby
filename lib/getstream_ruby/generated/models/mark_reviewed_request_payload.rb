@@ -18,6 +18,9 @@ module GetStream
         # @!attribute disable_marking_content_as_reviewed
         #   @return [Boolean] Skip marking content as reviewed
         attr_accessor :disable_marking_content_as_reviewed
+        # @!attribute reason
+        #   @return [String] Internal moderator note, stored on the action log and returned by QueryModerationLogs. Not shown to the appealing user; use decision_reason for that
+        attr_accessor :reason
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -25,6 +28,7 @@ module GetStream
           @content_to_mark_as_reviewed_limit = attributes[:content_to_mark_as_reviewed_limit] || attributes['content_to_mark_as_reviewed_limit'] || nil
           @decision_reason = attributes[:decision_reason] || attributes['decision_reason'] || nil
           @disable_marking_content_as_reviewed = attributes[:disable_marking_content_as_reviewed] || attributes['disable_marking_content_as_reviewed'] || nil
+          @reason = attributes[:reason] || attributes['reason'] || nil
         end
 
         # Override field mappings for JSON serialization
@@ -32,7 +36,8 @@ module GetStream
           {
             content_to_mark_as_reviewed_limit: 'content_to_mark_as_reviewed_limit',
             decision_reason: 'decision_reason',
-            disable_marking_content_as_reviewed: 'disable_marking_content_as_reviewed'
+            disable_marking_content_as_reviewed: 'disable_marking_content_as_reviewed',
+            reason: 'reason'
           }
         end
       end

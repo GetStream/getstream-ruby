@@ -27,12 +27,19 @@ module GetStream
         # @!attribute content_published_at
         #   @return [DateTime] Original timestamp when the content was produced (for correlating flagged content with source video timeline)
         attr_accessor :content_published_at
+        # @!attribute country_code
+        # @deprecated This field is deprecated.
+        #   @return [String] ISO 3166-1 alpha-2 country the content is aimed at (e.g. US, DE). Ignored when country_codes is set, but an invalid value is still rejected with 400.
+        attr_accessor :country_code
         # @!attribute test_mode
         #   @return [Boolean] Whether to run moderation in test mode
         attr_accessor :test_mode
         # @!attribute user_id
         #   @return [String]
         attr_accessor :user_id
+        # @!attribute country_codes
+        #   @return [Array<String>] ISO 3166-1 alpha-2 countries the content is aimed at (e.g. US, DE), up to 300. The first is the primary country, which AI text providers receive as country context. Takes precedence over country_code.
+        attr_accessor :country_codes
         # @!attribute config
         #   @return [ModerationConfig]
         attr_accessor :config
@@ -55,8 +62,10 @@ module GetStream
           @config_key = attributes[:config_key] || attributes['config_key'] || nil
           @config_team = attributes[:config_team] || attributes['config_team'] || nil
           @content_published_at = attributes[:content_published_at] || attributes['content_published_at'] || nil
+          @country_code = attributes[:country_code] || attributes['country_code'] || nil
           @test_mode = attributes[:test_mode] || attributes['test_mode'] || nil
           @user_id = attributes[:user_id] || attributes['user_id'] || nil
+          @country_codes = attributes[:country_codes] || attributes['country_codes'] || nil
           @config = attributes[:config] || attributes['config'] || nil
           @moderation_payload = attributes[:moderation_payload] || attributes['moderation_payload'] || nil
           @options = attributes[:options] || attributes['options'] || nil
@@ -72,8 +81,10 @@ module GetStream
             config_key: 'config_key',
             config_team: 'config_team',
             content_published_at: 'content_published_at',
+            country_code: 'country_code',
             test_mode: 'test_mode',
             user_id: 'user_id',
+            country_codes: 'country_codes',
             config: 'config',
             moderation_payload: 'moderation_payload',
             options: 'options',

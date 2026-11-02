@@ -5,7 +5,7 @@
 module GetStream
   module Generated
     module Models
-      # 
+      # A type representing the app settings.
       class AppResponseFields < GetStream::BaseModel
 
         # Model attributes
@@ -13,11 +13,14 @@ module GetStream
         #   @return [Boolean]
         attr_accessor :allow_multi_user_devices
         # @!attribute async_url_enrich_enabled
-        #   @return [Boolean]
+        #   @return [Boolean] A boolean value determining if async url enrichment is enabled.
         attr_accessor :async_url_enrich_enabled
         # @!attribute auto_translation_enabled
-        #   @return [Boolean]
+        #   @return [Boolean] A boolean value determining if auto translation is enabled.
         attr_accessor :auto_translation_enabled
+        # @!attribute before_message_send_hook_system_messages
+        #   @return [Boolean]
+        attr_accessor :before_message_send_hook_system_messages
         # @!attribute campaign_enabled
         #   @return [Boolean]
         attr_accessor :campaign_enabled
@@ -85,7 +88,7 @@ module GetStream
         #   @return [Boolean]
         attr_accessor :multi_tenant_enabled
         # @!attribute name
-        #   @return [String]
+        #   @return [String] The name of the app.
         attr_accessor :name
         # @!attribute organization
         #   @return [String]
@@ -123,6 +126,9 @@ module GetStream
         # @!attribute suspended_explanation
         #   @return [String]
         attr_accessor :suspended_explanation
+        # @!attribute two_way_block_effect_enabled
+        #   @return [Boolean]
+        attr_accessor :two_way_block_effect_enabled
         # @!attribute use_hook_v2
         #   @return [Boolean]
         attr_accessor :use_hook_v2
@@ -147,6 +153,9 @@ module GetStream
         # @!attribute channel_configs
         #   @return [Hash<String, ChannelConfig>]
         attr_accessor :channel_configs
+        # @!attribute defaults
+        #   @return [AppDefaults] Request limit defaults applied by the server when the corresponding field is omitted.
+        attr_accessor :defaults
         # @!attribute file_upload_config
         #   @return [FileUploadConfig]
         attr_accessor :file_upload_config
@@ -208,6 +217,7 @@ module GetStream
           @allow_multi_user_devices = attributes[:allow_multi_user_devices] || attributes['allow_multi_user_devices']
           @async_url_enrich_enabled = attributes[:async_url_enrich_enabled] || attributes['async_url_enrich_enabled']
           @auto_translation_enabled = attributes[:auto_translation_enabled] || attributes['auto_translation_enabled']
+          @before_message_send_hook_system_messages = attributes[:before_message_send_hook_system_messages] || attributes['before_message_send_hook_system_messages']
           @campaign_enabled = attributes[:campaign_enabled] || attributes['campaign_enabled']
           @cdn_expiration_seconds = attributes[:cdn_expiration_seconds] || attributes['cdn_expiration_seconds']
           @custom_action_handler_url = attributes[:custom_action_handler_url] || attributes['custom_action_handler_url']
@@ -243,6 +253,7 @@ module GetStream
           @sqs_url = attributes[:sqs_url] || attributes['sqs_url']
           @suspended = attributes[:suspended] || attributes['suspended']
           @suspended_explanation = attributes[:suspended_explanation] || attributes['suspended_explanation']
+          @two_way_block_effect_enabled = attributes[:two_way_block_effect_enabled] || attributes['two_way_block_effect_enabled']
           @use_hook_v2 = attributes[:use_hook_v2] || attributes['use_hook_v2']
           @user_response_time_enabled = attributes[:user_response_time_enabled] || attributes['user_response_time_enabled']
           @webhook_url = attributes[:webhook_url] || attributes['webhook_url']
@@ -251,6 +262,7 @@ module GetStream
           @webhook_events = attributes[:webhook_events] || attributes['webhook_events']
           @call_types = attributes[:call_types] || attributes['call_types']
           @channel_configs = attributes[:channel_configs] || attributes['channel_configs']
+          @defaults = attributes[:defaults] || attributes['defaults']
           @file_upload_config = attributes[:file_upload_config] || attributes['file_upload_config']
           @grants = attributes[:grants] || attributes['grants']
           @image_upload_config = attributes[:image_upload_config] || attributes['image_upload_config']
@@ -277,6 +289,7 @@ module GetStream
             allow_multi_user_devices: 'allow_multi_user_devices',
             async_url_enrich_enabled: 'async_url_enrich_enabled',
             auto_translation_enabled: 'auto_translation_enabled',
+            before_message_send_hook_system_messages: 'before_message_send_hook_system_messages',
             campaign_enabled: 'campaign_enabled',
             cdn_expiration_seconds: 'cdn_expiration_seconds',
             custom_action_handler_url: 'custom_action_handler_url',
@@ -312,6 +325,7 @@ module GetStream
             sqs_url: 'sqs_url',
             suspended: 'suspended',
             suspended_explanation: 'suspended_explanation',
+            two_way_block_effect_enabled: 'two_way_block_effect_enabled',
             use_hook_v2: 'use_hook_v2',
             user_response_time_enabled: 'user_response_time_enabled',
             webhook_url: 'webhook_url',
@@ -320,6 +334,7 @@ module GetStream
             webhook_events: 'webhook_events',
             call_types: 'call_types',
             channel_configs: 'channel_configs',
+            defaults: 'defaults',
             file_upload_config: 'file_upload_config',
             grants: 'grants',
             image_upload_config: 'image_upload_config',

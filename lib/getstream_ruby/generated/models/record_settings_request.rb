@@ -10,7 +10,7 @@ module GetStream
 
         # Model attributes
         # @!attribute mode
-        #   @return [String] Recording mode. One of: available, disabled, auto-on
+        #   @return [FeatureActivationMode] Recording mode. One of: available, disabled, auto-on
         attr_accessor :mode
         # @!attribute audio_only
         #   @return [Boolean] Whether to record audio only

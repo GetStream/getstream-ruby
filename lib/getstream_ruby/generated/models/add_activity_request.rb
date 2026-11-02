@@ -44,11 +44,14 @@ module GetStream
         #   @return [String] ID of a poll to attach to activity
         attr_accessor :poll_id
         # @!attribute restrict_replies
-        #   @return [String] Controls who can add comments/replies to this activity. One of: everyone, people_i_follow, nobody
+        #   @return [RestrictReplies] Controls who can add comments/replies to this activity. One of: everyone, people_i_follow, nobody
         attr_accessor :restrict_replies
         # @!attribute skip_enrich_url
         #   @return [Boolean] Whether to skip URL enrichment for the activity
         attr_accessor :skip_enrich_url
+        # @!attribute skip_existing
+        #   @return [Boolean]
+        attr_accessor :skip_existing
         # @!attribute skip_push
         #   @return [Boolean] Whether to skip push notifications
         attr_accessor :skip_push
@@ -59,7 +62,7 @@ module GetStream
         #   @return [String] ID of the user creating the activity
         attr_accessor :user_id
         # @!attribute visibility
-        #   @return [String] Visibility setting for the activity. One of: public, private, tag
+        #   @return [ActivityVisibility] Visibility setting for the activity. One of: public, private, tag
         attr_accessor :visibility
         # @!attribute visibility_tag
         #   @return [String] If visibility is 'tag', this is the tag name and is required
@@ -108,6 +111,7 @@ module GetStream
           @poll_id = attributes[:poll_id] || attributes['poll_id'] || nil
           @restrict_replies = attributes[:restrict_replies] || attributes['restrict_replies'] || nil
           @skip_enrich_url = attributes[:skip_enrich_url] || attributes['skip_enrich_url'] || nil
+          @skip_existing = attributes[:skip_existing] || attributes['skip_existing'] || nil
           @skip_push = attributes[:skip_push] || attributes['skip_push'] || nil
           @text = attributes[:text] || attributes['text'] || nil
           @user_id = attributes[:user_id] || attributes['user_id'] || nil
@@ -140,6 +144,7 @@ module GetStream
             poll_id: 'poll_id',
             restrict_replies: 'restrict_replies',
             skip_enrich_url: 'skip_enrich_url',
+            skip_existing: 'skip_existing',
             skip_push: 'skip_push',
             text: 'text',
             user_id: 'user_id',

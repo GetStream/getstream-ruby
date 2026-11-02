@@ -15,19 +15,24 @@ module GetStream
         # @!attribute members_ids
         #   @return [Array<String>] List of members ringing notification was sent to
         attr_accessor :members_ids
+        # @!attribute ring_id
+        #   @return [String] The ring this call created, for correlating the accept, reject and missed outcomes that follow
+        attr_accessor :ring_id
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @duration = attributes[:duration] || attributes['duration']
           @members_ids = attributes[:members_ids] || attributes['members_ids']
+          @ring_id = attributes[:ring_id] || attributes['ring_id'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
             duration: 'duration',
-            members_ids: 'members_ids'
+            members_ids: 'members_ids',
+            ring_id: 'ring_id'
           }
         end
       end

@@ -15,11 +15,14 @@ module GetStream
         # @!attribute include_expired_activities
         #   @return [Boolean] When true, include both expired and non-expired activities in the result.
         attr_accessor :include_expired_activities
+        # @!attribute include_moderated_activities
+        #   @return [Boolean] When true, include activities hidden by moderation (shadowed or removed). Server-side only; not allowed when a user is set.
+        attr_accessor :include_moderated_activities
         # @!attribute include_private_activities
         #   @return [Boolean]
         attr_accessor :include_private_activities
         # @!attribute include_soft_deleted_activities
-        #   @return [Boolean] When true, include soft-deleted activities in the result.
+        #   @return [Boolean] When true, include soft-deleted activities in the result. Server-side only; not allowed when a user is set.
         attr_accessor :include_soft_deleted_activities
         # @!attribute limit
         #   @return [Integer]
@@ -48,6 +51,7 @@ module GetStream
           super(attributes)
           @enrich_own_fields = attributes[:enrich_own_fields] || attributes['enrich_own_fields'] || nil
           @include_expired_activities = attributes[:include_expired_activities] || attributes['include_expired_activities'] || nil
+          @include_moderated_activities = attributes[:include_moderated_activities] || attributes['include_moderated_activities'] || nil
           @include_private_activities = attributes[:include_private_activities] || attributes['include_private_activities'] || nil
           @include_soft_deleted_activities = attributes[:include_soft_deleted_activities] || attributes['include_soft_deleted_activities'] || nil
           @limit = attributes[:limit] || attributes['limit'] || nil
@@ -64,6 +68,7 @@ module GetStream
           {
             enrich_own_fields: 'enrich_own_fields',
             include_expired_activities: 'include_expired_activities',
+            include_moderated_activities: 'include_moderated_activities',
             include_private_activities: 'include_private_activities',
             include_soft_deleted_activities: 'include_soft_deleted_activities',
             limit: 'limit',

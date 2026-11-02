@@ -52,7 +52,7 @@ module GetStream
         #   @return [DateTime]
         attr_accessor :deleted_at
         # @!attribute visibility
-        #   @return [String]
+        #   @return [FeedVisibility] Who can see and follow a feed.
         attr_accessor :visibility
         # @!attribute filter_tags
         #   @return [Array<String>]

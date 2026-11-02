@@ -5,7 +5,7 @@
 module GetStream
   module Generated
     module Models
-      # Client request
+      # 
       class GetOrCreateFeedRequest < GetStream::BaseModel
 
         # Model attributes
@@ -33,6 +33,9 @@ module GetStream
         # @!attribute watch
         #   @return [Boolean]
         attr_accessor :watch
+        # @!attribute discard_actors
+        #   @return [Array<String>] Feature-gated; not available for all apps. Request-scoped list of actor/user IDs whose activities are filtered from this GetOrCreateFeed response only. Merged (union) into the viewing user's in-memory blocked authors for this request; never persisted to blocked_users. Max: 1000.
+        attr_accessor :discard_actors
         # @!attribute data
         #   @return [FeedInput]
         attr_accessor :data
@@ -63,6 +66,9 @@ module GetStream
         # @!attribute user
         #   @return [UserRequest] User request object
         attr_accessor :user
+        # @!attribute viewer_location
+        #   @return [Location]
+        attr_accessor :viewer_location
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -75,6 +81,7 @@ module GetStream
           @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @view = attributes[:view] || attributes['view'] || nil
           @watch = attributes[:watch] || attributes['watch'] || nil
+          @discard_actors = attributes[:discard_actors] || attributes['discard_actors'] || nil
           @data = attributes[:data] || attributes['data'] || nil
           @enrichment_options = attributes[:enrichment_options] || attributes['enrichment_options'] || nil
           @external_ranking = attributes[:external_ranking] || attributes['external_ranking'] || nil
@@ -85,6 +92,7 @@ module GetStream
           @interest_weights = attributes[:interest_weights] || attributes['interest_weights'] || nil
           @member_pagination = attributes[:member_pagination] || attributes['member_pagination'] || nil
           @user = attributes[:user] || attributes['user'] || nil
+          @viewer_location = attributes[:viewer_location] || attributes['viewer_location'] || nil
         end
 
         # Override field mappings for JSON serialization
@@ -98,6 +106,7 @@ module GetStream
             user_id: 'user_id',
             view: 'view',
             watch: 'watch',
+            discard_actors: 'discard_actors',
             data: 'data',
             enrichment_options: 'enrichment_options',
             external_ranking: 'external_ranking',
@@ -107,7 +116,8 @@ module GetStream
             friend_reactions_options: 'friend_reactions_options',
             interest_weights: 'interest_weights',
             member_pagination: 'member_pagination',
-            user: 'user'
+            user: 'user',
+            viewer_location: 'viewer_location'
           }
         end
       end

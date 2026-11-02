@@ -15,6 +15,9 @@ module GetStream
         # @!attribute id_around
         #   @return [String] Returns the comment with the specified ID along with surrounding comments for context
         attr_accessor :id_around
+        # @!attribute include_soft_deleted_comments
+        #   @return [Boolean] When true, include soft-deleted comments in the result. Server-side only, and requires an object_id filter. Covers comments removed via deleteComment and via soft user-data deletion. Moderation-actioned comments (removed, hidden, shadow_blocked) remain excluded, as are comments whose parent activity is itself deleted.
+        attr_accessor :include_soft_deleted_comments
         # @!attribute limit
         #   @return [Integer] Maximum number of comments to return
         attr_accessor :limit
@@ -39,6 +42,7 @@ module GetStream
           super(attributes)
           @filter = attributes[:filter] || attributes['filter']
           @id_around = attributes[:id_around] || attributes['id_around'] || nil
+          @include_soft_deleted_comments = attributes[:include_soft_deleted_comments] || attributes['include_soft_deleted_comments'] || nil
           @limit = attributes[:limit] || attributes['limit'] || nil
           @next = attributes[:next] || attributes['next'] || nil
           @prev = attributes[:prev] || attributes['prev'] || nil
@@ -52,6 +56,7 @@ module GetStream
           {
             filter: 'filter',
             id_around: 'id_around',
+            include_soft_deleted_comments: 'include_soft_deleted_comments',
             limit: 'limit',
             next: 'next',
             prev: 'prev',

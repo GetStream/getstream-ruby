@@ -27,6 +27,9 @@ module GetStream
         # @!attribute remove_disable
         #   @return [Boolean] Remove the disabled until time. (IE stop snoozing notifications)
         attr_accessor :remove_disable
+        # @!attribute remove_schedule
+        #   @return [Boolean] Remove the user's quiet-hours schedule, the counterpart of remove_disable. It is applied before schedule, so sending both in one item replaces the stored schedule instead of merging into it. Cannot be combined with channel_cid. To switch from a schedule to a snooze, send remove_schedule together with disabled_until.
+        attr_accessor :remove_schedule
         # @!attribute user_id
         #   @return [String] The user id for which to set the push preferences. Required when using server side auths, defaults to current user with client side auth.
         attr_accessor :user_id
@@ -36,6 +39,9 @@ module GetStream
         # @!attribute feeds_preferences
         #   @return [FeedsPreferences]
         attr_accessor :feeds_preferences
+        # @!attribute schedule
+        #   @return [PushScheduleInput] A recurring quiet-hours schedule: while any quiet window is active, push notifications for the user are suppressed. Suppressed notifications are dropped, not delayed.
+        attr_accessor :schedule
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -46,9 +52,11 @@ module GetStream
           @disabled_until = attributes[:disabled_until] || attributes['disabled_until'] || nil
           @feeds_level = attributes[:feeds_level] || attributes['feeds_level'] || nil
           @remove_disable = attributes[:remove_disable] || attributes['remove_disable'] || nil
+          @remove_schedule = attributes[:remove_schedule] || attributes['remove_schedule'] || nil
           @user_id = attributes[:user_id] || attributes['user_id'] || nil
           @chat_preferences = attributes[:chat_preferences] || attributes['chat_preferences'] || nil
           @feeds_preferences = attributes[:feeds_preferences] || attributes['feeds_preferences'] || nil
+          @schedule = attributes[:schedule] || attributes['schedule'] || nil
         end
 
         # Override field mappings for JSON serialization
@@ -60,9 +68,11 @@ module GetStream
             disabled_until: 'disabled_until',
             feeds_level: 'feeds_level',
             remove_disable: 'remove_disable',
+            remove_schedule: 'remove_schedule',
             user_id: 'user_id',
             chat_preferences: 'chat_preferences',
-            feeds_preferences: 'feeds_preferences'
+            feeds_preferences: 'feeds_preferences',
+            schedule: 'schedule'
           }
         end
       end

@@ -15,6 +15,9 @@ module GetStream
         # @!attribute enabled
         #   @return [Boolean]
         attr_accessor :enabled
+        # @!attribute explicit_urls_only
+        #   @return [Boolean]
+        attr_accessor :explicit_urls_only
         # @!attribute match_substring
         #   @return [Boolean]
         attr_accessor :match_substring
@@ -27,6 +30,7 @@ module GetStream
           super(attributes)
           @async = attributes[:async] || attributes['async'] || nil
           @enabled = attributes[:enabled] || attributes['enabled'] || nil
+          @explicit_urls_only = attributes[:explicit_urls_only] || attributes['explicit_urls_only'] || nil
           @match_substring = attributes[:match_substring] || attributes['match_substring'] || nil
           @rules = attributes[:rules] || attributes['rules'] || nil
         end
@@ -36,6 +40,7 @@ module GetStream
           {
             async: 'async',
             enabled: 'enabled',
+            explicit_urls_only: 'explicit_urls_only',
             match_substring: 'match_substring',
             rules: 'rules'
           }

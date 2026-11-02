@@ -391,6 +391,23 @@ module GetStream
         )
       end
 
+      # List moderation feedback submissions that have an item matching the filter, with those items, sorting and pagination. Server-side only.
+      #
+      # @param query_moderation_feedback_request [QueryModerationFeedbackRequest]
+      # @return [Models::QueryModerationFeedbackResponse]
+      def query_moderation_feedback(query_moderation_feedback_request)
+        path = '/api/v2/moderation/feedback_items'
+        # Build request body
+        body = query_moderation_feedback_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
       # Delete a specific moderation template by its name
       #
       # @return [Models::DeleteModerationTemplateResponse]
@@ -814,6 +831,23 @@ module GetStream
         )
       end
 
+      # Authorize revealing a review queue item's blurred media. CSAM can only be revealed by users with the RevealProtectedMedia permission. Reveals of blurred CSAM or gore are recorded in the moderation action logs.
+      #
+      # @param reveal_media_request [RevealMediaRequest]
+      # @return [Models::RevealMediaResponse]
+      def reveal_media(reveal_media_request)
+        path = '/api/v2/moderation/reveal_media'
+        # Build request body
+        body = reveal_media_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
       # Query review queue items allows you to filter the review queue items. This is used for building a moderation dashboard.
       #
       # @param query_review_queue_request [QueryReviewQueueRequest]
@@ -894,7 +928,7 @@ module GetStream
         )
       end
 
-      # Forward a moderator-supplied correction to the moderation feedback pipeline. Server-side only.
+      # Forward a moderator-supplied correction to the moderation feedback pipeline, optionally marking the referenced flags as false positives. Server-side only.
       #
       # @param submit_moderation_feedback_request [SubmitModerationFeedbackRequest]
       # @return [Models::SubmitModerationFeedbackResponse]

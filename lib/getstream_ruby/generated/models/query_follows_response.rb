@@ -21,6 +21,9 @@ module GetStream
         # @!attribute prev
         #   @return [String] Cursor for previous page
         attr_accessor :prev
+        # @!attribute group_counts
+        #   @return [Hash<String, Integer>] Accepted following counts keyed by followed feed group. Present only when include_group_counts is set with a source_feed equality.
+        attr_accessor :group_counts
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -29,6 +32,7 @@ module GetStream
           @follows = attributes[:follows] || attributes['follows']
           @next = attributes[:next] || attributes['next'] || nil
           @prev = attributes[:prev] || attributes['prev'] || nil
+          @group_counts = attributes[:group_counts] || attributes['group_counts'] || nil
         end
 
         # Override field mappings for JSON serialization
@@ -37,7 +41,8 @@ module GetStream
             duration: 'duration',
             follows: 'follows',
             next: 'next',
-            prev: 'prev'
+            prev: 'prev',
+            group_counts: 'group_counts'
           }
         end
       end

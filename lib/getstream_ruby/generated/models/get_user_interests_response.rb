@@ -5,7 +5,7 @@
 module GetStream
   module Generated
     module Models
-      # User's computed interest tags ordered by descending count, then ascending tag name
+      # User's interest tags ordered by descending weight, then manually set tags before computed ones, then descending count, then ascending tag name
       class GetUserInterestsResponse < GetStream::BaseModel
 
         # Model attributes
@@ -13,7 +13,7 @@ module GetStream
         #   @return [String]
         attr_accessor :duration
         # @!attribute interests
-        #   @return [Array<InterestTagResponse>] Top-N interest tags sorted by descending count, then alphabetically by tag
+        #   @return [Array<InterestTagResponse>] Interest tags sorted by descending weight, then manually set tags before computed ones, then descending count, then alphabetically by tag
         attr_accessor :interests
 
         # Initialize with attributes

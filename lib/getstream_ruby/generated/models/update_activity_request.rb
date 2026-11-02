@@ -29,7 +29,7 @@ module GetStream
         #   @return [String] Poll ID
         attr_accessor :poll_id
         # @!attribute restrict_replies
-        #   @return [String] Controls who can add comments/replies to this activity. One of: everyone, people_i_follow, nobody
+        #   @return [RestrictReplies] Controls who can add comments/replies to this activity. One of: everyone, people_i_follow, nobody
         attr_accessor :restrict_replies
         # @!attribute run_activity_processors
         #   @return [Boolean] If true, runs activity processors on the updated activity. Processors will only run if the activity text and/or attachments are changed. Defaults to false.
@@ -44,7 +44,7 @@ module GetStream
         #   @return [String]
         attr_accessor :user_id
         # @!attribute visibility
-        #   @return [String] Visibility setting for the activity
+        #   @return [ActivityVisibility] Visibility setting for the activity
         attr_accessor :visibility
         # @!attribute visibility_tag
         #   @return [String] If visibility is 'tag', this is the tag name and is required

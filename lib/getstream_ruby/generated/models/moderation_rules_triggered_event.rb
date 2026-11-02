@@ -33,18 +33,51 @@ module GetStream
         # @!attribute type
         #   @return [String]
         attr_accessor :type
+        # @!attribute app_id
+        #   @return [Integer] Application ID the rule belongs to.
+        attr_accessor :app_id
+        # @!attribute category
+        #   @return [String] The `category` sent on the labels request. Omitted when the event was not produced by the labels API.
+        attr_accessor :category
+        # @!attribute channel_cid
+        #   @return [String] CID of the channel the moderated content belongs to. Omitted when the content has no channel.
+        attr_accessor :channel_cid
         # @!attribute received_at
         #   @return [DateTime]
         attr_accessor :received_at
         # @!attribute review_queue_item_id
         #   @return [String] The review queue item ID if applicable
         attr_accessor :review_queue_item_id
+        # @!attribute severity
+        #   @return [String] Highest severity (`LOW` / `MEDIUM` / `HIGH` / `CRITICAL`) among the moderation results that carried a matched label. Omitted when no label matched or the provider reports no severity.
+        attr_accessor :severity
+        # @!attribute threshold
+        #   @return [Integer] Configured count that fires the condition. This is the number stored on the rule, not the live counter.
+        attr_accessor :threshold
+        # @!attribute time_window
+        #   @return [String] Configured window of the condition that fired, for example 10m.
+        attr_accessor :time_window
         # @!attribute violation_number
         #   @return [Integer] The violation number for call rules (optional)
         attr_accessor :violation_number
         # @!attribute matched_contents
         #   @return [Array<MatchedContent>] Ordered list of contents whose verdicts contributed to an aggregation rule's threshold. Populated only for aggregation rules when callers supplied `content_ids`.
         attr_accessor :matched_contents
+        # @!attribute matched_labels
+        #   @return [Array<String>] Harm labels on the moderated content that the rule's text label conditions (`text_content`, `text_rule`) matched. Omitted when the rule has no such condition.
+        attr_accessor :matched_labels
+        # @!attribute matched_user_ids
+        #   @return [Array<String>] Cross-user webhook_only flood rules only: the distinct users who sent the content since the previous webhook for this rule. Omitted on other events.
+        attr_accessor :matched_user_ids
+        # @!attribute scope
+        #   @return [Array<String>] The rule's config_keys. Omitted when the rule is application-wide.
+        attr_accessor :scope
+        # @!attribute app_count
+        #   @return [AppCountInfo]
+        attr_accessor :app_count
+        # @!attribute intent
+        #   @return [IntentEvaluationInfo]
+        attr_accessor :intent
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -57,10 +90,21 @@ module GetStream
           @custom = attributes[:custom] || attributes['custom']
           @rule = attributes[:rule] || attributes['rule']
           @type = attributes[:type] || attributes['type'] || "moderation_rule.triggered"
+          @app_id = attributes[:app_id] || attributes['app_id'] || nil
+          @category = attributes[:category] || attributes['category'] || nil
+          @channel_cid = attributes[:channel_cid] || attributes['channel_cid'] || nil
           @received_at = attributes[:received_at] || attributes['received_at'] || nil
           @review_queue_item_id = attributes[:review_queue_item_id] || attributes['review_queue_item_id'] || nil
+          @severity = attributes[:severity] || attributes['severity'] || nil
+          @threshold = attributes[:threshold] || attributes['threshold'] || nil
+          @time_window = attributes[:time_window] || attributes['time_window'] || nil
           @violation_number = attributes[:violation_number] || attributes['violation_number'] || nil
           @matched_contents = attributes[:matched_contents] || attributes['matched_contents'] || nil
+          @matched_labels = attributes[:matched_labels] || attributes['matched_labels'] || nil
+          @matched_user_ids = attributes[:matched_user_ids] || attributes['matched_user_ids'] || nil
+          @scope = attributes[:scope] || attributes['scope'] || nil
+          @app_count = attributes[:app_count] || attributes['app_count'] || nil
+          @intent = attributes[:intent] || attributes['intent'] || nil
         end
 
         # Override field mappings for JSON serialization
@@ -74,10 +118,21 @@ module GetStream
             custom: 'custom',
             rule: 'rule',
             type: 'type',
+            app_id: 'app_id',
+            category: 'category',
+            channel_cid: 'channel_cid',
             received_at: 'received_at',
             review_queue_item_id: 'review_queue_item_id',
+            severity: 'severity',
+            threshold: 'threshold',
+            time_window: 'time_window',
             violation_number: 'violation_number',
-            matched_contents: 'matched_contents'
+            matched_contents: 'matched_contents',
+            matched_labels: 'matched_labels',
+            matched_user_ids: 'matched_user_ids',
+            scope: 'scope',
+            app_count: 'app_count',
+            intent: 'intent'
           }
         end
       end

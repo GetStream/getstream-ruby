@@ -10,7 +10,7 @@ module GetStream
 
         # Model attributes
         # @!attribute delete_messages
-        #   @return [String]
+        #   @return [DeleteMessages] How a ban or user deletion treats the user's messages.
         attr_accessor :delete_messages
         # @!attribute duration
         #   @return [Integer]

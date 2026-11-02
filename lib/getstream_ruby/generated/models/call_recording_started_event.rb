@@ -19,7 +19,7 @@ module GetStream
         #   @return [String]
         attr_accessor :egress_id
         # @!attribute recording_type
-        #   @return [String] The type of recording
+        #   @return [RecordingType] The type of recording
         attr_accessor :recording_type
         # @!attribute type
         #   @return [String] The type of event: "call.recording_started" in this case

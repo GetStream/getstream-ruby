@@ -106,7 +106,7 @@ module GetStream
         #   @return [Integer]
         attr_accessor :reminders_max_per_user
         # @!attribute revoke_tokens_issued_before
-        #   @return [DateTime]
+        #   @return [DateTime] Revokes tokens issued before this date
         attr_accessor :revoke_tokens_issued_before
         # @!attribute sns_key
         #   @return [String]
@@ -126,6 +126,9 @@ module GetStream
         # @!attribute sqs_url
         #   @return [String]
         attr_accessor :sqs_url
+        # @!attribute two_way_block_effect_enabled
+        #   @return [Boolean]
+        attr_accessor :two_way_block_effect_enabled
         # @!attribute user_response_time_enabled
         #   @return [Boolean]
         attr_accessor :user_response_time_enabled
@@ -232,6 +235,7 @@ module GetStream
           @sqs_key = attributes[:sqs_key] || attributes['sqs_key'] || nil
           @sqs_secret = attributes[:sqs_secret] || attributes['sqs_secret'] || nil
           @sqs_url = attributes[:sqs_url] || attributes['sqs_url'] || nil
+          @two_way_block_effect_enabled = attributes[:two_way_block_effect_enabled] || attributes['two_way_block_effect_enabled'] || nil
           @user_response_time_enabled = attributes[:user_response_time_enabled] || attributes['user_response_time_enabled'] || nil
           @video_primary_use_case = attributes[:video_primary_use_case] || attributes['video_primary_use_case'] || nil
           @webhook_url = attributes[:webhook_url] || attributes['webhook_url'] || nil
@@ -297,6 +301,7 @@ module GetStream
             sqs_key: 'sqs_key',
             sqs_secret: 'sqs_secret',
             sqs_url: 'sqs_url',
+            two_way_block_effect_enabled: 'two_way_block_effect_enabled',
             user_response_time_enabled: 'user_response_time_enabled',
             video_primary_use_case: 'video_primary_use_case',
             webhook_url: 'webhook_url',

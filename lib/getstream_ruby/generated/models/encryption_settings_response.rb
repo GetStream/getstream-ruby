@@ -10,7 +10,7 @@ module GetStream
 
         # Model attributes
         # @!attribute mode
-        #   @return [String] the resolved encryption mode for the call
+        #   @return [FeatureActivationMode] the resolved encryption mode for the call
         attr_accessor :mode
 
         # Initialize with attributes

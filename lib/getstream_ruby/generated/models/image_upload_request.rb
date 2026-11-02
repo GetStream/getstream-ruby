@@ -7,6 +7,7 @@ module GetStream
     module Models
       # 
       class ImageUploadRequest < GetStream::BaseModel
+        include GetStream::MultipartRequest
 
         # Model attributes
         # @!attribute file

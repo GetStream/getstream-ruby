@@ -10,7 +10,7 @@ module GetStream
 
         # Model attributes
         # @!attribute mode
-        #   @return [String] Encryption mode. One of: available, disabled, auto-on
+        #   @return [FeatureActivationMode] Encryption mode. One of: available, disabled, auto-on
         attr_accessor :mode
 
         # Initialize with attributes

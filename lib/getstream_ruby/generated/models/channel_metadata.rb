@@ -31,7 +31,7 @@ module GetStream
         #   @return [Integer]
         attr_accessor :message_count
         # @!attribute push_level
-        #   @return [String]
+        #   @return [PushLevel] How much a channel notifies its members.
         attr_accessor :push_level
         # @!attribute team
         #   @return [String]

@@ -91,7 +91,7 @@ module GetStream
       #
       # @param _id [String]
       # @param update_campaign_request [UpdateCampaignRequest]
-      # @return [Models::CampaignResponse]
+      # @return [Models::UpdateCampaignResponse]
       def update_campaign(_id, update_campaign_request)
         path = '/api/v2/chat/campaigns/{id}'
         # Replace path parameters
@@ -130,20 +130,16 @@ module GetStream
       # Stops a campaign
       #
       # @param _id [String]
-      # @param stop_campaign_request [StopCampaignRequest]
-      # @return [Models::CampaignResponse]
-      def stop_campaign(_id, stop_campaign_request)
+      # @return [Models::StopCampaignResponse]
+      def stop_campaign(_id)
         path = '/api/v2/chat/campaigns/{id}/stop'
         # Replace path parameters
         path = path.gsub('{id}', _id.to_s)
-        # Build request body
-        body = stop_campaign_request
 
         # Make the API request
         @client.make_request(
           :post,
-          path,
-          body: body
+          path
         )
       end
 
@@ -164,7 +160,7 @@ module GetStream
         )
       end
 
-      # Update channels in batchSends events:- channel.frozen- channel.hidden- channel.unfrozen- channel.updated- channel.visible- member.added- member.removed- member.updated
+      # Update channels in batch. By default returns task_id for an asynchronous task. With synchronous: true, updateData and hide accept at most 100 explicit CIDs (hide also at most 10 distinct members) and return success_channels_count of channels selected after the database write completes, without task_id. A synchronous hide where none of the member users exist hides nothing and omits success_channels_count. Always poll a returned task_id, including when an older node ignores synchronous.Sends events:- channel.frozen- channel.hidden- channel.unfrozen- channel.updated- channel.visible- member.added- member.removed- member.updated
       #
       # @param channel_batch_update_request [ChannelBatchUpdateRequest]
       # @return [Models::ChannelBatchUpdateResponse]
@@ -189,6 +185,23 @@ module GetStream
         path = '/api/v2/chat/channels/delete'
         # Build request body
         body = delete_channels_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
+      # Lists soft-deleted channels, ordered by created_at. Server-side only. Without a filter it lists every soft-deleted channel of the app; filter by team to scope it to one tenant. To permanently remove the returned channels, pass their cids to Delete channels (POST /channels/delete) with hard_delete set to true; the single-channel Delete channel endpoint does not accept soft-deleted channels.
+      #
+      # @param query_deleted_channels_request [QueryDeletedChannelsRequest]
+      # @return [Models::QueryDeletedChannelsResponse]
+      def query_deleted_channels(query_deleted_channels_request)
+        path = '/api/v2/chat/channels/deleted'
+        # Build request body
+        body = query_deleted_channels_request
 
         # Make the API request
         @client.make_request(
@@ -384,6 +397,28 @@ module GetStream
         )
       end
 
+      # Lists the users banned from a channel, by a ban on the channel or by a future channel ban issued by the channel's creator, with one entry per user
+      #
+      # @param _type [String]
+      # @param _id [String]
+      # @param query_channel_bans_request [QueryChannelBansRequest]
+      # @return [Models::QueryChannelBansResponse]
+      def query_channel_bans(_type, _id, query_channel_bans_request)
+        path = '/api/v2/chat/channels/{type}/{id}/bans/query'
+        # Replace path parameters
+        path = path.gsub('{type}', _type.to_s)
+        path = path.gsub('{id}', _id.to_s)
+        # Build request body
+        body = query_channel_bans_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
       # Deletes a draftSends events:- draft.deleted
       #
       # @param _type [String]
@@ -501,6 +536,50 @@ module GetStream
         )
       end
 
+      # Forks an agent channel at one of its messages: creates a new agent channel holding a copy of the messages a client sees up to it, itself included, with their replies up to it. The source channel is not changed. Reactions, pins, polls, read state, mutes, reminders, moderation flags and edit history are not copied. Fork only at a message the agent has finished writing. The request copies the newest 100 messages and their replies, so the fork is usable when it returns (fewer when the newest 1,000 messages are mostly deleted or hidden); older history is copied by a background task (`fork.status` is `backfilling`, `fork.task_id` names the task) and `channel.forked` is sent once every message is copied. A retry with the same channel ID and message returns the fork. Only available for the `agent` channel type.Sends events:- channel.created- channel.forked
+      #
+      # @param _type [String]
+      # @param _id [String]
+      # @param fork_channel_request [ForkChannelRequest]
+      # @return [Models::ForkChannelResponse]
+      def fork_channel(_type, _id, fork_channel_request)
+        path = '/api/v2/chat/channels/{type}/{id}/fork'
+        # Replace path parameters
+        path = path.gsub('{type}', _type.to_s)
+        path = path.gsub('{id}', _id.to_s)
+        # Build request body
+        body = fork_channel_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
+      # Maps messages of a fork's source channel to their copies in the fork. Call it on the fork. A source message the fork holds no copy of is left out of the map.
+      #
+      # @param _type [String]
+      # @param _id [String]
+      # @param fork_message_i_ds_request [ForkMessageIDsRequest]
+      # @return [Models::ForkMessageIDsResponse]
+      def fork_message_i_ds(_type, _id, fork_message_i_ds_request)
+        path = '/api/v2/chat/channels/{type}/{id}/fork/message_ids'
+        # Replace path parameters
+        path = path.gsub('{type}', _type.to_s)
+        path = path.gsub('{id}', _id.to_s)
+        # Build request body
+        body = fork_message_i_ds_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
       # Marks channel as hidden for current userSends events:- channel.hidden
       #
       # @param _type [String]
@@ -595,7 +674,7 @@ module GetStream
         )
       end
 
-      # Sends new message to the specified channelSends events:- channel.visible- message.new- message.updated
+      # Sends new message to the specified channelSends events:- channel.visible- message.new- message.updated- scheduled_message.created
       #
       # @param _type [String]
       # @param _id [String]
@@ -728,6 +807,28 @@ module GetStream
         path = path.gsub('{id}', _id.to_s)
         # Build request body
         body = mark_read_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
+      # Rewinds an agent channel to one of its messages: every message created after it, and the message itself when `inclusive` is set, is hidden from every read. The messages are kept and can still be exported. Only available for the `agent` channel type.Sends events:- channel.rewound
+      #
+      # @param _type [String]
+      # @param _id [String]
+      # @param rewind_channel_request [RewindChannelRequest]
+      # @return [Models::RewindChannelResponse]
+      def rewind_channel(_type, _id, rewind_channel_request)
+        path = '/api/v2/chat/channels/{type}/{id}/rewind'
+        # Replace path parameters
+        path = path.gsub('{type}', _type.to_s)
+        path = path.gsub('{id}', _id.to_s)
+        # Build request body
+        body = rewind_channel_request
 
         # Make the API request
         @client.make_request(
@@ -1001,6 +1102,53 @@ module GetStream
         )
       end
 
+      # Returns the app's default history window and the teams with full history. Only for apps with the history window enabled; other apps get 403. Server-side only.
+      #
+      # @return [Models::GetHistoryWindowTeamsResponse]
+      def get_history_window_teams()
+        path = '/api/v2/chat/history_window/teams'
+
+        # Make the API request
+        @client.make_request(
+          :get,
+          path
+        )
+      end
+
+      # Gives up to ten teams full history. Only for apps with the history window enabled; other apps get 403. Server-side only.
+      #
+      # @param set_history_window_teams_request [SetHistoryWindowTeamsRequest]
+      # @return [Models::SetHistoryWindowTeamsResponse]
+      def set_history_window_teams(set_history_window_teams_request)
+        path = '/api/v2/chat/history_window/teams'
+        # Build request body
+        body = set_history_window_teams_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
+      # Puts up to ten teams back on the app's default history window. Only for apps with the history window enabled; other apps get 403. Server-side only.
+      #
+      # @param delete_history_window_teams_request [DeleteHistoryWindowTeamsRequest]
+      # @return [Models::DeleteHistoryWindowTeamsResponse]
+      def delete_history_window_teams(delete_history_window_teams_request)
+        path = '/api/v2/chat/history_window/teams/delete'
+        # Build request body
+        body = delete_history_window_teams_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
       # Find and filter channel members
       #
       # @param payload [QueryMembersPayload]
@@ -1145,20 +1293,16 @@ module GetStream
       # Commits a pending message, which will make it visible in the channelSends events:- message.new- message.updated
       #
       # @param _id [String]
-      # @param commit_message_request [CommitMessageRequest]
       # @return [Models::MessageActionResponse]
-      def commit_message(_id, commit_message_request)
+      def commit_message(_id)
         path = '/api/v2/chat/messages/{id}/commit'
         # Replace path parameters
         path = path.gsub('{id}', _id.to_s)
-        # Build request body
-        body = commit_message_request
 
         # Make the API request
         @client.make_request(
           :post,
-          path,
-          body: body
+          path
         )
       end
 
@@ -1376,7 +1520,7 @@ module GetStream
         )
       end
 
-      # Updates an existing reminderSends events:- reminder.updated
+      # Updates an existing reminder. remind_at and expires_at are both replaced on every call: omitting either one clears itSends events:- reminder.updated
       #
       # @param message_id [String]
       # @param update_reminder_request [UpdateReminderRequest]
@@ -1396,7 +1540,7 @@ module GetStream
         )
       end
 
-      # Creates a new reminderSends events:- reminder.created
+      # Creates a new reminder. An optional expires_at hides the reminder from every read once it passes and stops it counting against the per-user reminder capSends events:- reminder.created
       #
       # @param message_id [String]
       # @param create_reminder_request [CreateReminderRequest]
@@ -1709,6 +1853,75 @@ module GetStream
         )
       end
 
+      # Lists the scheduled messages of one user across channels: pending ones first, then failed ones, each by scheduled_at. Client-side requests return the caller's own; server-side requests require user_id
+      #
+      # @param query_scheduled_messages_request [QueryScheduledMessagesRequest]
+      # @return [Models::QueryScheduledMessagesResponse]
+      def query_scheduled_messages(query_scheduled_messages_request)
+        path = '/api/v2/chat/scheduled_messages/query'
+        # Build request body
+        body = query_scheduled_messages_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
+      # Cancels a scheduled message so it is never sent, or removes a failed one. Returns 409 while the message is being sentSends events:- scheduled_message.deleted
+      #
+      # @param _id [String]
+      # @return [Models::DeleteScheduledMessageResponse]
+      def delete_scheduled_message(_id)
+        path = '/api/v2/chat/scheduled_messages/{id}'
+        # Replace path parameters
+        path = path.gsub('{id}', _id.to_s)
+
+        # Make the API request
+        @client.make_request(
+          :delete,
+          path
+        )
+      end
+
+      # Replaces the message and/or the send time of a scheduled message. The scheduling checks run again, and the message is then sent, under the caller's auth mode. A request that changes only scheduled_at keeps the auth mode the message was scheduled with. Returns 409 while the message is being sentSends events:- scheduled_message.updated
+      #
+      # @param _id [String]
+      # @param update_scheduled_message_request [UpdateScheduledMessageRequest]
+      # @return [Models::UpdateScheduledMessageResponse]
+      def update_scheduled_message(_id, update_scheduled_message_request)
+        path = '/api/v2/chat/scheduled_messages/{id}'
+        # Replace path parameters
+        path = path.gsub('{id}', _id.to_s)
+        # Build request body
+        body = update_scheduled_message_request
+
+        # Make the API request
+        @client.make_request(
+          :patch,
+          path,
+          body: body
+        )
+      end
+
+      # Moves the send time of a scheduled message to now and queues the send. Every send check runs when it is sent. Returns 409 while the message is being sentSends events:- scheduled_message.updated
+      #
+      # @param _id [String]
+      # @return [Models::SendScheduledMessageNowResponse]
+      def send_scheduled_message_now(_id)
+        path = '/api/v2/chat/scheduled_messages/{id}/send_now'
+        # Replace path parameters
+        path = path.gsub('{id}', _id.to_s)
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path
+        )
+      end
+
       # Search messages across channels
       #
       # @param payload [SearchPayload]
@@ -1973,12 +2186,14 @@ module GetStream
       # Fetch unread counts for a single user
       #
       # @param user_id [String]
+      # @param include_large_channels [Boolean]
       # @return [Models::WrappedUnreadCountsResponse]
-      def unread_counts(user_id = nil)
+      def unread_counts(user_id = nil, include_large_channels = nil)
         path = '/api/v2/chat/unread'
         # Build query parameters
         query_params = {}
         query_params['user_id'] = user_id unless user_id.nil?
+        query_params['include_large_channels'] = include_large_channels unless include_large_channels.nil?
 
         # Make the API request
         @client.make_request(

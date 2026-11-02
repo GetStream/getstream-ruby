@@ -15,9 +15,15 @@ module GetStream
         # @!attribute async
         #   @return [Boolean]
         attr_accessor :async
+        # @!attribute custom_keys_context_description
+        #   @return [String]
+        attr_accessor :custom_keys_context_description
         # @!attribute enabled
         #   @return [Boolean]
         attr_accessor :enabled
+        # @!attribute context_custom_keys
+        #   @return [Array<String>]
+        attr_accessor :context_custom_keys
         # @!attribute rules
         #   @return [Array<LLMRule>]
         attr_accessor :rules
@@ -30,7 +36,9 @@ module GetStream
           super(attributes)
           @app_context = attributes[:app_context] || attributes['app_context'] || nil
           @async = attributes[:async] || attributes['async'] || nil
+          @custom_keys_context_description = attributes[:custom_keys_context_description] || attributes['custom_keys_context_description'] || nil
           @enabled = attributes[:enabled] || attributes['enabled'] || nil
+          @context_custom_keys = attributes[:context_custom_keys] || attributes['context_custom_keys'] || nil
           @rules = attributes[:rules] || attributes['rules'] || nil
           @severity_descriptions = attributes[:severity_descriptions] || attributes['severity_descriptions'] || nil
         end
@@ -40,7 +48,9 @@ module GetStream
           {
             app_context: 'app_context',
             async: 'async',
+            custom_keys_context_description: 'custom_keys_context_description',
             enabled: 'enabled',
+            context_custom_keys: 'context_custom_keys',
             rules: 'rules',
             severity_descriptions: 'severity_descriptions'
           }

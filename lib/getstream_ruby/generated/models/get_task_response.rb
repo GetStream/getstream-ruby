@@ -16,7 +16,7 @@ module GetStream
         #   @return [String]
         attr_accessor :duration
         # @!attribute status
-        #   @return [String] Current status of task
+        #   @return [String] Current status of the whole operation. A task whose result reports an in-progress status of its own is returned as running until that status is terminal, so completed means the operation itself finished rather than that its first step was accepted. A result that never reaches a terminal status stops being reported as running after a fixed period and falls back to the task's own status.
         attr_accessor :status
         # @!attribute task_id
         #   @return [String] ID of task
@@ -28,7 +28,7 @@ module GetStream
         #   @return [ErrorResult]
         attr_accessor :error
         # @!attribute result
-        #   @return [Object] Result produced by task after completion
+        #   @return [Object] Result produced by task after completion. A task that does its work in stages may carry a status of its own here, describing that work rather than the task; the top-level status already accounts for it, so use that to tell whether the operation has finished.
         attr_accessor :result
 
         # Initialize with attributes

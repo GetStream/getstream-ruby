@@ -19,7 +19,7 @@ module GetStream
         #   @return [String]
         attr_accessor :channel_cid
         # @!attribute delete_messages
-        #   @return [String] Message deletion mode: soft, pruning, or hard
+        #   @return [DeleteMessages] Message deletion mode: soft, pruning, or hard
         attr_accessor :delete_messages
         # @!attribute ip_ban
         #   @return [Boolean] Whether to ban by IP address

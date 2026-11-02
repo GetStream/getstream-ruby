@@ -9,6 +9,9 @@ module GetStream
       class FloodSimilarRuleParameters < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute min_text_length
+        #   @return [Integer]
+        attr_accessor :min_text_length
         # @!attribute similarity_distance
         #   @return [Integer]
         attr_accessor :similarity_distance
@@ -25,6 +28,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @min_text_length = attributes[:min_text_length] || attributes['min_text_length'] || nil
           @similarity_distance = attributes[:similarity_distance] || attributes['similarity_distance'] || nil
           @threshold = attributes[:threshold] || attributes['threshold'] || nil
           @time_window = attributes[:time_window] || attributes['time_window'] || nil
@@ -34,6 +38,7 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            min_text_length: 'min_text_length',
             similarity_distance: 'similarity_distance',
             threshold: 'threshold',
             time_window: 'time_window',

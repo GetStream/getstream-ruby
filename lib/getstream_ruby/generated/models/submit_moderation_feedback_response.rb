@@ -12,17 +12,37 @@ module GetStream
         # @!attribute duration
         #   @return [String]
         attr_accessor :duration
+        # @!attribute feedback_id
+        #   @return [String] ID of the first stored feedback item, when any was stored
+        attr_accessor :feedback_id
+        # @!attribute review_queue_item_id
+        #   @return [String] Review queue item the feedback was applied to
+        attr_accessor :review_queue_item_id
+        # @!attribute false_positive_flags
+        #   @return [Array<String>] IDs of the item's flags marked as false positives after this request
+        attr_accessor :false_positive_flags
+        # @!attribute feedback_item_ids
+        #   @return [Array<String>] IDs of the stored feedback items, one per submitted item
+        attr_accessor :feedback_item_ids
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @duration = attributes[:duration] || attributes['duration']
+          @feedback_id = attributes[:feedback_id] || attributes['feedback_id'] || nil
+          @review_queue_item_id = attributes[:review_queue_item_id] || attributes['review_queue_item_id'] || nil
+          @false_positive_flags = attributes[:false_positive_flags] || attributes['false_positive_flags'] || nil
+          @feedback_item_ids = attributes[:feedback_item_ids] || attributes['feedback_item_ids'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            duration: 'duration'
+            duration: 'duration',
+            feedback_id: 'feedback_id',
+            review_queue_item_id: 'review_queue_item_id',
+            false_positive_flags: 'false_positive_flags',
+            feedback_item_ids: 'feedback_item_ids'
           }
         end
       end

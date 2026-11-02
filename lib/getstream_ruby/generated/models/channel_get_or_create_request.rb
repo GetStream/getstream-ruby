@@ -12,6 +12,9 @@ module GetStream
         # @!attribute hide_for_creator
         #   @return [Boolean] Whether this channel will be hidden for the user who created the channel or not
         attr_accessor :hide_for_creator
+        # @!attribute include_scheduled_messages
+        #   @return [Boolean] Adds scheduled_messages to the response: the acting user's own scheduled, sending and failed messages in this channel (server-side requests name the user with data.created_by_id or data.created_by; without one the field is omitted). Absent from the response when there are more than 100 or they could not be loaded; use the scheduled messages query then
+        attr_accessor :include_scheduled_messages
         # @!attribute state
         #   @return [Boolean] Refresh channel state
         attr_accessor :state
@@ -38,6 +41,7 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @hide_for_creator = attributes[:hide_for_creator] || attributes['hide_for_creator'] || nil
+          @include_scheduled_messages = attributes[:include_scheduled_messages] || attributes['include_scheduled_messages'] || nil
           @state = attributes[:state] || attributes['state'] || nil
           @thread_unread_counts = attributes[:thread_unread_counts] || attributes['thread_unread_counts'] || nil
           @member_custom_include = attributes[:member_custom_include] || attributes['member_custom_include'] || nil
@@ -51,6 +55,7 @@ module GetStream
         def self.json_field_mappings
           {
             hide_for_creator: 'hide_for_creator',
+            include_scheduled_messages: 'include_scheduled_messages',
             state: 'state',
             thread_unread_counts: 'thread_unread_counts',
             member_custom_include: 'member_custom_include',

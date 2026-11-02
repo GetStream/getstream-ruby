@@ -19,7 +19,7 @@ module GetStream
         #   @return [String]
         attr_accessor :egress_id
         # @!attribute recording_type
-        #   @return [String] The type of recording
+        #   @return [RecordingType] The type of recording
         attr_accessor :recording_type
         # @!attribute call_recording
         #   @return [CallRecording] CallRecording represents a recording of a call.

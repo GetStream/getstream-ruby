@@ -28,10 +28,10 @@ module GetStream
         #   @return [String] The name of the campaign
         attr_accessor :name
         # @!attribute sender_mode
-        #   @return [String] The sender mode of the campaign
+        #   @return [CampaignSenderMode] The sender mode of the campaign
         attr_accessor :sender_mode
         # @!attribute sender_visibility
-        #   @return [String] The visibility of the created channels for the sender
+        #   @return [CampaignSenderVisibility] The visibility of the created channels for the sender
         attr_accessor :sender_visibility
         # @!attribute show_channels
         #   @return [Boolean] Whether the campaign should show channels, if they are hidden

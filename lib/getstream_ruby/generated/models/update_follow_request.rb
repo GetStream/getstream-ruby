@@ -35,13 +35,13 @@ module GetStream
         #   @return [String] Optional role for the follower in the follow relationship. Server-side only. Either a built-in ('feed_follower' (the default) or 'feed_member_viewer') or any role your app has defined; grants are not inspected.
         attr_accessor :follower_role
         # @!attribute push_preference
-        #   @return [String] Push preference for the follow relationship
+        #   @return [FollowPushPreference] Push preference for the follow relationship
         attr_accessor :push_preference
         # @!attribute skip_push
         #   @return [Boolean] Whether to skip push for this follow
         attr_accessor :skip_push
         # @!attribute status
-        #   @return [String] Status of the follow relationship. One of: accepted, pending, rejected
+        #   @return [FollowStatus] Status of the follow relationship. One of: accepted, pending, rejected
         attr_accessor :status
         # @!attribute custom
         #   @return [Object] Custom data for the follow relationship

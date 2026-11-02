@@ -10,10 +10,10 @@ module GetStream
 
         # Model attributes
         # @!attribute automod
-        #   @return [String] Automod. One of: disabled, simple, AI
+        #   @return [AutomodMode] Automod. One of: disabled, simple, AI
         attr_accessor :automod
         # @!attribute automod_behavior
-        #   @return [String] Automod behavior. One of: flag, block
+        #   @return [BlocklistBehavior] Automod behavior. One of: flag, block
         attr_accessor :automod_behavior
         # @!attribute max_message_length
         #   @return [Integer] Max message length
@@ -25,7 +25,7 @@ module GetStream
         #   @return [String] Blocklist
         attr_accessor :blocklist
         # @!attribute blocklist_behavior
-        #   @return [String] Blocklist behavior. One of: flag, block, shadow_block
+        #   @return [ChannelModerationBehavior] Blocklist behavior. One of: flag, block, shadow_block
         attr_accessor :blocklist_behavior
         # @!attribute connect_events
         #   @return [Boolean] Connect events
@@ -58,17 +58,23 @@ module GetStream
         #   @return [Boolean] Polls
         attr_accessor :polls
         # @!attribute push_level
-        #   @return [String] Default push notification level for the channel type. One of: all, all_mentions, mentions, direct_mentions, none
+        #   @return [PushLevel] Default push notification level for the channel type. One of: all, all_mentions, mentions, direct_mentions, none
         attr_accessor :push_level
         # @!attribute push_notifications
         #   @return [Boolean] Push notifications
         attr_accessor :push_notifications
+        # @!attribute quotes
+        #   @return [Boolean] Enables message quotes
+        attr_accessor :quotes
         # @!attribute reactions
         #   @return [Boolean] Reactions
         attr_accessor :reactions
         # @!attribute read_events
         #   @return [Boolean] Read events
         attr_accessor :read_events
+        # @!attribute reminders
+        #   @return [Boolean] Enables message reminders
+        attr_accessor :reminders
         # @!attribute replies
         #   @return [Boolean] Replies
         attr_accessor :replies
@@ -102,6 +108,9 @@ module GetStream
         # @!attribute permissions
         #   @return [Array<PolicyRequest>] List of permissions for the channel type
         attr_accessor :permissions
+        # @!attribute automod_thresholds
+        #   @return [Thresholds] Sets thresholds for AI moderation
+        attr_accessor :automod_thresholds
         # @!attribute chat_preferences
         #   @return [ChatPreferences]
         attr_accessor :chat_preferences
@@ -130,8 +139,10 @@ module GetStream
           @polls = attributes[:polls] || attributes['polls'] || nil
           @push_level = attributes[:push_level] || attributes['push_level'] || nil
           @push_notifications = attributes[:push_notifications] || attributes['push_notifications'] || nil
+          @quotes = attributes[:quotes] || attributes['quotes'] || nil
           @reactions = attributes[:reactions] || attributes['reactions'] || nil
           @read_events = attributes[:read_events] || attributes['read_events'] || nil
+          @reminders = attributes[:reminders] || attributes['reminders'] || nil
           @replies = attributes[:replies] || attributes['replies'] || nil
           @search = attributes[:search] || attributes['search'] || nil
           @shared_locations = attributes[:shared_locations] || attributes['shared_locations'] || nil
@@ -143,6 +154,7 @@ module GetStream
           @blocklists = attributes[:blocklists] || attributes['blocklists'] || nil
           @commands = attributes[:commands] || attributes['commands'] || nil
           @permissions = attributes[:permissions] || attributes['permissions'] || nil
+          @automod_thresholds = attributes[:automod_thresholds] || attributes['automod_thresholds'] || nil
           @chat_preferences = attributes[:chat_preferences] || attributes['chat_preferences'] || nil
           @grants = attributes[:grants] || attributes['grants'] || nil
         end
@@ -168,8 +180,10 @@ module GetStream
             polls: 'polls',
             push_level: 'push_level',
             push_notifications: 'push_notifications',
+            quotes: 'quotes',
             reactions: 'reactions',
             read_events: 'read_events',
+            reminders: 'reminders',
             replies: 'replies',
             search: 'search',
             shared_locations: 'shared_locations',
@@ -181,6 +195,7 @@ module GetStream
             blocklists: 'blocklists',
             commands: 'commands',
             permissions: 'permissions',
+            automod_thresholds: 'automod_thresholds',
             chat_preferences: 'chat_preferences',
             grants: 'grants'
           }

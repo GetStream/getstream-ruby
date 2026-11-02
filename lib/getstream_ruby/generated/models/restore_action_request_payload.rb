@@ -12,17 +12,22 @@ module GetStream
         # @!attribute decision_reason
         #   @return [String] Reason for the appeal decision
         attr_accessor :decision_reason
+        # @!attribute reason
+        #   @return [String] Internal moderator note, stored on the action log and returned by QueryModerationLogs. Not shown to the appealing user; use decision_reason for that
+        attr_accessor :reason
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @decision_reason = attributes[:decision_reason] || attributes['decision_reason'] || nil
+          @reason = attributes[:reason] || attributes['reason'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            decision_reason: 'decision_reason'
+            decision_reason: 'decision_reason',
+            reason: 'reason'
           }
         end
       end

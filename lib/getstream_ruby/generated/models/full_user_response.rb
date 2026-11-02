@@ -40,7 +40,8 @@ module GetStream
         #   @return [Integer]
         attr_accessor :unread_channels
         # @!attribute unread_count
-        #   @return [Integer]
+        # @deprecated This field is deprecated.
+        #   @return [Integer] Deprecated: Use total_unread_count instead.
         attr_accessor :unread_count
         # @!attribute unread_threads
         #   @return [Integer]
@@ -97,7 +98,7 @@ module GetStream
         #   @return [Array<String>]
         attr_accessor :latest_hidden_channels
         # @!attribute privacy_settings
-        #   @return [PrivacySettingsResponse]
+        #   @return [PrivacySettingsResponse] The privacy settings of the user.
         attr_accessor :privacy_settings
         # @!attribute teams_role
         #   @return [Hash<String, String>]

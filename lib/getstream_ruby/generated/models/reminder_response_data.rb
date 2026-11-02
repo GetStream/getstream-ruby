@@ -24,6 +24,9 @@ module GetStream
         # @!attribute user_id
         #   @return [String]
         attr_accessor :user_id
+        # @!attribute expires_at
+        #   @return [DateTime]
+        attr_accessor :expires_at
         # @!attribute remind_at
         #   @return [DateTime]
         attr_accessor :remind_at
@@ -45,6 +48,7 @@ module GetStream
           @message_id = attributes[:message_id] || attributes['message_id']
           @updated_at = attributes[:updated_at] || attributes['updated_at']
           @user_id = attributes[:user_id] || attributes['user_id']
+          @expires_at = attributes[:expires_at] || attributes['expires_at'] || nil
           @remind_at = attributes[:remind_at] || attributes['remind_at'] || nil
           @channel = attributes[:channel] || attributes['channel'] || nil
           @message = attributes[:message] || attributes['message'] || nil
@@ -59,6 +63,7 @@ module GetStream
             message_id: 'message_id',
             updated_at: 'updated_at',
             user_id: 'user_id',
+            expires_at: 'expires_at',
             remind_at: 'remind_at',
             channel: 'channel',
             message: 'message',

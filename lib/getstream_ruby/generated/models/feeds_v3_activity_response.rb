@@ -34,7 +34,7 @@ module GetStream
         #   @return [Integer]
         attr_accessor :reaction_count
         # @!attribute restrict_replies
-        #   @return [String]
+        #   @return [RestrictReplies] Who is allowed to reply to an activity.
         attr_accessor :restrict_replies
         # @!attribute score
         #   @return [Float]
@@ -49,7 +49,7 @@ module GetStream
         #   @return [DateTime]
         attr_accessor :updated_at
         # @!attribute visibility
-        #   @return [String]
+        #   @return [ActivityVisibility] Who can see an activity.
         attr_accessor :visibility
         # @!attribute attachments
         #   @return [Array<Attachment>]

@@ -10,16 +10,19 @@ module GetStream
 
         # Model attributes
         # @!attribute comment
-        #   @return [String]
+        #   @return [String] The text of the comment
         attr_accessor :comment
         # @!attribute id
-        #   @return [String]
+        #   @return [String] The ID of the comment
         attr_accessor :id
         # @!attribute user_id
-        #   @return [String]
+        #   @return [String] The ID of the user who wrote the comment
         attr_accessor :user_id
+        # @!attribute parent_id
+        #   @return [String] The ID of the parent comment when this comment is a reply; omitted for top-level comments
+        attr_accessor :parent_id
         # @!attribute attachments
-        #   @return [Array<Attachment>]
+        #   @return [Array<Attachment>] Attachments on the comment
         attr_accessor :attachments
 
         # Initialize with attributes
@@ -28,6 +31,7 @@ module GetStream
           @comment = attributes[:comment] || attributes['comment']
           @id = attributes[:id] || attributes['id']
           @user_id = attributes[:user_id] || attributes['user_id']
+          @parent_id = attributes[:parent_id] || attributes['parent_id'] || nil
           @attachments = attributes[:attachments] || attributes['attachments'] || nil
         end
 
@@ -37,6 +41,7 @@ module GetStream
             comment: 'comment',
             id: 'id',
             user_id: 'user_id',
+            parent_id: 'parent_id',
             attachments: 'attachments'
           }
         end

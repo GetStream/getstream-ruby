@@ -165,6 +165,23 @@ module GetStream
         )
       end
 
+      # Validates that Stream can publish to a customer-owned GCP Pub/Sub topic
+      #
+      # @param check_gcp_pub_sub_request [CheckGCPPubSubRequest]
+      # @return [Models::CheckGCPPubSubResponse]
+      def check_gcp_pub_sub(check_gcp_pub_sub_request)
+        path = '/api/v2/check_gcp_pubsub'
+        # Build request body
+        body = check_gcp_pub_sub_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
       # Sends a test message via push, this is a test endpoint to verify your push settings
       #
       # @param check_push_request [CheckPushRequest]
@@ -874,17 +891,22 @@ module GetStream
       #
       # @param poll_id [String]
       # @param option_id [String]
+      # @param user_id [String]
       # @return [Models::PollOptionResponse]
-      def get_poll_option(poll_id, option_id)
+      def get_poll_option(poll_id, option_id, user_id = nil)
         path = '/api/v2/polls/{poll_id}/options/{option_id}'
         # Replace path parameters
         path = path.gsub('{poll_id}', poll_id.to_s)
         path = path.gsub('{option_id}', option_id.to_s)
+        # Build query parameters
+        query_params = {}
+        query_params['user_id'] = user_id unless user_id.nil?
 
         # Make the API request
         @client.make_request(
           :get,
-          path
+          path,
+          query_params: query_params
         )
       end
 
@@ -962,7 +984,7 @@ module GetStream
 
       # Delete a push provider from v2 with multi bundle/package support. v1 isn't supported in this endpoint
       #
-      # @param _type [String]
+      # @param _type [PushProviderName]
       # @param name [String]
       # @return [Models::Response]
       def delete_push_provider(_type, name)
@@ -980,7 +1002,7 @@ module GetStream
 
       # Retrieve push notification templates for Chat.
       #
-      # @param push_provider_type [String]
+      # @param push_provider_type [PushProviderName]
       # @param push_provider_name [String]
       # @return [Models::GetPushTemplatesResponse]
       def get_push_templates(push_provider_type, push_provider_name = nil)
@@ -1452,6 +1474,23 @@ module GetStream
         path = '/api/v2/users/block'
         # Build request body
         body = block_users_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
+      # Claims a guest user for a regular user. The guest is deactivated and its channel memberships, owned channels, messages and reactions are moved to the claiming user by an asynchronous task. Server-side only.Sends events:- user.claimed- user.deactivated
+      #
+      # @param claim_guest_user_request [ClaimGuestUserRequest]
+      # @return [Models::ClaimGuestUserResponse]
+      def claim_guest_user(claim_guest_user_request)
+        path = '/api/v2/users/claim_guest'
+        # Build request body
+        body = claim_guest_user_request
 
         # Make the API request
         @client.make_request(

@@ -22,7 +22,7 @@ module GetStream
         #   @return [String] Role new followers of feeds in this group are given. Either a built-in (feed_follower, feed_member_viewer) or any role your app has defined. Empty means feed_follower. Applied when the follow is accepted, so a follow that starts pending picks it up on approval
         attr_accessor :default_follower_role
         # @!attribute default_visibility
-        #   @return [String] Default visibility for activities. One of: public, visible, followers, members, private
+        #   @return [FeedVisibility] Default visibility for activities. One of: public, visible, followers, members, private
         attr_accessor :default_visibility
         # @!attribute deleted_at
         #   @return [DateTime]

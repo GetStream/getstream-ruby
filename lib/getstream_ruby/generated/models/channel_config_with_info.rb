@@ -10,10 +10,10 @@ module GetStream
 
         # Model attributes
         # @!attribute automod
-        #   @return [String]
+        #   @return [AutomodMode] Automod level applied to a channel type.
         attr_accessor :automod
         # @!attribute automod_behavior
-        #   @return [String]
+        #   @return [ChannelModerationBehavior] What automod or a blocklist does when it matches.
         attr_accessor :automod_behavior
         # @!attribute connect_events
         #   @return [Boolean]
@@ -97,7 +97,7 @@ module GetStream
         #   @return [String]
         attr_accessor :blocklist
         # @!attribute blocklist_behavior
-        #   @return [String]
+        #   @return [ChannelModerationBehavior] What automod or a blocklist does when it matches.
         attr_accessor :blocklist_behavior
         # @!attribute partition_size
         #   @return [Integer]
@@ -106,8 +106,20 @@ module GetStream
         #   @return [String]
         attr_accessor :partition_ttl
         # @!attribute push_level
-        #   @return [String]
+        #   @return [PushLevel] Sets the push notification level for a channel type
         attr_accessor :push_level
+        # @!attribute scheduled_messages_max_lead_time_seconds
+        #   @return [Integer] How far ahead, in seconds, a message can be scheduled. Present only when scheduled messages are enabled for the app. A later scheduled_at returns error code 116 (scheduled_at_too_far), whose max_lead_time_seconds carries the same value
+        attr_accessor :scheduled_messages_max_lead_time_seconds
+        # @!attribute scheduled_messages_max_per_channel
+        #   @return [Integer] Maximum number of scheduled messages (scheduled or sending) a user can have in this channel. Present only when scheduled messages are enabled for the app. Scheduling more returns error code 117 (scheduled_limit_channel)
+        attr_accessor :scheduled_messages_max_per_channel
+        # @!attribute scheduled_messages_max_per_user
+        #   @return [Integer] Maximum number of scheduled messages (scheduled or sending) a user can have across all channels. Present only when scheduled messages are enabled for the app. Scheduling more returns error code 118 (scheduled_limit_user)
+        attr_accessor :scheduled_messages_max_per_user
+        # @!attribute scheduled_messages_min_lead_time_seconds
+        #   @return [Integer] Minimum time ahead, in seconds, a message is scheduled for. Present only when scheduled messages are enabled for the app. A future scheduled_at closer than this is moved later, to the first whole minute at least this far ahead; it is never rejected
+        attr_accessor :scheduled_messages_min_lead_time_seconds
         # @!attribute allowed_flag_reasons
         #   @return [Array<String>]
         attr_accessor :allowed_flag_reasons
@@ -160,6 +172,10 @@ module GetStream
           @partition_size = attributes[:partition_size] || attributes['partition_size'] || nil
           @partition_ttl = attributes[:partition_ttl] || attributes['partition_ttl'] || nil
           @push_level = attributes[:push_level] || attributes['push_level'] || nil
+          @scheduled_messages_max_lead_time_seconds = attributes[:scheduled_messages_max_lead_time_seconds] || attributes['scheduled_messages_max_lead_time_seconds'] || nil
+          @scheduled_messages_max_per_channel = attributes[:scheduled_messages_max_per_channel] || attributes['scheduled_messages_max_per_channel'] || nil
+          @scheduled_messages_max_per_user = attributes[:scheduled_messages_max_per_user] || attributes['scheduled_messages_max_per_user'] || nil
+          @scheduled_messages_min_lead_time_seconds = attributes[:scheduled_messages_min_lead_time_seconds] || attributes['scheduled_messages_min_lead_time_seconds'] || nil
           @allowed_flag_reasons = attributes[:allowed_flag_reasons] || attributes['allowed_flag_reasons'] || nil
           @blocklists = attributes[:blocklists] || attributes['blocklists'] || nil
           @automod_thresholds = attributes[:automod_thresholds] || attributes['automod_thresholds'] || nil
@@ -203,6 +219,10 @@ module GetStream
             partition_size: 'partition_size',
             partition_ttl: 'partition_ttl',
             push_level: 'push_level',
+            scheduled_messages_max_lead_time_seconds: 'scheduled_messages_max_lead_time_seconds',
+            scheduled_messages_max_per_channel: 'scheduled_messages_max_per_channel',
+            scheduled_messages_max_per_user: 'scheduled_messages_max_per_user',
+            scheduled_messages_min_lead_time_seconds: 'scheduled_messages_min_lead_time_seconds',
             allowed_flag_reasons: 'allowed_flag_reasons',
             blocklists: 'blocklists',
             automod_thresholds: 'automod_thresholds',

@@ -36,6 +36,12 @@ module GetStream
         # @!attribute join_reason
         #   @return [String] Reason the client initiated the join. Optional on CoordinatorJoin events; empty when not provided.
         attr_accessor :join_reason
+        # @!attribute leave_initiator
+        #   @return [String] Source of the leave that aborted a join: user, app, callkit, remote_event, sdk_error, or unknown. Not validated against this set, so SDKs may report new values. Optional; sent on failure events. Maximum 32 characters.
+        attr_accessor :leave_initiator
+        # @!attribute leave_reason
+        #   @return [String] Internal reason or triggering event for the leave that aborted a join. Optional; sent on failure events. Maximum 200 characters.
+        attr_accessor :leave_reason
         # @!attribute microphone_permission_status
         #   @return [String] Microphone permission status: INITIATED, FAILED, GRANTED, or NOT_INITIATED. Required on every MediaDevicePermission event.
         attr_accessor :microphone_permission_status
@@ -66,6 +72,9 @@ module GetStream
         # @!attribute sfu_id
         #   @return [String] Identifier of the SFU the client was attempting to connect to. Required on WSJoin and PeerConnectionConnect failure, and on FirstAudioFrame and FirstVideoFrame.
         attr_accessor :sfu_id
+        # @!attribute source
+        #   @return [String] Source of the coordinator join. Optional on CoordinatorJoin events; omitted when not provided.
+        attr_accessor :source
         # @!attribute stage
         #   @return [String] Discriminator identifying the event kind. JoinInitiated marks the start of a join attempt; join-lifecycle events use CoordinatorJoin, CoordinatorWS, WSJoin, or PeerConnectionConnect; media-readiness events use FirstAudioFrame or FirstVideoFrame; MediaDevicePermission reports device permission results; other values denote generic client events.
         attr_accessor :stage
@@ -103,6 +112,8 @@ module GetStream
           @id = attributes[:id] || attributes['id'] || nil
           @join_attempt_id = attributes[:join_attempt_id] || attributes['join_attempt_id'] || nil
           @join_reason = attributes[:join_reason] || attributes['join_reason'] || nil
+          @leave_initiator = attributes[:leave_initiator] || attributes['leave_initiator'] || nil
+          @leave_reason = attributes[:leave_reason] || attributes['leave_reason'] || nil
           @microphone_permission_status = attributes[:microphone_permission_status] || attributes['microphone_permission_status'] || nil
           @outcome = attributes[:outcome] || attributes['outcome'] || nil
           @peer_connection = attributes[:peer_connection] || attributes['peer_connection'] || nil
@@ -113,6 +124,7 @@ module GetStream
           @screen_share_status = attributes[:screen_share_status] || attributes['screen_share_status'] || nil
           @sdk_version = attributes[:sdk_version] || attributes['sdk_version'] || nil
           @sfu_id = attributes[:sfu_id] || attributes['sfu_id'] || nil
+          @source = attributes[:source] || attributes['source'] || nil
           @stage = attributes[:stage] || attributes['stage'] || nil
           @stage_id = attributes[:stage_id] || attributes['stage_id'] || nil
           @timestamp = attributes[:timestamp] || attributes['timestamp'] || nil
@@ -135,6 +147,8 @@ module GetStream
             id: 'id',
             join_attempt_id: 'join_attempt_id',
             join_reason: 'join_reason',
+            leave_initiator: 'leave_initiator',
+            leave_reason: 'leave_reason',
             microphone_permission_status: 'microphone_permission_status',
             outcome: 'outcome',
             peer_connection: 'peer_connection',
@@ -145,6 +159,7 @@ module GetStream
             screen_share_status: 'screen_share_status',
             sdk_version: 'sdk_version',
             sfu_id: 'sfu_id',
+            source: 'source',
             stage: 'stage',
             stage_id: 'stage_id',
             timestamp: 'timestamp',

@@ -16,7 +16,7 @@ module GetStream
         #   @return [String]
         attr_accessor :filename
         # @!attribute recording_type
-        #   @return [String]
+        #   @return [RecordingType] The layout a call recording is produced in.
         attr_accessor :recording_type
         # @!attribute session_id
         #   @return [String]
