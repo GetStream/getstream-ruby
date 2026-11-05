@@ -21,6 +21,9 @@ module GetStream
         # @!attribute type
         #   @return [String] The type of event: "user.banned" in this case
         attr_accessor :type
+        # @!attribute ban_from_future_channels
+        #   @return [Boolean] Whether the ban also applies to channels created later by the same creator. Without a channel, check user.banned to tell a global ban from a future-channels-only ban
+        attr_accessor :ban_from_future_channels
         # @!attribute channel_id
         #   @return [String] The ID of the channel where the target user was banned
         attr_accessor :channel_id
@@ -71,6 +74,7 @@ module GetStream
           @custom = attributes[:custom] || attributes['custom']
           @user = attributes[:user] || attributes['user']
           @type = attributes[:type] || attributes['type'] || "user.banned"
+          @ban_from_future_channels = attributes[:ban_from_future_channels] || attributes['ban_from_future_channels'] || nil
           @channel_id = attributes[:channel_id] || attributes['channel_id'] || nil
           @channel_member_count = attributes[:channel_member_count] || attributes['channel_member_count'] || nil
           @channel_message_count = attributes[:channel_message_count] || attributes['channel_message_count'] || nil
@@ -94,6 +98,7 @@ module GetStream
             custom: 'custom',
             user: 'user',
             type: 'type',
+            ban_from_future_channels: 'ban_from_future_channels',
             channel_id: 'channel_id',
             channel_member_count: 'channel_member_count',
             channel_message_count: 'channel_message_count',

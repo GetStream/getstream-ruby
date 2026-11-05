@@ -51,6 +51,9 @@ module GetStream
         # @!attribute bodyguard_config
         #   @return [AITextConfig]
         attr_accessor :bodyguard_config
+        # @!attribute engine
+        #   @return [ModerationEngineConfigRequest]
+        attr_accessor :engine
         # @!attribute flood_config
         #   @return [FloodConfig]
         attr_accessor :flood_config
@@ -93,6 +96,7 @@ module GetStream
           @aws_rekognition_config = attributes[:aws_rekognition_config] || attributes['aws_rekognition_config'] || nil
           @block_list_config = attributes[:block_list_config] || attributes['block_list_config'] || nil
           @bodyguard_config = attributes[:bodyguard_config] || attributes['bodyguard_config'] || nil
+          @engine = attributes[:engine] || attributes['engine'] || nil
           @flood_config = attributes[:flood_config] || attributes['flood_config'] || nil
           @google_vision_config = attributes[:google_vision_config] || attributes['google_vision_config'] || nil
           @intent_config = attributes[:intent_config] || attributes['intent_config'] || nil
@@ -120,6 +124,7 @@ module GetStream
             aws_rekognition_config: 'aws_rekognition_config',
             block_list_config: 'block_list_config',
             bodyguard_config: 'bodyguard_config',
+            engine: 'engine',
             flood_config: 'flood_config',
             google_vision_config: 'google_vision_config',
             intent_config: 'intent_config',

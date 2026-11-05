@@ -410,14 +410,19 @@ module GetStream
 
       # Delete a specific moderation template by its name
       #
+      # @param name [String]
       # @return [Models::DeleteModerationTemplateResponse]
-      def v2_delete_template()
+      def v2_delete_template(name = nil)
         path = '/api/v2/moderation/feeds_moderation_template'
+        # Build query parameters
+        query_params = {}
+        query_params['name'] = name unless name.nil?
 
         # Make the API request
         @client.make_request(
           :delete,
-          path
+          path,
+          query_params: query_params
         )
       end
 
@@ -659,14 +664,21 @@ module GetStream
 
       # 
       #
+      # @param limit [Integer]
+      # @param offset [Integer]
       # @return [Models::PolicyTestSetListResponse]
-      def list_policy_test_sets()
+      def list_policy_test_sets(limit = nil, offset = nil)
         path = '/api/v2/moderation/policy_tests/sets'
+        # Build query parameters
+        query_params = {}
+        query_params['limit'] = limit unless limit.nil?
+        query_params['offset'] = offset unless offset.nil?
 
         # Make the API request
         @client.make_request(
           :get,
-          path
+          path,
+          query_params: query_params
         )
       end
 

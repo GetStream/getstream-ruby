@@ -10,21 +10,29 @@ module GetStream
 
         # Model attributes
         # @!attribute created_at_from
-        #   @return [DateTime] Only export rows created at or after this time. On reactions and follows it requires user_id; on comments soft-deleted rows are left out
+        #   @return [DateTime] Only export rows created at or after this time. On reactions it requires user_id or activity_ids, on follows user_id; on comments without activity_ids soft-deleted rows are left out
         attr_accessor :created_at_from
         # @!attribute created_at_to
-        #   @return [DateTime] Only export rows created before this time. On reactions and follows it requires user_id; on comments soft-deleted rows are left out
+        #   @return [DateTime] Only export rows created before this time. On reactions it requires user_id or activity_ids, on follows user_id; on comments without activity_ids soft-deleted rows are left out
         attr_accessor :created_at_to
+        # @!attribute include_deleted
+        #   @return [Boolean] Whether soft-deleted activities and comments are exported. Defaults to false; true cannot be combined with user_id on activities or comments
+        attr_accessor :include_deleted
         # @!attribute user_id
         #   @return [String] Only export rows of this user: activities, comments and reactions by the user; follows where the user created the source or the target feed. With user_id, soft-deleted activities and comments are left out
         attr_accessor :user_id
+        # @!attribute activity_ids
+        #   @return [Array<String>] Only export comments or reactions of these activities; not allowed on other types. At most 100 unique, non-empty IDs
+        attr_accessor :activity_ids
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @created_at_from = attributes[:created_at_from] || attributes['created_at_from'] || nil
           @created_at_to = attributes[:created_at_to] || attributes['created_at_to'] || nil
+          @include_deleted = attributes[:include_deleted] || attributes['include_deleted'] || nil
           @user_id = attributes[:user_id] || attributes['user_id'] || nil
+          @activity_ids = attributes[:activity_ids] || attributes['activity_ids'] || nil
         end
 
         # Override field mappings for JSON serialization
@@ -32,7 +40,9 @@ module GetStream
           {
             created_at_from: 'created_at_from',
             created_at_to: 'created_at_to',
-            user_id: 'user_id'
+            include_deleted: 'include_deleted',
+            user_id: 'user_id',
+            activity_ids: 'activity_ids'
           }
         end
       end

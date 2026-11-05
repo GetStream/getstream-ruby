@@ -10,7 +10,7 @@ module GetStream
 
         # Model attributes
         # @!attribute enabled
-        #   @return [Boolean] Whether the engine selected by the application's LLM configurability flag has a rule that does something. Derived, not stored
+        #   @return [Boolean] Whether the policy's engine (engine.provider, else the application's LLM configurability flag) has a rule that does something. Derived, not stored
         attr_accessor :enabled
         # @!attribute profile
         #   @return [String] Bodyguard credentials profile transcripts are classified with. Applies to the NLP engine only

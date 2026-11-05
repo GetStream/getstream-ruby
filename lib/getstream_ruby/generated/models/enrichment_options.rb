@@ -18,6 +18,9 @@ module GetStream
         # @!attribute include_ranking_config
         #   @return [Boolean] Default: false. Server-side only. When true, the response includes ranking_config: the ranking configuration (from the feed view, or the feed group as fallback) used to rank this read.
         attr_accessor :include_ranking_config
+        # @!attribute include_reasons
+        #   @return [Boolean] Default: false. When true, For You activities include reasons: codes for why each was shown. Ignored with skip_all.
+        attr_accessor :include_reasons
         # @!attribute include_score_vars
         #   @return [Boolean] Default: false. When true, includes score_vars in activity responses containing variable values used at ranking time.
         attr_accessor :include_score_vars
@@ -79,6 +82,7 @@ module GetStream
           @enrich_own_followings = attributes[:enrich_own_followings] || attributes['enrich_own_followings'] || nil
           @include_flat_activities = attributes[:include_flat_activities] || attributes['include_flat_activities'] || nil
           @include_ranking_config = attributes[:include_ranking_config] || attributes['include_ranking_config'] || nil
+          @include_reasons = attributes[:include_reasons] || attributes['include_reasons'] || nil
           @include_score_vars = attributes[:include_score_vars] || attributes['include_score_vars'] || nil
           @skip_activity = attributes[:skip_activity] || attributes['skip_activity'] || nil
           @skip_activity_collections = attributes[:skip_activity_collections] || attributes['skip_activity_collections'] || nil
@@ -105,6 +109,7 @@ module GetStream
             enrich_own_followings: 'enrich_own_followings',
             include_flat_activities: 'include_flat_activities',
             include_ranking_config: 'include_ranking_config',
+            include_reasons: 'include_reasons',
             include_score_vars: 'include_score_vars',
             skip_activity: 'skip_activity',
             skip_activity_collections: 'skip_activity_collections',

@@ -1789,7 +1789,7 @@ module GetStream
         )
       end
 
-      # Returns all retention policies configured for the app. Server-side only.
+      # Returns all retention policies configured for the app. The per-channel-type rules of the 'inactive-channels-by-type' policy are returned in 'channel_type_rules' rather than in 'policies'. Server-side only.
       #
       # @return [Models::GetRetentionPolicyResponse]
       def get_retention_policy()
@@ -1802,7 +1802,7 @@ module GetStream
         )
       end
 
-      # Creates or updates a retention policy for the app. Server-side only.
+      # Creates or updates a retention policy for the app. The 'inactive-channels-by-type' policy sets the 'max_age_hours' rule of the channel type given by 'channel_type', which overrides 'inactive-channels' for that type; its response carries the saved rule in 'channel_type_rule'. Server-side only.
       #
       # @param set_retention_policy_request [SetRetentionPolicyRequest]
       # @return [Models::SetRetentionPolicyResponse]
@@ -1819,7 +1819,7 @@ module GetStream
         )
       end
 
-      # Removes a retention policy for the app. Server-side only.
+      # Removes a retention policy for the app. For the 'inactive-channels-by-type' policy, 'channel_type' selects the rule to remove. Server-side only.
       #
       # @param delete_retention_policy_request [DeleteRetentionPolicyRequest]
       # @return [Models::DeleteRetentionPolicyResponse]
@@ -1836,7 +1836,7 @@ module GetStream
         )
       end
 
-      # Returns filtered and sorted retention cleanup run history for the app. Supports filter_conditions on 'policy' (possible values: 'old-messages', 'inactive-channels') and 'date' fields. Server-side only.
+      # Returns filtered and sorted retention cleanup run history for the app. Supports filter_conditions on 'policy' (possible values: 'old-messages', 'inactive-channels', 'inactive-channels@type:<channel type>', 'inactive-channels@blanket:<channel type>') and 'date' fields. Once the app has a per-channel-type rule, inactive-channels runs are recorded per channel type, under 'inactive-channels@type:<channel type>' for a type with its own rule and 'inactive-channels@blanket:<channel type>' for a type covered by the app-wide rule, and 'policy': 'inactive-channels' no longer matches new runs; filter with '$in' over the pass names of your channel types. Server-side only.
       #
       # @param get_retention_policy_runs_request [GetRetentionPolicyRunsRequest]
       # @return [Models::GetRetentionPolicyRunsResponse]

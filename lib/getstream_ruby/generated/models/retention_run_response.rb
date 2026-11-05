@@ -21,6 +21,9 @@ module GetStream
         # @!attribute stats
         #   @return [RunStats]
         attr_accessor :stats
+        # @!attribute channel_type
+        #   @return [String]
+        attr_accessor :channel_type
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -29,6 +32,7 @@ module GetStream
           @date = attributes[:date] || attributes['date']
           @policy = attributes[:policy] || attributes['policy']
           @stats = attributes[:stats] || attributes['stats']
+          @channel_type = attributes[:channel_type] || attributes['channel_type'] || nil
         end
 
         # Override field mappings for JSON serialization
@@ -37,7 +41,8 @@ module GetStream
             app_pk: 'app_pk',
             date: 'date',
             policy: 'policy',
-            stats: 'stats'
+            stats: 'stats',
+            channel_type: 'channel_type'
           }
         end
       end

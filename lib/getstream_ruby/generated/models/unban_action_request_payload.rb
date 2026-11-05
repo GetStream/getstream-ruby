@@ -18,6 +18,9 @@ module GetStream
         # @!attribute remove_future_channels_ban
         #   @return [Boolean] Also remove the future channels ban for this user
         attr_accessor :remove_future_channels_ban
+        # @!attribute restore_shadowed_messages
+        #   @return [Boolean] When lifting a shadow ban, also restore the messages the user sent during it. Runs asynchronously; ignored for a regular ban
+        attr_accessor :restore_shadowed_messages
         # @!attribute target_user_id
         #   @return [String] Optional: unban user directly without review item
         attr_accessor :target_user_id
@@ -28,6 +31,7 @@ module GetStream
           @channel_cid = attributes[:channel_cid] || attributes['channel_cid'] || nil
           @decision_reason = attributes[:decision_reason] || attributes['decision_reason'] || nil
           @remove_future_channels_ban = attributes[:remove_future_channels_ban] || attributes['remove_future_channels_ban'] || nil
+          @restore_shadowed_messages = attributes[:restore_shadowed_messages] || attributes['restore_shadowed_messages'] || nil
           @target_user_id = attributes[:target_user_id] || attributes['target_user_id'] || nil
         end
 
@@ -37,6 +41,7 @@ module GetStream
             channel_cid: 'channel_cid',
             decision_reason: 'decision_reason',
             remove_future_channels_ban: 'remove_future_channels_ban',
+            restore_shadowed_messages: 'restore_shadowed_messages',
             target_user_id: 'target_user_id'
           }
         end

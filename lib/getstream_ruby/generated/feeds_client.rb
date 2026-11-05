@@ -1122,14 +1122,18 @@ module GetStream
 
       # Starts an async task that exports all feeds data of the app in export format v1. Poll the task for the result
       #
+      # @param export_feeds_app_request [ExportFeedsAppRequest]
       # @return [Models::ExportFeedsResponse]
-      def export_feeds_app()
+      def export_feeds_app(export_feeds_app_request)
         path = '/api/v2/feeds/export/app'
+        # Build request body
+        body = export_feeds_app_request
 
         # Make the API request
         @client.make_request(
           :post,
-          path
+          path,
+          body: body
         )
       end
 
@@ -1478,6 +1482,31 @@ module GetStream
           :post,
           path,
           body: body
+        )
+      end
+
+      # Returns the unread and unseen counts of a notification feed, along with the last seen and last read timestamps, without building a page.
+      #
+      # @param feed_group_id [String]
+      # @param feed_id [String]
+      # @param view [String]
+      # @param user_id [String]
+      # @return [Models::GetNotificationStatusResponse]
+      def get_notification_status(feed_group_id, feed_id, view = nil, user_id = nil)
+        path = '/api/v2/feeds/feed_groups/{feed_group_id}/feeds/{feed_id}/notification_status'
+        # Replace path parameters
+        path = path.gsub('{feed_group_id}', feed_group_id.to_s)
+        path = path.gsub('{feed_id}', feed_id.to_s)
+        # Build query parameters
+        query_params = {}
+        query_params['view'] = view unless view.nil?
+        query_params['user_id'] = user_id unless user_id.nil?
+
+        # Make the API request
+        @client.make_request(
+          :get,
+          path,
+          query_params: query_params
         )
       end
 

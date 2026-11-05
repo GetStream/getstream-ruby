@@ -117,8 +117,11 @@ module GetStream
         # @!attribute moderation_action
         #   @return [String]
         attr_accessor :moderation_action
+        # @!attribute position
+        #   @return [Integer] 1-based position of this activity. On ranked feeds it is the activity's slot in the ranked feed, continuing across pages; activities filtered out for this user leave gaps. Otherwise it is relative to the returned page. Only set on feed reads for paid plans with an authenticated user, when the app uses feed impressions (For You exploration, or a For You ranking that uses impressions_bucket).
+        attr_accessor :position
         # @!attribute selector_source
-        #   @return [String] Which activity selector provided this activity (e.g., 'following', 'popular', 'interest'). Only set when using multiple activity selectors with ranking.
+        #   @return [String] Which activity selector provided this activity (e.g., 'following', 'popular', 'interest'), or 'exploration' for the For You exploration slot. Only set when using multiple activity selectors with ranking.
         attr_accessor :selector_source
         # @!attribute text
         #   @return [String] Text content of the activity
@@ -135,6 +138,9 @@ module GetStream
         # @!attribute latest_shares
         #   @return [Array<ShareResponse>] Recent shares of the activity, one entry per share (org-gated)
         attr_accessor :latest_shares
+        # @!attribute reasons
+        #   @return [Array<String>] Codes explaining why this activity was shown (e.g. 'following', 'popular', 'interest:nba'). Only included when include_reasons is enabled in enrichment options.
+        attr_accessor :reasons
         # @!attribute current_feed
         #   @return [FeedResponse]
         attr_accessor :current_feed
@@ -202,12 +208,14 @@ module GetStream
           @is_seen = attributes[:is_seen] || attributes['is_seen'] || nil
           @is_watched = attributes[:is_watched] || attributes['is_watched'] || nil
           @moderation_action = attributes[:moderation_action] || attributes['moderation_action'] || nil
+          @position = attributes[:position] || attributes['position'] || nil
           @selector_source = attributes[:selector_source] || attributes['selector_source'] || nil
           @text = attributes[:text] || attributes['text'] || nil
           @top_level_comment_count = attributes[:top_level_comment_count] || attributes['top_level_comment_count'] || nil
           @visibility_tag = attributes[:visibility_tag] || attributes['visibility_tag'] || nil
           @friend_reactions = attributes[:friend_reactions] || attributes['friend_reactions'] || nil
           @latest_shares = attributes[:latest_shares] || attributes['latest_shares'] || nil
+          @reasons = attributes[:reasons] || attributes['reasons'] || nil
           @current_feed = attributes[:current_feed] || attributes['current_feed'] || nil
           @i18n = attributes[:i18n] || attributes['i18n'] || nil
           @location = attributes[:location] || attributes['location'] || nil
@@ -258,12 +266,14 @@ module GetStream
             is_seen: 'is_seen',
             is_watched: 'is_watched',
             moderation_action: 'moderation_action',
+            position: 'position',
             selector_source: 'selector_source',
             text: 'text',
             top_level_comment_count: 'top_level_comment_count',
             visibility_tag: 'visibility_tag',
             friend_reactions: 'friend_reactions',
             latest_shares: 'latest_shares',
+            reasons: 'reasons',
             current_feed: 'current_feed',
             i18n: 'i18n',
             location: 'location',
