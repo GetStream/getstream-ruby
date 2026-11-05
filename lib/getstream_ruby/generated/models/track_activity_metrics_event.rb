@@ -13,11 +13,20 @@ module GetStream
         #   @return [String] The ID of the activity to track the metric for
         attr_accessor :activity_id
         # @!attribute metric
-        #   @return [String] The metric name (e.g. views, clicks, impressions). Alphanumeric and underscores only.
+        #   @return [String] The metric name (e.g. views, clicks, impressions, dwell). Alphanumeric and underscores only. dwell requires dwell_ms.
         attr_accessor :metric
         # @!attribute delta
         #   @return [Integer] The amount to increment (positive) or decrement (negative). Defaults to 1. The absolute value counts against rate limits.
         attr_accessor :delta
+        # @!attribute dwell_ms
+        #   @return [Integer] Milliseconds the activity was in view. Required for the built-in dwell metric; apps with a custom dwell metric keep their own behavior.
+        attr_accessor :dwell_ms
+        # @!attribute position
+        #   @return [Integer] 1-based position of the activity in that feed read. A value below 1 fails only this event. Accepted but not stored yet.
+        attr_accessor :position
+        # @!attribute request_id
+        #   @return [String] The request_id returned by the feed read that showed the activity. An invalid, expired (older than 48h) or future-dated (more than 5 minutes ahead) value fails only this event. Impressions sent with a valid request_id feed ranking, are not added to the activity's metrics.impressions, and must use a delta of 1.
+        attr_accessor :request_id
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -25,6 +34,9 @@ module GetStream
           @activity_id = attributes[:activity_id] || attributes['activity_id']
           @metric = attributes[:metric] || attributes['metric']
           @delta = attributes[:delta] || attributes['delta'] || nil
+          @dwell_ms = attributes[:dwell_ms] || attributes['dwell_ms'] || nil
+          @position = attributes[:position] || attributes['position'] || nil
+          @request_id = attributes[:request_id] || attributes['request_id'] || nil
         end
 
         # Override field mappings for JSON serialization
@@ -32,7 +44,10 @@ module GetStream
           {
             activity_id: 'activity_id',
             metric: 'metric',
-            delta: 'delta'
+            delta: 'delta',
+            dwell_ms: 'dwell_ms',
+            position: 'position',
+            request_id: 'request_id'
           }
         end
       end

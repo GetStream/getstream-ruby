@@ -60,6 +60,9 @@ module GetStream
         # @!attribute block_list_config
         #   @return [BlockListConfig]
         attr_accessor :block_list_config
+        # @!attribute engine
+        #   @return [ModerationEngineConfigResponse]
+        attr_accessor :engine
         # @!attribute flood_config
         #   @return [FloodConfig]
         attr_accessor :flood_config
@@ -96,6 +99,7 @@ module GetStream
           @automod_semantic_filters_config = attributes[:automod_semantic_filters_config] || attributes['automod_semantic_filters_config'] || nil
           @automod_toxicity_config = attributes[:automod_toxicity_config] || attributes['automod_toxicity_config'] || nil
           @block_list_config = attributes[:block_list_config] || attributes['block_list_config'] || nil
+          @engine = attributes[:engine] || attributes['engine'] || nil
           @flood_config = attributes[:flood_config] || attributes['flood_config'] || nil
           @intent_config = attributes[:intent_config] || attributes['intent_config'] || nil
           @llm_config = attributes[:llm_config] || attributes['llm_config'] || nil
@@ -123,6 +127,7 @@ module GetStream
             automod_semantic_filters_config: 'automod_semantic_filters_config',
             automod_toxicity_config: 'automod_toxicity_config',
             block_list_config: 'block_list_config',
+            engine: 'engine',
             flood_config: 'flood_config',
             intent_config: 'intent_config',
             llm_config: 'llm_config',

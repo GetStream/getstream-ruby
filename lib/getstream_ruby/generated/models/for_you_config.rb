@@ -15,19 +15,29 @@ module GetStream
         # @!attribute preset
         #   @return [String] Name of a registered ranking preset that stands in for 'score' when score is empty. One of: for_you_v2, hot
         attr_accessor :preset
+        # @!attribute dwell
+        #   @return [ForYouDwellConfig]
+        attr_accessor :dwell
+        # @!attribute exploration
+        #   @return [ForYouExplorationConfig]
+        attr_accessor :exploration
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @enabled = attributes[:enabled] || attributes['enabled'] || nil
           @preset = attributes[:preset] || attributes['preset'] || nil
+          @dwell = attributes[:dwell] || attributes['dwell'] || nil
+          @exploration = attributes[:exploration] || attributes['exploration'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
             enabled: 'enabled',
-            preset: 'preset'
+            preset: 'preset',
+            dwell: 'dwell',
+            exploration: 'exploration'
           }
         end
       end

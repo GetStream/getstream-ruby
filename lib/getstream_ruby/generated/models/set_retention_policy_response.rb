@@ -15,19 +15,24 @@ module GetStream
         # @!attribute policy
         #   @return [RetentionPolicy]
         attr_accessor :policy
+        # @!attribute channel_type_rule
+        #   @return [ChannelTypeRuleResponse]
+        attr_accessor :channel_type_rule
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @duration = attributes[:duration] || attributes['duration']
           @policy = attributes[:policy] || attributes['policy']
+          @channel_type_rule = attributes[:channel_type_rule] || attributes['channel_type_rule'] || nil
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
             duration: 'duration',
-            policy: 'policy'
+            policy: 'policy',
+            channel_type_rule: 'channel_type_rule'
           }
         end
       end

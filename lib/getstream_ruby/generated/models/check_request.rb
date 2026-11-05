@@ -38,7 +38,7 @@ module GetStream
         #   @return [String]
         attr_accessor :user_id
         # @!attribute country_codes
-        #   @return [Array<String>] ISO 3166-1 alpha-2 countries the content is aimed at (e.g. US, DE), up to 300. The first is the primary country, which AI text providers receive as country context. Takes precedence over country_code.
+        #   @return [Array<String>] ISO 3166-1 alpha-2 countries the content is aimed at (e.g. US, DE), up to 300. The first is the primary country. Every country is sent to the AI text and image harm detection engines as country context. Takes precedence over country_code.
         attr_accessor :country_codes
         # @!attribute config
         #   @return [ModerationConfig]
