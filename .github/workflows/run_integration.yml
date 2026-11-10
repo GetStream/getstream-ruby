@@ -5,8 +5,6 @@ on:
     secrets:
       STREAM_API_SECRET:
         required: true
-      STREAM_VIDEO_API_SECRET:
-        required: true
       STREAM_GCP_API_SECRET:
         required: false
 
@@ -34,7 +32,7 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.1.0'
+          ruby-version: '3.1'
           bundler-cache: true
 
       - name: Run chat integration tests
@@ -62,7 +60,7 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.1.0'
+          ruby-version: '3.1'
           bundler-cache: true
 
       - name: Run feed integration tests
@@ -84,14 +82,14 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.1.0'
+          ruby-version: '3.1'
           bundler-cache: true
 
       - name: Run video integration tests
         env:
-          STREAM_API_KEY: ${{ vars.STREAM_VIDEO_API_KEY }}
-          STREAM_API_SECRET: ${{ secrets.STREAM_VIDEO_API_SECRET }}
-          STREAM_BASE_URL: ${{ vars.STREAM_VIDEO_BASE_URL }}
+          STREAM_API_KEY: ${{ vars.STREAM_API_KEY }}
+          STREAM_API_SECRET: ${{ secrets.STREAM_API_SECRET }}
+          STREAM_BASE_URL: ${{ vars.STREAM_BASE_URL }}
         run: make test-integration-video
 
   integration-gcp-lb:
@@ -106,7 +104,7 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.1.0'
+          ruby-version: '3.1'
           bundler-cache: true
 
       - name: Run GCP keep-alive integration test
