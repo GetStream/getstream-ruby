@@ -34,7 +34,7 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.1.0'
+          ruby-version: '3.1'
           bundler-cache: true
 
       - name: Run chat integration tests
@@ -62,7 +62,7 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.1.0'
+          ruby-version: '3.1'
           bundler-cache: true
 
       - name: Run feed integration tests
@@ -84,7 +84,7 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.1.0'
+          ruby-version: '3.1'
           bundler-cache: true
 
       - name: Run video integration tests
@@ -106,7 +106,7 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.1.0'
+          ruby-version: '3.1'
           bundler-cache: true
 
       - name: Run GCP keep-alive integration test
