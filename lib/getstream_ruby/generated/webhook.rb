@@ -3,6 +3,7 @@
 require 'base64'
 require 'json'
 require 'openssl'
+require 'stringio'
 require 'time'
 require 'zlib'
 require_relative 'models/activity_added_event'
@@ -233,6 +234,14 @@ module StreamChat
     # so this gives unambiguous detection for Stream's always-JSON payloads.
     GZIP_MAGIC = "\x1F\x8B".b.freeze
     private_constant :GZIP_MAGIC
+
+    class << self
+      # Caps the decompressed size of a gzip webhook body. gunzip_payload runs
+      # before the signature check, so without a cap an unsigned gzip bomb could
+      # exhaust memory. Raise it if your events are larger.
+      attr_accessor :max_payload_bytes
+    end
+    self.max_payload_bytes = 10 * 1024 * 1024
 
     # Webhook event type constants
     EVENT_TYPE_WILDCARD = '*'
@@ -887,14 +896,19 @@ module StreamChat
     # @param body [String] raw body (binary-safe)
     # @return [String] decompressed body, or the original body if not gzip-prefixed
     # @raise [InvalidWebhookError] if body has the gzip magic prefix but
-    #        isn't a valid gzip stream
+    #        isn't a valid gzip stream, or decompresses to more than
+    #        {max_payload_bytes}
     def self.gunzip_payload(body)
       raise InvalidWebhookError, "#{InvalidWebhookError::INVALID_JSON}: body must be a String" unless body.is_a?(String)
 
       bytes = body.b
       return bytes if bytes.bytesize < 2 || bytes.byteslice(0, 2) != GZIP_MAGIC
 
-      Zlib.gunzip(bytes)
+      limit = max_payload_bytes
+      out = Zlib::GzipReader.wrap(StringIO.new(bytes)) { |gz| gz.read(limit + 1) } || ''.b
+      raise InvalidWebhookError, "#{InvalidWebhookError::GZIP_FAILED}: payload exceeds #{limit} bytes" if out.bytesize > limit
+
+      out
     rescue Zlib::Error => e
       raise InvalidWebhookError, "#{InvalidWebhookError::GZIP_FAILED}: #{e.message}"
     end
