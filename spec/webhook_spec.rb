@@ -1774,6 +1774,16 @@ RSpec.describe 'Webhook conformance', type: :integration do
 
     end
 
+    it 'raises on gzip body over the size cap' do
+
+      skip 'fixtures not present' unless File.directory?(WEBHOOK_FIXTURE_ROOT)
+
+      body = File.binread(File.join(neg_dir('oversized_compression'), 'body.gz'))
+      err_class = StreamChat::Webhook::InvalidWebhookError
+      expect { StreamChat::Webhook.gunzip_payload(body) }.to raise_error(err_class, /payload exceeds/)
+
+    end
+
     it 'raises on bad base64 (downstream parse failure)' do
 
       # Per CHA-3071 wire format: decode_sqs_payload falls back to raw bytes
