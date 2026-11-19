@@ -19,8 +19,8 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @max_speech_caption_ms = attributes[:max_speech_caption_ms] || attributes['max_speech_caption_ms'] || nil
-          @silence_duration_ms = attributes[:silence_duration_ms] || attributes['silence_duration_ms'] || nil
+          @max_speech_caption_ms = attributes.fetch(:max_speech_caption_ms) { attributes.fetch('max_speech_caption_ms', nil) }
+          @silence_duration_ms = attributes.fetch(:silence_duration_ms) { attributes.fetch('silence_duration_ms', nil) }
         end
 
         # Override field mappings for JSON serialization

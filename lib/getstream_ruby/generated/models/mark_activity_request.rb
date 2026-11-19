@@ -34,13 +34,13 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @mark_all_read = attributes[:mark_all_read] || attributes['mark_all_read'] || nil
-          @mark_all_seen = attributes[:mark_all_seen] || attributes['mark_all_seen'] || nil
-          @user_id = attributes[:user_id] || attributes['user_id'] || nil
-          @mark_read = attributes[:mark_read] || attributes['mark_read'] || nil
-          @mark_seen = attributes[:mark_seen] || attributes['mark_seen'] || nil
-          @mark_watched = attributes[:mark_watched] || attributes['mark_watched'] || nil
-          @user = attributes[:user] || attributes['user'] || nil
+          @mark_all_read = attributes.fetch(:mark_all_read) { attributes.fetch('mark_all_read', nil) }
+          @mark_all_seen = attributes.fetch(:mark_all_seen) { attributes.fetch('mark_all_seen', nil) }
+          @user_id = attributes.fetch(:user_id) { attributes.fetch('user_id', nil) }
+          @mark_read = attributes.fetch(:mark_read) { attributes.fetch('mark_read', nil) }
+          @mark_seen = attributes.fetch(:mark_seen) { attributes.fetch('mark_seen', nil) }
+          @mark_watched = attributes.fetch(:mark_watched) { attributes.fetch('mark_watched', nil) }
+          @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
         end
 
         # Override field mappings for JSON serialization

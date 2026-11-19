@@ -22,9 +22,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @sns_key = attributes[:sns_key] || attributes['sns_key'] || nil
-          @sns_secret = attributes[:sns_secret] || attributes['sns_secret'] || nil
-          @sns_topic_arn = attributes[:sns_topic_arn] || attributes['sns_topic_arn'] || nil
+          @sns_key = attributes.fetch(:sns_key) { attributes.fetch('sns_key', nil) }
+          @sns_secret = attributes.fetch(:sns_secret) { attributes.fetch('sns_secret', nil) }
+          @sns_topic_arn = attributes.fetch(:sns_topic_arn) { attributes.fetch('sns_topic_arn', nil) }
         end
 
         # Override field mappings for JSON serialization

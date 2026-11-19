@@ -37,14 +37,14 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @fid = attributes[:fid] || attributes['fid']
-          @custom = attributes[:custom] || attributes['custom']
-          @feed = attributes[:feed] || attributes['feed']
-          @type = attributes[:type] || attributes['type'] || "feeds.feed.updated"
-          @feed_visibility = attributes[:feed_visibility] || attributes['feed_visibility'] || nil
-          @received_at = attributes[:received_at] || attributes['received_at'] || nil
-          @user = attributes[:user] || attributes['user'] || nil
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @fid = attributes.fetch(:fid) { attributes.fetch('fid', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
+          @feed = attributes.fetch(:feed) { attributes.fetch('feed', nil) }
+          @type = attributes.fetch(:type) { attributes.fetch('type', "feeds.feed.updated") }
+          @feed_visibility = attributes.fetch(:feed_visibility) { attributes.fetch('feed_visibility', nil) }
+          @received_at = attributes.fetch(:received_at) { attributes.fetch('received_at', nil) }
+          @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
         end
 
         # Override field mappings for JSON serialization

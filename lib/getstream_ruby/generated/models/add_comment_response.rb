@@ -25,10 +25,10 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @duration = attributes[:duration] || attributes['duration']
-          @comment = attributes[:comment] || attributes['comment']
-          @mention_notifications_created = attributes[:mention_notifications_created] || attributes['mention_notifications_created'] || nil
-          @notification_created = attributes[:notification_created] || attributes['notification_created'] || nil
+          @duration = attributes.fetch(:duration) { attributes.fetch('duration', nil) }
+          @comment = attributes.fetch(:comment) { attributes.fetch('comment', nil) }
+          @mention_notifications_created = attributes.fetch(:mention_notifications_created) { attributes.fetch('mention_notifications_created', nil) }
+          @notification_created = attributes.fetch(:notification_created) { attributes.fetch('notification_created', nil) }
         end
 
         # Override field mappings for JSON serialization

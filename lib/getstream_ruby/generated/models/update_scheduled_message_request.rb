@@ -19,8 +19,8 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @scheduled_at = attributes[:scheduled_at] || attributes['scheduled_at'] || nil
-          @message = attributes[:message] || attributes['message'] || nil
+          @scheduled_at = attributes.fetch(:scheduled_at) { attributes.fetch('scheduled_at', nil) }
+          @message = attributes.fetch(:message) { attributes.fetch('message', nil) }
         end
 
         # Override field mappings for JSON serialization

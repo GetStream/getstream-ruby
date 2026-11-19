@@ -37,14 +37,14 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @exclude_expired_bans = attributes[:exclude_expired_bans] || attributes['exclude_expired_bans'] || nil
-          @include_total = attributes[:include_total] || attributes['include_total'] || nil
-          @limit = attributes[:limit] || attributes['limit'] || nil
-          @next = attributes[:next] || attributes['next'] || nil
-          @prev = attributes[:prev] || attributes['prev'] || nil
-          @user_id = attributes[:user_id] || attributes['user_id'] || nil
-          @filter_conditions = attributes[:filter_conditions] || attributes['filter_conditions'] || nil
-          @user = attributes[:user] || attributes['user'] || nil
+          @exclude_expired_bans = attributes.fetch(:exclude_expired_bans) { attributes.fetch('exclude_expired_bans', nil) }
+          @include_total = attributes.fetch(:include_total) { attributes.fetch('include_total', nil) }
+          @limit = attributes.fetch(:limit) { attributes.fetch('limit', nil) }
+          @next = attributes.fetch(:next) { attributes.fetch('next', nil) }
+          @prev = attributes.fetch(:prev) { attributes.fetch('prev', nil) }
+          @user_id = attributes.fetch(:user_id) { attributes.fetch('user_id', nil) }
+          @filter_conditions = attributes.fetch(:filter_conditions) { attributes.fetch('filter_conditions', nil) }
+          @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
         end
 
         # Override field mappings for JSON serialization

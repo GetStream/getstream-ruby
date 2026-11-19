@@ -12,6 +12,9 @@ module GetStream
         # @!attribute duration
         #   @return [String]
         attr_accessor :duration
+        # @!attribute agent_review
+        #   @return [AgentReviewResponse]
+        attr_accessor :agent_review
         # @!attribute item
         #   @return [ReviewQueueItemResponse]
         attr_accessor :item
@@ -19,14 +22,16 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @duration = attributes[:duration] || attributes['duration']
-          @item = attributes[:item] || attributes['item'] || nil
+          @duration = attributes.fetch(:duration) { attributes.fetch('duration', nil) }
+          @agent_review = attributes.fetch(:agent_review) { attributes.fetch('agent_review', nil) }
+          @item = attributes.fetch(:item) { attributes.fetch('item', nil) }
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
             duration: 'duration',
+            agent_review: 'agent_review',
             item: 'item'
           }
         end

@@ -37,14 +37,14 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @action = attributes[:action] || attributes['action']
-          @original_text = attributes[:original_text] || attributes['original_text']
-          @blocklist_matched = attributes[:blocklist_matched] || attributes['blocklist_matched'] || nil
-          @platform_circumvented = attributes[:platform_circumvented] || attributes['platform_circumvented'] || nil
-          @semantic_filter_matched = attributes[:semantic_filter_matched] || attributes['semantic_filter_matched'] || nil
-          @blocklists_matched = attributes[:blocklists_matched] || attributes['blocklists_matched'] || nil
-          @image_harms = attributes[:image_harms] || attributes['image_harms'] || nil
-          @text_harms = attributes[:text_harms] || attributes['text_harms'] || nil
+          @action = attributes.fetch(:action) { attributes.fetch('action', nil) }
+          @original_text = attributes.fetch(:original_text) { attributes.fetch('original_text', nil) }
+          @blocklist_matched = attributes.fetch(:blocklist_matched) { attributes.fetch('blocklist_matched', nil) }
+          @platform_circumvented = attributes.fetch(:platform_circumvented) { attributes.fetch('platform_circumvented', nil) }
+          @semantic_filter_matched = attributes.fetch(:semantic_filter_matched) { attributes.fetch('semantic_filter_matched', nil) }
+          @blocklists_matched = attributes.fetch(:blocklists_matched) { attributes.fetch('blocklists_matched', nil) }
+          @image_harms = attributes.fetch(:image_harms) { attributes.fetch('image_harms', nil) }
+          @text_harms = attributes.fetch(:text_harms) { attributes.fetch('text_harms', nil) }
         end
 
         # Override field mappings for JSON serialization

@@ -49,18 +49,18 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @anonymous_participant_count = attributes[:anonymous_participant_count] || attributes['anonymous_participant_count']
-          @id = attributes[:id] || attributes['id']
-          @participants = attributes[:participants] || attributes['participants']
-          @accepted_by = attributes[:accepted_by] || attributes['accepted_by']
-          @missed_by = attributes[:missed_by] || attributes['missed_by']
-          @participants_count_by_role = attributes[:participants_count_by_role] || attributes['participants_count_by_role']
-          @rejected_by = attributes[:rejected_by] || attributes['rejected_by']
-          @ended_at = attributes[:ended_at] || attributes['ended_at'] || nil
-          @live_ended_at = attributes[:live_ended_at] || attributes['live_ended_at'] || nil
-          @live_started_at = attributes[:live_started_at] || attributes['live_started_at'] || nil
-          @started_at = attributes[:started_at] || attributes['started_at'] || nil
-          @timer_ends_at = attributes[:timer_ends_at] || attributes['timer_ends_at'] || nil
+          @anonymous_participant_count = attributes.fetch(:anonymous_participant_count) { attributes.fetch('anonymous_participant_count', nil) }
+          @id = attributes.fetch(:id) { attributes.fetch('id', nil) }
+          @participants = attributes.fetch(:participants) { attributes.fetch('participants', nil) }
+          @accepted_by = attributes.fetch(:accepted_by) { attributes.fetch('accepted_by', nil) }
+          @missed_by = attributes.fetch(:missed_by) { attributes.fetch('missed_by', nil) }
+          @participants_count_by_role = attributes.fetch(:participants_count_by_role) { attributes.fetch('participants_count_by_role', nil) }
+          @rejected_by = attributes.fetch(:rejected_by) { attributes.fetch('rejected_by', nil) }
+          @ended_at = attributes.fetch(:ended_at) { attributes.fetch('ended_at', nil) }
+          @live_ended_at = attributes.fetch(:live_ended_at) { attributes.fetch('live_ended_at', nil) }
+          @live_started_at = attributes.fetch(:live_started_at) { attributes.fetch('live_started_at', nil) }
+          @started_at = attributes.fetch(:started_at) { attributes.fetch('started_at', nil) }
+          @timer_ends_at = attributes.fetch(:timer_ends_at) { attributes.fetch('timer_ends_at', nil) }
         end
 
         # Override field mappings for JSON serialization

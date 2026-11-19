@@ -25,10 +25,10 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @co_host_peak = attributes[:co_host_peak] || attributes['co_host_peak']
-          @dead_air_s = attributes[:dead_air_s] || attributes['dead_air_s']
-          @interruptions = attributes[:interruptions] || attributes['interruptions']
-          @publisher_sessions = attributes[:publisher_sessions] || attributes['publisher_sessions']
+          @co_host_peak = attributes.fetch(:co_host_peak) { attributes.fetch('co_host_peak', nil) }
+          @dead_air_s = attributes.fetch(:dead_air_s) { attributes.fetch('dead_air_s', nil) }
+          @interruptions = attributes.fetch(:interruptions) { attributes.fetch('interruptions', nil) }
+          @publisher_sessions = attributes.fetch(:publisher_sessions) { attributes.fetch('publisher_sessions', nil) }
         end
 
         # Override field mappings for JSON serialization

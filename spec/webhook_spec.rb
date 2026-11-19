@@ -989,6 +989,20 @@ RSpec.describe 'Webhook' do
 
     end
 
+    it 'parses feeds.scheduled_activity.failed' do
+
+      event = StreamChat::Webhook.parse_webhook_event('{"type":"feeds.scheduled_activity.failed"}')
+      expect(event.class.name).to eq('GetStream::Generated::Models::ScheduledActivityFailedEvent')
+
+    end
+
+    it 'parses feeds.scheduled_activity.published' do
+
+      event = StreamChat::Webhook.parse_webhook_event('{"type":"feeds.scheduled_activity.published"}')
+      expect(event.class.name).to eq('GetStream::Generated::Models::ScheduledActivityPublishedEvent')
+
+    end
+
     it 'parses feeds.stories_feed.updated' do
 
       event = StreamChat::Webhook.parse_webhook_event('{"type":"feeds.stories_feed.updated"}')

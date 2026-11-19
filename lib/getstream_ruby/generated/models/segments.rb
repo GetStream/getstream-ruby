@@ -31,12 +31,12 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @by_country_reason = attributes[:by_country_reason] || attributes['by_country_reason']
-          @by_browser = attributes[:by_browser] || attributes['by_browser']
-          @by_country = attributes[:by_country] || attributes['by_country']
-          @by_delivery_zone = attributes[:by_delivery_zone] || attributes['by_delivery_zone']
-          @by_os = attributes[:by_os] || attributes['by_os']
-          @by_sdk = attributes[:by_sdk] || attributes['by_sdk']
+          @by_country_reason = attributes.fetch(:by_country_reason) { attributes.fetch('by_country_reason', nil) }
+          @by_browser = attributes.fetch(:by_browser) { attributes.fetch('by_browser', nil) }
+          @by_country = attributes.fetch(:by_country) { attributes.fetch('by_country', nil) }
+          @by_delivery_zone = attributes.fetch(:by_delivery_zone) { attributes.fetch('by_delivery_zone', nil) }
+          @by_os = attributes.fetch(:by_os) { attributes.fetch('by_os', nil) }
+          @by_sdk = attributes.fetch(:by_sdk) { attributes.fetch('by_sdk', nil) }
         end
 
         # Override field mappings for JSON serialization

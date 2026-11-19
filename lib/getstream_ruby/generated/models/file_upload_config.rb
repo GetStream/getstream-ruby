@@ -28,11 +28,11 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @size_limit = attributes[:size_limit] || attributes['size_limit']
-          @allowed_file_extensions = attributes[:allowed_file_extensions] || attributes['allowed_file_extensions'] || nil
-          @allowed_mime_types = attributes[:allowed_mime_types] || attributes['allowed_mime_types'] || nil
-          @blocked_file_extensions = attributes[:blocked_file_extensions] || attributes['blocked_file_extensions'] || nil
-          @blocked_mime_types = attributes[:blocked_mime_types] || attributes['blocked_mime_types'] || nil
+          @size_limit = attributes.fetch(:size_limit) { attributes.fetch('size_limit', nil) }
+          @allowed_file_extensions = attributes.fetch(:allowed_file_extensions) { attributes.fetch('allowed_file_extensions', nil) }
+          @allowed_mime_types = attributes.fetch(:allowed_mime_types) { attributes.fetch('allowed_mime_types', nil) }
+          @blocked_file_extensions = attributes.fetch(:blocked_file_extensions) { attributes.fetch('blocked_file_extensions', nil) }
+          @blocked_mime_types = attributes.fetch(:blocked_mime_types) { attributes.fetch('blocked_mime_types', nil) }
         end
 
         # Override field mappings for JSON serialization

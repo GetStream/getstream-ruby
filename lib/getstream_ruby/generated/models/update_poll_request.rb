@@ -58,21 +58,21 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @id = attributes[:id] || attributes['id']
-          @name = attributes[:name] || attributes['name']
-          @allow_answers = attributes[:allow_answers] || attributes['allow_answers'] || nil
-          @allow_user_suggested_options = attributes[:allow_user_suggested_options] || attributes['allow_user_suggested_options'] || nil
-          @config_key = attributes[:config_key] || attributes['config_key'] || nil
-          @config_team = attributes[:config_team] || attributes['config_team'] || nil
-          @description = attributes[:description] || attributes['description'] || nil
-          @enforce_unique_vote = attributes[:enforce_unique_vote] || attributes['enforce_unique_vote'] || nil
-          @is_closed = attributes[:is_closed] || attributes['is_closed'] || nil
-          @max_votes_allowed = attributes[:max_votes_allowed] || attributes['max_votes_allowed'] || nil
-          @user_id = attributes[:user_id] || attributes['user_id'] || nil
-          @voting_visibility = attributes[:voting_visibility] || attributes['voting_visibility'] || nil
-          @options = attributes[:options] || attributes['options'] || nil
-          @custom = attributes[:custom] || attributes['custom'] || nil
-          @user = attributes[:user] || attributes['user'] || nil
+          @id = attributes.fetch(:id) { attributes.fetch('id', nil) }
+          @name = attributes.fetch(:name) { attributes.fetch('name', nil) }
+          @allow_answers = attributes.fetch(:allow_answers) { attributes.fetch('allow_answers', nil) }
+          @allow_user_suggested_options = attributes.fetch(:allow_user_suggested_options) { attributes.fetch('allow_user_suggested_options', nil) }
+          @config_key = attributes.fetch(:config_key) { attributes.fetch('config_key', nil) }
+          @config_team = attributes.fetch(:config_team) { attributes.fetch('config_team', nil) }
+          @description = attributes.fetch(:description) { attributes.fetch('description', nil) }
+          @enforce_unique_vote = attributes.fetch(:enforce_unique_vote) { attributes.fetch('enforce_unique_vote', nil) }
+          @is_closed = attributes.fetch(:is_closed) { attributes.fetch('is_closed', nil) }
+          @max_votes_allowed = attributes.fetch(:max_votes_allowed) { attributes.fetch('max_votes_allowed', nil) }
+          @user_id = attributes.fetch(:user_id) { attributes.fetch('user_id', nil) }
+          @voting_visibility = attributes.fetch(:voting_visibility) { attributes.fetch('voting_visibility', nil) }
+          @options = attributes.fetch(:options) { attributes.fetch('options', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
+          @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
         end
 
         # Override field mappings for JSON serialization

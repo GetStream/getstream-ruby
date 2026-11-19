@@ -22,9 +22,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @enabled = attributes[:enabled] || attributes['enabled']
-          @audio_encoding_options = attributes[:audio_encoding_options] || attributes['audio_encoding_options'] || nil
-          @video_encoding_options = attributes[:video_encoding_options] || attributes['video_encoding_options'] || nil
+          @enabled = attributes.fetch(:enabled) { attributes.fetch('enabled', nil) }
+          @audio_encoding_options = attributes.fetch(:audio_encoding_options) { attributes.fetch('audio_encoding_options', nil) }
+          @video_encoding_options = attributes.fetch(:video_encoding_options) { attributes.fetch('video_encoding_options', nil) }
         end
 
         # Override field mappings for JSON serialization

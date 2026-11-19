@@ -88,31 +88,31 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @banned = attributes[:banned] || attributes['banned']
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @id = attributes[:id] || attributes['id']
-          @invisible = attributes[:invisible] || attributes['invisible']
-          @language = attributes[:language] || attributes['language']
-          @online = attributes[:online] || attributes['online']
-          @role = attributes[:role] || attributes['role']
-          @shadow_banned = attributes[:shadow_banned] || attributes['shadow_banned']
-          @updated_at = attributes[:updated_at] || attributes['updated_at']
-          @blocked_user_ids = attributes[:blocked_user_ids] || attributes['blocked_user_ids']
-          @teams = attributes[:teams] || attributes['teams']
-          @custom = attributes[:custom] || attributes['custom']
-          @avg_response_time = attributes[:avg_response_time] || attributes['avg_response_time'] || nil
-          @ban_expires = attributes[:ban_expires] || attributes['ban_expires'] || nil
-          @bypass_moderation = attributes[:bypass_moderation] || attributes['bypass_moderation'] || nil
-          @deactivated_at = attributes[:deactivated_at] || attributes['deactivated_at'] || nil
-          @deleted_at = attributes[:deleted_at] || attributes['deleted_at'] || nil
-          @image = attributes[:image] || attributes['image'] || nil
-          @last_active = attributes[:last_active] || attributes['last_active'] || nil
-          @name = attributes[:name] || attributes['name'] || nil
-          @revoke_tokens_issued_before = attributes[:revoke_tokens_issued_before] || attributes['revoke_tokens_issued_before'] || nil
-          @devices = attributes[:devices] || attributes['devices'] || nil
-          @privacy_settings = attributes[:privacy_settings] || attributes['privacy_settings'] || nil
-          @push_notifications = attributes[:push_notifications] || attributes['push_notifications'] || nil
-          @teams_role = attributes[:teams_role] || attributes['teams_role'] || nil
+          @banned = attributes.fetch(:banned) { attributes.fetch('banned', nil) }
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @id = attributes.fetch(:id) { attributes.fetch('id', nil) }
+          @invisible = attributes.fetch(:invisible) { attributes.fetch('invisible', nil) }
+          @language = attributes.fetch(:language) { attributes.fetch('language', nil) }
+          @online = attributes.fetch(:online) { attributes.fetch('online', nil) }
+          @role = attributes.fetch(:role) { attributes.fetch('role', nil) }
+          @shadow_banned = attributes.fetch(:shadow_banned) { attributes.fetch('shadow_banned', nil) }
+          @updated_at = attributes.fetch(:updated_at) { attributes.fetch('updated_at', nil) }
+          @blocked_user_ids = attributes.fetch(:blocked_user_ids) { attributes.fetch('blocked_user_ids', nil) }
+          @teams = attributes.fetch(:teams) { attributes.fetch('teams', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
+          @avg_response_time = attributes.fetch(:avg_response_time) { attributes.fetch('avg_response_time', nil) }
+          @ban_expires = attributes.fetch(:ban_expires) { attributes.fetch('ban_expires', nil) }
+          @bypass_moderation = attributes.fetch(:bypass_moderation) { attributes.fetch('bypass_moderation', nil) }
+          @deactivated_at = attributes.fetch(:deactivated_at) { attributes.fetch('deactivated_at', nil) }
+          @deleted_at = attributes.fetch(:deleted_at) { attributes.fetch('deleted_at', nil) }
+          @image = attributes.fetch(:image) { attributes.fetch('image', nil) }
+          @last_active = attributes.fetch(:last_active) { attributes.fetch('last_active', nil) }
+          @name = attributes.fetch(:name) { attributes.fetch('name', nil) }
+          @revoke_tokens_issued_before = attributes.fetch(:revoke_tokens_issued_before) { attributes.fetch('revoke_tokens_issued_before', nil) }
+          @devices = attributes.fetch(:devices) { attributes.fetch('devices', nil) }
+          @privacy_settings = attributes.fetch(:privacy_settings) { attributes.fetch('privacy_settings', nil) }
+          @push_notifications = attributes.fetch(:push_notifications) { attributes.fetch('push_notifications', nil) }
+          @teams_role = attributes.fetch(:teams_role) { attributes.fetch('teams_role', nil) }
         end
 
         # Override field mappings for JSON serialization

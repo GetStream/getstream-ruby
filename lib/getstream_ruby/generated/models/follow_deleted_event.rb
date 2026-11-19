@@ -34,13 +34,13 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @fid = attributes[:fid] || attributes['fid']
-          @custom = attributes[:custom] || attributes['custom']
-          @follow = attributes[:follow] || attributes['follow']
-          @type = attributes[:type] || attributes['type'] || "feeds.follow.deleted"
-          @feed_visibility = attributes[:feed_visibility] || attributes['feed_visibility'] || nil
-          @received_at = attributes[:received_at] || attributes['received_at'] || nil
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @fid = attributes.fetch(:fid) { attributes.fetch('fid', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
+          @follow = attributes.fetch(:follow) { attributes.fetch('follow', nil) }
+          @type = attributes.fetch(:type) { attributes.fetch('type', "feeds.follow.deleted") }
+          @feed_visibility = attributes.fetch(:feed_visibility) { attributes.fetch('feed_visibility', nil) }
+          @received_at = attributes.fetch(:received_at) { attributes.fetch('received_at', nil) }
         end
 
         # Override field mappings for JSON serialization

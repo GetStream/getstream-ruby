@@ -76,27 +76,27 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @id = attributes[:id] || attributes['id']
-          @kind = attributes[:kind] || attributes['kind']
-          @bodyguard_feedback_id = attributes[:bodyguard_feedback_id] || attributes['bodyguard_feedback_id'] || nil
-          @bodyguard_sent_at = attributes[:bodyguard_sent_at] || attributes['bodyguard_sent_at'] || nil
-          @channel_id = attributes[:channel_id] || attributes['channel_id'] || nil
-          @confidence = attributes[:confidence] || attributes['confidence'] || nil
-          @current_recommended_action = attributes[:current_recommended_action] || attributes['current_recommended_action'] || nil
-          @description = attributes[:description] || attributes['description'] || nil
-          @entity_id = attributes[:entity_id] || attributes['entity_id'] || nil
-          @entity_type = attributes[:entity_type] || attributes['entity_type'] || nil
-          @expected_recommended_action = attributes[:expected_recommended_action] || attributes['expected_recommended_action'] || nil
-          @flag_id = attributes[:flag_id] || attributes['flag_id'] || nil
-          @image_url = attributes[:image_url] || attributes['image_url'] || nil
-          @published_at = attributes[:published_at] || attributes['published_at'] || nil
-          @reference = attributes[:reference] || attributes['reference'] || nil
-          @reporter_id = attributes[:reporter_id] || attributes['reporter_id'] || nil
-          @review_queue_item_id = attributes[:review_queue_item_id] || attributes['review_queue_item_id'] || nil
-          @text = attributes[:text] || attributes['text'] || nil
-          @current_labels = attributes[:current_labels] || attributes['current_labels'] || nil
-          @expected_labels = attributes[:expected_labels] || attributes['expected_labels'] || nil
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @id = attributes.fetch(:id) { attributes.fetch('id', nil) }
+          @kind = attributes.fetch(:kind) { attributes.fetch('kind', nil) }
+          @bodyguard_feedback_id = attributes.fetch(:bodyguard_feedback_id) { attributes.fetch('bodyguard_feedback_id', nil) }
+          @bodyguard_sent_at = attributes.fetch(:bodyguard_sent_at) { attributes.fetch('bodyguard_sent_at', nil) }
+          @channel_id = attributes.fetch(:channel_id) { attributes.fetch('channel_id', nil) }
+          @confidence = attributes.fetch(:confidence) { attributes.fetch('confidence', nil) }
+          @current_recommended_action = attributes.fetch(:current_recommended_action) { attributes.fetch('current_recommended_action', nil) }
+          @description = attributes.fetch(:description) { attributes.fetch('description', nil) }
+          @entity_id = attributes.fetch(:entity_id) { attributes.fetch('entity_id', nil) }
+          @entity_type = attributes.fetch(:entity_type) { attributes.fetch('entity_type', nil) }
+          @expected_recommended_action = attributes.fetch(:expected_recommended_action) { attributes.fetch('expected_recommended_action', nil) }
+          @flag_id = attributes.fetch(:flag_id) { attributes.fetch('flag_id', nil) }
+          @image_url = attributes.fetch(:image_url) { attributes.fetch('image_url', nil) }
+          @published_at = attributes.fetch(:published_at) { attributes.fetch('published_at', nil) }
+          @reference = attributes.fetch(:reference) { attributes.fetch('reference', nil) }
+          @reporter_id = attributes.fetch(:reporter_id) { attributes.fetch('reporter_id', nil) }
+          @review_queue_item_id = attributes.fetch(:review_queue_item_id) { attributes.fetch('review_queue_item_id', nil) }
+          @text = attributes.fetch(:text) { attributes.fetch('text', nil) }
+          @current_labels = attributes.fetch(:current_labels) { attributes.fetch('current_labels', nil) }
+          @expected_labels = attributes.fetch(:expected_labels) { attributes.fetch('expected_labels', nil) }
         end
 
         # Override field mappings for JSON serialization

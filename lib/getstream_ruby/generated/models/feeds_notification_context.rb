@@ -19,8 +19,8 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @target = attributes[:target] || attributes['target'] || nil
-          @trigger = attributes[:trigger] || attributes['trigger'] || nil
+          @target = attributes.fetch(:target) { attributes.fetch('target', nil) }
+          @trigger = attributes.fetch(:trigger) { attributes.fetch('trigger', nil) }
         end
 
         # Override field mappings for JSON serialization

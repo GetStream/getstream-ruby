@@ -28,11 +28,11 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @datacenter = attributes[:datacenter] || attributes['datacenter']
-          @id = attributes[:id] || attributes['id']
-          @coordinates = attributes[:coordinates] || attributes['coordinates']
-          @location = attributes[:location] || attributes['location']
-          @count = attributes[:count] || attributes['count'] || nil
+          @datacenter = attributes.fetch(:datacenter) { attributes.fetch('datacenter', nil) }
+          @id = attributes.fetch(:id) { attributes.fetch('id', nil) }
+          @coordinates = attributes.fetch(:coordinates) { attributes.fetch('coordinates', nil) }
+          @location = attributes.fetch(:location) { attributes.fetch('location', nil) }
+          @count = attributes.fetch(:count) { attributes.fetch('count', nil) }
         end
 
         # Override field mappings for JSON serialization

@@ -117,8 +117,11 @@ module GetStream
         # @!attribute moderation_action
         #   @return [String]
         attr_accessor :moderation_action
+        # @!attribute position
+        #   @return [Integer] 1-based position of this activity. On ranked feeds it is the activity's slot in the ranked feed, continuing across pages; activities filtered out for this user leave gaps. Otherwise it is relative to the returned page. Only set on feed reads for paid plans with an authenticated user, when the app uses feed impressions (For You exploration, or a For You ranking that uses impressions_bucket).
+        attr_accessor :position
         # @!attribute selector_source
-        #   @return [String] Which activity selector provided this activity (e.g., 'following', 'popular', 'interest'). Only set when using multiple activity selectors with ranking.
+        #   @return [String] Which activity selector provided this activity (e.g., 'following', 'popular', 'interest'), or 'exploration' for the For You exploration slot. Only set when using multiple activity selectors with ranking.
         attr_accessor :selector_source
         # @!attribute text
         #   @return [String] Text content of the activity
@@ -135,6 +138,9 @@ module GetStream
         # @!attribute latest_shares
         #   @return [Array<ShareResponse>] Recent shares of the activity, one entry per share (org-gated)
         attr_accessor :latest_shares
+        # @!attribute reasons
+        #   @return [Array<String>] Codes explaining why this activity was shown (e.g. 'following', 'popular', 'interest:nba'). Only included when include_reasons is enabled in enrichment options.
+        attr_accessor :reasons
         # @!attribute current_feed
         #   @return [FeedResponse]
         attr_accessor :current_feed
@@ -166,57 +172,59 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @bookmark_count = attributes[:bookmark_count] || attributes['bookmark_count']
-          @comment_count = attributes[:comment_count] || attributes['comment_count']
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @hidden = attributes[:hidden] || attributes['hidden']
-          @id = attributes[:id] || attributes['id']
-          @popularity = attributes[:popularity] || attributes['popularity']
-          @preview = attributes[:preview] || attributes['preview']
-          @reaction_count = attributes[:reaction_count] || attributes['reaction_count']
-          @restrict_replies = attributes[:restrict_replies] || attributes['restrict_replies']
-          @score = attributes[:score] || attributes['score']
-          @share_count = attributes[:share_count] || attributes['share_count']
-          @type = attributes[:type] || attributes['type']
-          @updated_at = attributes[:updated_at] || attributes['updated_at']
-          @visibility = attributes[:visibility] || attributes['visibility']
-          @attachments = attributes[:attachments] || attributes['attachments']
-          @comments = attributes[:comments] || attributes['comments']
-          @feeds = attributes[:feeds] || attributes['feeds']
-          @filter_tags = attributes[:filter_tags] || attributes['filter_tags']
-          @interest_tags = attributes[:interest_tags] || attributes['interest_tags']
-          @latest_reactions = attributes[:latest_reactions] || attributes['latest_reactions']
-          @mentioned_users = attributes[:mentioned_users] || attributes['mentioned_users']
-          @own_bookmarks = attributes[:own_bookmarks] || attributes['own_bookmarks']
-          @own_reactions = attributes[:own_reactions] || attributes['own_reactions']
-          @collections = attributes[:collections] || attributes['collections']
-          @custom = attributes[:custom] || attributes['custom']
-          @reaction_groups = attributes[:reaction_groups] || attributes['reaction_groups']
-          @search_data = attributes[:search_data] || attributes['search_data']
-          @user = attributes[:user] || attributes['user']
-          @deleted_at = attributes[:deleted_at] || attributes['deleted_at'] || nil
-          @edited_at = attributes[:edited_at] || attributes['edited_at'] || nil
-          @expires_at = attributes[:expires_at] || attributes['expires_at'] || nil
-          @friend_reaction_count = attributes[:friend_reaction_count] || attributes['friend_reaction_count'] || nil
-          @is_read = attributes[:is_read] || attributes['is_read'] || nil
-          @is_seen = attributes[:is_seen] || attributes['is_seen'] || nil
-          @is_watched = attributes[:is_watched] || attributes['is_watched'] || nil
-          @moderation_action = attributes[:moderation_action] || attributes['moderation_action'] || nil
-          @selector_source = attributes[:selector_source] || attributes['selector_source'] || nil
-          @text = attributes[:text] || attributes['text'] || nil
-          @top_level_comment_count = attributes[:top_level_comment_count] || attributes['top_level_comment_count'] || nil
-          @visibility_tag = attributes[:visibility_tag] || attributes['visibility_tag'] || nil
-          @friend_reactions = attributes[:friend_reactions] || attributes['friend_reactions'] || nil
-          @latest_shares = attributes[:latest_shares] || attributes['latest_shares'] || nil
-          @current_feed = attributes[:current_feed] || attributes['current_feed'] || nil
-          @i18n = attributes[:i18n] || attributes['i18n'] || nil
-          @location = attributes[:location] || attributes['location'] || nil
-          @metrics = attributes[:metrics] || attributes['metrics'] || nil
-          @moderation = attributes[:moderation] || attributes['moderation'] || nil
-          @notification_context = attributes[:notification_context] || attributes['notification_context'] || nil
-          @parent = attributes[:parent] || attributes['parent'] || nil
-          @poll = attributes[:poll] || attributes['poll'] || nil
-          @score_vars = attributes[:score_vars] || attributes['score_vars'] || nil
+          @bookmark_count = attributes.fetch(:bookmark_count) { attributes.fetch('bookmark_count', nil) }
+          @comment_count = attributes.fetch(:comment_count) { attributes.fetch('comment_count', nil) }
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @hidden = attributes.fetch(:hidden) { attributes.fetch('hidden', nil) }
+          @id = attributes.fetch(:id) { attributes.fetch('id', nil) }
+          @popularity = attributes.fetch(:popularity) { attributes.fetch('popularity', nil) }
+          @preview = attributes.fetch(:preview) { attributes.fetch('preview', nil) }
+          @reaction_count = attributes.fetch(:reaction_count) { attributes.fetch('reaction_count', nil) }
+          @restrict_replies = attributes.fetch(:restrict_replies) { attributes.fetch('restrict_replies', nil) }
+          @score = attributes.fetch(:score) { attributes.fetch('score', nil) }
+          @share_count = attributes.fetch(:share_count) { attributes.fetch('share_count', nil) }
+          @type = attributes.fetch(:type) { attributes.fetch('type', nil) }
+          @updated_at = attributes.fetch(:updated_at) { attributes.fetch('updated_at', nil) }
+          @visibility = attributes.fetch(:visibility) { attributes.fetch('visibility', nil) }
+          @attachments = attributes.fetch(:attachments) { attributes.fetch('attachments', nil) }
+          @comments = attributes.fetch(:comments) { attributes.fetch('comments', nil) }
+          @feeds = attributes.fetch(:feeds) { attributes.fetch('feeds', nil) }
+          @filter_tags = attributes.fetch(:filter_tags) { attributes.fetch('filter_tags', nil) }
+          @interest_tags = attributes.fetch(:interest_tags) { attributes.fetch('interest_tags', nil) }
+          @latest_reactions = attributes.fetch(:latest_reactions) { attributes.fetch('latest_reactions', nil) }
+          @mentioned_users = attributes.fetch(:mentioned_users) { attributes.fetch('mentioned_users', nil) }
+          @own_bookmarks = attributes.fetch(:own_bookmarks) { attributes.fetch('own_bookmarks', nil) }
+          @own_reactions = attributes.fetch(:own_reactions) { attributes.fetch('own_reactions', nil) }
+          @collections = attributes.fetch(:collections) { attributes.fetch('collections', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
+          @reaction_groups = attributes.fetch(:reaction_groups) { attributes.fetch('reaction_groups', nil) }
+          @search_data = attributes.fetch(:search_data) { attributes.fetch('search_data', nil) }
+          @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
+          @deleted_at = attributes.fetch(:deleted_at) { attributes.fetch('deleted_at', nil) }
+          @edited_at = attributes.fetch(:edited_at) { attributes.fetch('edited_at', nil) }
+          @expires_at = attributes.fetch(:expires_at) { attributes.fetch('expires_at', nil) }
+          @friend_reaction_count = attributes.fetch(:friend_reaction_count) { attributes.fetch('friend_reaction_count', nil) }
+          @is_read = attributes.fetch(:is_read) { attributes.fetch('is_read', nil) }
+          @is_seen = attributes.fetch(:is_seen) { attributes.fetch('is_seen', nil) }
+          @is_watched = attributes.fetch(:is_watched) { attributes.fetch('is_watched', nil) }
+          @moderation_action = attributes.fetch(:moderation_action) { attributes.fetch('moderation_action', nil) }
+          @position = attributes.fetch(:position) { attributes.fetch('position', nil) }
+          @selector_source = attributes.fetch(:selector_source) { attributes.fetch('selector_source', nil) }
+          @text = attributes.fetch(:text) { attributes.fetch('text', nil) }
+          @top_level_comment_count = attributes.fetch(:top_level_comment_count) { attributes.fetch('top_level_comment_count', nil) }
+          @visibility_tag = attributes.fetch(:visibility_tag) { attributes.fetch('visibility_tag', nil) }
+          @friend_reactions = attributes.fetch(:friend_reactions) { attributes.fetch('friend_reactions', nil) }
+          @latest_shares = attributes.fetch(:latest_shares) { attributes.fetch('latest_shares', nil) }
+          @reasons = attributes.fetch(:reasons) { attributes.fetch('reasons', nil) }
+          @current_feed = attributes.fetch(:current_feed) { attributes.fetch('current_feed', nil) }
+          @i18n = attributes.fetch(:i18n) { attributes.fetch('i18n', nil) }
+          @location = attributes.fetch(:location) { attributes.fetch('location', nil) }
+          @metrics = attributes.fetch(:metrics) { attributes.fetch('metrics', nil) }
+          @moderation = attributes.fetch(:moderation) { attributes.fetch('moderation', nil) }
+          @notification_context = attributes.fetch(:notification_context) { attributes.fetch('notification_context', nil) }
+          @parent = attributes.fetch(:parent) { attributes.fetch('parent', nil) }
+          @poll = attributes.fetch(:poll) { attributes.fetch('poll', nil) }
+          @score_vars = attributes.fetch(:score_vars) { attributes.fetch('score_vars', nil) }
         end
 
         # Override field mappings for JSON serialization
@@ -258,12 +266,14 @@ module GetStream
             is_seen: 'is_seen',
             is_watched: 'is_watched',
             moderation_action: 'moderation_action',
+            position: 'position',
             selector_source: 'selector_source',
             text: 'text',
             top_level_comment_count: 'top_level_comment_count',
             visibility_tag: 'visibility_tag',
             friend_reactions: 'friend_reactions',
             latest_shares: 'latest_shares',
+            reasons: 'reasons',
             current_feed: 'current_feed',
             i18n: 'i18n',
             location: 'location',

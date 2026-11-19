@@ -19,8 +19,8 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @visibility = attributes[:visibility] || attributes['visibility']
-          @pending_follows_action = attributes[:pending_follows_action] || attributes['pending_follows_action'] || nil
+          @visibility = attributes.fetch(:visibility) { attributes.fetch('visibility', nil) }
+          @pending_follows_action = attributes.fetch(:pending_follows_action) { attributes.fetch('pending_follows_action', nil) }
         end
 
         # Override field mappings for JSON serialization

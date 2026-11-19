@@ -40,15 +40,15 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @duration = attributes[:duration] || attributes['duration']
-          @activities = attributes[:activities] || attributes['activities']
-          @api_requests = attributes[:api_requests] || attributes['api_requests']
-          @collections = attributes[:collections] || attributes['collections']
-          @comments = attributes[:comments] || attributes['comments']
-          @follows = attributes[:follows] || attributes['follows']
-          @openai_requests = attributes[:openai_requests] || attributes['openai_requests']
-          @reactions = attributes[:reactions] || attributes['reactions']
-          @emau = attributes[:emau] || attributes['emau'] || nil
+          @duration = attributes.fetch(:duration) { attributes.fetch('duration', nil) }
+          @activities = attributes.fetch(:activities) { attributes.fetch('activities', nil) }
+          @api_requests = attributes.fetch(:api_requests) { attributes.fetch('api_requests', nil) }
+          @collections = attributes.fetch(:collections) { attributes.fetch('collections', nil) }
+          @comments = attributes.fetch(:comments) { attributes.fetch('comments', nil) }
+          @follows = attributes.fetch(:follows) { attributes.fetch('follows', nil) }
+          @openai_requests = attributes.fetch(:openai_requests) { attributes.fetch('openai_requests', nil) }
+          @reactions = attributes.fetch(:reactions) { attributes.fetch('reactions', nil) }
+          @emau = attributes.fetch(:emau) { attributes.fetch('emau', nil) }
         end
 
         # Override field mappings for JSON serialization

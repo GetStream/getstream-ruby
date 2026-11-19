@@ -43,16 +43,16 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @duration = attributes[:duration] || attributes['duration']
-          @recommended_action = attributes[:recommended_action] || attributes['recommended_action']
-          @content_id = attributes[:content_id] || attributes['content_id'] || nil
-          @directed_at = attributes[:directed_at] || attributes['directed_at'] || nil
-          @fully_masked_content = attributes[:fully_masked_content] || attributes['fully_masked_content'] || nil
-          @harm_type = attributes[:harm_type] || attributes['harm_type'] || nil
-          @language = attributes[:language] || attributes['language'] || nil
-          @masked_content = attributes[:masked_content] || attributes['masked_content'] || nil
-          @severity = attributes[:severity] || attributes['severity'] || nil
-          @labels = attributes[:labels] || attributes['labels'] || nil
+          @duration = attributes.fetch(:duration) { attributes.fetch('duration', nil) }
+          @recommended_action = attributes.fetch(:recommended_action) { attributes.fetch('recommended_action', nil) }
+          @content_id = attributes.fetch(:content_id) { attributes.fetch('content_id', nil) }
+          @directed_at = attributes.fetch(:directed_at) { attributes.fetch('directed_at', nil) }
+          @fully_masked_content = attributes.fetch(:fully_masked_content) { attributes.fetch('fully_masked_content', nil) }
+          @harm_type = attributes.fetch(:harm_type) { attributes.fetch('harm_type', nil) }
+          @language = attributes.fetch(:language) { attributes.fetch('language', nil) }
+          @masked_content = attributes.fetch(:masked_content) { attributes.fetch('masked_content', nil) }
+          @severity = attributes.fetch(:severity) { attributes.fetch('severity', nil) }
+          @labels = attributes.fetch(:labels) { attributes.fetch('labels', nil) }
         end
 
         # Override field mappings for JSON serialization

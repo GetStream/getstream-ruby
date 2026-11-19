@@ -49,18 +49,18 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @is_confusable_folding_enabled = attributes[:is_confusable_folding_enabled] || attributes['is_confusable_folding_enabled']
-          @is_leet_check_enabled = attributes[:is_leet_check_enabled] || attributes['is_leet_check_enabled']
-          @is_plural_check_enabled = attributes[:is_plural_check_enabled] || attributes['is_plural_check_enabled']
-          @is_substring_matching_enabled = attributes[:is_substring_matching_enabled] || attributes['is_substring_matching_enabled']
-          @name = attributes[:name] || attributes['name']
-          @type = attributes[:type] || attributes['type']
-          @words = attributes[:words] || attributes['words']
-          @created_at = attributes[:created_at] || attributes['created_at'] || nil
-          @id = attributes[:id] || attributes['id'] || nil
-          @owner_user_id = attributes[:owner_user_id] || attributes['owner_user_id'] || nil
-          @team = attributes[:team] || attributes['team'] || nil
-          @updated_at = attributes[:updated_at] || attributes['updated_at'] || nil
+          @is_confusable_folding_enabled = attributes.fetch(:is_confusable_folding_enabled) { attributes.fetch('is_confusable_folding_enabled', nil) }
+          @is_leet_check_enabled = attributes.fetch(:is_leet_check_enabled) { attributes.fetch('is_leet_check_enabled', nil) }
+          @is_plural_check_enabled = attributes.fetch(:is_plural_check_enabled) { attributes.fetch('is_plural_check_enabled', nil) }
+          @is_substring_matching_enabled = attributes.fetch(:is_substring_matching_enabled) { attributes.fetch('is_substring_matching_enabled', nil) }
+          @name = attributes.fetch(:name) { attributes.fetch('name', nil) }
+          @type = attributes.fetch(:type) { attributes.fetch('type', nil) }
+          @words = attributes.fetch(:words) { attributes.fetch('words', nil) }
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @id = attributes.fetch(:id) { attributes.fetch('id', nil) }
+          @owner_user_id = attributes.fetch(:owner_user_id) { attributes.fetch('owner_user_id', nil) }
+          @team = attributes.fetch(:team) { attributes.fetch('team', nil) }
+          @updated_at = attributes.fetch(:updated_at) { attributes.fetch('updated_at', nil) }
         end
 
         # Override field mappings for JSON serialization

@@ -55,20 +55,20 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @id = attributes[:id] || attributes['id']
-          @message_text = attributes[:message_text] || attributes['message_text']
-          @row_index = attributes[:row_index] || attributes['row_index']
-          @run_id = attributes[:run_id] || attributes['run_id']
-          @scored = attributes[:scored] || attributes['scored']
-          @actual_action = attributes[:actual_action] || attributes['actual_action'] || nil
-          @expected_action = attributes[:expected_action] || attributes['expected_action'] || nil
-          @failure_reason = attributes[:failure_reason] || attributes['failure_reason'] || nil
-          @passed = attributes[:passed] || attributes['passed'] || nil
-          @severity = attributes[:severity] || attributes['severity'] || nil
-          @actual_labels = attributes[:actual_labels] || attributes['actual_labels'] || nil
-          @expected_labels = attributes[:expected_labels] || attributes['expected_labels'] || nil
-          @raw_response = attributes[:raw_response] || attributes['raw_response'] || nil
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @id = attributes.fetch(:id) { attributes.fetch('id', nil) }
+          @message_text = attributes.fetch(:message_text) { attributes.fetch('message_text', nil) }
+          @row_index = attributes.fetch(:row_index) { attributes.fetch('row_index', nil) }
+          @run_id = attributes.fetch(:run_id) { attributes.fetch('run_id', nil) }
+          @scored = attributes.fetch(:scored) { attributes.fetch('scored', nil) }
+          @actual_action = attributes.fetch(:actual_action) { attributes.fetch('actual_action', nil) }
+          @expected_action = attributes.fetch(:expected_action) { attributes.fetch('expected_action', nil) }
+          @failure_reason = attributes.fetch(:failure_reason) { attributes.fetch('failure_reason', nil) }
+          @passed = attributes.fetch(:passed) { attributes.fetch('passed', nil) }
+          @severity = attributes.fetch(:severity) { attributes.fetch('severity', nil) }
+          @actual_labels = attributes.fetch(:actual_labels) { attributes.fetch('actual_labels', nil) }
+          @expected_labels = attributes.fetch(:expected_labels) { attributes.fetch('expected_labels', nil) }
+          @raw_response = attributes.fetch(:raw_response) { attributes.fetch('raw_response', nil) }
         end
 
         # Override field mappings for JSON serialization

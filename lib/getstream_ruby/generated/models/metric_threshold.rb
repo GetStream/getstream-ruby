@@ -28,11 +28,11 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @level = attributes[:level] || attributes['level']
-          @operator = attributes[:operator] || attributes['operator']
-          @value = attributes[:value] || attributes['value']
-          @value_unit = attributes[:value_unit] || attributes['value_unit'] || nil
-          @window_seconds = attributes[:window_seconds] || attributes['window_seconds'] || nil
+          @level = attributes.fetch(:level) { attributes.fetch('level', nil) }
+          @operator = attributes.fetch(:operator) { attributes.fetch('operator', nil) }
+          @value = attributes.fetch(:value) { attributes.fetch('value', nil) }
+          @value_unit = attributes.fetch(:value_unit) { attributes.fetch('value_unit', nil) }
+          @window_seconds = attributes.fetch(:window_seconds) { attributes.fetch('window_seconds', nil) }
         end
 
         # Override field mappings for JSON serialization

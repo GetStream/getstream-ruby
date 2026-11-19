@@ -31,12 +31,12 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @id_gt = attributes[:id_gt] || attributes['id_gt'] || nil
-          @id_gte = attributes[:id_gte] || attributes['id_gte'] || nil
-          @id_lt = attributes[:id_lt] || attributes['id_lt'] || nil
-          @id_lte = attributes[:id_lte] || attributes['id_lte'] || nil
-          @limit = attributes[:limit] || attributes['limit'] || nil
-          @offset = attributes[:offset] || attributes['offset'] || nil
+          @id_gt = attributes.fetch(:id_gt) { attributes.fetch('id_gt', nil) }
+          @id_gte = attributes.fetch(:id_gte) { attributes.fetch('id_gte', nil) }
+          @id_lt = attributes.fetch(:id_lt) { attributes.fetch('id_lt', nil) }
+          @id_lte = attributes.fetch(:id_lte) { attributes.fetch('id_lte', nil) }
+          @limit = attributes.fetch(:limit) { attributes.fetch('limit', nil) }
+          @offset = attributes.fetch(:offset) { attributes.fetch('offset', nil) }
         end
 
         # Override field mappings for JSON serialization

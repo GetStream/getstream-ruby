@@ -22,9 +22,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @channel_count = attributes[:channel_count] || attributes['channel_count']
-          @channel_type = attributes[:channel_type] || attributes['channel_type']
-          @unread_count = attributes[:unread_count] || attributes['unread_count']
+          @channel_count = attributes.fetch(:channel_count) { attributes.fetch('channel_count', nil) }
+          @channel_type = attributes.fetch(:channel_type) { attributes.fetch('channel_type', nil) }
+          @unread_count = attributes.fetch(:unread_count) { attributes.fetch('unread_count', nil) }
         end
 
         # Override field mappings for JSON serialization

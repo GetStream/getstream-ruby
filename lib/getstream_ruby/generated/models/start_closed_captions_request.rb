@@ -25,10 +25,10 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @enable_transcription = attributes[:enable_transcription] || attributes['enable_transcription'] || nil
-          @external_storage = attributes[:external_storage] || attributes['external_storage'] || nil
-          @language = attributes[:language] || attributes['language'] || nil
-          @speech_segment_config = attributes[:speech_segment_config] || attributes['speech_segment_config'] || nil
+          @enable_transcription = attributes.fetch(:enable_transcription) { attributes.fetch('enable_transcription', nil) }
+          @external_storage = attributes.fetch(:external_storage) { attributes.fetch('external_storage', nil) }
+          @language = attributes.fetch(:language) { attributes.fetch('language', nil) }
+          @speech_segment_config = attributes.fetch(:speech_segment_config) { attributes.fetch('speech_segment_config', nil) }
         end
 
         # Override field mappings for JSON serialization

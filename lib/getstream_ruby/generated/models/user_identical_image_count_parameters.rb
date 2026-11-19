@@ -25,10 +25,10 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @match = attributes[:match] || attributes['match'] || nil
-          @similarity_distance = attributes[:similarity_distance] || attributes['similarity_distance'] || nil
-          @threshold = attributes[:threshold] || attributes['threshold'] || nil
-          @time_window = attributes[:time_window] || attributes['time_window'] || nil
+          @match = attributes.fetch(:match) { attributes.fetch('match', nil) }
+          @similarity_distance = attributes.fetch(:similarity_distance) { attributes.fetch('similarity_distance', nil) }
+          @threshold = attributes.fetch(:threshold) { attributes.fetch('threshold', nil) }
+          @time_window = attributes.fetch(:time_window) { attributes.fetch('time_window', nil) }
         end
 
         # Override field mappings for JSON serialization

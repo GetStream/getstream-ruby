@@ -46,17 +46,17 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @activity_count = attributes[:activity_count] || attributes['activity_count']
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @group = attributes[:group] || attributes['group']
-          @score = attributes[:score] || attributes['score']
-          @updated_at = attributes[:updated_at] || attributes['updated_at']
-          @user_count = attributes[:user_count] || attributes['user_count']
-          @user_count_truncated = attributes[:user_count_truncated] || attributes['user_count_truncated']
-          @activities = attributes[:activities] || attributes['activities']
-          @is_read = attributes[:is_read] || attributes['is_read'] || nil
-          @is_seen = attributes[:is_seen] || attributes['is_seen'] || nil
-          @is_watched = attributes[:is_watched] || attributes['is_watched'] || nil
+          @activity_count = attributes.fetch(:activity_count) { attributes.fetch('activity_count', nil) }
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @group = attributes.fetch(:group) { attributes.fetch('group', nil) }
+          @score = attributes.fetch(:score) { attributes.fetch('score', nil) }
+          @updated_at = attributes.fetch(:updated_at) { attributes.fetch('updated_at', nil) }
+          @user_count = attributes.fetch(:user_count) { attributes.fetch('user_count', nil) }
+          @user_count_truncated = attributes.fetch(:user_count_truncated) { attributes.fetch('user_count_truncated', nil) }
+          @activities = attributes.fetch(:activities) { attributes.fetch('activities', nil) }
+          @is_read = attributes.fetch(:is_read) { attributes.fetch('is_read', nil) }
+          @is_seen = attributes.fetch(:is_seen) { attributes.fetch('is_seen', nil) }
+          @is_watched = attributes.fetch(:is_watched) { attributes.fetch('is_watched', nil) }
         end
 
         # Override field mappings for JSON serialization

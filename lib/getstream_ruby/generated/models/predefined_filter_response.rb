@@ -43,16 +43,16 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @name = attributes[:name] || attributes['name']
-          @operation = attributes[:operation] || attributes['operation']
-          @updated_at = attributes[:updated_at] || attributes['updated_at']
-          @filter = attributes[:filter] || attributes['filter']
-          @description = attributes[:description] || attributes['description'] || nil
-          @query_id = attributes[:query_id] || attributes['query_id'] || nil
-          @sort = attributes[:sort] || attributes['sort'] || nil
-          @performance = attributes[:performance] || attributes['performance'] || nil
-          @stats = attributes[:stats] || attributes['stats'] || nil
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @name = attributes.fetch(:name) { attributes.fetch('name', nil) }
+          @operation = attributes.fetch(:operation) { attributes.fetch('operation', nil) }
+          @updated_at = attributes.fetch(:updated_at) { attributes.fetch('updated_at', nil) }
+          @filter = attributes.fetch(:filter) { attributes.fetch('filter', nil) }
+          @description = attributes.fetch(:description) { attributes.fetch('description', nil) }
+          @query_id = attributes.fetch(:query_id) { attributes.fetch('query_id', nil) }
+          @sort = attributes.fetch(:sort) { attributes.fetch('sort', nil) }
+          @performance = attributes.fetch(:performance) { attributes.fetch('performance', nil) }
+          @stats = attributes.fetch(:stats) { attributes.fetch('stats', nil) }
         end
 
         # Override field mappings for JSON serialization

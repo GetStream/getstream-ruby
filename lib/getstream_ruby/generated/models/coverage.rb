@@ -22,9 +22,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @publisher_encoding_profiles = attributes[:publisher_encoding_profiles] || attributes['publisher_encoding_profiles']
-          @absent = attributes[:absent] || attributes['absent']
-          @metrics_pct = attributes[:metrics_pct] || attributes['metrics_pct']
+          @publisher_encoding_profiles = attributes.fetch(:publisher_encoding_profiles) { attributes.fetch('publisher_encoding_profiles', nil) }
+          @absent = attributes.fetch(:absent) { attributes.fetch('absent', nil) }
+          @metrics_pct = attributes.fetch(:metrics_pct) { attributes.fetch('metrics_pct', nil) }
         end
 
         # Override field mappings for JSON serialization

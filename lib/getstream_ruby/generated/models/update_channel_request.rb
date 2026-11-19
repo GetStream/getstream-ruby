@@ -67,24 +67,24 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @accept_invite = attributes[:accept_invite] || attributes['accept_invite'] || nil
-          @cooldown = attributes[:cooldown] || attributes['cooldown'] || nil
-          @hide_history = attributes[:hide_history] || attributes['hide_history'] || nil
-          @hide_history_before = attributes[:hide_history_before] || attributes['hide_history_before'] || nil
-          @reject_invite = attributes[:reject_invite] || attributes['reject_invite'] || nil
-          @skip_push = attributes[:skip_push] || attributes['skip_push'] || nil
-          @user_id = attributes[:user_id] || attributes['user_id'] || nil
-          @add_filter_tags = attributes[:add_filter_tags] || attributes['add_filter_tags'] || nil
-          @add_members = attributes[:add_members] || attributes['add_members'] || nil
-          @add_moderators = attributes[:add_moderators] || attributes['add_moderators'] || nil
-          @assign_roles = attributes[:assign_roles] || attributes['assign_roles'] || nil
-          @demote_moderators = attributes[:demote_moderators] || attributes['demote_moderators'] || nil
-          @invites = attributes[:invites] || attributes['invites'] || nil
-          @remove_filter_tags = attributes[:remove_filter_tags] || attributes['remove_filter_tags'] || nil
-          @remove_members = attributes[:remove_members] || attributes['remove_members'] || nil
-          @data = attributes[:data] || attributes['data'] || nil
-          @message = attributes[:message] || attributes['message'] || nil
-          @user = attributes[:user] || attributes['user'] || nil
+          @accept_invite = attributes.fetch(:accept_invite) { attributes.fetch('accept_invite', nil) }
+          @cooldown = attributes.fetch(:cooldown) { attributes.fetch('cooldown', nil) }
+          @hide_history = attributes.fetch(:hide_history) { attributes.fetch('hide_history', nil) }
+          @hide_history_before = attributes.fetch(:hide_history_before) { attributes.fetch('hide_history_before', nil) }
+          @reject_invite = attributes.fetch(:reject_invite) { attributes.fetch('reject_invite', nil) }
+          @skip_push = attributes.fetch(:skip_push) { attributes.fetch('skip_push', nil) }
+          @user_id = attributes.fetch(:user_id) { attributes.fetch('user_id', nil) }
+          @add_filter_tags = attributes.fetch(:add_filter_tags) { attributes.fetch('add_filter_tags', nil) }
+          @add_members = attributes.fetch(:add_members) { attributes.fetch('add_members', nil) }
+          @add_moderators = attributes.fetch(:add_moderators) { attributes.fetch('add_moderators', nil) }
+          @assign_roles = attributes.fetch(:assign_roles) { attributes.fetch('assign_roles', nil) }
+          @demote_moderators = attributes.fetch(:demote_moderators) { attributes.fetch('demote_moderators', nil) }
+          @invites = attributes.fetch(:invites) { attributes.fetch('invites', nil) }
+          @remove_filter_tags = attributes.fetch(:remove_filter_tags) { attributes.fetch('remove_filter_tags', nil) }
+          @remove_members = attributes.fetch(:remove_members) { attributes.fetch('remove_members', nil) }
+          @data = attributes.fetch(:data) { attributes.fetch('data', nil) }
+          @message = attributes.fetch(:message) { attributes.fetch('message', nil) }
+          @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
         end
 
         # Override field mappings for JSON serialization

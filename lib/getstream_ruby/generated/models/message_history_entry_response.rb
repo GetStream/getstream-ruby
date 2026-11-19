@@ -34,13 +34,13 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @is_deleted = attributes[:is_deleted] || attributes['is_deleted']
-          @message_id = attributes[:message_id] || attributes['message_id']
-          @message_updated_at = attributes[:message_updated_at] || attributes['message_updated_at']
-          @message_updated_by_id = attributes[:message_updated_by_id] || attributes['message_updated_by_id']
-          @text = attributes[:text] || attributes['text']
-          @attachments = attributes[:attachments] || attributes['attachments']
-          @custom = attributes[:custom] || attributes['custom']
+          @is_deleted = attributes.fetch(:is_deleted) { attributes.fetch('is_deleted', nil) }
+          @message_id = attributes.fetch(:message_id) { attributes.fetch('message_id', nil) }
+          @message_updated_at = attributes.fetch(:message_updated_at) { attributes.fetch('message_updated_at', nil) }
+          @message_updated_by_id = attributes.fetch(:message_updated_by_id) { attributes.fetch('message_updated_by_id', nil) }
+          @text = attributes.fetch(:text) { attributes.fetch('text', nil) }
+          @attachments = attributes.fetch(:attachments) { attributes.fetch('attachments', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
         end
 
         # Override field mappings for JSON serialization

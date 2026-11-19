@@ -40,15 +40,15 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @id = attributes[:id] || attributes['id']
-          @name = attributes[:name] || attributes['name']
-          @password = attributes[:password] || attributes['password']
-          @updated_at = attributes[:updated_at] || attributes['updated_at']
-          @uri = attributes[:uri] || attributes['uri']
-          @username = attributes[:username] || attributes['username']
-          @allowed_ips = attributes[:allowed_ips] || attributes['allowed_ips']
-          @numbers = attributes[:numbers] || attributes['numbers']
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @id = attributes.fetch(:id) { attributes.fetch('id', nil) }
+          @name = attributes.fetch(:name) { attributes.fetch('name', nil) }
+          @password = attributes.fetch(:password) { attributes.fetch('password', nil) }
+          @updated_at = attributes.fetch(:updated_at) { attributes.fetch('updated_at', nil) }
+          @uri = attributes.fetch(:uri) { attributes.fetch('uri', nil) }
+          @username = attributes.fetch(:username) { attributes.fetch('username', nil) }
+          @allowed_ips = attributes.fetch(:allowed_ips) { attributes.fetch('allowed_ips', nil) }
+          @numbers = attributes.fetch(:numbers) { attributes.fetch('numbers', nil) }
         end
 
         # Override field mappings for JSON serialization

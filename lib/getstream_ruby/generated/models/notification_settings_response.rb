@@ -31,12 +31,12 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @enabled = attributes[:enabled] || attributes['enabled']
-          @call_live_started = attributes[:call_live_started] || attributes['call_live_started']
-          @call_missed = attributes[:call_missed] || attributes['call_missed']
-          @call_notification = attributes[:call_notification] || attributes['call_notification']
-          @call_ring = attributes[:call_ring] || attributes['call_ring']
-          @session_started = attributes[:session_started] || attributes['session_started']
+          @enabled = attributes.fetch(:enabled) { attributes.fetch('enabled', nil) }
+          @call_live_started = attributes.fetch(:call_live_started) { attributes.fetch('call_live_started', nil) }
+          @call_missed = attributes.fetch(:call_missed) { attributes.fetch('call_missed', nil) }
+          @call_notification = attributes.fetch(:call_notification) { attributes.fetch('call_notification', nil) }
+          @call_ring = attributes.fetch(:call_ring) { attributes.fetch('call_ring', nil) }
+          @session_started = attributes.fetch(:session_started) { attributes.fetch('session_started', nil) }
         end
 
         # Override field mappings for JSON serialization

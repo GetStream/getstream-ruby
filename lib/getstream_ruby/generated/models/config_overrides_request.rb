@@ -48,6 +48,9 @@ module GetStream
         # @!attribute user_message_reminders
         #   @return [Boolean] Enable/disable user message reminders
         attr_accessor :user_message_reminders
+        # @!attribute voice_transcription
+        #   @return [Boolean] Enable/disable transcription of voice recordings in this channel
+        attr_accessor :voice_transcription
         # @!attribute commands
         #   @return [Array<String>] List of available commands
         attr_accessor :commands
@@ -61,22 +64,23 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @blocklist = attributes[:blocklist] || attributes['blocklist'] || nil
-          @blocklist_behavior = attributes[:blocklist_behavior] || attributes['blocklist_behavior'] || nil
-          @count_messages = attributes[:count_messages] || attributes['count_messages'] || nil
-          @max_message_length = attributes[:max_message_length] || attributes['max_message_length'] || nil
-          @push_level = attributes[:push_level] || attributes['push_level'] || nil
-          @quotes = attributes[:quotes] || attributes['quotes'] || nil
-          @reactions = attributes[:reactions] || attributes['reactions'] || nil
-          @replies = attributes[:replies] || attributes['replies'] || nil
-          @shared_locations = attributes[:shared_locations] || attributes['shared_locations'] || nil
-          @typing_events = attributes[:typing_events] || attributes['typing_events'] || nil
-          @uploads = attributes[:uploads] || attributes['uploads'] || nil
-          @url_enrichment = attributes[:url_enrichment] || attributes['url_enrichment'] || nil
-          @user_message_reminders = attributes[:user_message_reminders] || attributes['user_message_reminders'] || nil
-          @commands = attributes[:commands] || attributes['commands'] || nil
-          @chat_preferences = attributes[:chat_preferences] || attributes['chat_preferences'] || nil
-          @grants = attributes[:grants] || attributes['grants'] || nil
+          @blocklist = attributes.fetch(:blocklist) { attributes.fetch('blocklist', nil) }
+          @blocklist_behavior = attributes.fetch(:blocklist_behavior) { attributes.fetch('blocklist_behavior', nil) }
+          @count_messages = attributes.fetch(:count_messages) { attributes.fetch('count_messages', nil) }
+          @max_message_length = attributes.fetch(:max_message_length) { attributes.fetch('max_message_length', nil) }
+          @push_level = attributes.fetch(:push_level) { attributes.fetch('push_level', nil) }
+          @quotes = attributes.fetch(:quotes) { attributes.fetch('quotes', nil) }
+          @reactions = attributes.fetch(:reactions) { attributes.fetch('reactions', nil) }
+          @replies = attributes.fetch(:replies) { attributes.fetch('replies', nil) }
+          @shared_locations = attributes.fetch(:shared_locations) { attributes.fetch('shared_locations', nil) }
+          @typing_events = attributes.fetch(:typing_events) { attributes.fetch('typing_events', nil) }
+          @uploads = attributes.fetch(:uploads) { attributes.fetch('uploads', nil) }
+          @url_enrichment = attributes.fetch(:url_enrichment) { attributes.fetch('url_enrichment', nil) }
+          @user_message_reminders = attributes.fetch(:user_message_reminders) { attributes.fetch('user_message_reminders', nil) }
+          @voice_transcription = attributes.fetch(:voice_transcription) { attributes.fetch('voice_transcription', nil) }
+          @commands = attributes.fetch(:commands) { attributes.fetch('commands', nil) }
+          @chat_preferences = attributes.fetch(:chat_preferences) { attributes.fetch('chat_preferences', nil) }
+          @grants = attributes.fetch(:grants) { attributes.fetch('grants', nil) }
         end
 
         # Override field mappings for JSON serialization
@@ -95,6 +99,7 @@ module GetStream
             uploads: 'uploads',
             url_enrichment: 'url_enrichment',
             user_message_reminders: 'user_message_reminders',
+            voice_transcription: 'voice_transcription',
             commands: 'commands',
             chat_preferences: 'chat_preferences',
             grants: 'grants'

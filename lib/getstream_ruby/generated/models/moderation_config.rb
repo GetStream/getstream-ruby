@@ -18,6 +18,9 @@ module GetStream
         # @!attribute key
         #   @return [String]
         attr_accessor :key
+        # @!attribute published_version
+        #   @return [Integer]
+        attr_accessor :published_version
         # @!attribute team
         #   @return [String]
         attr_accessor :team
@@ -70,25 +73,26 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @async = attributes[:async] || attributes['async'] || nil
-          @created_at = attributes[:created_at] || attributes['created_at'] || nil
-          @key = attributes[:key] || attributes['key'] || nil
-          @team = attributes[:team] || attributes['team'] || nil
-          @updated_at = attributes[:updated_at] || attributes['updated_at'] || nil
-          @supported_video_call_harm_types = attributes[:supported_video_call_harm_types] || attributes['supported_video_call_harm_types'] || nil
-          @ai_image_config = attributes[:ai_image_config] || attributes['ai_image_config'] || nil
-          @ai_image_lite_config = attributes[:ai_image_lite_config] || attributes['ai_image_lite_config'] || nil
-          @ai_text_config = attributes[:ai_text_config] || attributes['ai_text_config'] || nil
-          @ai_video_config = attributes[:ai_video_config] || attributes['ai_video_config'] || nil
-          @automod_platform_circumvention_config = attributes[:automod_platform_circumvention_config] || attributes['automod_platform_circumvention_config'] || nil
-          @automod_semantic_filters_config = attributes[:automod_semantic_filters_config] || attributes['automod_semantic_filters_config'] || nil
-          @automod_toxicity_config = attributes[:automod_toxicity_config] || attributes['automod_toxicity_config'] || nil
-          @block_list_config = attributes[:block_list_config] || attributes['block_list_config'] || nil
-          @flood_config = attributes[:flood_config] || attributes['flood_config'] || nil
-          @google_vision_config = attributes[:google_vision_config] || attributes['google_vision_config'] || nil
-          @llm_config = attributes[:llm_config] || attributes['llm_config'] || nil
-          @velocity_filter_config = attributes[:velocity_filter_config] || attributes['velocity_filter_config'] || nil
-          @video_call_rule_config = attributes[:video_call_rule_config] || attributes['video_call_rule_config'] || nil
+          @async = attributes.fetch(:async) { attributes.fetch('async', nil) }
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @key = attributes.fetch(:key) { attributes.fetch('key', nil) }
+          @published_version = attributes.fetch(:published_version) { attributes.fetch('published_version', nil) }
+          @team = attributes.fetch(:team) { attributes.fetch('team', nil) }
+          @updated_at = attributes.fetch(:updated_at) { attributes.fetch('updated_at', nil) }
+          @supported_video_call_harm_types = attributes.fetch(:supported_video_call_harm_types) { attributes.fetch('supported_video_call_harm_types', nil) }
+          @ai_image_config = attributes.fetch(:ai_image_config) { attributes.fetch('ai_image_config', nil) }
+          @ai_image_lite_config = attributes.fetch(:ai_image_lite_config) { attributes.fetch('ai_image_lite_config', nil) }
+          @ai_text_config = attributes.fetch(:ai_text_config) { attributes.fetch('ai_text_config', nil) }
+          @ai_video_config = attributes.fetch(:ai_video_config) { attributes.fetch('ai_video_config', nil) }
+          @automod_platform_circumvention_config = attributes.fetch(:automod_platform_circumvention_config) { attributes.fetch('automod_platform_circumvention_config', nil) }
+          @automod_semantic_filters_config = attributes.fetch(:automod_semantic_filters_config) { attributes.fetch('automod_semantic_filters_config', nil) }
+          @automod_toxicity_config = attributes.fetch(:automod_toxicity_config) { attributes.fetch('automod_toxicity_config', nil) }
+          @block_list_config = attributes.fetch(:block_list_config) { attributes.fetch('block_list_config', nil) }
+          @flood_config = attributes.fetch(:flood_config) { attributes.fetch('flood_config', nil) }
+          @google_vision_config = attributes.fetch(:google_vision_config) { attributes.fetch('google_vision_config', nil) }
+          @llm_config = attributes.fetch(:llm_config) { attributes.fetch('llm_config', nil) }
+          @velocity_filter_config = attributes.fetch(:velocity_filter_config) { attributes.fetch('velocity_filter_config', nil) }
+          @video_call_rule_config = attributes.fetch(:video_call_rule_config) { attributes.fetch('video_call_rule_config', nil) }
         end
 
         # Override field mappings for JSON serialization
@@ -97,6 +101,7 @@ module GetStream
             async: 'async',
             created_at: 'created_at',
             key: 'key',
+            published_version: 'published_version',
             team: 'team',
             updated_at: 'updated_at',
             supported_video_call_harm_types: 'supported_video_call_harm_types',

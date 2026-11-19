@@ -22,9 +22,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @call_cid = attributes[:call_cid] || attributes['call_cid']
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @type = attributes[:type] || attributes['type'] || "call.closed_captions_failed"
+          @call_cid = attributes.fetch(:call_cid) { attributes.fetch('call_cid', nil) }
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @type = attributes.fetch(:type) { attributes.fetch('type', "call.closed_captions_failed") }
         end
 
         # Override field mappings for JSON serialization

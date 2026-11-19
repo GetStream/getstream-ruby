@@ -34,13 +34,13 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @delete_conversation_channels = attributes[:delete_conversation_channels] || attributes['delete_conversation_channels'] || nil
-          @delete_feeds_content = attributes[:delete_feeds_content] || attributes['delete_feeds_content'] || nil
-          @entity_id = attributes[:entity_id] || attributes['entity_id'] || nil
-          @entity_type = attributes[:entity_type] || attributes['entity_type'] || nil
-          @hard_delete = attributes[:hard_delete] || attributes['hard_delete'] || nil
-          @mark_messages_deleted = attributes[:mark_messages_deleted] || attributes['mark_messages_deleted'] || nil
-          @reason = attributes[:reason] || attributes['reason'] || nil
+          @delete_conversation_channels = attributes.fetch(:delete_conversation_channels) { attributes.fetch('delete_conversation_channels', nil) }
+          @delete_feeds_content = attributes.fetch(:delete_feeds_content) { attributes.fetch('delete_feeds_content', nil) }
+          @entity_id = attributes.fetch(:entity_id) { attributes.fetch('entity_id', nil) }
+          @entity_type = attributes.fetch(:entity_type) { attributes.fetch('entity_type', nil) }
+          @hard_delete = attributes.fetch(:hard_delete) { attributes.fetch('hard_delete', nil) }
+          @mark_messages_deleted = attributes.fetch(:mark_messages_deleted) { attributes.fetch('mark_messages_deleted', nil) }
+          @reason = attributes.fetch(:reason) { attributes.fetch('reason', nil) }
         end
 
         # Override field mappings for JSON serialization

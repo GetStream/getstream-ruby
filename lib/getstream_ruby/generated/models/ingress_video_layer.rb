@@ -28,11 +28,11 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @bitrate = attributes[:bitrate] || attributes['bitrate']
-          @codec = attributes[:codec] || attributes['codec']
-          @frame_rate = attributes[:frame_rate] || attributes['frame_rate']
-          @max_dimension = attributes[:max_dimension] || attributes['max_dimension']
-          @min_dimension = attributes[:min_dimension] || attributes['min_dimension']
+          @bitrate = attributes.fetch(:bitrate) { attributes.fetch('bitrate', nil) }
+          @codec = attributes.fetch(:codec) { attributes.fetch('codec', nil) }
+          @frame_rate = attributes.fetch(:frame_rate) { attributes.fetch('frame_rate', nil) }
+          @max_dimension = attributes.fetch(:max_dimension) { attributes.fetch('max_dimension', nil) }
+          @min_dimension = attributes.fetch(:min_dimension) { attributes.fetch('min_dimension', nil) }
         end
 
         # Override field mappings for JSON serialization

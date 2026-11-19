@@ -22,9 +22,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @duration = attributes[:duration] || attributes['duration']
-          @user_channel_preferences = attributes[:user_channel_preferences] || attributes['user_channel_preferences']
-          @user_preferences = attributes[:user_preferences] || attributes['user_preferences']
+          @duration = attributes.fetch(:duration) { attributes.fetch('duration', nil) }
+          @user_channel_preferences = attributes.fetch(:user_channel_preferences) { attributes.fetch('user_channel_preferences', nil) }
+          @user_preferences = attributes.fetch(:user_preferences) { attributes.fetch('user_preferences', nil) }
         end
 
         # Override field mappings for JSON serialization

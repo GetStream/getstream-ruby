@@ -16,7 +16,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @preferences = attributes[:preferences] || attributes['preferences']
+          @preferences = attributes.fetch(:preferences) { attributes.fetch('preferences', nil) }
         end
 
         # Override field mappings for JSON serialization

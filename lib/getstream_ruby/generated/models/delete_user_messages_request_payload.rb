@@ -31,12 +31,12 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @delete_messages = attributes[:delete_messages] || attributes['delete_messages']
-          @channel_cid = attributes[:channel_cid] || attributes['channel_cid'] || nil
-          @delete_reactions = attributes[:delete_reactions] || attributes['delete_reactions'] || nil
-          @entity_id = attributes[:entity_id] || attributes['entity_id'] || nil
-          @entity_type = attributes[:entity_type] || attributes['entity_type'] || nil
-          @reason = attributes[:reason] || attributes['reason'] || nil
+          @delete_messages = attributes.fetch(:delete_messages) { attributes.fetch('delete_messages', nil) }
+          @channel_cid = attributes.fetch(:channel_cid) { attributes.fetch('channel_cid', nil) }
+          @delete_reactions = attributes.fetch(:delete_reactions) { attributes.fetch('delete_reactions', nil) }
+          @entity_id = attributes.fetch(:entity_id) { attributes.fetch('entity_id', nil) }
+          @entity_type = attributes.fetch(:entity_type) { attributes.fetch('entity_type', nil) }
+          @reason = attributes.fetch(:reason) { attributes.fetch('reason', nil) }
         end
 
         # Override field mappings for JSON serialization

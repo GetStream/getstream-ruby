@@ -60,6 +60,9 @@ module GetStream
         # @!attribute violation_number
         #   @return [Integer] The violation number for call rules (optional)
         attr_accessor :violation_number
+        # @!attribute matched_blocklists
+        #   @return [Array<MatchedBlocklist>] Blocklists that the rule's blocklist conditions (`text_content`, `text_rule`) matched, each with the text it matched in the content. Omitted when the rule has no such condition or none matched.
+        attr_accessor :matched_blocklists
         # @!attribute matched_contents
         #   @return [Array<MatchedContent>] Ordered list of contents whose verdicts contributed to an aggregation rule's threshold. Populated only for aggregation rules when callers supplied `content_ids`.
         attr_accessor :matched_contents
@@ -82,29 +85,30 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @entity_id = attributes[:entity_id] || attributes['entity_id']
-          @entity_type = attributes[:entity_type] || attributes['entity_type']
-          @user_id = attributes[:user_id] || attributes['user_id']
-          @triggered_actions = attributes[:triggered_actions] || attributes['triggered_actions']
-          @custom = attributes[:custom] || attributes['custom']
-          @rule = attributes[:rule] || attributes['rule']
-          @type = attributes[:type] || attributes['type'] || "moderation_rule.triggered"
-          @app_id = attributes[:app_id] || attributes['app_id'] || nil
-          @category = attributes[:category] || attributes['category'] || nil
-          @channel_cid = attributes[:channel_cid] || attributes['channel_cid'] || nil
-          @received_at = attributes[:received_at] || attributes['received_at'] || nil
-          @review_queue_item_id = attributes[:review_queue_item_id] || attributes['review_queue_item_id'] || nil
-          @severity = attributes[:severity] || attributes['severity'] || nil
-          @threshold = attributes[:threshold] || attributes['threshold'] || nil
-          @time_window = attributes[:time_window] || attributes['time_window'] || nil
-          @violation_number = attributes[:violation_number] || attributes['violation_number'] || nil
-          @matched_contents = attributes[:matched_contents] || attributes['matched_contents'] || nil
-          @matched_labels = attributes[:matched_labels] || attributes['matched_labels'] || nil
-          @matched_user_ids = attributes[:matched_user_ids] || attributes['matched_user_ids'] || nil
-          @scope = attributes[:scope] || attributes['scope'] || nil
-          @app_count = attributes[:app_count] || attributes['app_count'] || nil
-          @intent = attributes[:intent] || attributes['intent'] || nil
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @entity_id = attributes.fetch(:entity_id) { attributes.fetch('entity_id', nil) }
+          @entity_type = attributes.fetch(:entity_type) { attributes.fetch('entity_type', nil) }
+          @user_id = attributes.fetch(:user_id) { attributes.fetch('user_id', nil) }
+          @triggered_actions = attributes.fetch(:triggered_actions) { attributes.fetch('triggered_actions', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
+          @rule = attributes.fetch(:rule) { attributes.fetch('rule', nil) }
+          @type = attributes.fetch(:type) { attributes.fetch('type', "moderation_rule.triggered") }
+          @app_id = attributes.fetch(:app_id) { attributes.fetch('app_id', nil) }
+          @category = attributes.fetch(:category) { attributes.fetch('category', nil) }
+          @channel_cid = attributes.fetch(:channel_cid) { attributes.fetch('channel_cid', nil) }
+          @received_at = attributes.fetch(:received_at) { attributes.fetch('received_at', nil) }
+          @review_queue_item_id = attributes.fetch(:review_queue_item_id) { attributes.fetch('review_queue_item_id', nil) }
+          @severity = attributes.fetch(:severity) { attributes.fetch('severity', nil) }
+          @threshold = attributes.fetch(:threshold) { attributes.fetch('threshold', nil) }
+          @time_window = attributes.fetch(:time_window) { attributes.fetch('time_window', nil) }
+          @violation_number = attributes.fetch(:violation_number) { attributes.fetch('violation_number', nil) }
+          @matched_blocklists = attributes.fetch(:matched_blocklists) { attributes.fetch('matched_blocklists', nil) }
+          @matched_contents = attributes.fetch(:matched_contents) { attributes.fetch('matched_contents', nil) }
+          @matched_labels = attributes.fetch(:matched_labels) { attributes.fetch('matched_labels', nil) }
+          @matched_user_ids = attributes.fetch(:matched_user_ids) { attributes.fetch('matched_user_ids', nil) }
+          @scope = attributes.fetch(:scope) { attributes.fetch('scope', nil) }
+          @app_count = attributes.fetch(:app_count) { attributes.fetch('app_count', nil) }
+          @intent = attributes.fetch(:intent) { attributes.fetch('intent', nil) }
         end
 
         # Override field mappings for JSON serialization
@@ -127,6 +131,7 @@ module GetStream
             threshold: 'threshold',
             time_window: 'time_window',
             violation_number: 'violation_number',
+            matched_blocklists: 'matched_blocklists',
             matched_contents: 'matched_contents',
             matched_labels: 'matched_labels',
             matched_user_ids: 'matched_user_ids',

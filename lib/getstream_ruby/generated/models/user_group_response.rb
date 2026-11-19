@@ -37,14 +37,14 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @id = attributes[:id] || attributes['id']
-          @name = attributes[:name] || attributes['name']
-          @updated_at = attributes[:updated_at] || attributes['updated_at']
-          @created_by = attributes[:created_by] || attributes['created_by'] || nil
-          @description = attributes[:description] || attributes['description'] || nil
-          @team_id = attributes[:team_id] || attributes['team_id'] || nil
-          @members = attributes[:members] || attributes['members'] || nil
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @id = attributes.fetch(:id) { attributes.fetch('id', nil) }
+          @name = attributes.fetch(:name) { attributes.fetch('name', nil) }
+          @updated_at = attributes.fetch(:updated_at) { attributes.fetch('updated_at', nil) }
+          @created_by = attributes.fetch(:created_by) { attributes.fetch('created_by', nil) }
+          @description = attributes.fetch(:description) { attributes.fetch('description', nil) }
+          @team_id = attributes.fetch(:team_id) { attributes.fetch('team_id', nil) }
+          @members = attributes.fetch(:members) { attributes.fetch('members', nil) }
         end
 
         # Override field mappings for JSON serialization

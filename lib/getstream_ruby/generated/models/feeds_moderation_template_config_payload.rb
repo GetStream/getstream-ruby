@@ -19,8 +19,8 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @data_types = attributes[:data_types] || attributes['data_types']
-          @config_key = attributes[:config_key] || attributes['config_key'] || nil
+          @data_types = attributes.fetch(:data_types) { attributes.fetch('data_types', nil) }
+          @config_key = attributes.fetch(:config_key) { attributes.fetch('config_key', nil) }
         end
 
         # Override field mappings for JSON serialization

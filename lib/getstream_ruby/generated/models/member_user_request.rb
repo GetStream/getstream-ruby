@@ -43,16 +43,16 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @id = attributes[:id] || attributes['id']
-          @image = attributes[:image] || attributes['image'] || nil
-          @invisible = attributes[:invisible] || attributes['invisible'] || nil
-          @language = attributes[:language] || attributes['language'] || nil
-          @name = attributes[:name] || attributes['name'] || nil
-          @role = attributes[:role] || attributes['role'] || nil
-          @teams = attributes[:teams] || attributes['teams'] || nil
-          @custom = attributes[:custom] || attributes['custom'] || nil
-          @privacy_settings = attributes[:privacy_settings] || attributes['privacy_settings'] || nil
-          @teams_role = attributes[:teams_role] || attributes['teams_role'] || nil
+          @id = attributes.fetch(:id) { attributes.fetch('id', nil) }
+          @image = attributes.fetch(:image) { attributes.fetch('image', nil) }
+          @invisible = attributes.fetch(:invisible) { attributes.fetch('invisible', nil) }
+          @language = attributes.fetch(:language) { attributes.fetch('language', nil) }
+          @name = attributes.fetch(:name) { attributes.fetch('name', nil) }
+          @role = attributes.fetch(:role) { attributes.fetch('role', nil) }
+          @teams = attributes.fetch(:teams) { attributes.fetch('teams', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
+          @privacy_settings = attributes.fetch(:privacy_settings) { attributes.fetch('privacy_settings', nil) }
+          @teams_role = attributes.fetch(:teams_role) { attributes.fetch('teams_role', nil) }
         end
 
         # Override field mappings for JSON serialization

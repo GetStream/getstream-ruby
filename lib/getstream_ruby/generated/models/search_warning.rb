@@ -25,10 +25,10 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @warning_code = attributes[:warning_code] || attributes['warning_code']
-          @warning_description = attributes[:warning_description] || attributes['warning_description']
-          @channel_search_count = attributes[:channel_search_count] || attributes['channel_search_count'] || nil
-          @channel_search_cids = attributes[:channel_search_cids] || attributes['channel_search_cids'] || nil
+          @warning_code = attributes.fetch(:warning_code) { attributes.fetch('warning_code', nil) }
+          @warning_description = attributes.fetch(:warning_description) { attributes.fetch('warning_description', nil) }
+          @channel_search_count = attributes.fetch(:channel_search_count) { attributes.fetch('channel_search_count', nil) }
+          @channel_search_cids = attributes.fetch(:channel_search_cids) { attributes.fetch('channel_search_cids', nil) }
         end
 
         # Override field mappings for JSON serialization

@@ -58,21 +58,21 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @getstats_snapshots = attributes[:getstats_snapshots] || attributes['getstats_snapshots']
-          @source_file = attributes[:source_file] || attributes['source_file']
-          @svc_modes = attributes[:svc_modes] || attributes['svc_modes']
-          @quality_limitation_durations_s = attributes[:quality_limitation_durations_s] || attributes['quality_limitation_durations_s']
-          @quality_limitation_samples = attributes[:quality_limitation_samples] || attributes['quality_limitation_samples']
-          @avg_send_kbps = attributes[:avg_send_kbps] || attributes['avg_send_kbps'] || nil
-          @codec = attributes[:codec] || attributes['codec'] || nil
-          @encoder_impl = attributes[:encoder_impl] || attributes['encoder_impl'] || nil
-          @fps_p10 = attributes[:fps_p10] || attributes['fps_p10'] || nil
-          @fps_p50 = attributes[:fps_p50] || attributes['fps_p50'] || nil
-          @hardware_encode = attributes[:hardware_encode] || attributes['hardware_encode'] || nil
-          @ladder_type = attributes[:ladder_type] || attributes['ladder_type'] || nil
-          @power_efficient = attributes[:power_efficient] || attributes['power_efficient'] || nil
-          @resolution = attributes[:resolution] || attributes['resolution'] || nil
-          @simulcast_layers = attributes[:simulcast_layers] || attributes['simulcast_layers'] || nil
+          @getstats_snapshots = attributes.fetch(:getstats_snapshots) { attributes.fetch('getstats_snapshots', nil) }
+          @source_file = attributes.fetch(:source_file) { attributes.fetch('source_file', nil) }
+          @svc_modes = attributes.fetch(:svc_modes) { attributes.fetch('svc_modes', nil) }
+          @quality_limitation_durations_s = attributes.fetch(:quality_limitation_durations_s) { attributes.fetch('quality_limitation_durations_s', nil) }
+          @quality_limitation_samples = attributes.fetch(:quality_limitation_samples) { attributes.fetch('quality_limitation_samples', nil) }
+          @avg_send_kbps = attributes.fetch(:avg_send_kbps) { attributes.fetch('avg_send_kbps', nil) }
+          @codec = attributes.fetch(:codec) { attributes.fetch('codec', nil) }
+          @encoder_impl = attributes.fetch(:encoder_impl) { attributes.fetch('encoder_impl', nil) }
+          @fps_p10 = attributes.fetch(:fps_p10) { attributes.fetch('fps_p10', nil) }
+          @fps_p50 = attributes.fetch(:fps_p50) { attributes.fetch('fps_p50', nil) }
+          @hardware_encode = attributes.fetch(:hardware_encode) { attributes.fetch('hardware_encode', nil) }
+          @ladder_type = attributes.fetch(:ladder_type) { attributes.fetch('ladder_type', nil) }
+          @power_efficient = attributes.fetch(:power_efficient) { attributes.fetch('power_efficient', nil) }
+          @resolution = attributes.fetch(:resolution) { attributes.fetch('resolution', nil) }
+          @simulcast_layers = attributes.fetch(:simulcast_layers) { attributes.fetch('simulcast_layers', nil) }
         end
 
         # Override field mappings for JSON serialization

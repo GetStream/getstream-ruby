@@ -37,14 +37,14 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @is_confusable_folding_enabled = attributes[:is_confusable_folding_enabled] || attributes['is_confusable_folding_enabled'] || nil
-          @is_leet_check_enabled = attributes[:is_leet_check_enabled] || attributes['is_leet_check_enabled'] || nil
-          @is_plural_check_enabled = attributes[:is_plural_check_enabled] || attributes['is_plural_check_enabled'] || nil
-          @is_substring_matching_enabled = attributes[:is_substring_matching_enabled] || attributes['is_substring_matching_enabled'] || nil
-          @team = attributes[:team] || attributes['team'] || nil
-          @user_id = attributes[:user_id] || attributes['user_id'] || nil
-          @words = attributes[:words] || attributes['words'] || nil
-          @user = attributes[:user] || attributes['user'] || nil
+          @is_confusable_folding_enabled = attributes.fetch(:is_confusable_folding_enabled) { attributes.fetch('is_confusable_folding_enabled', nil) }
+          @is_leet_check_enabled = attributes.fetch(:is_leet_check_enabled) { attributes.fetch('is_leet_check_enabled', nil) }
+          @is_plural_check_enabled = attributes.fetch(:is_plural_check_enabled) { attributes.fetch('is_plural_check_enabled', nil) }
+          @is_substring_matching_enabled = attributes.fetch(:is_substring_matching_enabled) { attributes.fetch('is_substring_matching_enabled', nil) }
+          @team = attributes.fetch(:team) { attributes.fetch('team', nil) }
+          @user_id = attributes.fetch(:user_id) { attributes.fetch('user_id', nil) }
+          @words = attributes.fetch(:words) { attributes.fetch('words', nil) }
+          @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
         end
 
         # Override field mappings for JSON serialization

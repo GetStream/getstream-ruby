@@ -25,10 +25,10 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @app_pk = attributes[:app_pk] || attributes['app_pk']
-          @enabled_at = attributes[:enabled_at] || attributes['enabled_at']
-          @policy = attributes[:policy] || attributes['policy']
-          @config = attributes[:config] || attributes['config']
+          @app_pk = attributes.fetch(:app_pk) { attributes.fetch('app_pk', nil) }
+          @enabled_at = attributes.fetch(:enabled_at) { attributes.fetch('enabled_at', nil) }
+          @policy = attributes.fetch(:policy) { attributes.fetch('policy', nil) }
+          @config = attributes.fetch(:config) { attributes.fetch('config', nil) }
         end
 
         # Override field mappings for JSON serialization

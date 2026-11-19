@@ -25,10 +25,10 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @sip_caller_number = attributes[:sip_caller_number] || attributes['sip_caller_number']
-          @sip_trunk_number = attributes[:sip_trunk_number] || attributes['sip_trunk_number']
-          @from_host = attributes[:from_host] || attributes['from_host'] || nil
-          @source_ip = attributes[:source_ip] || attributes['source_ip'] || nil
+          @sip_caller_number = attributes.fetch(:sip_caller_number) { attributes.fetch('sip_caller_number', nil) }
+          @sip_trunk_number = attributes.fetch(:sip_trunk_number) { attributes.fetch('sip_trunk_number', nil) }
+          @from_host = attributes.fetch(:from_host) { attributes.fetch('from_host', nil) }
+          @source_ip = attributes.fetch(:source_ip) { attributes.fetch('source_ip', nil) }
         end
 
         # Override field mappings for JSON serialization

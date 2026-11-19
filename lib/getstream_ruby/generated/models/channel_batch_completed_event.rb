@@ -46,17 +46,17 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @batch_created_at = attributes[:batch_created_at] || attributes['batch_created_at']
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @finished_at = attributes[:finished_at] || attributes['finished_at']
-          @operation = attributes[:operation] || attributes['operation']
-          @status = attributes[:status] || attributes['status']
-          @success_channels_count = attributes[:success_channels_count] || attributes['success_channels_count']
-          @task_id = attributes[:task_id] || attributes['task_id']
-          @failed_channels = attributes[:failed_channels] || attributes['failed_channels']
-          @custom = attributes[:custom] || attributes['custom']
-          @type = attributes[:type] || attributes['type'] || "channel_batch_update.completed"
-          @received_at = attributes[:received_at] || attributes['received_at'] || nil
+          @batch_created_at = attributes.fetch(:batch_created_at) { attributes.fetch('batch_created_at', nil) }
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @finished_at = attributes.fetch(:finished_at) { attributes.fetch('finished_at', nil) }
+          @operation = attributes.fetch(:operation) { attributes.fetch('operation', nil) }
+          @status = attributes.fetch(:status) { attributes.fetch('status', nil) }
+          @success_channels_count = attributes.fetch(:success_channels_count) { attributes.fetch('success_channels_count', nil) }
+          @task_id = attributes.fetch(:task_id) { attributes.fetch('task_id', nil) }
+          @failed_channels = attributes.fetch(:failed_channels) { attributes.fetch('failed_channels', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
+          @type = attributes.fetch(:type) { attributes.fetch('type', "channel_batch_update.completed") }
+          @received_at = attributes.fetch(:received_at) { attributes.fetch('received_at', nil) }
         end
 
         # Override field mappings for JSON serialization

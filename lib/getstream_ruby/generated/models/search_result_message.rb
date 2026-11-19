@@ -120,6 +120,9 @@ module GetStream
         # @!attribute mentioned_roles
         #   @return [Array<String>]
         attr_accessor :mentioned_roles
+        # @!attribute own_marks
+        #   @return [Array<OwnMarkResponse>]
+        attr_accessor :own_marks
         # @!attribute thread_participants
         #   @return [Array<UserResponse>]
         attr_accessor :thread_participants
@@ -135,6 +138,9 @@ module GetStream
         # @!attribute image_labels
         #   @return [Hash<String, Array<String>>]
         attr_accessor :image_labels
+        # @!attribute mark_groups
+        #   @return [Hash<String, MarkGroupResponse>]
+        attr_accessor :mark_groups
         # @!attribute member
         #   @return [ChannelMemberPartialResponse]
         attr_accessor :member
@@ -166,57 +172,59 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @cid = attributes[:cid] || attributes['cid']
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @deleted_reply_count = attributes[:deleted_reply_count] || attributes['deleted_reply_count']
-          @html = attributes[:html] || attributes['html']
-          @id = attributes[:id] || attributes['id']
-          @mentioned_channel = attributes[:mentioned_channel] || attributes['mentioned_channel']
-          @mentioned_here = attributes[:mentioned_here] || attributes['mentioned_here']
-          @pinned = attributes[:pinned] || attributes['pinned']
-          @reply_count = attributes[:reply_count] || attributes['reply_count']
-          @shadowed = attributes[:shadowed] || attributes['shadowed']
-          @silent = attributes[:silent] || attributes['silent']
-          @text = attributes[:text] || attributes['text']
-          @type = attributes[:type] || attributes['type']
-          @updated_at = attributes[:updated_at] || attributes['updated_at']
-          @attachments = attributes[:attachments] || attributes['attachments']
-          @latest_reactions = attributes[:latest_reactions] || attributes['latest_reactions']
-          @mentioned_users = attributes[:mentioned_users] || attributes['mentioned_users']
-          @own_reactions = attributes[:own_reactions] || attributes['own_reactions']
-          @restricted_visibility = attributes[:restricted_visibility] || attributes['restricted_visibility']
-          @custom = attributes[:custom] || attributes['custom']
-          @reaction_counts = attributes[:reaction_counts] || attributes['reaction_counts']
-          @reaction_scores = attributes[:reaction_scores] || attributes['reaction_scores']
-          @user = attributes[:user] || attributes['user']
-          @command = attributes[:command] || attributes['command'] || nil
-          @deleted_at = attributes[:deleted_at] || attributes['deleted_at'] || nil
-          @deleted_for_me = attributes[:deleted_for_me] || attributes['deleted_for_me'] || nil
-          @message_text_updated_at = attributes[:message_text_updated_at] || attributes['message_text_updated_at'] || nil
-          @mml = attributes[:mml] || attributes['mml'] || nil
-          @parent_id = attributes[:parent_id] || attributes['parent_id'] || nil
-          @pin_expires = attributes[:pin_expires] || attributes['pin_expires'] || nil
-          @pinned_at = attributes[:pinned_at] || attributes['pinned_at'] || nil
-          @poll_id = attributes[:poll_id] || attributes['poll_id'] || nil
-          @quoted_message_id = attributes[:quoted_message_id] || attributes['quoted_message_id'] || nil
-          @show_in_channel = attributes[:show_in_channel] || attributes['show_in_channel'] || nil
-          @mentioned_group_ids = attributes[:mentioned_group_ids] || attributes['mentioned_group_ids'] || nil
-          @mentioned_groups = attributes[:mentioned_groups] || attributes['mentioned_groups'] || nil
-          @mentioned_roles = attributes[:mentioned_roles] || attributes['mentioned_roles'] || nil
-          @thread_participants = attributes[:thread_participants] || attributes['thread_participants'] || nil
-          @channel = attributes[:channel] || attributes['channel'] || nil
-          @draft = attributes[:draft] || attributes['draft'] || nil
-          @i18n = attributes[:i18n] || attributes['i18n'] || nil
-          @image_labels = attributes[:image_labels] || attributes['image_labels'] || nil
-          @member = attributes[:member] || attributes['member'] || nil
-          @mentioned_channel_members = attributes[:mentioned_channel_members] || attributes['mentioned_channel_members'] || nil
-          @moderation = attributes[:moderation] || attributes['moderation'] || nil
-          @pinned_by = attributes[:pinned_by] || attributes['pinned_by'] || nil
-          @poll = attributes[:poll] || attributes['poll'] || nil
-          @quoted_message = attributes[:quoted_message] || attributes['quoted_message'] || nil
-          @reaction_groups = attributes[:reaction_groups] || attributes['reaction_groups'] || nil
-          @reminder = attributes[:reminder] || attributes['reminder'] || nil
-          @shared_location = attributes[:shared_location] || attributes['shared_location'] || nil
+          @cid = attributes.fetch(:cid) { attributes.fetch('cid', nil) }
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @deleted_reply_count = attributes.fetch(:deleted_reply_count) { attributes.fetch('deleted_reply_count', nil) }
+          @html = attributes.fetch(:html) { attributes.fetch('html', nil) }
+          @id = attributes.fetch(:id) { attributes.fetch('id', nil) }
+          @mentioned_channel = attributes.fetch(:mentioned_channel) { attributes.fetch('mentioned_channel', nil) }
+          @mentioned_here = attributes.fetch(:mentioned_here) { attributes.fetch('mentioned_here', nil) }
+          @pinned = attributes.fetch(:pinned) { attributes.fetch('pinned', nil) }
+          @reply_count = attributes.fetch(:reply_count) { attributes.fetch('reply_count', nil) }
+          @shadowed = attributes.fetch(:shadowed) { attributes.fetch('shadowed', nil) }
+          @silent = attributes.fetch(:silent) { attributes.fetch('silent', nil) }
+          @text = attributes.fetch(:text) { attributes.fetch('text', nil) }
+          @type = attributes.fetch(:type) { attributes.fetch('type', nil) }
+          @updated_at = attributes.fetch(:updated_at) { attributes.fetch('updated_at', nil) }
+          @attachments = attributes.fetch(:attachments) { attributes.fetch('attachments', nil) }
+          @latest_reactions = attributes.fetch(:latest_reactions) { attributes.fetch('latest_reactions', nil) }
+          @mentioned_users = attributes.fetch(:mentioned_users) { attributes.fetch('mentioned_users', nil) }
+          @own_reactions = attributes.fetch(:own_reactions) { attributes.fetch('own_reactions', nil) }
+          @restricted_visibility = attributes.fetch(:restricted_visibility) { attributes.fetch('restricted_visibility', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
+          @reaction_counts = attributes.fetch(:reaction_counts) { attributes.fetch('reaction_counts', nil) }
+          @reaction_scores = attributes.fetch(:reaction_scores) { attributes.fetch('reaction_scores', nil) }
+          @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
+          @command = attributes.fetch(:command) { attributes.fetch('command', nil) }
+          @deleted_at = attributes.fetch(:deleted_at) { attributes.fetch('deleted_at', nil) }
+          @deleted_for_me = attributes.fetch(:deleted_for_me) { attributes.fetch('deleted_for_me', nil) }
+          @message_text_updated_at = attributes.fetch(:message_text_updated_at) { attributes.fetch('message_text_updated_at', nil) }
+          @mml = attributes.fetch(:mml) { attributes.fetch('mml', nil) }
+          @parent_id = attributes.fetch(:parent_id) { attributes.fetch('parent_id', nil) }
+          @pin_expires = attributes.fetch(:pin_expires) { attributes.fetch('pin_expires', nil) }
+          @pinned_at = attributes.fetch(:pinned_at) { attributes.fetch('pinned_at', nil) }
+          @poll_id = attributes.fetch(:poll_id) { attributes.fetch('poll_id', nil) }
+          @quoted_message_id = attributes.fetch(:quoted_message_id) { attributes.fetch('quoted_message_id', nil) }
+          @show_in_channel = attributes.fetch(:show_in_channel) { attributes.fetch('show_in_channel', nil) }
+          @mentioned_group_ids = attributes.fetch(:mentioned_group_ids) { attributes.fetch('mentioned_group_ids', nil) }
+          @mentioned_groups = attributes.fetch(:mentioned_groups) { attributes.fetch('mentioned_groups', nil) }
+          @mentioned_roles = attributes.fetch(:mentioned_roles) { attributes.fetch('mentioned_roles', nil) }
+          @own_marks = attributes.fetch(:own_marks) { attributes.fetch('own_marks', nil) }
+          @thread_participants = attributes.fetch(:thread_participants) { attributes.fetch('thread_participants', nil) }
+          @channel = attributes.fetch(:channel) { attributes.fetch('channel', nil) }
+          @draft = attributes.fetch(:draft) { attributes.fetch('draft', nil) }
+          @i18n = attributes.fetch(:i18n) { attributes.fetch('i18n', nil) }
+          @image_labels = attributes.fetch(:image_labels) { attributes.fetch('image_labels', nil) }
+          @mark_groups = attributes.fetch(:mark_groups) { attributes.fetch('mark_groups', nil) }
+          @member = attributes.fetch(:member) { attributes.fetch('member', nil) }
+          @mentioned_channel_members = attributes.fetch(:mentioned_channel_members) { attributes.fetch('mentioned_channel_members', nil) }
+          @moderation = attributes.fetch(:moderation) { attributes.fetch('moderation', nil) }
+          @pinned_by = attributes.fetch(:pinned_by) { attributes.fetch('pinned_by', nil) }
+          @poll = attributes.fetch(:poll) { attributes.fetch('poll', nil) }
+          @quoted_message = attributes.fetch(:quoted_message) { attributes.fetch('quoted_message', nil) }
+          @reaction_groups = attributes.fetch(:reaction_groups) { attributes.fetch('reaction_groups', nil) }
+          @reminder = attributes.fetch(:reminder) { attributes.fetch('reminder', nil) }
+          @shared_location = attributes.fetch(:shared_location) { attributes.fetch('shared_location', nil) }
         end
 
         # Override field mappings for JSON serialization
@@ -259,11 +267,13 @@ module GetStream
             mentioned_group_ids: 'mentioned_group_ids',
             mentioned_groups: 'mentioned_groups',
             mentioned_roles: 'mentioned_roles',
+            own_marks: 'own_marks',
             thread_participants: 'thread_participants',
             channel: 'channel',
             draft: 'draft',
             i18n: 'i18n',
             image_labels: 'image_labels',
+            mark_groups: 'mark_groups',
             member: 'member',
             mentioned_channel_members: 'mentioned_channel_members',
             moderation: 'moderation',

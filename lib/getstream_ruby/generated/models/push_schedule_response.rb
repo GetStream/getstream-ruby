@@ -19,8 +19,8 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @timezone = attributes[:timezone] || attributes['timezone']
-          @quiet_hours = attributes[:quiet_hours] || attributes['quiet_hours']
+          @timezone = attributes.fetch(:timezone) { attributes.fetch('timezone', nil) }
+          @quiet_hours = attributes.fetch(:quiet_hours) { attributes.fetch('quiet_hours', nil) }
         end
 
         # Override field mappings for JSON serialization

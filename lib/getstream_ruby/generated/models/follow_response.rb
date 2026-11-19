@@ -43,16 +43,16 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @follower_role = attributes[:follower_role] || attributes['follower_role']
-          @push_preference = attributes[:push_preference] || attributes['push_preference']
-          @status = attributes[:status] || attributes['status']
-          @updated_at = attributes[:updated_at] || attributes['updated_at']
-          @source_feed = attributes[:source_feed] || attributes['source_feed']
-          @target_feed = attributes[:target_feed] || attributes['target_feed']
-          @request_accepted_at = attributes[:request_accepted_at] || attributes['request_accepted_at'] || nil
-          @request_rejected_at = attributes[:request_rejected_at] || attributes['request_rejected_at'] || nil
-          @custom = attributes[:custom] || attributes['custom'] || nil
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @follower_role = attributes.fetch(:follower_role) { attributes.fetch('follower_role', nil) }
+          @push_preference = attributes.fetch(:push_preference) { attributes.fetch('push_preference', nil) }
+          @status = attributes.fetch(:status) { attributes.fetch('status', nil) }
+          @updated_at = attributes.fetch(:updated_at) { attributes.fetch('updated_at', nil) }
+          @source_feed = attributes.fetch(:source_feed) { attributes.fetch('source_feed', nil) }
+          @target_feed = attributes.fetch(:target_feed) { attributes.fetch('target_feed', nil) }
+          @request_accepted_at = attributes.fetch(:request_accepted_at) { attributes.fetch('request_accepted_at', nil) }
+          @request_rejected_at = attributes.fetch(:request_rejected_at) { attributes.fetch('request_rejected_at', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
         end
 
         # Override field mappings for JSON serialization

@@ -37,14 +37,14 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @key = attributes[:key] || attributes['key']
-          @outlier = attributes[:outlier] || attributes['outlier']
-          @sessions = attributes[:sessions] || attributes['sessions']
-          @avg_quality_score = attributes[:avg_quality_score] || attributes['avg_quality_score'] || nil
-          @p5_quality_score = attributes[:p5_quality_score] || attributes['p5_quality_score'] || nil
-          @poor_pct = attributes[:poor_pct] || attributes['poor_pct'] || nil
-          @share_pct = attributes[:share_pct] || attributes['share_pct'] || nil
-          @watch_share_pct = attributes[:watch_share_pct] || attributes['watch_share_pct'] || nil
+          @key = attributes.fetch(:key) { attributes.fetch('key', nil) }
+          @outlier = attributes.fetch(:outlier) { attributes.fetch('outlier', nil) }
+          @sessions = attributes.fetch(:sessions) { attributes.fetch('sessions', nil) }
+          @avg_quality_score = attributes.fetch(:avg_quality_score) { attributes.fetch('avg_quality_score', nil) }
+          @p5_quality_score = attributes.fetch(:p5_quality_score) { attributes.fetch('p5_quality_score', nil) }
+          @poor_pct = attributes.fetch(:poor_pct) { attributes.fetch('poor_pct', nil) }
+          @share_pct = attributes.fetch(:share_pct) { attributes.fetch('share_pct', nil) }
+          @watch_share_pct = attributes.fetch(:watch_share_pct) { attributes.fetch('watch_share_pct', nil) }
         end
 
         # Override field mappings for JSON serialization

@@ -28,11 +28,11 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @bitrate = attributes[:bitrate] || attributes['bitrate'] || nil
-          @fps_30 = attributes[:fps_30] || attributes['fps_30'] || nil
-          @frame_encoding_time_ms = attributes[:frame_encoding_time_ms] || attributes['frame_encoding_time_ms'] || nil
-          @jitter_ms = attributes[:jitter_ms] || attributes['jitter_ms'] || nil
-          @resolution = attributes[:resolution] || attributes['resolution'] || nil
+          @bitrate = attributes.fetch(:bitrate) { attributes.fetch('bitrate', nil) }
+          @fps_30 = attributes.fetch(:fps_30) { attributes.fetch('fps_30', nil) }
+          @frame_encoding_time_ms = attributes.fetch(:frame_encoding_time_ms) { attributes.fetch('frame_encoding_time_ms', nil) }
+          @jitter_ms = attributes.fetch(:jitter_ms) { attributes.fetch('jitter_ms', nil) }
+          @resolution = attributes.fetch(:resolution) { attributes.fetch('resolution', nil) }
         end
 
         # Override field mappings for JSON serialization

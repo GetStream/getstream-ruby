@@ -34,13 +34,13 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @advanced_filters = attributes[:advanced_filters] || attributes['advanced_filters'] || nil
-          @async = attributes[:async] || attributes['async'] || nil
-          @cascading_actions = attributes[:cascading_actions] || attributes['cascading_actions'] || nil
-          @cids_per_user = attributes[:cids_per_user] || attributes['cids_per_user'] || nil
-          @enabled = attributes[:enabled] || attributes['enabled'] || nil
-          @first_message_only = attributes[:first_message_only] || attributes['first_message_only'] || nil
-          @rules = attributes[:rules] || attributes['rules'] || nil
+          @advanced_filters = attributes.fetch(:advanced_filters) { attributes.fetch('advanced_filters', nil) }
+          @async = attributes.fetch(:async) { attributes.fetch('async', nil) }
+          @cascading_actions = attributes.fetch(:cascading_actions) { attributes.fetch('cascading_actions', nil) }
+          @cids_per_user = attributes.fetch(:cids_per_user) { attributes.fetch('cids_per_user', nil) }
+          @enabled = attributes.fetch(:enabled) { attributes.fetch('enabled', nil) }
+          @first_message_only = attributes.fetch(:first_message_only) { attributes.fetch('first_message_only', nil) }
+          @rules = attributes.fetch(:rules) { attributes.fetch('rules', nil) }
         end
 
         # Override field mappings for JSON serialization

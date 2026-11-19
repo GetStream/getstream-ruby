@@ -73,26 +73,26 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @message_id = attributes[:message_id] || attributes['message_id']
-          @thread_id = attributes[:thread_id] || attributes['thread_id']
-          @watcher_count = attributes[:watcher_count] || attributes['watcher_count']
-          @channel = attributes[:channel] || attributes['channel']
-          @custom = attributes[:custom] || attributes['custom']
-          @message = attributes[:message] || attributes['message']
-          @type = attributes[:type] || attributes['type'] || "notification.thread_message_new"
-          @channel_id = attributes[:channel_id] || attributes['channel_id'] || nil
-          @channel_member_count = attributes[:channel_member_count] || attributes['channel_member_count'] || nil
-          @channel_message_count = attributes[:channel_message_count] || attributes['channel_message_count'] || nil
-          @channel_type = attributes[:channel_type] || attributes['channel_type'] || nil
-          @cid = attributes[:cid] || attributes['cid'] || nil
-          @parent_author = attributes[:parent_author] || attributes['parent_author'] || nil
-          @received_at = attributes[:received_at] || attributes['received_at'] || nil
-          @team = attributes[:team] || attributes['team'] || nil
-          @unread_thread_messages = attributes[:unread_thread_messages] || attributes['unread_thread_messages'] || nil
-          @unread_threads = attributes[:unread_threads] || attributes['unread_threads'] || nil
-          @thread_participants = attributes[:thread_participants] || attributes['thread_participants'] || nil
-          @channel_custom = attributes[:channel_custom] || attributes['channel_custom'] || nil
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @message_id = attributes.fetch(:message_id) { attributes.fetch('message_id', nil) }
+          @thread_id = attributes.fetch(:thread_id) { attributes.fetch('thread_id', nil) }
+          @watcher_count = attributes.fetch(:watcher_count) { attributes.fetch('watcher_count', nil) }
+          @channel = attributes.fetch(:channel) { attributes.fetch('channel', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
+          @message = attributes.fetch(:message) { attributes.fetch('message', nil) }
+          @type = attributes.fetch(:type) { attributes.fetch('type', "notification.thread_message_new") }
+          @channel_id = attributes.fetch(:channel_id) { attributes.fetch('channel_id', nil) }
+          @channel_member_count = attributes.fetch(:channel_member_count) { attributes.fetch('channel_member_count', nil) }
+          @channel_message_count = attributes.fetch(:channel_message_count) { attributes.fetch('channel_message_count', nil) }
+          @channel_type = attributes.fetch(:channel_type) { attributes.fetch('channel_type', nil) }
+          @cid = attributes.fetch(:cid) { attributes.fetch('cid', nil) }
+          @parent_author = attributes.fetch(:parent_author) { attributes.fetch('parent_author', nil) }
+          @received_at = attributes.fetch(:received_at) { attributes.fetch('received_at', nil) }
+          @team = attributes.fetch(:team) { attributes.fetch('team', nil) }
+          @unread_thread_messages = attributes.fetch(:unread_thread_messages) { attributes.fetch('unread_thread_messages', nil) }
+          @unread_threads = attributes.fetch(:unread_threads) { attributes.fetch('unread_threads', nil) }
+          @thread_participants = attributes.fetch(:thread_participants) { attributes.fetch('thread_participants', nil) }
+          @channel_custom = attributes.fetch(:channel_custom) { attributes.fetch('channel_custom', nil) }
         end
 
         # Override field mappings for JSON serialization

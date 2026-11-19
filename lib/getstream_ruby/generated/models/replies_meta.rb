@@ -25,10 +25,10 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @depth_truncated = attributes[:depth_truncated] || attributes['depth_truncated']
-          @has_more = attributes[:has_more] || attributes['has_more']
-          @remaining = attributes[:remaining] || attributes['remaining']
-          @next_cursor = attributes[:next_cursor] || attributes['next_cursor'] || nil
+          @depth_truncated = attributes.fetch(:depth_truncated) { attributes.fetch('depth_truncated', nil) }
+          @has_more = attributes.fetch(:has_more) { attributes.fetch('has_more', nil) }
+          @remaining = attributes.fetch(:remaining) { attributes.fetch('remaining', nil) }
+          @next_cursor = attributes.fetch(:next_cursor) { attributes.fetch('next_cursor', nil) }
         end
 
         # Override field mappings for JSON serialization

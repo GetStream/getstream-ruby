@@ -37,14 +37,14 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @call_cid = attributes[:call_cid] || attributes['call_cid']
-          @call_duration_seconds = attributes[:call_duration_seconds] || attributes['call_duration_seconds']
-          @call_session_id = attributes[:call_session_id] || attributes['call_session_id']
-          @call_status = attributes[:call_status] || attributes['call_status']
-          @first_stats_time = attributes[:first_stats_time] || attributes['first_stats_time']
-          @created_at = attributes[:created_at] || attributes['created_at'] || nil
-          @min_user_rating = attributes[:min_user_rating] || attributes['min_user_rating'] || nil
-          @quality_score = attributes[:quality_score] || attributes['quality_score'] || nil
+          @call_cid = attributes.fetch(:call_cid) { attributes.fetch('call_cid', nil) }
+          @call_duration_seconds = attributes.fetch(:call_duration_seconds) { attributes.fetch('call_duration_seconds', nil) }
+          @call_session_id = attributes.fetch(:call_session_id) { attributes.fetch('call_session_id', nil) }
+          @call_status = attributes.fetch(:call_status) { attributes.fetch('call_status', nil) }
+          @first_stats_time = attributes.fetch(:first_stats_time) { attributes.fetch('first_stats_time', nil) }
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @min_user_rating = attributes.fetch(:min_user_rating) { attributes.fetch('min_user_rating', nil) }
+          @quality_score = attributes.fetch(:quality_score) { attributes.fetch('quality_score', nil) }
         end
 
         # Override field mappings for JSON serialization

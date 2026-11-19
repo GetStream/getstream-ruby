@@ -37,14 +37,14 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @rule_type = attributes[:rule_type] || attributes['rule_type']
-          @cooldown_period = attributes[:cooldown_period] || attributes['cooldown_period'] || nil
-          @id = attributes[:id] || attributes['id'] || nil
-          @logic = attributes[:logic] || attributes['logic'] || nil
-          @action_sequences = attributes[:action_sequences] || attributes['action_sequences'] || nil
-          @conditions = attributes[:conditions] || attributes['conditions'] || nil
-          @groups = attributes[:groups] || attributes['groups'] || nil
-          @action = attributes[:action] || attributes['action'] || nil
+          @rule_type = attributes.fetch(:rule_type) { attributes.fetch('rule_type', nil) }
+          @cooldown_period = attributes.fetch(:cooldown_period) { attributes.fetch('cooldown_period', nil) }
+          @id = attributes.fetch(:id) { attributes.fetch('id', nil) }
+          @logic = attributes.fetch(:logic) { attributes.fetch('logic', nil) }
+          @action_sequences = attributes.fetch(:action_sequences) { attributes.fetch('action_sequences', nil) }
+          @conditions = attributes.fetch(:conditions) { attributes.fetch('conditions', nil) }
+          @groups = attributes.fetch(:groups) { attributes.fetch('groups', nil) }
+          @action = attributes.fetch(:action) { attributes.fetch('action', nil) }
         end
 
         # Override field mappings for JSON serialization

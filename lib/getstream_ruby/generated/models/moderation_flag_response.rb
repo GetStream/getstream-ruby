@@ -64,23 +64,23 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @entity_id = attributes[:entity_id] || attributes['entity_id']
-          @entity_type = attributes[:entity_type] || attributes['entity_type']
-          @type = attributes[:type] || attributes['type']
-          @updated_at = attributes[:updated_at] || attributes['updated_at']
-          @user_id = attributes[:user_id] || attributes['user_id']
-          @result = attributes[:result] || attributes['result']
-          @content_published_at = attributes[:content_published_at] || attributes['content_published_at'] || nil
-          @entity_creator_id = attributes[:entity_creator_id] || attributes['entity_creator_id'] || nil
-          @id = attributes[:id] || attributes['id'] || nil
-          @reason = attributes[:reason] || attributes['reason'] || nil
-          @review_queue_item_id = attributes[:review_queue_item_id] || attributes['review_queue_item_id'] || nil
-          @labels = attributes[:labels] || attributes['labels'] || nil
-          @custom = attributes[:custom] || attributes['custom'] || nil
-          @moderation_payload = attributes[:moderation_payload] || attributes['moderation_payload'] || nil
-          @review_queue_item = attributes[:review_queue_item] || attributes['review_queue_item'] || nil
-          @user = attributes[:user] || attributes['user'] || nil
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @entity_id = attributes.fetch(:entity_id) { attributes.fetch('entity_id', nil) }
+          @entity_type = attributes.fetch(:entity_type) { attributes.fetch('entity_type', nil) }
+          @type = attributes.fetch(:type) { attributes.fetch('type', nil) }
+          @updated_at = attributes.fetch(:updated_at) { attributes.fetch('updated_at', nil) }
+          @user_id = attributes.fetch(:user_id) { attributes.fetch('user_id', nil) }
+          @result = attributes.fetch(:result) { attributes.fetch('result', nil) }
+          @content_published_at = attributes.fetch(:content_published_at) { attributes.fetch('content_published_at', nil) }
+          @entity_creator_id = attributes.fetch(:entity_creator_id) { attributes.fetch('entity_creator_id', nil) }
+          @id = attributes.fetch(:id) { attributes.fetch('id', nil) }
+          @reason = attributes.fetch(:reason) { attributes.fetch('reason', nil) }
+          @review_queue_item_id = attributes.fetch(:review_queue_item_id) { attributes.fetch('review_queue_item_id', nil) }
+          @labels = attributes.fetch(:labels) { attributes.fetch('labels', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
+          @moderation_payload = attributes.fetch(:moderation_payload) { attributes.fetch('moderation_payload', nil) }
+          @review_queue_item = attributes.fetch(:review_queue_item) { attributes.fetch('review_queue_item', nil) }
+          @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
         end
 
         # Override field mappings for JSON serialization

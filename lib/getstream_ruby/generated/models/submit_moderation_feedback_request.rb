@@ -70,25 +70,25 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @channel_id = attributes[:channel_id] || attributes['channel_id'] || nil
-          @confidence = attributes[:confidence] || attributes['confidence'] || nil
-          @current_recommended_action = attributes[:current_recommended_action] || attributes['current_recommended_action'] || nil
-          @description = attributes[:description] || attributes['description'] || nil
-          @entity_creator_id = attributes[:entity_creator_id] || attributes['entity_creator_id'] || nil
-          @entity_id = attributes[:entity_id] || attributes['entity_id'] || nil
-          @entity_type = attributes[:entity_type] || attributes['entity_type'] || nil
-          @expected_recommended_action = attributes[:expected_recommended_action] || attributes['expected_recommended_action'] || nil
-          @false_positive = attributes[:false_positive] || attributes['false_positive'] || nil
-          @feedback_type = attributes[:feedback_type] || attributes['feedback_type'] || nil
-          @message = attributes[:message] || attributes['message'] || nil
-          @published_at = attributes[:published_at] || attributes['published_at'] || nil
-          @reference = attributes[:reference] || attributes['reference'] || nil
-          @review_queue_item_id = attributes[:review_queue_item_id] || attributes['review_queue_item_id'] || nil
-          @user_id = attributes[:user_id] || attributes['user_id'] || nil
-          @current_labels = attributes[:current_labels] || attributes['current_labels'] || nil
-          @expected_labels = attributes[:expected_labels] || attributes['expected_labels'] || nil
-          @items = attributes[:items] || attributes['items'] || nil
-          @user = attributes[:user] || attributes['user'] || nil
+          @channel_id = attributes.fetch(:channel_id) { attributes.fetch('channel_id', nil) }
+          @confidence = attributes.fetch(:confidence) { attributes.fetch('confidence', nil) }
+          @current_recommended_action = attributes.fetch(:current_recommended_action) { attributes.fetch('current_recommended_action', nil) }
+          @description = attributes.fetch(:description) { attributes.fetch('description', nil) }
+          @entity_creator_id = attributes.fetch(:entity_creator_id) { attributes.fetch('entity_creator_id', nil) }
+          @entity_id = attributes.fetch(:entity_id) { attributes.fetch('entity_id', nil) }
+          @entity_type = attributes.fetch(:entity_type) { attributes.fetch('entity_type', nil) }
+          @expected_recommended_action = attributes.fetch(:expected_recommended_action) { attributes.fetch('expected_recommended_action', nil) }
+          @false_positive = attributes.fetch(:false_positive) { attributes.fetch('false_positive', nil) }
+          @feedback_type = attributes.fetch(:feedback_type) { attributes.fetch('feedback_type', nil) }
+          @message = attributes.fetch(:message) { attributes.fetch('message', nil) }
+          @published_at = attributes.fetch(:published_at) { attributes.fetch('published_at', nil) }
+          @reference = attributes.fetch(:reference) { attributes.fetch('reference', nil) }
+          @review_queue_item_id = attributes.fetch(:review_queue_item_id) { attributes.fetch('review_queue_item_id', nil) }
+          @user_id = attributes.fetch(:user_id) { attributes.fetch('user_id', nil) }
+          @current_labels = attributes.fetch(:current_labels) { attributes.fetch('current_labels', nil) }
+          @expected_labels = attributes.fetch(:expected_labels) { attributes.fetch('expected_labels', nil) }
+          @items = attributes.fetch(:items) { attributes.fetch('items', nil) }
+          @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
         end
 
         # Override field mappings for JSON serialization

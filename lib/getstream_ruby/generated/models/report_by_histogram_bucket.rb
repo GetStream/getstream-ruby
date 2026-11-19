@@ -28,11 +28,11 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @category = attributes[:category] || attributes['category']
-          @count = attributes[:count] || attributes['count']
-          @sum = attributes[:sum] || attributes['sum']
-          @lower_bound = attributes[:lower_bound] || attributes['lower_bound'] || nil
-          @upper_bound = attributes[:upper_bound] || attributes['upper_bound'] || nil
+          @category = attributes.fetch(:category) { attributes.fetch('category', nil) }
+          @count = attributes.fetch(:count) { attributes.fetch('count', nil) }
+          @sum = attributes.fetch(:sum) { attributes.fetch('sum', nil) }
+          @lower_bound = attributes.fetch(:lower_bound) { attributes.fetch('lower_bound', nil) }
+          @upper_bound = attributes.fetch(:upper_bound) { attributes.fetch('upper_bound', nil) }
         end
 
         # Override field mappings for JSON serialization

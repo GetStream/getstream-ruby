@@ -37,14 +37,14 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @duration = attributes[:duration] || attributes['duration']
-          @call_duration_report = attributes[:call_duration_report] || attributes['call_duration_report'] || nil
-          @call_participant_count_report = attributes[:call_participant_count_report] || attributes['call_participant_count_report'] || nil
-          @calls_per_day_report = attributes[:calls_per_day_report] || attributes['calls_per_day_report'] || nil
-          @network_metrics_report = attributes[:network_metrics_report] || attributes['network_metrics_report'] || nil
-          @quality_score_report = attributes[:quality_score_report] || attributes['quality_score_report'] || nil
-          @sdk_usage_report = attributes[:sdk_usage_report] || attributes['sdk_usage_report'] || nil
-          @user_feedback_report = attributes[:user_feedback_report] || attributes['user_feedback_report'] || nil
+          @duration = attributes.fetch(:duration) { attributes.fetch('duration', nil) }
+          @call_duration_report = attributes.fetch(:call_duration_report) { attributes.fetch('call_duration_report', nil) }
+          @call_participant_count_report = attributes.fetch(:call_participant_count_report) { attributes.fetch('call_participant_count_report', nil) }
+          @calls_per_day_report = attributes.fetch(:calls_per_day_report) { attributes.fetch('calls_per_day_report', nil) }
+          @network_metrics_report = attributes.fetch(:network_metrics_report) { attributes.fetch('network_metrics_report', nil) }
+          @quality_score_report = attributes.fetch(:quality_score_report) { attributes.fetch('quality_score_report', nil) }
+          @sdk_usage_report = attributes.fetch(:sdk_usage_report) { attributes.fetch('sdk_usage_report', nil) }
+          @user_feedback_report = attributes.fetch(:user_feedback_report) { attributes.fetch('user_feedback_report', nil) }
         end
 
         # Override field mappings for JSON serialization

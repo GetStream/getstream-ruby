@@ -43,16 +43,16 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @call_cid = attributes[:call_cid] || attributes['call_cid']
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @rating = attributes[:rating] || attributes['rating']
-          @session_id = attributes[:session_id] || attributes['session_id']
-          @user = attributes[:user] || attributes['user']
-          @type = attributes[:type] || attributes['type'] || "call.user_feedback_submitted"
-          @reason = attributes[:reason] || attributes['reason'] || nil
-          @sdk = attributes[:sdk] || attributes['sdk'] || nil
-          @sdk_version = attributes[:sdk_version] || attributes['sdk_version'] || nil
-          @custom = attributes[:custom] || attributes['custom'] || nil
+          @call_cid = attributes.fetch(:call_cid) { attributes.fetch('call_cid', nil) }
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @rating = attributes.fetch(:rating) { attributes.fetch('rating', nil) }
+          @session_id = attributes.fetch(:session_id) { attributes.fetch('session_id', nil) }
+          @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
+          @type = attributes.fetch(:type) { attributes.fetch('type', "call.user_feedback_submitted") }
+          @reason = attributes.fetch(:reason) { attributes.fetch('reason', nil) }
+          @sdk = attributes.fetch(:sdk) { attributes.fetch('sdk', nil) }
+          @sdk_version = attributes.fetch(:sdk_version) { attributes.fetch('sdk_version', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
         end
 
         # Override field mappings for JSON serialization

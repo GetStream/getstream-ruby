@@ -34,13 +34,13 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @app_context = attributes[:app_context] || attributes['app_context'] || nil
-          @async = attributes[:async] || attributes['async'] || nil
-          @custom_keys_context_description = attributes[:custom_keys_context_description] || attributes['custom_keys_context_description'] || nil
-          @enabled = attributes[:enabled] || attributes['enabled'] || nil
-          @context_custom_keys = attributes[:context_custom_keys] || attributes['context_custom_keys'] || nil
-          @rules = attributes[:rules] || attributes['rules'] || nil
-          @severity_descriptions = attributes[:severity_descriptions] || attributes['severity_descriptions'] || nil
+          @app_context = attributes.fetch(:app_context) { attributes.fetch('app_context', nil) }
+          @async = attributes.fetch(:async) { attributes.fetch('async', nil) }
+          @custom_keys_context_description = attributes.fetch(:custom_keys_context_description) { attributes.fetch('custom_keys_context_description', nil) }
+          @enabled = attributes.fetch(:enabled) { attributes.fetch('enabled', nil) }
+          @context_custom_keys = attributes.fetch(:context_custom_keys) { attributes.fetch('context_custom_keys', nil) }
+          @rules = attributes.fetch(:rules) { attributes.fetch('rules', nil) }
+          @severity_descriptions = attributes.fetch(:severity_descriptions) { attributes.fetch('severity_descriptions', nil) }
         end
 
         # Override field mappings for JSON serialization

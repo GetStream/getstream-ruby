@@ -40,15 +40,15 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @ban_from_future_channels = attributes[:ban_from_future_channels] || attributes['ban_from_future_channels'] || nil
-          @channel_ban_only = attributes[:channel_ban_only] || attributes['channel_ban_only'] || nil
-          @channel_cid = attributes[:channel_cid] || attributes['channel_cid'] || nil
-          @delete_messages = attributes[:delete_messages] || attributes['delete_messages'] || nil
-          @ip_ban = attributes[:ip_ban] || attributes['ip_ban'] || nil
-          @reason = attributes[:reason] || attributes['reason'] || nil
-          @shadow = attributes[:shadow] || attributes['shadow'] || nil
-          @target_user_id = attributes[:target_user_id] || attributes['target_user_id'] || nil
-          @timeout = attributes[:timeout] || attributes['timeout'] || nil
+          @ban_from_future_channels = attributes.fetch(:ban_from_future_channels) { attributes.fetch('ban_from_future_channels', nil) }
+          @channel_ban_only = attributes.fetch(:channel_ban_only) { attributes.fetch('channel_ban_only', nil) }
+          @channel_cid = attributes.fetch(:channel_cid) { attributes.fetch('channel_cid', nil) }
+          @delete_messages = attributes.fetch(:delete_messages) { attributes.fetch('delete_messages', nil) }
+          @ip_ban = attributes.fetch(:ip_ban) { attributes.fetch('ip_ban', nil) }
+          @reason = attributes.fetch(:reason) { attributes.fetch('reason', nil) }
+          @shadow = attributes.fetch(:shadow) { attributes.fetch('shadow', nil) }
+          @target_user_id = attributes.fetch(:target_user_id) { attributes.fetch('target_user_id', nil) }
+          @timeout = attributes.fetch(:timeout) { attributes.fetch('timeout', nil) }
         end
 
         # Override field mappings for JSON serialization

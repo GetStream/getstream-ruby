@@ -12,17 +12,22 @@ module GetStream
         # @!attribute policy
         #   @return [RetentionPolicyType] What a retention policy applies to.
         attr_accessor :policy
+        # @!attribute channel_type
+        #   @return [String]
+        attr_accessor :channel_type
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @policy = attributes[:policy] || attributes['policy']
+          @policy = attributes.fetch(:policy) { attributes.fetch('policy', nil) }
+          @channel_type = attributes.fetch(:channel_type) { attributes.fetch('channel_type', nil) }
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            policy: 'policy'
+            policy: 'policy',
+            channel_type: 'channel_type'
           }
         end
       end

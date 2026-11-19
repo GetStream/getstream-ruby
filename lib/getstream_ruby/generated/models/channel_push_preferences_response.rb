@@ -22,9 +22,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @chat_level = attributes[:chat_level] || attributes['chat_level'] || nil
-          @disabled_until = attributes[:disabled_until] || attributes['disabled_until'] || nil
-          @chat_preferences = attributes[:chat_preferences] || attributes['chat_preferences'] || nil
+          @chat_level = attributes.fetch(:chat_level) { attributes.fetch('chat_level', nil) }
+          @disabled_until = attributes.fetch(:disabled_until) { attributes.fetch('disabled_until', nil) }
+          @chat_preferences = attributes.fetch(:chat_preferences) { attributes.fetch('chat_preferences', nil) }
         end
 
         # Override field mappings for JSON serialization

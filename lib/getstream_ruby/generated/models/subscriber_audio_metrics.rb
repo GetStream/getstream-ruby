@@ -22,9 +22,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @concealment_pct = attributes[:concealment_pct] || attributes['concealment_pct'] || nil
-          @jitter_ms = attributes[:jitter_ms] || attributes['jitter_ms'] || nil
-          @packets_lost_pct = attributes[:packets_lost_pct] || attributes['packets_lost_pct'] || nil
+          @concealment_pct = attributes.fetch(:concealment_pct) { attributes.fetch('concealment_pct', nil) }
+          @jitter_ms = attributes.fetch(:jitter_ms) { attributes.fetch('jitter_ms', nil) }
+          @packets_lost_pct = attributes.fetch(:packets_lost_pct) { attributes.fetch('packets_lost_pct', nil) }
         end
 
         # Override field mappings for JSON serialization

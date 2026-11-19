@@ -37,14 +37,14 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @duration = attributes[:duration] || attributes['duration']
-          @items = attributes[:items] || attributes['items']
-          @action_config = attributes[:action_config] || attributes['action_config']
-          @stats = attributes[:stats] || attributes['stats']
-          @next = attributes[:next] || attributes['next'] || nil
-          @prev = attributes[:prev] || attributes['prev'] || nil
-          @default_action_config = attributes[:default_action_config] || attributes['default_action_config'] || nil
-          @filter_config = attributes[:filter_config] || attributes['filter_config'] || nil
+          @duration = attributes.fetch(:duration) { attributes.fetch('duration', nil) }
+          @items = attributes.fetch(:items) { attributes.fetch('items', nil) }
+          @action_config = attributes.fetch(:action_config) { attributes.fetch('action_config', nil) }
+          @stats = attributes.fetch(:stats) { attributes.fetch('stats', nil) }
+          @next = attributes.fetch(:next) { attributes.fetch('next', nil) }
+          @prev = attributes.fetch(:prev) { attributes.fetch('prev', nil) }
+          @default_action_config = attributes.fetch(:default_action_config) { attributes.fetch('default_action_config', nil) }
+          @filter_config = attributes.fetch(:filter_config) { attributes.fetch('filter_config', nil) }
         end
 
         # Override field mappings for JSON serialization

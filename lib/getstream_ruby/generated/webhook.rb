@@ -168,6 +168,8 @@ require_relative 'models/reminder_notification_event'
 require_relative 'models/reminder_updated_event'
 require_relative 'models/review_queue_item_new_event'
 require_relative 'models/review_queue_item_updated_event'
+require_relative 'models/scheduled_activity_failed_event'
+require_relative 'models/scheduled_activity_published_event'
 require_relative 'models/scheduled_message_failed_event'
 require_relative 'models/scheduled_message_sent_event'
 require_relative 'models/stories_feed_updated_event'
@@ -372,6 +374,8 @@ module StreamChat
     EVENT_TYPE_FEEDS_FOLLOW_DELETED = 'feeds.follow.deleted'
     EVENT_TYPE_FEEDS_FOLLOW_UPDATED = 'feeds.follow.updated'
     EVENT_TYPE_FEEDS_NOTIFICATION_FEED_UPDATED = 'feeds.notification_feed.updated'
+    EVENT_TYPE_FEEDS_SCHEDULED_ACTIVITY_FAILED = 'feeds.scheduled_activity.failed'
+    EVENT_TYPE_FEEDS_SCHEDULED_ACTIVITY_PUBLISHED = 'feeds.scheduled_activity.published'
     EVENT_TYPE_FEEDS_STORIES_FEED_UPDATED = 'feeds.stories_feed.updated'
     EVENT_TYPE_FLAG_UPDATED = 'flag.updated'
     EVENT_TYPE_IMPORT_ERROR = 'import.error'
@@ -739,6 +743,10 @@ module StreamChat
         GetStream::Generated::Models::FollowUpdatedEvent
       when 'feeds.notification_feed.updated'
         GetStream::Generated::Models::NotificationFeedUpdatedEvent
+      when 'feeds.scheduled_activity.failed'
+        GetStream::Generated::Models::ScheduledActivityFailedEvent
+      when 'feeds.scheduled_activity.published'
+        GetStream::Generated::Models::ScheduledActivityPublishedEvent
       when 'feeds.stories_feed.updated'
         GetStream::Generated::Models::StoriesFeedUpdatedEvent
       when 'flag.updated'

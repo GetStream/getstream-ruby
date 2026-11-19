@@ -55,20 +55,20 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @created_by_automod = attributes[:created_by_automod] || attributes['created_by_automod']
-          @updated_at = attributes[:updated_at] || attributes['updated_at']
-          @approved_at = attributes[:approved_at] || attributes['approved_at'] || nil
-          @reason = attributes[:reason] || attributes['reason'] || nil
-          @rejected_at = attributes[:rejected_at] || attributes['rejected_at'] || nil
-          @reviewed_at = attributes[:reviewed_at] || attributes['reviewed_at'] || nil
-          @reviewed_by = attributes[:reviewed_by] || attributes['reviewed_by'] || nil
-          @target_message_id = attributes[:target_message_id] || attributes['target_message_id'] || nil
-          @custom = attributes[:custom] || attributes['custom'] || nil
-          @details = attributes[:details] || attributes['details'] || nil
-          @target_message = attributes[:target_message] || attributes['target_message'] || nil
-          @target_user = attributes[:target_user] || attributes['target_user'] || nil
-          @user = attributes[:user] || attributes['user'] || nil
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @created_by_automod = attributes.fetch(:created_by_automod) { attributes.fetch('created_by_automod', nil) }
+          @updated_at = attributes.fetch(:updated_at) { attributes.fetch('updated_at', nil) }
+          @approved_at = attributes.fetch(:approved_at) { attributes.fetch('approved_at', nil) }
+          @reason = attributes.fetch(:reason) { attributes.fetch('reason', nil) }
+          @rejected_at = attributes.fetch(:rejected_at) { attributes.fetch('rejected_at', nil) }
+          @reviewed_at = attributes.fetch(:reviewed_at) { attributes.fetch('reviewed_at', nil) }
+          @reviewed_by = attributes.fetch(:reviewed_by) { attributes.fetch('reviewed_by', nil) }
+          @target_message_id = attributes.fetch(:target_message_id) { attributes.fetch('target_message_id', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
+          @details = attributes.fetch(:details) { attributes.fetch('details', nil) }
+          @target_message = attributes.fetch(:target_message) { attributes.fetch('target_message', nil) }
+          @target_user = attributes.fetch(:target_user) { attributes.fetch('target_user', nil) }
+          @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
         end
 
         # Override field mappings for JSON serialization
