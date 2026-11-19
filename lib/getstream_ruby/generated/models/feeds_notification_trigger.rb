@@ -25,10 +25,10 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @text = attributes[:text] || attributes['text']
-          @type = attributes[:type] || attributes['type']
-          @comment = attributes[:comment] || attributes['comment'] || nil
-          @custom = attributes[:custom] || attributes['custom'] || nil
+          @text = attributes.fetch(:text) { attributes.fetch('text', nil) }
+          @type = attributes.fetch(:type) { attributes.fetch('type', nil) }
+          @comment = attributes.fetch(:comment) { attributes.fetch('comment', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
         end
 
         # Override field mappings for JSON serialization

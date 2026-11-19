@@ -40,15 +40,15 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @code = attributes[:code] || attributes['code']
-          @duration = attributes[:duration] || attributes['duration']
-          @message = attributes[:message] || attributes['message']
-          @more_info = attributes[:more_info] || attributes['more_info']
-          @status_code = attributes[:status_code] || attributes['StatusCode']
-          @details = attributes[:details] || attributes['details']
-          @cooldown_remaining_ms = attributes[:cooldown_remaining_ms] || attributes['cooldown_remaining_ms'] || nil
-          @unrecoverable = attributes[:unrecoverable] || attributes['unrecoverable'] || nil
-          @exception_fields = attributes[:exception_fields] || attributes['exception_fields'] || nil
+          @code = attributes.fetch(:code) { attributes.fetch('code', nil) }
+          @duration = attributes.fetch(:duration) { attributes.fetch('duration', nil) }
+          @message = attributes.fetch(:message) { attributes.fetch('message', nil) }
+          @more_info = attributes.fetch(:more_info) { attributes.fetch('more_info', nil) }
+          @status_code = attributes.fetch(:status_code) { attributes.fetch('StatusCode', nil) }
+          @details = attributes.fetch(:details) { attributes.fetch('details', nil) }
+          @cooldown_remaining_ms = attributes.fetch(:cooldown_remaining_ms) { attributes.fetch('cooldown_remaining_ms', nil) }
+          @unrecoverable = attributes.fetch(:unrecoverable) { attributes.fetch('unrecoverable', nil) }
+          @exception_fields = attributes.fetch(:exception_fields) { attributes.fetch('exception_fields', nil) }
         end
 
         # Override field mappings for JSON serialization

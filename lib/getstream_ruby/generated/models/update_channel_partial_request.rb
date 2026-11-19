@@ -25,10 +25,10 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @user_id = attributes[:user_id] || attributes['user_id'] || nil
-          @unset = attributes[:unset] || attributes['unset'] || nil
-          @set = attributes[:set] || attributes['set'] || nil
-          @user = attributes[:user] || attributes['user'] || nil
+          @user_id = attributes.fetch(:user_id) { attributes.fetch('user_id', nil) }
+          @unset = attributes.fetch(:unset) { attributes.fetch('unset', nil) }
+          @set = attributes.fetch(:set) { attributes.fetch('set', nil) }
+          @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
         end
 
         # Override field mappings for JSON serialization

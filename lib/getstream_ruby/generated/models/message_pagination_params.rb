@@ -46,17 +46,17 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @created_at_after = attributes[:created_at_after] || attributes['created_at_after'] || nil
-          @created_at_after_or_equal = attributes[:created_at_after_or_equal] || attributes['created_at_after_or_equal'] || nil
-          @created_at_around = attributes[:created_at_around] || attributes['created_at_around'] || nil
-          @created_at_before = attributes[:created_at_before] || attributes['created_at_before'] || nil
-          @created_at_before_or_equal = attributes[:created_at_before_or_equal] || attributes['created_at_before_or_equal'] || nil
-          @id_around = attributes[:id_around] || attributes['id_around'] || nil
-          @id_gt = attributes[:id_gt] || attributes['id_gt'] || nil
-          @id_gte = attributes[:id_gte] || attributes['id_gte'] || nil
-          @id_lt = attributes[:id_lt] || attributes['id_lt'] || nil
-          @id_lte = attributes[:id_lte] || attributes['id_lte'] || nil
-          @limit = attributes[:limit] || attributes['limit'] || nil
+          @created_at_after = attributes.fetch(:created_at_after) { attributes.fetch('created_at_after', nil) }
+          @created_at_after_or_equal = attributes.fetch(:created_at_after_or_equal) { attributes.fetch('created_at_after_or_equal', nil) }
+          @created_at_around = attributes.fetch(:created_at_around) { attributes.fetch('created_at_around', nil) }
+          @created_at_before = attributes.fetch(:created_at_before) { attributes.fetch('created_at_before', nil) }
+          @created_at_before_or_equal = attributes.fetch(:created_at_before_or_equal) { attributes.fetch('created_at_before_or_equal', nil) }
+          @id_around = attributes.fetch(:id_around) { attributes.fetch('id_around', nil) }
+          @id_gt = attributes.fetch(:id_gt) { attributes.fetch('id_gt', nil) }
+          @id_gte = attributes.fetch(:id_gte) { attributes.fetch('id_gte', nil) }
+          @id_lt = attributes.fetch(:id_lt) { attributes.fetch('id_lt', nil) }
+          @id_lte = attributes.fetch(:id_lte) { attributes.fetch('id_lte', nil) }
+          @limit = attributes.fetch(:limit) { attributes.fetch('limit', nil) }
         end
 
         # Override field mappings for JSON serialization

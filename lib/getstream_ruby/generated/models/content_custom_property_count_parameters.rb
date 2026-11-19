@@ -9,6 +9,9 @@ module GetStream
       class ContentCustomPropertyCountParameters < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute expected_value
+        #   @return [Object]
+        attr_accessor :expected_value
         # @!attribute operator
         #   @return [String]
         attr_accessor :operator
@@ -25,15 +28,17 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @operator = attributes[:operator] || attributes['operator'] || nil
-          @property_key = attributes[:property_key] || attributes['property_key'] || nil
-          @threshold = attributes[:threshold] || attributes['threshold'] || nil
-          @time_window = attributes[:time_window] || attributes['time_window'] || nil
+          @expected_value = attributes.fetch(:expected_value) { attributes.fetch('expected_value', nil) }
+          @operator = attributes.fetch(:operator) { attributes.fetch('operator', nil) }
+          @property_key = attributes.fetch(:property_key) { attributes.fetch('property_key', nil) }
+          @threshold = attributes.fetch(:threshold) { attributes.fetch('threshold', nil) }
+          @time_window = attributes.fetch(:time_window) { attributes.fetch('time_window', nil) }
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            expected_value: 'expected_value',
             operator: 'operator',
             property_key: 'property_key',
             threshold: 'threshold',

@@ -52,7 +52,8 @@ module GetStream
         #   @return [String]
         attr_accessor :sns_region
         # @!attribute sns_role_arn
-        #   @return [String]
+        # @deprecated This field is deprecated.
+        #   @return [String] Deprecated: Role auth was never supported; use resource auth.
         attr_accessor :sns_role_arn
         # @!attribute sns_secret
         #   @return [String]
@@ -76,7 +77,8 @@ module GetStream
         #   @return [String]
         attr_accessor :sqs_region
         # @!attribute sqs_role_arn
-        #   @return [String]
+        # @deprecated This field is deprecated.
+        #   @return [String] Deprecated: Role auth was never supported; use resource auth.
         attr_accessor :sqs_role_arn
         # @!attribute sqs_secret
         #   @return [String]
@@ -103,36 +105,36 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @created_at = attributes[:created_at] || attributes['created_at'] || nil
-          @enabled = attributes[:enabled] || attributes['enabled'] || nil
-          @gcp_pubsub_auth_type = attributes[:gcp_pubsub_auth_type] || attributes['gcp_pubsub_auth_type'] || nil
-          @gcp_pubsub_event_based_ordering_key_enabled = attributes[:gcp_pubsub_event_based_ordering_key_enabled] || attributes['gcp_pubsub_event_based_ordering_key_enabled'] || nil
-          @gcp_pubsub_region = attributes[:gcp_pubsub_region] || attributes['gcp_pubsub_region'] || nil
-          @gcp_pubsub_topic = attributes[:gcp_pubsub_topic] || attributes['gcp_pubsub_topic'] || nil
-          @hook_type = attributes[:hook_type] || attributes['hook_type'] || nil
-          @id = attributes[:id] || attributes['id'] || nil
-          @product = attributes[:product] || attributes['product'] || nil
-          @should_send_custom_events = attributes[:should_send_custom_events] || attributes['should_send_custom_events'] || nil
-          @sns_auth_type = attributes[:sns_auth_type] || attributes['sns_auth_type'] || nil
-          @sns_event_based_message_group_id_enabled = attributes[:sns_event_based_message_group_id_enabled] || attributes['sns_event_based_message_group_id_enabled'] || nil
-          @sns_key = attributes[:sns_key] || attributes['sns_key'] || nil
-          @sns_region = attributes[:sns_region] || attributes['sns_region'] || nil
-          @sns_role_arn = attributes[:sns_role_arn] || attributes['sns_role_arn'] || nil
-          @sns_secret = attributes[:sns_secret] || attributes['sns_secret'] || nil
-          @sns_topic_arn = attributes[:sns_topic_arn] || attributes['sns_topic_arn'] || nil
-          @sqs_auth_type = attributes[:sqs_auth_type] || attributes['sqs_auth_type'] || nil
-          @sqs_event_based_message_group_id_enabled = attributes[:sqs_event_based_message_group_id_enabled] || attributes['sqs_event_based_message_group_id_enabled'] || nil
-          @sqs_key = attributes[:sqs_key] || attributes['sqs_key'] || nil
-          @sqs_queue_url = attributes[:sqs_queue_url] || attributes['sqs_queue_url'] || nil
-          @sqs_region = attributes[:sqs_region] || attributes['sqs_region'] || nil
-          @sqs_role_arn = attributes[:sqs_role_arn] || attributes['sqs_role_arn'] || nil
-          @sqs_secret = attributes[:sqs_secret] || attributes['sqs_secret'] || nil
-          @timeout_ms = attributes[:timeout_ms] || attributes['timeout_ms'] || nil
-          @updated_at = attributes[:updated_at] || attributes['updated_at'] || nil
-          @webhook_url = attributes[:webhook_url] || attributes['webhook_url'] || nil
-          @event_types = attributes[:event_types] || attributes['event_types'] || nil
-          @callback = attributes[:callback] || attributes['callback'] || nil
-          @failover_config = attributes[:failover_config] || attributes['failover_config'] || nil
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @enabled = attributes.fetch(:enabled) { attributes.fetch('enabled', nil) }
+          @gcp_pubsub_auth_type = attributes.fetch(:gcp_pubsub_auth_type) { attributes.fetch('gcp_pubsub_auth_type', nil) }
+          @gcp_pubsub_event_based_ordering_key_enabled = attributes.fetch(:gcp_pubsub_event_based_ordering_key_enabled) { attributes.fetch('gcp_pubsub_event_based_ordering_key_enabled', nil) }
+          @gcp_pubsub_region = attributes.fetch(:gcp_pubsub_region) { attributes.fetch('gcp_pubsub_region', nil) }
+          @gcp_pubsub_topic = attributes.fetch(:gcp_pubsub_topic) { attributes.fetch('gcp_pubsub_topic', nil) }
+          @hook_type = attributes.fetch(:hook_type) { attributes.fetch('hook_type', nil) }
+          @id = attributes.fetch(:id) { attributes.fetch('id', nil) }
+          @product = attributes.fetch(:product) { attributes.fetch('product', nil) }
+          @should_send_custom_events = attributes.fetch(:should_send_custom_events) { attributes.fetch('should_send_custom_events', nil) }
+          @sns_auth_type = attributes.fetch(:sns_auth_type) { attributes.fetch('sns_auth_type', nil) }
+          @sns_event_based_message_group_id_enabled = attributes.fetch(:sns_event_based_message_group_id_enabled) { attributes.fetch('sns_event_based_message_group_id_enabled', nil) }
+          @sns_key = attributes.fetch(:sns_key) { attributes.fetch('sns_key', nil) }
+          @sns_region = attributes.fetch(:sns_region) { attributes.fetch('sns_region', nil) }
+          @sns_role_arn = attributes.fetch(:sns_role_arn) { attributes.fetch('sns_role_arn', nil) }
+          @sns_secret = attributes.fetch(:sns_secret) { attributes.fetch('sns_secret', nil) }
+          @sns_topic_arn = attributes.fetch(:sns_topic_arn) { attributes.fetch('sns_topic_arn', nil) }
+          @sqs_auth_type = attributes.fetch(:sqs_auth_type) { attributes.fetch('sqs_auth_type', nil) }
+          @sqs_event_based_message_group_id_enabled = attributes.fetch(:sqs_event_based_message_group_id_enabled) { attributes.fetch('sqs_event_based_message_group_id_enabled', nil) }
+          @sqs_key = attributes.fetch(:sqs_key) { attributes.fetch('sqs_key', nil) }
+          @sqs_queue_url = attributes.fetch(:sqs_queue_url) { attributes.fetch('sqs_queue_url', nil) }
+          @sqs_region = attributes.fetch(:sqs_region) { attributes.fetch('sqs_region', nil) }
+          @sqs_role_arn = attributes.fetch(:sqs_role_arn) { attributes.fetch('sqs_role_arn', nil) }
+          @sqs_secret = attributes.fetch(:sqs_secret) { attributes.fetch('sqs_secret', nil) }
+          @timeout_ms = attributes.fetch(:timeout_ms) { attributes.fetch('timeout_ms', nil) }
+          @updated_at = attributes.fetch(:updated_at) { attributes.fetch('updated_at', nil) }
+          @webhook_url = attributes.fetch(:webhook_url) { attributes.fetch('webhook_url', nil) }
+          @event_types = attributes.fetch(:event_types) { attributes.fetch('event_types', nil) }
+          @callback = attributes.fetch(:callback) { attributes.fetch('callback', nil) }
+          @failover_config = attributes.fetch(:failover_config) { attributes.fetch('failover_config', nil) }
         end
 
         # Override field mappings for JSON serialization

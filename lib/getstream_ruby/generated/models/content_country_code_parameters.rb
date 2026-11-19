@@ -19,8 +19,8 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @operator = attributes[:operator] || attributes['operator'] || nil
-          @country_codes = attributes[:country_codes] || attributes['country_codes'] || nil
+          @operator = attributes.fetch(:operator) { attributes.fetch('operator', nil) }
+          @country_codes = attributes.fetch(:country_codes) { attributes.fetch('country_codes', nil) }
         end
 
         # Override field mappings for JSON serialization

@@ -55,20 +55,20 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @include_active_member_count = attributes[:include_active_member_count] || attributes['include_active_member_count'] || nil
-          @limit = attributes[:limit] || attributes['limit'] || nil
-          @member_limit = attributes[:member_limit] || attributes['member_limit'] || nil
-          @message_limit = attributes[:message_limit] || attributes['message_limit'] || nil
-          @offset = attributes[:offset] || attributes['offset'] || nil
-          @predefined_filter = attributes[:predefined_filter] || attributes['predefined_filter'] || nil
-          @state = attributes[:state] || attributes['state'] || nil
-          @user_id = attributes[:user_id] || attributes['user_id'] || nil
-          @member_custom_include = attributes[:member_custom_include] || attributes['member_custom_include'] || nil
-          @sort = attributes[:sort] || attributes['sort'] || nil
-          @filter_conditions = attributes[:filter_conditions] || attributes['filter_conditions'] || nil
-          @filter_values = attributes[:filter_values] || attributes['filter_values'] || nil
-          @sort_values = attributes[:sort_values] || attributes['sort_values'] || nil
-          @user = attributes[:user] || attributes['user'] || nil
+          @include_active_member_count = attributes.fetch(:include_active_member_count) { attributes.fetch('include_active_member_count', nil) }
+          @limit = attributes.fetch(:limit) { attributes.fetch('limit', nil) }
+          @member_limit = attributes.fetch(:member_limit) { attributes.fetch('member_limit', nil) }
+          @message_limit = attributes.fetch(:message_limit) { attributes.fetch('message_limit', nil) }
+          @offset = attributes.fetch(:offset) { attributes.fetch('offset', nil) }
+          @predefined_filter = attributes.fetch(:predefined_filter) { attributes.fetch('predefined_filter', nil) }
+          @state = attributes.fetch(:state) { attributes.fetch('state', nil) }
+          @user_id = attributes.fetch(:user_id) { attributes.fetch('user_id', nil) }
+          @member_custom_include = attributes.fetch(:member_custom_include) { attributes.fetch('member_custom_include', nil) }
+          @sort = attributes.fetch(:sort) { attributes.fetch('sort', nil) }
+          @filter_conditions = attributes.fetch(:filter_conditions) { attributes.fetch('filter_conditions', nil) }
+          @filter_values = attributes.fetch(:filter_values) { attributes.fetch('filter_values', nil) }
+          @sort_values = attributes.fetch(:sort_values) { attributes.fetch('sort_values', nil) }
+          @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
         end
 
         # Override field mappings for JSON serialization

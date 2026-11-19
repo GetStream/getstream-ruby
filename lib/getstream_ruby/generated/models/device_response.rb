@@ -40,15 +40,15 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @id = attributes[:id] || attributes['id']
-          @push_provider = attributes[:push_provider] || attributes['push_provider']
-          @user_id = attributes[:user_id] || attributes['user_id']
-          @disabled = attributes[:disabled] || attributes['disabled'] || nil
-          @disabled_reason = attributes[:disabled_reason] || attributes['disabled_reason'] || nil
-          @hardware_id = attributes[:hardware_id] || attributes['hardware_id'] || nil
-          @push_provider_name = attributes[:push_provider_name] || attributes['push_provider_name'] || nil
-          @voip = attributes[:voip] || attributes['voip'] || nil
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @id = attributes.fetch(:id) { attributes.fetch('id', nil) }
+          @push_provider = attributes.fetch(:push_provider) { attributes.fetch('push_provider', nil) }
+          @user_id = attributes.fetch(:user_id) { attributes.fetch('user_id', nil) }
+          @disabled = attributes.fetch(:disabled) { attributes.fetch('disabled', nil) }
+          @disabled_reason = attributes.fetch(:disabled_reason) { attributes.fetch('disabled_reason', nil) }
+          @hardware_id = attributes.fetch(:hardware_id) { attributes.fetch('hardware_id', nil) }
+          @push_provider_name = attributes.fetch(:push_provider_name) { attributes.fetch('push_provider_name', nil) }
+          @voip = attributes.fetch(:voip) { attributes.fetch('voip', nil) }
         end
 
         # Override field mappings for JSON serialization

@@ -61,22 +61,22 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @hard_delete = attributes[:hard_delete] || attributes['hard_delete']
-          @message_id = attributes[:message_id] || attributes['message_id']
-          @custom = attributes[:custom] || attributes['custom']
-          @message = attributes[:message] || attributes['message']
-          @type = attributes[:type] || attributes['type'] || "message.deleted"
-          @channel_id = attributes[:channel_id] || attributes['channel_id'] || nil
-          @channel_member_count = attributes[:channel_member_count] || attributes['channel_member_count'] || nil
-          @channel_message_count = attributes[:channel_message_count] || attributes['channel_message_count'] || nil
-          @channel_type = attributes[:channel_type] || attributes['channel_type'] || nil
-          @cid = attributes[:cid] || attributes['cid'] || nil
-          @deleted_for_me = attributes[:deleted_for_me] || attributes['deleted_for_me'] || nil
-          @received_at = attributes[:received_at] || attributes['received_at'] || nil
-          @team = attributes[:team] || attributes['team'] || nil
-          @channel_custom = attributes[:channel_custom] || attributes['channel_custom'] || nil
-          @user = attributes[:user] || attributes['user'] || nil
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @hard_delete = attributes.fetch(:hard_delete) { attributes.fetch('hard_delete', nil) }
+          @message_id = attributes.fetch(:message_id) { attributes.fetch('message_id', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
+          @message = attributes.fetch(:message) { attributes.fetch('message', nil) }
+          @type = attributes.fetch(:type) { attributes.fetch('type', "message.deleted") }
+          @channel_id = attributes.fetch(:channel_id) { attributes.fetch('channel_id', nil) }
+          @channel_member_count = attributes.fetch(:channel_member_count) { attributes.fetch('channel_member_count', nil) }
+          @channel_message_count = attributes.fetch(:channel_message_count) { attributes.fetch('channel_message_count', nil) }
+          @channel_type = attributes.fetch(:channel_type) { attributes.fetch('channel_type', nil) }
+          @cid = attributes.fetch(:cid) { attributes.fetch('cid', nil) }
+          @deleted_for_me = attributes.fetch(:deleted_for_me) { attributes.fetch('deleted_for_me', nil) }
+          @received_at = attributes.fetch(:received_at) { attributes.fetch('received_at', nil) }
+          @team = attributes.fetch(:team) { attributes.fetch('team', nil) }
+          @channel_custom = attributes.fetch(:channel_custom) { attributes.fetch('channel_custom', nil) }
+          @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
         end
 
         # Override field mappings for JSON serialization

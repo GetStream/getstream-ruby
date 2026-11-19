@@ -28,11 +28,11 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @reason = attributes[:reason] || attributes['reason']
-          @disconnect_reasons = attributes[:disconnect_reasons] || attributes['disconnect_reasons']
-          @failure_stages = attributes[:failure_stages] || attributes['failure_stages']
-          @join_attempts = attributes[:join_attempts] || attributes['join_attempts'] || nil
-          @join_success_rate = attributes[:join_success_rate] || attributes['join_success_rate'] || nil
+          @reason = attributes.fetch(:reason) { attributes.fetch('reason', nil) }
+          @disconnect_reasons = attributes.fetch(:disconnect_reasons) { attributes.fetch('disconnect_reasons', nil) }
+          @failure_stages = attributes.fetch(:failure_stages) { attributes.fetch('failure_stages', nil) }
+          @join_attempts = attributes.fetch(:join_attempts) { attributes.fetch('join_attempts', nil) }
+          @join_success_rate = attributes.fetch(:join_success_rate) { attributes.fetch('join_success_rate', nil) }
         end
 
         # Override field mappings for JSON serialization

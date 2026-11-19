@@ -40,15 +40,15 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @role = attributes[:role] || attributes['role']
-          @status = attributes[:status] || attributes['status']
-          @updated_at = attributes[:updated_at] || attributes['updated_at']
-          @user = attributes[:user] || attributes['user']
-          @invite_accepted_at = attributes[:invite_accepted_at] || attributes['invite_accepted_at'] || nil
-          @invite_rejected_at = attributes[:invite_rejected_at] || attributes['invite_rejected_at'] || nil
-          @custom = attributes[:custom] || attributes['custom'] || nil
-          @membership_level = attributes[:membership_level] || attributes['membership_level'] || nil
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @role = attributes.fetch(:role) { attributes.fetch('role', nil) }
+          @status = attributes.fetch(:status) { attributes.fetch('status', nil) }
+          @updated_at = attributes.fetch(:updated_at) { attributes.fetch('updated_at', nil) }
+          @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
+          @invite_accepted_at = attributes.fetch(:invite_accepted_at) { attributes.fetch('invite_accepted_at', nil) }
+          @invite_rejected_at = attributes.fetch(:invite_rejected_at) { attributes.fetch('invite_rejected_at', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
+          @membership_level = attributes.fetch(:membership_level) { attributes.fetch('membership_level', nil) }
         end
 
         # Override field mappings for JSON serialization

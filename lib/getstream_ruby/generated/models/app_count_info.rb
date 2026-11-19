@@ -25,10 +25,10 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @condition_type = attributes[:condition_type] || attributes['condition_type']
-          @count = attributes[:count] || attributes['count']
-          @threshold = attributes[:threshold] || attributes['threshold']
-          @time_window = attributes[:time_window] || attributes['time_window']
+          @condition_type = attributes.fetch(:condition_type) { attributes.fetch('condition_type', nil) }
+          @count = attributes.fetch(:count) { attributes.fetch('count', nil) }
+          @threshold = attributes.fetch(:threshold) { attributes.fetch('threshold', nil) }
+          @time_window = attributes.fetch(:time_window) { attributes.fetch('time_window', nil) }
         end
 
         # Override field mappings for JSON serialization

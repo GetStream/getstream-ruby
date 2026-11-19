@@ -31,12 +31,12 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @bookmark = attributes[:bookmark] || attributes['bookmark']
-          @custom = attributes[:custom] || attributes['custom']
-          @type = attributes[:type] || attributes['type'] || "feeds.bookmark.added"
-          @received_at = attributes[:received_at] || attributes['received_at'] || nil
-          @user = attributes[:user] || attributes['user'] || nil
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @bookmark = attributes.fetch(:bookmark) { attributes.fetch('bookmark', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
+          @type = attributes.fetch(:type) { attributes.fetch('type', "feeds.bookmark.added") }
+          @received_at = attributes.fetch(:received_at) { attributes.fetch('received_at', nil) }
+          @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
         end
 
         # Override field mappings for JSON serialization

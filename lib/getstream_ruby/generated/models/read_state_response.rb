@@ -31,12 +31,12 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @last_read = attributes[:last_read] || attributes['last_read']
-          @unread_messages = attributes[:unread_messages] || attributes['unread_messages']
-          @user = attributes[:user] || attributes['user']
-          @last_delivered_at = attributes[:last_delivered_at] || attributes['last_delivered_at'] || nil
-          @last_delivered_message_id = attributes[:last_delivered_message_id] || attributes['last_delivered_message_id'] || nil
-          @last_read_message_id = attributes[:last_read_message_id] || attributes['last_read_message_id'] || nil
+          @last_read = attributes.fetch(:last_read) { attributes.fetch('last_read', nil) }
+          @unread_messages = attributes.fetch(:unread_messages) { attributes.fetch('unread_messages', nil) }
+          @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
+          @last_delivered_at = attributes.fetch(:last_delivered_at) { attributes.fetch('last_delivered_at', nil) }
+          @last_delivered_message_id = attributes.fetch(:last_delivered_message_id) { attributes.fetch('last_delivered_message_id', nil) }
+          @last_read_message_id = attributes.fetch(:last_read_message_id) { attributes.fetch('last_read_message_id', nil) }
         end
 
         # Override field mappings for JSON serialization

@@ -34,13 +34,13 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @type = attributes[:type] || attributes['type']
-          @all_sender_channels = attributes[:all_sender_channels] || attributes['all_sender_channels'] || nil
-          @all_users = attributes[:all_users] || attributes['all_users'] || nil
-          @description = attributes[:description] || attributes['description'] || nil
-          @id = attributes[:id] || attributes['id'] || nil
-          @name = attributes[:name] || attributes['name'] || nil
-          @filter = attributes[:filter] || attributes['filter'] || nil
+          @type = attributes.fetch(:type) { attributes.fetch('type', nil) }
+          @all_sender_channels = attributes.fetch(:all_sender_channels) { attributes.fetch('all_sender_channels', nil) }
+          @all_users = attributes.fetch(:all_users) { attributes.fetch('all_users', nil) }
+          @description = attributes.fetch(:description) { attributes.fetch('description', nil) }
+          @id = attributes.fetch(:id) { attributes.fetch('id', nil) }
+          @name = attributes.fetch(:name) { attributes.fetch('name', nil) }
+          @filter = attributes.fetch(:filter) { attributes.fetch('filter', nil) }
         end
 
         # Override field mappings for JSON serialization

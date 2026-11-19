@@ -25,10 +25,10 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @active_calls = attributes[:active_calls] || attributes['active_calls']
-          @active_publishers = attributes[:active_publishers] || attributes['active_publishers']
-          @active_subscribers = attributes[:active_subscribers] || attributes['active_subscribers']
-          @participants = attributes[:participants] || attributes['participants']
+          @active_calls = attributes.fetch(:active_calls) { attributes.fetch('active_calls', nil) }
+          @active_publishers = attributes.fetch(:active_publishers) { attributes.fetch('active_publishers', nil) }
+          @active_subscribers = attributes.fetch(:active_subscribers) { attributes.fetch('active_subscribers', nil) }
+          @participants = attributes.fetch(:participants) { attributes.fetch('participants', nil) }
         end
 
         # Override field mappings for JSON serialization

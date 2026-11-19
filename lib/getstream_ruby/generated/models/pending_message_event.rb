@@ -40,15 +40,15 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @method = attributes[:method] || attributes['method']
-          @custom = attributes[:custom] || attributes['custom']
-          @type = attributes[:type] || attributes['type'] || "message.pending"
-          @received_at = attributes[:received_at] || attributes['received_at'] || nil
-          @channel = attributes[:channel] || attributes['channel'] || nil
-          @message = attributes[:message] || attributes['message'] || nil
-          @metadata = attributes[:metadata] || attributes['metadata'] || nil
-          @user = attributes[:user] || attributes['user'] || nil
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @method = attributes.fetch(:method) { attributes.fetch('method', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
+          @type = attributes.fetch(:type) { attributes.fetch('type', "message.pending") }
+          @received_at = attributes.fetch(:received_at) { attributes.fetch('received_at', nil) }
+          @channel = attributes.fetch(:channel) { attributes.fetch('channel', nil) }
+          @message = attributes.fetch(:message) { attributes.fetch('message', nil) }
+          @metadata = attributes.fetch(:metadata) { attributes.fetch('metadata', nil) }
+          @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
         end
 
         # Override field mappings for JSON serialization

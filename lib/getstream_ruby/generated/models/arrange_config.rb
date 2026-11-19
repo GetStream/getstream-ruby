@@ -13,7 +13,7 @@ module GetStream
         #   @return [String] Activity field that defines a source. One of: type, user_id
         attr_accessor :key
         # @!attribute mode
-        #   @return [String] Arrangement mode. Currently only 'blend' is supported; 'diversify' and 'slot' are reserved
+        #   @return [String] Arrangement mode. 'blend' and 'diversify' are supported; 'slot' is reserved
         attr_accessor :mode
         # @!attribute tail_below
         #   @return [Float] Activities scoring strictly below this value are moved to the end of the feed, in score order, before the mode runs. 0 is a valid value. Must be greater than exclude_below when both are set
@@ -21,14 +21,18 @@ module GetStream
         # @!attribute blend
         #   @return [BlendArrangeConfig]
         attr_accessor :blend
+        # @!attribute diversify
+        #   @return [DiversifyArrangeConfig]
+        attr_accessor :diversify
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @key = attributes[:key] || attributes['key'] || nil
-          @mode = attributes[:mode] || attributes['mode'] || nil
-          @tail_below = attributes[:tail_below] || attributes['tail_below'] || nil
-          @blend = attributes[:blend] || attributes['blend'] || nil
+          @key = attributes.fetch(:key) { attributes.fetch('key', nil) }
+          @mode = attributes.fetch(:mode) { attributes.fetch('mode', nil) }
+          @tail_below = attributes.fetch(:tail_below) { attributes.fetch('tail_below', nil) }
+          @blend = attributes.fetch(:blend) { attributes.fetch('blend', nil) }
+          @diversify = attributes.fetch(:diversify) { attributes.fetch('diversify', nil) }
         end
 
         # Override field mappings for JSON serialization
@@ -37,7 +41,8 @@ module GetStream
             key: 'key',
             mode: 'mode',
             tail_below: 'tail_below',
-            blend: 'blend'
+            blend: 'blend',
+            diversify: 'diversify'
           }
         end
       end

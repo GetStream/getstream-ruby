@@ -82,29 +82,29 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @create_channels = attributes[:create_channels] || attributes['create_channels']
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @description = attributes[:description] || attributes['description']
-          @id = attributes[:id] || attributes['id']
-          @name = attributes[:name] || attributes['name']
-          @sender_id = attributes[:sender_id] || attributes['sender_id']
-          @show_channels = attributes[:show_channels] || attributes['show_channels']
-          @skip_push = attributes[:skip_push] || attributes['skip_push']
-          @skip_webhook = attributes[:skip_webhook] || attributes['skip_webhook']
-          @status = attributes[:status] || attributes['status']
-          @updated_at = attributes[:updated_at] || attributes['updated_at']
-          @segment_ids = attributes[:segment_ids] || attributes['segment_ids']
-          @segments = attributes[:segments] || attributes['segments']
-          @user_ids = attributes[:user_ids] || attributes['user_ids']
-          @users = attributes[:users] || attributes['users']
-          @stats = attributes[:stats] || attributes['stats']
-          @scheduled_for = attributes[:scheduled_for] || attributes['scheduled_for'] || nil
-          @sender_mode = attributes[:sender_mode] || attributes['sender_mode'] || nil
-          @sender_visibility = attributes[:sender_visibility] || attributes['sender_visibility'] || nil
-          @stop_at = attributes[:stop_at] || attributes['stop_at'] || nil
-          @channel_template = attributes[:channel_template] || attributes['channel_template'] || nil
-          @message_template = attributes[:message_template] || attributes['message_template'] || nil
-          @sender = attributes[:sender] || attributes['sender'] || nil
+          @create_channels = attributes.fetch(:create_channels) { attributes.fetch('create_channels', nil) }
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @description = attributes.fetch(:description) { attributes.fetch('description', nil) }
+          @id = attributes.fetch(:id) { attributes.fetch('id', nil) }
+          @name = attributes.fetch(:name) { attributes.fetch('name', nil) }
+          @sender_id = attributes.fetch(:sender_id) { attributes.fetch('sender_id', nil) }
+          @show_channels = attributes.fetch(:show_channels) { attributes.fetch('show_channels', nil) }
+          @skip_push = attributes.fetch(:skip_push) { attributes.fetch('skip_push', nil) }
+          @skip_webhook = attributes.fetch(:skip_webhook) { attributes.fetch('skip_webhook', nil) }
+          @status = attributes.fetch(:status) { attributes.fetch('status', nil) }
+          @updated_at = attributes.fetch(:updated_at) { attributes.fetch('updated_at', nil) }
+          @segment_ids = attributes.fetch(:segment_ids) { attributes.fetch('segment_ids', nil) }
+          @segments = attributes.fetch(:segments) { attributes.fetch('segments', nil) }
+          @user_ids = attributes.fetch(:user_ids) { attributes.fetch('user_ids', nil) }
+          @users = attributes.fetch(:users) { attributes.fetch('users', nil) }
+          @stats = attributes.fetch(:stats) { attributes.fetch('stats', nil) }
+          @scheduled_for = attributes.fetch(:scheduled_for) { attributes.fetch('scheduled_for', nil) }
+          @sender_mode = attributes.fetch(:sender_mode) { attributes.fetch('sender_mode', nil) }
+          @sender_visibility = attributes.fetch(:sender_visibility) { attributes.fetch('sender_visibility', nil) }
+          @stop_at = attributes.fetch(:stop_at) { attributes.fetch('stop_at', nil) }
+          @channel_template = attributes.fetch(:channel_template) { attributes.fetch('channel_template', nil) }
+          @message_template = attributes.fetch(:message_template) { attributes.fetch('message_template', nil) }
+          @sender = attributes.fetch(:sender) { attributes.fetch('sender', nil) }
         end
 
         # Override field mappings for JSON serialization

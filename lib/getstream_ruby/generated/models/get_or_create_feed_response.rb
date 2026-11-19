@@ -42,6 +42,9 @@ module GetStream
         # @!attribute prev
         #   @return [String]
         attr_accessor :prev
+        # @!attribute request_id
+        #   @return [String] Signed token identifying this read. Pass it with activity metrics events to attribute them to this read. Only set on feed reads for paid plans with an authenticated user, when the app uses feed impressions (For You exploration, or a For You ranking that uses impressions_bucket)
+        attr_accessor :request_id
         # @!attribute degraded_selectors
         #   @return [Array<String>] Activity selectors dropped from this read because they exceeded their time budget (see the time_budget_ms selector setting). Their activities are missing from this page, and they stay out for the rest of this pagination session. Omitted when every selector completed
         attr_accessor :degraded_selectors
@@ -64,23 +67,24 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @created = attributes[:created] || attributes['created']
-          @duration = attributes[:duration] || attributes['duration']
-          @activities = attributes[:activities] || attributes['activities']
-          @aggregated_activities = attributes[:aggregated_activities] || attributes['aggregated_activities']
-          @followers = attributes[:followers] || attributes['followers']
-          @following = attributes[:following] || attributes['following']
-          @members = attributes[:members] || attributes['members']
-          @pinned_activities = attributes[:pinned_activities] || attributes['pinned_activities']
-          @feed = attributes[:feed] || attributes['feed']
-          @next = attributes[:next] || attributes['next'] || nil
-          @prev = attributes[:prev] || attributes['prev'] || nil
-          @degraded_selectors = attributes[:degraded_selectors] || attributes['degraded_selectors'] || nil
-          @followers_pagination = attributes[:followers_pagination] || attributes['followers_pagination'] || nil
-          @following_pagination = attributes[:following_pagination] || attributes['following_pagination'] || nil
-          @member_pagination = attributes[:member_pagination] || attributes['member_pagination'] || nil
-          @notification_status = attributes[:notification_status] || attributes['notification_status'] || nil
-          @ranking_config = attributes[:ranking_config] || attributes['ranking_config'] || nil
+          @created = attributes.fetch(:created) { attributes.fetch('created', nil) }
+          @duration = attributes.fetch(:duration) { attributes.fetch('duration', nil) }
+          @activities = attributes.fetch(:activities) { attributes.fetch('activities', nil) }
+          @aggregated_activities = attributes.fetch(:aggregated_activities) { attributes.fetch('aggregated_activities', nil) }
+          @followers = attributes.fetch(:followers) { attributes.fetch('followers', nil) }
+          @following = attributes.fetch(:following) { attributes.fetch('following', nil) }
+          @members = attributes.fetch(:members) { attributes.fetch('members', nil) }
+          @pinned_activities = attributes.fetch(:pinned_activities) { attributes.fetch('pinned_activities', nil) }
+          @feed = attributes.fetch(:feed) { attributes.fetch('feed', nil) }
+          @next = attributes.fetch(:next) { attributes.fetch('next', nil) }
+          @prev = attributes.fetch(:prev) { attributes.fetch('prev', nil) }
+          @request_id = attributes.fetch(:request_id) { attributes.fetch('request_id', nil) }
+          @degraded_selectors = attributes.fetch(:degraded_selectors) { attributes.fetch('degraded_selectors', nil) }
+          @followers_pagination = attributes.fetch(:followers_pagination) { attributes.fetch('followers_pagination', nil) }
+          @following_pagination = attributes.fetch(:following_pagination) { attributes.fetch('following_pagination', nil) }
+          @member_pagination = attributes.fetch(:member_pagination) { attributes.fetch('member_pagination', nil) }
+          @notification_status = attributes.fetch(:notification_status) { attributes.fetch('notification_status', nil) }
+          @ranking_config = attributes.fetch(:ranking_config) { attributes.fetch('ranking_config', nil) }
         end
 
         # Override field mappings for JSON serialization
@@ -97,6 +101,7 @@ module GetStream
             feed: 'feed',
             next: 'next',
             prev: 'prev',
+            request_id: 'request_id',
             degraded_selectors: 'degraded_selectors',
             followers_pagination: 'followers_pagination',
             following_pagination: 'following_pagination',

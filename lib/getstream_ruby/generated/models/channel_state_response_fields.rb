@@ -64,23 +64,23 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @members = attributes[:members] || attributes['members']
-          @messages = attributes[:messages] || attributes['messages']
-          @pinned_messages = attributes[:pinned_messages] || attributes['pinned_messages']
-          @threads = attributes[:threads] || attributes['threads']
-          @cooldown_remaining_ms = attributes[:cooldown_remaining_ms] || attributes['cooldown_remaining_ms'] || nil
-          @hidden = attributes[:hidden] || attributes['hidden'] || nil
-          @hide_messages_before = attributes[:hide_messages_before] || attributes['hide_messages_before'] || nil
-          @watcher_count = attributes[:watcher_count] || attributes['watcher_count'] || nil
-          @active_live_locations = attributes[:active_live_locations] || attributes['active_live_locations'] || nil
-          @pending_messages = attributes[:pending_messages] || attributes['pending_messages'] || nil
-          @read = attributes[:read] || attributes['read'] || nil
-          @scheduled_messages = attributes[:scheduled_messages] || attributes['scheduled_messages'] || nil
-          @watchers = attributes[:watchers] || attributes['watchers'] || nil
-          @channel = attributes[:channel] || attributes['channel'] || nil
-          @draft = attributes[:draft] || attributes['draft'] || nil
-          @membership = attributes[:membership] || attributes['membership'] || nil
-          @push_preferences = attributes[:push_preferences] || attributes['push_preferences'] || nil
+          @members = attributes.fetch(:members) { attributes.fetch('members', nil) }
+          @messages = attributes.fetch(:messages) { attributes.fetch('messages', nil) }
+          @pinned_messages = attributes.fetch(:pinned_messages) { attributes.fetch('pinned_messages', nil) }
+          @threads = attributes.fetch(:threads) { attributes.fetch('threads', nil) }
+          @cooldown_remaining_ms = attributes.fetch(:cooldown_remaining_ms) { attributes.fetch('cooldown_remaining_ms', nil) }
+          @hidden = attributes.fetch(:hidden) { attributes.fetch('hidden', nil) }
+          @hide_messages_before = attributes.fetch(:hide_messages_before) { attributes.fetch('hide_messages_before', nil) }
+          @watcher_count = attributes.fetch(:watcher_count) { attributes.fetch('watcher_count', nil) }
+          @active_live_locations = attributes.fetch(:active_live_locations) { attributes.fetch('active_live_locations', nil) }
+          @pending_messages = attributes.fetch(:pending_messages) { attributes.fetch('pending_messages', nil) }
+          @read = attributes.fetch(:read) { attributes.fetch('read', nil) }
+          @scheduled_messages = attributes.fetch(:scheduled_messages) { attributes.fetch('scheduled_messages', nil) }
+          @watchers = attributes.fetch(:watchers) { attributes.fetch('watchers', nil) }
+          @channel = attributes.fetch(:channel) { attributes.fetch('channel', nil) }
+          @draft = attributes.fetch(:draft) { attributes.fetch('draft', nil) }
+          @membership = attributes.fetch(:membership) { attributes.fetch('membership', nil) }
+          @push_preferences = attributes.fetch(:push_preferences) { attributes.fetch('push_preferences', nil) }
         end
 
         # Override field mappings for JSON serialization

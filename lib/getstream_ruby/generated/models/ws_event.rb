@@ -94,33 +94,33 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @type = attributes[:type] || attributes['type']
-          @custom = attributes[:custom] || attributes['custom']
-          @automoderation = attributes[:automoderation] || attributes['automoderation'] || nil
-          @channel_id = attributes[:channel_id] || attributes['channel_id'] || nil
-          @channel_last_message_at = attributes[:channel_last_message_at] || attributes['channel_last_message_at'] || nil
-          @channel_type = attributes[:channel_type] || attributes['channel_type'] || nil
-          @cid = attributes[:cid] || attributes['cid'] || nil
-          @connection_id = attributes[:connection_id] || attributes['connection_id'] || nil
-          @parent_id = attributes[:parent_id] || attributes['parent_id'] || nil
-          @reason = attributes[:reason] || attributes['reason'] || nil
-          @team = attributes[:team] || attributes['team'] || nil
-          @thread_id = attributes[:thread_id] || attributes['thread_id'] || nil
-          @user_id = attributes[:user_id] || attributes['user_id'] || nil
-          @watcher_count = attributes[:watcher_count] || attributes['watcher_count'] || nil
-          @automoderation_scores = attributes[:automoderation_scores] || attributes['automoderation_scores'] || nil
-          @channel = attributes[:channel] || attributes['channel'] || nil
-          @created_by = attributes[:created_by] || attributes['created_by'] || nil
-          @me = attributes[:me] || attributes['me'] || nil
-          @member = attributes[:member] || attributes['member'] || nil
-          @message = attributes[:message] || attributes['message'] || nil
-          @message_update = attributes[:message_update] || attributes['message_update'] || nil
-          @poll = attributes[:poll] || attributes['poll'] || nil
-          @poll_vote = attributes[:poll_vote] || attributes['poll_vote'] || nil
-          @reaction = attributes[:reaction] || attributes['reaction'] || nil
-          @thread = attributes[:thread] || attributes['thread'] || nil
-          @user = attributes[:user] || attributes['user'] || nil
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @type = attributes.fetch(:type) { attributes.fetch('type', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
+          @automoderation = attributes.fetch(:automoderation) { attributes.fetch('automoderation', nil) }
+          @channel_id = attributes.fetch(:channel_id) { attributes.fetch('channel_id', nil) }
+          @channel_last_message_at = attributes.fetch(:channel_last_message_at) { attributes.fetch('channel_last_message_at', nil) }
+          @channel_type = attributes.fetch(:channel_type) { attributes.fetch('channel_type', nil) }
+          @cid = attributes.fetch(:cid) { attributes.fetch('cid', nil) }
+          @connection_id = attributes.fetch(:connection_id) { attributes.fetch('connection_id', nil) }
+          @parent_id = attributes.fetch(:parent_id) { attributes.fetch('parent_id', nil) }
+          @reason = attributes.fetch(:reason) { attributes.fetch('reason', nil) }
+          @team = attributes.fetch(:team) { attributes.fetch('team', nil) }
+          @thread_id = attributes.fetch(:thread_id) { attributes.fetch('thread_id', nil) }
+          @user_id = attributes.fetch(:user_id) { attributes.fetch('user_id', nil) }
+          @watcher_count = attributes.fetch(:watcher_count) { attributes.fetch('watcher_count', nil) }
+          @automoderation_scores = attributes.fetch(:automoderation_scores) { attributes.fetch('automoderation_scores', nil) }
+          @channel = attributes.fetch(:channel) { attributes.fetch('channel', nil) }
+          @created_by = attributes.fetch(:created_by) { attributes.fetch('created_by', nil) }
+          @me = attributes.fetch(:me) { attributes.fetch('me', nil) }
+          @member = attributes.fetch(:member) { attributes.fetch('member', nil) }
+          @message = attributes.fetch(:message) { attributes.fetch('message', nil) }
+          @message_update = attributes.fetch(:message_update) { attributes.fetch('message_update', nil) }
+          @poll = attributes.fetch(:poll) { attributes.fetch('poll', nil) }
+          @poll_vote = attributes.fetch(:poll_vote) { attributes.fetch('poll_vote', nil) }
+          @reaction = attributes.fetch(:reaction) { attributes.fetch('reaction', nil) }
+          @thread = attributes.fetch(:thread) { attributes.fetch('thread', nil) }
+          @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
         end
 
         # Override field mappings for JSON serialization

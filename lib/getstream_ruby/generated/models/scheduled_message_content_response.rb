@@ -66,6 +66,9 @@ module GetStream
         # @!attribute restricted_visibility
         #   @return [Array<String>] IDs of the users the message will be visible to
         attr_accessor :restricted_visibility
+        # @!attribute quoted_message
+        #   @return [MessageResponse] Represents any chat message
+        attr_accessor :quoted_message
         # @!attribute shared_location
         #   @return [ScheduledMessageLocation] The location a scheduled message will share
         attr_accessor :shared_location
@@ -73,26 +76,27 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @text = attributes[:text] || attributes['text']
-          @custom = attributes[:custom] || attributes['custom']
-          @html = attributes[:html] || attributes['html'] || nil
-          @mentioned_channel = attributes[:mentioned_channel] || attributes['mentioned_channel'] || nil
-          @mentioned_here = attributes[:mentioned_here] || attributes['mentioned_here'] || nil
-          @mml = attributes[:mml] || attributes['mml'] || nil
-          @parent_id = attributes[:parent_id] || attributes['parent_id'] || nil
-          @pin_expires = attributes[:pin_expires] || attributes['pin_expires'] || nil
-          @pinned = attributes[:pinned] || attributes['pinned'] || nil
-          @poll_id = attributes[:poll_id] || attributes['poll_id'] || nil
-          @quoted_message_id = attributes[:quoted_message_id] || attributes['quoted_message_id'] || nil
-          @show_in_channel = attributes[:show_in_channel] || attributes['show_in_channel'] || nil
-          @silent = attributes[:silent] || attributes['silent'] || nil
-          @type = attributes[:type] || attributes['type'] || nil
-          @attachments = attributes[:attachments] || attributes['attachments'] || nil
-          @mentioned_group_ids = attributes[:mentioned_group_ids] || attributes['mentioned_group_ids'] || nil
-          @mentioned_roles = attributes[:mentioned_roles] || attributes['mentioned_roles'] || nil
-          @mentioned_users = attributes[:mentioned_users] || attributes['mentioned_users'] || nil
-          @restricted_visibility = attributes[:restricted_visibility] || attributes['restricted_visibility'] || nil
-          @shared_location = attributes[:shared_location] || attributes['shared_location'] || nil
+          @text = attributes.fetch(:text) { attributes.fetch('text', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
+          @html = attributes.fetch(:html) { attributes.fetch('html', nil) }
+          @mentioned_channel = attributes.fetch(:mentioned_channel) { attributes.fetch('mentioned_channel', nil) }
+          @mentioned_here = attributes.fetch(:mentioned_here) { attributes.fetch('mentioned_here', nil) }
+          @mml = attributes.fetch(:mml) { attributes.fetch('mml', nil) }
+          @parent_id = attributes.fetch(:parent_id) { attributes.fetch('parent_id', nil) }
+          @pin_expires = attributes.fetch(:pin_expires) { attributes.fetch('pin_expires', nil) }
+          @pinned = attributes.fetch(:pinned) { attributes.fetch('pinned', nil) }
+          @poll_id = attributes.fetch(:poll_id) { attributes.fetch('poll_id', nil) }
+          @quoted_message_id = attributes.fetch(:quoted_message_id) { attributes.fetch('quoted_message_id', nil) }
+          @show_in_channel = attributes.fetch(:show_in_channel) { attributes.fetch('show_in_channel', nil) }
+          @silent = attributes.fetch(:silent) { attributes.fetch('silent', nil) }
+          @type = attributes.fetch(:type) { attributes.fetch('type', nil) }
+          @attachments = attributes.fetch(:attachments) { attributes.fetch('attachments', nil) }
+          @mentioned_group_ids = attributes.fetch(:mentioned_group_ids) { attributes.fetch('mentioned_group_ids', nil) }
+          @mentioned_roles = attributes.fetch(:mentioned_roles) { attributes.fetch('mentioned_roles', nil) }
+          @mentioned_users = attributes.fetch(:mentioned_users) { attributes.fetch('mentioned_users', nil) }
+          @restricted_visibility = attributes.fetch(:restricted_visibility) { attributes.fetch('restricted_visibility', nil) }
+          @quoted_message = attributes.fetch(:quoted_message) { attributes.fetch('quoted_message', nil) }
+          @shared_location = attributes.fetch(:shared_location) { attributes.fetch('shared_location', nil) }
         end
 
         # Override field mappings for JSON serialization
@@ -117,6 +121,7 @@ module GetStream
             mentioned_roles: 'mentioned_roles',
             mentioned_users: 'mentioned_users',
             restricted_visibility: 'restricted_visibility',
+            quoted_message: 'quoted_message',
             shared_location: 'shared_location'
           }
         end

@@ -43,16 +43,16 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @_object_id = attributes[:_object_id] || attributes['object_id']
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @object_type = attributes[:object_type] || attributes['object_type']
-          @updated_at = attributes[:updated_at] || attributes['updated_at']
-          @activity = attributes[:activity] || attributes['activity']
-          @user = attributes[:user] || attributes['user']
-          @activity_id = attributes[:activity_id] || attributes['activity_id'] || nil
-          @comment = attributes[:comment] || attributes['comment'] || nil
-          @custom = attributes[:custom] || attributes['custom'] || nil
-          @folder = attributes[:folder] || attributes['folder'] || nil
+          @_object_id = attributes.fetch(:_object_id) { attributes.fetch('object_id', nil) }
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @object_type = attributes.fetch(:object_type) { attributes.fetch('object_type', nil) }
+          @updated_at = attributes.fetch(:updated_at) { attributes.fetch('updated_at', nil) }
+          @activity = attributes.fetch(:activity) { attributes.fetch('activity', nil) }
+          @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
+          @activity_id = attributes.fetch(:activity_id) { attributes.fetch('activity_id', nil) }
+          @comment = attributes.fetch(:comment) { attributes.fetch('comment', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
+          @folder = attributes.fetch(:folder) { attributes.fetch('folder', nil) }
         end
 
         # Override field mappings for JSON serialization

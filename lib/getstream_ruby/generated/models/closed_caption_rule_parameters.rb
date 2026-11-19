@@ -21,6 +21,9 @@ module GetStream
         # @!attribute harm_labels
         #   @return [Array<String>]
         attr_accessor :harm_labels
+        # @!attribute severities
+        #   @return [Array<String>]
+        attr_accessor :severities
         # @!attribute llm_harm_labels
         #   @return [Hash<String, String>]
         attr_accessor :llm_harm_labels
@@ -28,11 +31,12 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @severity = attributes[:severity] || attributes['severity'] || nil
-          @threshold = attributes[:threshold] || attributes['threshold'] || nil
-          @time_window = attributes[:time_window] || attributes['time_window'] || nil
-          @harm_labels = attributes[:harm_labels] || attributes['harm_labels'] || nil
-          @llm_harm_labels = attributes[:llm_harm_labels] || attributes['llm_harm_labels'] || nil
+          @severity = attributes.fetch(:severity) { attributes.fetch('severity', nil) }
+          @threshold = attributes.fetch(:threshold) { attributes.fetch('threshold', nil) }
+          @time_window = attributes.fetch(:time_window) { attributes.fetch('time_window', nil) }
+          @harm_labels = attributes.fetch(:harm_labels) { attributes.fetch('harm_labels', nil) }
+          @severities = attributes.fetch(:severities) { attributes.fetch('severities', nil) }
+          @llm_harm_labels = attributes.fetch(:llm_harm_labels) { attributes.fetch('llm_harm_labels', nil) }
         end
 
         # Override field mappings for JSON serialization
@@ -42,6 +46,7 @@ module GetStream
             threshold: 'threshold',
             time_window: 'time_window',
             harm_labels: 'harm_labels',
+            severities: 'severities',
             llm_harm_labels: 'llm_harm_labels'
           }
         end

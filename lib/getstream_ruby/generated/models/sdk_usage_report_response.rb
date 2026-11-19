@@ -16,7 +16,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @daily = attributes[:daily] || attributes['daily']
+          @daily = attributes.fetch(:daily) { attributes.fetch('daily', nil) }
         end
 
         # Override field mappings for JSON serialization

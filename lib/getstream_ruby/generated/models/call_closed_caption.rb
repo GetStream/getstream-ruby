@@ -40,15 +40,15 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @end_time = attributes[:end_time] || attributes['end_time']
-          @id = attributes[:id] || attributes['id']
-          @language = attributes[:language] || attributes['language']
-          @speaker_id = attributes[:speaker_id] || attributes['speaker_id']
-          @start_time = attributes[:start_time] || attributes['start_time']
-          @text = attributes[:text] || attributes['text']
-          @translated = attributes[:translated] || attributes['translated']
-          @user = attributes[:user] || attributes['user']
-          @service = attributes[:service] || attributes['service'] || nil
+          @end_time = attributes.fetch(:end_time) { attributes.fetch('end_time', nil) }
+          @id = attributes.fetch(:id) { attributes.fetch('id', nil) }
+          @language = attributes.fetch(:language) { attributes.fetch('language', nil) }
+          @speaker_id = attributes.fetch(:speaker_id) { attributes.fetch('speaker_id', nil) }
+          @start_time = attributes.fetch(:start_time) { attributes.fetch('start_time', nil) }
+          @text = attributes.fetch(:text) { attributes.fetch('text', nil) }
+          @translated = attributes.fetch(:translated) { attributes.fetch('translated', nil) }
+          @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
+          @service = attributes.fetch(:service) { attributes.fetch('service', nil) }
         end
 
         # Override field mappings for JSON serialization

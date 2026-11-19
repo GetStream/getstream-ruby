@@ -22,9 +22,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @bucket = attributes[:bucket] || attributes['bucket']
-          @credentials_set = attributes[:credentials_set] || attributes['credentials_set']
-          @path_prefix = attributes[:path_prefix] || attributes['path_prefix'] || nil
+          @bucket = attributes.fetch(:bucket) { attributes.fetch('bucket', nil) }
+          @credentials_set = attributes.fetch(:credentials_set) { attributes.fetch('credentials_set', nil) }
+          @path_prefix = attributes.fetch(:path_prefix) { attributes.fetch('path_prefix', nil) }
         end
 
         # Override field mappings for JSON serialization

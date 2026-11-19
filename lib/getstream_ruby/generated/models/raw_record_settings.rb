@@ -19,8 +19,8 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @mode = attributes[:mode] || attributes['mode']
-          @audio_only = attributes[:audio_only] || attributes['audio_only'] || nil
+          @mode = attributes.fetch(:mode) { attributes.fetch('mode', nil) }
+          @audio_only = attributes.fetch(:audio_only) { attributes.fetch('audio_only', nil) }
         end
 
         # Override field mappings for JSON serialization

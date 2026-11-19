@@ -46,17 +46,17 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @action = attributes[:action] || attributes['action']
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @message_id = attributes[:message_id] || attributes['message_id']
-          @updated_at = attributes[:updated_at] || attributes['updated_at']
-          @user_bad_karma = attributes[:user_bad_karma] || attributes['user_bad_karma']
-          @user_karma = attributes[:user_karma] || attributes['user_karma']
-          @blocked_word = attributes[:blocked_word] || attributes['blocked_word'] || nil
-          @blocklist_name = attributes[:blocklist_name] || attributes['blocklist_name'] || nil
-          @moderated_by = attributes[:moderated_by] || attributes['moderated_by'] || nil
-          @ai_moderation_response = attributes[:ai_moderation_response] || attributes['ai_moderation_response'] || nil
-          @moderation_thresholds = attributes[:moderation_thresholds] || attributes['moderation_thresholds'] || nil
+          @action = attributes.fetch(:action) { attributes.fetch('action', nil) }
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @message_id = attributes.fetch(:message_id) { attributes.fetch('message_id', nil) }
+          @updated_at = attributes.fetch(:updated_at) { attributes.fetch('updated_at', nil) }
+          @user_bad_karma = attributes.fetch(:user_bad_karma) { attributes.fetch('user_bad_karma', nil) }
+          @user_karma = attributes.fetch(:user_karma) { attributes.fetch('user_karma', nil) }
+          @blocked_word = attributes.fetch(:blocked_word) { attributes.fetch('blocked_word', nil) }
+          @blocklist_name = attributes.fetch(:blocklist_name) { attributes.fetch('blocklist_name', nil) }
+          @moderated_by = attributes.fetch(:moderated_by) { attributes.fetch('moderated_by', nil) }
+          @ai_moderation_response = attributes.fetch(:ai_moderation_response) { attributes.fetch('ai_moderation_response', nil) }
+          @moderation_thresholds = attributes.fetch(:moderation_thresholds) { attributes.fetch('moderation_thresholds', nil) }
         end
 
         # Override field mappings for JSON serialization

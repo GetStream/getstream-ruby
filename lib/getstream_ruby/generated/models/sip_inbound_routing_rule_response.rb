@@ -52,19 +52,19 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @duration = attributes[:duration] || attributes['duration']
-          @id = attributes[:id] || attributes['id']
-          @name = attributes[:name] || attributes['name']
-          @updated_at = attributes[:updated_at] || attributes['updated_at']
-          @called_numbers = attributes[:called_numbers] || attributes['called_numbers']
-          @trunk_ids = attributes[:trunk_ids] || attributes['trunk_ids']
-          @caller_numbers = attributes[:caller_numbers] || attributes['caller_numbers'] || nil
-          @call_configs = attributes[:call_configs] || attributes['call_configs'] || nil
-          @caller_configs = attributes[:caller_configs] || attributes['caller_configs'] || nil
-          @direct_routing_configs = attributes[:direct_routing_configs] || attributes['direct_routing_configs'] || nil
-          @pin_protection_configs = attributes[:pin_protection_configs] || attributes['pin_protection_configs'] || nil
-          @pin_routing_configs = attributes[:pin_routing_configs] || attributes['pin_routing_configs'] || nil
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @duration = attributes.fetch(:duration) { attributes.fetch('duration', nil) }
+          @id = attributes.fetch(:id) { attributes.fetch('id', nil) }
+          @name = attributes.fetch(:name) { attributes.fetch('name', nil) }
+          @updated_at = attributes.fetch(:updated_at) { attributes.fetch('updated_at', nil) }
+          @called_numbers = attributes.fetch(:called_numbers) { attributes.fetch('called_numbers', nil) }
+          @trunk_ids = attributes.fetch(:trunk_ids) { attributes.fetch('trunk_ids', nil) }
+          @caller_numbers = attributes.fetch(:caller_numbers) { attributes.fetch('caller_numbers', nil) }
+          @call_configs = attributes.fetch(:call_configs) { attributes.fetch('call_configs', nil) }
+          @caller_configs = attributes.fetch(:caller_configs) { attributes.fetch('caller_configs', nil) }
+          @direct_routing_configs = attributes.fetch(:direct_routing_configs) { attributes.fetch('direct_routing_configs', nil) }
+          @pin_protection_configs = attributes.fetch(:pin_protection_configs) { attributes.fetch('pin_protection_configs', nil) }
+          @pin_routing_configs = attributes.fetch(:pin_routing_configs) { attributes.fetch('pin_routing_configs', nil) }
         end
 
         # Override field mappings for JSON serialization

@@ -22,9 +22,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @default_min_gap = attributes[:default_min_gap] || attributes['default_min_gap'] || nil
-          @min_gap = attributes[:min_gap] || attributes['min_gap'] || nil
-          @weights = attributes[:weights] || attributes['weights'] || nil
+          @default_min_gap = attributes.fetch(:default_min_gap) { attributes.fetch('default_min_gap', nil) }
+          @min_gap = attributes.fetch(:min_gap) { attributes.fetch('min_gap', nil) }
+          @weights = attributes.fetch(:weights) { attributes.fetch('weights', nil) }
         end
 
         # Override field mappings for JSON serialization

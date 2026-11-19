@@ -28,11 +28,11 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @cooldown_period = attributes[:cooldown_period] || attributes['cooldown_period'] || nil
-          @severity = attributes[:severity] || attributes['severity'] || nil
-          @threshold = attributes[:threshold] || attributes['threshold'] || nil
-          @action_sequences = attributes[:action_sequences] || attributes['action_sequences'] || nil
-          @harm_types = attributes[:harm_types] || attributes['harm_types'] || nil
+          @cooldown_period = attributes.fetch(:cooldown_period) { attributes.fetch('cooldown_period', nil) }
+          @severity = attributes.fetch(:severity) { attributes.fetch('severity', nil) }
+          @threshold = attributes.fetch(:threshold) { attributes.fetch('threshold', nil) }
+          @action_sequences = attributes.fetch(:action_sequences) { attributes.fetch('action_sequences', nil) }
+          @harm_types = attributes.fetch(:harm_types) { attributes.fetch('harm_types', nil) }
         end
 
         # Override field mappings for JSON serialization

@@ -40,15 +40,15 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @call_cid = attributes[:call_cid] || attributes['call_cid']
-          @captured_at = attributes[:captured_at] || attributes['captured_at']
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @egress_id = attributes[:egress_id] || attributes['egress_id']
-          @session_id = attributes[:session_id] || attributes['session_id']
-          @track_type = attributes[:track_type] || attributes['track_type']
-          @url = attributes[:url] || attributes['url']
-          @users = attributes[:users] || attributes['users']
-          @type = attributes[:type] || attributes['type'] || "call.frame_recording_ready"
+          @call_cid = attributes.fetch(:call_cid) { attributes.fetch('call_cid', nil) }
+          @captured_at = attributes.fetch(:captured_at) { attributes.fetch('captured_at', nil) }
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @egress_id = attributes.fetch(:egress_id) { attributes.fetch('egress_id', nil) }
+          @session_id = attributes.fetch(:session_id) { attributes.fetch('session_id', nil) }
+          @track_type = attributes.fetch(:track_type) { attributes.fetch('track_type', nil) }
+          @url = attributes.fetch(:url) { attributes.fetch('url', nil) }
+          @users = attributes.fetch(:users) { attributes.fetch('users', nil) }
+          @type = attributes.fetch(:type) { attributes.fetch('type', "call.frame_recording_ready") }
         end
 
         # Override field mappings for JSON serialization

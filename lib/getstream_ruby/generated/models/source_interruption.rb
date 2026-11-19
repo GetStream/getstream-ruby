@@ -25,10 +25,10 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @at_offset_min = attributes[:at_offset_min] || attributes['at_offset_min']
-          @dead_air_s = attributes[:dead_air_s] || attributes['dead_air_s']
-          @kind = attributes[:kind] || attributes['kind']
-          @seamless = attributes[:seamless] || attributes['seamless'] || nil
+          @at_offset_min = attributes.fetch(:at_offset_min) { attributes.fetch('at_offset_min', nil) }
+          @dead_air_s = attributes.fetch(:dead_air_s) { attributes.fetch('dead_air_s', nil) }
+          @kind = attributes.fetch(:kind) { attributes.fetch('kind', nil) }
+          @seamless = attributes.fetch(:seamless) { attributes.fetch('seamless', nil) }
         end
 
         # Override field mappings for JSON serialization

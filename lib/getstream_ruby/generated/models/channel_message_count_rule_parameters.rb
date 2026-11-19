@@ -19,8 +19,8 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @operator = attributes[:operator] || attributes['operator'] || nil
-          @threshold = attributes[:threshold] || attributes['threshold'] || nil
+          @operator = attributes.fetch(:operator) { attributes.fetch('operator', nil) }
+          @threshold = attributes.fetch(:threshold) { attributes.fetch('threshold', nil) }
         end
 
         # Override field mappings for JSON serialization

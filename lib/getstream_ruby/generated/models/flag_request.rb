@@ -37,14 +37,14 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @entity_id = attributes[:entity_id] || attributes['entity_id']
-          @entity_type = attributes[:entity_type] || attributes['entity_type']
-          @entity_creator_id = attributes[:entity_creator_id] || attributes['entity_creator_id'] || nil
-          @reason = attributes[:reason] || attributes['reason'] || nil
-          @user_id = attributes[:user_id] || attributes['user_id'] || nil
-          @custom = attributes[:custom] || attributes['custom'] || nil
-          @moderation_payload = attributes[:moderation_payload] || attributes['moderation_payload'] || nil
-          @user = attributes[:user] || attributes['user'] || nil
+          @entity_id = attributes.fetch(:entity_id) { attributes.fetch('entity_id', nil) }
+          @entity_type = attributes.fetch(:entity_type) { attributes.fetch('entity_type', nil) }
+          @entity_creator_id = attributes.fetch(:entity_creator_id) { attributes.fetch('entity_creator_id', nil) }
+          @reason = attributes.fetch(:reason) { attributes.fetch('reason', nil) }
+          @user_id = attributes.fetch(:user_id) { attributes.fetch('user_id', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
+          @moderation_payload = attributes.fetch(:moderation_payload) { attributes.fetch('moderation_payload', nil) }
+          @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
         end
 
         # Override field mappings for JSON serialization

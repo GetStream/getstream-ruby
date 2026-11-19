@@ -19,8 +19,8 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @tag = attributes[:tag] || attributes['tag']
-          @weight = attributes[:weight] || attributes['weight'] || nil
+          @tag = attributes.fetch(:tag) { attributes.fetch('tag', nil) }
+          @weight = attributes.fetch(:weight) { attributes.fetch('weight', nil) }
         end
 
         # Override field mappings for JSON serialization

@@ -44,16 +44,16 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @duration = attributes[:duration] || attributes['duration']
-          @recommended_action = attributes[:recommended_action] || attributes['recommended_action']
-          @status = attributes[:status] || attributes['status']
-          @llm_model = attributes[:llm_model] || attributes['llm_model'] || nil
-          @llm_reasoning_effort = attributes[:llm_reasoning_effort] || attributes['llm_reasoning_effort'] || nil
-          @task_id = attributes[:task_id] || attributes['task_id'] || nil
-          @intent_scores = attributes[:intent_scores] || attributes['intent_scores'] || nil
-          @triggered_rules = attributes[:triggered_rules] || attributes['triggered_rules'] || nil
-          @item = attributes[:item] || attributes['item'] || nil
-          @triggered_rule = attributes[:triggered_rule] || attributes['triggered_rule'] || nil
+          @duration = attributes.fetch(:duration) { attributes.fetch('duration', nil) }
+          @recommended_action = attributes.fetch(:recommended_action) { attributes.fetch('recommended_action', nil) }
+          @status = attributes.fetch(:status) { attributes.fetch('status', nil) }
+          @llm_model = attributes.fetch(:llm_model) { attributes.fetch('llm_model', nil) }
+          @llm_reasoning_effort = attributes.fetch(:llm_reasoning_effort) { attributes.fetch('llm_reasoning_effort', nil) }
+          @task_id = attributes.fetch(:task_id) { attributes.fetch('task_id', nil) }
+          @intent_scores = attributes.fetch(:intent_scores) { attributes.fetch('intent_scores', nil) }
+          @triggered_rules = attributes.fetch(:triggered_rules) { attributes.fetch('triggered_rules', nil) }
+          @item = attributes.fetch(:item) { attributes.fetch('item', nil) }
+          @triggered_rule = attributes.fetch(:triggered_rule) { attributes.fetch('triggered_rule', nil) }
         end
 
         # Override field mappings for JSON serialization

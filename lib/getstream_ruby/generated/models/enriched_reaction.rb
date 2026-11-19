@@ -52,19 +52,19 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @activity_id = attributes[:activity_id] || attributes['activity_id']
-          @kind = attributes[:kind] || attributes['kind']
-          @user_id = attributes[:user_id] || attributes['user_id']
-          @created_at = attributes[:created_at] || attributes['created_at'] || nil
-          @id = attributes[:id] || attributes['id'] || nil
-          @parent = attributes[:parent] || attributes['parent'] || nil
-          @updated_at = attributes[:updated_at] || attributes['updated_at'] || nil
-          @target_feeds = attributes[:target_feeds] || attributes['target_feeds'] || nil
-          @children_counts = attributes[:children_counts] || attributes['children_counts'] || nil
-          @data = attributes[:data] || attributes['data'] || nil
-          @latest_children = attributes[:latest_children] || attributes['latest_children'] || nil
-          @own_children = attributes[:own_children] || attributes['own_children'] || nil
-          @user = attributes[:user] || attributes['user'] || nil
+          @activity_id = attributes.fetch(:activity_id) { attributes.fetch('activity_id', nil) }
+          @kind = attributes.fetch(:kind) { attributes.fetch('kind', nil) }
+          @user_id = attributes.fetch(:user_id) { attributes.fetch('user_id', nil) }
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @id = attributes.fetch(:id) { attributes.fetch('id', nil) }
+          @parent = attributes.fetch(:parent) { attributes.fetch('parent', nil) }
+          @updated_at = attributes.fetch(:updated_at) { attributes.fetch('updated_at', nil) }
+          @target_feeds = attributes.fetch(:target_feeds) { attributes.fetch('target_feeds', nil) }
+          @children_counts = attributes.fetch(:children_counts) { attributes.fetch('children_counts', nil) }
+          @data = attributes.fetch(:data) { attributes.fetch('data', nil) }
+          @latest_children = attributes.fetch(:latest_children) { attributes.fetch('latest_children', nil) }
+          @own_children = attributes.fetch(:own_children) { attributes.fetch('own_children', nil) }
+          @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
         end
 
         # Override field mappings for JSON serialization

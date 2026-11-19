@@ -25,18 +25,18 @@ module GetStream
         #   @return [String] The type of event: "call.rejected" in this case
         attr_accessor :type
         # @!attribute reason
-        #   @return [String] Provides information about why the call was rejected. You can provide any value, but the Stream API and SDKs use these default values: rejected, cancel, timeout and busy
+        #   @return [String] Provides information about why the call was rejected. You can provide any value, but the Stream API and SDKs use these default values: decline, cancel, timeout and busy
         attr_accessor :reason
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @call_cid = attributes[:call_cid] || attributes['call_cid']
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @call = attributes[:call] || attributes['call']
-          @user = attributes[:user] || attributes['user']
-          @type = attributes[:type] || attributes['type'] || "call.rejected"
-          @reason = attributes[:reason] || attributes['reason'] || nil
+          @call_cid = attributes.fetch(:call_cid) { attributes.fetch('call_cid', nil) }
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @call = attributes.fetch(:call) { attributes.fetch('call', nil) }
+          @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
+          @type = attributes.fetch(:type) { attributes.fetch('type', "call.rejected") }
+          @reason = attributes.fetch(:reason) { attributes.fetch('reason', nil) }
         end
 
         # Override field mappings for JSON serialization

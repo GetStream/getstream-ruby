@@ -37,14 +37,14 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @action_id = attributes[:action_id] || attributes['action_id']
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @custom = attributes[:custom] || attributes['custom']
-          @review_queue_item = attributes[:review_queue_item] || attributes['review_queue_item']
-          @type = attributes[:type] || attributes['type'] || "moderation.custom_action"
-          @received_at = attributes[:received_at] || attributes['received_at'] || nil
-          @action_options = attributes[:action_options] || attributes['action_options'] || nil
-          @message = attributes[:message] || attributes['message'] || nil
+          @action_id = attributes.fetch(:action_id) { attributes.fetch('action_id', nil) }
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
+          @review_queue_item = attributes.fetch(:review_queue_item) { attributes.fetch('review_queue_item', nil) }
+          @type = attributes.fetch(:type) { attributes.fetch('type', "moderation.custom_action") }
+          @received_at = attributes.fetch(:received_at) { attributes.fetch('received_at', nil) }
+          @action_options = attributes.fetch(:action_options) { attributes.fetch('action_options', nil) }
+          @message = attributes.fetch(:message) { attributes.fetch('message', nil) }
         end
 
         # Override field mappings for JSON serialization

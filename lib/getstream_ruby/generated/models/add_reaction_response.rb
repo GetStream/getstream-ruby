@@ -44,16 +44,16 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @counter_delta = attributes[:counter_delta] || attributes['counter_delta']
-          @duration = attributes[:duration] || attributes['duration']
-          @outcome = attributes[:outcome] || attributes['outcome']
-          @activity = attributes[:activity] || attributes['activity']
-          @reaction = attributes[:reaction] || attributes['reaction']
-          @notification_accepted = attributes[:notification_accepted] || attributes['notification_accepted'] || nil
-          @notification_created = attributes[:notification_created] || attributes['notification_created'] || nil
-          @notification_task_id = attributes[:notification_task_id] || attributes['notification_task_id'] || nil
-          @previous_reaction_type = attributes[:previous_reaction_type] || attributes['previous_reaction_type'] || nil
-          @reference_activity = attributes[:reference_activity] || attributes['reference_activity'] || nil
+          @counter_delta = attributes.fetch(:counter_delta) { attributes.fetch('counter_delta', nil) }
+          @duration = attributes.fetch(:duration) { attributes.fetch('duration', nil) }
+          @outcome = attributes.fetch(:outcome) { attributes.fetch('outcome', nil) }
+          @activity = attributes.fetch(:activity) { attributes.fetch('activity', nil) }
+          @reaction = attributes.fetch(:reaction) { attributes.fetch('reaction', nil) }
+          @notification_accepted = attributes.fetch(:notification_accepted) { attributes.fetch('notification_accepted', nil) }
+          @notification_created = attributes.fetch(:notification_created) { attributes.fetch('notification_created', nil) }
+          @notification_task_id = attributes.fetch(:notification_task_id) { attributes.fetch('notification_task_id', nil) }
+          @previous_reaction_type = attributes.fetch(:previous_reaction_type) { attributes.fetch('previous_reaction_type', nil) }
+          @reference_activity = attributes.fetch(:reference_activity) { attributes.fetch('reference_activity', nil) }
         end
 
         # Override field mappings for JSON serialization

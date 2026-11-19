@@ -34,13 +34,13 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @type = attributes[:type] || attributes['type']
-          @exclude_below = attributes[:exclude_below] || attributes['exclude_below'] || nil
-          @score = attributes[:score] || attributes['score'] || nil
-          @arrange = attributes[:arrange] || attributes['arrange'] || nil
-          @defaults = attributes[:defaults] || attributes['defaults'] || nil
-          @for_you = attributes[:for_you] || attributes['for_you'] || nil
-          @functions = attributes[:functions] || attributes['functions'] || nil
+          @type = attributes.fetch(:type) { attributes.fetch('type', nil) }
+          @exclude_below = attributes.fetch(:exclude_below) { attributes.fetch('exclude_below', nil) }
+          @score = attributes.fetch(:score) { attributes.fetch('score', nil) }
+          @arrange = attributes.fetch(:arrange) { attributes.fetch('arrange', nil) }
+          @defaults = attributes.fetch(:defaults) { attributes.fetch('defaults', nil) }
+          @for_you = attributes.fetch(:for_you) { attributes.fetch('for_you', nil) }
+          @functions = attributes.fetch(:functions) { attributes.fetch('functions', nil) }
         end
 
         # Override field mappings for JSON serialization

@@ -22,9 +22,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @send_allowed_tags_to_ai = attributes[:send_allowed_tags_to_ai] || attributes['send_allowed_tags_to_ai'] || nil
-          @allowed_tags = attributes[:allowed_tags] || attributes['allowed_tags'] || nil
-          @blocked_tags = attributes[:blocked_tags] || attributes['blocked_tags'] || nil
+          @send_allowed_tags_to_ai = attributes.fetch(:send_allowed_tags_to_ai) { attributes.fetch('send_allowed_tags_to_ai', nil) }
+          @allowed_tags = attributes.fetch(:allowed_tags) { attributes.fetch('allowed_tags', nil) }
+          @blocked_tags = attributes.fetch(:blocked_tags) { attributes.fetch('blocked_tags', nil) }
         end
 
         # Override field mappings for JSON serialization

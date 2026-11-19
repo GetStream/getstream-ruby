@@ -16,7 +16,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @image_url = attributes[:image_url] || attributes['image_url']
+          @image_url = attributes.fetch(:image_url) { attributes.fetch('image_url', nil) }
         end
 
         # Override field mappings for JSON serialization

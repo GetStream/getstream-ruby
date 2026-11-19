@@ -49,18 +49,18 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @duration_min = attributes[:duration_min] || attributes['duration_min']
-          @started_offset_min = attributes[:started_offset_min] || attributes['started_offset_min']
-          @user_id = attributes[:user_id] || attributes['user_id']
-          @user_session_id = attributes[:user_session_id] || attributes['user_session_id']
-          @avg_jitter_ms = attributes[:avg_jitter_ms] || attributes['avg_jitter_ms'] || nil
-          @browser = attributes[:browser] || attributes['browser'] || nil
-          @delivery_zone = attributes[:delivery_zone] || attributes['delivery_zone'] || nil
-          @ingest = attributes[:ingest] || attributes['ingest'] || nil
-          @os = attributes[:os] || attributes['os'] || nil
-          @send_quality_score = attributes[:send_quality_score] || attributes['send_quality_score'] || nil
-          @tool = attributes[:tool] || attributes['tool'] || nil
-          @encoding = attributes[:encoding] || attributes['encoding'] || nil
+          @duration_min = attributes.fetch(:duration_min) { attributes.fetch('duration_min', nil) }
+          @started_offset_min = attributes.fetch(:started_offset_min) { attributes.fetch('started_offset_min', nil) }
+          @user_id = attributes.fetch(:user_id) { attributes.fetch('user_id', nil) }
+          @user_session_id = attributes.fetch(:user_session_id) { attributes.fetch('user_session_id', nil) }
+          @avg_jitter_ms = attributes.fetch(:avg_jitter_ms) { attributes.fetch('avg_jitter_ms', nil) }
+          @browser = attributes.fetch(:browser) { attributes.fetch('browser', nil) }
+          @delivery_zone = attributes.fetch(:delivery_zone) { attributes.fetch('delivery_zone', nil) }
+          @ingest = attributes.fetch(:ingest) { attributes.fetch('ingest', nil) }
+          @os = attributes.fetch(:os) { attributes.fetch('os', nil) }
+          @send_quality_score = attributes.fetch(:send_quality_score) { attributes.fetch('send_quality_score', nil) }
+          @tool = attributes.fetch(:tool) { attributes.fetch('tool', nil) }
+          @encoding = attributes.fetch(:encoding) { attributes.fetch('encoding', nil) }
         end
 
         # Override field mappings for JSON serialization

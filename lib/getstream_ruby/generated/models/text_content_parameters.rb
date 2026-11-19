@@ -30,6 +30,9 @@ module GetStream
         # @!attribute harm_labels
         #   @return [Array<String>]
         attr_accessor :harm_labels
+        # @!attribute severities
+        #   @return [Array<String>]
+        attr_accessor :severities
         # @!attribute llm_harm_labels
         #   @return [Hash<String, String>]
         attr_accessor :llm_harm_labels
@@ -37,14 +40,15 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @contains_url = attributes[:contains_url] || attributes['contains_url'] || nil
-          @label_operator = attributes[:label_operator] || attributes['label_operator'] || nil
-          @severity = attributes[:severity] || attributes['severity'] || nil
-          @text_length = attributes[:text_length] || attributes['text_length'] || nil
-          @text_length_operator = attributes[:text_length_operator] || attributes['text_length_operator'] || nil
-          @blocklist_match = attributes[:blocklist_match] || attributes['blocklist_match'] || nil
-          @harm_labels = attributes[:harm_labels] || attributes['harm_labels'] || nil
-          @llm_harm_labels = attributes[:llm_harm_labels] || attributes['llm_harm_labels'] || nil
+          @contains_url = attributes.fetch(:contains_url) { attributes.fetch('contains_url', nil) }
+          @label_operator = attributes.fetch(:label_operator) { attributes.fetch('label_operator', nil) }
+          @severity = attributes.fetch(:severity) { attributes.fetch('severity', nil) }
+          @text_length = attributes.fetch(:text_length) { attributes.fetch('text_length', nil) }
+          @text_length_operator = attributes.fetch(:text_length_operator) { attributes.fetch('text_length_operator', nil) }
+          @blocklist_match = attributes.fetch(:blocklist_match) { attributes.fetch('blocklist_match', nil) }
+          @harm_labels = attributes.fetch(:harm_labels) { attributes.fetch('harm_labels', nil) }
+          @severities = attributes.fetch(:severities) { attributes.fetch('severities', nil) }
+          @llm_harm_labels = attributes.fetch(:llm_harm_labels) { attributes.fetch('llm_harm_labels', nil) }
         end
 
         # Override field mappings for JSON serialization
@@ -57,6 +61,7 @@ module GetStream
             text_length_operator: 'text_length_operator',
             blocklist_match: 'blocklist_match',
             harm_labels: 'harm_labels',
+            severities: 'severities',
             llm_harm_labels: 'llm_harm_labels'
           }
         end

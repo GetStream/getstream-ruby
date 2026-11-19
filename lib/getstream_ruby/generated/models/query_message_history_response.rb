@@ -25,10 +25,10 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @duration = attributes[:duration] || attributes['duration']
-          @message_history = attributes[:message_history] || attributes['message_history']
-          @next = attributes[:next] || attributes['next'] || nil
-          @prev = attributes[:prev] || attributes['prev'] || nil
+          @duration = attributes.fetch(:duration) { attributes.fetch('duration', nil) }
+          @message_history = attributes.fetch(:message_history) { attributes.fetch('message_history', nil) }
+          @next = attributes.fetch(:next) { attributes.fetch('next', nil) }
+          @prev = attributes.fetch(:prev) { attributes.fetch('prev', nil) }
         end
 
         # Override field mappings for JSON serialization

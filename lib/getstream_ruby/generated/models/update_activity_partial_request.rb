@@ -41,15 +41,15 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @copy_custom_to_notification = attributes[:copy_custom_to_notification] || attributes['copy_custom_to_notification'] || nil
-          @enrich_own_fields = attributes[:enrich_own_fields] || attributes['enrich_own_fields'] || nil
-          @force_moderation = attributes[:force_moderation] || attributes['force_moderation'] || nil
-          @handle_mention_notifications = attributes[:handle_mention_notifications] || attributes['handle_mention_notifications'] || nil
-          @run_activity_processors = attributes[:run_activity_processors] || attributes['run_activity_processors'] || nil
-          @user_id = attributes[:user_id] || attributes['user_id'] || nil
-          @unset = attributes[:unset] || attributes['unset'] || nil
-          @set = attributes[:set] || attributes['set'] || nil
-          @user = attributes[:user] || attributes['user'] || nil
+          @copy_custom_to_notification = attributes.fetch(:copy_custom_to_notification) { attributes.fetch('copy_custom_to_notification', nil) }
+          @enrich_own_fields = attributes.fetch(:enrich_own_fields) { attributes.fetch('enrich_own_fields', nil) }
+          @force_moderation = attributes.fetch(:force_moderation) { attributes.fetch('force_moderation', nil) }
+          @handle_mention_notifications = attributes.fetch(:handle_mention_notifications) { attributes.fetch('handle_mention_notifications', nil) }
+          @run_activity_processors = attributes.fetch(:run_activity_processors) { attributes.fetch('run_activity_processors', nil) }
+          @user_id = attributes.fetch(:user_id) { attributes.fetch('user_id', nil) }
+          @unset = attributes.fetch(:unset) { attributes.fetch('unset', nil) }
+          @set = attributes.fetch(:set) { attributes.fetch('set', nil) }
+          @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
         end
 
         # Override field mappings for JSON serialization

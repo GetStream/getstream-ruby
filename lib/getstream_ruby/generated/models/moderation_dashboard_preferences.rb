@@ -67,24 +67,24 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @async_review_queue_upsert = attributes[:async_review_queue_upsert] || attributes['async_review_queue_upsert'] || nil
-          @block_foreign_cdn_attachments = attributes[:block_foreign_cdn_attachments] || attributes['block_foreign_cdn_attachments'] || nil
-          @custom_views_enabled = attributes[:custom_views_enabled] || attributes['custom_views_enabled'] || nil
-          @disable_action_logs = attributes[:disable_action_logs] || attributes['disable_action_logs'] || nil
-          @disable_audit_logs = attributes[:disable_audit_logs] || attributes['disable_audit_logs'] || nil
-          @disable_flagging_reviewed_entity = attributes[:disable_flagging_reviewed_entity] || attributes['disable_flagging_reviewed_entity'] || nil
-          @enforce_shadow_server_side = attributes[:enforce_shadow_server_side] || attributes['enforce_shadow_server_side'] || nil
-          @escalation_queue_enabled = attributes[:escalation_queue_enabled] || attributes['escalation_queue_enabled'] || nil
-          @flag_user_on_flagged_content = attributes[:flag_user_on_flagged_content] || attributes['flag_user_on_flagged_content'] || nil
-          @include_attachment_payload = attributes[:include_attachment_payload] || attributes['include_attachment_payload'] || nil
-          @media_queue_blur_enabled = attributes[:media_queue_blur_enabled] || attributes['media_queue_blur_enabled'] || nil
-          @text_redaction_enabled = attributes[:text_redaction_enabled] || attributes['text_redaction_enabled'] || nil
-          @allowed_moderation_action_reasons = attributes[:allowed_moderation_action_reasons] || attributes['allowed_moderation_action_reasons'] || nil
-          @escalation_reasons = attributes[:escalation_reasons] || attributes['escalation_reasons'] || nil
-          @filterable_custom_keys = attributes[:filterable_custom_keys] || attributes['filterable_custom_keys'] || nil
-          @keyframe_classifications_map = attributes[:keyframe_classifications_map] || attributes['keyframe_classifications_map'] || nil
-          @media_label_display = attributes[:media_label_display] || attributes['media_label_display'] || nil
-          @overview_dashboard = attributes[:overview_dashboard] || attributes['overview_dashboard'] || nil
+          @async_review_queue_upsert = attributes.fetch(:async_review_queue_upsert) { attributes.fetch('async_review_queue_upsert', nil) }
+          @block_foreign_cdn_attachments = attributes.fetch(:block_foreign_cdn_attachments) { attributes.fetch('block_foreign_cdn_attachments', nil) }
+          @custom_views_enabled = attributes.fetch(:custom_views_enabled) { attributes.fetch('custom_views_enabled', nil) }
+          @disable_action_logs = attributes.fetch(:disable_action_logs) { attributes.fetch('disable_action_logs', nil) }
+          @disable_audit_logs = attributes.fetch(:disable_audit_logs) { attributes.fetch('disable_audit_logs', nil) }
+          @disable_flagging_reviewed_entity = attributes.fetch(:disable_flagging_reviewed_entity) { attributes.fetch('disable_flagging_reviewed_entity', nil) }
+          @enforce_shadow_server_side = attributes.fetch(:enforce_shadow_server_side) { attributes.fetch('enforce_shadow_server_side', nil) }
+          @escalation_queue_enabled = attributes.fetch(:escalation_queue_enabled) { attributes.fetch('escalation_queue_enabled', nil) }
+          @flag_user_on_flagged_content = attributes.fetch(:flag_user_on_flagged_content) { attributes.fetch('flag_user_on_flagged_content', nil) }
+          @include_attachment_payload = attributes.fetch(:include_attachment_payload) { attributes.fetch('include_attachment_payload', nil) }
+          @media_queue_blur_enabled = attributes.fetch(:media_queue_blur_enabled) { attributes.fetch('media_queue_blur_enabled', nil) }
+          @text_redaction_enabled = attributes.fetch(:text_redaction_enabled) { attributes.fetch('text_redaction_enabled', nil) }
+          @allowed_moderation_action_reasons = attributes.fetch(:allowed_moderation_action_reasons) { attributes.fetch('allowed_moderation_action_reasons', nil) }
+          @escalation_reasons = attributes.fetch(:escalation_reasons) { attributes.fetch('escalation_reasons', nil) }
+          @filterable_custom_keys = attributes.fetch(:filterable_custom_keys) { attributes.fetch('filterable_custom_keys', nil) }
+          @keyframe_classifications_map = attributes.fetch(:keyframe_classifications_map) { attributes.fetch('keyframe_classifications_map', nil) }
+          @media_label_display = attributes.fetch(:media_label_display) { attributes.fetch('media_label_display', nil) }
+          @overview_dashboard = attributes.fetch(:overview_dashboard) { attributes.fetch('overview_dashboard', nil) }
         end
 
         # Override field mappings for JSON serialization

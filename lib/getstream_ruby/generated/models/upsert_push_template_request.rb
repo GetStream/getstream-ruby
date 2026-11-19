@@ -28,11 +28,11 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @event_type = attributes[:event_type] || attributes['event_type']
-          @push_provider_type = attributes[:push_provider_type] || attributes['push_provider_type']
-          @enable_push = attributes[:enable_push] || attributes['enable_push'] || nil
-          @push_provider_name = attributes[:push_provider_name] || attributes['push_provider_name'] || nil
-          @template = attributes[:template] || attributes['template'] || nil
+          @event_type = attributes.fetch(:event_type) { attributes.fetch('event_type', nil) }
+          @push_provider_type = attributes.fetch(:push_provider_type) { attributes.fetch('push_provider_type', nil) }
+          @enable_push = attributes.fetch(:enable_push) { attributes.fetch('enable_push', nil) }
+          @push_provider_name = attributes.fetch(:push_provider_name) { attributes.fetch('push_provider_name', nil) }
+          @template = attributes.fetch(:template) { attributes.fetch('template', nil) }
         end
 
         # Override field mappings for JSON serialization

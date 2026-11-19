@@ -16,7 +16,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @inactivity_timeout_seconds = attributes[:inactivity_timeout_seconds] || attributes['inactivity_timeout_seconds']
+          @inactivity_timeout_seconds = attributes.fetch(:inactivity_timeout_seconds) { attributes.fetch('inactivity_timeout_seconds', nil) }
         end
 
         # Override field mappings for JSON serialization

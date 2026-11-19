@@ -49,18 +49,18 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @call_id = attributes[:call_id] || attributes['call_id']
-          @call_session_id = attributes[:call_session_id] || attributes['call_session_id']
-          @call_type = attributes[:call_type] || attributes['call_type']
-          @duration = attributes[:duration] || attributes['duration']
-          @participants = attributes[:participants] || attributes['participants']
-          @counts = attributes[:counts] || attributes['counts']
-          @call_ended_at = attributes[:call_ended_at] || attributes['call_ended_at'] || nil
-          @call_started_at = attributes[:call_started_at] || attributes['call_started_at'] || nil
-          @next = attributes[:next] || attributes['next'] || nil
-          @prev = attributes[:prev] || attributes['prev'] || nil
-          @tmp_data_source = attributes[:tmp_data_source] || attributes['tmp_data_source'] || nil
-          @call_events = attributes[:call_events] || attributes['call_events'] || nil
+          @call_id = attributes.fetch(:call_id) { attributes.fetch('call_id', nil) }
+          @call_session_id = attributes.fetch(:call_session_id) { attributes.fetch('call_session_id', nil) }
+          @call_type = attributes.fetch(:call_type) { attributes.fetch('call_type', nil) }
+          @duration = attributes.fetch(:duration) { attributes.fetch('duration', nil) }
+          @participants = attributes.fetch(:participants) { attributes.fetch('participants', nil) }
+          @counts = attributes.fetch(:counts) { attributes.fetch('counts', nil) }
+          @call_ended_at = attributes.fetch(:call_ended_at) { attributes.fetch('call_ended_at', nil) }
+          @call_started_at = attributes.fetch(:call_started_at) { attributes.fetch('call_started_at', nil) }
+          @next = attributes.fetch(:next) { attributes.fetch('next', nil) }
+          @prev = attributes.fetch(:prev) { attributes.fetch('prev', nil) }
+          @tmp_data_source = attributes.fetch(:tmp_data_source) { attributes.fetch('tmp_data_source', nil) }
+          @call_events = attributes.fetch(:call_events) { attributes.fetch('call_events', nil) }
         end
 
         # Override field mappings for JSON serialization

@@ -22,9 +22,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @explicit = attributes[:explicit] || attributes['explicit'] || nil
-          @spam = attributes[:spam] || attributes['spam'] || nil
-          @toxic = attributes[:toxic] || attributes['toxic'] || nil
+          @explicit = attributes.fetch(:explicit) { attributes.fetch('explicit', nil) }
+          @spam = attributes.fetch(:spam) { attributes.fetch('spam', nil) }
+          @toxic = attributes.fetch(:toxic) { attributes.fetch('toxic', nil) }
         end
 
         # Override field mappings for JSON serialization

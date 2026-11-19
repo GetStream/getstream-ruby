@@ -22,9 +22,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @enabled = attributes[:enabled] || attributes['enabled']
-          @hls = attributes[:hls] || attributes['hls']
-          @rtmp = attributes[:rtmp] || attributes['rtmp']
+          @enabled = attributes.fetch(:enabled) { attributes.fetch('enabled', nil) }
+          @hls = attributes.fetch(:hls) { attributes.fetch('hls', nil) }
+          @rtmp = attributes.fetch(:rtmp) { attributes.fetch('rtmp', nil) }
         end
 
         # Override field mappings for JSON serialization

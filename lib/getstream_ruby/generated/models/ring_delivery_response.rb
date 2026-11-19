@@ -34,13 +34,13 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @channel = attributes[:channel] || attributes['channel']
-          @sent_at = attributes[:sent_at] || attributes['sent_at']
-          @acked_at = attributes[:acked_at] || attributes['acked_at'] || nil
-          @device_id = attributes[:device_id] || attributes['device_id'] || nil
-          @displayed_at = attributes[:displayed_at] || attributes['displayed_at'] || nil
-          @fetched_at = attributes[:fetched_at] || attributes['fetched_at'] || nil
-          @provider_accepted_at = attributes[:provider_accepted_at] || attributes['provider_accepted_at'] || nil
+          @channel = attributes.fetch(:channel) { attributes.fetch('channel', nil) }
+          @sent_at = attributes.fetch(:sent_at) { attributes.fetch('sent_at', nil) }
+          @acked_at = attributes.fetch(:acked_at) { attributes.fetch('acked_at', nil) }
+          @device_id = attributes.fetch(:device_id) { attributes.fetch('device_id', nil) }
+          @displayed_at = attributes.fetch(:displayed_at) { attributes.fetch('displayed_at', nil) }
+          @fetched_at = attributes.fetch(:fetched_at) { attributes.fetch('fetched_at', nil) }
+          @provider_accepted_at = attributes.fetch(:provider_accepted_at) { attributes.fetch('provider_accepted_at', nil) }
         end
 
         # Override field mappings for JSON serialization

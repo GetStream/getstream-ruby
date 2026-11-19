@@ -67,24 +67,24 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @aggregation_version = attributes[:aggregation_version] || attributes['aggregation_version']
-          @app_pk = attributes[:app_pk] || attributes['app_pk']
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @default_follower_role = attributes[:default_follower_role] || attributes['default_follower_role']
-          @default_visibility = attributes[:default_visibility] || attributes['default_visibility']
-          @group_id = attributes[:group_id] || attributes['group_id']
-          @updated_at = attributes[:updated_at] || attributes['updated_at']
-          @activity_processors = attributes[:activity_processors] || attributes['activity_processors']
-          @activity_selectors = attributes[:activity_selectors] || attributes['activity_selectors']
-          @custom = attributes[:custom] || attributes['custom']
-          @deleted_at = attributes[:deleted_at] || attributes['deleted_at'] || nil
-          @last_feed_get_at = attributes[:last_feed_get_at] || attributes['last_feed_get_at'] || nil
-          @activity_filter = attributes[:activity_filter] || attributes['activity_filter'] || nil
-          @aggregation = attributes[:aggregation] || attributes['aggregation'] || nil
-          @notification = attributes[:notification] || attributes['notification'] || nil
-          @push_notification = attributes[:push_notification] || attributes['push_notification'] || nil
-          @ranking = attributes[:ranking] || attributes['ranking'] || nil
-          @stories = attributes[:stories] || attributes['stories'] || nil
+          @aggregation_version = attributes.fetch(:aggregation_version) { attributes.fetch('aggregation_version', nil) }
+          @app_pk = attributes.fetch(:app_pk) { attributes.fetch('app_pk', nil) }
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @default_follower_role = attributes.fetch(:default_follower_role) { attributes.fetch('default_follower_role', nil) }
+          @default_visibility = attributes.fetch(:default_visibility) { attributes.fetch('default_visibility', nil) }
+          @group_id = attributes.fetch(:group_id) { attributes.fetch('group_id', nil) }
+          @updated_at = attributes.fetch(:updated_at) { attributes.fetch('updated_at', nil) }
+          @activity_processors = attributes.fetch(:activity_processors) { attributes.fetch('activity_processors', nil) }
+          @activity_selectors = attributes.fetch(:activity_selectors) { attributes.fetch('activity_selectors', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
+          @deleted_at = attributes.fetch(:deleted_at) { attributes.fetch('deleted_at', nil) }
+          @last_feed_get_at = attributes.fetch(:last_feed_get_at) { attributes.fetch('last_feed_get_at', nil) }
+          @activity_filter = attributes.fetch(:activity_filter) { attributes.fetch('activity_filter', nil) }
+          @aggregation = attributes.fetch(:aggregation) { attributes.fetch('aggregation', nil) }
+          @notification = attributes.fetch(:notification) { attributes.fetch('notification', nil) }
+          @push_notification = attributes.fetch(:push_notification) { attributes.fetch('push_notification', nil) }
+          @ranking = attributes.fetch(:ranking) { attributes.fetch('ranking', nil) }
+          @stories = attributes.fetch(:stories) { attributes.fetch('stories', nil) }
         end
 
         # Override field mappings for JSON serialization

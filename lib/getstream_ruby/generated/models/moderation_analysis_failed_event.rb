@@ -40,15 +40,15 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @type = attributes[:type] || attributes['type'] || "moderation.analysis.failed"
-          @config_key = attributes[:config_key] || attributes['config_key'] || nil
-          @entity_creator_id = attributes[:entity_creator_id] || attributes['entity_creator_id'] || nil
-          @entity_id = attributes[:entity_id] || attributes['entity_id'] || nil
-          @entity_type = attributes[:entity_type] || attributes['entity_type'] || nil
-          @received_at = attributes[:received_at] || attributes['received_at'] || nil
-          @content_ids = attributes[:content_ids] || attributes['content_ids'] || nil
-          @custom = attributes[:custom] || attributes['custom'] || nil
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @type = attributes.fetch(:type) { attributes.fetch('type', "moderation.analysis.failed") }
+          @config_key = attributes.fetch(:config_key) { attributes.fetch('config_key', nil) }
+          @entity_creator_id = attributes.fetch(:entity_creator_id) { attributes.fetch('entity_creator_id', nil) }
+          @entity_id = attributes.fetch(:entity_id) { attributes.fetch('entity_id', nil) }
+          @entity_type = attributes.fetch(:entity_type) { attributes.fetch('entity_type', nil) }
+          @received_at = attributes.fetch(:received_at) { attributes.fetch('received_at', nil) }
+          @content_ids = attributes.fetch(:content_ids) { attributes.fetch('content_ids', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
         end
 
         # Override field mappings for JSON serialization

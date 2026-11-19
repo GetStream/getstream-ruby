@@ -37,14 +37,14 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @action = attributes[:action] || attributes['action']
-          @entity_type = attributes[:entity_type] || attributes['entity_type']
-          @order = attributes[:order] || attributes['order']
-          @description = attributes[:description] || attributes['description'] || nil
-          @icon = attributes[:icon] || attributes['icon'] || nil
-          @id = attributes[:id] || attributes['id'] || nil
-          @queue_type = attributes[:queue_type] || attributes['queue_type'] || nil
-          @custom = attributes[:custom] || attributes['custom'] || nil
+          @action = attributes.fetch(:action) { attributes.fetch('action', nil) }
+          @entity_type = attributes.fetch(:entity_type) { attributes.fetch('entity_type', nil) }
+          @order = attributes.fetch(:order) { attributes.fetch('order', nil) }
+          @description = attributes.fetch(:description) { attributes.fetch('description', nil) }
+          @icon = attributes.fetch(:icon) { attributes.fetch('icon', nil) }
+          @id = attributes.fetch(:id) { attributes.fetch('id', nil) }
+          @queue_type = attributes.fetch(:queue_type) { attributes.fetch('queue_type', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
         end
 
         # Override field mappings for JSON serialization

@@ -159,6 +159,9 @@ module GetStream
         # @!attribute activity_metrics_config
         #   @return [Hash<String, Integer>]
         attr_accessor :activity_metrics_config
+        # @!attribute agent_review
+        #   @return [AgentReviewSettingsPayload] Settings for the moderation agent reviewer, which reviews moderation outcomes and proposes or applies an action.
+        attr_accessor :agent_review
         # @!attribute apn_config
         #   @return [APNConfig]
         attr_accessor :apn_config
@@ -183,6 +186,9 @@ module GetStream
         # @!attribute image_upload_config
         #   @return [FileUploadConfig]
         attr_accessor :image_upload_config
+        # @!attribute message_marks
+        #   @return [MessageMarksConfig] The app's message marks policy: the mark types it defines or overrides, and the privacy switch. The channel type's mark_types says which of them are on in its channels.
+        attr_accessor :message_marks
         # @!attribute moderation_dashboard_preferences
         #   @return [ModerationDashboardPreferences]
         attr_accessor :moderation_dashboard_preferences
@@ -196,67 +202,69 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @async_url_enrich_enabled = attributes[:async_url_enrich_enabled] || attributes['async_url_enrich_enabled'] || nil
-          @auto_translation_enabled = attributes[:auto_translation_enabled] || attributes['auto_translation_enabled'] || nil
-          @before_message_send_hook_attempt_timeout_ms = attributes[:before_message_send_hook_attempt_timeout_ms] || attributes['before_message_send_hook_attempt_timeout_ms'] || nil
-          @before_message_send_hook_url = attributes[:before_message_send_hook_url] || attributes['before_message_send_hook_url'] || nil
-          @cdn_expiration_seconds = attributes[:cdn_expiration_seconds] || attributes['cdn_expiration_seconds'] || nil
-          @channel_hide_members_only = attributes[:channel_hide_members_only] || attributes['channel_hide_members_only'] || nil
-          @chat_primary_use_case = attributes[:chat_primary_use_case] || attributes['chat_primary_use_case'] || nil
-          @custom_action_handler_url = attributes[:custom_action_handler_url] || attributes['custom_action_handler_url'] || nil
-          @disable_auth_checks = attributes[:disable_auth_checks] || attributes['disable_auth_checks'] || nil
-          @disable_permissions_checks = attributes[:disable_permissions_checks] || attributes['disable_permissions_checks'] || nil
-          @enable_hook_payload_compression = attributes[:enable_hook_payload_compression] || attributes['enable_hook_payload_compression'] || nil
-          @enforce_unique_usernames = attributes[:enforce_unique_usernames] || attributes['enforce_unique_usernames'] || nil
-          @feed_audit_logs_enabled = attributes[:feed_audit_logs_enabled] || attributes['feed_audit_logs_enabled'] || nil
-          @feeds_moderation_enabled = attributes[:feeds_moderation_enabled] || attributes['feeds_moderation_enabled'] || nil
-          @feeds_v2_region = attributes[:feeds_v2_region] || attributes['feeds_v2_region'] || nil
-          @guest_user_creation_disabled = attributes[:guest_user_creation_disabled] || attributes['guest_user_creation_disabled'] || nil
-          @image_moderation_enabled = attributes[:image_moderation_enabled] || attributes['image_moderation_enabled'] || nil
-          @max_aggregated_activities_length = attributes[:max_aggregated_activities_length] || attributes['max_aggregated_activities_length'] || nil
-          @member_custom_on_mentioned_users_enabled = attributes[:member_custom_on_mentioned_users_enabled] || attributes['member_custom_on_mentioned_users_enabled'] || nil
-          @member_custom_on_messages_enabled = attributes[:member_custom_on_messages_enabled] || attributes['member_custom_on_messages_enabled'] || nil
-          @member_custom_on_typing_events_enabled = attributes[:member_custom_on_typing_events_enabled] || attributes['member_custom_on_typing_events_enabled'] || nil
-          @migrate_permissions_to_v2 = attributes[:migrate_permissions_to_v2] || attributes['migrate_permissions_to_v2'] || nil
-          @moderation_analytics_enabled = attributes[:moderation_analytics_enabled] || attributes['moderation_analytics_enabled'] || nil
-          @moderation_enabled = attributes[:moderation_enabled] || attributes['moderation_enabled'] || nil
-          @moderation_onboarding_complete = attributes[:moderation_onboarding_complete] || attributes['moderation_onboarding_complete'] || nil
-          @moderation_s3_image_access_role_arn = attributes[:moderation_s3_image_access_role_arn] || attributes['moderation_s3_image_access_role_arn'] || nil
-          @moderation_webhook_url = attributes[:moderation_webhook_url] || attributes['moderation_webhook_url'] || nil
-          @multi_tenant_enabled = attributes[:multi_tenant_enabled] || attributes['multi_tenant_enabled'] || nil
-          @permission_version = attributes[:permission_version] || attributes['permission_version'] || nil
-          @reminders_interval = attributes[:reminders_interval] || attributes['reminders_interval'] || nil
-          @reminders_max_members = attributes[:reminders_max_members] || attributes['reminders_max_members'] || nil
-          @reminders_max_per_user = attributes[:reminders_max_per_user] || attributes['reminders_max_per_user'] || nil
-          @revoke_tokens_issued_before = attributes[:revoke_tokens_issued_before] || attributes['revoke_tokens_issued_before'] || nil
-          @sns_key = attributes[:sns_key] || attributes['sns_key'] || nil
-          @sns_secret = attributes[:sns_secret] || attributes['sns_secret'] || nil
-          @sns_topic_arn = attributes[:sns_topic_arn] || attributes['sns_topic_arn'] || nil
-          @sqs_key = attributes[:sqs_key] || attributes['sqs_key'] || nil
-          @sqs_secret = attributes[:sqs_secret] || attributes['sqs_secret'] || nil
-          @sqs_url = attributes[:sqs_url] || attributes['sqs_url'] || nil
-          @two_way_block_effect_enabled = attributes[:two_way_block_effect_enabled] || attributes['two_way_block_effect_enabled'] || nil
-          @user_response_time_enabled = attributes[:user_response_time_enabled] || attributes['user_response_time_enabled'] || nil
-          @video_primary_use_case = attributes[:video_primary_use_case] || attributes['video_primary_use_case'] || nil
-          @webhook_url = attributes[:webhook_url] || attributes['webhook_url'] || nil
-          @allowed_flag_reasons = attributes[:allowed_flag_reasons] || attributes['allowed_flag_reasons'] || nil
-          @event_hooks = attributes[:event_hooks] || attributes['event_hooks'] || nil
-          @image_moderation_block_labels = attributes[:image_moderation_block_labels] || attributes['image_moderation_block_labels'] || nil
-          @image_moderation_labels = attributes[:image_moderation_labels] || attributes['image_moderation_labels'] || nil
-          @user_search_disallowed_roles = attributes[:user_search_disallowed_roles] || attributes['user_search_disallowed_roles'] || nil
-          @webhook_events = attributes[:webhook_events] || attributes['webhook_events'] || nil
-          @activity_metrics_config = attributes[:activity_metrics_config] || attributes['activity_metrics_config'] || nil
-          @apn_config = attributes[:apn_config] || attributes['apn_config'] || nil
-          @async_moderation_config = attributes[:async_moderation_config] || attributes['async_moderation_config'] || nil
-          @datadog_info = attributes[:datadog_info] || attributes['datadog_info'] || nil
-          @file_upload_config = attributes[:file_upload_config] || attributes['file_upload_config'] || nil
-          @firebase_config = attributes[:firebase_config] || attributes['firebase_config'] || nil
-          @grants = attributes[:grants] || attributes['grants'] || nil
-          @huawei_config = attributes[:huawei_config] || attributes['huawei_config'] || nil
-          @image_upload_config = attributes[:image_upload_config] || attributes['image_upload_config'] || nil
-          @moderation_dashboard_preferences = attributes[:moderation_dashboard_preferences] || attributes['moderation_dashboard_preferences'] || nil
-          @push_config = attributes[:push_config] || attributes['push_config'] || nil
-          @xiaomi_config = attributes[:xiaomi_config] || attributes['xiaomi_config'] || nil
+          @async_url_enrich_enabled = attributes.fetch(:async_url_enrich_enabled) { attributes.fetch('async_url_enrich_enabled', nil) }
+          @auto_translation_enabled = attributes.fetch(:auto_translation_enabled) { attributes.fetch('auto_translation_enabled', nil) }
+          @before_message_send_hook_attempt_timeout_ms = attributes.fetch(:before_message_send_hook_attempt_timeout_ms) { attributes.fetch('before_message_send_hook_attempt_timeout_ms', nil) }
+          @before_message_send_hook_url = attributes.fetch(:before_message_send_hook_url) { attributes.fetch('before_message_send_hook_url', nil) }
+          @cdn_expiration_seconds = attributes.fetch(:cdn_expiration_seconds) { attributes.fetch('cdn_expiration_seconds', nil) }
+          @channel_hide_members_only = attributes.fetch(:channel_hide_members_only) { attributes.fetch('channel_hide_members_only', nil) }
+          @chat_primary_use_case = attributes.fetch(:chat_primary_use_case) { attributes.fetch('chat_primary_use_case', nil) }
+          @custom_action_handler_url = attributes.fetch(:custom_action_handler_url) { attributes.fetch('custom_action_handler_url', nil) }
+          @disable_auth_checks = attributes.fetch(:disable_auth_checks) { attributes.fetch('disable_auth_checks', nil) }
+          @disable_permissions_checks = attributes.fetch(:disable_permissions_checks) { attributes.fetch('disable_permissions_checks', nil) }
+          @enable_hook_payload_compression = attributes.fetch(:enable_hook_payload_compression) { attributes.fetch('enable_hook_payload_compression', nil) }
+          @enforce_unique_usernames = attributes.fetch(:enforce_unique_usernames) { attributes.fetch('enforce_unique_usernames', nil) }
+          @feed_audit_logs_enabled = attributes.fetch(:feed_audit_logs_enabled) { attributes.fetch('feed_audit_logs_enabled', nil) }
+          @feeds_moderation_enabled = attributes.fetch(:feeds_moderation_enabled) { attributes.fetch('feeds_moderation_enabled', nil) }
+          @feeds_v2_region = attributes.fetch(:feeds_v2_region) { attributes.fetch('feeds_v2_region', nil) }
+          @guest_user_creation_disabled = attributes.fetch(:guest_user_creation_disabled) { attributes.fetch('guest_user_creation_disabled', nil) }
+          @image_moderation_enabled = attributes.fetch(:image_moderation_enabled) { attributes.fetch('image_moderation_enabled', nil) }
+          @max_aggregated_activities_length = attributes.fetch(:max_aggregated_activities_length) { attributes.fetch('max_aggregated_activities_length', nil) }
+          @member_custom_on_mentioned_users_enabled = attributes.fetch(:member_custom_on_mentioned_users_enabled) { attributes.fetch('member_custom_on_mentioned_users_enabled', nil) }
+          @member_custom_on_messages_enabled = attributes.fetch(:member_custom_on_messages_enabled) { attributes.fetch('member_custom_on_messages_enabled', nil) }
+          @member_custom_on_typing_events_enabled = attributes.fetch(:member_custom_on_typing_events_enabled) { attributes.fetch('member_custom_on_typing_events_enabled', nil) }
+          @migrate_permissions_to_v2 = attributes.fetch(:migrate_permissions_to_v2) { attributes.fetch('migrate_permissions_to_v2', nil) }
+          @moderation_analytics_enabled = attributes.fetch(:moderation_analytics_enabled) { attributes.fetch('moderation_analytics_enabled', nil) }
+          @moderation_enabled = attributes.fetch(:moderation_enabled) { attributes.fetch('moderation_enabled', nil) }
+          @moderation_onboarding_complete = attributes.fetch(:moderation_onboarding_complete) { attributes.fetch('moderation_onboarding_complete', nil) }
+          @moderation_s3_image_access_role_arn = attributes.fetch(:moderation_s3_image_access_role_arn) { attributes.fetch('moderation_s3_image_access_role_arn', nil) }
+          @moderation_webhook_url = attributes.fetch(:moderation_webhook_url) { attributes.fetch('moderation_webhook_url', nil) }
+          @multi_tenant_enabled = attributes.fetch(:multi_tenant_enabled) { attributes.fetch('multi_tenant_enabled', nil) }
+          @permission_version = attributes.fetch(:permission_version) { attributes.fetch('permission_version', nil) }
+          @reminders_interval = attributes.fetch(:reminders_interval) { attributes.fetch('reminders_interval', nil) }
+          @reminders_max_members = attributes.fetch(:reminders_max_members) { attributes.fetch('reminders_max_members', nil) }
+          @reminders_max_per_user = attributes.fetch(:reminders_max_per_user) { attributes.fetch('reminders_max_per_user', nil) }
+          @revoke_tokens_issued_before = attributes.fetch(:revoke_tokens_issued_before) { attributes.fetch('revoke_tokens_issued_before', nil) }
+          @sns_key = attributes.fetch(:sns_key) { attributes.fetch('sns_key', nil) }
+          @sns_secret = attributes.fetch(:sns_secret) { attributes.fetch('sns_secret', nil) }
+          @sns_topic_arn = attributes.fetch(:sns_topic_arn) { attributes.fetch('sns_topic_arn', nil) }
+          @sqs_key = attributes.fetch(:sqs_key) { attributes.fetch('sqs_key', nil) }
+          @sqs_secret = attributes.fetch(:sqs_secret) { attributes.fetch('sqs_secret', nil) }
+          @sqs_url = attributes.fetch(:sqs_url) { attributes.fetch('sqs_url', nil) }
+          @two_way_block_effect_enabled = attributes.fetch(:two_way_block_effect_enabled) { attributes.fetch('two_way_block_effect_enabled', nil) }
+          @user_response_time_enabled = attributes.fetch(:user_response_time_enabled) { attributes.fetch('user_response_time_enabled', nil) }
+          @video_primary_use_case = attributes.fetch(:video_primary_use_case) { attributes.fetch('video_primary_use_case', nil) }
+          @webhook_url = attributes.fetch(:webhook_url) { attributes.fetch('webhook_url', nil) }
+          @allowed_flag_reasons = attributes.fetch(:allowed_flag_reasons) { attributes.fetch('allowed_flag_reasons', nil) }
+          @event_hooks = attributes.fetch(:event_hooks) { attributes.fetch('event_hooks', nil) }
+          @image_moderation_block_labels = attributes.fetch(:image_moderation_block_labels) { attributes.fetch('image_moderation_block_labels', nil) }
+          @image_moderation_labels = attributes.fetch(:image_moderation_labels) { attributes.fetch('image_moderation_labels', nil) }
+          @user_search_disallowed_roles = attributes.fetch(:user_search_disallowed_roles) { attributes.fetch('user_search_disallowed_roles', nil) }
+          @webhook_events = attributes.fetch(:webhook_events) { attributes.fetch('webhook_events', nil) }
+          @activity_metrics_config = attributes.fetch(:activity_metrics_config) { attributes.fetch('activity_metrics_config', nil) }
+          @agent_review = attributes.fetch(:agent_review) { attributes.fetch('agent_review', nil) }
+          @apn_config = attributes.fetch(:apn_config) { attributes.fetch('apn_config', nil) }
+          @async_moderation_config = attributes.fetch(:async_moderation_config) { attributes.fetch('async_moderation_config', nil) }
+          @datadog_info = attributes.fetch(:datadog_info) { attributes.fetch('datadog_info', nil) }
+          @file_upload_config = attributes.fetch(:file_upload_config) { attributes.fetch('file_upload_config', nil) }
+          @firebase_config = attributes.fetch(:firebase_config) { attributes.fetch('firebase_config', nil) }
+          @grants = attributes.fetch(:grants) { attributes.fetch('grants', nil) }
+          @huawei_config = attributes.fetch(:huawei_config) { attributes.fetch('huawei_config', nil) }
+          @image_upload_config = attributes.fetch(:image_upload_config) { attributes.fetch('image_upload_config', nil) }
+          @message_marks = attributes.fetch(:message_marks) { attributes.fetch('message_marks', nil) }
+          @moderation_dashboard_preferences = attributes.fetch(:moderation_dashboard_preferences) { attributes.fetch('moderation_dashboard_preferences', nil) }
+          @push_config = attributes.fetch(:push_config) { attributes.fetch('push_config', nil) }
+          @xiaomi_config = attributes.fetch(:xiaomi_config) { attributes.fetch('xiaomi_config', nil) }
         end
 
         # Override field mappings for JSON serialization
@@ -312,6 +320,7 @@ module GetStream
             user_search_disallowed_roles: 'user_search_disallowed_roles',
             webhook_events: 'webhook_events',
             activity_metrics_config: 'activity_metrics_config',
+            agent_review: 'agent_review',
             apn_config: 'apn_config',
             async_moderation_config: 'async_moderation_config',
             datadog_info: 'datadog_info',
@@ -320,6 +329,7 @@ module GetStream
             grants: 'grants',
             huawei_config: 'huawei_config',
             image_upload_config: 'image_upload_config',
+            message_marks: 'message_marks',
             moderation_dashboard_preferences: 'moderation_dashboard_preferences',
             push_config: 'push_config',
             xiaomi_config: 'xiaomi_config'

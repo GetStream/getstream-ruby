@@ -10,7 +10,7 @@ module GetStream
 
         # Model attributes
         # @!attribute action_type
-        #   @return [String] Type of moderation action to perform. One of: mark_reviewed, delete_message, delete_activity, delete_comment, delete_reaction, delete_poll, delete_poll_option, delete_poll_answer, ban, custom, unban, restore, delete_user, delete_user_messages, unblock, block, shadow_block, unmask, kick_user, end_call, escalate, de_escalate
+        #   @return [String] Type of moderation action to perform. One of: mark_reviewed, delete_message, delete_activity, delete_comment, delete_reaction, delete_poll, delete_poll_option, delete_poll_answer, ban, custom, unban, restore, delete_user, delete_user_messages, unblock, block, shadow_block, unmask, kick_user, end_call, escalate, de_escalate, agent_recommendation
         attr_accessor :action_type
         # @!attribute appeal_id
         #   @return [String] UUID of the appeal to act on (required for reject_appeal, optional for other actions)
@@ -21,6 +21,9 @@ module GetStream
         # @!attribute user_id
         #   @return [String]
         attr_accessor :user_id
+        # @!attribute agent_recommendation
+        #   @return [AgentRecommendationPayload]
+        attr_accessor :agent_recommendation
         # @!attribute ban
         #   @return [BanActionRequestPayload] Configuration for ban moderation action
         attr_accessor :ban
@@ -92,32 +95,33 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @action_type = attributes[:action_type] || attributes['action_type']
-          @appeal_id = attributes[:appeal_id] || attributes['appeal_id'] || nil
-          @item_id = attributes[:item_id] || attributes['item_id'] || nil
-          @user_id = attributes[:user_id] || attributes['user_id'] || nil
-          @ban = attributes[:ban] || attributes['ban'] || nil
-          @block = attributes[:block] || attributes['block'] || nil
-          @bypass = attributes[:bypass] || attributes['bypass'] || nil
-          @custom = attributes[:custom] || attributes['custom'] || nil
-          @delete_activity = attributes[:delete_activity] || attributes['delete_activity'] || nil
-          @delete_comment = attributes[:delete_comment] || attributes['delete_comment'] || nil
-          @delete_message = attributes[:delete_message] || attributes['delete_message'] || nil
-          @delete_poll = attributes[:delete_poll] || attributes['delete_poll'] || nil
-          @delete_poll_answer = attributes[:delete_poll_answer] || attributes['delete_poll_answer'] || nil
-          @delete_poll_option = attributes[:delete_poll_option] || attributes['delete_poll_option'] || nil
-          @delete_reaction = attributes[:delete_reaction] || attributes['delete_reaction'] || nil
-          @delete_user = attributes[:delete_user] || attributes['delete_user'] || nil
-          @delete_user_messages = attributes[:delete_user_messages] || attributes['delete_user_messages'] || nil
-          @escalate = attributes[:escalate] || attributes['escalate'] || nil
-          @flag = attributes[:flag] || attributes['flag'] || nil
-          @mark_reviewed = attributes[:mark_reviewed] || attributes['mark_reviewed'] || nil
-          @reject_appeal = attributes[:reject_appeal] || attributes['reject_appeal'] || nil
-          @restore = attributes[:restore] || attributes['restore'] || nil
-          @shadow_block = attributes[:shadow_block] || attributes['shadow_block'] || nil
-          @unban = attributes[:unban] || attributes['unban'] || nil
-          @unblock = attributes[:unblock] || attributes['unblock'] || nil
-          @user = attributes[:user] || attributes['user'] || nil
+          @action_type = attributes.fetch(:action_type) { attributes.fetch('action_type', nil) }
+          @appeal_id = attributes.fetch(:appeal_id) { attributes.fetch('appeal_id', nil) }
+          @item_id = attributes.fetch(:item_id) { attributes.fetch('item_id', nil) }
+          @user_id = attributes.fetch(:user_id) { attributes.fetch('user_id', nil) }
+          @agent_recommendation = attributes.fetch(:agent_recommendation) { attributes.fetch('agent_recommendation', nil) }
+          @ban = attributes.fetch(:ban) { attributes.fetch('ban', nil) }
+          @block = attributes.fetch(:block) { attributes.fetch('block', nil) }
+          @bypass = attributes.fetch(:bypass) { attributes.fetch('bypass', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
+          @delete_activity = attributes.fetch(:delete_activity) { attributes.fetch('delete_activity', nil) }
+          @delete_comment = attributes.fetch(:delete_comment) { attributes.fetch('delete_comment', nil) }
+          @delete_message = attributes.fetch(:delete_message) { attributes.fetch('delete_message', nil) }
+          @delete_poll = attributes.fetch(:delete_poll) { attributes.fetch('delete_poll', nil) }
+          @delete_poll_answer = attributes.fetch(:delete_poll_answer) { attributes.fetch('delete_poll_answer', nil) }
+          @delete_poll_option = attributes.fetch(:delete_poll_option) { attributes.fetch('delete_poll_option', nil) }
+          @delete_reaction = attributes.fetch(:delete_reaction) { attributes.fetch('delete_reaction', nil) }
+          @delete_user = attributes.fetch(:delete_user) { attributes.fetch('delete_user', nil) }
+          @delete_user_messages = attributes.fetch(:delete_user_messages) { attributes.fetch('delete_user_messages', nil) }
+          @escalate = attributes.fetch(:escalate) { attributes.fetch('escalate', nil) }
+          @flag = attributes.fetch(:flag) { attributes.fetch('flag', nil) }
+          @mark_reviewed = attributes.fetch(:mark_reviewed) { attributes.fetch('mark_reviewed', nil) }
+          @reject_appeal = attributes.fetch(:reject_appeal) { attributes.fetch('reject_appeal', nil) }
+          @restore = attributes.fetch(:restore) { attributes.fetch('restore', nil) }
+          @shadow_block = attributes.fetch(:shadow_block) { attributes.fetch('shadow_block', nil) }
+          @unban = attributes.fetch(:unban) { attributes.fetch('unban', nil) }
+          @unblock = attributes.fetch(:unblock) { attributes.fetch('unblock', nil) }
+          @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
         end
 
         # Override field mappings for JSON serialization
@@ -127,6 +131,7 @@ module GetStream
             appeal_id: 'appeal_id',
             item_id: 'item_id',
             user_id: 'user_id',
+            agent_recommendation: 'agent_recommendation',
             ban: 'ban',
             block: 'block',
             bypass: 'bypass',

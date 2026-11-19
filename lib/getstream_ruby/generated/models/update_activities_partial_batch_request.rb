@@ -19,8 +19,8 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @changes = attributes[:changes] || attributes['changes']
-          @force_moderation = attributes[:force_moderation] || attributes['force_moderation'] || nil
+          @changes = attributes.fetch(:changes) { attributes.fetch('changes', nil) }
+          @force_moderation = attributes.fetch(:force_moderation) { attributes.fetch('force_moderation', nil) }
         end
 
         # Override field mappings for JSON serialization

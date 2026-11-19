@@ -40,15 +40,15 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @duration = attributes[:duration] || attributes['duration']
-          @is_publisher = attributes[:is_publisher] || attributes['is_publisher'] || nil
-          @is_subscriber = attributes[:is_subscriber] || attributes['is_subscriber'] || nil
-          @joined_at = attributes[:joined_at] || attributes['joined_at'] || nil
-          @publisher_type = attributes[:publisher_type] || attributes['publisher_type'] || nil
-          @user_id = attributes[:user_id] || attributes['user_id'] || nil
-          @user_session_id = attributes[:user_session_id] || attributes['user_session_id'] || nil
-          @published_tracks = attributes[:published_tracks] || attributes['published_tracks'] || nil
-          @client = attributes[:client] || attributes['client'] || nil
+          @duration = attributes.fetch(:duration) { attributes.fetch('duration', nil) }
+          @is_publisher = attributes.fetch(:is_publisher) { attributes.fetch('is_publisher', nil) }
+          @is_subscriber = attributes.fetch(:is_subscriber) { attributes.fetch('is_subscriber', nil) }
+          @joined_at = attributes.fetch(:joined_at) { attributes.fetch('joined_at', nil) }
+          @publisher_type = attributes.fetch(:publisher_type) { attributes.fetch('publisher_type', nil) }
+          @user_id = attributes.fetch(:user_id) { attributes.fetch('user_id', nil) }
+          @user_session_id = attributes.fetch(:user_session_id) { attributes.fetch('user_session_id', nil) }
+          @published_tracks = attributes.fetch(:published_tracks) { attributes.fetch('published_tracks', nil) }
+          @client = attributes.fetch(:client) { attributes.fetch('client', nil) }
         end
 
         # Override field mappings for JSON serialization

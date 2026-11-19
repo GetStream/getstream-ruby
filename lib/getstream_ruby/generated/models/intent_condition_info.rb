@@ -25,10 +25,10 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @passed = attributes[:passed] || attributes['passed']
-          @score = attributes[:score] || attributes['score']
-          @threshold = attributes[:threshold] || attributes['threshold']
-          @topic = attributes[:topic] || attributes['topic']
+          @passed = attributes.fetch(:passed) { attributes.fetch('passed', nil) }
+          @score = attributes.fetch(:score) { attributes.fetch('score', nil) }
+          @threshold = attributes.fetch(:threshold) { attributes.fetch('threshold', nil) }
+          @topic = attributes.fetch(:topic) { attributes.fetch('topic', nil) }
         end
 
         # Override field mappings for JSON serialization

@@ -34,13 +34,13 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @fixed_height = attributes[:fixed_height] || attributes['fixed_height']
-          @fixed_height_downsampled = attributes[:fixed_height_downsampled] || attributes['fixed_height_downsampled']
-          @fixed_height_still = attributes[:fixed_height_still] || attributes['fixed_height_still']
-          @fixed_width = attributes[:fixed_width] || attributes['fixed_width']
-          @fixed_width_downsampled = attributes[:fixed_width_downsampled] || attributes['fixed_width_downsampled']
-          @fixed_width_still = attributes[:fixed_width_still] || attributes['fixed_width_still']
-          @original = attributes[:original] || attributes['original']
+          @fixed_height = attributes.fetch(:fixed_height) { attributes.fetch('fixed_height', nil) }
+          @fixed_height_downsampled = attributes.fetch(:fixed_height_downsampled) { attributes.fetch('fixed_height_downsampled', nil) }
+          @fixed_height_still = attributes.fetch(:fixed_height_still) { attributes.fetch('fixed_height_still', nil) }
+          @fixed_width = attributes.fetch(:fixed_width) { attributes.fetch('fixed_width', nil) }
+          @fixed_width_downsampled = attributes.fetch(:fixed_width_downsampled) { attributes.fetch('fixed_width_downsampled', nil) }
+          @fixed_width_still = attributes.fetch(:fixed_width_still) { attributes.fetch('fixed_width_still', nil) }
+          @original = attributes.fetch(:original) { attributes.fetch('original', nil) }
         end
 
         # Override field mappings for JSON serialization

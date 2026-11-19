@@ -73,26 +73,26 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @backstage = attributes[:backstage] || attributes['backstage']
-          @captioning = attributes[:captioning] || attributes['captioning']
-          @cid = attributes[:cid] || attributes['cid']
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @current_session_id = attributes[:current_session_id] || attributes['current_session_id']
-          @id = attributes[:id] || attributes['id']
-          @recording = attributes[:recording] || attributes['recording']
-          @transcribing = attributes[:transcribing] || attributes['transcribing']
-          @translating = attributes[:translating] || attributes['translating']
-          @type = attributes[:type] || attributes['type']
-          @updated_at = attributes[:updated_at] || attributes['updated_at']
-          @blocked_user_ids = attributes[:blocked_user_ids] || attributes['blocked_user_ids']
-          @custom = attributes[:custom] || attributes['custom']
-          @channel_cid = attributes[:channel_cid] || attributes['channel_cid'] || nil
-          @ended_at = attributes[:ended_at] || attributes['ended_at'] || nil
-          @join_ahead_time_seconds = attributes[:join_ahead_time_seconds] || attributes['join_ahead_time_seconds'] || nil
-          @routing_number = attributes[:routing_number] || attributes['routing_number'] || nil
-          @starts_at = attributes[:starts_at] || attributes['starts_at'] || nil
-          @team = attributes[:team] || attributes['team'] || nil
-          @created_by = attributes[:created_by] || attributes['created_by'] || nil
+          @backstage = attributes.fetch(:backstage) { attributes.fetch('backstage', nil) }
+          @captioning = attributes.fetch(:captioning) { attributes.fetch('captioning', nil) }
+          @cid = attributes.fetch(:cid) { attributes.fetch('cid', nil) }
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @current_session_id = attributes.fetch(:current_session_id) { attributes.fetch('current_session_id', nil) }
+          @id = attributes.fetch(:id) { attributes.fetch('id', nil) }
+          @recording = attributes.fetch(:recording) { attributes.fetch('recording', nil) }
+          @transcribing = attributes.fetch(:transcribing) { attributes.fetch('transcribing', nil) }
+          @translating = attributes.fetch(:translating) { attributes.fetch('translating', nil) }
+          @type = attributes.fetch(:type) { attributes.fetch('type', nil) }
+          @updated_at = attributes.fetch(:updated_at) { attributes.fetch('updated_at', nil) }
+          @blocked_user_ids = attributes.fetch(:blocked_user_ids) { attributes.fetch('blocked_user_ids', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
+          @channel_cid = attributes.fetch(:channel_cid) { attributes.fetch('channel_cid', nil) }
+          @ended_at = attributes.fetch(:ended_at) { attributes.fetch('ended_at', nil) }
+          @join_ahead_time_seconds = attributes.fetch(:join_ahead_time_seconds) { attributes.fetch('join_ahead_time_seconds', nil) }
+          @routing_number = attributes.fetch(:routing_number) { attributes.fetch('routing_number', nil) }
+          @starts_at = attributes.fetch(:starts_at) { attributes.fetch('starts_at', nil) }
+          @team = attributes.fetch(:team) { attributes.fetch('team', nil) }
+          @created_by = attributes.fetch(:created_by) { attributes.fetch('created_by', nil) }
         end
 
         # Override field mappings for JSON serialization

@@ -28,11 +28,11 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @external_app_url = attributes[:external_app_url] || attributes['external_app_url']
-          @external_css_url = attributes[:external_css_url] || attributes['external_css_url']
-          @name = attributes[:name] || attributes['name']
-          @detect_orientation = attributes[:detect_orientation] || attributes['detect_orientation'] || nil
-          @options = attributes[:options] || attributes['options'] || nil
+          @external_app_url = attributes.fetch(:external_app_url) { attributes.fetch('external_app_url', nil) }
+          @external_css_url = attributes.fetch(:external_css_url) { attributes.fetch('external_css_url', nil) }
+          @name = attributes.fetch(:name) { attributes.fetch('name', nil) }
+          @detect_orientation = attributes.fetch(:detect_orientation) { attributes.fetch('detect_orientation', nil) }
+          @options = attributes.fetch(:options) { attributes.fetch('options', nil) }
         end
 
         # Override field mappings for JSON serialization

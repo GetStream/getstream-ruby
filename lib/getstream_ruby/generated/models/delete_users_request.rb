@@ -37,14 +37,14 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @user_ids = attributes[:user_ids] || attributes['user_ids']
-          @calls = attributes[:calls] || attributes['calls'] || nil
-          @conversations = attributes[:conversations] || attributes['conversations'] || nil
-          @files = attributes[:files] || attributes['files'] || nil
-          @messages = attributes[:messages] || attributes['messages'] || nil
-          @new_call_owner_id = attributes[:new_call_owner_id] || attributes['new_call_owner_id'] || nil
-          @new_channel_owner_id = attributes[:new_channel_owner_id] || attributes['new_channel_owner_id'] || nil
-          @user = attributes[:user] || attributes['user'] || nil
+          @user_ids = attributes.fetch(:user_ids) { attributes.fetch('user_ids', nil) }
+          @calls = attributes.fetch(:calls) { attributes.fetch('calls', nil) }
+          @conversations = attributes.fetch(:conversations) { attributes.fetch('conversations', nil) }
+          @files = attributes.fetch(:files) { attributes.fetch('files', nil) }
+          @messages = attributes.fetch(:messages) { attributes.fetch('messages', nil) }
+          @new_call_owner_id = attributes.fetch(:new_call_owner_id) { attributes.fetch('new_call_owner_id', nil) }
+          @new_channel_owner_id = attributes.fetch(:new_channel_owner_id) { attributes.fetch('new_channel_owner_id', nil) }
+          @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
         end
 
         # Override field mappings for JSON serialization

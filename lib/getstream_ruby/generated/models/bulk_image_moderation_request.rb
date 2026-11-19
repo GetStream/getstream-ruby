@@ -16,7 +16,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @csv_file = attributes[:csv_file] || attributes['csv_file']
+          @csv_file = attributes.fetch(:csv_file) { attributes.fetch('csv_file', nil) }
         end
 
         # Override field mappings for JSON serialization

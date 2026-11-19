@@ -25,10 +25,10 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @max_points = attributes[:max_points] || attributes['max_points']
-          @since = attributes[:since] || attributes['since']
-          @step_seconds = attributes[:step_seconds] || attributes['step_seconds']
-          @until = attributes[:until] || attributes['until']
+          @max_points = attributes.fetch(:max_points) { attributes.fetch('max_points', nil) }
+          @since = attributes.fetch(:since) { attributes.fetch('since', nil) }
+          @step_seconds = attributes.fetch(:step_seconds) { attributes.fetch('step_seconds', nil) }
+          @until = attributes.fetch(:until) { attributes.fetch('until', nil) }
         end
 
         # Override field mappings for JSON serialization

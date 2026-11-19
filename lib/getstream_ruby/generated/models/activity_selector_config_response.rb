@@ -18,6 +18,15 @@ module GetStream
         # @!attribute cutoff_window
         #   @return [String] Flexible relative time window for activity selection (e.g., '1h', '3d', '1y')
         attr_accessor :cutoff_window
+        # @!attribute friend_type
+        #   @return [String] Who counts as a friend for the friends_engaged selector
+        attr_accessor :friend_type
+        # @!attribute max_friends
+        #   @return [Integer] Maximum number of close friends the friends_engaged selector reads reactions from
+        attr_accessor :max_friends
+        # @!attribute min_friends
+        #   @return [Integer] Minimum number of distinct close friends that must have reacted for friends_engaged to select an activity
+        attr_accessor :min_friends
         # @!attribute min_popularity
         #   @return [Integer] Minimum popularity threshold. For the 'popular' selector, values below 1 are normalized to the default (5) at read time.
         attr_accessor :min_popularity
@@ -30,6 +39,9 @@ module GetStream
         # @!attribute viewer_location_radius_km
         #   @return [Float] Radius in kilometers the proximity selector searches around the viewer's location
         attr_accessor :viewer_location_radius_km
+        # @!attribute reaction_types
+        #   @return [Array<String>] Reaction types that count for the friends_engaged selector
+        attr_accessor :reaction_types
         # @!attribute sort
         #   @return [Array<SortParamRequest>] Sort parameters for activity selection
         attr_accessor :sort
@@ -46,17 +58,21 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @type = attributes[:type] || attributes['type']
-          @cutoff_time = attributes[:cutoff_time] || attributes['cutoff_time'] || nil
-          @cutoff_window = attributes[:cutoff_window] || attributes['cutoff_window'] || nil
-          @min_popularity = attributes[:min_popularity] || attributes['min_popularity'] || nil
-          @ranking_candidate_limit = attributes[:ranking_candidate_limit] || attributes['ranking_candidate_limit'] || nil
-          @time_budget_ms = attributes[:time_budget_ms] || attributes['time_budget_ms'] || nil
-          @viewer_location_radius_km = attributes[:viewer_location_radius_km] || attributes['viewer_location_radius_km'] || nil
-          @sort = attributes[:sort] || attributes['sort'] || nil
-          @feed_groups = attributes[:feed_groups] || attributes['feed_groups'] || nil
-          @filter = attributes[:filter] || attributes['filter'] || nil
-          @params = attributes[:params] || attributes['params'] || nil
+          @type = attributes.fetch(:type) { attributes.fetch('type', nil) }
+          @cutoff_time = attributes.fetch(:cutoff_time) { attributes.fetch('cutoff_time', nil) }
+          @cutoff_window = attributes.fetch(:cutoff_window) { attributes.fetch('cutoff_window', nil) }
+          @friend_type = attributes.fetch(:friend_type) { attributes.fetch('friend_type', nil) }
+          @max_friends = attributes.fetch(:max_friends) { attributes.fetch('max_friends', nil) }
+          @min_friends = attributes.fetch(:min_friends) { attributes.fetch('min_friends', nil) }
+          @min_popularity = attributes.fetch(:min_popularity) { attributes.fetch('min_popularity', nil) }
+          @ranking_candidate_limit = attributes.fetch(:ranking_candidate_limit) { attributes.fetch('ranking_candidate_limit', nil) }
+          @time_budget_ms = attributes.fetch(:time_budget_ms) { attributes.fetch('time_budget_ms', nil) }
+          @viewer_location_radius_km = attributes.fetch(:viewer_location_radius_km) { attributes.fetch('viewer_location_radius_km', nil) }
+          @reaction_types = attributes.fetch(:reaction_types) { attributes.fetch('reaction_types', nil) }
+          @sort = attributes.fetch(:sort) { attributes.fetch('sort', nil) }
+          @feed_groups = attributes.fetch(:feed_groups) { attributes.fetch('feed_groups', nil) }
+          @filter = attributes.fetch(:filter) { attributes.fetch('filter', nil) }
+          @params = attributes.fetch(:params) { attributes.fetch('params', nil) }
         end
 
         # Override field mappings for JSON serialization
@@ -65,10 +81,14 @@ module GetStream
             type: 'type',
             cutoff_time: 'cutoff_time',
             cutoff_window: 'cutoff_window',
+            friend_type: 'friend_type',
+            max_friends: 'max_friends',
+            min_friends: 'min_friends',
             min_popularity: 'min_popularity',
             ranking_candidate_limit: 'ranking_candidate_limit',
             time_budget_ms: 'time_budget_ms',
             viewer_location_radius_km: 'viewer_location_radius_km',
+            reaction_types: 'reaction_types',
             sort: 'sort',
             feed_groups: 'feed_groups',
             filter: 'filter',

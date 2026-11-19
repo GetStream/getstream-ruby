@@ -34,13 +34,13 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @progress = attributes[:progress] || attributes['progress']
-          @stats_channels_created = attributes[:stats_channels_created] || attributes['stats_channels_created']
-          @stats_completed_at = attributes[:stats_completed_at] || attributes['stats_completed_at']
-          @stats_messages_sent = attributes[:stats_messages_sent] || attributes['stats_messages_sent']
-          @stats_started_at = attributes[:stats_started_at] || attributes['stats_started_at']
-          @stats_users_read = attributes[:stats_users_read] || attributes['stats_users_read']
-          @stats_users_sent = attributes[:stats_users_sent] || attributes['stats_users_sent']
+          @progress = attributes.fetch(:progress) { attributes.fetch('progress', nil) }
+          @stats_channels_created = attributes.fetch(:stats_channels_created) { attributes.fetch('stats_channels_created', nil) }
+          @stats_completed_at = attributes.fetch(:stats_completed_at) { attributes.fetch('stats_completed_at', nil) }
+          @stats_messages_sent = attributes.fetch(:stats_messages_sent) { attributes.fetch('stats_messages_sent', nil) }
+          @stats_started_at = attributes.fetch(:stats_started_at) { attributes.fetch('stats_started_at', nil) }
+          @stats_users_read = attributes.fetch(:stats_users_read) { attributes.fetch('stats_users_read', nil) }
+          @stats_users_sent = attributes.fetch(:stats_users_sent) { attributes.fetch('stats_users_sent', nil) }
         end
 
         # Override field mappings for JSON serialization

@@ -47,17 +47,17 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @comment = attributes[:comment] || attributes['comment'] || nil
-          @copy_custom_to_notification = attributes[:copy_custom_to_notification] || attributes['copy_custom_to_notification'] || nil
-          @force_moderation = attributes[:force_moderation] || attributes['force_moderation'] || nil
-          @handle_mention_notifications = attributes[:handle_mention_notifications] || attributes['handle_mention_notifications'] || nil
-          @skip_enrich_url = attributes[:skip_enrich_url] || attributes['skip_enrich_url'] || nil
-          @skip_push = attributes[:skip_push] || attributes['skip_push'] || nil
-          @user_id = attributes[:user_id] || attributes['user_id'] || nil
-          @attachments = attributes[:attachments] || attributes['attachments'] || nil
-          @mentioned_user_ids = attributes[:mentioned_user_ids] || attributes['mentioned_user_ids'] || nil
-          @custom = attributes[:custom] || attributes['custom'] || nil
-          @user = attributes[:user] || attributes['user'] || nil
+          @comment = attributes.fetch(:comment) { attributes.fetch('comment', nil) }
+          @copy_custom_to_notification = attributes.fetch(:copy_custom_to_notification) { attributes.fetch('copy_custom_to_notification', nil) }
+          @force_moderation = attributes.fetch(:force_moderation) { attributes.fetch('force_moderation', nil) }
+          @handle_mention_notifications = attributes.fetch(:handle_mention_notifications) { attributes.fetch('handle_mention_notifications', nil) }
+          @skip_enrich_url = attributes.fetch(:skip_enrich_url) { attributes.fetch('skip_enrich_url', nil) }
+          @skip_push = attributes.fetch(:skip_push) { attributes.fetch('skip_push', nil) }
+          @user_id = attributes.fetch(:user_id) { attributes.fetch('user_id', nil) }
+          @attachments = attributes.fetch(:attachments) { attributes.fetch('attachments', nil) }
+          @mentioned_user_ids = attributes.fetch(:mentioned_user_ids) { attributes.fetch('mentioned_user_ids', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
+          @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
         end
 
         # Override field mappings for JSON serialization

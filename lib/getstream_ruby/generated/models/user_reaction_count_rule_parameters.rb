@@ -22,9 +22,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @count = attributes[:count] || attributes['count'] || nil
-          @threshold = attributes[:threshold] || attributes['threshold'] || nil
-          @time_window = attributes[:time_window] || attributes['time_window'] || nil
+          @count = attributes.fetch(:count) { attributes.fetch('count', nil) }
+          @threshold = attributes.fetch(:threshold) { attributes.fetch('threshold', nil) }
+          @time_window = attributes.fetch(:time_window) { attributes.fetch('time_window', nil) }
         end
 
         # Override field mappings for JSON serialization

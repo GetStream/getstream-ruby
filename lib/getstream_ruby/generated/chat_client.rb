@@ -312,7 +312,7 @@ module GetStream
         )
       end
 
-      # Returns a channel by its CID without creating it. Responds with 404 when the channel does not exist, so it doubles as an existence check. Pass state=true to also load messages, read state and watchers, and the messages_id_* parameters to page those messages by message ID.
+      # Returns a channel by its CID without creating it. Responds with 404 when the channel does not exist, so it doubles as an existence check. Pass state=true to also load messages, read state and watchers, and the messages_id_* parameters to page those messages by message ID. Server-side requests can set include_soft_deleted_channel to read a soft-deleted channel and the messages its deletion hid; members are not returned for a deleted channel.
       #
       # @param _type [String]
       # @param _id [String]
@@ -325,9 +325,10 @@ module GetStream
       # @param messages_id_gt [String]
       # @param messages_id_gte [String]
       # @param messages_id_around [String]
+      # @param include_soft_deleted_channel [Boolean]
       # @param user_id [String]
       # @return [Models::ChannelStateResponse]
-      def get_channel(_type, _id, state = nil, messages_limit = nil, members_limit = nil, watchers_limit = nil, messages_id_lt = nil, messages_id_lte = nil, messages_id_gt = nil, messages_id_gte = nil, messages_id_around = nil, user_id = nil)
+      def get_channel(_type, _id, state = nil, messages_limit = nil, members_limit = nil, watchers_limit = nil, messages_id_lt = nil, messages_id_lte = nil, messages_id_gt = nil, messages_id_gte = nil, messages_id_around = nil, include_soft_deleted_channel = nil, user_id = nil)
         path = '/api/v2/chat/channels/{type}/{id}'
         # Replace path parameters
         path = path.gsub('{type}', _type.to_s)
@@ -343,6 +344,7 @@ module GetStream
         query_params['messages_id_gt'] = messages_id_gt unless messages_id_gt.nil?
         query_params['messages_id_gte'] = messages_id_gte unless messages_id_gte.nil?
         query_params['messages_id_around'] = messages_id_around unless messages_id_around.nil?
+        query_params['include_soft_deleted_channel'] = include_soft_deleted_channel unless include_soft_deleted_channel.nil?
         query_params['user_id'] = user_id unless user_id.nil?
 
         # Make the API request
@@ -562,15 +564,15 @@ module GetStream
       #
       # @param _type [String]
       # @param _id [String]
-      # @param fork_message_i_ds_request [ForkMessageIDsRequest]
+      # @param fork_message_ids_request [ForkMessageIDsRequest]
       # @return [Models::ForkMessageIDsResponse]
-      def fork_message_i_ds(_type, _id, fork_message_i_ds_request)
+      def fork_message_ids(_type, _id, fork_message_ids_request)
         path = '/api/v2/chat/channels/{type}/{id}/fork/message_ids'
         # Replace path parameters
         path = path.gsub('{type}', _type.to_s)
         path = path.gsub('{id}', _id.to_s)
         # Build request body
-        body = fork_message_i_ds_request
+        body = fork_message_ids_request
 
         # Make the API request
         @client.make_request(
@@ -1326,6 +1328,46 @@ module GetStream
         )
       end
 
+      # Marks a message for the acting user, for example played when the user played a voice note. A mark is written once: a repeat returns created false and the stored mark, and nothing else happens. The message author's own mark is a no-op. A message the user deleted for themselves answers as a first write does, created true, without storing anything. A mark on a message whose author is shadow-banned is stored hidden: the marker keeps it, the author never sees it. Only members of channels whose type lists the mark type can mark, and only messages with a matching attachment; a thread reply is marked like any other messageSends events:- message.mark_added
+      #
+      # @param _id [String]
+      # @param create_message_mark_request [CreateMessageMarkRequest]
+      # @return [Models::CreateMessageMarkResponse]
+      def create_message_mark(_id, create_message_mark_request)
+        path = '/api/v2/chat/messages/{id}/marks'
+        # Replace path parameters
+        path = path.gsub('{id}', _id.to_s)
+        # Build request body
+        body = create_message_mark_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
+      # Lists the marks on a message one page at a time, newest first; the order cannot be changed. The message's mark_groups carry the count and the newest 100 markers per type, this endpoint lists every marker. Only the message author may list client-side; server-side, pass the author's user_id or no user_id. filter.type narrows the list to one mark type; without it every type the channel type lists is returned
+      #
+      # @param _id [String]
+      # @param query_message_marks_request [QueryMessageMarksRequest]
+      # @return [Models::QueryMessageMarksResponse]
+      def query_message_marks(_id, query_message_marks_request)
+        path = '/api/v2/chat/messages/{id}/marks/query'
+        # Replace path parameters
+        path = path.gsub('{id}', _id.to_s)
+        # Build request body
+        body = query_message_marks_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
       # Sends reaction to specified messageSends events:- reaction.new- reaction.updated
       #
       # @param _id [String]
@@ -1789,7 +1831,7 @@ module GetStream
         )
       end
 
-      # Returns all retention policies configured for the app. Server-side only.
+      # Returns all retention policies configured for the app. The per-channel-type rules of the 'inactive-channels-by-type' policy are returned in 'channel_type_rules' rather than in 'policies'. Server-side only.
       #
       # @return [Models::GetRetentionPolicyResponse]
       def get_retention_policy()
@@ -1802,7 +1844,7 @@ module GetStream
         )
       end
 
-      # Creates or updates a retention policy for the app. Server-side only.
+      # Creates or updates a retention policy for the app. The 'inactive-channels-by-type' policy sets the 'max_age_hours' rule of the channel type given by 'channel_type', which overrides 'inactive-channels' for that type; its response carries the saved rule in 'channel_type_rule'. Server-side only.
       #
       # @param set_retention_policy_request [SetRetentionPolicyRequest]
       # @return [Models::SetRetentionPolicyResponse]
@@ -1819,7 +1861,7 @@ module GetStream
         )
       end
 
-      # Removes a retention policy for the app. Server-side only.
+      # Removes a retention policy for the app. For the 'inactive-channels-by-type' policy, 'channel_type' selects the rule to remove. Server-side only.
       #
       # @param delete_retention_policy_request [DeleteRetentionPolicyRequest]
       # @return [Models::DeleteRetentionPolicyResponse]
@@ -1836,7 +1878,7 @@ module GetStream
         )
       end
 
-      # Returns filtered and sorted retention cleanup run history for the app. Supports filter_conditions on 'policy' (possible values: 'old-messages', 'inactive-channels') and 'date' fields. Server-side only.
+      # Returns filtered and sorted retention cleanup run history for the app. Supports filter_conditions on 'policy' (possible values: 'old-messages', 'inactive-channels', 'inactive-channels@type:<channel type>', 'inactive-channels@blanket:<channel type>') and 'date' fields. Once the app has a per-channel-type rule, inactive-channels runs are recorded per channel type, under 'inactive-channels@type:<channel type>' for a type with its own rule and 'inactive-channels@blanket:<channel type>' for a type covered by the app-wide rule, and 'policy': 'inactive-channels' no longer matches new runs; filter with '$in' over the pass names of your channel types. Server-side only.
       #
       # @param get_retention_policy_runs_request [GetRetentionPolicyRunsRequest]
       # @return [Models::GetRetentionPolicyRunsResponse]
@@ -1870,7 +1912,7 @@ module GetStream
         )
       end
 
-      # Cancels a scheduled message so it is never sent, or removes a failed one. Returns 409 while the message is being sentSends events:- scheduled_message.deleted
+      # Cancels a scheduled message so it is never sent, or removes a failed one. Returns 409 while the message is being sent. Returns 400 scheduled_message_already_sent (code 123) when the message was already sent and 400 scheduled_message_canceled (code 124) when it was deletedSends events:- scheduled_message.deleted
       #
       # @param _id [String]
       # @return [Models::DeleteScheduledMessageResponse]
@@ -1886,7 +1928,7 @@ module GetStream
         )
       end
 
-      # Replaces the message and/or the send time of a scheduled message. The scheduling checks run again, and the message is then sent, under the caller's auth mode. A request that changes only scheduled_at keeps the auth mode the message was scheduled with. Returns 409 while the message is being sentSends events:- scheduled_message.updated
+      # Replaces the message and/or the send time of a scheduled message. The scheduling checks run again, and the message is then sent, under the caller's auth mode. A request that changes only scheduled_at keeps the auth mode the message was scheduled with. Returns 409 while the message is being sent. Returns 400 scheduled_message_already_sent (code 123) when the message was already sent and 400 scheduled_message_canceled (code 124) when it was deletedSends events:- scheduled_message.updated
       #
       # @param _id [String]
       # @param update_scheduled_message_request [UpdateScheduledMessageRequest]
@@ -1906,7 +1948,7 @@ module GetStream
         )
       end
 
-      # Moves the send time of a scheduled message to now and queues the send. Every send check runs when it is sent. Returns 409 while the message is being sentSends events:- scheduled_message.updated
+      # Moves the send time of a scheduled message to now and queues the send. Every send check runs when it is sent. Returns 409 while the message is being sent. Returns 400 scheduled_message_already_sent (code 123) when the message was already sent and 400 scheduled_message_canceled (code 124) when it was deletedSends events:- scheduled_message.updated
       #
       # @param _id [String]
       # @return [Models::SendScheduledMessageNowResponse]
@@ -1937,6 +1979,23 @@ module GetStream
           :get,
           path,
           query_params: query_params
+        )
+      end
+
+      # Runs one free-text query across messages, users and channels and returns one envelope with a section per requested entity. The server picks the match operator, sort and scope for every section: messages are matched as full text in the channels the caller can read, users by name or username prefix, and channels by name prefix among the channels the caller is a member of. Each section carries its own opaque `next` cursor when more results exist; a section that fails is reported in its `error` field while the other sections return normally.
+      #
+      # @param search_all_request [SearchAllRequest]
+      # @return [Models::SearchAllResponse]
+      def search_all(search_all_request)
+        path = '/api/v2/chat/search/all'
+        # Build request body
+        body = search_all_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
         )
       end
 

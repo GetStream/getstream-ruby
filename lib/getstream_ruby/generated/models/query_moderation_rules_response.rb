@@ -49,18 +49,18 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @duration = attributes[:duration] || attributes['duration']
-          @ai_image_label_definitions = attributes[:ai_image_label_definitions] || attributes['ai_image_label_definitions']
-          @closed_caption_labels = attributes[:closed_caption_labels] || attributes['closed_caption_labels']
-          @keyframe_labels = attributes[:keyframe_labels] || attributes['keyframe_labels']
-          @ocr_labels = attributes[:ocr_labels] || attributes['ocr_labels']
-          @rules = attributes[:rules] || attributes['rules']
-          @ai_image_subclassifications = attributes[:ai_image_subclassifications] || attributes['ai_image_subclassifications']
-          @default_llm_labels = attributes[:default_llm_labels] || attributes['default_llm_labels']
-          @default_username_llm_labels = attributes[:default_username_llm_labels] || attributes['default_username_llm_labels']
-          @keyframe_label_classifications = attributes[:keyframe_label_classifications] || attributes['keyframe_label_classifications']
-          @next = attributes[:next] || attributes['next'] || nil
-          @prev = attributes[:prev] || attributes['prev'] || nil
+          @duration = attributes.fetch(:duration) { attributes.fetch('duration', nil) }
+          @ai_image_label_definitions = attributes.fetch(:ai_image_label_definitions) { attributes.fetch('ai_image_label_definitions', nil) }
+          @closed_caption_labels = attributes.fetch(:closed_caption_labels) { attributes.fetch('closed_caption_labels', nil) }
+          @keyframe_labels = attributes.fetch(:keyframe_labels) { attributes.fetch('keyframe_labels', nil) }
+          @ocr_labels = attributes.fetch(:ocr_labels) { attributes.fetch('ocr_labels', nil) }
+          @rules = attributes.fetch(:rules) { attributes.fetch('rules', nil) }
+          @ai_image_subclassifications = attributes.fetch(:ai_image_subclassifications) { attributes.fetch('ai_image_subclassifications', nil) }
+          @default_llm_labels = attributes.fetch(:default_llm_labels) { attributes.fetch('default_llm_labels', nil) }
+          @default_username_llm_labels = attributes.fetch(:default_username_llm_labels) { attributes.fetch('default_username_llm_labels', nil) }
+          @keyframe_label_classifications = attributes.fetch(:keyframe_label_classifications) { attributes.fetch('keyframe_label_classifications', nil) }
+          @next = attributes.fetch(:next) { attributes.fetch('next', nil) }
+          @prev = attributes.fetch(:prev) { attributes.fetch('prev', nil) }
         end
 
         # Override field mappings for JSON serialization

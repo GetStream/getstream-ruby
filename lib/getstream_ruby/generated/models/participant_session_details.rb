@@ -34,13 +34,13 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @publisher_type = attributes[:publisher_type] || attributes['publisher_type']
-          @user_id = attributes[:user_id] || attributes['user_id']
-          @user_session_id = attributes[:user_session_id] || attributes['user_session_id']
-          @roles = attributes[:roles] || attributes['roles']
-          @duration_in_seconds = attributes[:duration_in_seconds] || attributes['duration_in_seconds'] || nil
-          @joined_at = attributes[:joined_at] || attributes['joined_at'] || nil
-          @left_at = attributes[:left_at] || attributes['left_at'] || nil
+          @publisher_type = attributes.fetch(:publisher_type) { attributes.fetch('publisher_type', nil) }
+          @user_id = attributes.fetch(:user_id) { attributes.fetch('user_id', nil) }
+          @user_session_id = attributes.fetch(:user_session_id) { attributes.fetch('user_session_id', nil) }
+          @roles = attributes.fetch(:roles) { attributes.fetch('roles', nil) }
+          @duration_in_seconds = attributes.fetch(:duration_in_seconds) { attributes.fetch('duration_in_seconds', nil) }
+          @joined_at = attributes.fetch(:joined_at) { attributes.fetch('joined_at', nil) }
+          @left_at = attributes.fetch(:left_at) { attributes.fetch('left_at', nil) }
         end
 
         # Override field mappings for JSON serialization

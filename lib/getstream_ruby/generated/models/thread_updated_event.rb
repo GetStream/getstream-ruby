@@ -37,14 +37,14 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @custom = attributes[:custom] || attributes['custom']
-          @type = attributes[:type] || attributes['type'] || "thread.updated"
-          @channel_id = attributes[:channel_id] || attributes['channel_id'] || nil
-          @channel_type = attributes[:channel_type] || attributes['channel_type'] || nil
-          @cid = attributes[:cid] || attributes['cid'] || nil
-          @received_at = attributes[:received_at] || attributes['received_at'] || nil
-          @thread = attributes[:thread] || attributes['thread'] || nil
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
+          @type = attributes.fetch(:type) { attributes.fetch('type', "thread.updated") }
+          @channel_id = attributes.fetch(:channel_id) { attributes.fetch('channel_id', nil) }
+          @channel_type = attributes.fetch(:channel_type) { attributes.fetch('channel_type', nil) }
+          @cid = attributes.fetch(:cid) { attributes.fetch('cid', nil) }
+          @received_at = attributes.fetch(:received_at) { attributes.fetch('received_at', nil) }
+          @thread = attributes.fetch(:thread) { attributes.fetch('thread', nil) }
         end
 
         # Override field mappings for JSON serialization

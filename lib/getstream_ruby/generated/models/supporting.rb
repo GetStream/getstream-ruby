@@ -22,9 +22,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @delivery_incident_windows = attributes[:delivery_incident_windows] || attributes['delivery_incident_windows']
-          @edge_outlier_zones = attributes[:edge_outlier_zones] || attributes['edge_outlier_zones']
-          @source_drop_windows = attributes[:source_drop_windows] || attributes['source_drop_windows']
+          @delivery_incident_windows = attributes.fetch(:delivery_incident_windows) { attributes.fetch('delivery_incident_windows', nil) }
+          @edge_outlier_zones = attributes.fetch(:edge_outlier_zones) { attributes.fetch('edge_outlier_zones', nil) }
+          @source_drop_windows = attributes.fetch(:source_drop_windows) { attributes.fetch('source_drop_windows', nil) }
         end
 
         # Override field mappings for JSON serialization

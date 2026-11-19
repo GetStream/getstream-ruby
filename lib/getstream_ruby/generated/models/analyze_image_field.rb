@@ -34,13 +34,13 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @action = attributes[:action] || attributes['action'] || nil
-          @confidence = attributes[:confidence] || attributes['confidence'] || nil
-          @error = attributes[:error] || attributes['error'] || nil
-          @id = attributes[:id] || attributes['id'] || nil
-          @classifications = attributes[:classifications] || attributes['classifications'] || nil
-          @detected_urls = attributes[:detected_urls] || attributes['detected_urls'] || nil
-          @ocr_classifications = attributes[:ocr_classifications] || attributes['ocr_classifications'] || nil
+          @action = attributes.fetch(:action) { attributes.fetch('action', nil) }
+          @confidence = attributes.fetch(:confidence) { attributes.fetch('confidence', nil) }
+          @error = attributes.fetch(:error) { attributes.fetch('error', nil) }
+          @id = attributes.fetch(:id) { attributes.fetch('id', nil) }
+          @classifications = attributes.fetch(:classifications) { attributes.fetch('classifications', nil) }
+          @detected_urls = attributes.fetch(:detected_urls) { attributes.fetch('detected_urls', nil) }
+          @ocr_classifications = attributes.fetch(:ocr_classifications) { attributes.fetch('ocr_classifications', nil) }
         end
 
         # Override field mappings for JSON serialization

@@ -37,14 +37,14 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @llm_labels = attributes[:llm_labels] || attributes['llm_labels']
-          @ai_image_labels = attributes[:ai_image_labels] || attributes['ai_image_labels'] || nil
-          @ai_image_ocr_labels = attributes[:ai_image_ocr_labels] || attributes['ai_image_ocr_labels'] || nil
-          @ai_text_labels = attributes[:ai_text_labels] || attributes['ai_text_labels'] || nil
-          @config_keys = attributes[:config_keys] || attributes['config_keys'] || nil
-          @filterable_custom_keys = attributes[:filterable_custom_keys] || attributes['filterable_custom_keys'] || nil
-          @rule_names = attributes[:rule_names] || attributes['rule_names'] || nil
-          @ai_image_taxonomy = attributes[:ai_image_taxonomy] || attributes['ai_image_taxonomy'] || nil
+          @llm_labels = attributes.fetch(:llm_labels) { attributes.fetch('llm_labels', nil) }
+          @ai_image_labels = attributes.fetch(:ai_image_labels) { attributes.fetch('ai_image_labels', nil) }
+          @ai_image_ocr_labels = attributes.fetch(:ai_image_ocr_labels) { attributes.fetch('ai_image_ocr_labels', nil) }
+          @ai_text_labels = attributes.fetch(:ai_text_labels) { attributes.fetch('ai_text_labels', nil) }
+          @config_keys = attributes.fetch(:config_keys) { attributes.fetch('config_keys', nil) }
+          @filterable_custom_keys = attributes.fetch(:filterable_custom_keys) { attributes.fetch('filterable_custom_keys', nil) }
+          @rule_names = attributes.fetch(:rule_names) { attributes.fetch('rule_names', nil) }
+          @ai_image_taxonomy = attributes.fetch(:ai_image_taxonomy) { attributes.fetch('ai_image_taxonomy', nil) }
         end
 
         # Override field mappings for JSON serialization

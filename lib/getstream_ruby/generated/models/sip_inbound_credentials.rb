@@ -34,13 +34,13 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @api_key = attributes[:api_key] || attributes['api_key']
-          @call_id = attributes[:call_id] || attributes['call_id']
-          @call_type = attributes[:call_type] || attributes['call_type']
-          @token = attributes[:token] || attributes['token']
-          @user_id = attributes[:user_id] || attributes['user_id']
-          @call_custom_data = attributes[:call_custom_data] || attributes['call_custom_data']
-          @user_custom_data = attributes[:user_custom_data] || attributes['user_custom_data']
+          @api_key = attributes.fetch(:api_key) { attributes.fetch('api_key', nil) }
+          @call_id = attributes.fetch(:call_id) { attributes.fetch('call_id', nil) }
+          @call_type = attributes.fetch(:call_type) { attributes.fetch('call_type', nil) }
+          @token = attributes.fetch(:token) { attributes.fetch('token', nil) }
+          @user_id = attributes.fetch(:user_id) { attributes.fetch('user_id', nil) }
+          @call_custom_data = attributes.fetch(:call_custom_data) { attributes.fetch('call_custom_data', nil) }
+          @user_custom_data = attributes.fetch(:user_custom_data) { attributes.fetch('user_custom_data', nil) }
         end
 
         # Override field mappings for JSON serialization

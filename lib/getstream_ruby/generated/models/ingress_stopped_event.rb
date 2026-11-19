@@ -28,11 +28,11 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @call_cid = attributes[:call_cid] || attributes['call_cid']
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @ingress_stream_id = attributes[:ingress_stream_id] || attributes['ingress_stream_id']
-          @user_id = attributes[:user_id] || attributes['user_id']
-          @type = attributes[:type] || attributes['type'] || "ingress.stopped"
+          @call_cid = attributes.fetch(:call_cid) { attributes.fetch('call_cid', nil) }
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @ingress_stream_id = attributes.fetch(:ingress_stream_id) { attributes.fetch('ingress_stream_id', nil) }
+          @user_id = attributes.fetch(:user_id) { attributes.fetch('user_id', nil) }
+          @type = attributes.fetch(:type) { attributes.fetch('type', "ingress.stopped") }
         end
 
         # Override field mappings for JSON serialization

@@ -46,17 +46,17 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @call_level = attributes[:call_level] || attributes['call_level'] || nil
-          @channel_cid = attributes[:channel_cid] || attributes['channel_cid'] || nil
-          @chat_level = attributes[:chat_level] || attributes['chat_level'] || nil
-          @disabled_until = attributes[:disabled_until] || attributes['disabled_until'] || nil
-          @feeds_level = attributes[:feeds_level] || attributes['feeds_level'] || nil
-          @remove_disable = attributes[:remove_disable] || attributes['remove_disable'] || nil
-          @remove_schedule = attributes[:remove_schedule] || attributes['remove_schedule'] || nil
-          @user_id = attributes[:user_id] || attributes['user_id'] || nil
-          @chat_preferences = attributes[:chat_preferences] || attributes['chat_preferences'] || nil
-          @feeds_preferences = attributes[:feeds_preferences] || attributes['feeds_preferences'] || nil
-          @schedule = attributes[:schedule] || attributes['schedule'] || nil
+          @call_level = attributes.fetch(:call_level) { attributes.fetch('call_level', nil) }
+          @channel_cid = attributes.fetch(:channel_cid) { attributes.fetch('channel_cid', nil) }
+          @chat_level = attributes.fetch(:chat_level) { attributes.fetch('chat_level', nil) }
+          @disabled_until = attributes.fetch(:disabled_until) { attributes.fetch('disabled_until', nil) }
+          @feeds_level = attributes.fetch(:feeds_level) { attributes.fetch('feeds_level', nil) }
+          @remove_disable = attributes.fetch(:remove_disable) { attributes.fetch('remove_disable', nil) }
+          @remove_schedule = attributes.fetch(:remove_schedule) { attributes.fetch('remove_schedule', nil) }
+          @user_id = attributes.fetch(:user_id) { attributes.fetch('user_id', nil) }
+          @chat_preferences = attributes.fetch(:chat_preferences) { attributes.fetch('chat_preferences', nil) }
+          @feeds_preferences = attributes.fetch(:feeds_preferences) { attributes.fetch('feeds_preferences', nil) }
+          @schedule = attributes.fetch(:schedule) { attributes.fetch('schedule', nil) }
         end
 
         # Override field mappings for JSON serialization

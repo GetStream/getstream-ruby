@@ -103,36 +103,36 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @cid = attributes[:cid] || attributes['cid']
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @disabled = attributes[:disabled] || attributes['disabled']
-          @frozen = attributes[:frozen] || attributes['frozen']
-          @id = attributes[:id] || attributes['id']
-          @type = attributes[:type] || attributes['type']
-          @updated_at = attributes[:updated_at] || attributes['updated_at']
-          @custom = attributes[:custom] || attributes['custom']
-          @active_member_count = attributes[:active_member_count] || attributes['active_member_count'] || nil
-          @auto_translation_enabled = attributes[:auto_translation_enabled] || attributes['auto_translation_enabled'] || nil
-          @auto_translation_language = attributes[:auto_translation_language] || attributes['auto_translation_language'] || nil
-          @blocked = attributes[:blocked] || attributes['blocked'] || nil
-          @cooldown = attributes[:cooldown] || attributes['cooldown'] || nil
-          @deleted_at = attributes[:deleted_at] || attributes['deleted_at'] || nil
-          @hidden = attributes[:hidden] || attributes['hidden'] || nil
-          @hide_messages_before = attributes[:hide_messages_before] || attributes['hide_messages_before'] || nil
-          @last_message_at = attributes[:last_message_at] || attributes['last_message_at'] || nil
-          @member_count = attributes[:member_count] || attributes['member_count'] || nil
-          @message_count = attributes[:message_count] || attributes['message_count'] || nil
-          @mute_expires_at = attributes[:mute_expires_at] || attributes['mute_expires_at'] || nil
-          @muted = attributes[:muted] || attributes['muted'] || nil
-          @team = attributes[:team] || attributes['team'] || nil
-          @truncated_at = attributes[:truncated_at] || attributes['truncated_at'] || nil
-          @filter_tags = attributes[:filter_tags] || attributes['filter_tags'] || nil
-          @members = attributes[:members] || attributes['members'] || nil
-          @own_capabilities = attributes[:own_capabilities] || attributes['own_capabilities'] || nil
-          @config = attributes[:config] || attributes['config'] || nil
-          @created_by = attributes[:created_by] || attributes['created_by'] || nil
-          @fork = attributes[:fork] || attributes['fork'] || nil
-          @truncated_by = attributes[:truncated_by] || attributes['truncated_by'] || nil
+          @cid = attributes.fetch(:cid) { attributes.fetch('cid', nil) }
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @disabled = attributes.fetch(:disabled) { attributes.fetch('disabled', nil) }
+          @frozen = attributes.fetch(:frozen) { attributes.fetch('frozen', nil) }
+          @id = attributes.fetch(:id) { attributes.fetch('id', nil) }
+          @type = attributes.fetch(:type) { attributes.fetch('type', nil) }
+          @updated_at = attributes.fetch(:updated_at) { attributes.fetch('updated_at', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
+          @active_member_count = attributes.fetch(:active_member_count) { attributes.fetch('active_member_count', nil) }
+          @auto_translation_enabled = attributes.fetch(:auto_translation_enabled) { attributes.fetch('auto_translation_enabled', nil) }
+          @auto_translation_language = attributes.fetch(:auto_translation_language) { attributes.fetch('auto_translation_language', nil) }
+          @blocked = attributes.fetch(:blocked) { attributes.fetch('blocked', nil) }
+          @cooldown = attributes.fetch(:cooldown) { attributes.fetch('cooldown', nil) }
+          @deleted_at = attributes.fetch(:deleted_at) { attributes.fetch('deleted_at', nil) }
+          @hidden = attributes.fetch(:hidden) { attributes.fetch('hidden', nil) }
+          @hide_messages_before = attributes.fetch(:hide_messages_before) { attributes.fetch('hide_messages_before', nil) }
+          @last_message_at = attributes.fetch(:last_message_at) { attributes.fetch('last_message_at', nil) }
+          @member_count = attributes.fetch(:member_count) { attributes.fetch('member_count', nil) }
+          @message_count = attributes.fetch(:message_count) { attributes.fetch('message_count', nil) }
+          @mute_expires_at = attributes.fetch(:mute_expires_at) { attributes.fetch('mute_expires_at', nil) }
+          @muted = attributes.fetch(:muted) { attributes.fetch('muted', nil) }
+          @team = attributes.fetch(:team) { attributes.fetch('team', nil) }
+          @truncated_at = attributes.fetch(:truncated_at) { attributes.fetch('truncated_at', nil) }
+          @filter_tags = attributes.fetch(:filter_tags) { attributes.fetch('filter_tags', nil) }
+          @members = attributes.fetch(:members) { attributes.fetch('members', nil) }
+          @own_capabilities = attributes.fetch(:own_capabilities) { attributes.fetch('own_capabilities', nil) }
+          @config = attributes.fetch(:config) { attributes.fetch('config', nil) }
+          @created_by = attributes.fetch(:created_by) { attributes.fetch('created_by', nil) }
+          @fork = attributes.fetch(:fork) { attributes.fetch('fork', nil) }
+          @truncated_by = attributes.fetch(:truncated_by) { attributes.fetch('truncated_by', nil) }
         end
 
         # Override field mappings for JSON serialization

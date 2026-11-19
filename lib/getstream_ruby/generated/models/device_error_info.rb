@@ -22,9 +22,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @error_message = attributes[:error_message] || attributes['error_message']
-          @provider = attributes[:provider] || attributes['provider']
-          @provider_name = attributes[:provider_name] || attributes['provider_name']
+          @error_message = attributes.fetch(:error_message) { attributes.fetch('error_message', nil) }
+          @provider = attributes.fetch(:provider) { attributes.fetch('provider', nil) }
+          @provider_name = attributes.fetch(:provider_name) { attributes.fetch('provider_name', nil) }
         end
 
         # Override field mappings for JSON serialization

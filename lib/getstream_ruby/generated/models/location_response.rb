@@ -22,9 +22,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @continent_code = attributes[:continent_code] || attributes['continent_code']
-          @country_iso_code = attributes[:country_iso_code] || attributes['country_iso_code']
-          @subdivision_iso_code = attributes[:subdivision_iso_code] || attributes['subdivision_iso_code']
+          @continent_code = attributes.fetch(:continent_code) { attributes.fetch('continent_code', nil) }
+          @country_iso_code = attributes.fetch(:country_iso_code) { attributes.fetch('country_iso_code', nil) }
+          @subdivision_iso_code = attributes.fetch(:subdivision_iso_code) { attributes.fetch('subdivision_iso_code', nil) }
         end
 
         # Override field mappings for JSON serialization

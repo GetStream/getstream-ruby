@@ -28,11 +28,11 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @joins = attributes[:joins] || attributes['joins']
-          @leaves = attributes[:leaves] || attributes['leaves']
-          @max = attributes[:max] || attributes['max']
-          @min = attributes[:min] || attributes['min']
-          @minute = attributes[:minute] || attributes['minute']
+          @joins = attributes.fetch(:joins) { attributes.fetch('joins', nil) }
+          @leaves = attributes.fetch(:leaves) { attributes.fetch('leaves', nil) }
+          @max = attributes.fetch(:max) { attributes.fetch('max', nil) }
+          @min = attributes.fetch(:min) { attributes.fetch('min', nil) }
+          @minute = attributes.fetch(:minute) { attributes.fetch('minute', nil) }
         end
 
         # Override field mappings for JSON serialization

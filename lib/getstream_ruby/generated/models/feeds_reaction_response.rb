@@ -34,13 +34,13 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @activity_id = attributes[:activity_id] || attributes['activity_id']
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @type = attributes[:type] || attributes['type']
-          @updated_at = attributes[:updated_at] || attributes['updated_at']
-          @user = attributes[:user] || attributes['user']
-          @comment_id = attributes[:comment_id] || attributes['comment_id'] || nil
-          @custom = attributes[:custom] || attributes['custom'] || nil
+          @activity_id = attributes.fetch(:activity_id) { attributes.fetch('activity_id', nil) }
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @type = attributes.fetch(:type) { attributes.fetch('type', nil) }
+          @updated_at = attributes.fetch(:updated_at) { attributes.fetch('updated_at', nil) }
+          @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
+          @comment_id = attributes.fetch(:comment_id) { attributes.fetch('comment_id', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
         end
 
         # Override field mappings for JSON serialization

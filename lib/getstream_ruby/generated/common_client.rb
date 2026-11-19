@@ -423,14 +423,21 @@ module GetStream
 
       # Gets an import
       #
+      # @param limit [Integer]
+      # @param offset [Integer]
       # @return [Models::ListImportsResponse]
-      def list_imports()
+      def list_imports(limit = nil, offset = nil)
         path = '/api/v2/imports'
+        # Build query parameters
+        query_params = {}
+        query_params['limit'] = limit unless limit.nil?
+        query_params['offset'] = offset unless offset.nil?
 
         # Make the API request
         @client.make_request(
           :get,
-          path
+          path,
+          query_params: query_params
         )
       end
 

@@ -28,11 +28,11 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @folder_id = attributes[:folder_id] || attributes['folder_id'] || nil
-          @user_id = attributes[:user_id] || attributes['user_id'] || nil
-          @custom = attributes[:custom] || attributes['custom'] || nil
-          @new_folder = attributes[:new_folder] || attributes['new_folder'] || nil
-          @user = attributes[:user] || attributes['user'] || nil
+          @folder_id = attributes.fetch(:folder_id) { attributes.fetch('folder_id', nil) }
+          @user_id = attributes.fetch(:user_id) { attributes.fetch('user_id', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
+          @new_folder = attributes.fetch(:new_folder) { attributes.fetch('new_folder', nil) }
+          @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
         end
 
         # Override field mappings for JSON serialization

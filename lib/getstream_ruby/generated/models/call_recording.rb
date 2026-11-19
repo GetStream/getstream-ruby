@@ -31,12 +31,12 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @end_time = attributes[:end_time] || attributes['end_time']
-          @filename = attributes[:filename] || attributes['filename']
-          @recording_type = attributes[:recording_type] || attributes['recording_type']
-          @session_id = attributes[:session_id] || attributes['session_id']
-          @start_time = attributes[:start_time] || attributes['start_time']
-          @url = attributes[:url] || attributes['url']
+          @end_time = attributes.fetch(:end_time) { attributes.fetch('end_time', nil) }
+          @filename = attributes.fetch(:filename) { attributes.fetch('filename', nil) }
+          @recording_type = attributes.fetch(:recording_type) { attributes.fetch('recording_type', nil) }
+          @session_id = attributes.fetch(:session_id) { attributes.fetch('session_id', nil) }
+          @start_time = attributes.fetch(:start_time) { attributes.fetch('start_time', nil) }
+          @url = attributes.fetch(:url) { attributes.fetch('url', nil) }
         end
 
         # Override field mappings for JSON serialization
