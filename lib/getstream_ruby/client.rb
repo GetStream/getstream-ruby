@@ -200,7 +200,7 @@ module GetStreamRuby
     def make_request(method, path, query_params: nil, body: nil, request_timeout: nil)
       # Handle query parameters
       if query_params && !query_params.empty?
-        query_string = query_params.map { |k, v| "#{k}=#{v}" }.join('&')
+        query_string = query_params.map { |k, v| "#{k}=#{v.is_a?(Array) ? v.join(',') : v}" }.join('&')
         path = "#{path}?#{query_string}"
       end
 
