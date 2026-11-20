@@ -200,7 +200,7 @@ module GetStreamRuby
     def make_request(method, path, query_params: nil, body: nil, request_timeout: nil)
       # Handle query parameters
       if query_params && !query_params.empty?
-        query_string = query_params.map { |k, v| "#{k}=#{v}" }.join('&')
+        query_string = query_params.map { |k, v| "#{k}=#{query_value(v)}" }.join('&')
         path = "#{path}?#{query_string}"
       end
 
@@ -209,6 +209,15 @@ module GetStreamRuby
     end
 
     private
+
+    # Plain strings and numbers stay unencoded: callers may already escape them.
+    def query_value(value)
+      return URI.encode_www_form_component(value.iso8601(9)) if value.is_a?(Time) || value.is_a?(DateTime)
+      return value unless value.is_a?(Array) || value.is_a?(Hash) || value.is_a?(GetStream::BaseModel)
+
+      scalars = value.is_a?(Array) && value.all? { |e| e.is_a?(String) || e.is_a?(Numeric) || e == true || e == false }
+      URI.encode_www_form_component(scalars ? value.join(',') : value.to_json)
+    end
 
     def request(method, path, data = {}, request_timeout: nil)
       # Add API key to query parameters
