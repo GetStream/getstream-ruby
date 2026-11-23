@@ -45,8 +45,7 @@ else
   GENERATOR_VERSION=$(git -C "$GENERATOR_PATH" describe --tags --always --dirty)
 fi
 
-# One file per schema: a schema or webhook event dropped from the spec would otherwise leave a stale file behind.
-find "$MODELS_DIR" -name '*.rb' -delete
+# ponytail: model files of schemas dropped from the spec stay behind, since deleting a public class breaks callers; clear them in a major.
 rm -rf "$FIXTURES_DIR"
 
 "$GENERATOR" generate-client --language ruby --spec "$SPEC_FILE" --output "$DST_PATH"

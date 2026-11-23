@@ -220,7 +220,7 @@ jobs:
               | sort | awk -F'\t' '{ e = sprintf("feat: change %s\n\nBREAKING CHANGE: %s\n", $1, $2); if (size + length(e) > 40000) { more++; next } size += length(e); printf "%s", e }
                   END { if (more) printf "feat: change %d more APIs\n\nBREAKING CHANGE: %d more API changes are left out to fit the PR body\n", more, more }'
           }
-          # Ruby callers pass arguments by position and name model classes directly, and a generator change alone moves neither in the spec. So the generated code before and after is compared too: each removed method or class, and each method whose arguments no longer extend the old ones with optional ones, gets a footer. Removals the spec diff already lists are left out.
+          # Ruby callers pass arguments by position and name model classes directly, and a generator change alone moves neither in the spec. So the generated code before and after is compared too: each removed method or class, and each method whose arguments moved, lost a default or gained a required one, gets a footer. A default added to an existing argument is compatible. Removals the spec diff already lists are left out.
           surface() {
             defs() { sed -nE 's#^(HEAD:)?lib/getstream_ruby/generated/([a-z_]+)\.rb: *def ([a-z0-9_]+[?!]?)(\((.*)\))?$#\2\t\3\t\5#p' | sort -u; }
             classes() { sed -nE 's#^(HEAD:)?[^:]*: *class ([A-Z][A-Za-z0-9_]*).*#\2#p' | sort -u; }
@@ -232,7 +232,7 @@ jobs:
             {
               awk -F'\t' '
                 function name(f, m,   p, k, i, s) { k = split(f, p, "_"); s = ""; for (i = 1; i <= k; i++) s = s toupper(substr(p[i], 1, 1)) substr(p[i], 2); return s "#" m }
-                function ext(o, n,   rest, k, a, i) { if (o == n) return 1; if (o == "") rest = n; else if (index(n, o ", ") == 1) rest = substr(n, length(o) + 3); else return 0; k = split(rest, a, ", "); for (i = 1; i <= k; i++) if (a[i] !~ / = /) return 0; return 1 }
+                function ext(o, n,   a, b, k, j, i, x, y) { k = o == "" ? 0 : split(o, a, ", "); j = n == "" ? 0 : split(n, b, ", "); if (j < k) return 0; for (i = 1; i <= k; i++) { x = a[i]; sub(/ = .*/, "", x); y = b[i]; sub(/ = .*/, "", y); if (x != y || (a[i] ~ / = / && b[i] !~ / = /)) return 0 } for (i = k + 1; i <= j; i++) if (b[i] !~ / = /) return 0; return 1 }
                 FILENAME == ARGV[1] { old[$1 FS $2] = $3; next }
                 { new[$1 FS $2] = $3 }
                 END { for (k in old) { split(k, p, FS); if (!(k in new)) print "gone" FS p[2] FS name(p[1], p[2]); else if (!ext(old[k], new[k])) print "moved" FS p[2] FS name(p[1], p[2]) " takes (" new[k] ") instead of (" old[k] ")" } }' "$RUNNER_TEMP/old-defs" "$RUNNER_TEMP/new-defs"
