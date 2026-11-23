@@ -45,11 +45,18 @@ else
   GENERATOR_VERSION=$(git -C "$GENERATOR_PATH" describe --tags --always --dirty)
 fi
 
-# ponytail: model files of schemas dropped from the spec stay behind, since deleting a public class breaks callers; clear them in a major.
+# Every model is written from scratch, so a file the generator renamed cannot leave a second definition of its class behind.
+find "$MODELS_DIR" -name '*.rb' -delete
 rm -rf "$FIXTURES_DIR"
 
 "$GENERATOR" generate-client --language ruby --spec "$SPEC_FILE" --output "$DST_PATH"
 "$GENERATOR" generate-webhook-fixtures --output "$DST_PATH/$FIXTURES_DIR"
+
+# A class no generated file defines any more comes back from HEAD: deleting a public class breaks callers, so it waits for a major to clear it.
+git ls-files --deleted -- "$MODELS_DIR" | while read -r f; do
+  class=$(git show "HEAD:$f" | sed -nE 's/^ *class ([A-Z][A-Za-z0-9_]*).*/\1/p' | head -1)
+  grep -rqE "^ *class ${class}( |$)" "$MODELS_DIR" || git checkout -q HEAD -- "$f"
+done
 
 # The APNS model has hyphenated field names (content-available, mutable-content), which are invalid Ruby identifiers.
 rm -f "$MODELS_DIR/apns.rb"
