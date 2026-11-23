@@ -22,9 +22,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @capture_interval_in_seconds = attributes[:capture_interval_in_seconds] || attributes['capture_interval_in_seconds']
-          @mode = attributes[:mode] || attributes['mode']
-          @quality = attributes[:quality] || attributes['quality'] || nil
+          @capture_interval_in_seconds = attributes.fetch(:capture_interval_in_seconds) { attributes.fetch('capture_interval_in_seconds', nil) }
+          @mode = attributes.fetch(:mode) { attributes.fetch('mode', nil) }
+          @quality = attributes.fetch(:quality) { attributes.fetch('quality', nil) }
         end
 
         # Override field mappings for JSON serialization

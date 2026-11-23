@@ -19,8 +19,8 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @p50 = attributes[:p50] || attributes['p50'] || nil
-          @p95 = attributes[:p95] || attributes['p95'] || nil
+          @p50 = attributes.fetch(:p50) { attributes.fetch('p50', nil) }
+          @p95 = attributes.fetch(:p95) { attributes.fetch('p95', nil) }
         end
 
         # Override field mappings for JSON serialization

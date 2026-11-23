@@ -28,11 +28,11 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @count = attributes[:count] || attributes['count']
-          @first_reaction_at = attributes[:first_reaction_at] || attributes['first_reaction_at']
-          @last_reaction_at = attributes[:last_reaction_at] || attributes['last_reaction_at']
-          @sum_scores = attributes[:sum_scores] || attributes['sum_scores']
-          @latest_reactions_by = attributes[:latest_reactions_by] || attributes['latest_reactions_by']
+          @count = attributes.fetch(:count) { attributes.fetch('count', nil) }
+          @first_reaction_at = attributes.fetch(:first_reaction_at) { attributes.fetch('first_reaction_at', nil) }
+          @last_reaction_at = attributes.fetch(:last_reaction_at) { attributes.fetch('last_reaction_at', nil) }
+          @sum_scores = attributes.fetch(:sum_scores) { attributes.fetch('sum_scores', nil) }
+          @latest_reactions_by = attributes.fetch(:latest_reactions_by) { attributes.fetch('latest_reactions_by', nil) }
         end
 
         # Override field mappings for JSON serialization

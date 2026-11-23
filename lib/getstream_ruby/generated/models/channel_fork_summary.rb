@@ -43,16 +43,16 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @channel_cid = attributes[:channel_cid] || attributes['channel_cid']
-          @copied_message_count = attributes[:copied_message_count] || attributes['copied_message_count']
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @source_channel_cid = attributes[:source_channel_cid] || attributes['source_channel_cid']
-          @source_message_id = attributes[:source_message_id] || attributes['source_message_id']
-          @status = attributes[:status] || attributes['status']
-          @failed_reason = attributes[:failed_reason] || attributes['failed_reason'] || nil
-          @oldest_source_message_id = attributes[:oldest_source_message_id] || attributes['oldest_source_message_id'] || nil
-          @task_id = attributes[:task_id] || attributes['task_id'] || nil
-          @truncated = attributes[:truncated] || attributes['truncated'] || nil
+          @channel_cid = attributes.fetch(:channel_cid) { attributes.fetch('channel_cid', nil) }
+          @copied_message_count = attributes.fetch(:copied_message_count) { attributes.fetch('copied_message_count', nil) }
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @source_channel_cid = attributes.fetch(:source_channel_cid) { attributes.fetch('source_channel_cid', nil) }
+          @source_message_id = attributes.fetch(:source_message_id) { attributes.fetch('source_message_id', nil) }
+          @status = attributes.fetch(:status) { attributes.fetch('status', nil) }
+          @failed_reason = attributes.fetch(:failed_reason) { attributes.fetch('failed_reason', nil) }
+          @oldest_source_message_id = attributes.fetch(:oldest_source_message_id) { attributes.fetch('oldest_source_message_id', nil) }
+          @task_id = attributes.fetch(:task_id) { attributes.fetch('task_id', nil) }
+          @truncated = attributes.fetch(:truncated) { attributes.fetch('truncated', nil) }
         end
 
         # Override field mappings for JSON serialization

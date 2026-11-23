@@ -19,8 +19,8 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @timeout_ms = attributes[:timeout_ms] || attributes['timeout_ms'] || nil
-          @callback = attributes[:callback] || attributes['callback'] || nil
+          @timeout_ms = attributes.fetch(:timeout_ms) { attributes.fetch('timeout_ms', nil) }
+          @callback = attributes.fetch(:callback) { attributes.fetch('callback', nil) }
         end
 
         # Override field mappings for JSON serialization

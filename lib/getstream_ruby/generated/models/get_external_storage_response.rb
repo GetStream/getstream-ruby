@@ -31,12 +31,12 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @duration = attributes[:duration] || attributes['duration']
-          @type = attributes[:type] || attributes['type']
-          @updated_at = attributes[:updated_at] || attributes['updated_at']
-          @aws_s3 = attributes[:aws_s3] || attributes['aws_s3'] || nil
-          @gcs = attributes[:gcs] || attributes['gcs'] || nil
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @duration = attributes.fetch(:duration) { attributes.fetch('duration', nil) }
+          @type = attributes.fetch(:type) { attributes.fetch('type', nil) }
+          @updated_at = attributes.fetch(:updated_at) { attributes.fetch('updated_at', nil) }
+          @aws_s3 = attributes.fetch(:aws_s3) { attributes.fetch('aws_s3', nil) }
+          @gcs = attributes.fetch(:gcs) { attributes.fetch('gcs', nil) }
         end
 
         # Override field mappings for JSON serialization

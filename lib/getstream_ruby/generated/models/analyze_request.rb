@@ -35,7 +35,7 @@ module GetStream
         #   @return [String]
         attr_accessor :user_id
         # @!attribute country_codes
-        #   @return [Array<String>] ISO 3166-1 alpha-2 countries the content is aimed at (e.g. US, DE), up to 300. The first is the primary country, which AI text providers receive as country context. Takes precedence over country_code.
+        #   @return [Array<String>] ISO 3166-1 alpha-2 countries the content is aimed at (e.g. US, DE), up to 300. The first is the primary country. Every country is sent to the AI text and image harm detection engines as country context. Takes precedence over country_code.
         attr_accessor :country_codes
         # @!attribute content_ids
         #   @return [Hash<String, String>] Optional map from a content label (either a `texts` key or an `image:<key>` multipart label) to a caller-supplied per-instance identifier. Echoed on per-field verdicts and surfaced in `matched_contents` when an aggregation rule fires.
@@ -53,19 +53,19 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @async_response = attributes[:async_response] || attributes['async_response'] || nil
-          @config_key = attributes[:config_key] || attributes['config_key'] || nil
-          @content_published_at = attributes[:content_published_at] || attributes['content_published_at'] || nil
-          @country_code = attributes[:country_code] || attributes['country_code'] || nil
-          @entity_creator_id = attributes[:entity_creator_id] || attributes['entity_creator_id'] || nil
-          @entity_id = attributes[:entity_id] || attributes['entity_id'] || nil
-          @entity_type = attributes[:entity_type] || attributes['entity_type'] || nil
-          @user_id = attributes[:user_id] || attributes['user_id'] || nil
-          @country_codes = attributes[:country_codes] || attributes['country_codes'] || nil
-          @content_ids = attributes[:content_ids] || attributes['content_ids'] || nil
-          @custom = attributes[:custom] || attributes['custom'] || nil
-          @texts = attributes[:texts] || attributes['texts'] || nil
-          @user = attributes[:user] || attributes['user'] || nil
+          @async_response = attributes.fetch(:async_response) { attributes.fetch('async_response', nil) }
+          @config_key = attributes.fetch(:config_key) { attributes.fetch('config_key', nil) }
+          @content_published_at = attributes.fetch(:content_published_at) { attributes.fetch('content_published_at', nil) }
+          @country_code = attributes.fetch(:country_code) { attributes.fetch('country_code', nil) }
+          @entity_creator_id = attributes.fetch(:entity_creator_id) { attributes.fetch('entity_creator_id', nil) }
+          @entity_id = attributes.fetch(:entity_id) { attributes.fetch('entity_id', nil) }
+          @entity_type = attributes.fetch(:entity_type) { attributes.fetch('entity_type', nil) }
+          @user_id = attributes.fetch(:user_id) { attributes.fetch('user_id', nil) }
+          @country_codes = attributes.fetch(:country_codes) { attributes.fetch('country_codes', nil) }
+          @content_ids = attributes.fetch(:content_ids) { attributes.fetch('content_ids', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
+          @texts = attributes.fetch(:texts) { attributes.fetch('texts', nil) }
+          @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
         end
 
         # Override field mappings for JSON serialization

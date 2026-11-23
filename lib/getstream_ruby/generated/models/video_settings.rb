@@ -28,11 +28,11 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @access_request_enabled = attributes[:access_request_enabled] || attributes['access_request_enabled']
-          @camera_default_on = attributes[:camera_default_on] || attributes['camera_default_on']
-          @camera_facing = attributes[:camera_facing] || attributes['camera_facing']
-          @enabled = attributes[:enabled] || attributes['enabled']
-          @target_resolution = attributes[:target_resolution] || attributes['target_resolution']
+          @access_request_enabled = attributes.fetch(:access_request_enabled) { attributes.fetch('access_request_enabled', nil) }
+          @camera_default_on = attributes.fetch(:camera_default_on) { attributes.fetch('camera_default_on', nil) }
+          @camera_facing = attributes.fetch(:camera_facing) { attributes.fetch('camera_facing', nil) }
+          @enabled = attributes.fetch(:enabled) { attributes.fetch('enabled', nil) }
+          @target_resolution = attributes.fetch(:target_resolution) { attributes.fetch('target_resolution', nil) }
         end
 
         # Override field mappings for JSON serialization

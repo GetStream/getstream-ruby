@@ -31,12 +31,12 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @sip_caller_number = attributes[:sip_caller_number] || attributes['sip_caller_number']
-          @sip_trunk_number = attributes[:sip_trunk_number] || attributes['sip_trunk_number']
-          @routing_number = attributes[:routing_number] || attributes['routing_number'] || nil
-          @trunk_id = attributes[:trunk_id] || attributes['trunk_id'] || nil
-          @challenge = attributes[:challenge] || attributes['challenge'] || nil
-          @sip_headers = attributes[:sip_headers] || attributes['sip_headers'] || nil
+          @sip_caller_number = attributes.fetch(:sip_caller_number) { attributes.fetch('sip_caller_number', nil) }
+          @sip_trunk_number = attributes.fetch(:sip_trunk_number) { attributes.fetch('sip_trunk_number', nil) }
+          @routing_number = attributes.fetch(:routing_number) { attributes.fetch('routing_number', nil) }
+          @trunk_id = attributes.fetch(:trunk_id) { attributes.fetch('trunk_id', nil) }
+          @challenge = attributes.fetch(:challenge) { attributes.fetch('challenge', nil) }
+          @sip_headers = attributes.fetch(:sip_headers) { attributes.fetch('sip_headers', nil) }
         end
 
         # Override field mappings for JSON serialization

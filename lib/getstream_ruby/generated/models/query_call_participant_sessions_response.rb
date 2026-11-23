@@ -43,16 +43,16 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @call_id = attributes[:call_id] || attributes['call_id']
-          @call_session_id = attributes[:call_session_id] || attributes['call_session_id']
-          @call_type = attributes[:call_type] || attributes['call_type']
-          @duration = attributes[:duration] || attributes['duration']
-          @total_participant_duration = attributes[:total_participant_duration] || attributes['total_participant_duration']
-          @total_participant_sessions = attributes[:total_participant_sessions] || attributes['total_participant_sessions']
-          @participants_sessions = attributes[:participants_sessions] || attributes['participants_sessions']
-          @next = attributes[:next] || attributes['next'] || nil
-          @prev = attributes[:prev] || attributes['prev'] || nil
-          @session = attributes[:session] || attributes['session'] || nil
+          @call_id = attributes.fetch(:call_id) { attributes.fetch('call_id', nil) }
+          @call_session_id = attributes.fetch(:call_session_id) { attributes.fetch('call_session_id', nil) }
+          @call_type = attributes.fetch(:call_type) { attributes.fetch('call_type', nil) }
+          @duration = attributes.fetch(:duration) { attributes.fetch('duration', nil) }
+          @total_participant_duration = attributes.fetch(:total_participant_duration) { attributes.fetch('total_participant_duration', nil) }
+          @total_participant_sessions = attributes.fetch(:total_participant_sessions) { attributes.fetch('total_participant_sessions', nil) }
+          @participants_sessions = attributes.fetch(:participants_sessions) { attributes.fetch('participants_sessions', nil) }
+          @next = attributes.fetch(:next) { attributes.fetch('next', nil) }
+          @prev = attributes.fetch(:prev) { attributes.fetch('prev', nil) }
+          @session = attributes.fetch(:session) { attributes.fetch('session', nil) }
         end
 
         # Override field mappings for JSON serialization

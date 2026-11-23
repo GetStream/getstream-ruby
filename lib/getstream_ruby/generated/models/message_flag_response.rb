@@ -55,20 +55,20 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @created_by_automod = attributes[:created_by_automod] || attributes['created_by_automod']
-          @updated_at = attributes[:updated_at] || attributes['updated_at']
-          @approved_at = attributes[:approved_at] || attributes['approved_at'] || nil
-          @reason = attributes[:reason] || attributes['reason'] || nil
-          @rejected_at = attributes[:rejected_at] || attributes['rejected_at'] || nil
-          @reviewed_at = attributes[:reviewed_at] || attributes['reviewed_at'] || nil
-          @custom = attributes[:custom] || attributes['custom'] || nil
-          @details = attributes[:details] || attributes['details'] || nil
-          @message = attributes[:message] || attributes['message'] || nil
-          @moderation_feedback = attributes[:moderation_feedback] || attributes['moderation_feedback'] || nil
-          @moderation_result = attributes[:moderation_result] || attributes['moderation_result'] || nil
-          @reviewed_by = attributes[:reviewed_by] || attributes['reviewed_by'] || nil
-          @user = attributes[:user] || attributes['user'] || nil
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @created_by_automod = attributes.fetch(:created_by_automod) { attributes.fetch('created_by_automod', nil) }
+          @updated_at = attributes.fetch(:updated_at) { attributes.fetch('updated_at', nil) }
+          @approved_at = attributes.fetch(:approved_at) { attributes.fetch('approved_at', nil) }
+          @reason = attributes.fetch(:reason) { attributes.fetch('reason', nil) }
+          @rejected_at = attributes.fetch(:rejected_at) { attributes.fetch('rejected_at', nil) }
+          @reviewed_at = attributes.fetch(:reviewed_at) { attributes.fetch('reviewed_at', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
+          @details = attributes.fetch(:details) { attributes.fetch('details', nil) }
+          @message = attributes.fetch(:message) { attributes.fetch('message', nil) }
+          @moderation_feedback = attributes.fetch(:moderation_feedback) { attributes.fetch('moderation_feedback', nil) }
+          @moderation_result = attributes.fetch(:moderation_result) { attributes.fetch('moderation_result', nil) }
+          @reviewed_by = attributes.fetch(:reviewed_by) { attributes.fetch('reviewed_by', nil) }
+          @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
         end
 
         # Override field mappings for JSON serialization

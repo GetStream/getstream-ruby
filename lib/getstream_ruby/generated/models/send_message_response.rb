@@ -31,12 +31,12 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @duration = attributes[:duration] || attributes['duration']
-          @message = attributes[:message] || attributes['message']
-          @channel_context = attributes[:channel_context] || attributes['channel_context'] || nil
-          @mentioned_members = attributes[:mentioned_members] || attributes['mentioned_members'] || nil
-          @pending_message_metadata = attributes[:pending_message_metadata] || attributes['pending_message_metadata'] || nil
-          @scheduled_message = attributes[:scheduled_message] || attributes['scheduled_message'] || nil
+          @duration = attributes.fetch(:duration) { attributes.fetch('duration', nil) }
+          @message = attributes.fetch(:message) { attributes.fetch('message', nil) }
+          @channel_context = attributes.fetch(:channel_context) { attributes.fetch('channel_context', nil) }
+          @mentioned_members = attributes.fetch(:mentioned_members) { attributes.fetch('mentioned_members', nil) }
+          @pending_message_metadata = attributes.fetch(:pending_message_metadata) { attributes.fetch('pending_message_metadata', nil) }
+          @scheduled_message = attributes.fetch(:scheduled_message) { attributes.fetch('scheduled_message', nil) }
         end
 
         # Override field mappings for JSON serialization

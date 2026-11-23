@@ -40,15 +40,15 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @hide_for_creator = attributes[:hide_for_creator] || attributes['hide_for_creator'] || nil
-          @include_scheduled_messages = attributes[:include_scheduled_messages] || attributes['include_scheduled_messages'] || nil
-          @state = attributes[:state] || attributes['state'] || nil
-          @thread_unread_counts = attributes[:thread_unread_counts] || attributes['thread_unread_counts'] || nil
-          @member_custom_include = attributes[:member_custom_include] || attributes['member_custom_include'] || nil
-          @data = attributes[:data] || attributes['data'] || nil
-          @members = attributes[:members] || attributes['members'] || nil
-          @messages = attributes[:messages] || attributes['messages'] || nil
-          @watchers = attributes[:watchers] || attributes['watchers'] || nil
+          @hide_for_creator = attributes.fetch(:hide_for_creator) { attributes.fetch('hide_for_creator', nil) }
+          @include_scheduled_messages = attributes.fetch(:include_scheduled_messages) { attributes.fetch('include_scheduled_messages', nil) }
+          @state = attributes.fetch(:state) { attributes.fetch('state', nil) }
+          @thread_unread_counts = attributes.fetch(:thread_unread_counts) { attributes.fetch('thread_unread_counts', nil) }
+          @member_custom_include = attributes.fetch(:member_custom_include) { attributes.fetch('member_custom_include', nil) }
+          @data = attributes.fetch(:data) { attributes.fetch('data', nil) }
+          @members = attributes.fetch(:members) { attributes.fetch('members', nil) }
+          @messages = attributes.fetch(:messages) { attributes.fetch('messages', nil) }
+          @watchers = attributes.fetch(:watchers) { attributes.fetch('watchers', nil) }
         end
 
         # Override field mappings for JSON serialization

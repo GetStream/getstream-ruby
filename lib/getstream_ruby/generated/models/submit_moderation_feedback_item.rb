@@ -34,13 +34,13 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @current_recommended_action = attributes[:current_recommended_action] || attributes['current_recommended_action'] || nil
-          @flag_id = attributes[:flag_id] || attributes['flag_id'] || nil
-          @image_url = attributes[:image_url] || attributes['image_url'] || nil
-          @kind = attributes[:kind] || attributes['kind'] || nil
-          @reference = attributes[:reference] || attributes['reference'] || nil
-          @text = attributes[:text] || attributes['text'] || nil
-          @current_labels = attributes[:current_labels] || attributes['current_labels'] || nil
+          @current_recommended_action = attributes.fetch(:current_recommended_action) { attributes.fetch('current_recommended_action', nil) }
+          @flag_id = attributes.fetch(:flag_id) { attributes.fetch('flag_id', nil) }
+          @image_url = attributes.fetch(:image_url) { attributes.fetch('image_url', nil) }
+          @kind = attributes.fetch(:kind) { attributes.fetch('kind', nil) }
+          @reference = attributes.fetch(:reference) { attributes.fetch('reference', nil) }
+          @text = attributes.fetch(:text) { attributes.fetch('text', nil) }
+          @current_labels = attributes.fetch(:current_labels) { attributes.fetch('current_labels', nil) }
         end
 
         # Override field mappings for JSON serialization

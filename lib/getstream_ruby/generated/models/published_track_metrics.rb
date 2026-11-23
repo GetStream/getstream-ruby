@@ -34,13 +34,13 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @codec = attributes[:codec] || attributes['codec'] || nil
-          @track_id = attributes[:track_id] || attributes['track_id'] || nil
-          @track_type = attributes[:track_type] || attributes['track_type'] || nil
-          @warnings = attributes[:warnings] || attributes['warnings'] || nil
-          @bitrate = attributes[:bitrate] || attributes['bitrate'] || nil
-          @framerate = attributes[:framerate] || attributes['framerate'] || nil
-          @resolution = attributes[:resolution] || attributes['resolution'] || nil
+          @codec = attributes.fetch(:codec) { attributes.fetch('codec', nil) }
+          @track_id = attributes.fetch(:track_id) { attributes.fetch('track_id', nil) }
+          @track_type = attributes.fetch(:track_type) { attributes.fetch('track_type', nil) }
+          @warnings = attributes.fetch(:warnings) { attributes.fetch('warnings', nil) }
+          @bitrate = attributes.fetch(:bitrate) { attributes.fetch('bitrate', nil) }
+          @framerate = attributes.fetch(:framerate) { attributes.fetch('framerate', nil) }
+          @resolution = attributes.fetch(:resolution) { attributes.fetch('resolution', nil) }
         end
 
         # Override field mappings for JSON serialization

@@ -83,29 +83,29 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @copy_custom_to_notification = attributes[:copy_custom_to_notification] || attributes['copy_custom_to_notification'] || nil
-          @enrich_own_fields = attributes[:enrich_own_fields] || attributes['enrich_own_fields'] || nil
-          @expires_at = attributes[:expires_at] || attributes['expires_at'] || nil
-          @force_moderation = attributes[:force_moderation] || attributes['force_moderation'] || nil
-          @handle_mention_notifications = attributes[:handle_mention_notifications] || attributes['handle_mention_notifications'] || nil
-          @poll_id = attributes[:poll_id] || attributes['poll_id'] || nil
-          @restrict_replies = attributes[:restrict_replies] || attributes['restrict_replies'] || nil
-          @run_activity_processors = attributes[:run_activity_processors] || attributes['run_activity_processors'] || nil
-          @skip_enrich_url = attributes[:skip_enrich_url] || attributes['skip_enrich_url'] || nil
-          @text = attributes[:text] || attributes['text'] || nil
-          @user_id = attributes[:user_id] || attributes['user_id'] || nil
-          @visibility = attributes[:visibility] || attributes['visibility'] || nil
-          @visibility_tag = attributes[:visibility_tag] || attributes['visibility_tag'] || nil
-          @attachments = attributes[:attachments] || attributes['attachments'] || nil
-          @collection_refs = attributes[:collection_refs] || attributes['collection_refs'] || nil
-          @feeds = attributes[:feeds] || attributes['feeds'] || nil
-          @filter_tags = attributes[:filter_tags] || attributes['filter_tags'] || nil
-          @interest_tags = attributes[:interest_tags] || attributes['interest_tags'] || nil
-          @mentioned_user_ids = attributes[:mentioned_user_ids] || attributes['mentioned_user_ids'] || nil
-          @custom = attributes[:custom] || attributes['custom'] || nil
-          @location = attributes[:location] || attributes['location'] || nil
-          @search_data = attributes[:search_data] || attributes['search_data'] || nil
-          @user = attributes[:user] || attributes['user'] || nil
+          @copy_custom_to_notification = attributes.fetch(:copy_custom_to_notification) { attributes.fetch('copy_custom_to_notification', nil) }
+          @enrich_own_fields = attributes.fetch(:enrich_own_fields) { attributes.fetch('enrich_own_fields', nil) }
+          @expires_at = attributes.fetch(:expires_at) { attributes.fetch('expires_at', nil) }
+          @force_moderation = attributes.fetch(:force_moderation) { attributes.fetch('force_moderation', nil) }
+          @handle_mention_notifications = attributes.fetch(:handle_mention_notifications) { attributes.fetch('handle_mention_notifications', nil) }
+          @poll_id = attributes.fetch(:poll_id) { attributes.fetch('poll_id', nil) }
+          @restrict_replies = attributes.fetch(:restrict_replies) { attributes.fetch('restrict_replies', nil) }
+          @run_activity_processors = attributes.fetch(:run_activity_processors) { attributes.fetch('run_activity_processors', nil) }
+          @skip_enrich_url = attributes.fetch(:skip_enrich_url) { attributes.fetch('skip_enrich_url', nil) }
+          @text = attributes.fetch(:text) { attributes.fetch('text', nil) }
+          @user_id = attributes.fetch(:user_id) { attributes.fetch('user_id', nil) }
+          @visibility = attributes.fetch(:visibility) { attributes.fetch('visibility', nil) }
+          @visibility_tag = attributes.fetch(:visibility_tag) { attributes.fetch('visibility_tag', nil) }
+          @attachments = attributes.fetch(:attachments) { attributes.fetch('attachments', nil) }
+          @collection_refs = attributes.fetch(:collection_refs) { attributes.fetch('collection_refs', nil) }
+          @feeds = attributes.fetch(:feeds) { attributes.fetch('feeds', nil) }
+          @filter_tags = attributes.fetch(:filter_tags) { attributes.fetch('filter_tags', nil) }
+          @interest_tags = attributes.fetch(:interest_tags) { attributes.fetch('interest_tags', nil) }
+          @mentioned_user_ids = attributes.fetch(:mentioned_user_ids) { attributes.fetch('mentioned_user_ids', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
+          @location = attributes.fetch(:location) { attributes.fetch('location', nil) }
+          @search_data = attributes.fetch(:search_data) { attributes.fetch('search_data', nil) }
+          @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
         end
 
         # Override field mappings for JSON serialization

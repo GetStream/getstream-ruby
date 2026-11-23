@@ -16,7 +16,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @max_age_hours = attributes[:max_age_hours] || attributes['max_age_hours']
+          @max_age_hours = attributes.fetch(:max_age_hours) { attributes.fetch('max_age_hours', nil) }
         end
 
         # Override field mappings for JSON serialization

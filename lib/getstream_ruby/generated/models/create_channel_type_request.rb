@@ -99,12 +99,18 @@ module GetStream
         # @!attribute user_message_reminders
         #   @return [Boolean]
         attr_accessor :user_message_reminders
+        # @!attribute voice_transcription
+        #   @return [Boolean] Transcribe voice recording attachments.
+        attr_accessor :voice_transcription
         # @!attribute blocklists
         #   @return [Array<BlockListOptions>] Blocklists
         attr_accessor :blocklists
         # @!attribute commands
         #   @return [Array<String>] List of commands that channel supports
         attr_accessor :commands
+        # @!attribute mark_types
+        #   @return [Array<String>] Message mark types members can send in channels of this type, for example played
+        attr_accessor :mark_types
         # @!attribute permissions
         #   @return [Array<PolicyRequest>] List of permissions for the channel type
         attr_accessor :permissions
@@ -121,42 +127,44 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @automod = attributes[:automod] || attributes['automod']
-          @automod_behavior = attributes[:automod_behavior] || attributes['automod_behavior']
-          @max_message_length = attributes[:max_message_length] || attributes['max_message_length']
-          @name = attributes[:name] || attributes['name']
-          @blocklist = attributes[:blocklist] || attributes['blocklist'] || nil
-          @blocklist_behavior = attributes[:blocklist_behavior] || attributes['blocklist_behavior'] || nil
-          @connect_events = attributes[:connect_events] || attributes['connect_events'] || nil
-          @count_messages = attributes[:count_messages] || attributes['count_messages'] || nil
-          @custom_events = attributes[:custom_events] || attributes['custom_events'] || nil
-          @delivery_events = attributes[:delivery_events] || attributes['delivery_events'] || nil
-          @mark_messages_pending = attributes[:mark_messages_pending] || attributes['mark_messages_pending'] || nil
-          @message_retention = attributes[:message_retention] || attributes['message_retention'] || nil
-          @mutes = attributes[:mutes] || attributes['mutes'] || nil
-          @partition_size = attributes[:partition_size] || attributes['partition_size'] || nil
-          @partition_ttl = attributes[:partition_ttl] || attributes['partition_ttl'] || nil
-          @polls = attributes[:polls] || attributes['polls'] || nil
-          @push_level = attributes[:push_level] || attributes['push_level'] || nil
-          @push_notifications = attributes[:push_notifications] || attributes['push_notifications'] || nil
-          @quotes = attributes[:quotes] || attributes['quotes'] || nil
-          @reactions = attributes[:reactions] || attributes['reactions'] || nil
-          @read_events = attributes[:read_events] || attributes['read_events'] || nil
-          @reminders = attributes[:reminders] || attributes['reminders'] || nil
-          @replies = attributes[:replies] || attributes['replies'] || nil
-          @search = attributes[:search] || attributes['search'] || nil
-          @shared_locations = attributes[:shared_locations] || attributes['shared_locations'] || nil
-          @skip_last_msg_update_for_system_msgs = attributes[:skip_last_msg_update_for_system_msgs] || attributes['skip_last_msg_update_for_system_msgs'] || nil
-          @typing_events = attributes[:typing_events] || attributes['typing_events'] || nil
-          @uploads = attributes[:uploads] || attributes['uploads'] || nil
-          @url_enrichment = attributes[:url_enrichment] || attributes['url_enrichment'] || nil
-          @user_message_reminders = attributes[:user_message_reminders] || attributes['user_message_reminders'] || nil
-          @blocklists = attributes[:blocklists] || attributes['blocklists'] || nil
-          @commands = attributes[:commands] || attributes['commands'] || nil
-          @permissions = attributes[:permissions] || attributes['permissions'] || nil
-          @automod_thresholds = attributes[:automod_thresholds] || attributes['automod_thresholds'] || nil
-          @chat_preferences = attributes[:chat_preferences] || attributes['chat_preferences'] || nil
-          @grants = attributes[:grants] || attributes['grants'] || nil
+          @automod = attributes.fetch(:automod) { attributes.fetch('automod', nil) }
+          @automod_behavior = attributes.fetch(:automod_behavior) { attributes.fetch('automod_behavior', nil) }
+          @max_message_length = attributes.fetch(:max_message_length) { attributes.fetch('max_message_length', nil) }
+          @name = attributes.fetch(:name) { attributes.fetch('name', nil) }
+          @blocklist = attributes.fetch(:blocklist) { attributes.fetch('blocklist', nil) }
+          @blocklist_behavior = attributes.fetch(:blocklist_behavior) { attributes.fetch('blocklist_behavior', nil) }
+          @connect_events = attributes.fetch(:connect_events) { attributes.fetch('connect_events', nil) }
+          @count_messages = attributes.fetch(:count_messages) { attributes.fetch('count_messages', nil) }
+          @custom_events = attributes.fetch(:custom_events) { attributes.fetch('custom_events', nil) }
+          @delivery_events = attributes.fetch(:delivery_events) { attributes.fetch('delivery_events', nil) }
+          @mark_messages_pending = attributes.fetch(:mark_messages_pending) { attributes.fetch('mark_messages_pending', nil) }
+          @message_retention = attributes.fetch(:message_retention) { attributes.fetch('message_retention', nil) }
+          @mutes = attributes.fetch(:mutes) { attributes.fetch('mutes', nil) }
+          @partition_size = attributes.fetch(:partition_size) { attributes.fetch('partition_size', nil) }
+          @partition_ttl = attributes.fetch(:partition_ttl) { attributes.fetch('partition_ttl', nil) }
+          @polls = attributes.fetch(:polls) { attributes.fetch('polls', nil) }
+          @push_level = attributes.fetch(:push_level) { attributes.fetch('push_level', nil) }
+          @push_notifications = attributes.fetch(:push_notifications) { attributes.fetch('push_notifications', nil) }
+          @quotes = attributes.fetch(:quotes) { attributes.fetch('quotes', nil) }
+          @reactions = attributes.fetch(:reactions) { attributes.fetch('reactions', nil) }
+          @read_events = attributes.fetch(:read_events) { attributes.fetch('read_events', nil) }
+          @reminders = attributes.fetch(:reminders) { attributes.fetch('reminders', nil) }
+          @replies = attributes.fetch(:replies) { attributes.fetch('replies', nil) }
+          @search = attributes.fetch(:search) { attributes.fetch('search', nil) }
+          @shared_locations = attributes.fetch(:shared_locations) { attributes.fetch('shared_locations', nil) }
+          @skip_last_msg_update_for_system_msgs = attributes.fetch(:skip_last_msg_update_for_system_msgs) { attributes.fetch('skip_last_msg_update_for_system_msgs', nil) }
+          @typing_events = attributes.fetch(:typing_events) { attributes.fetch('typing_events', nil) }
+          @uploads = attributes.fetch(:uploads) { attributes.fetch('uploads', nil) }
+          @url_enrichment = attributes.fetch(:url_enrichment) { attributes.fetch('url_enrichment', nil) }
+          @user_message_reminders = attributes.fetch(:user_message_reminders) { attributes.fetch('user_message_reminders', nil) }
+          @voice_transcription = attributes.fetch(:voice_transcription) { attributes.fetch('voice_transcription', nil) }
+          @blocklists = attributes.fetch(:blocklists) { attributes.fetch('blocklists', nil) }
+          @commands = attributes.fetch(:commands) { attributes.fetch('commands', nil) }
+          @mark_types = attributes.fetch(:mark_types) { attributes.fetch('mark_types', nil) }
+          @permissions = attributes.fetch(:permissions) { attributes.fetch('permissions', nil) }
+          @automod_thresholds = attributes.fetch(:automod_thresholds) { attributes.fetch('automod_thresholds', nil) }
+          @chat_preferences = attributes.fetch(:chat_preferences) { attributes.fetch('chat_preferences', nil) }
+          @grants = attributes.fetch(:grants) { attributes.fetch('grants', nil) }
         end
 
         # Override field mappings for JSON serialization
@@ -192,8 +200,10 @@ module GetStream
             uploads: 'uploads',
             url_enrichment: 'url_enrichment',
             user_message_reminders: 'user_message_reminders',
+            voice_transcription: 'voice_transcription',
             blocklists: 'blocklists',
             commands: 'commands',
+            mark_types: 'mark_types',
             permissions: 'permissions',
             automod_thresholds: 'automod_thresholds',
             chat_preferences: 'chat_preferences',

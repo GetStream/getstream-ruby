@@ -18,6 +18,9 @@ module GetStream
         # @!attribute include_ranking_config
         #   @return [Boolean] Default: false. Server-side only. When true, the response includes ranking_config: the ranking configuration (from the feed view, or the feed group as fallback) used to rank this read.
         attr_accessor :include_ranking_config
+        # @!attribute include_reasons
+        #   @return [Boolean] Default: false. When true, For You activities include reasons: codes for why each was shown. Ignored with skip_all.
+        attr_accessor :include_reasons
         # @!attribute include_score_vars
         #   @return [Boolean] Default: false. When true, includes score_vars in activity responses containing variable values used at ranking time.
         attr_accessor :include_score_vars
@@ -76,27 +79,28 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @enrich_own_followings = attributes[:enrich_own_followings] || attributes['enrich_own_followings'] || nil
-          @include_flat_activities = attributes[:include_flat_activities] || attributes['include_flat_activities'] || nil
-          @include_ranking_config = attributes[:include_ranking_config] || attributes['include_ranking_config'] || nil
-          @include_score_vars = attributes[:include_score_vars] || attributes['include_score_vars'] || nil
-          @skip_activity = attributes[:skip_activity] || attributes['skip_activity'] || nil
-          @skip_activity_collections = attributes[:skip_activity_collections] || attributes['skip_activity_collections'] || nil
-          @skip_activity_comments = attributes[:skip_activity_comments] || attributes['skip_activity_comments'] || nil
-          @skip_activity_current_feed = attributes[:skip_activity_current_feed] || attributes['skip_activity_current_feed'] || nil
-          @skip_activity_mentioned_users = attributes[:skip_activity_mentioned_users] || attributes['skip_activity_mentioned_users'] || nil
-          @skip_activity_own_bookmarks = attributes[:skip_activity_own_bookmarks] || attributes['skip_activity_own_bookmarks'] || nil
-          @skip_activity_parents = attributes[:skip_activity_parents] || attributes['skip_activity_parents'] || nil
-          @skip_activity_poll = attributes[:skip_activity_poll] || attributes['skip_activity_poll'] || nil
-          @skip_activity_reactions = attributes[:skip_activity_reactions] || attributes['skip_activity_reactions'] || nil
-          @skip_activity_refresh_image_urls = attributes[:skip_activity_refresh_image_urls] || attributes['skip_activity_refresh_image_urls'] || nil
-          @skip_all = attributes[:skip_all] || attributes['skip_all'] || nil
-          @skip_feed_member_user = attributes[:skip_feed_member_user] || attributes['skip_feed_member_user'] || nil
-          @skip_followers = attributes[:skip_followers] || attributes['skip_followers'] || nil
-          @skip_following = attributes[:skip_following] || attributes['skip_following'] || nil
-          @skip_own_capabilities = attributes[:skip_own_capabilities] || attributes['skip_own_capabilities'] || nil
-          @skip_own_follows = attributes[:skip_own_follows] || attributes['skip_own_follows'] || nil
-          @skip_pins = attributes[:skip_pins] || attributes['skip_pins'] || nil
+          @enrich_own_followings = attributes.fetch(:enrich_own_followings) { attributes.fetch('enrich_own_followings', nil) }
+          @include_flat_activities = attributes.fetch(:include_flat_activities) { attributes.fetch('include_flat_activities', nil) }
+          @include_ranking_config = attributes.fetch(:include_ranking_config) { attributes.fetch('include_ranking_config', nil) }
+          @include_reasons = attributes.fetch(:include_reasons) { attributes.fetch('include_reasons', nil) }
+          @include_score_vars = attributes.fetch(:include_score_vars) { attributes.fetch('include_score_vars', nil) }
+          @skip_activity = attributes.fetch(:skip_activity) { attributes.fetch('skip_activity', nil) }
+          @skip_activity_collections = attributes.fetch(:skip_activity_collections) { attributes.fetch('skip_activity_collections', nil) }
+          @skip_activity_comments = attributes.fetch(:skip_activity_comments) { attributes.fetch('skip_activity_comments', nil) }
+          @skip_activity_current_feed = attributes.fetch(:skip_activity_current_feed) { attributes.fetch('skip_activity_current_feed', nil) }
+          @skip_activity_mentioned_users = attributes.fetch(:skip_activity_mentioned_users) { attributes.fetch('skip_activity_mentioned_users', nil) }
+          @skip_activity_own_bookmarks = attributes.fetch(:skip_activity_own_bookmarks) { attributes.fetch('skip_activity_own_bookmarks', nil) }
+          @skip_activity_parents = attributes.fetch(:skip_activity_parents) { attributes.fetch('skip_activity_parents', nil) }
+          @skip_activity_poll = attributes.fetch(:skip_activity_poll) { attributes.fetch('skip_activity_poll', nil) }
+          @skip_activity_reactions = attributes.fetch(:skip_activity_reactions) { attributes.fetch('skip_activity_reactions', nil) }
+          @skip_activity_refresh_image_urls = attributes.fetch(:skip_activity_refresh_image_urls) { attributes.fetch('skip_activity_refresh_image_urls', nil) }
+          @skip_all = attributes.fetch(:skip_all) { attributes.fetch('skip_all', nil) }
+          @skip_feed_member_user = attributes.fetch(:skip_feed_member_user) { attributes.fetch('skip_feed_member_user', nil) }
+          @skip_followers = attributes.fetch(:skip_followers) { attributes.fetch('skip_followers', nil) }
+          @skip_following = attributes.fetch(:skip_following) { attributes.fetch('skip_following', nil) }
+          @skip_own_capabilities = attributes.fetch(:skip_own_capabilities) { attributes.fetch('skip_own_capabilities', nil) }
+          @skip_own_follows = attributes.fetch(:skip_own_follows) { attributes.fetch('skip_own_follows', nil) }
+          @skip_pins = attributes.fetch(:skip_pins) { attributes.fetch('skip_pins', nil) }
         end
 
         # Override field mappings for JSON serialization
@@ -105,6 +109,7 @@ module GetStream
             enrich_own_followings: 'enrich_own_followings',
             include_flat_activities: 'include_flat_activities',
             include_ranking_config: 'include_ranking_config',
+            include_reasons: 'include_reasons',
             include_score_vars: 'include_score_vars',
             skip_activity: 'skip_activity',
             skip_activity_collections: 'skip_activity_collections',

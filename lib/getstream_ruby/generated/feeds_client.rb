@@ -393,8 +393,9 @@ module GetStream
       # @param include_top_level_comment_count [Boolean]
       # @param include_soft_deleted_activities [Boolean]
       # @param include_moderated_activities [Boolean]
+      # @param skip_viewer_visibility [Boolean]
       # @return [Models::GetActivityResponse]
-      def get_activity(_id, comment_sort = nil, comment_limit = nil, skip_own_followings = nil, user_id = nil, language = nil, translate_text = nil, include_top_level_comment_count = nil, include_soft_deleted_activities = nil, include_moderated_activities = nil)
+      def get_activity(_id, comment_sort = nil, comment_limit = nil, skip_own_followings = nil, user_id = nil, language = nil, translate_text = nil, include_top_level_comment_count = nil, include_soft_deleted_activities = nil, include_moderated_activities = nil, skip_viewer_visibility = nil)
         path = '/api/v2/feeds/activities/{id}'
         # Replace path parameters
         path = path.gsub('{id}', _id.to_s)
@@ -409,6 +410,7 @@ module GetStream
         query_params['include_top_level_comment_count'] = include_top_level_comment_count unless include_top_level_comment_count.nil?
         query_params['include_soft_deleted_activities'] = include_soft_deleted_activities unless include_soft_deleted_activities.nil?
         query_params['include_moderated_activities'] = include_moderated_activities unless include_moderated_activities.nil?
+        query_params['skip_viewer_visibility'] = skip_viewer_visibility unless skip_viewer_visibility.nil?
 
         # Make the API request
         @client.make_request(
@@ -1122,14 +1124,18 @@ module GetStream
 
       # Starts an async task that exports all feeds data of the app in export format v1. Poll the task for the result
       #
+      # @param export_feeds_app_request [ExportFeedsAppRequest]
       # @return [Models::ExportFeedsResponse]
-      def export_feeds_app()
+      def export_feeds_app(export_feeds_app_request)
         path = '/api/v2/feeds/export/app'
+        # Build request body
+        body = export_feeds_app_request
 
         # Make the API request
         @client.make_request(
           :post,
-          path
+          path,
+          body: body
         )
       end
 
@@ -1478,6 +1484,31 @@ module GetStream
           :post,
           path,
           body: body
+        )
+      end
+
+      # Returns the unread and unseen counts of a notification feed, along with the last seen and last read timestamps, without building a page.
+      #
+      # @param feed_group_id [String]
+      # @param feed_id [String]
+      # @param view [String]
+      # @param user_id [String]
+      # @return [Models::GetNotificationStatusResponse]
+      def get_notification_status(feed_group_id, feed_id, view = nil, user_id = nil)
+        path = '/api/v2/feeds/feed_groups/{feed_group_id}/feeds/{feed_id}/notification_status'
+        # Replace path parameters
+        path = path.gsub('{feed_group_id}', feed_group_id.to_s)
+        path = path.gsub('{feed_id}', feed_id.to_s)
+        # Build query parameters
+        query_params = {}
+        query_params['view'] = view unless view.nil?
+        query_params['user_id'] = user_id unless user_id.nil?
+
+        # Make the API request
+        @client.make_request(
+          :get,
+          path,
+          query_params: query_params
         )
       end
 
@@ -2116,6 +2147,69 @@ module GetStream
         )
       end
 
+      # Lists the app's active promotions, also while for_you.trending is off. Not paginated: an app holds at most 20. Server-side only.
+      #
+      # @return [Models::ListPromotedTopicsResponse]
+      def list_promoted_topics()
+        path = '/api/v2/feeds/promoted_topics'
+
+        # Make the API request
+        @client.make_request(
+          :get,
+          path
+        )
+      end
+
+      # Promotes topic tags for the trend signal of feed groups with for_you.trending until the TTL passes. Clients watching a For You feed receive a feeds.promoted_topics.updated event. An app holds at most 20 active promotions. Server-side only.
+      #
+      # @param promote_topics_request [PromoteTopicsRequest]
+      # @return [Models::PromoteTopicsResponse]
+      def promote_topics(promote_topics_request)
+        path = '/api/v2/feeds/promoted_topics'
+        # Build request body
+        body = promote_topics_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
+      # Ends a promotion before it expires, also while for_you.trending is off. Clients watching a For You feed receive a feeds.promoted_topics.updated event. Returns 404 when the promotion is not active. Server-side only.
+      #
+      # @param _id [String]
+      # @return [Models::UnpromoteTopicsResponse]
+      def unpromote_topics(_id)
+        path = '/api/v2/feeds/promoted_topics/{id}'
+        # Replace path parameters
+        path = path.gsub('{id}', _id.to_s)
+
+        # Make the API request
+        @client.make_request(
+          :delete,
+          path
+        )
+      end
+
+      # Lists a single user's activity or comment reactions, newest first by default, without activity or comment payloads
+      #
+      # @param query_feeds_reactions_request [QueryFeedsReactionsRequest]
+      # @return [Models::QueryFeedsReactionsResponse]
+      def query_feeds_reactions(query_feeds_reactions_request)
+        path = '/api/v2/feeds/reactions/query'
+        # Build request body
+        body = query_feeds_reactions_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
       # Returns the feeds retention policies configured for the app. Server-side only.
       #
       # @return [Models::GetFeedsRetentionPolicyResponse]
@@ -2194,6 +2288,108 @@ module GetStream
           :post,
           path,
           body: body
+        )
+      end
+
+      # Schedule an activity to be published at a future time
+      #
+      # @param schedule_activity_request [ScheduleActivityRequest]
+      # @return [Models::ScheduleActivityResponse]
+      def schedule_activity(schedule_activity_request)
+        path = '/api/v2/feeds/scheduled_activities'
+        # Build request body
+        body = schedule_activity_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
+      # Query scheduled activities ordered by scheduled time
+      #
+      # @param query_scheduled_activities_request [QueryScheduledActivitiesRequest]
+      # @return [Models::QueryScheduledActivitiesResponse]
+      def query_scheduled_activities(query_scheduled_activities_request)
+        path = '/api/v2/feeds/scheduled_activities/query'
+        # Build request body
+        body = query_scheduled_activities_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
+      # Cancel a scheduled activity so it is never published
+      #
+      # @param _id [String]
+      # @return [Models::DeleteScheduledActivityResponse]
+      def delete_scheduled_activity(_id)
+        path = '/api/v2/feeds/scheduled_activities/{id}'
+        # Replace path parameters
+        path = path.gsub('{id}', _id.to_s)
+
+        # Make the API request
+        @client.make_request(
+          :delete,
+          path
+        )
+      end
+
+      # Get a scheduled activity by its ID
+      #
+      # @param _id [String]
+      # @return [Models::GetScheduledActivityResponse]
+      def get_scheduled_activity(_id)
+        path = '/api/v2/feeds/scheduled_activities/{id}'
+        # Replace path parameters
+        path = path.gsub('{id}', _id.to_s)
+
+        # Make the API request
+        @client.make_request(
+          :get,
+          path
+        )
+      end
+
+      # Change the activity or the publish time of a scheduled activity
+      #
+      # @param _id [String]
+      # @param update_scheduled_activity_request [UpdateScheduledActivityRequest]
+      # @return [Models::UpdateScheduledActivityResponse]
+      def update_scheduled_activity(_id, update_scheduled_activity_request)
+        path = '/api/v2/feeds/scheduled_activities/{id}'
+        # Replace path parameters
+        path = path.gsub('{id}', _id.to_s)
+        # Build request body
+        body = update_scheduled_activity_request
+
+        # Make the API request
+        @client.make_request(
+          :patch,
+          path,
+          body: body
+        )
+      end
+
+      # Move the publish time of a scheduled activity to now
+      #
+      # @param _id [String]
+      # @return [Models::PublishScheduledActivityNowResponse]
+      def publish_scheduled_activity_now(_id)
+        path = '/api/v2/feeds/scheduled_activities/{id}/publish_now'
+        # Replace path parameters
+        path = path.gsub('{id}', _id.to_s)
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path
         )
       end
 
@@ -2361,6 +2557,27 @@ module GetStream
           :put,
           path,
           body: body
+        )
+      end
+
+      # Returns the topics trending in the app, ranked for the user: the trend of a tag scaled by the user's interest weight in it. Tags the user has a negative weight for are left out. Empty for apps without for_you.trending. Client-side callers may only read their own.
+      #
+      # @param user_id [String]
+      # @param limit [Integer]
+      # @return [Models::GetTrendingTopicsResponse]
+      def get_trending_topics(user_id, limit = nil)
+        path = '/api/v2/feeds/users/{user_id}/trending_topics'
+        # Replace path parameters
+        path = path.gsub('{user_id}', user_id.to_s)
+        # Build query parameters
+        query_params = {}
+        query_params['limit'] = limit unless limit.nil?
+
+        # Make the API request
+        @client.make_request(
+          :get,
+          path,
+          query_params: query_params
         )
       end
 

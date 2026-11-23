@@ -34,13 +34,13 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @channel_mentions = attributes[:channel_mentions] || attributes['channel_mentions'] || nil
-          @default_preference = attributes[:default_preference] || attributes['default_preference'] || nil
-          @direct_mentions = attributes[:direct_mentions] || attributes['direct_mentions'] || nil
-          @group_mentions = attributes[:group_mentions] || attributes['group_mentions'] || nil
-          @here_mentions = attributes[:here_mentions] || attributes['here_mentions'] || nil
-          @role_mentions = attributes[:role_mentions] || attributes['role_mentions'] || nil
-          @thread_replies = attributes[:thread_replies] || attributes['thread_replies'] || nil
+          @channel_mentions = attributes.fetch(:channel_mentions) { attributes.fetch('channel_mentions', nil) }
+          @default_preference = attributes.fetch(:default_preference) { attributes.fetch('default_preference', nil) }
+          @direct_mentions = attributes.fetch(:direct_mentions) { attributes.fetch('direct_mentions', nil) }
+          @group_mentions = attributes.fetch(:group_mentions) { attributes.fetch('group_mentions', nil) }
+          @here_mentions = attributes.fetch(:here_mentions) { attributes.fetch('here_mentions', nil) }
+          @role_mentions = attributes.fetch(:role_mentions) { attributes.fetch('role_mentions', nil) }
+          @thread_replies = attributes.fetch(:thread_replies) { attributes.fetch('thread_replies', nil) }
         end
 
         # Override field mappings for JSON serialization

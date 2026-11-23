@@ -18,6 +18,9 @@ module GetStream
         # @!attribute ocr_rules
         #   @return [Array<OCRRule>]
         attr_accessor :ocr_rules
+        # @!attribute ocr_severity_rules
+        #   @return [Array<BodyguardRule>]
+        attr_accessor :ocr_severity_rules
         # @!attribute rules
         #   @return [Array<AWSRekognitionRule>]
         attr_accessor :rules
@@ -25,10 +28,11 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @async = attributes[:async] || attributes['async'] || nil
-          @enabled = attributes[:enabled] || attributes['enabled'] || nil
-          @ocr_rules = attributes[:ocr_rules] || attributes['ocr_rules'] || nil
-          @rules = attributes[:rules] || attributes['rules'] || nil
+          @async = attributes.fetch(:async) { attributes.fetch('async', nil) }
+          @enabled = attributes.fetch(:enabled) { attributes.fetch('enabled', nil) }
+          @ocr_rules = attributes.fetch(:ocr_rules) { attributes.fetch('ocr_rules', nil) }
+          @ocr_severity_rules = attributes.fetch(:ocr_severity_rules) { attributes.fetch('ocr_severity_rules', nil) }
+          @rules = attributes.fetch(:rules) { attributes.fetch('rules', nil) }
         end
 
         # Override field mappings for JSON serialization
@@ -37,6 +41,7 @@ module GetStream
             async: 'async',
             enabled: 'enabled',
             ocr_rules: 'ocr_rules',
+            ocr_severity_rules: 'ocr_severity_rules',
             rules: 'rules'
           }
         end

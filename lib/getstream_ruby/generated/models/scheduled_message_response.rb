@@ -43,16 +43,16 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @cid = attributes[:cid] || attributes['cid']
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @id = attributes[:id] || attributes['id']
-          @scheduled_at = attributes[:scheduled_at] || attributes['scheduled_at']
-          @status = attributes[:status] || attributes['status']
-          @updated_at = attributes[:updated_at] || attributes['updated_at']
-          @message = attributes[:message] || attributes['message']
-          @user = attributes[:user] || attributes['user']
-          @failure_reason = attributes[:failure_reason] || attributes['failure_reason'] || nil
-          @channel = attributes[:channel] || attributes['channel'] || nil
+          @cid = attributes.fetch(:cid) { attributes.fetch('cid', nil) }
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @id = attributes.fetch(:id) { attributes.fetch('id', nil) }
+          @scheduled_at = attributes.fetch(:scheduled_at) { attributes.fetch('scheduled_at', nil) }
+          @status = attributes.fetch(:status) { attributes.fetch('status', nil) }
+          @updated_at = attributes.fetch(:updated_at) { attributes.fetch('updated_at', nil) }
+          @message = attributes.fetch(:message) { attributes.fetch('message', nil) }
+          @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
+          @failure_reason = attributes.fetch(:failure_reason) { attributes.fetch('failure_reason', nil) }
+          @channel = attributes.fetch(:channel) { attributes.fetch('channel', nil) }
         end
 
         # Override field mappings for JSON serialization

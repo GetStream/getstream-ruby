@@ -34,13 +34,13 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @call_cid = attributes[:call_cid] || attributes['call_cid']
-          @call_session_id = attributes[:call_session_id] || attributes['call_session_id']
-          @has_digest = attributes[:has_digest] || attributes['has_digest']
-          @counts = attributes[:counts] || attributes['counts']
-          @digest_error = attributes[:digest_error] || attributes['digest_error'] || nil
-          @session_ended_at = attributes[:session_ended_at] || attributes['session_ended_at'] || nil
-          @session_started_at = attributes[:session_started_at] || attributes['session_started_at'] || nil
+          @call_cid = attributes.fetch(:call_cid) { attributes.fetch('call_cid', nil) }
+          @call_session_id = attributes.fetch(:call_session_id) { attributes.fetch('call_session_id', nil) }
+          @has_digest = attributes.fetch(:has_digest) { attributes.fetch('has_digest', nil) }
+          @counts = attributes.fetch(:counts) { attributes.fetch('counts', nil) }
+          @digest_error = attributes.fetch(:digest_error) { attributes.fetch('digest_error', nil) }
+          @session_ended_at = attributes.fetch(:session_ended_at) { attributes.fetch('session_ended_at', nil) }
+          @session_started_at = attributes.fetch(:session_started_at) { attributes.fetch('session_started_at', nil) }
         end
 
         # Override field mappings for JSON serialization

@@ -37,14 +37,14 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @app = attributes[:app] || attributes['app']
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @id = attributes[:id] || attributes['id']
-          @name = attributes[:name] || attributes['name']
-          @recording_external_storage = attributes[:recording_external_storage] || attributes['recording_external_storage']
-          @updated_at = attributes[:updated_at] || attributes['updated_at']
-          @notification_settings = attributes[:notification_settings] || attributes['notification_settings'] || nil
-          @settings = attributes[:settings] || attributes['settings'] || nil
+          @app = attributes.fetch(:app) { attributes.fetch('app', nil) }
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @id = attributes.fetch(:id) { attributes.fetch('id', nil) }
+          @name = attributes.fetch(:name) { attributes.fetch('name', nil) }
+          @recording_external_storage = attributes.fetch(:recording_external_storage) { attributes.fetch('recording_external_storage', nil) }
+          @updated_at = attributes.fetch(:updated_at) { attributes.fetch('updated_at', nil) }
+          @notification_settings = attributes.fetch(:notification_settings) { attributes.fetch('notification_settings', nil) }
+          @settings = attributes.fetch(:settings) { attributes.fetch('settings', nil) }
         end
 
         # Override field mappings for JSON serialization

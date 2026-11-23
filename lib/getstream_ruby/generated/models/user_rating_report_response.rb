@@ -19,8 +19,8 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @average = attributes[:average] || attributes['average']
-          @count = attributes[:count] || attributes['count']
+          @average = attributes.fetch(:average) { attributes.fetch('average', nil) }
+          @count = attributes.fetch(:count) { attributes.fetch('count', nil) }
         end
 
         # Override field mappings for JSON serialization

@@ -37,14 +37,14 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @default_device = attributes[:default_device] || attributes['default_device']
-          @access_request_enabled = attributes[:access_request_enabled] || attributes['access_request_enabled'] || nil
-          @hifi_audio_enabled = attributes[:hifi_audio_enabled] || attributes['hifi_audio_enabled'] || nil
-          @mic_default_on = attributes[:mic_default_on] || attributes['mic_default_on'] || nil
-          @opus_dtx_enabled = attributes[:opus_dtx_enabled] || attributes['opus_dtx_enabled'] || nil
-          @redundant_coding_enabled = attributes[:redundant_coding_enabled] || attributes['redundant_coding_enabled'] || nil
-          @speaker_default_on = attributes[:speaker_default_on] || attributes['speaker_default_on'] || nil
-          @noise_cancellation = attributes[:noise_cancellation] || attributes['noise_cancellation'] || nil
+          @default_device = attributes.fetch(:default_device) { attributes.fetch('default_device', nil) }
+          @access_request_enabled = attributes.fetch(:access_request_enabled) { attributes.fetch('access_request_enabled', nil) }
+          @hifi_audio_enabled = attributes.fetch(:hifi_audio_enabled) { attributes.fetch('hifi_audio_enabled', nil) }
+          @mic_default_on = attributes.fetch(:mic_default_on) { attributes.fetch('mic_default_on', nil) }
+          @opus_dtx_enabled = attributes.fetch(:opus_dtx_enabled) { attributes.fetch('opus_dtx_enabled', nil) }
+          @redundant_coding_enabled = attributes.fetch(:redundant_coding_enabled) { attributes.fetch('redundant_coding_enabled', nil) }
+          @speaker_default_on = attributes.fetch(:speaker_default_on) { attributes.fetch('speaker_default_on', nil) }
+          @noise_cancellation = attributes.fetch(:noise_cancellation) { attributes.fetch('noise_cancellation', nil) }
         end
 
         # Override field mappings for JSON serialization

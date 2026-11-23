@@ -33,6 +33,9 @@ module GetStream
         # @!attribute semantic_filter_names
         #   @return [Array<String>]
         attr_accessor :semantic_filter_names
+        # @!attribute severities
+        #   @return [Array<String>]
+        attr_accessor :severities
         # @!attribute llm_harm_labels
         #   @return [Hash<String, String>]
         attr_accessor :llm_harm_labels
@@ -40,15 +43,16 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @contains_url = attributes[:contains_url] || attributes['contains_url'] || nil
-          @semantic_filter_min_threshold = attributes[:semantic_filter_min_threshold] || attributes['semantic_filter_min_threshold'] || nil
-          @severity = attributes[:severity] || attributes['severity'] || nil
-          @threshold = attributes[:threshold] || attributes['threshold'] || nil
-          @time_window = attributes[:time_window] || attributes['time_window'] || nil
-          @blocklist_match = attributes[:blocklist_match] || attributes['blocklist_match'] || nil
-          @harm_labels = attributes[:harm_labels] || attributes['harm_labels'] || nil
-          @semantic_filter_names = attributes[:semantic_filter_names] || attributes['semantic_filter_names'] || nil
-          @llm_harm_labels = attributes[:llm_harm_labels] || attributes['llm_harm_labels'] || nil
+          @contains_url = attributes.fetch(:contains_url) { attributes.fetch('contains_url', nil) }
+          @semantic_filter_min_threshold = attributes.fetch(:semantic_filter_min_threshold) { attributes.fetch('semantic_filter_min_threshold', nil) }
+          @severity = attributes.fetch(:severity) { attributes.fetch('severity', nil) }
+          @threshold = attributes.fetch(:threshold) { attributes.fetch('threshold', nil) }
+          @time_window = attributes.fetch(:time_window) { attributes.fetch('time_window', nil) }
+          @blocklist_match = attributes.fetch(:blocklist_match) { attributes.fetch('blocklist_match', nil) }
+          @harm_labels = attributes.fetch(:harm_labels) { attributes.fetch('harm_labels', nil) }
+          @semantic_filter_names = attributes.fetch(:semantic_filter_names) { attributes.fetch('semantic_filter_names', nil) }
+          @severities = attributes.fetch(:severities) { attributes.fetch('severities', nil) }
+          @llm_harm_labels = attributes.fetch(:llm_harm_labels) { attributes.fetch('llm_harm_labels', nil) }
         end
 
         # Override field mappings for JSON serialization
@@ -62,6 +66,7 @@ module GetStream
             blocklist_match: 'blocklist_match',
             harm_labels: 'harm_labels',
             semantic_filter_names: 'semantic_filter_names',
+            severities: 'severities',
             llm_harm_labels: 'llm_harm_labels'
           }
         end

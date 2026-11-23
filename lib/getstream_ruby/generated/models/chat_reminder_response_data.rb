@@ -37,14 +37,14 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @channel_cid = attributes[:channel_cid] || attributes['channel_cid']
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @message_id = attributes[:message_id] || attributes['message_id']
-          @updated_at = attributes[:updated_at] || attributes['updated_at']
-          @user_id = attributes[:user_id] || attributes['user_id']
-          @remind_at = attributes[:remind_at] || attributes['remind_at'] || nil
-          @message = attributes[:message] || attributes['message'] || nil
-          @user = attributes[:user] || attributes['user'] || nil
+          @channel_cid = attributes.fetch(:channel_cid) { attributes.fetch('channel_cid', nil) }
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @message_id = attributes.fetch(:message_id) { attributes.fetch('message_id', nil) }
+          @updated_at = attributes.fetch(:updated_at) { attributes.fetch('updated_at', nil) }
+          @user_id = attributes.fetch(:user_id) { attributes.fetch('user_id', nil) }
+          @remind_at = attributes.fetch(:remind_at) { attributes.fetch('remind_at', nil) }
+          @message = attributes.fetch(:message) { attributes.fetch('message', nil) }
+          @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
         end
 
         # Override field mappings for JSON serialization

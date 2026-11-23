@@ -49,18 +49,18 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @fid = attributes[:fid] || attributes['fid']
-          @custom = attributes[:custom] || attributes['custom']
-          @type = attributes[:type] || attributes['type'] || "feeds.activity.marked"
-          @feed_visibility = attributes[:feed_visibility] || attributes['feed_visibility'] || nil
-          @mark_all_read = attributes[:mark_all_read] || attributes['mark_all_read'] || nil
-          @mark_all_seen = attributes[:mark_all_seen] || attributes['mark_all_seen'] || nil
-          @received_at = attributes[:received_at] || attributes['received_at'] || nil
-          @mark_read = attributes[:mark_read] || attributes['mark_read'] || nil
-          @mark_seen = attributes[:mark_seen] || attributes['mark_seen'] || nil
-          @mark_watched = attributes[:mark_watched] || attributes['mark_watched'] || nil
-          @user = attributes[:user] || attributes['user'] || nil
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @fid = attributes.fetch(:fid) { attributes.fetch('fid', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
+          @type = attributes.fetch(:type) { attributes.fetch('type', "feeds.activity.marked") }
+          @feed_visibility = attributes.fetch(:feed_visibility) { attributes.fetch('feed_visibility', nil) }
+          @mark_all_read = attributes.fetch(:mark_all_read) { attributes.fetch('mark_all_read', nil) }
+          @mark_all_seen = attributes.fetch(:mark_all_seen) { attributes.fetch('mark_all_seen', nil) }
+          @received_at = attributes.fetch(:received_at) { attributes.fetch('received_at', nil) }
+          @mark_read = attributes.fetch(:mark_read) { attributes.fetch('mark_read', nil) }
+          @mark_seen = attributes.fetch(:mark_seen) { attributes.fetch('mark_seen', nil) }
+          @mark_watched = attributes.fetch(:mark_watched) { attributes.fetch('mark_watched', nil) }
+          @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
         end
 
         # Override field mappings for JSON serialization

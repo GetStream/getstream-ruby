@@ -31,12 +31,12 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @end_date = attributes[:end_date] || attributes['end_date'] || nil
-          @limit = attributes[:limit] || attributes['limit'] || nil
-          @month = attributes[:month] || attributes['month'] || nil
-          @next = attributes[:next] || attributes['next'] || nil
-          @start_date = attributes[:start_date] || attributes['start_date'] || nil
-          @team = attributes[:team] || attributes['team'] || nil
+          @end_date = attributes.fetch(:end_date) { attributes.fetch('end_date', nil) }
+          @limit = attributes.fetch(:limit) { attributes.fetch('limit', nil) }
+          @month = attributes.fetch(:month) { attributes.fetch('month', nil) }
+          @next = attributes.fetch(:next) { attributes.fetch('next', nil) }
+          @start_date = attributes.fetch(:start_date) { attributes.fetch('start_date', nil) }
+          @team = attributes.fetch(:team) { attributes.fetch('team', nil) }
         end
 
         # Override field mappings for JSON serialization

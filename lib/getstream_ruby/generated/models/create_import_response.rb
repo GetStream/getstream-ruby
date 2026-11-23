@@ -19,8 +19,8 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @duration = attributes[:duration] || attributes['duration']
-          @import_task = attributes[:import_task] || attributes['import_task'] || nil
+          @duration = attributes.fetch(:duration) { attributes.fetch('duration', nil) }
+          @import_task = attributes.fetch(:import_task) { attributes.fetch('import_task', nil) }
         end
 
         # Override field mappings for JSON serialization

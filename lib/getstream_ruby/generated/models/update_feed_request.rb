@@ -37,14 +37,14 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @clear_location = attributes[:clear_location] || attributes['clear_location'] || nil
-          @created_by_id = attributes[:created_by_id] || attributes['created_by_id'] || nil
-          @description = attributes[:description] || attributes['description'] || nil
-          @enrich_own_fields = attributes[:enrich_own_fields] || attributes['enrich_own_fields'] || nil
-          @name = attributes[:name] || attributes['name'] || nil
-          @filter_tags = attributes[:filter_tags] || attributes['filter_tags'] || nil
-          @custom = attributes[:custom] || attributes['custom'] || nil
-          @location = attributes[:location] || attributes['location'] || nil
+          @clear_location = attributes.fetch(:clear_location) { attributes.fetch('clear_location', nil) }
+          @created_by_id = attributes.fetch(:created_by_id) { attributes.fetch('created_by_id', nil) }
+          @description = attributes.fetch(:description) { attributes.fetch('description', nil) }
+          @enrich_own_fields = attributes.fetch(:enrich_own_fields) { attributes.fetch('enrich_own_fields', nil) }
+          @name = attributes.fetch(:name) { attributes.fetch('name', nil) }
+          @filter_tags = attributes.fetch(:filter_tags) { attributes.fetch('filter_tags', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
+          @location = attributes.fetch(:location) { attributes.fetch('location', nil) }
         end
 
         # Override field mappings for JSON serialization

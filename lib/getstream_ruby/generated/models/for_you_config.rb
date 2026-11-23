@@ -15,19 +15,34 @@ module GetStream
         # @!attribute preset
         #   @return [String] Name of a registered ranking preset that stands in for 'score' when score is empty. One of: for_you_v2, hot
         attr_accessor :preset
+        # @!attribute trending
+        #   @return [Boolean] Tracks trending tags and turns on the topic_trend ranking variable (0-1, the highest trend over a post's interest tags). Requires enabled
+        attr_accessor :trending
+        # @!attribute dwell
+        #   @return [ForYouDwellConfig]
+        attr_accessor :dwell
+        # @!attribute exploration
+        #   @return [ForYouExplorationConfig]
+        attr_accessor :exploration
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @enabled = attributes[:enabled] || attributes['enabled'] || nil
-          @preset = attributes[:preset] || attributes['preset'] || nil
+          @enabled = attributes.fetch(:enabled) { attributes.fetch('enabled', nil) }
+          @preset = attributes.fetch(:preset) { attributes.fetch('preset', nil) }
+          @trending = attributes.fetch(:trending) { attributes.fetch('trending', nil) }
+          @dwell = attributes.fetch(:dwell) { attributes.fetch('dwell', nil) }
+          @exploration = attributes.fetch(:exploration) { attributes.fetch('exploration', nil) }
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
             enabled: 'enabled',
-            preset: 'preset'
+            preset: 'preset',
+            trending: 'trending',
+            dwell: 'dwell',
+            exploration: 'exploration'
           }
         end
       end

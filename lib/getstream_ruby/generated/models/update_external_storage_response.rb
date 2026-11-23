@@ -28,11 +28,11 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @bucket = attributes[:bucket] || attributes['bucket']
-          @duration = attributes[:duration] || attributes['duration']
-          @name = attributes[:name] || attributes['name']
-          @path = attributes[:path] || attributes['path']
-          @type = attributes[:type] || attributes['type']
+          @bucket = attributes.fetch(:bucket) { attributes.fetch('bucket', nil) }
+          @duration = attributes.fetch(:duration) { attributes.fetch('duration', nil) }
+          @name = attributes.fetch(:name) { attributes.fetch('name', nil) }
+          @path = attributes.fetch(:path) { attributes.fetch('path', nil) }
+          @type = attributes.fetch(:type) { attributes.fetch('type', nil) }
         end
 
         # Override field mappings for JSON serialization

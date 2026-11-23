@@ -79,28 +79,28 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @message_id = attributes[:message_id] || attributes['message_id']
-          @watcher_count = attributes[:watcher_count] || attributes['watcher_count']
-          @custom = attributes[:custom] || attributes['custom']
-          @message = attributes[:message] || attributes['message']
-          @type = attributes[:type] || attributes['type'] || "message.new"
-          @channel_id = attributes[:channel_id] || attributes['channel_id'] || nil
-          @channel_member_count = attributes[:channel_member_count] || attributes['channel_member_count'] || nil
-          @channel_message_count = attributes[:channel_message_count] || attributes['channel_message_count'] || nil
-          @channel_type = attributes[:channel_type] || attributes['channel_type'] || nil
-          @cid = attributes[:cid] || attributes['cid'] || nil
-          @parent_author = attributes[:parent_author] || attributes['parent_author'] || nil
-          @received_at = attributes[:received_at] || attributes['received_at'] || nil
-          @team = attributes[:team] || attributes['team'] || nil
-          @total_unread_count = attributes[:total_unread_count] || attributes['total_unread_count'] || nil
-          @unread_channels = attributes[:unread_channels] || attributes['unread_channels'] || nil
-          @unread_count = attributes[:unread_count] || attributes['unread_count'] || nil
-          @thread_participants = attributes[:thread_participants] || attributes['thread_participants'] || nil
-          @channel = attributes[:channel] || attributes['channel'] || nil
-          @channel_custom = attributes[:channel_custom] || attributes['channel_custom'] || nil
-          @grouped_unread_channels = attributes[:grouped_unread_channels] || attributes['grouped_unread_channels'] || nil
-          @user = attributes[:user] || attributes['user'] || nil
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @message_id = attributes.fetch(:message_id) { attributes.fetch('message_id', nil) }
+          @watcher_count = attributes.fetch(:watcher_count) { attributes.fetch('watcher_count', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
+          @message = attributes.fetch(:message) { attributes.fetch('message', nil) }
+          @type = attributes.fetch(:type) { attributes.fetch('type', "message.new") }
+          @channel_id = attributes.fetch(:channel_id) { attributes.fetch('channel_id', nil) }
+          @channel_member_count = attributes.fetch(:channel_member_count) { attributes.fetch('channel_member_count', nil) }
+          @channel_message_count = attributes.fetch(:channel_message_count) { attributes.fetch('channel_message_count', nil) }
+          @channel_type = attributes.fetch(:channel_type) { attributes.fetch('channel_type', nil) }
+          @cid = attributes.fetch(:cid) { attributes.fetch('cid', nil) }
+          @parent_author = attributes.fetch(:parent_author) { attributes.fetch('parent_author', nil) }
+          @received_at = attributes.fetch(:received_at) { attributes.fetch('received_at', nil) }
+          @team = attributes.fetch(:team) { attributes.fetch('team', nil) }
+          @total_unread_count = attributes.fetch(:total_unread_count) { attributes.fetch('total_unread_count', nil) }
+          @unread_channels = attributes.fetch(:unread_channels) { attributes.fetch('unread_channels', nil) }
+          @unread_count = attributes.fetch(:unread_count) { attributes.fetch('unread_count', nil) }
+          @thread_participants = attributes.fetch(:thread_participants) { attributes.fetch('thread_participants', nil) }
+          @channel = attributes.fetch(:channel) { attributes.fetch('channel', nil) }
+          @channel_custom = attributes.fetch(:channel_custom) { attributes.fetch('channel_custom', nil) }
+          @grouped_unread_channels = attributes.fetch(:grouped_unread_channels) { attributes.fetch('grouped_unread_channels', nil) }
+          @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
         end
 
         # Override field mappings for JSON serialization

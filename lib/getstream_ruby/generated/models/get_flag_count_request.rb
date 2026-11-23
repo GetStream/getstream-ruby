@@ -19,8 +19,8 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @entity_creator_id = attributes[:entity_creator_id] || attributes['entity_creator_id']
-          @entity_type = attributes[:entity_type] || attributes['entity_type'] || nil
+          @entity_creator_id = attributes.fetch(:entity_creator_id) { attributes.fetch('entity_creator_id', nil) }
+          @entity_type = attributes.fetch(:entity_type) { attributes.fetch('entity_type', nil) }
         end
 
         # Override field mappings for JSON serialization

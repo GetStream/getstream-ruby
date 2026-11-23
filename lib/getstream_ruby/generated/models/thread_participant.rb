@@ -40,15 +40,15 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @channel_cid = attributes[:channel_cid] || attributes['channel_cid']
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @last_read_at = attributes[:last_read_at] || attributes['last_read_at']
-          @custom = attributes[:custom] || attributes['custom']
-          @last_thread_message_at = attributes[:last_thread_message_at] || attributes['last_thread_message_at'] || nil
-          @left_thread_at = attributes[:left_thread_at] || attributes['left_thread_at'] || nil
-          @thread_id = attributes[:thread_id] || attributes['thread_id'] || nil
-          @user_id = attributes[:user_id] || attributes['user_id'] || nil
-          @user = attributes[:user] || attributes['user'] || nil
+          @channel_cid = attributes.fetch(:channel_cid) { attributes.fetch('channel_cid', nil) }
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @last_read_at = attributes.fetch(:last_read_at) { attributes.fetch('last_read_at', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
+          @last_thread_message_at = attributes.fetch(:last_thread_message_at) { attributes.fetch('last_thread_message_at', nil) }
+          @left_thread_at = attributes.fetch(:left_thread_at) { attributes.fetch('left_thread_at', nil) }
+          @thread_id = attributes.fetch(:thread_id) { attributes.fetch('thread_id', nil) }
+          @user_id = attributes.fetch(:user_id) { attributes.fetch('user_id', nil) }
+          @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
         end
 
         # Override field mappings for JSON serialization

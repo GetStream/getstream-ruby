@@ -34,13 +34,13 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @id = attributes[:id] || attributes['id']
-          @push_provider = attributes[:push_provider] || attributes['push_provider']
-          @hardware_id = attributes[:hardware_id] || attributes['hardware_id'] || nil
-          @push_provider_name = attributes[:push_provider_name] || attributes['push_provider_name'] || nil
-          @user_id = attributes[:user_id] || attributes['user_id'] || nil
-          @voip_token = attributes[:voip_token] || attributes['voip_token'] || nil
-          @user = attributes[:user] || attributes['user'] || nil
+          @id = attributes.fetch(:id) { attributes.fetch('id', nil) }
+          @push_provider = attributes.fetch(:push_provider) { attributes.fetch('push_provider', nil) }
+          @hardware_id = attributes.fetch(:hardware_id) { attributes.fetch('hardware_id', nil) }
+          @push_provider_name = attributes.fetch(:push_provider_name) { attributes.fetch('push_provider_name', nil) }
+          @user_id = attributes.fetch(:user_id) { attributes.fetch('user_id', nil) }
+          @voip_token = attributes.fetch(:voip_token) { attributes.fetch('voip_token', nil) }
+          @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
         end
 
         # Override field mappings for JSON serialization

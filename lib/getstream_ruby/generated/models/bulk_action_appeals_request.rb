@@ -41,15 +41,15 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @action_type = attributes[:action_type] || attributes['action_type']
-          @appeal_ids = attributes[:appeal_ids] || attributes['appeal_ids']
-          @user_id = attributes[:user_id] || attributes['user_id'] || nil
-          @mark_reviewed = attributes[:mark_reviewed] || attributes['mark_reviewed'] || nil
-          @reject_appeal = attributes[:reject_appeal] || attributes['reject_appeal'] || nil
-          @restore = attributes[:restore] || attributes['restore'] || nil
-          @unban = attributes[:unban] || attributes['unban'] || nil
-          @unblock = attributes[:unblock] || attributes['unblock'] || nil
-          @user = attributes[:user] || attributes['user'] || nil
+          @action_type = attributes.fetch(:action_type) { attributes.fetch('action_type', nil) }
+          @appeal_ids = attributes.fetch(:appeal_ids) { attributes.fetch('appeal_ids', nil) }
+          @user_id = attributes.fetch(:user_id) { attributes.fetch('user_id', nil) }
+          @mark_reviewed = attributes.fetch(:mark_reviewed) { attributes.fetch('mark_reviewed', nil) }
+          @reject_appeal = attributes.fetch(:reject_appeal) { attributes.fetch('reject_appeal', nil) }
+          @restore = attributes.fetch(:restore) { attributes.fetch('restore', nil) }
+          @unban = attributes.fetch(:unban) { attributes.fetch('unban', nil) }
+          @unblock = attributes.fetch(:unblock) { attributes.fetch('unblock', nil) }
+          @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
         end
 
         # Override field mappings for JSON serialization

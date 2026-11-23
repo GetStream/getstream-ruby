@@ -58,21 +58,21 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @live_sessions = attributes[:live_sessions] || attributes['live_sessions']
-          @participants = attributes[:participants] || attributes['participants']
-          @peak_concurrent_sessions = attributes[:peak_concurrent_sessions] || attributes['peak_concurrent_sessions']
-          @peak_concurrent_users = attributes[:peak_concurrent_users] || attributes['peak_concurrent_users']
-          @publishers = attributes[:publishers] || attributes['publishers']
-          @sessions = attributes[:sessions] || attributes['sessions']
-          @sfus_used = attributes[:sfus_used] || attributes['sfus_used']
-          @average_jitter_ms = attributes[:average_jitter_ms] || attributes['average_jitter_ms'] || nil
-          @average_latency_ms = attributes[:average_latency_ms] || attributes['average_latency_ms'] || nil
-          @avg_user_rating = attributes[:avg_user_rating] || attributes['avg_user_rating'] || nil
-          @call_event_count = attributes[:call_event_count] || attributes['call_event_count'] || nil
-          @cq_score = attributes[:cq_score] || attributes['cq_score'] || nil
-          @max_freezes_duration_ms = attributes[:max_freezes_duration_ms] || attributes['max_freezes_duration_ms'] || nil
-          @min_user_rating = attributes[:min_user_rating] || attributes['min_user_rating'] || nil
-          @total_participant_duration = attributes[:total_participant_duration] || attributes['total_participant_duration'] || nil
+          @live_sessions = attributes.fetch(:live_sessions) { attributes.fetch('live_sessions', nil) }
+          @participants = attributes.fetch(:participants) { attributes.fetch('participants', nil) }
+          @peak_concurrent_sessions = attributes.fetch(:peak_concurrent_sessions) { attributes.fetch('peak_concurrent_sessions', nil) }
+          @peak_concurrent_users = attributes.fetch(:peak_concurrent_users) { attributes.fetch('peak_concurrent_users', nil) }
+          @publishers = attributes.fetch(:publishers) { attributes.fetch('publishers', nil) }
+          @sessions = attributes.fetch(:sessions) { attributes.fetch('sessions', nil) }
+          @sfus_used = attributes.fetch(:sfus_used) { attributes.fetch('sfus_used', nil) }
+          @average_jitter_ms = attributes.fetch(:average_jitter_ms) { attributes.fetch('average_jitter_ms', nil) }
+          @average_latency_ms = attributes.fetch(:average_latency_ms) { attributes.fetch('average_latency_ms', nil) }
+          @avg_user_rating = attributes.fetch(:avg_user_rating) { attributes.fetch('avg_user_rating', nil) }
+          @call_event_count = attributes.fetch(:call_event_count) { attributes.fetch('call_event_count', nil) }
+          @cq_score = attributes.fetch(:cq_score) { attributes.fetch('cq_score', nil) }
+          @max_freezes_duration_ms = attributes.fetch(:max_freezes_duration_ms) { attributes.fetch('max_freezes_duration_ms', nil) }
+          @min_user_rating = attributes.fetch(:min_user_rating) { attributes.fetch('min_user_rating', nil) }
+          @total_participant_duration = attributes.fetch(:total_participant_duration) { attributes.fetch('total_participant_duration', nil) }
         end
 
         # Override field mappings for JSON serialization

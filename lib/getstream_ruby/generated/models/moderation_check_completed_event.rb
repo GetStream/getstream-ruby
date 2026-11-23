@@ -33,18 +33,22 @@ module GetStream
         # @!attribute received_at
         #   @return [DateTime]
         attr_accessor :received_at
+        # @!attribute moderation_payload
+        #   @return [ModerationPayloadResponse] Content payload for moderation
+        attr_accessor :moderation_payload
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @entity_id = attributes[:entity_id] || attributes['entity_id']
-          @entity_type = attributes[:entity_type] || attributes['entity_type']
-          @recommended_action = attributes[:recommended_action] || attributes['recommended_action']
-          @review_queue_item_id = attributes[:review_queue_item_id] || attributes['review_queue_item_id']
-          @custom = attributes[:custom] || attributes['custom']
-          @type = attributes[:type] || attributes['type'] || "moderation_check.completed"
-          @received_at = attributes[:received_at] || attributes['received_at'] || nil
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @entity_id = attributes.fetch(:entity_id) { attributes.fetch('entity_id', nil) }
+          @entity_type = attributes.fetch(:entity_type) { attributes.fetch('entity_type', nil) }
+          @recommended_action = attributes.fetch(:recommended_action) { attributes.fetch('recommended_action', nil) }
+          @review_queue_item_id = attributes.fetch(:review_queue_item_id) { attributes.fetch('review_queue_item_id', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
+          @type = attributes.fetch(:type) { attributes.fetch('type', "moderation_check.completed") }
+          @received_at = attributes.fetch(:received_at) { attributes.fetch('received_at', nil) }
+          @moderation_payload = attributes.fetch(:moderation_payload) { attributes.fetch('moderation_payload', nil) }
         end
 
         # Override field mappings for JSON serialization
@@ -57,7 +61,8 @@ module GetStream
             review_queue_item_id: 'review_queue_item_id',
             custom: 'custom',
             type: 'type',
-            received_at: 'received_at'
+            received_at: 'received_at',
+            moderation_payload: 'moderation_payload'
           }
         end
       end

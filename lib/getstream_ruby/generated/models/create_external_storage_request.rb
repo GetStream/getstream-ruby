@@ -34,13 +34,13 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @bucket = attributes[:bucket] || attributes['bucket']
-          @name = attributes[:name] || attributes['name']
-          @storage_type = attributes[:storage_type] || attributes['storage_type']
-          @gcs_credentials = attributes[:gcs_credentials] || attributes['gcs_credentials'] || nil
-          @path = attributes[:path] || attributes['path'] || nil
-          @aws_s3 = attributes[:aws_s3] || attributes['aws_s3'] || nil
-          @azure_blob = attributes[:azure_blob] || attributes['azure_blob'] || nil
+          @bucket = attributes.fetch(:bucket) { attributes.fetch('bucket', nil) }
+          @name = attributes.fetch(:name) { attributes.fetch('name', nil) }
+          @storage_type = attributes.fetch(:storage_type) { attributes.fetch('storage_type', nil) }
+          @gcs_credentials = attributes.fetch(:gcs_credentials) { attributes.fetch('gcs_credentials', nil) }
+          @path = attributes.fetch(:path) { attributes.fetch('path', nil) }
+          @aws_s3 = attributes.fetch(:aws_s3) { attributes.fetch('aws_s3', nil) }
+          @azure_blob = attributes.fetch(:azure_blob) { attributes.fetch('azure_blob', nil) }
         end
 
         # Override field mappings for JSON serialization

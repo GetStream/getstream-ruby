@@ -40,15 +40,15 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @cid = attributes[:cid] || attributes['cid']
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @message_id = attributes[:message_id] || attributes['message_id']
-          @user_id = attributes[:user_id] || attributes['user_id']
-          @custom = attributes[:custom] || attributes['custom']
-          @reminder = attributes[:reminder] || attributes['reminder']
-          @type = attributes[:type] || attributes['type'] || "reminder.updated"
-          @parent_id = attributes[:parent_id] || attributes['parent_id'] || nil
-          @received_at = attributes[:received_at] || attributes['received_at'] || nil
+          @cid = attributes.fetch(:cid) { attributes.fetch('cid', nil) }
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @message_id = attributes.fetch(:message_id) { attributes.fetch('message_id', nil) }
+          @user_id = attributes.fetch(:user_id) { attributes.fetch('user_id', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
+          @reminder = attributes.fetch(:reminder) { attributes.fetch('reminder', nil) }
+          @type = attributes.fetch(:type) { attributes.fetch('type', "reminder.updated") }
+          @parent_id = attributes.fetch(:parent_id) { attributes.fetch('parent_id', nil) }
+          @received_at = attributes.fetch(:received_at) { attributes.fetch('received_at', nil) }
         end
 
         # Override field mappings for JSON serialization

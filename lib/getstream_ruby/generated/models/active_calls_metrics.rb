@@ -22,9 +22,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @join_call_api = attributes[:join_call_api] || attributes['join_call_api'] || nil
-          @publishers = attributes[:publishers] || attributes['publishers'] || nil
-          @subscribers = attributes[:subscribers] || attributes['subscribers'] || nil
+          @join_call_api = attributes.fetch(:join_call_api) { attributes.fetch('join_call_api', nil) }
+          @publishers = attributes.fetch(:publishers) { attributes.fetch('publishers', nil) }
+          @subscribers = attributes.fetch(:subscribers) { attributes.fetch('subscribers', nil) }
         end
 
         # Override field mappings for JSON serialization

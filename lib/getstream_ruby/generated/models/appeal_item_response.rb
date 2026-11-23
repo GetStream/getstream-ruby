@@ -88,31 +88,31 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @appeal_reason = attributes[:appeal_reason] || attributes['appeal_reason']
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @entity_id = attributes[:entity_id] || attributes['entity_id']
-          @entity_type = attributes[:entity_type] || attributes['entity_type']
-          @id = attributes[:id] || attributes['id']
-          @status = attributes[:status] || attributes['status']
-          @updated_at = attributes[:updated_at] || attributes['updated_at']
-          @ai_text_severity = attributes[:ai_text_severity] || attributes['ai_text_severity'] || nil
-          @appeal_reason_language = attributes[:appeal_reason_language] || attributes['appeal_reason_language'] || nil
-          @channel_cid = attributes[:channel_cid] || attributes['channel_cid'] || nil
-          @config_key = attributes[:config_key] || attributes['config_key'] || nil
-          @decision_reason = attributes[:decision_reason] || attributes['decision_reason'] || nil
-          @recommended_action = attributes[:recommended_action] || attributes['recommended_action'] || nil
-          @review_queue_item_id = attributes[:review_queue_item_id] || attributes['review_queue_item_id'] || nil
-          @severity = attributes[:severity] || attributes['severity'] || nil
-          @actions = attributes[:actions] || attributes['actions'] || nil
-          @attachments = attributes[:attachments] || attributes['attachments'] || nil
-          @flag_labels = attributes[:flag_labels] || attributes['flag_labels'] || nil
-          @flag_types = attributes[:flag_types] || attributes['flag_types'] || nil
-          @flags = attributes[:flags] || attributes['flags'] || nil
-          @languages = attributes[:languages] || attributes['languages'] || nil
-          @entity_content = attributes[:entity_content] || attributes['entity_content'] || nil
-          @moderation_action = attributes[:moderation_action] || attributes['moderation_action'] || nil
-          @original_moderation_action = attributes[:original_moderation_action] || attributes['original_moderation_action'] || nil
-          @user = attributes[:user] || attributes['user'] || nil
+          @appeal_reason = attributes.fetch(:appeal_reason) { attributes.fetch('appeal_reason', nil) }
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @entity_id = attributes.fetch(:entity_id) { attributes.fetch('entity_id', nil) }
+          @entity_type = attributes.fetch(:entity_type) { attributes.fetch('entity_type', nil) }
+          @id = attributes.fetch(:id) { attributes.fetch('id', nil) }
+          @status = attributes.fetch(:status) { attributes.fetch('status', nil) }
+          @updated_at = attributes.fetch(:updated_at) { attributes.fetch('updated_at', nil) }
+          @ai_text_severity = attributes.fetch(:ai_text_severity) { attributes.fetch('ai_text_severity', nil) }
+          @appeal_reason_language = attributes.fetch(:appeal_reason_language) { attributes.fetch('appeal_reason_language', nil) }
+          @channel_cid = attributes.fetch(:channel_cid) { attributes.fetch('channel_cid', nil) }
+          @config_key = attributes.fetch(:config_key) { attributes.fetch('config_key', nil) }
+          @decision_reason = attributes.fetch(:decision_reason) { attributes.fetch('decision_reason', nil) }
+          @recommended_action = attributes.fetch(:recommended_action) { attributes.fetch('recommended_action', nil) }
+          @review_queue_item_id = attributes.fetch(:review_queue_item_id) { attributes.fetch('review_queue_item_id', nil) }
+          @severity = attributes.fetch(:severity) { attributes.fetch('severity', nil) }
+          @actions = attributes.fetch(:actions) { attributes.fetch('actions', nil) }
+          @attachments = attributes.fetch(:attachments) { attributes.fetch('attachments', nil) }
+          @flag_labels = attributes.fetch(:flag_labels) { attributes.fetch('flag_labels', nil) }
+          @flag_types = attributes.fetch(:flag_types) { attributes.fetch('flag_types', nil) }
+          @flags = attributes.fetch(:flags) { attributes.fetch('flags', nil) }
+          @languages = attributes.fetch(:languages) { attributes.fetch('languages', nil) }
+          @entity_content = attributes.fetch(:entity_content) { attributes.fetch('entity_content', nil) }
+          @moderation_action = attributes.fetch(:moderation_action) { attributes.fetch('moderation_action', nil) }
+          @original_moderation_action = attributes.fetch(:original_moderation_action) { attributes.fetch('original_moderation_action', nil) }
+          @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
         end
 
         # Override field mappings for JSON serialization

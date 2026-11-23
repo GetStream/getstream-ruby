@@ -82,29 +82,29 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @allow_answers = attributes[:allow_answers] || attributes['allow_answers']
-          @allow_user_suggested_options = attributes[:allow_user_suggested_options] || attributes['allow_user_suggested_options']
-          @answers_count = attributes[:answers_count] || attributes['answers_count']
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @created_by_id = attributes[:created_by_id] || attributes['created_by_id']
-          @description = attributes[:description] || attributes['description']
-          @enforce_unique_vote = attributes[:enforce_unique_vote] || attributes['enforce_unique_vote']
-          @id = attributes[:id] || attributes['id']
-          @name = attributes[:name] || attributes['name']
-          @updated_at = attributes[:updated_at] || attributes['updated_at']
-          @vote_count = attributes[:vote_count] || attributes['vote_count']
-          @voting_visibility = attributes[:voting_visibility] || attributes['voting_visibility']
-          @latest_answers = attributes[:latest_answers] || attributes['latest_answers']
-          @options = attributes[:options] || attributes['options']
-          @own_votes = attributes[:own_votes] || attributes['own_votes']
-          @custom = attributes[:custom] || attributes['custom']
-          @latest_votes_by_option = attributes[:latest_votes_by_option] || attributes['latest_votes_by_option']
-          @vote_counts_by_option = attributes[:vote_counts_by_option] || attributes['vote_counts_by_option']
-          @is_closed = attributes[:is_closed] || attributes['is_closed'] || nil
-          @max_votes_allowed = attributes[:max_votes_allowed] || attributes['max_votes_allowed'] || nil
-          @created_by = attributes[:created_by] || attributes['created_by'] || nil
-          @description_i18n = attributes[:description_i18n] || attributes['description_i18n'] || nil
-          @name_i18n = attributes[:name_i18n] || attributes['name_i18n'] || nil
+          @allow_answers = attributes.fetch(:allow_answers) { attributes.fetch('allow_answers', nil) }
+          @allow_user_suggested_options = attributes.fetch(:allow_user_suggested_options) { attributes.fetch('allow_user_suggested_options', nil) }
+          @answers_count = attributes.fetch(:answers_count) { attributes.fetch('answers_count', nil) }
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @created_by_id = attributes.fetch(:created_by_id) { attributes.fetch('created_by_id', nil) }
+          @description = attributes.fetch(:description) { attributes.fetch('description', nil) }
+          @enforce_unique_vote = attributes.fetch(:enforce_unique_vote) { attributes.fetch('enforce_unique_vote', nil) }
+          @id = attributes.fetch(:id) { attributes.fetch('id', nil) }
+          @name = attributes.fetch(:name) { attributes.fetch('name', nil) }
+          @updated_at = attributes.fetch(:updated_at) { attributes.fetch('updated_at', nil) }
+          @vote_count = attributes.fetch(:vote_count) { attributes.fetch('vote_count', nil) }
+          @voting_visibility = attributes.fetch(:voting_visibility) { attributes.fetch('voting_visibility', nil) }
+          @latest_answers = attributes.fetch(:latest_answers) { attributes.fetch('latest_answers', nil) }
+          @options = attributes.fetch(:options) { attributes.fetch('options', nil) }
+          @own_votes = attributes.fetch(:own_votes) { attributes.fetch('own_votes', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
+          @latest_votes_by_option = attributes.fetch(:latest_votes_by_option) { attributes.fetch('latest_votes_by_option', nil) }
+          @vote_counts_by_option = attributes.fetch(:vote_counts_by_option) { attributes.fetch('vote_counts_by_option', nil) }
+          @is_closed = attributes.fetch(:is_closed) { attributes.fetch('is_closed', nil) }
+          @max_votes_allowed = attributes.fetch(:max_votes_allowed) { attributes.fetch('max_votes_allowed', nil) }
+          @created_by = attributes.fetch(:created_by) { attributes.fetch('created_by', nil) }
+          @description_i18n = attributes.fetch(:description_i18n) { attributes.fetch('description_i18n', nil) }
+          @name_i18n = attributes.fetch(:name_i18n) { attributes.fetch('name_i18n', nil) }
         end
 
         # Override field mappings for JSON serialization

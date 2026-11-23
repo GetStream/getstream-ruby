@@ -61,22 +61,22 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @a1 = attributes[:a1] || attributes['a1'] || nil
-          @algorithm = attributes[:algorithm] || attributes['algorithm'] || nil
-          @charset = attributes[:charset] || attributes['charset'] || nil
-          @cnonce = attributes[:cnonce] || attributes['cnonce'] || nil
-          @method = attributes[:method] || attributes['method'] || nil
-          @nc = attributes[:nc] || attributes['nc'] || nil
-          @nonce = attributes[:nonce] || attributes['nonce'] || nil
-          @opaque = attributes[:opaque] || attributes['opaque'] || nil
-          @realm = attributes[:realm] || attributes['realm'] || nil
-          @response = attributes[:response] || attributes['response'] || nil
-          @stale = attributes[:stale] || attributes['stale'] || nil
-          @uri = attributes[:uri] || attributes['uri'] || nil
-          @userhash = attributes[:userhash] || attributes['userhash'] || nil
-          @username = attributes[:username] || attributes['username'] || nil
-          @domain = attributes[:domain] || attributes['domain'] || nil
-          @qop = attributes[:qop] || attributes['qop'] || nil
+          @a1 = attributes.fetch(:a1) { attributes.fetch('a1', nil) }
+          @algorithm = attributes.fetch(:algorithm) { attributes.fetch('algorithm', nil) }
+          @charset = attributes.fetch(:charset) { attributes.fetch('charset', nil) }
+          @cnonce = attributes.fetch(:cnonce) { attributes.fetch('cnonce', nil) }
+          @method = attributes.fetch(:method) { attributes.fetch('method', nil) }
+          @nc = attributes.fetch(:nc) { attributes.fetch('nc', nil) }
+          @nonce = attributes.fetch(:nonce) { attributes.fetch('nonce', nil) }
+          @opaque = attributes.fetch(:opaque) { attributes.fetch('opaque', nil) }
+          @realm = attributes.fetch(:realm) { attributes.fetch('realm', nil) }
+          @response = attributes.fetch(:response) { attributes.fetch('response', nil) }
+          @stale = attributes.fetch(:stale) { attributes.fetch('stale', nil) }
+          @uri = attributes.fetch(:uri) { attributes.fetch('uri', nil) }
+          @userhash = attributes.fetch(:userhash) { attributes.fetch('userhash', nil) }
+          @username = attributes.fetch(:username) { attributes.fetch('username', nil) }
+          @domain = attributes.fetch(:domain) { attributes.fetch('domain', nil) }
+          @qop = attributes.fetch(:qop) { attributes.fetch('qop', nil) }
         end
 
         # Override field mappings for JSON serialization

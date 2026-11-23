@@ -25,10 +25,10 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @event_type = attributes[:event_type] || attributes['event_type']
-          @timestamp = attributes[:timestamp] || attributes['timestamp']
-          @user_id = attributes[:user_id] || attributes['user_id']
-          @payload = attributes[:payload] || attributes['payload'] || nil
+          @event_type = attributes.fetch(:event_type) { attributes.fetch('event_type', nil) }
+          @timestamp = attributes.fetch(:timestamp) { attributes.fetch('timestamp', nil) }
+          @user_id = attributes.fetch(:user_id) { attributes.fetch('user_id', nil) }
+          @payload = attributes.fetch(:payload) { attributes.fetch('payload', nil) }
         end
 
         # Override field mappings for JSON serialization

@@ -49,18 +49,18 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @filter_conditions = attributes[:filter_conditions] || attributes['filter_conditions']
-          @id_gt = attributes[:id_gt] || attributes['id_gt'] || nil
-          @id_gte = attributes[:id_gte] || attributes['id_gte'] || nil
-          @id_lt = attributes[:id_lt] || attributes['id_lt'] || nil
-          @id_lte = attributes[:id_lte] || attributes['id_lte'] || nil
-          @include_deactivated_users = attributes[:include_deactivated_users] || attributes['include_deactivated_users'] || nil
-          @limit = attributes[:limit] || attributes['limit'] || nil
-          @offset = attributes[:offset] || attributes['offset'] || nil
-          @presence = attributes[:presence] || attributes['presence'] || nil
-          @user_id = attributes[:user_id] || attributes['user_id'] || nil
-          @sort = attributes[:sort] || attributes['sort'] || nil
-          @user = attributes[:user] || attributes['user'] || nil
+          @filter_conditions = attributes.fetch(:filter_conditions) { attributes.fetch('filter_conditions', nil) }
+          @id_gt = attributes.fetch(:id_gt) { attributes.fetch('id_gt', nil) }
+          @id_gte = attributes.fetch(:id_gte) { attributes.fetch('id_gte', nil) }
+          @id_lt = attributes.fetch(:id_lt) { attributes.fetch('id_lt', nil) }
+          @id_lte = attributes.fetch(:id_lte) { attributes.fetch('id_lte', nil) }
+          @include_deactivated_users = attributes.fetch(:include_deactivated_users) { attributes.fetch('include_deactivated_users', nil) }
+          @limit = attributes.fetch(:limit) { attributes.fetch('limit', nil) }
+          @offset = attributes.fetch(:offset) { attributes.fetch('offset', nil) }
+          @presence = attributes.fetch(:presence) { attributes.fetch('presence', nil) }
+          @user_id = attributes.fetch(:user_id) { attributes.fetch('user_id', nil) }
+          @sort = attributes.fetch(:sort) { attributes.fetch('sort', nil) }
+          @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
         end
 
         # Override field mappings for JSON serialization

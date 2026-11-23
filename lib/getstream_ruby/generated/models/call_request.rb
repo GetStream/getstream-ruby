@@ -40,15 +40,15 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @channel_cid = attributes[:channel_cid] || attributes['channel_cid'] || nil
-          @created_by_id = attributes[:created_by_id] || attributes['created_by_id'] || nil
-          @starts_at = attributes[:starts_at] || attributes['starts_at'] || nil
-          @team = attributes[:team] || attributes['team'] || nil
-          @video = attributes[:video] || attributes['video'] || nil
-          @members = attributes[:members] || attributes['members'] || nil
-          @created_by = attributes[:created_by] || attributes['created_by'] || nil
-          @custom = attributes[:custom] || attributes['custom'] || nil
-          @settings_override = attributes[:settings_override] || attributes['settings_override'] || nil
+          @channel_cid = attributes.fetch(:channel_cid) { attributes.fetch('channel_cid', nil) }
+          @created_by_id = attributes.fetch(:created_by_id) { attributes.fetch('created_by_id', nil) }
+          @starts_at = attributes.fetch(:starts_at) { attributes.fetch('starts_at', nil) }
+          @team = attributes.fetch(:team) { attributes.fetch('team', nil) }
+          @video = attributes.fetch(:video) { attributes.fetch('video', nil) }
+          @members = attributes.fetch(:members) { attributes.fetch('members', nil) }
+          @created_by = attributes.fetch(:created_by) { attributes.fetch('created_by', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
+          @settings_override = attributes.fetch(:settings_override) { attributes.fetch('settings_override', nil) }
         end
 
         # Override field mappings for JSON serialization

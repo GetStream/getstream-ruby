@@ -25,10 +25,10 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @action = attributes[:action] || attributes['action']
-          @explicit = attributes[:explicit] || attributes['explicit']
-          @spam = attributes[:spam] || attributes['spam']
-          @toxic = attributes[:toxic] || attributes['toxic']
+          @action = attributes.fetch(:action) { attributes.fetch('action', nil) }
+          @explicit = attributes.fetch(:explicit) { attributes.fetch('explicit', nil) }
+          @spam = attributes.fetch(:spam) { attributes.fetch('spam', nil) }
+          @toxic = attributes.fetch(:toxic) { attributes.fetch('toxic', nil) }
         end
 
         # Override field mappings for JSON serialization

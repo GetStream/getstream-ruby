@@ -49,18 +49,18 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @broadcasts = attributes[:broadcasts] || attributes['broadcasts']
-          @day = attributes[:day] || attributes['day']
-          @dead_air_s = attributes[:dead_air_s] || attributes['dead_air_s']
-          @hours_watched = attributes[:hours_watched] || attributes['hours_watched']
-          @incident_windows = attributes[:incident_windows] || attributes['incident_windows']
-          @max_peak_concurrent_viewers = attributes[:max_peak_concurrent_viewers] || attributes['max_peak_concurrent_viewers']
-          @note = attributes[:note] || attributes['note']
-          @schema_version = attributes[:schema_version] || attributes['schema_version']
-          @source_drops = attributes[:source_drops] || attributes['source_drops']
-          @unique_viewers_sum = attributes[:unique_viewers_sum] || attributes['unique_viewers_sum']
-          @top_broadcasts = attributes[:top_broadcasts] || attributes['top_broadcasts']
-          @poor_viewers_by_cause = attributes[:poor_viewers_by_cause] || attributes['poor_viewers_by_cause']
+          @broadcasts = attributes.fetch(:broadcasts) { attributes.fetch('broadcasts', nil) }
+          @day = attributes.fetch(:day) { attributes.fetch('day', nil) }
+          @dead_air_s = attributes.fetch(:dead_air_s) { attributes.fetch('dead_air_s', nil) }
+          @hours_watched = attributes.fetch(:hours_watched) { attributes.fetch('hours_watched', nil) }
+          @incident_windows = attributes.fetch(:incident_windows) { attributes.fetch('incident_windows', nil) }
+          @max_peak_concurrent_viewers = attributes.fetch(:max_peak_concurrent_viewers) { attributes.fetch('max_peak_concurrent_viewers', nil) }
+          @note = attributes.fetch(:note) { attributes.fetch('note', nil) }
+          @schema_version = attributes.fetch(:schema_version) { attributes.fetch('schema_version', nil) }
+          @source_drops = attributes.fetch(:source_drops) { attributes.fetch('source_drops', nil) }
+          @unique_viewers_sum = attributes.fetch(:unique_viewers_sum) { attributes.fetch('unique_viewers_sum', nil) }
+          @top_broadcasts = attributes.fetch(:top_broadcasts) { attributes.fetch('top_broadcasts', nil) }
+          @poor_viewers_by_cause = attributes.fetch(:poor_viewers_by_cause) { attributes.fetch('poor_viewers_by_cause', nil) }
         end
 
         # Override field mappings for JSON serialization

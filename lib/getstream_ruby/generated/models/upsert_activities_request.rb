@@ -28,11 +28,11 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @activities = attributes[:activities] || attributes['activities']
-          @create_users = attributes[:create_users] || attributes['create_users'] || nil
-          @enrich_own_fields = attributes[:enrich_own_fields] || attributes['enrich_own_fields'] || nil
-          @force_moderation = attributes[:force_moderation] || attributes['force_moderation'] || nil
-          @skip_existing = attributes[:skip_existing] || attributes['skip_existing'] || nil
+          @activities = attributes.fetch(:activities) { attributes.fetch('activities', nil) }
+          @create_users = attributes.fetch(:create_users) { attributes.fetch('create_users', nil) }
+          @enrich_own_fields = attributes.fetch(:enrich_own_fields) { attributes.fetch('enrich_own_fields', nil) }
+          @force_moderation = attributes.fetch(:force_moderation) { attributes.fetch('force_moderation', nil) }
+          @skip_existing = attributes.fetch(:skip_existing) { attributes.fetch('skip_existing', nil) }
         end
 
         # Override field mappings for JSON serialization

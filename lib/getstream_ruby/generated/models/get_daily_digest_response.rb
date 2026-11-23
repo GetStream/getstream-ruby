@@ -46,17 +46,17 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @date = attributes[:date] || attributes['date']
-          @duration = attributes[:duration] || attributes['duration']
-          @status = attributes[:status] || attributes['status']
-          @generated_at = attributes[:generated_at] || attributes['generated_at'] || nil
-          @retry_after = attributes[:retry_after] || attributes['retry_after'] || nil
-          @revision = attributes[:revision] || attributes['revision'] || nil
-          @schema_version = attributes[:schema_version] || attributes['schema_version'] || nil
-          @broadcasts = attributes[:broadcasts] || attributes['broadcasts'] || nil
-          @call_sessions = attributes[:call_sessions] || attributes['call_sessions'] || nil
-          @digest_kinds = attributes[:digest_kinds] || attributes['digest_kinds'] || nil
-          @broadcast_rollup = attributes[:broadcast_rollup] || attributes['broadcast_rollup'] || nil
+          @date = attributes.fetch(:date) { attributes.fetch('date', nil) }
+          @duration = attributes.fetch(:duration) { attributes.fetch('duration', nil) }
+          @status = attributes.fetch(:status) { attributes.fetch('status', nil) }
+          @generated_at = attributes.fetch(:generated_at) { attributes.fetch('generated_at', nil) }
+          @retry_after = attributes.fetch(:retry_after) { attributes.fetch('retry_after', nil) }
+          @revision = attributes.fetch(:revision) { attributes.fetch('revision', nil) }
+          @schema_version = attributes.fetch(:schema_version) { attributes.fetch('schema_version', nil) }
+          @broadcasts = attributes.fetch(:broadcasts) { attributes.fetch('broadcasts', nil) }
+          @call_sessions = attributes.fetch(:call_sessions) { attributes.fetch('call_sessions', nil) }
+          @digest_kinds = attributes.fetch(:digest_kinds) { attributes.fetch('digest_kinds', nil) }
+          @broadcast_rollup = attributes.fetch(:broadcast_rollup) { attributes.fetch('broadcast_rollup', nil) }
         end
 
         # Override field mappings for JSON serialization

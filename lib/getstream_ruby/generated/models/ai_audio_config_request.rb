@@ -10,7 +10,7 @@ module GetStream
 
         # Model attributes
         # @!attribute profile
-        #   @return [String] Bodyguard credentials profile to classify transcripts with. Applies to the NLP engine only; ignored when LLM configurability is enabled. Empty falls back to the app-pinned profile, then the organization's top-level credentials
+        #   @return [String] Bodyguard credentials profile to classify transcripts with. Applies to the NLP engine only; ignored when the policy's engine is LLM. Empty falls back to the app-pinned profile, then the organization's top-level credentials
         attr_accessor :profile
         # @!attribute rules
         #   @return [Array<BodyguardRule>] Deprecated pre-split rule list. Still the live config while no engine config exists; once one does it is kept as a fallback for whichever engine has none of its own
@@ -25,10 +25,10 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @profile = attributes[:profile] || attributes['profile'] || nil
-          @rules = attributes[:rules] || attributes['rules'] || nil
-          @ai_text_config = attributes[:ai_text_config] || attributes['ai_text_config'] || nil
-          @llm_config = attributes[:llm_config] || attributes['llm_config'] || nil
+          @profile = attributes.fetch(:profile) { attributes.fetch('profile', nil) }
+          @rules = attributes.fetch(:rules) { attributes.fetch('rules', nil) }
+          @ai_text_config = attributes.fetch(:ai_text_config) { attributes.fetch('ai_text_config', nil) }
+          @llm_config = attributes.fetch(:llm_config) { attributes.fetch('llm_config', nil) }
         end
 
         # Override field mappings for JSON serialization

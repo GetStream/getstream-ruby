@@ -38,7 +38,7 @@ module GetStream
         #   @return [String]
         attr_accessor :user_id
         # @!attribute country_codes
-        #   @return [Array<String>] ISO 3166-1 alpha-2 countries the content is aimed at (e.g. US, DE), up to 300. The first is the primary country, which AI text providers receive as country context. Takes precedence over country_code.
+        #   @return [Array<String>] ISO 3166-1 alpha-2 countries the content is aimed at (e.g. US, DE), up to 300. The first is the primary country. Every country is sent to the AI text and image harm detection engines as country context. Takes precedence over country_code.
         attr_accessor :country_codes
         # @!attribute config
         #   @return [ModerationConfig]
@@ -56,20 +56,20 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @entity_creator_id = attributes[:entity_creator_id] || attributes['entity_creator_id']
-          @entity_id = attributes[:entity_id] || attributes['entity_id']
-          @entity_type = attributes[:entity_type] || attributes['entity_type']
-          @config_key = attributes[:config_key] || attributes['config_key'] || nil
-          @config_team = attributes[:config_team] || attributes['config_team'] || nil
-          @content_published_at = attributes[:content_published_at] || attributes['content_published_at'] || nil
-          @country_code = attributes[:country_code] || attributes['country_code'] || nil
-          @test_mode = attributes[:test_mode] || attributes['test_mode'] || nil
-          @user_id = attributes[:user_id] || attributes['user_id'] || nil
-          @country_codes = attributes[:country_codes] || attributes['country_codes'] || nil
-          @config = attributes[:config] || attributes['config'] || nil
-          @moderation_payload = attributes[:moderation_payload] || attributes['moderation_payload'] || nil
-          @options = attributes[:options] || attributes['options'] || nil
-          @user = attributes[:user] || attributes['user'] || nil
+          @entity_creator_id = attributes.fetch(:entity_creator_id) { attributes.fetch('entity_creator_id', nil) }
+          @entity_id = attributes.fetch(:entity_id) { attributes.fetch('entity_id', nil) }
+          @entity_type = attributes.fetch(:entity_type) { attributes.fetch('entity_type', nil) }
+          @config_key = attributes.fetch(:config_key) { attributes.fetch('config_key', nil) }
+          @config_team = attributes.fetch(:config_team) { attributes.fetch('config_team', nil) }
+          @content_published_at = attributes.fetch(:content_published_at) { attributes.fetch('content_published_at', nil) }
+          @country_code = attributes.fetch(:country_code) { attributes.fetch('country_code', nil) }
+          @test_mode = attributes.fetch(:test_mode) { attributes.fetch('test_mode', nil) }
+          @user_id = attributes.fetch(:user_id) { attributes.fetch('user_id', nil) }
+          @country_codes = attributes.fetch(:country_codes) { attributes.fetch('country_codes', nil) }
+          @config = attributes.fetch(:config) { attributes.fetch('config', nil) }
+          @moderation_payload = attributes.fetch(:moderation_payload) { attributes.fetch('moderation_payload', nil) }
+          @options = attributes.fetch(:options) { attributes.fetch('options', nil) }
+          @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
         end
 
         # Override field mappings for JSON serialization

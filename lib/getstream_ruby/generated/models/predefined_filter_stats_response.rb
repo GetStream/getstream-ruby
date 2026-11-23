@@ -22,9 +22,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @calls = attributes[:calls] || attributes['calls']
-          @max_latency_ms = attributes[:max_latency_ms] || attributes['max_latency_ms']
-          @last_seen = attributes[:last_seen] || attributes['last_seen'] || nil
+          @calls = attributes.fetch(:calls) { attributes.fetch('calls', nil) }
+          @max_latency_ms = attributes.fetch(:max_latency_ms) { attributes.fetch('max_latency_ms', nil) }
+          @last_seen = attributes.fetch(:last_seen) { attributes.fetch('last_seen', nil) }
         end
 
         # Override field mappings for JSON serialization

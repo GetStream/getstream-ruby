@@ -151,6 +151,21 @@ module GetStream
         @client.feeds.reject_feed_member_invite(@feed_group_id, @feed_id, reject_feed_member_invite_request)
       end
 
+      # Returns the unread and unseen counts of a notification feed, along with the last seen and last read timestamps, without building a page.
+      #
+      # @param view [String]
+      # @param user_id [String]
+      # @return [Models::GetNotificationStatusResponse]
+      def get_notification_status(view = nil, user_id = nil)
+        # Build query parameters
+        query_params = {}
+        query_params['view'] = view unless view.nil?
+        query_params['user_id'] = user_id unless user_id.nil?
+
+        # Delegate to the FeedsClient
+        @client.feeds.get_notification_status(@feed_group_id, @feed_id, query_params)
+      end
+
       # Query pinned activities for a feed with filter query
       #
       # @param query_pinned_activities_request [QueryPinnedActivitiesRequest]

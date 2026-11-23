@@ -22,9 +22,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @browser = attributes[:browser] || attributes['browser']
-          @device = attributes[:device] || attributes['device']
-          @os = attributes[:os] || attributes['os']
+          @browser = attributes.fetch(:browser) { attributes.fetch('browser', nil) }
+          @device = attributes.fetch(:device) { attributes.fetch('device', nil) }
+          @os = attributes.fetch(:os) { attributes.fetch('os', nil) }
         end
 
         # Override field mappings for JSON serialization

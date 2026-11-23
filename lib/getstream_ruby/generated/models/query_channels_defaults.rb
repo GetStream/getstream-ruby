@@ -25,10 +25,10 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @limit = attributes[:limit] || attributes['limit']
-          @max_limit = attributes[:max_limit] || attributes['max_limit']
-          @member_limit = attributes[:member_limit] || attributes['member_limit']
-          @message_limit = attributes[:message_limit] || attributes['message_limit']
+          @limit = attributes.fetch(:limit) { attributes.fetch('limit', nil) }
+          @max_limit = attributes.fetch(:max_limit) { attributes.fetch('max_limit', nil) }
+          @member_limit = attributes.fetch(:member_limit) { attributes.fetch('member_limit', nil) }
+          @message_limit = attributes.fetch(:message_limit) { attributes.fetch('message_limit', nil) }
         end
 
         # Override field mappings for JSON serialization

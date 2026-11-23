@@ -37,14 +37,14 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @duration = attributes[:duration] || attributes['duration']
-          @event_type = attributes[:event_type] || attributes['event_type'] || nil
-          @rendered_apn_template = attributes[:rendered_apn_template] || attributes['rendered_apn_template'] || nil
-          @rendered_firebase_template = attributes[:rendered_firebase_template] || attributes['rendered_firebase_template'] || nil
-          @skip_devices = attributes[:skip_devices] || attributes['skip_devices'] || nil
-          @general_errors = attributes[:general_errors] || attributes['general_errors'] || nil
-          @device_errors = attributes[:device_errors] || attributes['device_errors'] || nil
-          @rendered_message = attributes[:rendered_message] || attributes['rendered_message'] || nil
+          @duration = attributes.fetch(:duration) { attributes.fetch('duration', nil) }
+          @event_type = attributes.fetch(:event_type) { attributes.fetch('event_type', nil) }
+          @rendered_apn_template = attributes.fetch(:rendered_apn_template) { attributes.fetch('rendered_apn_template', nil) }
+          @rendered_firebase_template = attributes.fetch(:rendered_firebase_template) { attributes.fetch('rendered_firebase_template', nil) }
+          @skip_devices = attributes.fetch(:skip_devices) { attributes.fetch('skip_devices', nil) }
+          @general_errors = attributes.fetch(:general_errors) { attributes.fetch('general_errors', nil) }
+          @device_errors = attributes.fetch(:device_errors) { attributes.fetch('device_errors', nil) }
+          @rendered_message = attributes.fetch(:rendered_message) { attributes.fetch('rendered_message', nil) }
         end
 
         # Override field mappings for JSON serialization

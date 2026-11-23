@@ -9,6 +9,9 @@ module GetStream
       class ImportV2TaskSettings < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute custom_format
+        #   @return [ImportCustomFormat] How custom fields are read from imported items: root (default) takes unknown root keys as custom data, nested reads them from a custom object and is only supported for feeds imports.
+        attr_accessor :custom_format
         # @!attribute merge_custom
         #   @return [Boolean]
         attr_accessor :merge_custom
@@ -31,17 +34,19 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @merge_custom = attributes[:merge_custom] || attributes['merge_custom'] || nil
-          @mode = attributes[:mode] || attributes['mode'] || nil
-          @path = attributes[:path] || attributes['path'] || nil
-          @skip_references_check = attributes[:skip_references_check] || attributes['skip_references_check'] || nil
-          @use_import_time_as_op_time = attributes[:use_import_time_as_op_time] || attributes['use_import_time_as_op_time'] || nil
-          @s3 = attributes[:s3] || attributes['s3'] || nil
+          @custom_format = attributes.fetch(:custom_format) { attributes.fetch('custom_format', nil) }
+          @merge_custom = attributes.fetch(:merge_custom) { attributes.fetch('merge_custom', nil) }
+          @mode = attributes.fetch(:mode) { attributes.fetch('mode', nil) }
+          @path = attributes.fetch(:path) { attributes.fetch('path', nil) }
+          @skip_references_check = attributes.fetch(:skip_references_check) { attributes.fetch('skip_references_check', nil) }
+          @use_import_time_as_op_time = attributes.fetch(:use_import_time_as_op_time) { attributes.fetch('use_import_time_as_op_time', nil) }
+          @s3 = attributes.fetch(:s3) { attributes.fetch('s3', nil) }
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            custom_format: 'custom_format',
             merge_custom: 'merge_custom',
             mode: 'mode',
             path: 'path',

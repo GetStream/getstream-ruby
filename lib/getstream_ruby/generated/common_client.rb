@@ -404,6 +404,24 @@ module GetStream
         )
       end
 
+      # 
+      #
+      # @param product [Array<String>]
+      # @return [Models::GetHookEventsResponse]
+      def get_hook_events(product = nil)
+        path = '/api/v2/hook/events'
+        # Build query parameters
+        query_params = {}
+        query_params['product'] = product unless product.nil?
+
+        # Make the API request
+        @client.make_request(
+          :get,
+          path,
+          query_params: query_params
+        )
+      end
+
       # Creates a new import URL
       #
       # @param create_import_url_request [CreateImportURLRequest]
@@ -423,14 +441,21 @@ module GetStream
 
       # Gets an import
       #
+      # @param limit [Integer]
+      # @param offset [Integer]
       # @return [Models::ListImportsResponse]
-      def list_imports()
+      def list_imports(limit = nil, offset = nil)
         path = '/api/v2/imports'
+        # Build query parameters
+        query_params = {}
+        query_params['limit'] = limit unless limit.nil?
+        query_params['offset'] = offset unless offset.nil?
 
         # Make the API request
         @client.make_request(
           :get,
-          path
+          path,
+          query_params: query_params
         )
       end
 

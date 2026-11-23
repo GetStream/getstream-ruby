@@ -25,10 +25,10 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @content_to_mark_as_reviewed_limit = attributes[:content_to_mark_as_reviewed_limit] || attributes['content_to_mark_as_reviewed_limit'] || nil
-          @decision_reason = attributes[:decision_reason] || attributes['decision_reason'] || nil
-          @disable_marking_content_as_reviewed = attributes[:disable_marking_content_as_reviewed] || attributes['disable_marking_content_as_reviewed'] || nil
-          @reason = attributes[:reason] || attributes['reason'] || nil
+          @content_to_mark_as_reviewed_limit = attributes.fetch(:content_to_mark_as_reviewed_limit) { attributes.fetch('content_to_mark_as_reviewed_limit', nil) }
+          @decision_reason = attributes.fetch(:decision_reason) { attributes.fetch('decision_reason', nil) }
+          @disable_marking_content_as_reviewed = attributes.fetch(:disable_marking_content_as_reviewed) { attributes.fetch('disable_marking_content_as_reviewed', nil) }
+          @reason = attributes.fetch(:reason) { attributes.fetch('reason', nil) }
         end
 
         # Override field mappings for JSON serialization

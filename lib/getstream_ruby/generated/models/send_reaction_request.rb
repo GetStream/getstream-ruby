@@ -22,9 +22,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @reaction = attributes[:reaction] || attributes['reaction']
-          @enforce_unique = attributes[:enforce_unique] || attributes['enforce_unique'] || nil
-          @skip_push = attributes[:skip_push] || attributes['skip_push'] || nil
+          @reaction = attributes.fetch(:reaction) { attributes.fetch('reaction', nil) }
+          @enforce_unique = attributes.fetch(:enforce_unique) { attributes.fetch('enforce_unique', nil) }
+          @skip_push = attributes.fetch(:skip_push) { attributes.fetch('skip_push', nil) }
         end
 
         # Override field mappings for JSON serialization

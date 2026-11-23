@@ -37,14 +37,14 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @continue_closed_caption = attributes[:continue_closed_caption] || attributes['continue_closed_caption'] || nil
-          @continue_composite_recording = attributes[:continue_composite_recording] || attributes['continue_composite_recording'] || nil
-          @continue_hls = attributes[:continue_hls] || attributes['continue_hls'] || nil
-          @continue_individual_recording = attributes[:continue_individual_recording] || attributes['continue_individual_recording'] || nil
-          @continue_raw_recording = attributes[:continue_raw_recording] || attributes['continue_raw_recording'] || nil
-          @continue_recording = attributes[:continue_recording] || attributes['continue_recording'] || nil
-          @continue_rtmp_broadcasts = attributes[:continue_rtmp_broadcasts] || attributes['continue_rtmp_broadcasts'] || nil
-          @continue_transcription = attributes[:continue_transcription] || attributes['continue_transcription'] || nil
+          @continue_closed_caption = attributes.fetch(:continue_closed_caption) { attributes.fetch('continue_closed_caption', nil) }
+          @continue_composite_recording = attributes.fetch(:continue_composite_recording) { attributes.fetch('continue_composite_recording', nil) }
+          @continue_hls = attributes.fetch(:continue_hls) { attributes.fetch('continue_hls', nil) }
+          @continue_individual_recording = attributes.fetch(:continue_individual_recording) { attributes.fetch('continue_individual_recording', nil) }
+          @continue_raw_recording = attributes.fetch(:continue_raw_recording) { attributes.fetch('continue_raw_recording', nil) }
+          @continue_recording = attributes.fetch(:continue_recording) { attributes.fetch('continue_recording', nil) }
+          @continue_rtmp_broadcasts = attributes.fetch(:continue_rtmp_broadcasts) { attributes.fetch('continue_rtmp_broadcasts', nil) }
+          @continue_transcription = attributes.fetch(:continue_transcription) { attributes.fetch('continue_transcription', nil) }
         end
 
         # Override field mappings for JSON serialization

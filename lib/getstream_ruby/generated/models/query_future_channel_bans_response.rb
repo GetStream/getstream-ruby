@@ -22,9 +22,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @duration = attributes[:duration] || attributes['duration']
-          @bans = attributes[:bans] || attributes['bans']
-          @total = attributes[:total] || attributes['total'] || nil
+          @duration = attributes.fetch(:duration) { attributes.fetch('duration', nil) }
+          @bans = attributes.fetch(:bans) { attributes.fetch('bans', nil) }
+          @total = attributes.fetch(:total) { attributes.fetch('total', nil) }
         end
 
         # Override field mappings for JSON serialization

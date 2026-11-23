@@ -37,14 +37,14 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @appeal_reason = attributes[:appeal_reason] || attributes['appeal_reason']
-          @entity_id = attributes[:entity_id] || attributes['entity_id']
-          @entity_type = attributes[:entity_type] || attributes['entity_type']
-          @channel_cid = attributes[:channel_cid] || attributes['channel_cid'] || nil
-          @review_queue_item_id = attributes[:review_queue_item_id] || attributes['review_queue_item_id'] || nil
-          @user_id = attributes[:user_id] || attributes['user_id'] || nil
-          @attachments = attributes[:attachments] || attributes['attachments'] || nil
-          @user = attributes[:user] || attributes['user'] || nil
+          @appeal_reason = attributes.fetch(:appeal_reason) { attributes.fetch('appeal_reason', nil) }
+          @entity_id = attributes.fetch(:entity_id) { attributes.fetch('entity_id', nil) }
+          @entity_type = attributes.fetch(:entity_type) { attributes.fetch('entity_type', nil) }
+          @channel_cid = attributes.fetch(:channel_cid) { attributes.fetch('channel_cid', nil) }
+          @review_queue_item_id = attributes.fetch(:review_queue_item_id) { attributes.fetch('review_queue_item_id', nil) }
+          @user_id = attributes.fetch(:user_id) { attributes.fetch('user_id', nil) }
+          @attachments = attributes.fetch(:attachments) { attributes.fetch('attachments', nil) }
+          @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
         end
 
         # Override field mappings for JSON serialization

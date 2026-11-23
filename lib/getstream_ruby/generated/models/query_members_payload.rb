@@ -64,23 +64,23 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @type = attributes[:type] || attributes['type']
-          @created_at_after = attributes[:created_at_after] || attributes['created_at_after'] || nil
-          @created_at_after_or_equal = attributes[:created_at_after_or_equal] || attributes['created_at_after_or_equal'] || nil
-          @created_at_before = attributes[:created_at_before] || attributes['created_at_before'] || nil
-          @created_at_before_or_equal = attributes[:created_at_before_or_equal] || attributes['created_at_before_or_equal'] || nil
-          @id = attributes[:id] || attributes['id'] || nil
-          @limit = attributes[:limit] || attributes['limit'] || nil
-          @offset = attributes[:offset] || attributes['offset'] || nil
-          @user_id = attributes[:user_id] || attributes['user_id'] || nil
-          @user_id_gt = attributes[:user_id_gt] || attributes['user_id_gt'] || nil
-          @user_id_gte = attributes[:user_id_gte] || attributes['user_id_gte'] || nil
-          @user_id_lt = attributes[:user_id_lt] || attributes['user_id_lt'] || nil
-          @user_id_lte = attributes[:user_id_lte] || attributes['user_id_lte'] || nil
-          @members = attributes[:members] || attributes['members'] || nil
-          @sort = attributes[:sort] || attributes['sort'] || nil
-          @filter_conditions = attributes[:filter_conditions] || attributes['filter_conditions'] || nil
-          @user = attributes[:user] || attributes['user'] || nil
+          @type = attributes.fetch(:type) { attributes.fetch('type', nil) }
+          @created_at_after = attributes.fetch(:created_at_after) { attributes.fetch('created_at_after', nil) }
+          @created_at_after_or_equal = attributes.fetch(:created_at_after_or_equal) { attributes.fetch('created_at_after_or_equal', nil) }
+          @created_at_before = attributes.fetch(:created_at_before) { attributes.fetch('created_at_before', nil) }
+          @created_at_before_or_equal = attributes.fetch(:created_at_before_or_equal) { attributes.fetch('created_at_before_or_equal', nil) }
+          @id = attributes.fetch(:id) { attributes.fetch('id', nil) }
+          @limit = attributes.fetch(:limit) { attributes.fetch('limit', nil) }
+          @offset = attributes.fetch(:offset) { attributes.fetch('offset', nil) }
+          @user_id = attributes.fetch(:user_id) { attributes.fetch('user_id', nil) }
+          @user_id_gt = attributes.fetch(:user_id_gt) { attributes.fetch('user_id_gt', nil) }
+          @user_id_gte = attributes.fetch(:user_id_gte) { attributes.fetch('user_id_gte', nil) }
+          @user_id_lt = attributes.fetch(:user_id_lt) { attributes.fetch('user_id_lt', nil) }
+          @user_id_lte = attributes.fetch(:user_id_lte) { attributes.fetch('user_id_lte', nil) }
+          @members = attributes.fetch(:members) { attributes.fetch('members', nil) }
+          @sort = attributes.fetch(:sort) { attributes.fetch('sort', nil) }
+          @filter_conditions = attributes.fetch(:filter_conditions) { attributes.fetch('filter_conditions', nil) }
+          @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
         end
 
         # Override field mappings for JSON serialization

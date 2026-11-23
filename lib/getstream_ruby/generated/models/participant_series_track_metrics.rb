@@ -40,15 +40,15 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @track_id = attributes[:track_id] || attributes['track_id']
-          @codec = attributes[:codec] || attributes['codec'] || nil
-          @label = attributes[:label] || attributes['label'] || nil
-          @rid = attributes[:rid] || attributes['rid'] || nil
-          @track_type = attributes[:track_type] || attributes['track_type'] || nil
-          @metrics_order = attributes[:metrics_order] || attributes['metrics_order'] || nil
-          @metrics = attributes[:metrics] || attributes['metrics'] || nil
-          @metrics_meta = attributes[:metrics_meta] || attributes['metrics_meta'] || nil
-          @thresholds = attributes[:thresholds] || attributes['thresholds'] || nil
+          @track_id = attributes.fetch(:track_id) { attributes.fetch('track_id', nil) }
+          @codec = attributes.fetch(:codec) { attributes.fetch('codec', nil) }
+          @label = attributes.fetch(:label) { attributes.fetch('label', nil) }
+          @rid = attributes.fetch(:rid) { attributes.fetch('rid', nil) }
+          @track_type = attributes.fetch(:track_type) { attributes.fetch('track_type', nil) }
+          @metrics_order = attributes.fetch(:metrics_order) { attributes.fetch('metrics_order', nil) }
+          @metrics = attributes.fetch(:metrics) { attributes.fetch('metrics', nil) }
+          @metrics_meta = attributes.fetch(:metrics_meta) { attributes.fetch('metrics_meta', nil) }
+          @thresholds = attributes.fetch(:thresholds) { attributes.fetch('thresholds', nil) }
         end
 
         # Override field mappings for JSON serialization

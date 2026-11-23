@@ -36,6 +36,9 @@ module GetStream
         # @!attribute user_id
         #   @return [String]
         attr_accessor :user_id
+        # @!attribute validate
+        #   @return [Boolean] For regex block lists, reject any rule that matches 50% or more of a built-in sample dataset as too broad
+        attr_accessor :validate
         # @!attribute user
         #   @return [UserRequest] User request object
         attr_accessor :user
@@ -43,16 +46,17 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @name = attributes[:name] || attributes['name']
-          @words = attributes[:words] || attributes['words']
-          @is_confusable_folding_enabled = attributes[:is_confusable_folding_enabled] || attributes['is_confusable_folding_enabled'] || nil
-          @is_leet_check_enabled = attributes[:is_leet_check_enabled] || attributes['is_leet_check_enabled'] || nil
-          @is_plural_check_enabled = attributes[:is_plural_check_enabled] || attributes['is_plural_check_enabled'] || nil
-          @is_substring_matching_enabled = attributes[:is_substring_matching_enabled] || attributes['is_substring_matching_enabled'] || nil
-          @team = attributes[:team] || attributes['team'] || nil
-          @type = attributes[:type] || attributes['type'] || nil
-          @user_id = attributes[:user_id] || attributes['user_id'] || nil
-          @user = attributes[:user] || attributes['user'] || nil
+          @name = attributes.fetch(:name) { attributes.fetch('name', nil) }
+          @words = attributes.fetch(:words) { attributes.fetch('words', nil) }
+          @is_confusable_folding_enabled = attributes.fetch(:is_confusable_folding_enabled) { attributes.fetch('is_confusable_folding_enabled', nil) }
+          @is_leet_check_enabled = attributes.fetch(:is_leet_check_enabled) { attributes.fetch('is_leet_check_enabled', nil) }
+          @is_plural_check_enabled = attributes.fetch(:is_plural_check_enabled) { attributes.fetch('is_plural_check_enabled', nil) }
+          @is_substring_matching_enabled = attributes.fetch(:is_substring_matching_enabled) { attributes.fetch('is_substring_matching_enabled', nil) }
+          @team = attributes.fetch(:team) { attributes.fetch('team', nil) }
+          @type = attributes.fetch(:type) { attributes.fetch('type', nil) }
+          @user_id = attributes.fetch(:user_id) { attributes.fetch('user_id', nil) }
+          @validate = attributes.fetch(:validate) { attributes.fetch('validate', nil) }
+          @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
         end
 
         # Override field mappings for JSON serialization
@@ -67,6 +71,7 @@ module GetStream
             team: 'team',
             type: 'type',
             user_id: 'user_id',
+            validate: 'validate',
             user: 'user'
           }
         end

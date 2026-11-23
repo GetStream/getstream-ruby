@@ -25,10 +25,10 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @min_confidence = attributes[:min_confidence] || attributes['min_confidence'] || nil
-          @threshold = attributes[:threshold] || attributes['threshold'] || nil
-          @time_window = attributes[:time_window] || attributes['time_window'] || nil
-          @harm_labels = attributes[:harm_labels] || attributes['harm_labels'] || nil
+          @min_confidence = attributes.fetch(:min_confidence) { attributes.fetch('min_confidence', nil) }
+          @threshold = attributes.fetch(:threshold) { attributes.fetch('threshold', nil) }
+          @time_window = attributes.fetch(:time_window) { attributes.fetch('time_window', nil) }
+          @harm_labels = attributes.fetch(:harm_labels) { attributes.fetch('harm_labels', nil) }
         end
 
         # Override field mappings for JSON serialization

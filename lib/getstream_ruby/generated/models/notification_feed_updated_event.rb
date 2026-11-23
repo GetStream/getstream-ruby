@@ -40,15 +40,15 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @fid = attributes[:fid] || attributes['fid']
-          @custom = attributes[:custom] || attributes['custom']
-          @type = attributes[:type] || attributes['type'] || "feeds.notification_feed.updated"
-          @feed_visibility = attributes[:feed_visibility] || attributes['feed_visibility'] || nil
-          @received_at = attributes[:received_at] || attributes['received_at'] || nil
-          @aggregated_activities = attributes[:aggregated_activities] || attributes['aggregated_activities'] || nil
-          @notification_status = attributes[:notification_status] || attributes['notification_status'] || nil
-          @user = attributes[:user] || attributes['user'] || nil
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @fid = attributes.fetch(:fid) { attributes.fetch('fid', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
+          @type = attributes.fetch(:type) { attributes.fetch('type', "feeds.notification_feed.updated") }
+          @feed_visibility = attributes.fetch(:feed_visibility) { attributes.fetch('feed_visibility', nil) }
+          @received_at = attributes.fetch(:received_at) { attributes.fetch('received_at', nil) }
+          @aggregated_activities = attributes.fetch(:aggregated_activities) { attributes.fetch('aggregated_activities', nil) }
+          @notification_status = attributes.fetch(:notification_status) { attributes.fetch('notification_status', nil) }
+          @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
         end
 
         # Override field mappings for JSON serialization

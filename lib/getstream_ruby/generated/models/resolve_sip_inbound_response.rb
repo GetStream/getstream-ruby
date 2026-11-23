@@ -25,10 +25,10 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @duration = attributes[:duration] || attributes['duration']
-          @credentials = attributes[:credentials] || attributes['credentials']
-          @sip_routing_rule = attributes[:sip_routing_rule] || attributes['sip_routing_rule'] || nil
-          @sip_trunk = attributes[:sip_trunk] || attributes['sip_trunk'] || nil
+          @duration = attributes.fetch(:duration) { attributes.fetch('duration', nil) }
+          @credentials = attributes.fetch(:credentials) { attributes.fetch('credentials', nil) }
+          @sip_routing_rule = attributes.fetch(:sip_routing_rule) { attributes.fetch('sip_routing_rule', nil) }
+          @sip_trunk = attributes.fetch(:sip_trunk) { attributes.fetch('sip_trunk', nil) }
         end
 
         # Override field mappings for JSON serialization

@@ -10,7 +10,7 @@ module GetStream
 
         # Model attributes
         # @!attribute enabled
-        #   @return [Boolean] Whether the engine selected by the application's LLM configurability flag has a rule that does something. Derived, not stored
+        #   @return [Boolean] Whether the policy's engine (engine.provider, else the application's LLM configurability flag) has a rule that does something. Derived, not stored
         attr_accessor :enabled
         # @!attribute profile
         #   @return [String] Bodyguard credentials profile transcripts are classified with. Applies to the NLP engine only
@@ -28,11 +28,11 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @enabled = attributes[:enabled] || attributes['enabled']
-          @profile = attributes[:profile] || attributes['profile']
-          @rules = attributes[:rules] || attributes['rules']
-          @ai_text_config = attributes[:ai_text_config] || attributes['ai_text_config'] || nil
-          @llm_config = attributes[:llm_config] || attributes['llm_config'] || nil
+          @enabled = attributes.fetch(:enabled) { attributes.fetch('enabled', nil) }
+          @profile = attributes.fetch(:profile) { attributes.fetch('profile', nil) }
+          @rules = attributes.fetch(:rules) { attributes.fetch('rules', nil) }
+          @ai_text_config = attributes.fetch(:ai_text_config) { attributes.fetch('ai_text_config', nil) }
+          @llm_config = attributes.fetch(:llm_config) { attributes.fetch('llm_config', nil) }
         end
 
         # Override field mappings for JSON serialization

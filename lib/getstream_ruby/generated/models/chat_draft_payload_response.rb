@@ -52,19 +52,19 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @id = attributes[:id] || attributes['id']
-          @text = attributes[:text] || attributes['text']
-          @custom = attributes[:custom] || attributes['custom']
-          @html = attributes[:html] || attributes['html'] || nil
-          @mml = attributes[:mml] || attributes['mml'] || nil
-          @parent_id = attributes[:parent_id] || attributes['parent_id'] || nil
-          @poll_id = attributes[:poll_id] || attributes['poll_id'] || nil
-          @quoted_message_id = attributes[:quoted_message_id] || attributes['quoted_message_id'] || nil
-          @show_in_channel = attributes[:show_in_channel] || attributes['show_in_channel'] || nil
-          @silent = attributes[:silent] || attributes['silent'] || nil
-          @type = attributes[:type] || attributes['type'] || nil
-          @attachments = attributes[:attachments] || attributes['attachments'] || nil
-          @mentioned_users = attributes[:mentioned_users] || attributes['mentioned_users'] || nil
+          @id = attributes.fetch(:id) { attributes.fetch('id', nil) }
+          @text = attributes.fetch(:text) { attributes.fetch('text', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
+          @html = attributes.fetch(:html) { attributes.fetch('html', nil) }
+          @mml = attributes.fetch(:mml) { attributes.fetch('mml', nil) }
+          @parent_id = attributes.fetch(:parent_id) { attributes.fetch('parent_id', nil) }
+          @poll_id = attributes.fetch(:poll_id) { attributes.fetch('poll_id', nil) }
+          @quoted_message_id = attributes.fetch(:quoted_message_id) { attributes.fetch('quoted_message_id', nil) }
+          @show_in_channel = attributes.fetch(:show_in_channel) { attributes.fetch('show_in_channel', nil) }
+          @silent = attributes.fetch(:silent) { attributes.fetch('silent', nil) }
+          @type = attributes.fetch(:type) { attributes.fetch('type', nil) }
+          @attachments = attributes.fetch(:attachments) { attributes.fetch('attachments', nil) }
+          @mentioned_users = attributes.fetch(:mentioned_users) { attributes.fetch('mentioned_users', nil) }
         end
 
         # Override field mappings for JSON serialization

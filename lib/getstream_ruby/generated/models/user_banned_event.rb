@@ -21,6 +21,9 @@ module GetStream
         # @!attribute type
         #   @return [String] The type of event: "user.banned" in this case
         attr_accessor :type
+        # @!attribute ban_from_future_channels
+        #   @return [Boolean] Whether the ban also applies to channels created later by the same creator. Without a channel, check user.banned to tell a global ban from a future-channels-only ban
+        attr_accessor :ban_from_future_channels
         # @!attribute channel_id
         #   @return [String] The ID of the channel where the target user was banned
         attr_accessor :channel_id
@@ -67,24 +70,25 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @custom = attributes[:custom] || attributes['custom']
-          @user = attributes[:user] || attributes['user']
-          @type = attributes[:type] || attributes['type'] || "user.banned"
-          @channel_id = attributes[:channel_id] || attributes['channel_id'] || nil
-          @channel_member_count = attributes[:channel_member_count] || attributes['channel_member_count'] || nil
-          @channel_message_count = attributes[:channel_message_count] || attributes['channel_message_count'] || nil
-          @channel_type = attributes[:channel_type] || attributes['channel_type'] || nil
-          @cid = attributes[:cid] || attributes['cid'] || nil
-          @expiration = attributes[:expiration] || attributes['expiration'] || nil
-          @reason = attributes[:reason] || attributes['reason'] || nil
-          @received_at = attributes[:received_at] || attributes['received_at'] || nil
-          @review_queue_item_id = attributes[:review_queue_item_id] || attributes['review_queue_item_id'] || nil
-          @shadow = attributes[:shadow] || attributes['shadow'] || nil
-          @team = attributes[:team] || attributes['team'] || nil
-          @total_bans = attributes[:total_bans] || attributes['total_bans'] || nil
-          @channel_custom = attributes[:channel_custom] || attributes['channel_custom'] || nil
-          @created_by = attributes[:created_by] || attributes['created_by'] || nil
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
+          @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
+          @type = attributes.fetch(:type) { attributes.fetch('type', "user.banned") }
+          @ban_from_future_channels = attributes.fetch(:ban_from_future_channels) { attributes.fetch('ban_from_future_channels', nil) }
+          @channel_id = attributes.fetch(:channel_id) { attributes.fetch('channel_id', nil) }
+          @channel_member_count = attributes.fetch(:channel_member_count) { attributes.fetch('channel_member_count', nil) }
+          @channel_message_count = attributes.fetch(:channel_message_count) { attributes.fetch('channel_message_count', nil) }
+          @channel_type = attributes.fetch(:channel_type) { attributes.fetch('channel_type', nil) }
+          @cid = attributes.fetch(:cid) { attributes.fetch('cid', nil) }
+          @expiration = attributes.fetch(:expiration) { attributes.fetch('expiration', nil) }
+          @reason = attributes.fetch(:reason) { attributes.fetch('reason', nil) }
+          @received_at = attributes.fetch(:received_at) { attributes.fetch('received_at', nil) }
+          @review_queue_item_id = attributes.fetch(:review_queue_item_id) { attributes.fetch('review_queue_item_id', nil) }
+          @shadow = attributes.fetch(:shadow) { attributes.fetch('shadow', nil) }
+          @team = attributes.fetch(:team) { attributes.fetch('team', nil) }
+          @total_bans = attributes.fetch(:total_bans) { attributes.fetch('total_bans', nil) }
+          @channel_custom = attributes.fetch(:channel_custom) { attributes.fetch('channel_custom', nil) }
+          @created_by = attributes.fetch(:created_by) { attributes.fetch('created_by', nil) }
         end
 
         # Override field mappings for JSON serialization
@@ -94,6 +98,7 @@ module GetStream
             custom: 'custom',
             user: 'user',
             type: 'type',
+            ban_from_future_channels: 'ban_from_future_channels',
             channel_id: 'channel_id',
             channel_member_count: 'channel_member_count',
             channel_message_count: 'channel_message_count',
