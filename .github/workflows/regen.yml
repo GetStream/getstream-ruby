@@ -220,12 +220,35 @@ jobs:
               | sort | awk -F'\t' '{ e = sprintf("feat: change %s\n\nBREAKING CHANGE: %s\n", $1, $2); if (size + length(e) > 40000) { more++; next } size += length(e); printf "%s", e }
                   END { if (more) printf "feat: change %d more APIs\n\nBREAKING CHANGE: %d more API changes are left out to fit the PR body\n", more, more }'
           }
+          # Ruby callers pass arguments by position and name model classes directly, and a generator change alone moves neither in the spec. So the generated code before and after is compared too: each removed method or class, and each method whose arguments no longer extend the old ones with optional ones, gets a footer. Removals the spec diff already lists are left out.
+          surface() {
+            defs() { sed -nE 's#^(HEAD:)?lib/getstream_ruby/generated/([a-z_]+)\.rb: *def ([a-z0-9_]+[?!]?)(\((.*)\))?$#\2\t\3\t\5#p' | sort -u; }
+            classes() { sed -nE 's#^(HEAD:)?[^:]*: *class ([A-Z][A-Za-z0-9_]*).*#\2#p' | sort -u; }
+            { git grep -E '^ *def ' HEAD -- ':(glob)lib/getstream_ruby/generated/*.rb' || true; } | defs > "$RUNNER_TEMP/old-defs"
+            { grep -H -E '^ *def ' lib/getstream_ruby/generated/*.rb 2> /dev/null || true; } | defs > "$RUNNER_TEMP/new-defs"
+            { git grep -E '^ *class ' HEAD -- ':(glob)lib/getstream_ruby/generated/models/*.rb' || true; } | classes > "$RUNNER_TEMP/old-classes"
+            { grep -H -E '^ *class ' lib/getstream_ruby/generated/models/*.rb 2> /dev/null || true; } | classes > "$RUNNER_TEMP/new-classes"
+            { removed op; removed type; } > "$RUNNER_TEMP/spec-removed"
+            {
+              awk -F'\t' '
+                function name(f, m,   p, k, i, s) { k = split(f, p, "_"); s = ""; for (i = 1; i <= k; i++) s = s toupper(substr(p[i], 1, 1)) substr(p[i], 2); return s "#" m }
+                function ext(o, n,   rest, k, a, i) { if (o == n) return 1; if (o == "") rest = n; else if (index(n, o ", ") == 1) rest = substr(n, length(o) + 3); else return 0; k = split(rest, a, ", "); for (i = 1; i <= k; i++) if (a[i] !~ / = /) return 0; return 1 }
+                FILENAME == ARGV[1] { old[$1 FS $2] = $3; next }
+                { new[$1 FS $2] = $3 }
+                END { for (k in old) { split(k, p, FS); if (!(k in new)) print "gone" FS p[2] FS name(p[1], p[2]); else if (!ext(old[k], new[k])) print "moved" FS p[2] FS name(p[1], p[2]) " takes (" new[k] ") instead of (" old[k] ")" } }' "$RUNNER_TEMP/old-defs" "$RUNNER_TEMP/new-defs"
+              comm -23 "$RUNNER_TEMP/old-classes" "$RUNNER_TEMP/new-classes" | awk '{ print "gone" "\t" $0 "\t" $0 }'
+            } | sort | while IFS=$'\t' read -r kind key text; do
+              if [ "$kind" = gone ]; then grep -qxF "$key" "$RUNNER_TEMP/spec-removed" || printf 'feat: remove %s\n\nBREAKING CHANGE: removes %s\n' "$text" "$text"
+              else printf 'feat: change %s\n\nBREAKING CHANGE: %s\n' "${text%% takes *}" "$text"; fi
+            done
+          }
           {
             added op | sed 's/^/feat: add /'
             added type | { grep 'Event$' || true; } | sed 's/^/feat: add webhook event /'
             added field | kept | group to | sed 's/^/feat: add /'
             { removed op; removed type; removed field | kept | group from; } | while read -r r; do printf 'feat: remove %s\n\nBREAKING CHANGE: removes %s\n' "$r" "$r"; done
             breaking
+            surface
           } | awk 'NR > 1 && /^feat: / { print "" } { print }' > "$RUNNER_TEMP/changelog"
 
           type=chore
