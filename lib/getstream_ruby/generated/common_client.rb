@@ -404,6 +404,24 @@ module GetStream
         )
       end
 
+      # 
+      #
+      # @param product [Array<String>]
+      # @return [Models::GetHookEventsResponse]
+      def get_hook_events(product = nil)
+        path = '/api/v2/hook/events'
+        # Build query parameters
+        query_params = {}
+        query_params['product'] = product unless product.nil?
+
+        # Make the API request
+        @client.make_request(
+          :get,
+          path,
+          query_params: query_params
+        )
+      end
+
       # Creates a new import URL
       #
       # @param create_import_url_request [CreateImportURLRequest]

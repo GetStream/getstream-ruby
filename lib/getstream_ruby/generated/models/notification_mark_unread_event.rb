@@ -45,6 +45,9 @@ module GetStream
         # @!attribute received_at
         #   @return [DateTime]
         attr_accessor :received_at
+        # @!attribute soft_unread
+        #   @return [Boolean] True when the channel was marked unread without a message: an unread dot with no counter
+        attr_accessor :soft_unread
         # @!attribute team
         #   @return [String] The team ID
         attr_accessor :team
@@ -97,6 +100,7 @@ module GetStream
           @last_read_at = attributes.fetch(:last_read_at) { attributes.fetch('last_read_at', nil) }
           @last_read_message_id = attributes.fetch(:last_read_message_id) { attributes.fetch('last_read_message_id', nil) }
           @received_at = attributes.fetch(:received_at) { attributes.fetch('received_at', nil) }
+          @soft_unread = attributes.fetch(:soft_unread) { attributes.fetch('soft_unread', nil) }
           @team = attributes.fetch(:team) { attributes.fetch('team', nil) }
           @thread_id = attributes.fetch(:thread_id) { attributes.fetch('thread_id', nil) }
           @total_unread_count = attributes.fetch(:total_unread_count) { attributes.fetch('total_unread_count', nil) }
@@ -126,6 +130,7 @@ module GetStream
             last_read_at: 'last_read_at',
             last_read_message_id: 'last_read_message_id',
             received_at: 'received_at',
+            soft_unread: 'soft_unread',
             team: 'team',
             thread_id: 'thread_id',
             total_unread_count: 'total_unread_count',

@@ -33,6 +33,9 @@ module GetStream
         # @!attribute user
         #   @return [String] User delete mode.,  * soft - marks user as deleted and retains all user data,  * pruning - marks user as deleted and nullifies user information,  * hard - deletes user completely. Requires 'hard' option for messages, and 'hard' or 'keep' option for conversations
         attr_accessor :user
+        # @!attribute exclude_channel_cids
+        #   @return [Array<String>] Channel CIDs (type:id) to keep intact. Applies to every user in user_ids.,  Channels listed here keep their rows, messages, memberships, thread participation and reactions, and are not deleted as conversations,,  whatever the messages and conversations modes say. Everything else is deleted as usual.,  * Maximum 1000 entries, duplicates included. Duplicates are then ignored.,  * Cannot be combined with user 'hard' (400).,  * Cannot be combined with files true (400).,  * A malformed CID is rejected with 400.,  * A well-formed CID that does not exist is accepted and excludes nothing.,  * Scheduled messages are not channel-scoped: with user 'pruning' the user's scheduled messages are still removed in every channel, excluded ones included.,  * The user.deleted event does not list the kept channels. A consumer that mirrors deletions must skip them itself.
+        attr_accessor :exclude_channel_cids
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -45,6 +48,7 @@ module GetStream
           @new_call_owner_id = attributes.fetch(:new_call_owner_id) { attributes.fetch('new_call_owner_id', nil) }
           @new_channel_owner_id = attributes.fetch(:new_channel_owner_id) { attributes.fetch('new_channel_owner_id', nil) }
           @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
+          @exclude_channel_cids = attributes.fetch(:exclude_channel_cids) { attributes.fetch('exclude_channel_cids', nil) }
         end
 
         # Override field mappings for JSON serialization
@@ -57,7 +61,8 @@ module GetStream
             messages: 'messages',
             new_call_owner_id: 'new_call_owner_id',
             new_channel_owner_id: 'new_channel_owner_id',
-            user: 'user'
+            user: 'user',
+            exclude_channel_cids: 'exclude_channel_cids'
           }
         end
       end

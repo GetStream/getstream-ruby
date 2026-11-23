@@ -471,6 +471,28 @@ module GetStream
         )
       end
 
+      # Creates a draftSends events:- draft.updated
+      #
+      # @param _type [String]
+      # @param _id [String]
+      # @param create_draft_request [CreateDraftRequest]
+      # @return [Models::CreateDraftResponse]
+      def create_draft(_type, _id, create_draft_request)
+        path = '/api/v2/chat/channels/{type}/{id}/draft'
+        # Replace path parameters
+        path = path.gsub('{type}', _type.to_s)
+        path = path.gsub('{id}', _id.to_s)
+        # Build request body
+        body = create_draft_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
       # Sends event to the channel
       #
       # @param _type [String]
@@ -884,7 +906,7 @@ module GetStream
         )
       end
 
-      # Marks channel as unread from a specific message
+      # Marks channel as unread from a specific message, or as soft unread (a dot without a counter) when no message_id, message_timestamp or thread_id is given
       #
       # @param _type [String]
       # @param _id [String]

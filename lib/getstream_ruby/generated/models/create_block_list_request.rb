@@ -36,6 +36,9 @@ module GetStream
         # @!attribute user_id
         #   @return [String]
         attr_accessor :user_id
+        # @!attribute validate
+        #   @return [Boolean] For regex block lists, reject any rule that matches 50% or more of a built-in sample dataset as too broad
+        attr_accessor :validate
         # @!attribute user
         #   @return [UserRequest] User request object
         attr_accessor :user
@@ -52,6 +55,7 @@ module GetStream
           @team = attributes.fetch(:team) { attributes.fetch('team', nil) }
           @type = attributes.fetch(:type) { attributes.fetch('type', nil) }
           @user_id = attributes.fetch(:user_id) { attributes.fetch('user_id', nil) }
+          @validate = attributes.fetch(:validate) { attributes.fetch('validate', nil) }
           @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
         end
 
@@ -67,6 +71,7 @@ module GetStream
             team: 'team',
             type: 'type',
             user_id: 'user_id',
+            validate: 'validate',
             user: 'user'
           }
         end

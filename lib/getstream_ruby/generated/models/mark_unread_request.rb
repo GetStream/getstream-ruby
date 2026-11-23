@@ -10,13 +10,13 @@ module GetStream
 
         # Model attributes
         # @!attribute message_id
-        #   @return [String] ID of the message from where the channel is marked unread
+        #   @return [String] ID of the message from where the channel is marked unread. Omit message_id, message_timestamp and thread_id to mark the whole channel soft unread: a dot without a counter
         attr_accessor :message_id
         # @!attribute message_timestamp
-        #   @return [DateTime] Timestamp of the message from where the channel is marked unread
+        #   @return [DateTime] Timestamp of the message from where the channel is marked unread. Omit message_id, message_timestamp and thread_id to mark the whole channel soft unread
         attr_accessor :message_timestamp
         # @!attribute thread_id
-        #   @return [String] Mark a thread unread, specify one of the thread, message timestamp, or message id
+        #   @return [String] Mark a thread unread. Specify at most one of thread_id, message_timestamp, or message_id; omit all three to mark the channel soft unread
         attr_accessor :thread_id
         # @!attribute user_id
         #   @return [String]

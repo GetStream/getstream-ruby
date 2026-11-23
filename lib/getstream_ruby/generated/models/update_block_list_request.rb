@@ -27,6 +27,9 @@ module GetStream
         # @!attribute user_id
         #   @return [String]
         attr_accessor :user_id
+        # @!attribute validate
+        #   @return [Boolean] For regex block lists, reject any rule that matches 50% or more of a built-in sample dataset as too broad
+        attr_accessor :validate
         # @!attribute words
         #   @return [Array<String>] List of words to block
         attr_accessor :words
@@ -43,6 +46,7 @@ module GetStream
           @is_substring_matching_enabled = attributes.fetch(:is_substring_matching_enabled) { attributes.fetch('is_substring_matching_enabled', nil) }
           @team = attributes.fetch(:team) { attributes.fetch('team', nil) }
           @user_id = attributes.fetch(:user_id) { attributes.fetch('user_id', nil) }
+          @validate = attributes.fetch(:validate) { attributes.fetch('validate', nil) }
           @words = attributes.fetch(:words) { attributes.fetch('words', nil) }
           @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
         end
@@ -56,6 +60,7 @@ module GetStream
             is_substring_matching_enabled: 'is_substring_matching_enabled',
             team: 'team',
             user_id: 'user_id',
+            validate: 'validate',
             words: 'words',
             user: 'user'
           }

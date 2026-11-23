@@ -27,6 +27,9 @@ module GetStream
         # @!attribute last_read_message_id
         #   @return [String]
         attr_accessor :last_read_message_id
+        # @!attribute soft_unread
+        #   @return [Boolean]
+        attr_accessor :soft_unread
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -37,6 +40,7 @@ module GetStream
           @last_delivered_at = attributes.fetch(:last_delivered_at) { attributes.fetch('last_delivered_at', nil) }
           @last_delivered_message_id = attributes.fetch(:last_delivered_message_id) { attributes.fetch('last_delivered_message_id', nil) }
           @last_read_message_id = attributes.fetch(:last_read_message_id) { attributes.fetch('last_read_message_id', nil) }
+          @soft_unread = attributes.fetch(:soft_unread) { attributes.fetch('soft_unread', nil) }
         end
 
         # Override field mappings for JSON serialization
@@ -47,7 +51,8 @@ module GetStream
             user: 'user',
             last_delivered_at: 'last_delivered_at',
             last_delivered_message_id: 'last_delivered_message_id',
-            last_read_message_id: 'last_read_message_id'
+            last_read_message_id: 'last_read_message_id',
+            soft_unread: 'soft_unread'
           }
         end
       end
