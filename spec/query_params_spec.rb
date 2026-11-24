@@ -36,6 +36,13 @@ RSpec.describe 'query parameters' do
 
   end
 
+  it 'keeps a string value containing +, &, # or % intact' do
+
+    query = sent_query { |c| c.make_request(:get, '/x', query_params: { q: 'a+b&c=d#e%20f', limit: 5 }) }
+    expect(query).to eq('q' => 'a+b&c=d#e%20f', 'limit' => '5', 'api_key' => 'key')
+
+  end
+
   it 'sends a list of models as JSON and keeps later params' do
 
     sort = [GetStream::Generated::Models::SortParamRequest.new(field: 'created_at', direction: -1)]
