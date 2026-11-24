@@ -22,7 +22,7 @@ permissions:
 jobs:
   integration-chat:
     name: 🧪 Chat integration tests
-    runs-on: { group: github-public-ubuntu-static }
+    runs-on: { group: github-public-amd64 }
     timeout-minutes: 30
     environment: ci
     steps:
@@ -50,7 +50,7 @@ jobs:
     # success(), so a red chat no longer hides whether feed passes.
     needs: integration-chat
     if: ${{ !cancelled() }}
-    runs-on: { group: github-public-ubuntu-static }
+    runs-on: { group: github-public-amd64 }
     timeout-minutes: 30
     environment: ci
     steps:
@@ -72,7 +72,7 @@ jobs:
 
   integration-video:
     name: 🧪 Video integration tests
-    runs-on: { group: github-public-ubuntu-static }
+    runs-on: { group: github-public-amd64 }
     timeout-minutes: 30
     environment: ci
     steps:
@@ -94,7 +94,7 @@ jobs:
 
   integration-gcp-lb:
     name: 🧪 GCP load balancer keep-alive
-    runs-on: { group: github-public-ubuntu-static }
+    runs-on: { group: github-public-amd64 }
     timeout-minutes: 30
     environment: ci
     steps:
