@@ -16,7 +16,7 @@ module GetStream
         #   @return [String]
         attr_accessor :duration
         # @!attribute sort
-        #   @return [String] Sort order used for the comments (first, last, top, best, controversial)
+        #   @return [String] Sort order used for the comments (first, last, top, best, controversial, popular, mutuals)
         attr_accessor :sort
         # @!attribute comments
         #   @return [Array<ThreadedCommentResponse>] Threaded listing for the activity
@@ -34,13 +34,13 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @comment_count = attributes[:comment_count] || attributes['comment_count']
-          @duration = attributes[:duration] || attributes['duration']
-          @sort = attributes[:sort] || attributes['sort']
-          @comments = attributes[:comments] || attributes['comments']
-          @next = attributes[:next] || attributes['next'] || nil
-          @prev = attributes[:prev] || attributes['prev'] || nil
-          @top_level_comment_count = attributes[:top_level_comment_count] || attributes['top_level_comment_count'] || nil
+          @comment_count = attributes.fetch(:comment_count) { attributes.fetch('comment_count', nil) }
+          @duration = attributes.fetch(:duration) { attributes.fetch('duration', nil) }
+          @sort = attributes.fetch(:sort) { attributes.fetch('sort', nil) }
+          @comments = attributes.fetch(:comments) { attributes.fetch('comments', nil) }
+          @next = attributes.fetch(:next) { attributes.fetch('next', nil) }
+          @prev = attributes.fetch(:prev) { attributes.fetch('prev', nil) }
+          @top_level_comment_count = attributes.fetch(:top_level_comment_count) { attributes.fetch('top_level_comment_count', nil) }
         end
 
         # Override field mappings for JSON serialization

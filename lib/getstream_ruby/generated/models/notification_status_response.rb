@@ -31,12 +31,12 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @unread = attributes[:unread] || attributes['unread']
-          @unseen = attributes[:unseen] || attributes['unseen']
-          @last_read_at = attributes[:last_read_at] || attributes['last_read_at'] || nil
-          @last_seen_at = attributes[:last_seen_at] || attributes['last_seen_at'] || nil
-          @read_activities = attributes[:read_activities] || attributes['read_activities'] || nil
-          @seen_activities = attributes[:seen_activities] || attributes['seen_activities'] || nil
+          @unread = attributes.fetch(:unread) { attributes.fetch('unread', nil) }
+          @unseen = attributes.fetch(:unseen) { attributes.fetch('unseen', nil) }
+          @last_read_at = attributes.fetch(:last_read_at) { attributes.fetch('last_read_at', nil) }
+          @last_seen_at = attributes.fetch(:last_seen_at) { attributes.fetch('last_seen_at', nil) }
+          @read_activities = attributes.fetch(:read_activities) { attributes.fetch('read_activities', nil) }
+          @seen_activities = attributes.fetch(:seen_activities) { attributes.fetch('seen_activities', nil) }
         end
 
         # Override field mappings for JSON serialization

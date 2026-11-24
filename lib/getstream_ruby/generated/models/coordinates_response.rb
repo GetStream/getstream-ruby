@@ -19,8 +19,8 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @latitude = attributes[:latitude] || attributes['latitude']
-          @longitude = attributes[:longitude] || attributes['longitude']
+          @latitude = attributes.fetch(:latitude) { attributes.fetch('latitude', nil) }
+          @longitude = attributes.fetch(:longitude) { attributes.fetch('longitude', nil) }
         end
 
         # Override field mappings for JSON serialization

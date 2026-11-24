@@ -22,9 +22,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @user_id = attributes[:user_id] || attributes['user_id']
-          @grant_permissions = attributes[:grant_permissions] || attributes['grant_permissions'] || nil
-          @revoke_permissions = attributes[:revoke_permissions] || attributes['revoke_permissions'] || nil
+          @user_id = attributes.fetch(:user_id) { attributes.fetch('user_id', nil) }
+          @grant_permissions = attributes.fetch(:grant_permissions) { attributes.fetch('grant_permissions', nil) }
+          @revoke_permissions = attributes.fetch(:revoke_permissions) { attributes.fetch('revoke_permissions', nil) }
         end
 
         # Override field mappings for JSON serialization

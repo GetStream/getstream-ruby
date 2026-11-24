@@ -97,34 +97,34 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @name = attributes[:name] || attributes['name']
-          @type = attributes[:type] || attributes['type']
-          @updated_at = attributes[:updated_at] || attributes['updated_at']
-          @apn_auth_key = attributes[:apn_auth_key] || attributes['apn_auth_key'] || nil
-          @apn_auth_type = attributes[:apn_auth_type] || attributes['apn_auth_type'] || nil
-          @apn_development = attributes[:apn_development] || attributes['apn_development'] || nil
-          @apn_host = attributes[:apn_host] || attributes['apn_host'] || nil
-          @apn_key_id = attributes[:apn_key_id] || attributes['apn_key_id'] || nil
-          @apn_p12_cert = attributes[:apn_p12_cert] || attributes['apn_p12_cert'] || nil
-          @apn_sandbox_certificate = attributes[:apn_sandbox_certificate] || attributes['apn_sandbox_certificate'] || nil
-          @apn_supports_remote_notifications = attributes[:apn_supports_remote_notifications] || attributes['apn_supports_remote_notifications'] || nil
-          @apn_supports_voip_notifications = attributes[:apn_supports_voip_notifications] || attributes['apn_supports_voip_notifications'] || nil
-          @apn_team_id = attributes[:apn_team_id] || attributes['apn_team_id'] || nil
-          @apn_topic = attributes[:apn_topic] || attributes['apn_topic'] || nil
-          @description = attributes[:description] || attributes['description'] || nil
-          @disabled_at = attributes[:disabled_at] || attributes['disabled_at'] || nil
-          @disabled_reason = attributes[:disabled_reason] || attributes['disabled_reason'] || nil
-          @firebase_apn_template = attributes[:firebase_apn_template] || attributes['firebase_apn_template'] || nil
-          @firebase_credentials = attributes[:firebase_credentials] || attributes['firebase_credentials'] || nil
-          @firebase_data_template = attributes[:firebase_data_template] || attributes['firebase_data_template'] || nil
-          @firebase_host = attributes[:firebase_host] || attributes['firebase_host'] || nil
-          @firebase_notification_template = attributes[:firebase_notification_template] || attributes['firebase_notification_template'] || nil
-          @firebase_server_key = attributes[:firebase_server_key] || attributes['firebase_server_key'] || nil
-          @huawei_app_id = attributes[:huawei_app_id] || attributes['huawei_app_id'] || nil
-          @huawei_app_secret = attributes[:huawei_app_secret] || attributes['huawei_app_secret'] || nil
-          @xiaomi_app_secret = attributes[:xiaomi_app_secret] || attributes['xiaomi_app_secret'] || nil
-          @xiaomi_package_name = attributes[:xiaomi_package_name] || attributes['xiaomi_package_name'] || nil
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @name = attributes.fetch(:name) { attributes.fetch('name', nil) }
+          @type = attributes.fetch(:type) { attributes.fetch('type', nil) }
+          @updated_at = attributes.fetch(:updated_at) { attributes.fetch('updated_at', nil) }
+          @apn_auth_key = attributes.fetch(:apn_auth_key) { attributes.fetch('apn_auth_key', nil) }
+          @apn_auth_type = attributes.fetch(:apn_auth_type) { attributes.fetch('apn_auth_type', nil) }
+          @apn_development = attributes.fetch(:apn_development) { attributes.fetch('apn_development', nil) }
+          @apn_host = attributes.fetch(:apn_host) { attributes.fetch('apn_host', nil) }
+          @apn_key_id = attributes.fetch(:apn_key_id) { attributes.fetch('apn_key_id', nil) }
+          @apn_p12_cert = attributes.fetch(:apn_p12_cert) { attributes.fetch('apn_p12_cert', nil) }
+          @apn_sandbox_certificate = attributes.fetch(:apn_sandbox_certificate) { attributes.fetch('apn_sandbox_certificate', nil) }
+          @apn_supports_remote_notifications = attributes.fetch(:apn_supports_remote_notifications) { attributes.fetch('apn_supports_remote_notifications', nil) }
+          @apn_supports_voip_notifications = attributes.fetch(:apn_supports_voip_notifications) { attributes.fetch('apn_supports_voip_notifications', nil) }
+          @apn_team_id = attributes.fetch(:apn_team_id) { attributes.fetch('apn_team_id', nil) }
+          @apn_topic = attributes.fetch(:apn_topic) { attributes.fetch('apn_topic', nil) }
+          @description = attributes.fetch(:description) { attributes.fetch('description', nil) }
+          @disabled_at = attributes.fetch(:disabled_at) { attributes.fetch('disabled_at', nil) }
+          @disabled_reason = attributes.fetch(:disabled_reason) { attributes.fetch('disabled_reason', nil) }
+          @firebase_apn_template = attributes.fetch(:firebase_apn_template) { attributes.fetch('firebase_apn_template', nil) }
+          @firebase_credentials = attributes.fetch(:firebase_credentials) { attributes.fetch('firebase_credentials', nil) }
+          @firebase_data_template = attributes.fetch(:firebase_data_template) { attributes.fetch('firebase_data_template', nil) }
+          @firebase_host = attributes.fetch(:firebase_host) { attributes.fetch('firebase_host', nil) }
+          @firebase_notification_template = attributes.fetch(:firebase_notification_template) { attributes.fetch('firebase_notification_template', nil) }
+          @firebase_server_key = attributes.fetch(:firebase_server_key) { attributes.fetch('firebase_server_key', nil) }
+          @huawei_app_id = attributes.fetch(:huawei_app_id) { attributes.fetch('huawei_app_id', nil) }
+          @huawei_app_secret = attributes.fetch(:huawei_app_secret) { attributes.fetch('huawei_app_secret', nil) }
+          @xiaomi_app_secret = attributes.fetch(:xiaomi_app_secret) { attributes.fetch('xiaomi_app_secret', nil) }
+          @xiaomi_package_name = attributes.fetch(:xiaomi_package_name) { attributes.fetch('xiaomi_package_name', nil) }
         end
 
         # Override field mappings for JSON serialization

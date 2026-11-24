@@ -37,14 +37,14 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @id = attributes[:id] || attributes['id']
-          @published_at = attributes[:published_at] || attributes['published_at']
-          @type = attributes[:type] || attributes['type']
-          @confidence = attributes[:confidence] || attributes['confidence'] || nil
-          @severity = attributes[:severity] || attributes['severity'] || nil
-          @text = attributes[:text] || attributes['text'] || nil
-          @classifications = attributes[:classifications] || attributes['classifications'] || nil
-          @ocr_classifications = attributes[:ocr_classifications] || attributes['ocr_classifications'] || nil
+          @id = attributes.fetch(:id) { attributes.fetch('id', nil) }
+          @published_at = attributes.fetch(:published_at) { attributes.fetch('published_at', nil) }
+          @type = attributes.fetch(:type) { attributes.fetch('type', nil) }
+          @confidence = attributes.fetch(:confidence) { attributes.fetch('confidence', nil) }
+          @severity = attributes.fetch(:severity) { attributes.fetch('severity', nil) }
+          @text = attributes.fetch(:text) { attributes.fetch('text', nil) }
+          @classifications = attributes.fetch(:classifications) { attributes.fetch('classifications', nil) }
+          @ocr_classifications = attributes.fetch(:ocr_classifications) { attributes.fetch('ocr_classifications', nil) }
         end
 
         # Override field mappings for JSON serialization

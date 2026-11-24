@@ -22,9 +22,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @bitrate = attributes[:bitrate] || attributes['bitrate']
-          @channels = attributes[:channels] || attributes['channels']
-          @enable_dtx = attributes[:enable_dtx] || attributes['enable_dtx']
+          @bitrate = attributes.fetch(:bitrate) { attributes.fetch('bitrate', nil) }
+          @channels = attributes.fetch(:channels) { attributes.fetch('channels', nil) }
+          @enable_dtx = attributes.fetch(:enable_dtx) { attributes.fetch('enable_dtx', nil) }
         end
 
         # Override field mappings for JSON serialization

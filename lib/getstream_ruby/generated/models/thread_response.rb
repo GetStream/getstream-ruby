@@ -61,22 +61,22 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @active_participant_count = attributes[:active_participant_count] || attributes['active_participant_count']
-          @channel_cid = attributes[:channel_cid] || attributes['channel_cid']
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @created_by_user_id = attributes[:created_by_user_id] || attributes['created_by_user_id']
-          @parent_message_id = attributes[:parent_message_id] || attributes['parent_message_id']
-          @participant_count = attributes[:participant_count] || attributes['participant_count']
-          @reply_count = attributes[:reply_count] || attributes['reply_count']
-          @title = attributes[:title] || attributes['title']
-          @updated_at = attributes[:updated_at] || attributes['updated_at']
-          @custom = attributes[:custom] || attributes['custom']
-          @deleted_at = attributes[:deleted_at] || attributes['deleted_at'] || nil
-          @last_message_at = attributes[:last_message_at] || attributes['last_message_at'] || nil
-          @thread_participants = attributes[:thread_participants] || attributes['thread_participants'] || nil
-          @channel = attributes[:channel] || attributes['channel'] || nil
-          @created_by = attributes[:created_by] || attributes['created_by'] || nil
-          @parent_message = attributes[:parent_message] || attributes['parent_message'] || nil
+          @active_participant_count = attributes.fetch(:active_participant_count) { attributes.fetch('active_participant_count', nil) }
+          @channel_cid = attributes.fetch(:channel_cid) { attributes.fetch('channel_cid', nil) }
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @created_by_user_id = attributes.fetch(:created_by_user_id) { attributes.fetch('created_by_user_id', nil) }
+          @parent_message_id = attributes.fetch(:parent_message_id) { attributes.fetch('parent_message_id', nil) }
+          @participant_count = attributes.fetch(:participant_count) { attributes.fetch('participant_count', nil) }
+          @reply_count = attributes.fetch(:reply_count) { attributes.fetch('reply_count', nil) }
+          @title = attributes.fetch(:title) { attributes.fetch('title', nil) }
+          @updated_at = attributes.fetch(:updated_at) { attributes.fetch('updated_at', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
+          @deleted_at = attributes.fetch(:deleted_at) { attributes.fetch('deleted_at', nil) }
+          @last_message_at = attributes.fetch(:last_message_at) { attributes.fetch('last_message_at', nil) }
+          @thread_participants = attributes.fetch(:thread_participants) { attributes.fetch('thread_participants', nil) }
+          @channel = attributes.fetch(:channel) { attributes.fetch('channel', nil) }
+          @created_by = attributes.fetch(:created_by) { attributes.fetch('created_by', nil) }
+          @parent_message = attributes.fetch(:parent_message) { attributes.fetch('parent_message', nil) }
         end
 
         # Override field mappings for JSON serialization

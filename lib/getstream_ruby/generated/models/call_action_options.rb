@@ -34,13 +34,13 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @duration = attributes[:duration] || attributes['duration'] || nil
-          @flag_reason = attributes[:flag_reason] || attributes['flag_reason'] || nil
-          @kick_reason = attributes[:kick_reason] || attributes['kick_reason'] || nil
-          @mute_audio = attributes[:mute_audio] || attributes['mute_audio'] || nil
-          @mute_video = attributes[:mute_video] || attributes['mute_video'] || nil
-          @reason = attributes[:reason] || attributes['reason'] || nil
-          @warning_text = attributes[:warning_text] || attributes['warning_text'] || nil
+          @duration = attributes.fetch(:duration) { attributes.fetch('duration', nil) }
+          @flag_reason = attributes.fetch(:flag_reason) { attributes.fetch('flag_reason', nil) }
+          @kick_reason = attributes.fetch(:kick_reason) { attributes.fetch('kick_reason', nil) }
+          @mute_audio = attributes.fetch(:mute_audio) { attributes.fetch('mute_audio', nil) }
+          @mute_video = attributes.fetch(:mute_video) { attributes.fetch('mute_video', nil) }
+          @reason = attributes.fetch(:reason) { attributes.fetch('reason', nil) }
+          @warning_text = attributes.fetch(:warning_text) { attributes.fetch('warning_text', nil) }
         end
 
         # Override field mappings for JSON serialization

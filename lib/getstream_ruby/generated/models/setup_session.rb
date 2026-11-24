@@ -31,12 +31,12 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @current_step = attributes[:current_step] || attributes['current_step']
-          @status = attributes[:status] || attributes['status']
-          @updated_at = attributes[:updated_at] || attributes['updated_at']
-          @setup_data = attributes[:setup_data] || attributes['setup_data']
-          @completed_at = attributes[:completed_at] || attributes['completed_at'] || nil
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @current_step = attributes.fetch(:current_step) { attributes.fetch('current_step', nil) }
+          @status = attributes.fetch(:status) { attributes.fetch('status', nil) }
+          @updated_at = attributes.fetch(:updated_at) { attributes.fetch('updated_at', nil) }
+          @setup_data = attributes.fetch(:setup_data) { attributes.fetch('setup_data', nil) }
+          @completed_at = attributes.fetch(:completed_at) { attributes.fetch('completed_at', nil) }
         end
 
         # Override field mappings for JSON serialization

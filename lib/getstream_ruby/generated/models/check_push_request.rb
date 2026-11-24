@@ -43,16 +43,16 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @apn_template = attributes[:apn_template] || attributes['apn_template'] || nil
-          @event_type = attributes[:event_type] || attributes['event_type'] || nil
-          @firebase_data_template = attributes[:firebase_data_template] || attributes['firebase_data_template'] || nil
-          @firebase_template = attributes[:firebase_template] || attributes['firebase_template'] || nil
-          @message_id = attributes[:message_id] || attributes['message_id'] || nil
-          @push_provider_name = attributes[:push_provider_name] || attributes['push_provider_name'] || nil
-          @push_provider_type = attributes[:push_provider_type] || attributes['push_provider_type'] || nil
-          @skip_devices = attributes[:skip_devices] || attributes['skip_devices'] || nil
-          @user_id = attributes[:user_id] || attributes['user_id'] || nil
-          @user = attributes[:user] || attributes['user'] || nil
+          @apn_template = attributes.fetch(:apn_template) { attributes.fetch('apn_template', nil) }
+          @event_type = attributes.fetch(:event_type) { attributes.fetch('event_type', nil) }
+          @firebase_data_template = attributes.fetch(:firebase_data_template) { attributes.fetch('firebase_data_template', nil) }
+          @firebase_template = attributes.fetch(:firebase_template) { attributes.fetch('firebase_template', nil) }
+          @message_id = attributes.fetch(:message_id) { attributes.fetch('message_id', nil) }
+          @push_provider_name = attributes.fetch(:push_provider_name) { attributes.fetch('push_provider_name', nil) }
+          @push_provider_type = attributes.fetch(:push_provider_type) { attributes.fetch('push_provider_type', nil) }
+          @skip_devices = attributes.fetch(:skip_devices) { attributes.fetch('skip_devices', nil) }
+          @user_id = attributes.fetch(:user_id) { attributes.fetch('user_id', nil) }
+          @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
         end
 
         # Override field mappings for JSON serialization

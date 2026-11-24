@@ -40,15 +40,15 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @call_cid = attributes[:call_cid] || attributes['call_cid']
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @ingress_stream_id = attributes[:ingress_stream_id] || attributes['ingress_stream_id']
-          @publisher_type = attributes[:publisher_type] || attributes['publisher_type']
-          @user_id = attributes[:user_id] || attributes['user_id']
-          @type = attributes[:type] || attributes['type'] || "ingress.started"
-          @client_ip = attributes[:client_ip] || attributes['client_ip'] || nil
-          @client_name = attributes[:client_name] || attributes['client_name'] || nil
-          @version = attributes[:version] || attributes['version'] || nil
+          @call_cid = attributes.fetch(:call_cid) { attributes.fetch('call_cid', nil) }
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @ingress_stream_id = attributes.fetch(:ingress_stream_id) { attributes.fetch('ingress_stream_id', nil) }
+          @publisher_type = attributes.fetch(:publisher_type) { attributes.fetch('publisher_type', nil) }
+          @user_id = attributes.fetch(:user_id) { attributes.fetch('user_id', nil) }
+          @type = attributes.fetch(:type) { attributes.fetch('type', "ingress.started") }
+          @client_ip = attributes.fetch(:client_ip) { attributes.fetch('client_ip', nil) }
+          @client_name = attributes.fetch(:client_name) { attributes.fetch('client_name', nil) }
+          @version = attributes.fetch(:version) { attributes.fetch('version', nil) }
         end
 
         # Override field mappings for JSON serialization

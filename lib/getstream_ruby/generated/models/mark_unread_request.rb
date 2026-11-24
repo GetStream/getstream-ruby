@@ -10,13 +10,13 @@ module GetStream
 
         # Model attributes
         # @!attribute message_id
-        #   @return [String] ID of the message from where the channel is marked unread
+        #   @return [String] ID of the message from where the channel is marked unread. Omit message_id, message_timestamp and thread_id to mark the whole channel soft unread: a dot without a counter
         attr_accessor :message_id
         # @!attribute message_timestamp
-        #   @return [DateTime] Timestamp of the message from where the channel is marked unread
+        #   @return [DateTime] Timestamp of the message from where the channel is marked unread. Omit message_id, message_timestamp and thread_id to mark the whole channel soft unread
         attr_accessor :message_timestamp
         # @!attribute thread_id
-        #   @return [String] Mark a thread unread, specify one of the thread, message timestamp, or message id
+        #   @return [String] Mark a thread unread. Specify at most one of thread_id, message_timestamp, or message_id; omit all three to mark the channel soft unread
         attr_accessor :thread_id
         # @!attribute user_id
         #   @return [String]
@@ -28,11 +28,11 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @message_id = attributes[:message_id] || attributes['message_id'] || nil
-          @message_timestamp = attributes[:message_timestamp] || attributes['message_timestamp'] || nil
-          @thread_id = attributes[:thread_id] || attributes['thread_id'] || nil
-          @user_id = attributes[:user_id] || attributes['user_id'] || nil
-          @user = attributes[:user] || attributes['user'] || nil
+          @message_id = attributes.fetch(:message_id) { attributes.fetch('message_id', nil) }
+          @message_timestamp = attributes.fetch(:message_timestamp) { attributes.fetch('message_timestamp', nil) }
+          @thread_id = attributes.fetch(:thread_id) { attributes.fetch('thread_id', nil) }
+          @user_id = attributes.fetch(:user_id) { attributes.fetch('user_id', nil) }
+          @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
         end
 
         # Override field mappings for JSON serialization

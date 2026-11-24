@@ -43,16 +43,16 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @sum = attributes[:sum] || attributes['sum']
-          @unique = attributes[:unique] || attributes['unique']
-          @max_concurrent = attributes[:max_concurrent] || attributes['max_concurrent'] || nil
-          @by_browser = attributes[:by_browser] || attributes['by_browser'] || nil
-          @by_country = attributes[:by_country] || attributes['by_country'] || nil
-          @by_device = attributes[:by_device] || attributes['by_device'] || nil
-          @by_operating_system = attributes[:by_operating_system] || attributes['by_operating_system'] || nil
-          @count_over_time = attributes[:count_over_time] || attributes['count_over_time'] || nil
-          @publishers = attributes[:publishers] || attributes['publishers'] || nil
-          @subscribers = attributes[:subscribers] || attributes['subscribers'] || nil
+          @sum = attributes.fetch(:sum) { attributes.fetch('sum', nil) }
+          @unique = attributes.fetch(:unique) { attributes.fetch('unique', nil) }
+          @max_concurrent = attributes.fetch(:max_concurrent) { attributes.fetch('max_concurrent', nil) }
+          @by_browser = attributes.fetch(:by_browser) { attributes.fetch('by_browser', nil) }
+          @by_country = attributes.fetch(:by_country) { attributes.fetch('by_country', nil) }
+          @by_device = attributes.fetch(:by_device) { attributes.fetch('by_device', nil) }
+          @by_operating_system = attributes.fetch(:by_operating_system) { attributes.fetch('by_operating_system', nil) }
+          @count_over_time = attributes.fetch(:count_over_time) { attributes.fetch('count_over_time', nil) }
+          @publishers = attributes.fetch(:publishers) { attributes.fetch('publishers', nil) }
+          @subscribers = attributes.fetch(:subscribers) { attributes.fetch('subscribers', nil) }
         end
 
         # Override field mappings for JSON serialization

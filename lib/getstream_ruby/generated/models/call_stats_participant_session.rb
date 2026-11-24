@@ -79,28 +79,28 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @is_live = attributes[:is_live] || attributes['is_live']
-          @user_session_id = attributes[:user_session_id] || attributes['user_session_id']
-          @published_tracks = attributes[:published_tracks] || attributes['published_tracks']
-          @browser = attributes[:browser] || attributes['browser'] || nil
-          @browser_version = attributes[:browser_version] || attributes['browser_version'] || nil
-          @cq_score = attributes[:cq_score] || attributes['cq_score'] || nil
-          @current_ip = attributes[:current_ip] || attributes['current_ip'] || nil
-          @current_sfu = attributes[:current_sfu] || attributes['current_sfu'] || nil
-          @distance_to_sfu_kilometers = attributes[:distance_to_sfu_kilometers] || attributes['distance_to_sfu_kilometers'] || nil
-          @ended_at = attributes[:ended_at] || attributes['ended_at'] || nil
-          @freezes_duration_ms = attributes[:freezes_duration_ms] || attributes['freezes_duration_ms'] || nil
-          @ingress = attributes[:ingress] || attributes['ingress'] || nil
-          @jitter_ms = attributes[:jitter_ms] || attributes['jitter_ms'] || nil
-          @latency_ms = attributes[:latency_ms] || attributes['latency_ms'] || nil
-          @os = attributes[:os] || attributes['os'] || nil
-          @publisher_type = attributes[:publisher_type] || attributes['publisher_type'] || nil
-          @sdk = attributes[:sdk] || attributes['sdk'] || nil
-          @sdk_version = attributes[:sdk_version] || attributes['sdk_version'] || nil
-          @started_at = attributes[:started_at] || attributes['started_at'] || nil
-          @unified_session_id = attributes[:unified_session_id] || attributes['unified_session_id'] || nil
-          @webrtc_version = attributes[:webrtc_version] || attributes['webrtc_version'] || nil
-          @location = attributes[:location] || attributes['location'] || nil
+          @is_live = attributes.fetch(:is_live) { attributes.fetch('is_live', nil) }
+          @user_session_id = attributes.fetch(:user_session_id) { attributes.fetch('user_session_id', nil) }
+          @published_tracks = attributes.fetch(:published_tracks) { attributes.fetch('published_tracks', nil) }
+          @browser = attributes.fetch(:browser) { attributes.fetch('browser', nil) }
+          @browser_version = attributes.fetch(:browser_version) { attributes.fetch('browser_version', nil) }
+          @cq_score = attributes.fetch(:cq_score) { attributes.fetch('cq_score', nil) }
+          @current_ip = attributes.fetch(:current_ip) { attributes.fetch('current_ip', nil) }
+          @current_sfu = attributes.fetch(:current_sfu) { attributes.fetch('current_sfu', nil) }
+          @distance_to_sfu_kilometers = attributes.fetch(:distance_to_sfu_kilometers) { attributes.fetch('distance_to_sfu_kilometers', nil) }
+          @ended_at = attributes.fetch(:ended_at) { attributes.fetch('ended_at', nil) }
+          @freezes_duration_ms = attributes.fetch(:freezes_duration_ms) { attributes.fetch('freezes_duration_ms', nil) }
+          @ingress = attributes.fetch(:ingress) { attributes.fetch('ingress', nil) }
+          @jitter_ms = attributes.fetch(:jitter_ms) { attributes.fetch('jitter_ms', nil) }
+          @latency_ms = attributes.fetch(:latency_ms) { attributes.fetch('latency_ms', nil) }
+          @os = attributes.fetch(:os) { attributes.fetch('os', nil) }
+          @publisher_type = attributes.fetch(:publisher_type) { attributes.fetch('publisher_type', nil) }
+          @sdk = attributes.fetch(:sdk) { attributes.fetch('sdk', nil) }
+          @sdk_version = attributes.fetch(:sdk_version) { attributes.fetch('sdk_version', nil) }
+          @started_at = attributes.fetch(:started_at) { attributes.fetch('started_at', nil) }
+          @unified_session_id = attributes.fetch(:unified_session_id) { attributes.fetch('unified_session_id', nil) }
+          @webrtc_version = attributes.fetch(:webrtc_version) { attributes.fetch('webrtc_version', nil) }
+          @location = attributes.fetch(:location) { attributes.fetch('location', nil) }
         end
 
         # Override field mappings for JSON serialization

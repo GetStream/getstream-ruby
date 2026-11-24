@@ -25,10 +25,10 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @max_age_hours = attributes[:max_age_hours] || attributes['max_age_hours']
-          @policy = attributes[:policy] || attributes['policy']
-          @enabled = attributes[:enabled] || attributes['enabled'] || nil
-          @feed_groups = attributes[:feed_groups] || attributes['feed_groups'] || nil
+          @max_age_hours = attributes.fetch(:max_age_hours) { attributes.fetch('max_age_hours', nil) }
+          @policy = attributes.fetch(:policy) { attributes.fetch('policy', nil) }
+          @enabled = attributes.fetch(:enabled) { attributes.fetch('enabled', nil) }
+          @feed_groups = attributes.fetch(:feed_groups) { attributes.fetch('feed_groups', nil) }
         end
 
         # Override field mappings for JSON serialization

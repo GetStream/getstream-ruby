@@ -22,9 +22,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @type = attributes[:type] || attributes['type']
-          @min_text_length = attributes[:min_text_length] || attributes['min_text_length'] || nil
-          @min_word_count = attributes[:min_word_count] || attributes['min_word_count'] || nil
+          @type = attributes.fetch(:type) { attributes.fetch('type', nil) }
+          @min_text_length = attributes.fetch(:min_text_length) { attributes.fetch('min_text_length', nil) }
+          @min_word_count = attributes.fetch(:min_word_count) { attributes.fetch('min_word_count', nil) }
         end
 
         # Override field mappings for JSON serialization

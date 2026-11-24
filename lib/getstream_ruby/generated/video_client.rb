@@ -30,13 +30,13 @@ module GetStream
       # @param query_user_feedback_request [QueryUserFeedbackRequest]
       # @param full [Boolean]
       # @return [Models::QueryUserFeedbackResponse]
-      def query_user_feedback(query_user_feedback_request, full = nil)
+      def query_user_feedback(query_user_feedback_request = nil, full = nil)
         path = '/api/v2/video/call/feedback'
         # Build query parameters
         query_params = {}
         query_params['full'] = full unless full.nil?
         # Build request body
-        body = query_user_feedback_request
+        body = query_user_feedback_request || {}
 
         # Make the API request
         @client.make_request(
@@ -85,10 +85,10 @@ module GetStream
       #
       # @param query_call_stats_request [QueryCallStatsRequest]
       # @return [Models::QueryCallStatsResponse]
-      def query_call_stats(query_call_stats_request)
+      def query_call_stats(query_call_stats_request = nil)
         path = '/api/v2/video/call/stats'
         # Build request body
-        body = query_call_stats_request
+        body = query_call_stats_request || {}
 
         # Make the API request
         @client.make_request(
@@ -133,13 +133,13 @@ module GetStream
       # @param _id [String]
       # @param update_call_request [UpdateCallRequest]
       # @return [Models::UpdateCallResponse]
-      def update_call(_type, _id, update_call_request)
+      def update_call(_type, _id, update_call_request = nil)
         path = '/api/v2/video/call/{type}/{id}'
         # Replace path parameters
         path = path.gsub('{type}', _type.to_s)
         path = path.gsub('{id}', _id.to_s)
         # Build request body
-        body = update_call_request
+        body = update_call_request || {}
 
         # Make the API request
         @client.make_request(
@@ -155,13 +155,13 @@ module GetStream
       # @param _id [String]
       # @param get_or_create_call_request [GetOrCreateCallRequest]
       # @return [Models::GetOrCreateCallResponse]
-      def get_or_create_call(_type, _id, get_or_create_call_request)
+      def get_or_create_call(_type, _id, get_or_create_call_request = nil)
         path = '/api/v2/video/call/{type}/{id}'
         # Replace path parameters
         path = path.gsub('{type}', _type.to_s)
         path = path.gsub('{id}', _id.to_s)
         # Build request body
-        body = get_or_create_call_request
+        body = get_or_create_call_request || {}
 
         # Make the API request
         @client.make_request(
@@ -221,13 +221,13 @@ module GetStream
       # @param _id [String]
       # @param delete_call_request [DeleteCallRequest]
       # @return [Models::DeleteCallResponse]
-      def delete_call(_type, _id, delete_call_request)
+      def delete_call(_type, _id, delete_call_request = nil)
         path = '/api/v2/video/call/{type}/{id}/delete'
         # Replace path parameters
         path = path.gsub('{type}', _type.to_s)
         path = path.gsub('{id}', _id.to_s)
         # Build request body
-        body = delete_call_request
+        body = delete_call_request || {}
 
         # Make the API request
         @client.make_request(
@@ -243,13 +243,13 @@ module GetStream
       # @param _id [String]
       # @param send_call_event_request [SendCallEventRequest]
       # @return [Models::SendCallEventResponse]
-      def send_call_event(_type, _id, send_call_event_request)
+      def send_call_event(_type, _id, send_call_event_request = nil)
         path = '/api/v2/video/call/{type}/{id}/event'
         # Replace path parameters
         path = path.gsub('{type}', _type.to_s)
         path = path.gsub('{id}', _id.to_s)
         # Build request body
-        body = send_call_event_request
+        body = send_call_event_request || {}
 
         # Make the API request
         @client.make_request(
@@ -287,13 +287,13 @@ module GetStream
       # @param _id [String]
       # @param go_live_request [GoLiveRequest]
       # @return [Models::GoLiveResponse]
-      def go_live(_type, _id, go_live_request)
+      def go_live(_type, _id, go_live_request = nil)
         path = '/api/v2/video/call/{type}/{id}/go_live'
         # Replace path parameters
         path = path.gsub('{type}', _type.to_s)
         path = path.gsub('{id}', _id.to_s)
         # Build request body
-        body = go_live_request
+        body = go_live_request || {}
 
         # Make the API request
         @client.make_request(
@@ -349,13 +349,13 @@ module GetStream
       # @param _id [String]
       # @param update_call_members_request [UpdateCallMembersRequest]
       # @return [Models::UpdateCallMembersResponse]
-      def update_call_members(_type, _id, update_call_members_request)
+      def update_call_members(_type, _id, update_call_members_request = nil)
         path = '/api/v2/video/call/{type}/{id}/members'
         # Replace path parameters
         path = path.gsub('{type}', _type.to_s)
         path = path.gsub('{id}', _id.to_s)
         # Build request body
-        body = update_call_members_request
+        body = update_call_members_request || {}
 
         # Make the API request
         @client.make_request(
@@ -371,13 +371,13 @@ module GetStream
       # @param _id [String]
       # @param mute_users_request [MuteUsersRequest]
       # @return [Models::MuteUsersResponse]
-      def mute_users(_type, _id, mute_users_request)
+      def mute_users(_type, _id, mute_users_request = nil)
         path = '/api/v2/video/call/{type}/{id}/mute_users'
         # Replace path parameters
         path = path.gsub('{type}', _type.to_s)
         path = path.gsub('{id}', _id.to_s)
         # Build request body
-        body = mute_users_request
+        body = mute_users_request || {}
 
         # Make the API request
         @client.make_request(
@@ -394,7 +394,7 @@ module GetStream
       # @param query_call_participants_request [QueryCallParticipantsRequest]
       # @param limit [Integer]
       # @return [Models::QueryCallParticipantsResponse]
-      def query_call_participants(_id, _type, query_call_participants_request, limit = nil)
+      def query_call_participants(_id, _type, query_call_participants_request = nil, limit = nil)
         path = '/api/v2/video/call/{type}/{id}/participants'
         # Replace path parameters
         path = path.gsub('{id}', _id.to_s)
@@ -403,7 +403,7 @@ module GetStream
         query_params = {}
         query_params['limit'] = limit unless limit.nil?
         # Build request body
-        body = query_call_participants_request
+        body = query_call_participants_request || {}
 
         # Make the API request
         @client.make_request(
@@ -461,14 +461,14 @@ module GetStream
       # @param recording_type [RecordingType]
       # @param start_recording_request [StartRecordingRequest]
       # @return [Models::StartRecordingResponse]
-      def start_recording(_type, _id, recording_type, start_recording_request)
+      def start_recording(_type, _id, recording_type, start_recording_request = nil)
         path = '/api/v2/video/call/{type}/{id}/recordings/{recording_type}/start'
         # Replace path parameters
         path = path.gsub('{type}', _type.to_s)
         path = path.gsub('{id}', _id.to_s)
         path = path.gsub('{recording_type}', recording_type.to_s)
         # Build request body
-        body = start_recording_request
+        body = start_recording_request || {}
 
         # Make the API request
         @client.make_request(
@@ -485,14 +485,14 @@ module GetStream
       # @param recording_type [RecordingType]
       # @param stop_recording_request [StopRecordingRequest]
       # @return [Models::StopRecordingResponse]
-      def stop_recording(_type, _id, recording_type, stop_recording_request)
+      def stop_recording(_type, _id, recording_type, stop_recording_request = nil)
         path = '/api/v2/video/call/{type}/{id}/recordings/{recording_type}/stop'
         # Replace path parameters
         path = path.gsub('{type}', _type.to_s)
         path = path.gsub('{id}', _id.to_s)
         path = path.gsub('{recording_type}', recording_type.to_s)
         # Build request body
-        body = stop_recording_request
+        body = stop_recording_request || {}
 
         # Make the API request
         @client.make_request(
@@ -531,13 +531,13 @@ module GetStream
       # @param _id [String]
       # @param ring_call_request [RingCallRequest]
       # @return [Models::RingCallResponse]
-      def ring_call(_type, _id, ring_call_request)
+      def ring_call(_type, _id, ring_call_request = nil)
         path = '/api/v2/video/call/{type}/{id}/ring'
         # Replace path parameters
         path = path.gsub('{type}', _type.to_s)
         path = path.gsub('{id}', _id.to_s)
         # Build request body
-        body = ring_call_request
+        body = ring_call_request || {}
 
         # Make the API request
         @client.make_request(
@@ -594,14 +594,14 @@ module GetStream
       # @param name [String]
       # @param stop_rtmp_broadcasts_request [StopRTMPBroadcastsRequest]
       # @return [Models::StopRTMPBroadcastsResponse]
-      def stop_rtmp_broadcast(_type, _id, name, stop_rtmp_broadcasts_request)
+      def stop_rtmp_broadcast(_type, _id, name, stop_rtmp_broadcasts_request = nil)
         path = '/api/v2/video/call/{type}/{id}/rtmp_broadcasts/{name}/stop'
         # Replace path parameters
         path = path.gsub('{type}', _type.to_s)
         path = path.gsub('{id}', _id.to_s)
         path = path.gsub('{name}', name.to_s)
         # Build request body
-        body = stop_rtmp_broadcasts_request
+        body = stop_rtmp_broadcasts_request || {}
 
         # Make the API request
         @client.make_request(
@@ -697,13 +697,13 @@ module GetStream
       # @param _id [String]
       # @param start_closed_captions_request [StartClosedCaptionsRequest]
       # @return [Models::StartClosedCaptionsResponse]
-      def start_closed_captions(_type, _id, start_closed_captions_request)
+      def start_closed_captions(_type, _id, start_closed_captions_request = nil)
         path = '/api/v2/video/call/{type}/{id}/start_closed_captions'
         # Replace path parameters
         path = path.gsub('{type}', _type.to_s)
         path = path.gsub('{id}', _id.to_s)
         # Build request body
-        body = start_closed_captions_request
+        body = start_closed_captions_request || {}
 
         # Make the API request
         @client.make_request(
@@ -719,13 +719,13 @@ module GetStream
       # @param _id [String]
       # @param start_frame_recording_request [StartFrameRecordingRequest]
       # @return [Models::StartFrameRecordingResponse]
-      def start_frame_recording(_type, _id, start_frame_recording_request)
+      def start_frame_recording(_type, _id, start_frame_recording_request = nil)
         path = '/api/v2/video/call/{type}/{id}/start_frame_recording'
         # Replace path parameters
         path = path.gsub('{type}', _type.to_s)
         path = path.gsub('{id}', _id.to_s)
         # Build request body
-        body = start_frame_recording_request
+        body = start_frame_recording_request || {}
 
         # Make the API request
         @client.make_request(
@@ -741,13 +741,13 @@ module GetStream
       # @param _id [String]
       # @param start_transcription_request [StartTranscriptionRequest]
       # @return [Models::StartTranscriptionResponse]
-      def start_transcription(_type, _id, start_transcription_request)
+      def start_transcription(_type, _id, start_transcription_request = nil)
         path = '/api/v2/video/call/{type}/{id}/start_transcription'
         # Replace path parameters
         path = path.gsub('{type}', _type.to_s)
         path = path.gsub('{id}', _id.to_s)
         # Build request body
-        body = start_transcription_request
+        body = start_transcription_request || {}
 
         # Make the API request
         @client.make_request(
@@ -781,13 +781,13 @@ module GetStream
       # @param _id [String]
       # @param stop_closed_captions_request [StopClosedCaptionsRequest]
       # @return [Models::StopClosedCaptionsResponse]
-      def stop_closed_captions(_type, _id, stop_closed_captions_request)
+      def stop_closed_captions(_type, _id, stop_closed_captions_request = nil)
         path = '/api/v2/video/call/{type}/{id}/stop_closed_captions'
         # Replace path parameters
         path = path.gsub('{type}', _type.to_s)
         path = path.gsub('{id}', _id.to_s)
         # Build request body
-        body = stop_closed_captions_request
+        body = stop_closed_captions_request || {}
 
         # Make the API request
         @client.make_request(
@@ -821,13 +821,13 @@ module GetStream
       # @param _id [String]
       # @param stop_live_request [StopLiveRequest]
       # @return [Models::StopLiveResponse]
-      def stop_live(_type, _id, stop_live_request)
+      def stop_live(_type, _id, stop_live_request = nil)
         path = '/api/v2/video/call/{type}/{id}/stop_live'
         # Replace path parameters
         path = path.gsub('{type}', _type.to_s)
         path = path.gsub('{id}', _id.to_s)
         # Build request body
-        body = stop_live_request
+        body = stop_live_request || {}
 
         # Make the API request
         @client.make_request(
@@ -843,13 +843,13 @@ module GetStream
       # @param _id [String]
       # @param stop_transcription_request [StopTranscriptionRequest]
       # @return [Models::StopTranscriptionResponse]
-      def stop_transcription(_type, _id, stop_transcription_request)
+      def stop_transcription(_type, _id, stop_transcription_request = nil)
         path = '/api/v2/video/call/{type}/{id}/stop_transcription'
         # Replace path parameters
         path = path.gsub('{type}', _type.to_s)
         path = path.gsub('{id}', _id.to_s)
         # Build request body
-        body = stop_transcription_request
+        body = stop_transcription_request || {}
 
         # Make the API request
         @client.make_request(
@@ -1008,10 +1008,10 @@ module GetStream
       #
       # @param query_call_session_stats_request [QueryCallSessionStatsRequest]
       # @return [Models::QueryCallSessionStatsResponse]
-      def query_call_session_stats(query_call_session_stats_request)
+      def query_call_session_stats(query_call_session_stats_request = nil)
         path = '/api/v2/video/call_stats'
         # Build request body
-        body = query_call_session_stats_request
+        body = query_call_session_stats_request || {}
 
         # Make the API request
         @client.make_request(
@@ -1157,10 +1157,10 @@ module GetStream
       #
       # @param query_calls_request [QueryCallsRequest]
       # @return [Models::QueryCallsResponse]
-      def query_calls(query_calls_request)
+      def query_calls(query_calls_request = nil)
         path = '/api/v2/video/calls'
         # Build request body
-        body = query_calls_request
+        body = query_calls_request || {}
 
         # Make the API request
         @client.make_request(
@@ -1237,12 +1237,12 @@ module GetStream
       # @param name [String]
       # @param update_call_type_request [UpdateCallTypeRequest]
       # @return [Models::UpdateCallTypeResponse]
-      def update_call_type(name, update_call_type_request)
+      def update_call_type(name, update_call_type_request = nil)
         path = '/api/v2/video/calltypes/{name}'
         # Replace path parameters
         path = path.gsub('{name}', name.to_s)
         # Build request body
-        body = update_call_type_request
+        body = update_call_type_request || {}
 
         # Make the API request
         @client.make_request(
@@ -1435,10 +1435,10 @@ module GetStream
       #
       # @param query_aggregate_call_stats_request [QueryAggregateCallStatsRequest]
       # @return [Models::QueryAggregateCallStatsResponse]
-      def query_aggregate_call_stats(query_aggregate_call_stats_request)
+      def query_aggregate_call_stats(query_aggregate_call_stats_request = nil)
         path = '/api/v2/video/stats'
         # Build request body
-        body = query_aggregate_call_stats_request
+        body = query_aggregate_call_stats_request || {}
 
         # Make the API request
         @client.make_request(

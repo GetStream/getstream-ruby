@@ -43,16 +43,16 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @auto_translation_enabled = attributes[:auto_translation_enabled] || attributes['auto_translation_enabled'] || nil
-          @auto_translation_language = attributes[:auto_translation_language] || attributes['auto_translation_language'] || nil
-          @disabled = attributes[:disabled] || attributes['disabled'] || nil
-          @frozen = attributes[:frozen] || attributes['frozen'] || nil
-          @team = attributes[:team] || attributes['team'] || nil
-          @invites = attributes[:invites] || attributes['invites'] || nil
-          @members = attributes[:members] || attributes['members'] || nil
-          @config_overrides = attributes[:config_overrides] || attributes['config_overrides'] || nil
-          @created_by = attributes[:created_by] || attributes['created_by'] || nil
-          @custom = attributes[:custom] || attributes['custom'] || nil
+          @auto_translation_enabled = attributes.fetch(:auto_translation_enabled) { attributes.fetch('auto_translation_enabled', nil) }
+          @auto_translation_language = attributes.fetch(:auto_translation_language) { attributes.fetch('auto_translation_language', nil) }
+          @disabled = attributes.fetch(:disabled) { attributes.fetch('disabled', nil) }
+          @frozen = attributes.fetch(:frozen) { attributes.fetch('frozen', nil) }
+          @team = attributes.fetch(:team) { attributes.fetch('team', nil) }
+          @invites = attributes.fetch(:invites) { attributes.fetch('invites', nil) }
+          @members = attributes.fetch(:members) { attributes.fetch('members', nil) }
+          @config_overrides = attributes.fetch(:config_overrides) { attributes.fetch('config_overrides', nil) }
+          @created_by = attributes.fetch(:created_by) { attributes.fetch('created_by', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
         end
 
         # Override field mappings for JSON serialization

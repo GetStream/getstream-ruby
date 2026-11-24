@@ -37,14 +37,14 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @call_cid = attributes[:call_cid] || attributes['call_cid']
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @digit = attributes[:digit] || attributes['digit']
-          @duration_ms = attributes[:duration_ms] || attributes['duration_ms']
-          @seq_number = attributes[:seq_number] || attributes['seq_number']
-          @timestamp = attributes[:timestamp] || attributes['timestamp']
-          @user = attributes[:user] || attributes['user']
-          @type = attributes[:type] || attributes['type'] || "call.dtmf"
+          @call_cid = attributes.fetch(:call_cid) { attributes.fetch('call_cid', nil) }
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @digit = attributes.fetch(:digit) { attributes.fetch('digit', nil) }
+          @duration_ms = attributes.fetch(:duration_ms) { attributes.fetch('duration_ms', nil) }
+          @seq_number = attributes.fetch(:seq_number) { attributes.fetch('seq_number', nil) }
+          @timestamp = attributes.fetch(:timestamp) { attributes.fetch('timestamp', nil) }
+          @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
+          @type = attributes.fetch(:type) { attributes.fetch('type', "call.dtmf") }
         end
 
         # Override field mappings for JSON serialization

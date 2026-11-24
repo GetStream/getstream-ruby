@@ -5,24 +5,24 @@
 module GetStream
   module Generated
     module Models
-      # 
-      class CallStatsMapSFUs < GetStream::BaseModel
+      # Filter for listing the marks on a message
+      class QueryMessageMarksFilter < GetStream::BaseModel
 
         # Model attributes
-        # @!attribute locations
-        #   @return [Array<SFULocationResponse>]
-        attr_accessor :locations
+        # @!attribute type
+        #   @return [String] Only marks of this type, for example played
+        attr_accessor :type
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @locations = attributes[:locations] || attributes['locations']
+          @type = attributes.fetch(:type) { attributes.fetch('type', nil) }
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            locations: 'locations'
+            type: 'type'
           }
         end
       end

@@ -55,20 +55,20 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @sender_id = attributes[:sender_id] || attributes['sender_id']
-          @message_template = attributes[:message_template] || attributes['message_template']
-          @create_channels = attributes[:create_channels] || attributes['create_channels'] || nil
-          @description = attributes[:description] || attributes['description'] || nil
-          @id = attributes[:id] || attributes['id'] || nil
-          @name = attributes[:name] || attributes['name'] || nil
-          @sender_mode = attributes[:sender_mode] || attributes['sender_mode'] || nil
-          @sender_visibility = attributes[:sender_visibility] || attributes['sender_visibility'] || nil
-          @show_channels = attributes[:show_channels] || attributes['show_channels'] || nil
-          @skip_push = attributes[:skip_push] || attributes['skip_push'] || nil
-          @skip_webhook = attributes[:skip_webhook] || attributes['skip_webhook'] || nil
-          @segment_ids = attributes[:segment_ids] || attributes['segment_ids'] || nil
-          @user_ids = attributes[:user_ids] || attributes['user_ids'] || nil
-          @channel_template = attributes[:channel_template] || attributes['channel_template'] || nil
+          @sender_id = attributes.fetch(:sender_id) { attributes.fetch('sender_id', nil) }
+          @message_template = attributes.fetch(:message_template) { attributes.fetch('message_template', nil) }
+          @create_channels = attributes.fetch(:create_channels) { attributes.fetch('create_channels', nil) }
+          @description = attributes.fetch(:description) { attributes.fetch('description', nil) }
+          @id = attributes.fetch(:id) { attributes.fetch('id', nil) }
+          @name = attributes.fetch(:name) { attributes.fetch('name', nil) }
+          @sender_mode = attributes.fetch(:sender_mode) { attributes.fetch('sender_mode', nil) }
+          @sender_visibility = attributes.fetch(:sender_visibility) { attributes.fetch('sender_visibility', nil) }
+          @show_channels = attributes.fetch(:show_channels) { attributes.fetch('show_channels', nil) }
+          @skip_push = attributes.fetch(:skip_push) { attributes.fetch('skip_push', nil) }
+          @skip_webhook = attributes.fetch(:skip_webhook) { attributes.fetch('skip_webhook', nil) }
+          @segment_ids = attributes.fetch(:segment_ids) { attributes.fetch('segment_ids', nil) }
+          @user_ids = attributes.fetch(:user_ids) { attributes.fetch('user_ids', nil) }
+          @channel_template = attributes.fetch(:channel_template) { attributes.fetch('channel_template', nil) }
         end
 
         # Override field mappings for JSON serialization

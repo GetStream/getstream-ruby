@@ -28,11 +28,11 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @global_metrics_order = attributes[:global_metrics_order] || attributes['global_metrics_order'] || nil
-          @global = attributes[:global] || attributes['global'] || nil
-          @global_meta = attributes[:global_meta] || attributes['global_meta'] || nil
-          @global_thresholds = attributes[:global_thresholds] || attributes['global_thresholds'] || nil
-          @tracks = attributes[:tracks] || attributes['tracks'] || nil
+          @global_metrics_order = attributes.fetch(:global_metrics_order) { attributes.fetch('global_metrics_order', nil) }
+          @global = attributes.fetch(:global) { attributes.fetch('global', nil) }
+          @global_meta = attributes.fetch(:global_meta) { attributes.fetch('global_meta', nil) }
+          @global_thresholds = attributes.fetch(:global_thresholds) { attributes.fetch('global_thresholds', nil) }
+          @tracks = attributes.fetch(:tracks) { attributes.fetch('tracks', nil) }
         end
 
         # Override field mappings for JSON serialization

@@ -43,16 +43,16 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @continent_code = attributes[:continent_code] || attributes['continent_code']
-          @country_iso_code = attributes[:country_iso_code] || attributes['country_iso_code']
-          @green = attributes[:green] || attributes['green']
-          @id = attributes[:id] || attributes['id']
-          @latency_test_url = attributes[:latency_test_url] || attributes['latency_test_url']
-          @latitude = attributes[:latitude] || attributes['latitude']
-          @longitude = attributes[:longitude] || attributes['longitude']
-          @red = attributes[:red] || attributes['red']
-          @subdivision_iso_code = attributes[:subdivision_iso_code] || attributes['subdivision_iso_code']
-          @yellow = attributes[:yellow] || attributes['yellow']
+          @continent_code = attributes.fetch(:continent_code) { attributes.fetch('continent_code', nil) }
+          @country_iso_code = attributes.fetch(:country_iso_code) { attributes.fetch('country_iso_code', nil) }
+          @green = attributes.fetch(:green) { attributes.fetch('green', nil) }
+          @id = attributes.fetch(:id) { attributes.fetch('id', nil) }
+          @latency_test_url = attributes.fetch(:latency_test_url) { attributes.fetch('latency_test_url', nil) }
+          @latitude = attributes.fetch(:latitude) { attributes.fetch('latitude', nil) }
+          @longitude = attributes.fetch(:longitude) { attributes.fetch('longitude', nil) }
+          @red = attributes.fetch(:red) { attributes.fetch('red', nil) }
+          @subdivision_iso_code = attributes.fetch(:subdivision_iso_code) { attributes.fetch('subdivision_iso_code', nil) }
+          @yellow = attributes.fetch(:yellow) { attributes.fetch('yellow', nil) }
         end
 
         # Override field mappings for JSON serialization

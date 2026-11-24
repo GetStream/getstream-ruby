@@ -40,15 +40,15 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @recording_storage_name = attributes[:recording_storage_name] || attributes['recording_storage_name'] || nil
-          @start_closed_caption = attributes[:start_closed_caption] || attributes['start_closed_caption'] || nil
-          @start_composite_recording = attributes[:start_composite_recording] || attributes['start_composite_recording'] || nil
-          @start_hls = attributes[:start_hls] || attributes['start_hls'] || nil
-          @start_individual_recording = attributes[:start_individual_recording] || attributes['start_individual_recording'] || nil
-          @start_raw_recording = attributes[:start_raw_recording] || attributes['start_raw_recording'] || nil
-          @start_recording = attributes[:start_recording] || attributes['start_recording'] || nil
-          @start_transcription = attributes[:start_transcription] || attributes['start_transcription'] || nil
-          @transcription_storage_name = attributes[:transcription_storage_name] || attributes['transcription_storage_name'] || nil
+          @recording_storage_name = attributes.fetch(:recording_storage_name) { attributes.fetch('recording_storage_name', nil) }
+          @start_closed_caption = attributes.fetch(:start_closed_caption) { attributes.fetch('start_closed_caption', nil) }
+          @start_composite_recording = attributes.fetch(:start_composite_recording) { attributes.fetch('start_composite_recording', nil) }
+          @start_hls = attributes.fetch(:start_hls) { attributes.fetch('start_hls', nil) }
+          @start_individual_recording = attributes.fetch(:start_individual_recording) { attributes.fetch('start_individual_recording', nil) }
+          @start_raw_recording = attributes.fetch(:start_raw_recording) { attributes.fetch('start_raw_recording', nil) }
+          @start_recording = attributes.fetch(:start_recording) { attributes.fetch('start_recording', nil) }
+          @start_transcription = attributes.fetch(:start_transcription) { attributes.fetch('start_transcription', nil) }
+          @transcription_storage_name = attributes.fetch(:transcription_storage_name) { attributes.fetch('transcription_storage_name', nil) }
         end
 
         # Override field mappings for JSON serialization

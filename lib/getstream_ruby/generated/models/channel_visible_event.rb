@@ -52,19 +52,19 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @channel = attributes[:channel] || attributes['channel']
-          @custom = attributes[:custom] || attributes['custom']
-          @type = attributes[:type] || attributes['type'] || "channel.visible"
-          @channel_id = attributes[:channel_id] || attributes['channel_id'] || nil
-          @channel_member_count = attributes[:channel_member_count] || attributes['channel_member_count'] || nil
-          @channel_message_count = attributes[:channel_message_count] || attributes['channel_message_count'] || nil
-          @channel_type = attributes[:channel_type] || attributes['channel_type'] || nil
-          @cid = attributes[:cid] || attributes['cid'] || nil
-          @received_at = attributes[:received_at] || attributes['received_at'] || nil
-          @team = attributes[:team] || attributes['team'] || nil
-          @channel_custom = attributes[:channel_custom] || attributes['channel_custom'] || nil
-          @user = attributes[:user] || attributes['user'] || nil
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @channel = attributes.fetch(:channel) { attributes.fetch('channel', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
+          @type = attributes.fetch(:type) { attributes.fetch('type', "channel.visible") }
+          @channel_id = attributes.fetch(:channel_id) { attributes.fetch('channel_id', nil) }
+          @channel_member_count = attributes.fetch(:channel_member_count) { attributes.fetch('channel_member_count', nil) }
+          @channel_message_count = attributes.fetch(:channel_message_count) { attributes.fetch('channel_message_count', nil) }
+          @channel_type = attributes.fetch(:channel_type) { attributes.fetch('channel_type', nil) }
+          @cid = attributes.fetch(:cid) { attributes.fetch('cid', nil) }
+          @received_at = attributes.fetch(:received_at) { attributes.fetch('received_at', nil) }
+          @team = attributes.fetch(:team) { attributes.fetch('team', nil) }
+          @channel_custom = attributes.fetch(:channel_custom) { attributes.fetch('channel_custom', nil) }
+          @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
         end
 
         # Override field mappings for JSON serialization

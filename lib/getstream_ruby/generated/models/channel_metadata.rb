@@ -40,15 +40,15 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @cid = attributes[:cid] || attributes['cid']
-          @id = attributes[:id] || attributes['id']
-          @type = attributes[:type] || attributes['type']
-          @custom = attributes[:custom] || attributes['custom']
-          @last_message_at = attributes[:last_message_at] || attributes['last_message_at'] || nil
-          @member_count = attributes[:member_count] || attributes['member_count'] || nil
-          @message_count = attributes[:message_count] || attributes['message_count'] || nil
-          @push_level = attributes[:push_level] || attributes['push_level'] || nil
-          @team = attributes[:team] || attributes['team'] || nil
+          @cid = attributes.fetch(:cid) { attributes.fetch('cid', nil) }
+          @id = attributes.fetch(:id) { attributes.fetch('id', nil) }
+          @type = attributes.fetch(:type) { attributes.fetch('type', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
+          @last_message_at = attributes.fetch(:last_message_at) { attributes.fetch('last_message_at', nil) }
+          @member_count = attributes.fetch(:member_count) { attributes.fetch('member_count', nil) }
+          @message_count = attributes.fetch(:message_count) { attributes.fetch('message_count', nil) }
+          @push_level = attributes.fetch(:push_level) { attributes.fetch('push_level', nil) }
+          @team = attributes.fetch(:team) { attributes.fetch('team', nil) }
         end
 
         # Override field mappings for JSON serialization

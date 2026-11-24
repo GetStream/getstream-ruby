@@ -6,28 +6,28 @@ module GetStream
   module Generated
     module Models
       # 
-      class ForkMessageIDsResponse < GetStream::BaseModel
+      class PublishScheduledActivityNowResponse < GetStream::BaseModel
 
         # Model attributes
         # @!attribute duration
-        #   @return [String] Duration of the request in milliseconds
+        #   @return [String]
         attr_accessor :duration
-        # @!attribute message_id_map
-        #   @return [Hash<String, String>] Maps each given source message ID the fork holds a copy of to the copy's ID. IDs the fork holds no copy of are left out
-        attr_accessor :message_id_map
+        # @!attribute scheduled_activity
+        #   @return [ScheduledActivityResponse] An activity scheduled to be published at a future time
+        attr_accessor :scheduled_activity
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @duration = attributes[:duration] || attributes['duration']
-          @message_id_map = attributes[:message_id_map] || attributes['message_id_map']
+          @duration = attributes.fetch(:duration) { attributes.fetch('duration', nil) }
+          @scheduled_activity = attributes.fetch(:scheduled_activity) { attributes.fetch('scheduled_activity', nil) }
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
             duration: 'duration',
-            message_id_map: 'message_id_map'
+            scheduled_activity: 'scheduled_activity'
           }
         end
       end

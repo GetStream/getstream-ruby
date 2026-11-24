@@ -23,9 +23,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @file = attributes[:file] || attributes['file'] || nil
-          @upload_sizes = attributes[:upload_sizes] || attributes['upload_sizes'] || nil
-          @user = attributes[:user] || attributes['user'] || nil
+          @file = attributes.fetch(:file) { attributes.fetch('file', nil) }
+          @upload_sizes = attributes.fetch(:upload_sizes) { attributes.fetch('upload_sizes', nil) }
+          @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
         end
 
         # Override field mappings for JSON serialization

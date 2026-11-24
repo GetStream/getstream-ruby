@@ -67,24 +67,24 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @activity_count = attributes[:activity_count] || attributes['activity_count']
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @description = attributes[:description] || attributes['description']
-          @feed = attributes[:feed] || attributes['feed']
-          @follower_count = attributes[:follower_count] || attributes['follower_count']
-          @following_count = attributes[:following_count] || attributes['following_count']
-          @group_id = attributes[:group_id] || attributes['group_id']
-          @id = attributes[:id] || attributes['id']
-          @member_count = attributes[:member_count] || attributes['member_count']
-          @name = attributes[:name] || attributes['name']
-          @pin_count = attributes[:pin_count] || attributes['pin_count']
-          @updated_at = attributes[:updated_at] || attributes['updated_at']
-          @created_by = attributes[:created_by] || attributes['created_by']
-          @deleted_at = attributes[:deleted_at] || attributes['deleted_at'] || nil
-          @visibility = attributes[:visibility] || attributes['visibility'] || nil
-          @filter_tags = attributes[:filter_tags] || attributes['filter_tags'] || nil
-          @custom = attributes[:custom] || attributes['custom'] || nil
-          @location = attributes[:location] || attributes['location'] || nil
+          @activity_count = attributes.fetch(:activity_count) { attributes.fetch('activity_count', nil) }
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @description = attributes.fetch(:description) { attributes.fetch('description', nil) }
+          @feed = attributes.fetch(:feed) { attributes.fetch('feed', nil) }
+          @follower_count = attributes.fetch(:follower_count) { attributes.fetch('follower_count', nil) }
+          @following_count = attributes.fetch(:following_count) { attributes.fetch('following_count', nil) }
+          @group_id = attributes.fetch(:group_id) { attributes.fetch('group_id', nil) }
+          @id = attributes.fetch(:id) { attributes.fetch('id', nil) }
+          @member_count = attributes.fetch(:member_count) { attributes.fetch('member_count', nil) }
+          @name = attributes.fetch(:name) { attributes.fetch('name', nil) }
+          @pin_count = attributes.fetch(:pin_count) { attributes.fetch('pin_count', nil) }
+          @updated_at = attributes.fetch(:updated_at) { attributes.fetch('updated_at', nil) }
+          @created_by = attributes.fetch(:created_by) { attributes.fetch('created_by', nil) }
+          @deleted_at = attributes.fetch(:deleted_at) { attributes.fetch('deleted_at', nil) }
+          @visibility = attributes.fetch(:visibility) { attributes.fetch('visibility', nil) }
+          @filter_tags = attributes.fetch(:filter_tags) { attributes.fetch('filter_tags', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
+          @location = attributes.fetch(:location) { attributes.fetch('location', nil) }
         end
 
         # Override field mappings for JSON serialization

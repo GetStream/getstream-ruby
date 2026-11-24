@@ -43,16 +43,16 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @channel_cid = attributes[:channel_cid] || attributes['channel_cid']
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @created_by_device_id = attributes[:created_by_device_id] || attributes['created_by_device_id']
-          @latitude = attributes[:latitude] || attributes['latitude']
-          @longitude = attributes[:longitude] || attributes['longitude']
-          @message_id = attributes[:message_id] || attributes['message_id']
-          @updated_at = attributes[:updated_at] || attributes['updated_at']
-          @user_id = attributes[:user_id] || attributes['user_id']
-          @end_at = attributes[:end_at] || attributes['end_at'] || nil
-          @message = attributes[:message] || attributes['message'] || nil
+          @channel_cid = attributes.fetch(:channel_cid) { attributes.fetch('channel_cid', nil) }
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @created_by_device_id = attributes.fetch(:created_by_device_id) { attributes.fetch('created_by_device_id', nil) }
+          @latitude = attributes.fetch(:latitude) { attributes.fetch('latitude', nil) }
+          @longitude = attributes.fetch(:longitude) { attributes.fetch('longitude', nil) }
+          @message_id = attributes.fetch(:message_id) { attributes.fetch('message_id', nil) }
+          @updated_at = attributes.fetch(:updated_at) { attributes.fetch('updated_at', nil) }
+          @user_id = attributes.fetch(:user_id) { attributes.fetch('user_id', nil) }
+          @end_at = attributes.fetch(:end_at) { attributes.fetch('end_at', nil) }
+          @message = attributes.fetch(:message) { attributes.fetch('message', nil) }
         end
 
         # Override field mappings for JSON serialization

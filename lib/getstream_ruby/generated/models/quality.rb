@@ -40,15 +40,15 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @viewer_interruption_note = attributes[:viewer_interruption_note] || attributes['viewer_interruption_note']
-          @interruption_incidents = attributes[:interruption_incidents] || attributes['interruption_incidents']
-          @connection_avg_jitter_ms = attributes[:connection_avg_jitter_ms] || attributes['connection_avg_jitter_ms']
-          @connection_avg_latency_ms = attributes[:connection_avg_latency_ms] || attributes['connection_avg_latency_ms']
-          @score_bands_by_connection_pct = attributes[:score_bands_by_connection_pct] || attributes['score_bands_by_connection_pct']
-          @score_bands_by_watch_time_pct = attributes[:score_bands_by_watch_time_pct] || attributes['score_bands_by_watch_time_pct']
-          @p50_quality_score = attributes[:p50_quality_score] || attributes['p50_quality_score'] || nil
-          @p5_quality_score = attributes[:p5_quality_score] || attributes['p5_quality_score'] || nil
-          @viewer_interruption_rate_pct = attributes[:viewer_interruption_rate_pct] || attributes['viewer_interruption_rate_pct'] || nil
+          @viewer_interruption_note = attributes.fetch(:viewer_interruption_note) { attributes.fetch('viewer_interruption_note', nil) }
+          @interruption_incidents = attributes.fetch(:interruption_incidents) { attributes.fetch('interruption_incidents', nil) }
+          @connection_avg_jitter_ms = attributes.fetch(:connection_avg_jitter_ms) { attributes.fetch('connection_avg_jitter_ms', nil) }
+          @connection_avg_latency_ms = attributes.fetch(:connection_avg_latency_ms) { attributes.fetch('connection_avg_latency_ms', nil) }
+          @score_bands_by_connection_pct = attributes.fetch(:score_bands_by_connection_pct) { attributes.fetch('score_bands_by_connection_pct', nil) }
+          @score_bands_by_watch_time_pct = attributes.fetch(:score_bands_by_watch_time_pct) { attributes.fetch('score_bands_by_watch_time_pct', nil) }
+          @p50_quality_score = attributes.fetch(:p50_quality_score) { attributes.fetch('p50_quality_score', nil) }
+          @p5_quality_score = attributes.fetch(:p5_quality_score) { attributes.fetch('p5_quality_score', nil) }
+          @viewer_interruption_rate_pct = attributes.fetch(:viewer_interruption_rate_pct) { attributes.fetch('viewer_interruption_rate_pct', nil) }
         end
 
         # Override field mappings for JSON serialization

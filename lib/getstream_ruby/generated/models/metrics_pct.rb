@@ -28,11 +28,11 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @freezes = attributes[:freezes] || attributes['freezes'] || nil
-          @geo = attributes[:geo] || attributes['geo'] || nil
-          @jitter = attributes[:jitter] || attributes['jitter'] || nil
-          @latency = attributes[:latency] || attributes['latency'] || nil
-          @quality_score = attributes[:quality_score] || attributes['quality_score'] || nil
+          @freezes = attributes.fetch(:freezes) { attributes.fetch('freezes', nil) }
+          @geo = attributes.fetch(:geo) { attributes.fetch('geo', nil) }
+          @jitter = attributes.fetch(:jitter) { attributes.fetch('jitter', nil) }
+          @latency = attributes.fetch(:latency) { attributes.fetch('latency', nil) }
+          @quality_score = attributes.fetch(:quality_score) { attributes.fetch('quality_score', nil) }
         end
 
         # Override field mappings for JSON serialization

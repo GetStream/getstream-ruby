@@ -46,17 +46,17 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @channel_id = attributes[:channel_id] || attributes['channel_id']
-          @channel_type = attributes[:channel_type] || attributes['channel_type']
-          @cid = attributes[:cid] || attributes['cid']
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @type = attributes[:type] || attributes['type']
-          @channel_last_message_at = attributes[:channel_last_message_at] || attributes['channel_last_message_at'] || nil
-          @last_read_message_id = attributes[:last_read_message_id] || attributes['last_read_message_id'] || nil
-          @team = attributes[:team] || attributes['team'] || nil
-          @channel = attributes[:channel] || attributes['channel'] || nil
-          @thread = attributes[:thread] || attributes['thread'] || nil
-          @user = attributes[:user] || attributes['user'] || nil
+          @channel_id = attributes.fetch(:channel_id) { attributes.fetch('channel_id', nil) }
+          @channel_type = attributes.fetch(:channel_type) { attributes.fetch('channel_type', nil) }
+          @cid = attributes.fetch(:cid) { attributes.fetch('cid', nil) }
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @type = attributes.fetch(:type) { attributes.fetch('type', nil) }
+          @channel_last_message_at = attributes.fetch(:channel_last_message_at) { attributes.fetch('channel_last_message_at', nil) }
+          @last_read_message_id = attributes.fetch(:last_read_message_id) { attributes.fetch('last_read_message_id', nil) }
+          @team = attributes.fetch(:team) { attributes.fetch('team', nil) }
+          @channel = attributes.fetch(:channel) { attributes.fetch('channel', nil) }
+          @thread = attributes.fetch(:thread) { attributes.fetch('thread', nil) }
+          @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
         end
 
         # Override field mappings for JSON serialization

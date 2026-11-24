@@ -37,14 +37,14 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @finished_at = attributes[:finished_at] || attributes['finished_at']
-          @started_at = attributes[:started_at] || attributes['started_at']
-          @task_id = attributes[:task_id] || attributes['task_id']
-          @url = attributes[:url] || attributes['url']
-          @custom = attributes[:custom] || attributes['custom']
-          @type = attributes[:type] || attributes['type'] || "export.moderation_logs.success"
-          @received_at = attributes[:received_at] || attributes['received_at'] || nil
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @finished_at = attributes.fetch(:finished_at) { attributes.fetch('finished_at', nil) }
+          @started_at = attributes.fetch(:started_at) { attributes.fetch('started_at', nil) }
+          @task_id = attributes.fetch(:task_id) { attributes.fetch('task_id', nil) }
+          @url = attributes.fetch(:url) { attributes.fetch('url', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
+          @type = attributes.fetch(:type) { attributes.fetch('type', "export.moderation_logs.success") }
+          @received_at = attributes.fetch(:received_at) { attributes.fetch('received_at', nil) }
         end
 
         # Override field mappings for JSON serialization

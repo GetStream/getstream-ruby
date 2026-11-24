@@ -46,17 +46,17 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @filter_conditions = attributes[:filter_conditions] || attributes['filter_conditions']
-          @created_at_after = attributes[:created_at_after] || attributes['created_at_after'] || nil
-          @created_at_after_or_equal = attributes[:created_at_after_or_equal] || attributes['created_at_after_or_equal'] || nil
-          @created_at_before = attributes[:created_at_before] || attributes['created_at_before'] || nil
-          @created_at_before_or_equal = attributes[:created_at_before_or_equal] || attributes['created_at_before_or_equal'] || nil
-          @exclude_expired_bans = attributes[:exclude_expired_bans] || attributes['exclude_expired_bans'] || nil
-          @limit = attributes[:limit] || attributes['limit'] || nil
-          @offset = attributes[:offset] || attributes['offset'] || nil
-          @user_id = attributes[:user_id] || attributes['user_id'] || nil
-          @sort = attributes[:sort] || attributes['sort'] || nil
-          @user = attributes[:user] || attributes['user'] || nil
+          @filter_conditions = attributes.fetch(:filter_conditions) { attributes.fetch('filter_conditions', nil) }
+          @created_at_after = attributes.fetch(:created_at_after) { attributes.fetch('created_at_after', nil) }
+          @created_at_after_or_equal = attributes.fetch(:created_at_after_or_equal) { attributes.fetch('created_at_after_or_equal', nil) }
+          @created_at_before = attributes.fetch(:created_at_before) { attributes.fetch('created_at_before', nil) }
+          @created_at_before_or_equal = attributes.fetch(:created_at_before_or_equal) { attributes.fetch('created_at_before_or_equal', nil) }
+          @exclude_expired_bans = attributes.fetch(:exclude_expired_bans) { attributes.fetch('exclude_expired_bans', nil) }
+          @limit = attributes.fetch(:limit) { attributes.fetch('limit', nil) }
+          @offset = attributes.fetch(:offset) { attributes.fetch('offset', nil) }
+          @user_id = attributes.fetch(:user_id) { attributes.fetch('user_id', nil) }
+          @sort = attributes.fetch(:sort) { attributes.fetch('sort', nil) }
+          @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
         end
 
         # Override field mappings for JSON serialization

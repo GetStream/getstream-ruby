@@ -64,23 +64,23 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @activity_id = attributes[:activity_id] || attributes['activity_id']
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @kind = attributes[:kind] || attributes['kind']
-          @updated_at = attributes[:updated_at] || attributes['updated_at']
-          @user_id = attributes[:user_id] || attributes['user_id']
-          @deleted_at = attributes[:deleted_at] || attributes['deleted_at'] || nil
-          @id = attributes[:id] || attributes['id'] || nil
-          @parent = attributes[:parent] || attributes['parent'] || nil
-          @score = attributes[:score] || attributes['score'] || nil
-          @target_feeds = attributes[:target_feeds] || attributes['target_feeds'] || nil
-          @children_counts = attributes[:children_counts] || attributes['children_counts'] || nil
-          @data = attributes[:data] || attributes['data'] || nil
-          @latest_children = attributes[:latest_children] || attributes['latest_children'] || nil
-          @moderation = attributes[:moderation] || attributes['moderation'] || nil
-          @own_children = attributes[:own_children] || attributes['own_children'] || nil
-          @target_feeds_extra_data = attributes[:target_feeds_extra_data] || attributes['target_feeds_extra_data'] || nil
-          @user = attributes[:user] || attributes['user'] || nil
+          @activity_id = attributes.fetch(:activity_id) { attributes.fetch('activity_id', nil) }
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @kind = attributes.fetch(:kind) { attributes.fetch('kind', nil) }
+          @updated_at = attributes.fetch(:updated_at) { attributes.fetch('updated_at', nil) }
+          @user_id = attributes.fetch(:user_id) { attributes.fetch('user_id', nil) }
+          @deleted_at = attributes.fetch(:deleted_at) { attributes.fetch('deleted_at', nil) }
+          @id = attributes.fetch(:id) { attributes.fetch('id', nil) }
+          @parent = attributes.fetch(:parent) { attributes.fetch('parent', nil) }
+          @score = attributes.fetch(:score) { attributes.fetch('score', nil) }
+          @target_feeds = attributes.fetch(:target_feeds) { attributes.fetch('target_feeds', nil) }
+          @children_counts = attributes.fetch(:children_counts) { attributes.fetch('children_counts', nil) }
+          @data = attributes.fetch(:data) { attributes.fetch('data', nil) }
+          @latest_children = attributes.fetch(:latest_children) { attributes.fetch('latest_children', nil) }
+          @moderation = attributes.fetch(:moderation) { attributes.fetch('moderation', nil) }
+          @own_children = attributes.fetch(:own_children) { attributes.fetch('own_children', nil) }
+          @target_feeds_extra_data = attributes.fetch(:target_feeds_extra_data) { attributes.fetch('target_feeds_extra_data', nil) }
+          @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
         end
 
         # Override field mappings for JSON serialization

@@ -29,10 +29,10 @@ module GetStream
       #
       # @param update_app_request [UpdateAppRequest]
       # @return [Models::Response]
-      def update_app(update_app_request)
+      def update_app(update_app_request = nil)
         path = '/api/v2/app'
         # Build request body
-        body = update_app_request
+        body = update_app_request || {}
 
         # Make the API request
         @client.make_request(
@@ -150,12 +150,12 @@ module GetStream
       # @param name [String]
       # @param update_block_list_request [UpdateBlockListRequest]
       # @return [Models::UpdateBlockListResponse]
-      def update_block_list(name, update_block_list_request)
+      def update_block_list(name, update_block_list_request = nil)
         path = '/api/v2/blocklists/{name}'
         # Replace path parameters
         path = path.gsub('{name}', name.to_s)
         # Build request body
-        body = update_block_list_request
+        body = update_block_list_request || {}
 
         # Make the API request
         @client.make_request(
@@ -169,10 +169,10 @@ module GetStream
       #
       # @param check_gcp_pub_sub_request [CheckGCPPubSubRequest]
       # @return [Models::CheckGCPPubSubResponse]
-      def check_gcp_pub_sub(check_gcp_pub_sub_request)
+      def check_gcp_pub_sub(check_gcp_pub_sub_request = nil)
         path = '/api/v2/check_gcp_pubsub'
         # Build request body
-        body = check_gcp_pub_sub_request
+        body = check_gcp_pub_sub_request || {}
 
         # Make the API request
         @client.make_request(
@@ -186,10 +186,10 @@ module GetStream
       #
       # @param check_push_request [CheckPushRequest]
       # @return [Models::CheckPushResponse]
-      def check_push(check_push_request)
+      def check_push(check_push_request = nil)
         path = '/api/v2/check_push'
         # Build request body
-        body = check_push_request
+        body = check_push_request || {}
 
         # Make the API request
         @client.make_request(
@@ -203,10 +203,10 @@ module GetStream
       #
       # @param check_sns_request [CheckSNSRequest]
       # @return [Models::CheckSNSResponse]
-      def check_sns(check_sns_request)
+      def check_sns(check_sns_request = nil)
         path = '/api/v2/check_sns'
         # Build request body
-        body = check_sns_request
+        body = check_sns_request || {}
 
         # Make the API request
         @client.make_request(
@@ -220,10 +220,10 @@ module GetStream
       #
       # @param check_sqs_request [CheckSQSRequest]
       # @return [Models::CheckSQSResponse]
-      def check_sqs(check_sqs_request)
+      def check_sqs(check_sqs_request = nil)
         path = '/api/v2/check_sqs'
         # Build request body
-        body = check_sqs_request
+        body = check_sqs_request || {}
 
         # Make the API request
         @client.make_request(
@@ -404,14 +404,32 @@ module GetStream
         )
       end
 
+      # 
+      #
+      # @param product [Array<String>]
+      # @return [Models::GetHookEventsResponse]
+      def get_hook_events(product = nil)
+        path = '/api/v2/hook/events'
+        # Build query parameters
+        query_params = {}
+        query_params['product'] = product unless product.nil?
+
+        # Make the API request
+        @client.make_request(
+          :get,
+          path,
+          query_params: query_params
+        )
+      end
+
       # Creates a new import URL
       #
       # @param create_import_url_request [CreateImportURLRequest]
       # @return [Models::CreateImportURLResponse]
-      def create_import_url(create_import_url_request)
+      def create_import_url(create_import_url_request = nil)
         path = '/api/v2/import_urls'
         # Build request body
-        body = create_import_url_request
+        body = create_import_url_request || {}
 
         # Make the API request
         @client.make_request(
@@ -423,14 +441,21 @@ module GetStream
 
       # Gets an import
       #
+      # @param limit [Integer]
+      # @param offset [Integer]
       # @return [Models::ListImportsResponse]
-      def list_imports()
+      def list_imports(limit = nil, offset = nil)
         path = '/api/v2/imports'
+        # Build query parameters
+        query_params = {}
+        query_params['limit'] = limit unless limit.nil?
+        query_params['offset'] = offset unless offset.nil?
 
         # Make the API request
         @client.make_request(
           :get,
-          path
+          path,
+          query_params: query_params
         )
       end
 
@@ -745,13 +770,13 @@ module GetStream
       # @param query_polls_request [QueryPollsRequest]
       # @param user_id [String]
       # @return [Models::QueryPollsResponse]
-      def query_polls(query_polls_request, user_id = nil)
+      def query_polls(query_polls_request = nil, user_id = nil)
         path = '/api/v2/polls/query'
         # Build query parameters
         query_params = {}
         query_params['user_id'] = user_id unless user_id.nil?
         # Build request body
-        body = query_polls_request
+        body = query_polls_request || {}
 
         # Make the API request
         @client.make_request(
@@ -809,12 +834,12 @@ module GetStream
       # @param poll_id [String]
       # @param update_poll_partial_request [UpdatePollPartialRequest]
       # @return [Models::PollResponse]
-      def update_poll_partial(poll_id, update_poll_partial_request)
+      def update_poll_partial(poll_id, update_poll_partial_request = nil)
         path = '/api/v2/polls/{poll_id}'
         # Replace path parameters
         path = path.gsub('{poll_id}', poll_id.to_s)
         # Build request body
-        body = update_poll_partial_request
+        body = update_poll_partial_request || {}
 
         # Make the API request
         @client.make_request(
@@ -916,7 +941,7 @@ module GetStream
       # @param query_poll_votes_request [QueryPollVotesRequest]
       # @param user_id [String]
       # @return [Models::PollVotesResponse]
-      def query_poll_votes(poll_id, query_poll_votes_request, user_id = nil)
+      def query_poll_votes(poll_id, query_poll_votes_request = nil, user_id = nil)
         path = '/api/v2/polls/{poll_id}/votes'
         # Replace path parameters
         path = path.gsub('{poll_id}', poll_id.to_s)
@@ -924,7 +949,7 @@ module GetStream
         query_params = {}
         query_params['user_id'] = user_id unless user_id.nil?
         # Build request body
-        body = query_poll_votes_request
+        body = query_poll_votes_request || {}
 
         # Make the API request
         @client.make_request(
@@ -969,10 +994,10 @@ module GetStream
       #
       # @param upsert_push_provider_request [UpsertPushProviderRequest]
       # @return [Models::UpsertPushProviderResponse]
-      def upsert_push_provider(upsert_push_provider_request)
+      def upsert_push_provider(upsert_push_provider_request = nil)
         path = '/api/v2/push_providers'
         # Build request body
-        body = upsert_push_provider_request
+        body = upsert_push_provider_request || {}
 
         # Make the API request
         @client.make_request(
@@ -1179,10 +1204,10 @@ module GetStream
       #
       # @param file_upload_request [FileUploadRequest]
       # @return [Models::FileUploadResponse]
-      def upload_file(file_upload_request)
+      def upload_file(file_upload_request = nil)
         path = '/api/v2/uploads/file'
         # Build request body
-        body = file_upload_request
+        body = file_upload_request || {}
 
         # Make the API request
         @client.make_request(
@@ -1214,10 +1239,10 @@ module GetStream
       #
       # @param image_upload_request [ImageUploadRequest]
       # @return [Models::ImageUploadResponse]
-      def upload_image(image_upload_request)
+      def upload_image(image_upload_request = nil)
         path = '/api/v2/uploads/image'
         # Build request body
-        body = image_upload_request
+        body = image_upload_request || {}
 
         # Make the API request
         @client.make_request(
@@ -1341,12 +1366,12 @@ module GetStream
       # @param _id [String]
       # @param update_user_group_request [UpdateUserGroupRequest]
       # @return [Models::UpdateUserGroupResponse]
-      def update_user_group(_id, update_user_group_request)
+      def update_user_group(_id, update_user_group_request = nil)
         path = '/api/v2/usergroups/{id}'
         # Replace path parameters
         path = path.gsub('{id}', _id.to_s)
         # Build request body
-        body = update_user_group_request
+        body = update_user_group_request || {}
 
         # Make the API request
         @client.make_request(
@@ -1630,12 +1655,12 @@ module GetStream
       # @param user_id [String]
       # @param deactivate_user_request [DeactivateUserRequest]
       # @return [Models::DeactivateUserResponse]
-      def deactivate_user(user_id, deactivate_user_request)
+      def deactivate_user(user_id, deactivate_user_request = nil)
         path = '/api/v2/users/{user_id}/deactivate'
         # Replace path parameters
         path = path.gsub('{user_id}', user_id.to_s)
         # Build request body
-        body = deactivate_user_request
+        body = deactivate_user_request || {}
 
         # Make the API request
         @client.make_request(
@@ -1666,12 +1691,12 @@ module GetStream
       # @param user_id [String]
       # @param reactivate_user_request [ReactivateUserRequest]
       # @return [Models::ReactivateUserResponse]
-      def reactivate_user(user_id, reactivate_user_request)
+      def reactivate_user(user_id, reactivate_user_request = nil)
         path = '/api/v2/users/{user_id}/reactivate'
         # Replace path parameters
         path = path.gsub('{user_id}', user_id.to_s)
         # Build request body
-        body = reactivate_user_request
+        body = reactivate_user_request || {}
 
         # Make the API request
         @client.make_request(

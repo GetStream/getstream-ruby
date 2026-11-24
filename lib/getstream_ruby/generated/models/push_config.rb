@@ -19,8 +19,8 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @version = attributes[:version] || attributes['version']
-          @offline_only = attributes[:offline_only] || attributes['offline_only'] || nil
+          @version = attributes.fetch(:version) { attributes.fetch('version', nil) }
+          @offline_only = attributes.fetch(:offline_only) { attributes.fetch('offline_only', nil) }
         end
 
         # Override field mappings for JSON serialization

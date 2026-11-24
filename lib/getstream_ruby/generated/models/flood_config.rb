@@ -22,9 +22,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @allowlist = attributes[:allowlist] || attributes['allowlist'] || nil
-          @identical = attributes[:identical] || attributes['identical'] || nil
-          @similar = attributes[:similar] || attributes['similar'] || nil
+          @allowlist = attributes.fetch(:allowlist) { attributes.fetch('allowlist', nil) }
+          @identical = attributes.fetch(:identical) { attributes.fetch('identical', nil) }
+          @similar = attributes.fetch(:similar) { attributes.fetch('similar', nil) }
         end
 
         # Override field mappings for JSON serialization

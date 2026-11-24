@@ -19,8 +19,8 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @default_date_range_days = attributes[:default_date_range_days] || attributes['default_date_range_days'] || nil
-          @visible_charts = attributes[:visible_charts] || attributes['visible_charts'] || nil
+          @default_date_range_days = attributes.fetch(:default_date_range_days) { attributes.fetch('default_date_range_days', nil) }
+          @visible_charts = attributes.fetch(:visible_charts) { attributes.fetch('visible_charts', nil) }
         end
 
         # Override field mappings for JSON serialization

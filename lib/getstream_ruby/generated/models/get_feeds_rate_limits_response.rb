@@ -37,14 +37,14 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @duration = attributes[:duration] || attributes['duration']
-          @android = attributes[:android] || attributes['android'] || nil
-          @ios = attributes[:ios] || attributes['ios'] || nil
-          @server_side = attributes[:server_side] || attributes['server_side'] || nil
-          @unity = attributes[:unity] || attributes['unity'] || nil
-          @unity_console = attributes[:unity_console] || attributes['unity_console'] || nil
-          @unity_desktop = attributes[:unity_desktop] || attributes['unity_desktop'] || nil
-          @web = attributes[:web] || attributes['web'] || nil
+          @duration = attributes.fetch(:duration) { attributes.fetch('duration', nil) }
+          @android = attributes.fetch(:android) { attributes.fetch('android', nil) }
+          @ios = attributes.fetch(:ios) { attributes.fetch('ios', nil) }
+          @server_side = attributes.fetch(:server_side) { attributes.fetch('server_side', nil) }
+          @unity = attributes.fetch(:unity) { attributes.fetch('unity', nil) }
+          @unity_console = attributes.fetch(:unity_console) { attributes.fetch('unity_console', nil) }
+          @unity_desktop = attributes.fetch(:unity_desktop) { attributes.fetch('unity_desktop', nil) }
+          @web = attributes.fetch(:web) { attributes.fetch('web', nil) }
         end
 
         # Override field mappings for JSON serialization

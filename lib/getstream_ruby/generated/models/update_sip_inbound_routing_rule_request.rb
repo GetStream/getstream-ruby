@@ -40,15 +40,15 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @name = attributes[:name] || attributes['name']
-          @trunk_ids = attributes[:trunk_ids] || attributes['trunk_ids']
-          @caller_configs = attributes[:caller_configs] || attributes['caller_configs']
-          @called_numbers = attributes[:called_numbers] || attributes['called_numbers'] || nil
-          @caller_numbers = attributes[:caller_numbers] || attributes['caller_numbers'] || nil
-          @call_configs = attributes[:call_configs] || attributes['call_configs'] || nil
-          @direct_routing_configs = attributes[:direct_routing_configs] || attributes['direct_routing_configs'] || nil
-          @pin_protection_configs = attributes[:pin_protection_configs] || attributes['pin_protection_configs'] || nil
-          @pin_routing_configs = attributes[:pin_routing_configs] || attributes['pin_routing_configs'] || nil
+          @name = attributes.fetch(:name) { attributes.fetch('name', nil) }
+          @trunk_ids = attributes.fetch(:trunk_ids) { attributes.fetch('trunk_ids', nil) }
+          @caller_configs = attributes.fetch(:caller_configs) { attributes.fetch('caller_configs', nil) }
+          @called_numbers = attributes.fetch(:called_numbers) { attributes.fetch('called_numbers', nil) }
+          @caller_numbers = attributes.fetch(:caller_numbers) { attributes.fetch('caller_numbers', nil) }
+          @call_configs = attributes.fetch(:call_configs) { attributes.fetch('call_configs', nil) }
+          @direct_routing_configs = attributes.fetch(:direct_routing_configs) { attributes.fetch('direct_routing_configs', nil) }
+          @pin_protection_configs = attributes.fetch(:pin_protection_configs) { attributes.fetch('pin_protection_configs', nil) }
+          @pin_routing_configs = attributes.fetch(:pin_routing_configs) { attributes.fetch('pin_routing_configs', nil) }
         end
 
         # Override field mappings for JSON serialization

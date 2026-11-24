@@ -50,18 +50,18 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @source = attributes[:source] || attributes['source']
-          @target = attributes[:target] || attributes['target']
-          @activity_copy_limit = attributes[:activity_copy_limit] || attributes['activity_copy_limit'] || nil
-          @copy_custom_to_notification = attributes[:copy_custom_to_notification] || attributes['copy_custom_to_notification'] || nil
-          @create_notification_activity = attributes[:create_notification_activity] || attributes['create_notification_activity'] || nil
-          @create_users = attributes[:create_users] || attributes['create_users'] || nil
-          @enrich_own_fields = attributes[:enrich_own_fields] || attributes['enrich_own_fields'] || nil
-          @follower_role = attributes[:follower_role] || attributes['follower_role'] || nil
-          @push_preference = attributes[:push_preference] || attributes['push_preference'] || nil
-          @skip_push = attributes[:skip_push] || attributes['skip_push'] || nil
-          @status = attributes[:status] || attributes['status'] || nil
-          @custom = attributes[:custom] || attributes['custom'] || nil
+          @source = attributes.fetch(:source) { attributes.fetch('source', nil) }
+          @target = attributes.fetch(:target) { attributes.fetch('target', nil) }
+          @activity_copy_limit = attributes.fetch(:activity_copy_limit) { attributes.fetch('activity_copy_limit', nil) }
+          @copy_custom_to_notification = attributes.fetch(:copy_custom_to_notification) { attributes.fetch('copy_custom_to_notification', nil) }
+          @create_notification_activity = attributes.fetch(:create_notification_activity) { attributes.fetch('create_notification_activity', nil) }
+          @create_users = attributes.fetch(:create_users) { attributes.fetch('create_users', nil) }
+          @enrich_own_fields = attributes.fetch(:enrich_own_fields) { attributes.fetch('enrich_own_fields', nil) }
+          @follower_role = attributes.fetch(:follower_role) { attributes.fetch('follower_role', nil) }
+          @push_preference = attributes.fetch(:push_preference) { attributes.fetch('push_preference', nil) }
+          @skip_push = attributes.fetch(:skip_push) { attributes.fetch('skip_push', nil) }
+          @status = attributes.fetch(:status) { attributes.fetch('status', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
         end
 
         # Override field mappings for JSON serialization

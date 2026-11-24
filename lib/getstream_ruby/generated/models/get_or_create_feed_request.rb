@@ -24,6 +24,9 @@ module GetStream
         # @!attribute prev
         #   @return [String]
         attr_accessor :prev
+        # @!attribute skip_feed_creation
+        #   @return [Boolean] Default: false. When true, a missing feed returns 404 instead of being created. Cannot be combined with data.
+        attr_accessor :skip_feed_creation
         # @!attribute user_id
         #   @return [String]
         attr_accessor :user_id
@@ -73,26 +76,27 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @id_around = attributes[:id_around] || attributes['id_around'] || nil
-          @limit = attributes[:limit] || attributes['limit'] || nil
-          @next = attributes[:next] || attributes['next'] || nil
-          @overwrite_interest_weights = attributes[:overwrite_interest_weights] || attributes['overwrite_interest_weights'] || nil
-          @prev = attributes[:prev] || attributes['prev'] || nil
-          @user_id = attributes[:user_id] || attributes['user_id'] || nil
-          @view = attributes[:view] || attributes['view'] || nil
-          @watch = attributes[:watch] || attributes['watch'] || nil
-          @discard_actors = attributes[:discard_actors] || attributes['discard_actors'] || nil
-          @data = attributes[:data] || attributes['data'] || nil
-          @enrichment_options = attributes[:enrichment_options] || attributes['enrichment_options'] || nil
-          @external_ranking = attributes[:external_ranking] || attributes['external_ranking'] || nil
-          @filter = attributes[:filter] || attributes['filter'] || nil
-          @followers_pagination = attributes[:followers_pagination] || attributes['followers_pagination'] || nil
-          @following_pagination = attributes[:following_pagination] || attributes['following_pagination'] || nil
-          @friend_reactions_options = attributes[:friend_reactions_options] || attributes['friend_reactions_options'] || nil
-          @interest_weights = attributes[:interest_weights] || attributes['interest_weights'] || nil
-          @member_pagination = attributes[:member_pagination] || attributes['member_pagination'] || nil
-          @user = attributes[:user] || attributes['user'] || nil
-          @viewer_location = attributes[:viewer_location] || attributes['viewer_location'] || nil
+          @id_around = attributes.fetch(:id_around) { attributes.fetch('id_around', nil) }
+          @limit = attributes.fetch(:limit) { attributes.fetch('limit', nil) }
+          @next = attributes.fetch(:next) { attributes.fetch('next', nil) }
+          @overwrite_interest_weights = attributes.fetch(:overwrite_interest_weights) { attributes.fetch('overwrite_interest_weights', nil) }
+          @prev = attributes.fetch(:prev) { attributes.fetch('prev', nil) }
+          @skip_feed_creation = attributes.fetch(:skip_feed_creation) { attributes.fetch('skip_feed_creation', nil) }
+          @user_id = attributes.fetch(:user_id) { attributes.fetch('user_id', nil) }
+          @view = attributes.fetch(:view) { attributes.fetch('view', nil) }
+          @watch = attributes.fetch(:watch) { attributes.fetch('watch', nil) }
+          @discard_actors = attributes.fetch(:discard_actors) { attributes.fetch('discard_actors', nil) }
+          @data = attributes.fetch(:data) { attributes.fetch('data', nil) }
+          @enrichment_options = attributes.fetch(:enrichment_options) { attributes.fetch('enrichment_options', nil) }
+          @external_ranking = attributes.fetch(:external_ranking) { attributes.fetch('external_ranking', nil) }
+          @filter = attributes.fetch(:filter) { attributes.fetch('filter', nil) }
+          @followers_pagination = attributes.fetch(:followers_pagination) { attributes.fetch('followers_pagination', nil) }
+          @following_pagination = attributes.fetch(:following_pagination) { attributes.fetch('following_pagination', nil) }
+          @friend_reactions_options = attributes.fetch(:friend_reactions_options) { attributes.fetch('friend_reactions_options', nil) }
+          @interest_weights = attributes.fetch(:interest_weights) { attributes.fetch('interest_weights', nil) }
+          @member_pagination = attributes.fetch(:member_pagination) { attributes.fetch('member_pagination', nil) }
+          @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
+          @viewer_location = attributes.fetch(:viewer_location) { attributes.fetch('viewer_location', nil) }
         end
 
         # Override field mappings for JSON serialization
@@ -103,6 +107,7 @@ module GetStream
             next: 'next',
             overwrite_interest_weights: 'overwrite_interest_weights',
             prev: 'prev',
+            skip_feed_creation: 'skip_feed_creation',
             user_id: 'user_id',
             view: 'view',
             watch: 'watch',

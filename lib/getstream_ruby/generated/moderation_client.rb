@@ -127,14 +127,64 @@ module GetStream
         )
       end
 
+      # List moderator corrections of Nora's reviews for this app, newest first
+      #
+      # @param limit [Integer]
+      # @param _next [String]
+      # @return [Models::ListAgentFeedbackResponse]
+      def list_agent_feedback(limit = nil, _next = nil)
+        path = '/api/v2/moderation/agent_feedback'
+        # Build query parameters
+        query_params = {}
+        query_params['limit'] = limit unless limit.nil?
+        query_params['next'] = _next unless _next.nil?
+
+        # Make the API request
+        @client.make_request(
+          :get,
+          path,
+          query_params: query_params
+        )
+      end
+
+      # Record a moderator correction when their action overturns Nora's review of a queue item
+      #
+      # @param submit_agent_feedback_request [SubmitAgentFeedbackRequest]
+      # @return [Models::SubmitAgentFeedbackResponse]
+      def submit_agent_feedback(submit_agent_feedback_request)
+        path = '/api/v2/moderation/agent_feedback'
+        # Build request body
+        body = submit_agent_feedback_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
+      # Last error and 7-day counts for the app's agent moderator
+      #
+      # @return [Models::GetAgentReviewStatusResponse]
+      def get_agent_review_status()
+        path = '/api/v2/moderation/agent_review_status'
+
+        # Make the API request
+        @client.make_request(
+          :get,
+          path
+        )
+      end
+
       # Moderate named text fields and raw image bytes via multipart/form-data. Returns a per-field lightweight verdict.
       #
       # @param analyze_request [AnalyzeRequest]
       # @return [Models::AnalyzeResponse]
-      def analyze(analyze_request)
+      def analyze(analyze_request = nil)
         path = '/api/v2/moderation/analyze'
         # Build request body
-        body = analyze_request
+        body = analyze_request || {}
 
         # Make the API request
         @client.make_request(
@@ -181,10 +231,10 @@ module GetStream
       #
       # @param query_appeals_request [QueryAppealsRequest]
       # @return [Models::QueryAppealsResponse]
-      def query_appeals(query_appeals_request)
+      def query_appeals(query_appeals_request = nil)
         path = '/api/v2/moderation/appeals'
         # Build request body
-        body = query_appeals_request
+        body = query_appeals_request || {}
 
         # Make the API request
         @client.make_request(
@@ -283,10 +333,10 @@ module GetStream
       #
       # @param check_s3_access_request [CheckS3AccessRequest]
       # @return [Models::CheckS3AccessResponse]
-      def check_s3_access(check_s3_access_request)
+      def check_s3_access(check_s3_access_request = nil)
         path = '/api/v2/moderation/check_s3_access'
         # Build request body
-        body = check_s3_access_request
+        body = check_s3_access_request || {}
 
         # Make the API request
         @client.make_request(
@@ -304,6 +354,23 @@ module GetStream
         path = '/api/v2/moderation/config'
         # Build request body
         body = upsert_config_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
+      # Save a moderation configuration as a new version without making it live. The version takes effect once it is published.
+      #
+      # @param save_config_version_request [SaveConfigVersionRequest]
+      # @return [Models::SaveConfigVersionResponse]
+      def save_config_version(save_config_version_request)
+        path = '/api/v2/moderation/config/versions'
+        # Build request body
+        body = save_config_version_request
 
         # Make the API request
         @client.make_request(
@@ -357,14 +424,80 @@ module GetStream
         )
       end
 
+      # List the retained versions of a moderation configuration, newest first, and which one is published.
+      #
+      # @param key [String]
+      # @param team [String]
+      # @return [Models::ListConfigVersionsResponse]
+      def list_config_versions(key, team = nil)
+        path = '/api/v2/moderation/config/{key}/versions'
+        # Replace path parameters
+        path = path.gsub('{key}', key.to_s)
+        # Build query parameters
+        query_params = {}
+        query_params['team'] = team unless team.nil?
+
+        # Make the API request
+        @client.make_request(
+          :get,
+          path,
+          query_params: query_params
+        )
+      end
+
+      # Retrieve the full moderation configuration stored in a specific version, whether or not it is published.
+      #
+      # @param key [String]
+      # @param version [Integer]
+      # @param team [String]
+      # @return [Models::GetConfigVersionResponse]
+      def get_config_version(key, version, team = nil)
+        path = '/api/v2/moderation/config/{key}/versions/{version}'
+        # Replace path parameters
+        path = path.gsub('{key}', key.to_s)
+        path = path.gsub('{version}', version.to_s)
+        # Build query parameters
+        query_params = {}
+        query_params['team'] = team unless team.nil?
+
+        # Make the API request
+        @client.make_request(
+          :get,
+          path,
+          query_params: query_params
+        )
+      end
+
+      # Make a stored version the moderation configuration in effect. Publishing an older version reverts to it without creating a new version.
+      #
+      # @param key [String]
+      # @param version [Integer]
+      # @param publish_config_version_request [PublishConfigVersionRequest]
+      # @return [Models::PublishConfigVersionResponse]
+      def publish_config_version(key, version, publish_config_version_request = nil)
+        path = '/api/v2/moderation/config/{key}/versions/{version}/publish'
+        # Replace path parameters
+        path = path.gsub('{key}', key.to_s)
+        path = path.gsub('{version}', version.to_s)
+        # Build request body
+        body = publish_config_version_request || {}
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
       # Search and filter moderation configurations across your application. This endpoint is designed for building moderation dashboards and managing multiple configuration sets.
       #
       # @param query_moderation_configs_request [QueryModerationConfigsRequest]
       # @return [Models::QueryModerationConfigsResponse]
-      def query_moderation_configs(query_moderation_configs_request)
+      def query_moderation_configs(query_moderation_configs_request = nil)
         path = '/api/v2/moderation/configs'
         # Build request body
-        body = query_moderation_configs_request
+        body = query_moderation_configs_request || {}
 
         # Make the API request
         @client.make_request(
@@ -395,10 +528,10 @@ module GetStream
       #
       # @param query_moderation_feedback_request [QueryModerationFeedbackRequest]
       # @return [Models::QueryModerationFeedbackResponse]
-      def query_moderation_feedback(query_moderation_feedback_request)
+      def query_moderation_feedback(query_moderation_feedback_request = nil)
         path = '/api/v2/moderation/feedback_items'
         # Build request body
-        body = query_moderation_feedback_request
+        body = query_moderation_feedback_request || {}
 
         # Make the API request
         @client.make_request(
@@ -410,14 +543,19 @@ module GetStream
 
       # Delete a specific moderation template by its name
       #
+      # @param name [String]
       # @return [Models::DeleteModerationTemplateResponse]
-      def v2_delete_template()
+      def v2_delete_template(name = nil)
         path = '/api/v2/moderation/feeds_moderation_template'
+        # Build query parameters
+        query_params = {}
+        query_params['name'] = name unless name.nil?
 
         # Make the API request
         @client.make_request(
           :delete,
-          path
+          path,
+          query_params: query_params
         )
       end
 
@@ -489,10 +627,10 @@ module GetStream
       #
       # @param query_moderation_flags_request [QueryModerationFlagsRequest]
       # @return [Models::QueryModerationFlagsResponse]
-      def query_moderation_flags(query_moderation_flags_request)
+      def query_moderation_flags(query_moderation_flags_request = nil)
         path = '/api/v2/moderation/flags'
         # Build request body
-        body = query_moderation_flags_request
+        body = query_moderation_flags_request || {}
 
         # Make the API request
         @client.make_request(
@@ -523,10 +661,10 @@ module GetStream
       #
       # @param query_label_results_request [QueryLabelResultsRequest]
       # @return [Models::QueryLabelResultsResponse]
-      def query_label_results(query_label_results_request)
+      def query_label_results(query_label_results_request = nil)
         path = '/api/v2/moderation/labels/results'
         # Build request body
-        body = query_label_results_request
+        body = query_label_results_request || {}
 
         # Make the API request
         @client.make_request(
@@ -540,10 +678,10 @@ module GetStream
       #
       # @param query_moderation_logs_request [QueryModerationLogsRequest]
       # @return [Models::QueryModerationLogsResponse]
-      def query_moderation_logs(query_moderation_logs_request)
+      def query_moderation_logs(query_moderation_logs_request = nil)
         path = '/api/v2/moderation/logs'
         # Build request body
-        body = query_moderation_logs_request
+        body = query_moderation_logs_request || {}
 
         # Make the API request
         @client.make_request(
@@ -611,10 +749,10 @@ module GetStream
       #
       # @param query_moderation_rules_request [QueryModerationRulesRequest]
       # @return [Models::QueryModerationRulesResponse]
-      def query_moderation_rules(query_moderation_rules_request)
+      def query_moderation_rules(query_moderation_rules_request = nil)
         path = '/api/v2/moderation/moderation_rules'
         # Build request body
-        body = query_moderation_rules_request
+        body = query_moderation_rules_request || {}
 
         # Make the API request
         @client.make_request(
@@ -659,14 +797,21 @@ module GetStream
 
       # 
       #
+      # @param limit [Integer]
+      # @param offset [Integer]
       # @return [Models::PolicyTestSetListResponse]
-      def list_policy_test_sets()
+      def list_policy_test_sets(limit = nil, offset = nil)
         path = '/api/v2/moderation/policy_tests/sets'
+        # Build query parameters
+        query_params = {}
+        query_params['limit'] = limit unless limit.nil?
+        query_params['offset'] = offset unless offset.nil?
 
         # Make the API request
         @client.make_request(
           :get,
-          path
+          path,
+          query_params: query_params
         )
       end
 
@@ -796,12 +941,12 @@ module GetStream
       # @param _id [String]
       # @param update_queue_request [UpdateQueueRequest]
       # @return [Models::QueueResponse]
-      def update_queue(_id, update_queue_request)
+      def update_queue(_id, update_queue_request = nil)
         path = '/api/v2/moderation/queues/{id}'
         # Replace path parameters
         path = path.gsub('{id}', _id.to_s)
         # Build request body
-        body = update_queue_request
+        body = update_queue_request || {}
 
         # Make the API request
         @client.make_request(
@@ -816,12 +961,12 @@ module GetStream
       # @param _id [String]
       # @param delete_queue_request [DeleteQueueRequest]
       # @return [Models::QueueResponse]
-      def delete_queue(_id, delete_queue_request)
+      def delete_queue(_id, delete_queue_request = nil)
         path = '/api/v2/moderation/queues/{id}/delete'
         # Replace path parameters
         path = path.gsub('{id}', _id.to_s)
         # Build request body
-        body = delete_queue_request
+        body = delete_queue_request || {}
 
         # Make the API request
         @client.make_request(
@@ -852,10 +997,27 @@ module GetStream
       #
       # @param query_review_queue_request [QueryReviewQueueRequest]
       # @return [Models::QueryReviewQueueResponse]
-      def query_review_queue(query_review_queue_request)
+      def query_review_queue(query_review_queue_request = nil)
         path = '/api/v2/moderation/review_queue'
         # Build request body
-        body = query_review_queue_request
+        body = query_review_queue_request || {}
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
+      # Count the review queue items matching a filter, so a moderation dashboard can show a total for a queue or view. Counts are kept up to date in the background while they are being requested.
+      #
+      # @param count_review_queue_request [CountReviewQueueRequest]
+      # @return [Models::CountReviewQueueResponse]
+      def count_review_queue(count_review_queue_request = nil)
+        path = '/api/v2/moderation/review_queue/count'
+        # Build request body
+        body = count_review_queue_request || {}
 
         # Make the API request
         @client.make_request(
@@ -932,10 +1094,10 @@ module GetStream
       #
       # @param submit_moderation_feedback_request [SubmitModerationFeedbackRequest]
       # @return [Models::SubmitModerationFeedbackResponse]
-      def submit_moderation_feedback(submit_moderation_feedback_request)
+      def submit_moderation_feedback(submit_moderation_feedback_request = nil)
         path = '/api/v2/moderation/submit_moderation_feedback'
         # Build request body
-        body = submit_moderation_feedback_request
+        body = submit_moderation_feedback_request || {}
 
         # Make the API request
         @client.make_request(
@@ -951,14 +1113,16 @@ module GetStream
       # @param target_user_id [String]
       # @param channel_cid [String]
       # @param created_by [String]
+      # @param remove_future_channels_ban [Boolean]
       # @return [Models::UnbanResponse]
-      def unban(unban_request, target_user_id, channel_cid = nil, created_by = nil)
+      def unban(unban_request, target_user_id, channel_cid = nil, created_by = nil, remove_future_channels_ban = nil)
         path = '/api/v2/moderation/unban'
         # Build query parameters
         query_params = {}
         query_params['target_user_id'] = target_user_id unless target_user_id.nil?
         query_params['channel_cid'] = channel_cid unless channel_cid.nil?
         query_params['created_by'] = created_by unless created_by.nil?
+        query_params['remove_future_channels_ban'] = remove_future_channels_ban unless remove_future_channels_ban.nil?
         # Build request body
         body = unban_request
 

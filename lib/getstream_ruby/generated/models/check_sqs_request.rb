@@ -22,9 +22,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @sqs_key = attributes[:sqs_key] || attributes['sqs_key'] || nil
-          @sqs_secret = attributes[:sqs_secret] || attributes['sqs_secret'] || nil
-          @sqs_url = attributes[:sqs_url] || attributes['sqs_url'] || nil
+          @sqs_key = attributes.fetch(:sqs_key) { attributes.fetch('sqs_key', nil) }
+          @sqs_secret = attributes.fetch(:sqs_secret) { attributes.fetch('sqs_secret', nil) }
+          @sqs_url = attributes.fetch(:sqs_url) { attributes.fetch('sqs_url', nil) }
         end
 
         # Override field mappings for JSON serialization

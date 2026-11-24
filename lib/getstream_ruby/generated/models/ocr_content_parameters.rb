@@ -18,13 +18,17 @@ module GetStream
         # @!attribute harm_labels
         #   @return [Array<String>]
         attr_accessor :harm_labels
+        # @!attribute severities
+        #   @return [Array<String>]
+        attr_accessor :severities
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @label_operator = attributes[:label_operator] || attributes['label_operator'] || nil
-          @severity = attributes[:severity] || attributes['severity'] || nil
-          @harm_labels = attributes[:harm_labels] || attributes['harm_labels'] || nil
+          @label_operator = attributes.fetch(:label_operator) { attributes.fetch('label_operator', nil) }
+          @severity = attributes.fetch(:severity) { attributes.fetch('severity', nil) }
+          @harm_labels = attributes.fetch(:harm_labels) { attributes.fetch('harm_labels', nil) }
+          @severities = attributes.fetch(:severities) { attributes.fetch('severities', nil) }
         end
 
         # Override field mappings for JSON serialization
@@ -32,7 +36,8 @@ module GetStream
           {
             label_operator: 'label_operator',
             severity: 'severity',
-            harm_labels: 'harm_labels'
+            harm_labels: 'harm_labels',
+            severities: 'severities'
           }
         end
       end

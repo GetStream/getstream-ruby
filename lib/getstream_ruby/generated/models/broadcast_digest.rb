@@ -43,16 +43,16 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @schema_version = attributes[:schema_version] || attributes['schema_version']
-          @audience = attributes[:audience] || attributes['audience']
-          @broadcast = attributes[:broadcast] || attributes['broadcast']
-          @coverage = attributes[:coverage] || attributes['coverage']
-          @joins = attributes[:joins] || attributes['joins']
-          @poor_tail = attributes[:poor_tail] || attributes['poor_tail']
-          @quality = attributes[:quality] || attributes['quality']
-          @segments = attributes[:segments] || attributes['segments']
-          @source = attributes[:source] || attributes['source']
-          @viewers = attributes[:viewers] || attributes['viewers']
+          @schema_version = attributes.fetch(:schema_version) { attributes.fetch('schema_version', nil) }
+          @audience = attributes.fetch(:audience) { attributes.fetch('audience', nil) }
+          @broadcast = attributes.fetch(:broadcast) { attributes.fetch('broadcast', nil) }
+          @coverage = attributes.fetch(:coverage) { attributes.fetch('coverage', nil) }
+          @joins = attributes.fetch(:joins) { attributes.fetch('joins', nil) }
+          @poor_tail = attributes.fetch(:poor_tail) { attributes.fetch('poor_tail', nil) }
+          @quality = attributes.fetch(:quality) { attributes.fetch('quality', nil) }
+          @segments = attributes.fetch(:segments) { attributes.fetch('segments', nil) }
+          @source = attributes.fetch(:source) { attributes.fetch('source', nil) }
+          @viewers = attributes.fetch(:viewers) { attributes.fetch('viewers', nil) }
         end
 
         # Override field mappings for JSON serialization

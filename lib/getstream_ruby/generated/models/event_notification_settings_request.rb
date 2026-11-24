@@ -22,9 +22,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @enabled = attributes[:enabled] || attributes['enabled'] || nil
-          @apns = attributes[:apns] || attributes['apns'] || nil
-          @fcm = attributes[:fcm] || attributes['fcm'] || nil
+          @enabled = attributes.fetch(:enabled) { attributes.fetch('enabled', nil) }
+          @apns = attributes.fetch(:apns) { attributes.fetch('apns', nil) }
+          @fcm = attributes.fetch(:fcm) { attributes.fetch('fcm', nil) }
         end
 
         # Override field mappings for JSON serialization

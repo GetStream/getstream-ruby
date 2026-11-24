@@ -58,21 +58,21 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @description = attributes[:description] || attributes['description']
-          @enabled = attributes[:enabled] || attributes['enabled']
-          @id = attributes[:id] || attributes['id']
-          @name = attributes[:name] || attributes['name']
-          @rule_type = attributes[:rule_type] || attributes['rule_type']
-          @team = attributes[:team] || attributes['team']
-          @updated_at = attributes[:updated_at] || attributes['updated_at']
-          @config_keys = attributes[:config_keys] || attributes['config_keys']
-          @cooldown_period = attributes[:cooldown_period] || attributes['cooldown_period'] || nil
-          @logic = attributes[:logic] || attributes['logic'] || nil
-          @action_sequences = attributes[:action_sequences] || attributes['action_sequences'] || nil
-          @conditions = attributes[:conditions] || attributes['conditions'] || nil
-          @groups = attributes[:groups] || attributes['groups'] || nil
-          @action = attributes[:action] || attributes['action'] || nil
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @description = attributes.fetch(:description) { attributes.fetch('description', nil) }
+          @enabled = attributes.fetch(:enabled) { attributes.fetch('enabled', nil) }
+          @id = attributes.fetch(:id) { attributes.fetch('id', nil) }
+          @name = attributes.fetch(:name) { attributes.fetch('name', nil) }
+          @rule_type = attributes.fetch(:rule_type) { attributes.fetch('rule_type', nil) }
+          @team = attributes.fetch(:team) { attributes.fetch('team', nil) }
+          @updated_at = attributes.fetch(:updated_at) { attributes.fetch('updated_at', nil) }
+          @config_keys = attributes.fetch(:config_keys) { attributes.fetch('config_keys', nil) }
+          @cooldown_period = attributes.fetch(:cooldown_period) { attributes.fetch('cooldown_period', nil) }
+          @logic = attributes.fetch(:logic) { attributes.fetch('logic', nil) }
+          @action_sequences = attributes.fetch(:action_sequences) { attributes.fetch('action_sequences', nil) }
+          @conditions = attributes.fetch(:conditions) { attributes.fetch('conditions', nil) }
+          @groups = attributes.fetch(:groups) { attributes.fetch('groups', nil) }
+          @action = attributes.fetch(:action) { attributes.fetch('action', nil) }
         end
 
         # Override field mappings for JSON serialization

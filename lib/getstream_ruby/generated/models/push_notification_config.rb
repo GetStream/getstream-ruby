@@ -19,8 +19,8 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @enable_push = attributes[:enable_push] || attributes['enable_push'] || nil
-          @push_types = attributes[:push_types] || attributes['push_types'] || nil
+          @enable_push = attributes.fetch(:enable_push) { attributes.fetch('enable_push', nil) }
+          @push_types = attributes.fetch(:push_types) { attributes.fetch('push_types', nil) }
         end
 
         # Override field mappings for JSON serialization

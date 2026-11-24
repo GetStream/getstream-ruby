@@ -79,28 +79,28 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @banned = attributes[:banned] || attributes['banned']
-          @channel_role = attributes[:channel_role] || attributes['channel_role']
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @notifications_muted = attributes[:notifications_muted] || attributes['notifications_muted']
-          @shadow_banned = attributes[:shadow_banned] || attributes['shadow_banned']
-          @updated_at = attributes[:updated_at] || attributes['updated_at']
-          @user_id = attributes[:user_id] || attributes['user_id']
-          @custom = attributes[:custom] || attributes['custom']
-          @archived_at = attributes[:archived_at] || attributes['archived_at'] || nil
-          @ban_expires = attributes[:ban_expires] || attributes['ban_expires'] || nil
-          @ban_from_future_channels = attributes[:ban_from_future_channels] || attributes['ban_from_future_channels'] || nil
-          @deleted_at = attributes[:deleted_at] || attributes['deleted_at'] || nil
-          @future_channel_ban_expires = attributes[:future_channel_ban_expires] || attributes['future_channel_ban_expires'] || nil
-          @invite_accepted_at = attributes[:invite_accepted_at] || attributes['invite_accepted_at'] || nil
-          @invite_rejected_at = attributes[:invite_rejected_at] || attributes['invite_rejected_at'] || nil
-          @invited = attributes[:invited] || attributes['invited'] || nil
-          @is_moderator = attributes[:is_moderator] || attributes['is_moderator'] || nil
-          @pinned_at = attributes[:pinned_at] || attributes['pinned_at'] || nil
-          @role = attributes[:role] || attributes['role'] || nil
-          @status = attributes[:status] || attributes['status'] || nil
-          @deleted_messages = attributes[:deleted_messages] || attributes['deleted_messages'] || nil
-          @user = attributes[:user] || attributes['user'] || nil
+          @banned = attributes.fetch(:banned) { attributes.fetch('banned', nil) }
+          @channel_role = attributes.fetch(:channel_role) { attributes.fetch('channel_role', nil) }
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @notifications_muted = attributes.fetch(:notifications_muted) { attributes.fetch('notifications_muted', nil) }
+          @shadow_banned = attributes.fetch(:shadow_banned) { attributes.fetch('shadow_banned', nil) }
+          @updated_at = attributes.fetch(:updated_at) { attributes.fetch('updated_at', nil) }
+          @user_id = attributes.fetch(:user_id) { attributes.fetch('user_id', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
+          @archived_at = attributes.fetch(:archived_at) { attributes.fetch('archived_at', nil) }
+          @ban_expires = attributes.fetch(:ban_expires) { attributes.fetch('ban_expires', nil) }
+          @ban_from_future_channels = attributes.fetch(:ban_from_future_channels) { attributes.fetch('ban_from_future_channels', nil) }
+          @deleted_at = attributes.fetch(:deleted_at) { attributes.fetch('deleted_at', nil) }
+          @future_channel_ban_expires = attributes.fetch(:future_channel_ban_expires) { attributes.fetch('future_channel_ban_expires', nil) }
+          @invite_accepted_at = attributes.fetch(:invite_accepted_at) { attributes.fetch('invite_accepted_at', nil) }
+          @invite_rejected_at = attributes.fetch(:invite_rejected_at) { attributes.fetch('invite_rejected_at', nil) }
+          @invited = attributes.fetch(:invited) { attributes.fetch('invited', nil) }
+          @is_moderator = attributes.fetch(:is_moderator) { attributes.fetch('is_moderator', nil) }
+          @pinned_at = attributes.fetch(:pinned_at) { attributes.fetch('pinned_at', nil) }
+          @role = attributes.fetch(:role) { attributes.fetch('role', nil) }
+          @status = attributes.fetch(:status) { attributes.fetch('status', nil) }
+          @deleted_messages = attributes.fetch(:deleted_messages) { attributes.fetch('deleted_messages', nil) }
+          @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
         end
 
         # Override field mappings for JSON serialization

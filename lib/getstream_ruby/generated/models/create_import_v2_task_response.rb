@@ -37,14 +37,14 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @app_pk = attributes[:app_pk] || attributes['app_pk']
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @duration = attributes[:duration] || attributes['duration']
-          @id = attributes[:id] || attributes['id']
-          @product = attributes[:product] || attributes['product']
-          @state = attributes[:state] || attributes['state']
-          @updated_at = attributes[:updated_at] || attributes['updated_at']
-          @settings = attributes[:settings] || attributes['settings']
+          @app_pk = attributes.fetch(:app_pk) { attributes.fetch('app_pk', nil) }
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @duration = attributes.fetch(:duration) { attributes.fetch('duration', nil) }
+          @id = attributes.fetch(:id) { attributes.fetch('id', nil) }
+          @product = attributes.fetch(:product) { attributes.fetch('product', nil) }
+          @state = attributes.fetch(:state) { attributes.fetch('state', nil) }
+          @updated_at = attributes.fetch(:updated_at) { attributes.fetch('updated_at', nil) }
+          @settings = attributes.fetch(:settings) { attributes.fetch('settings', nil) }
         end
 
         # Override field mappings for JSON serialization

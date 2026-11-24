@@ -43,16 +43,16 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @message = attributes[:message] || attributes['message']
-          @force_moderation = attributes[:force_moderation] || attributes['force_moderation'] || nil
-          @include_channel_context = attributes[:include_channel_context] || attributes['include_channel_context'] || nil
-          @include_mentioned_members = attributes[:include_mentioned_members] || attributes['include_mentioned_members'] || nil
-          @keep_channel_hidden = attributes[:keep_channel_hidden] || attributes['keep_channel_hidden'] || nil
-          @pending = attributes[:pending] || attributes['pending'] || nil
-          @scheduled_at = attributes[:scheduled_at] || attributes['scheduled_at'] || nil
-          @skip_enrich_url = attributes[:skip_enrich_url] || attributes['skip_enrich_url'] || nil
-          @skip_push = attributes[:skip_push] || attributes['skip_push'] || nil
-          @pending_message_metadata = attributes[:pending_message_metadata] || attributes['pending_message_metadata'] || nil
+          @message = attributes.fetch(:message) { attributes.fetch('message', nil) }
+          @force_moderation = attributes.fetch(:force_moderation) { attributes.fetch('force_moderation', nil) }
+          @include_channel_context = attributes.fetch(:include_channel_context) { attributes.fetch('include_channel_context', nil) }
+          @include_mentioned_members = attributes.fetch(:include_mentioned_members) { attributes.fetch('include_mentioned_members', nil) }
+          @keep_channel_hidden = attributes.fetch(:keep_channel_hidden) { attributes.fetch('keep_channel_hidden', nil) }
+          @pending = attributes.fetch(:pending) { attributes.fetch('pending', nil) }
+          @scheduled_at = attributes.fetch(:scheduled_at) { attributes.fetch('scheduled_at', nil) }
+          @skip_enrich_url = attributes.fetch(:skip_enrich_url) { attributes.fetch('skip_enrich_url', nil) }
+          @skip_push = attributes.fetch(:skip_push) { attributes.fetch('skip_push', nil) }
+          @pending_message_metadata = attributes.fetch(:pending_message_metadata) { attributes.fetch('pending_message_metadata', nil) }
         end
 
         # Override field mappings for JSON serialization

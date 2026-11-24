@@ -58,21 +58,21 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @app_pk = attributes[:app_pk] || attributes['app_pk']
-          @call_id = attributes[:call_id] || attributes['call_id']
-          @call_type = attributes[:call_type] || attributes['call_type']
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @expires_at = attributes[:expires_at] || attributes['expires_at']
-          @initiated_by = attributes[:initiated_by] || attributes['initiated_by']
-          @outcome = attributes[:outcome] || attributes['outcome']
-          @ring_id = attributes[:ring_id] || attributes['ring_id']
-          @session_id = attributes[:session_id] || attributes['session_id']
-          @settle_reason = attributes[:settle_reason] || attributes['settle_reason']
-          @settled_by = attributes[:settled_by] || attributes['settled_by']
-          @custom = attributes[:custom] || attributes['custom']
-          @targets = attributes[:targets] || attributes['targets']
-          @deleted_at = attributes[:deleted_at] || attributes['deleted_at'] || nil
-          @settled_at = attributes[:settled_at] || attributes['settled_at'] || nil
+          @app_pk = attributes.fetch(:app_pk) { attributes.fetch('app_pk', nil) }
+          @call_id = attributes.fetch(:call_id) { attributes.fetch('call_id', nil) }
+          @call_type = attributes.fetch(:call_type) { attributes.fetch('call_type', nil) }
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @expires_at = attributes.fetch(:expires_at) { attributes.fetch('expires_at', nil) }
+          @initiated_by = attributes.fetch(:initiated_by) { attributes.fetch('initiated_by', nil) }
+          @outcome = attributes.fetch(:outcome) { attributes.fetch('outcome', nil) }
+          @ring_id = attributes.fetch(:ring_id) { attributes.fetch('ring_id', nil) }
+          @session_id = attributes.fetch(:session_id) { attributes.fetch('session_id', nil) }
+          @settle_reason = attributes.fetch(:settle_reason) { attributes.fetch('settle_reason', nil) }
+          @settled_by = attributes.fetch(:settled_by) { attributes.fetch('settled_by', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
+          @targets = attributes.fetch(:targets) { attributes.fetch('targets', nil) }
+          @deleted_at = attributes.fetch(:deleted_at) { attributes.fetch('deleted_at', nil) }
+          @settled_at = attributes.fetch(:settled_at) { attributes.fetch('settled_at', nil) }
         end
 
         # Override field mappings for JSON serialization

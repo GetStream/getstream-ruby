@@ -15,9 +15,15 @@ module GetStream
         # @!attribute id
         #   @return [String] Channel ID
         attr_accessor :id
+        # @!attribute member_count
+        #   @return [Integer] Number of members of the channel. 0 when the channel is deleted
+        attr_accessor :member_count
         # @!attribute type
         #   @return [String] Channel type
         attr_accessor :type
+        # @!attribute members
+        #   @return [Array<ChannelMemberResponse>] Up to 4 members of the channel, oldest first. Empty when the channel is deleted
+        attr_accessor :members
         # @!attribute image
         #   @return [String] Channel image, from its custom data
         attr_accessor :image
@@ -28,11 +34,13 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @cid = attributes[:cid] || attributes['cid']
-          @id = attributes[:id] || attributes['id']
-          @type = attributes[:type] || attributes['type']
-          @image = attributes[:image] || attributes['image'] || nil
-          @name = attributes[:name] || attributes['name'] || nil
+          @cid = attributes.fetch(:cid) { attributes.fetch('cid', nil) }
+          @id = attributes.fetch(:id) { attributes.fetch('id', nil) }
+          @member_count = attributes.fetch(:member_count) { attributes.fetch('member_count', nil) }
+          @type = attributes.fetch(:type) { attributes.fetch('type', nil) }
+          @members = attributes.fetch(:members) { attributes.fetch('members', nil) }
+          @image = attributes.fetch(:image) { attributes.fetch('image', nil) }
+          @name = attributes.fetch(:name) { attributes.fetch('name', nil) }
         end
 
         # Override field mappings for JSON serialization
@@ -40,7 +48,9 @@ module GetStream
           {
             cid: 'cid',
             id: 'id',
+            member_count: 'member_count',
             type: 'type',
+            members: 'members',
             image: 'image',
             name: 'name'
           }

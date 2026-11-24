@@ -19,8 +19,8 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @unreported_count = attributes[:unreported_count] || attributes['unreported_count']
-          @count_by_rating = attributes[:count_by_rating] || attributes['count_by_rating']
+          @unreported_count = attributes.fetch(:unreported_count) { attributes.fetch('unreported_count', nil) }
+          @count_by_rating = attributes.fetch(:count_by_rating) { attributes.fetch('count_by_rating', nil) }
         end
 
         # Override field mappings for JSON serialization

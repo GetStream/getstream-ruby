@@ -31,12 +31,12 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @reason = attributes[:reason] || attributes['reason'] || nil
-          @skip_inbox = attributes[:skip_inbox] || attributes['skip_inbox'] || nil
-          @type = attributes[:type] || attributes['type'] || nil
-          @ban_options = attributes[:ban_options] || attributes['ban_options'] || nil
-          @call_options = attributes[:call_options] || attributes['call_options'] || nil
-          @flag_user_options = attributes[:flag_user_options] || attributes['flag_user_options'] || nil
+          @reason = attributes.fetch(:reason) { attributes.fetch('reason', nil) }
+          @skip_inbox = attributes.fetch(:skip_inbox) { attributes.fetch('skip_inbox', nil) }
+          @type = attributes.fetch(:type) { attributes.fetch('type', nil) }
+          @ban_options = attributes.fetch(:ban_options) { attributes.fetch('ban_options', nil) }
+          @call_options = attributes.fetch(:call_options) { attributes.fetch('call_options', nil) }
+          @flag_user_options = attributes.fetch(:flag_user_options) { attributes.fetch('flag_user_options', nil) }
         end
 
         # Override field mappings for JSON serialization

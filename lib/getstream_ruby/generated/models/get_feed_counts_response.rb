@@ -25,10 +25,10 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @activity_count = attributes[:activity_count] || attributes['activity_count']
-          @comment_count = attributes[:comment_count] || attributes['comment_count']
-          @duration = attributes[:duration] || attributes['duration']
-          @total_count = attributes[:total_count] || attributes['total_count']
+          @activity_count = attributes.fetch(:activity_count) { attributes.fetch('activity_count', nil) }
+          @comment_count = attributes.fetch(:comment_count) { attributes.fetch('comment_count', nil) }
+          @duration = attributes.fetch(:duration) { attributes.fetch('duration', nil) }
+          @total_count = attributes.fetch(:total_count) { attributes.fetch('total_count', nil) }
         end
 
         # Override field mappings for JSON serialization

@@ -49,18 +49,18 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @exclude_default_action_config = attributes[:exclude_default_action_config] || attributes['exclude_default_action_config'] || nil
-          @limit = attributes[:limit] || attributes['limit'] || nil
-          @lock_count = attributes[:lock_count] || attributes['lock_count'] || nil
-          @lock_duration = attributes[:lock_duration] || attributes['lock_duration'] || nil
-          @lock_items = attributes[:lock_items] || attributes['lock_items'] || nil
-          @next = attributes[:next] || attributes['next'] || nil
-          @prev = attributes[:prev] || attributes['prev'] || nil
-          @stats_only = attributes[:stats_only] || attributes['stats_only'] || nil
-          @user_id = attributes[:user_id] || attributes['user_id'] || nil
-          @sort = attributes[:sort] || attributes['sort'] || nil
-          @filter = attributes[:filter] || attributes['filter'] || nil
-          @user = attributes[:user] || attributes['user'] || nil
+          @exclude_default_action_config = attributes.fetch(:exclude_default_action_config) { attributes.fetch('exclude_default_action_config', nil) }
+          @limit = attributes.fetch(:limit) { attributes.fetch('limit', nil) }
+          @lock_count = attributes.fetch(:lock_count) { attributes.fetch('lock_count', nil) }
+          @lock_duration = attributes.fetch(:lock_duration) { attributes.fetch('lock_duration', nil) }
+          @lock_items = attributes.fetch(:lock_items) { attributes.fetch('lock_items', nil) }
+          @next = attributes.fetch(:next) { attributes.fetch('next', nil) }
+          @prev = attributes.fetch(:prev) { attributes.fetch('prev', nil) }
+          @stats_only = attributes.fetch(:stats_only) { attributes.fetch('stats_only', nil) }
+          @user_id = attributes.fetch(:user_id) { attributes.fetch('user_id', nil) }
+          @sort = attributes.fetch(:sort) { attributes.fetch('sort', nil) }
+          @filter = attributes.fetch(:filter) { attributes.fetch('filter', nil) }
+          @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
         end
 
         # Override field mappings for JSON serialization

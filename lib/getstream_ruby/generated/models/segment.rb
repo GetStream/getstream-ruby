@@ -49,18 +49,18 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @all_sender_channels = attributes[:all_sender_channels] || attributes['all_sender_channels']
-          @all_users = attributes[:all_users] || attributes['all_users']
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @id = attributes[:id] || attributes['id']
-          @name = attributes[:name] || attributes['name']
-          @size = attributes[:size] || attributes['size']
-          @type = attributes[:type] || attributes['type']
-          @updated_at = attributes[:updated_at] || attributes['updated_at']
-          @deleted_at = attributes[:deleted_at] || attributes['deleted_at'] || nil
-          @description = attributes[:description] || attributes['description'] || nil
-          @task_id = attributes[:task_id] || attributes['task_id'] || nil
-          @filter = attributes[:filter] || attributes['filter'] || nil
+          @all_sender_channels = attributes.fetch(:all_sender_channels) { attributes.fetch('all_sender_channels', nil) }
+          @all_users = attributes.fetch(:all_users) { attributes.fetch('all_users', nil) }
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @id = attributes.fetch(:id) { attributes.fetch('id', nil) }
+          @name = attributes.fetch(:name) { attributes.fetch('name', nil) }
+          @size = attributes.fetch(:size) { attributes.fetch('size', nil) }
+          @type = attributes.fetch(:type) { attributes.fetch('type', nil) }
+          @updated_at = attributes.fetch(:updated_at) { attributes.fetch('updated_at', nil) }
+          @deleted_at = attributes.fetch(:deleted_at) { attributes.fetch('deleted_at', nil) }
+          @description = attributes.fetch(:description) { attributes.fetch('description', nil) }
+          @task_id = attributes.fetch(:task_id) { attributes.fetch('task_id', nil) }
+          @filter = attributes.fetch(:filter) { attributes.fetch('filter', nil) }
         end
 
         # Override field mappings for JSON serialization

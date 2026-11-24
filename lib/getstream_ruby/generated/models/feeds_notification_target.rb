@@ -40,15 +40,15 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @id = attributes[:id] || attributes['id']
-          @name = attributes[:name] || attributes['name'] || nil
-          @text = attributes[:text] || attributes['text'] || nil
-          @type = attributes[:type] || attributes['type'] || nil
-          @user_id = attributes[:user_id] || attributes['user_id'] || nil
-          @attachments = attributes[:attachments] || attributes['attachments'] || nil
-          @comment = attributes[:comment] || attributes['comment'] || nil
-          @custom = attributes[:custom] || attributes['custom'] || nil
-          @parent_activity = attributes[:parent_activity] || attributes['parent_activity'] || nil
+          @id = attributes.fetch(:id) { attributes.fetch('id', nil) }
+          @name = attributes.fetch(:name) { attributes.fetch('name', nil) }
+          @text = attributes.fetch(:text) { attributes.fetch('text', nil) }
+          @type = attributes.fetch(:type) { attributes.fetch('type', nil) }
+          @user_id = attributes.fetch(:user_id) { attributes.fetch('user_id', nil) }
+          @attachments = attributes.fetch(:attachments) { attributes.fetch('attachments', nil) }
+          @comment = attributes.fetch(:comment) { attributes.fetch('comment', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
+          @parent_activity = attributes.fetch(:parent_activity) { attributes.fetch('parent_activity', nil) }
         end
 
         # Override field mappings for JSON serialization

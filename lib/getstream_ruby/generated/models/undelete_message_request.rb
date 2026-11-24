@@ -16,7 +16,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @undeleted_by = attributes[:undeleted_by] || attributes['undeleted_by']
+          @undeleted_by = attributes.fetch(:undeleted_by) { attributes.fetch('undeleted_by', nil) }
         end
 
         # Override field mappings for JSON serialization

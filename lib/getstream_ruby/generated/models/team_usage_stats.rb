@@ -64,23 +64,23 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @team = attributes[:team] || attributes['team']
-          @concurrent_connections = attributes[:concurrent_connections] || attributes['concurrent_connections']
-          @concurrent_users = attributes[:concurrent_users] || attributes['concurrent_users']
-          @image_moderations_daily = attributes[:image_moderations_daily] || attributes['image_moderations_daily']
-          @messages_daily = attributes[:messages_daily] || attributes['messages_daily']
-          @messages_last_24_hours = attributes[:messages_last_24_hours] || attributes['messages_last_24_hours']
-          @messages_last_30_days = attributes[:messages_last_30_days] || attributes['messages_last_30_days']
-          @messages_month_to_date = attributes[:messages_month_to_date] || attributes['messages_month_to_date']
-          @messages_total = attributes[:messages_total] || attributes['messages_total']
-          @translations_daily = attributes[:translations_daily] || attributes['translations_daily']
-          @users_daily = attributes[:users_daily] || attributes['users_daily']
-          @users_engaged_last_30_days = attributes[:users_engaged_last_30_days] || attributes['users_engaged_last_30_days']
-          @users_engaged_month_to_date = attributes[:users_engaged_month_to_date] || attributes['users_engaged_month_to_date']
-          @users_last_24_hours = attributes[:users_last_24_hours] || attributes['users_last_24_hours']
-          @users_last_30_days = attributes[:users_last_30_days] || attributes['users_last_30_days']
-          @users_month_to_date = attributes[:users_month_to_date] || attributes['users_month_to_date']
-          @users_total = attributes[:users_total] || attributes['users_total']
+          @team = attributes.fetch(:team) { attributes.fetch('team', nil) }
+          @concurrent_connections = attributes.fetch(:concurrent_connections) { attributes.fetch('concurrent_connections', nil) }
+          @concurrent_users = attributes.fetch(:concurrent_users) { attributes.fetch('concurrent_users', nil) }
+          @image_moderations_daily = attributes.fetch(:image_moderations_daily) { attributes.fetch('image_moderations_daily', nil) }
+          @messages_daily = attributes.fetch(:messages_daily) { attributes.fetch('messages_daily', nil) }
+          @messages_last_24_hours = attributes.fetch(:messages_last_24_hours) { attributes.fetch('messages_last_24_hours', nil) }
+          @messages_last_30_days = attributes.fetch(:messages_last_30_days) { attributes.fetch('messages_last_30_days', nil) }
+          @messages_month_to_date = attributes.fetch(:messages_month_to_date) { attributes.fetch('messages_month_to_date', nil) }
+          @messages_total = attributes.fetch(:messages_total) { attributes.fetch('messages_total', nil) }
+          @translations_daily = attributes.fetch(:translations_daily) { attributes.fetch('translations_daily', nil) }
+          @users_daily = attributes.fetch(:users_daily) { attributes.fetch('users_daily', nil) }
+          @users_engaged_last_30_days = attributes.fetch(:users_engaged_last_30_days) { attributes.fetch('users_engaged_last_30_days', nil) }
+          @users_engaged_month_to_date = attributes.fetch(:users_engaged_month_to_date) { attributes.fetch('users_engaged_month_to_date', nil) }
+          @users_last_24_hours = attributes.fetch(:users_last_24_hours) { attributes.fetch('users_last_24_hours', nil) }
+          @users_last_30_days = attributes.fetch(:users_last_30_days) { attributes.fetch('users_last_30_days', nil) }
+          @users_month_to_date = attributes.fetch(:users_month_to_date) { attributes.fetch('users_month_to_date', nil) }
+          @users_total = attributes.fetch(:users_total) { attributes.fetch('users_total', nil) }
         end
 
         # Override field mappings for JSON serialization

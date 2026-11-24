@@ -19,8 +19,8 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @enabled = attributes[:enabled] || attributes['enabled']
-          @target_user_id = attributes[:target_user_id] || attributes['target_user_id']
+          @enabled = attributes.fetch(:enabled) { attributes.fetch('enabled', nil) }
+          @target_user_id = attributes.fetch(:target_user_id) { attributes.fetch('target_user_id', nil) }
         end
 
         # Override field mappings for JSON serialization

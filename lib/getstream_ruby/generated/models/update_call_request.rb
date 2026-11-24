@@ -22,9 +22,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @starts_at = attributes[:starts_at] || attributes['starts_at'] || nil
-          @custom = attributes[:custom] || attributes['custom'] || nil
-          @settings_override = attributes[:settings_override] || attributes['settings_override'] || nil
+          @starts_at = attributes.fetch(:starts_at) { attributes.fetch('starts_at', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
+          @settings_override = attributes.fetch(:settings_override) { attributes.fetch('settings_override', nil) }
         end
 
         # Override field mappings for JSON serialization

@@ -46,17 +46,17 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @target_user_id = attributes[:target_user_id] || attributes['target_user_id']
-          @ban_from_future_channels = attributes[:ban_from_future_channels] || attributes['ban_from_future_channels'] || nil
-          @banned_by_id = attributes[:banned_by_id] || attributes['banned_by_id'] || nil
-          @channel_cid = attributes[:channel_cid] || attributes['channel_cid'] || nil
-          @delete_messages = attributes[:delete_messages] || attributes['delete_messages'] || nil
-          @delete_reactions = attributes[:delete_reactions] || attributes['delete_reactions'] || nil
-          @ip_ban = attributes[:ip_ban] || attributes['ip_ban'] || nil
-          @reason = attributes[:reason] || attributes['reason'] || nil
-          @shadow = attributes[:shadow] || attributes['shadow'] || nil
-          @timeout = attributes[:timeout] || attributes['timeout'] || nil
-          @banned_by = attributes[:banned_by] || attributes['banned_by'] || nil
+          @target_user_id = attributes.fetch(:target_user_id) { attributes.fetch('target_user_id', nil) }
+          @ban_from_future_channels = attributes.fetch(:ban_from_future_channels) { attributes.fetch('ban_from_future_channels', nil) }
+          @banned_by_id = attributes.fetch(:banned_by_id) { attributes.fetch('banned_by_id', nil) }
+          @channel_cid = attributes.fetch(:channel_cid) { attributes.fetch('channel_cid', nil) }
+          @delete_messages = attributes.fetch(:delete_messages) { attributes.fetch('delete_messages', nil) }
+          @delete_reactions = attributes.fetch(:delete_reactions) { attributes.fetch('delete_reactions', nil) }
+          @ip_ban = attributes.fetch(:ip_ban) { attributes.fetch('ip_ban', nil) }
+          @reason = attributes.fetch(:reason) { attributes.fetch('reason', nil) }
+          @shadow = attributes.fetch(:shadow) { attributes.fetch('shadow', nil) }
+          @timeout = attributes.fetch(:timeout) { attributes.fetch('timeout', nil) }
+          @banned_by = attributes.fetch(:banned_by) { attributes.fetch('banned_by', nil) }
         end
 
         # Override field mappings for JSON serialization

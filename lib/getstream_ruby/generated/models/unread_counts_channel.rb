@@ -13,7 +13,7 @@ module GetStream
         #   @return [String] The channel CID (type:id).
         attr_accessor :channel_id
         # @!attribute has_unread
-        #   @return [Boolean] Whether the channel has messages newer than the user's last read. Large channels have no unread_count and only report this.
+        #   @return [Boolean] Whether the channel counts as unread for the user: it has messages newer than the user's last read, or the user marked it unread without a message (soft_unread). It is true for soft-unread channels even though unread_count is 0. Large channels have no unread_count and only report this.
         attr_accessor :has_unread
         # @!attribute last_read
         #   @return [DateTime] The date which the current user last read the channel.
@@ -21,14 +21,18 @@ module GetStream
         # @!attribute unread_count
         #   @return [Integer] The number of unread messages inside the channel.
         attr_accessor :unread_count
+        # @!attribute soft_unread
+        #   @return [Boolean] True when the user marked the channel unread without a message. unread_count stays 0, and the channel adds 1 to total_unread_count; clients should key off has_unread and this field rather than unread_count > 0.
+        attr_accessor :soft_unread
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @channel_id = attributes[:channel_id] || attributes['channel_id']
-          @has_unread = attributes[:has_unread] || attributes['has_unread']
-          @last_read = attributes[:last_read] || attributes['last_read']
-          @unread_count = attributes[:unread_count] || attributes['unread_count']
+          @channel_id = attributes.fetch(:channel_id) { attributes.fetch('channel_id', nil) }
+          @has_unread = attributes.fetch(:has_unread) { attributes.fetch('has_unread', nil) }
+          @last_read = attributes.fetch(:last_read) { attributes.fetch('last_read', nil) }
+          @unread_count = attributes.fetch(:unread_count) { attributes.fetch('unread_count', nil) }
+          @soft_unread = attributes.fetch(:soft_unread) { attributes.fetch('soft_unread', nil) }
         end
 
         # Override field mappings for JSON serialization
@@ -37,7 +41,8 @@ module GetStream
             channel_id: 'channel_id',
             has_unread: 'has_unread',
             last_read: 'last_read',
-            unread_count: 'unread_count'
+            unread_count: 'unread_count',
+            soft_unread: 'soft_unread'
           }
         end
       end

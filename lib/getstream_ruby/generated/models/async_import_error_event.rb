@@ -46,17 +46,17 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @error = attributes[:error] || attributes['error']
-          @error_code = attributes[:error_code] || attributes['error_code']
-          @finished_at = attributes[:finished_at] || attributes['finished_at']
-          @product = attributes[:product] || attributes['product']
-          @state = attributes[:state] || attributes['state']
-          @task_id = attributes[:task_id] || attributes['task_id']
-          @custom = attributes[:custom] || attributes['custom']
-          @type = attributes[:type] || attributes['type'] || "import.error"
-          @received_at = attributes[:received_at] || attributes['received_at'] || nil
-          @started_at = attributes[:started_at] || attributes['started_at'] || nil
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @error = attributes.fetch(:error) { attributes.fetch('error', nil) }
+          @error_code = attributes.fetch(:error_code) { attributes.fetch('error_code', nil) }
+          @finished_at = attributes.fetch(:finished_at) { attributes.fetch('finished_at', nil) }
+          @product = attributes.fetch(:product) { attributes.fetch('product', nil) }
+          @state = attributes.fetch(:state) { attributes.fetch('state', nil) }
+          @task_id = attributes.fetch(:task_id) { attributes.fetch('task_id', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
+          @type = attributes.fetch(:type) { attributes.fetch('type', "import.error") }
+          @received_at = attributes.fetch(:received_at) { attributes.fetch('received_at', nil) }
+          @started_at = attributes.fetch(:started_at) { attributes.fetch('started_at', nil) }
         end
 
         # Override field mappings for JSON serialization

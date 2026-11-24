@@ -25,10 +25,10 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @pin_changed = attributes[:pin_changed] || attributes['pin_changed'] || nil
-          @should_enrich = attributes[:should_enrich] || attributes['should_enrich'] || nil
-          @skip_push = attributes[:skip_push] || attributes['skip_push'] || nil
-          @updated_by_id = attributes[:updated_by_id] || attributes['updated_by_id'] || nil
+          @pin_changed = attributes.fetch(:pin_changed) { attributes.fetch('pin_changed', nil) }
+          @should_enrich = attributes.fetch(:should_enrich) { attributes.fetch('should_enrich', nil) }
+          @skip_push = attributes.fetch(:skip_push) { attributes.fetch('skip_push', nil) }
+          @updated_by_id = attributes.fetch(:updated_by_id) { attributes.fetch('updated_by_id', nil) }
         end
 
         # Override field mappings for JSON serialization

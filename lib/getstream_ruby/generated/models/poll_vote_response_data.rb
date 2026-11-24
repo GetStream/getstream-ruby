@@ -43,16 +43,16 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @id = attributes[:id] || attributes['id']
-          @option_id = attributes[:option_id] || attributes['option_id']
-          @poll_id = attributes[:poll_id] || attributes['poll_id']
-          @updated_at = attributes[:updated_at] || attributes['updated_at']
-          @answer_text = attributes[:answer_text] || attributes['answer_text'] || nil
-          @is_answer = attributes[:is_answer] || attributes['is_answer'] || nil
-          @user_id = attributes[:user_id] || attributes['user_id'] || nil
-          @answer_text_i18n = attributes[:answer_text_i18n] || attributes['answer_text_i18n'] || nil
-          @user = attributes[:user] || attributes['user'] || nil
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @id = attributes.fetch(:id) { attributes.fetch('id', nil) }
+          @option_id = attributes.fetch(:option_id) { attributes.fetch('option_id', nil) }
+          @poll_id = attributes.fetch(:poll_id) { attributes.fetch('poll_id', nil) }
+          @updated_at = attributes.fetch(:updated_at) { attributes.fetch('updated_at', nil) }
+          @answer_text = attributes.fetch(:answer_text) { attributes.fetch('answer_text', nil) }
+          @is_answer = attributes.fetch(:is_answer) { attributes.fetch('is_answer', nil) }
+          @user_id = attributes.fetch(:user_id) { attributes.fetch('user_id', nil) }
+          @answer_text_i18n = attributes.fetch(:answer_text_i18n) { attributes.fetch('answer_text_i18n', nil) }
+          @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
         end
 
         # Override field mappings for JSON serialization

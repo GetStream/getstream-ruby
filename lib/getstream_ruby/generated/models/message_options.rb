@@ -19,8 +19,8 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @include_thread_participants = attributes[:include_thread_participants] || attributes['include_thread_participants'] || nil
-          @member_custom_include = attributes[:member_custom_include] || attributes['member_custom_include'] || nil
+          @include_thread_participants = attributes.fetch(:include_thread_participants) { attributes.fetch('include_thread_participants', nil) }
+          @member_custom_include = attributes.fetch(:member_custom_include) { attributes.fetch('member_custom_include', nil) }
         end
 
         # Override field mappings for JSON serialization

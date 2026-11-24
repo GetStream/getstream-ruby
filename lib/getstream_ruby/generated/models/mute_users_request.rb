@@ -37,14 +37,14 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @audio = attributes[:audio] || attributes['audio'] || nil
-          @mute_all_users = attributes[:mute_all_users] || attributes['mute_all_users'] || nil
-          @muted_by_id = attributes[:muted_by_id] || attributes['muted_by_id'] || nil
-          @screenshare = attributes[:screenshare] || attributes['screenshare'] || nil
-          @screenshare_audio = attributes[:screenshare_audio] || attributes['screenshare_audio'] || nil
-          @video = attributes[:video] || attributes['video'] || nil
-          @user_ids = attributes[:user_ids] || attributes['user_ids'] || nil
-          @muted_by = attributes[:muted_by] || attributes['muted_by'] || nil
+          @audio = attributes.fetch(:audio) { attributes.fetch('audio', nil) }
+          @mute_all_users = attributes.fetch(:mute_all_users) { attributes.fetch('mute_all_users', nil) }
+          @muted_by_id = attributes.fetch(:muted_by_id) { attributes.fetch('muted_by_id', nil) }
+          @screenshare = attributes.fetch(:screenshare) { attributes.fetch('screenshare', nil) }
+          @screenshare_audio = attributes.fetch(:screenshare_audio) { attributes.fetch('screenshare_audio', nil) }
+          @video = attributes.fetch(:video) { attributes.fetch('video', nil) }
+          @user_ids = attributes.fetch(:user_ids) { attributes.fetch('user_ids', nil) }
+          @muted_by = attributes.fetch(:muted_by) { attributes.fetch('muted_by', nil) }
         end
 
         # Override field mappings for JSON serialization
