@@ -210,10 +210,9 @@ module GetStreamRuby
 
     private
 
-    # Plain strings and numbers stay unencoded: callers may already escape them.
     def query_value(value)
       return URI.encode_www_form_component(value.iso8601(9)) if value.is_a?(Time) || value.is_a?(DateTime)
-      return value unless value.is_a?(Array) || value.is_a?(Hash) || value.is_a?(GetStream::BaseModel)
+      return URI.encode_www_form_component(value) unless [Array, Hash, GetStream::BaseModel].any? { |k| value.is_a?(k) }
 
       scalars = value.is_a?(Array) && value.all? { |e| e.is_a?(String) || e.is_a?(Numeric) || e == true || e == false }
       URI.encode_www_form_component(scalars ? value.join(',') : value.to_json)
