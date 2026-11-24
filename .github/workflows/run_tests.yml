@@ -16,7 +16,7 @@ permissions:
 jobs:
   unit:
     name: 🧪 Unit tests & code quality
-    runs-on: { group: github-public-ubuntu-static }
+    runs-on: { group: github-public-amd64 }
     timeout-minutes: 20
     steps:
       - name: Checkout code
