@@ -37,14 +37,14 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @_object_id = attributes[:_object_id] || attributes['object_id']
-          @action_type = attributes[:action_type] || attributes['action_type']
-          @actor_type = attributes[:actor_type] || attributes['actor_type']
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @object_type = attributes[:object_type] || attributes['object_type']
-          @user_id = attributes[:user_id] || attributes['user_id']
-          @changed_fields = attributes[:changed_fields] || attributes['changed_fields'] || nil
-          @previous_obj_serialized = attributes[:previous_obj_serialized] || attributes['previous_obj_serialized'] || nil
+          @_object_id = attributes.fetch(:_object_id) { attributes.fetch('object_id', nil) }
+          @action_type = attributes.fetch(:action_type) { attributes.fetch('action_type', nil) }
+          @actor_type = attributes.fetch(:actor_type) { attributes.fetch('actor_type', nil) }
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @object_type = attributes.fetch(:object_type) { attributes.fetch('object_type', nil) }
+          @user_id = attributes.fetch(:user_id) { attributes.fetch('user_id', nil) }
+          @changed_fields = attributes.fetch(:changed_fields) { attributes.fetch('changed_fields', nil) }
+          @previous_obj_serialized = attributes.fetch(:previous_obj_serialized) { attributes.fetch('previous_obj_serialized', nil) }
         end
 
         # Override field mappings for JSON serialization

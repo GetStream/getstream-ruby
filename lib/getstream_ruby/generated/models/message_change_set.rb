@@ -40,15 +40,15 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @attachments = attributes[:attachments] || attributes['attachments']
-          @custom = attributes[:custom] || attributes['custom']
-          @html = attributes[:html] || attributes['html']
-          @mentioned_user_ids = attributes[:mentioned_user_ids] || attributes['mentioned_user_ids']
-          @mml = attributes[:mml] || attributes['mml']
-          @pin = attributes[:pin] || attributes['pin']
-          @quoted_message_id = attributes[:quoted_message_id] || attributes['quoted_message_id']
-          @silent = attributes[:silent] || attributes['silent']
-          @text = attributes[:text] || attributes['text']
+          @attachments = attributes.fetch(:attachments) { attributes.fetch('attachments', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
+          @html = attributes.fetch(:html) { attributes.fetch('html', nil) }
+          @mentioned_user_ids = attributes.fetch(:mentioned_user_ids) { attributes.fetch('mentioned_user_ids', nil) }
+          @mml = attributes.fetch(:mml) { attributes.fetch('mml', nil) }
+          @pin = attributes.fetch(:pin) { attributes.fetch('pin', nil) }
+          @quoted_message_id = attributes.fetch(:quoted_message_id) { attributes.fetch('quoted_message_id', nil) }
+          @silent = attributes.fetch(:silent) { attributes.fetch('silent', nil) }
+          @text = attributes.fetch(:text) { attributes.fetch('text', nil) }
         end
 
         # Override field mappings for JSON serialization

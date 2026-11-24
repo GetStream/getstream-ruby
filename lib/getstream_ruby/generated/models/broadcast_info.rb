@@ -40,15 +40,15 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @app_id = attributes[:app_id] || attributes['app_id']
-          @call_cid = attributes[:call_cid] || attributes['call_cid']
-          @call_session_id = attributes[:call_session_id] || attributes['call_session_id']
-          @call_type = attributes[:call_type] || attributes['call_type']
-          @duration_min = attributes[:duration_min] || attributes['duration_min']
-          @ended_at = attributes[:ended_at] || attributes['ended_at']
-          @started_at = attributes[:started_at] || attributes['started_at']
-          @creators = attributes[:creators] || attributes['creators']
-          @source_mode = attributes[:source_mode] || attributes['source_mode'] || nil
+          @app_id = attributes.fetch(:app_id) { attributes.fetch('app_id', nil) }
+          @call_cid = attributes.fetch(:call_cid) { attributes.fetch('call_cid', nil) }
+          @call_session_id = attributes.fetch(:call_session_id) { attributes.fetch('call_session_id', nil) }
+          @call_type = attributes.fetch(:call_type) { attributes.fetch('call_type', nil) }
+          @duration_min = attributes.fetch(:duration_min) { attributes.fetch('duration_min', nil) }
+          @ended_at = attributes.fetch(:ended_at) { attributes.fetch('ended_at', nil) }
+          @started_at = attributes.fetch(:started_at) { attributes.fetch('started_at', nil) }
+          @creators = attributes.fetch(:creators) { attributes.fetch('creators', nil) }
+          @source_mode = attributes.fetch(:source_mode) { attributes.fetch('source_mode', nil) }
         end
 
         # Override field mappings for JSON serialization

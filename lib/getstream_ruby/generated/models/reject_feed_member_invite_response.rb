@@ -19,8 +19,8 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @duration = attributes[:duration] || attributes['duration']
-          @member = attributes[:member] || attributes['member']
+          @duration = attributes.fetch(:duration) { attributes.fetch('duration', nil) }
+          @member = attributes.fetch(:member) { attributes.fetch('member', nil) }
         end
 
         # Override field mappings for JSON serialization

@@ -24,6 +24,12 @@ module GetStream
         # @!attribute item_count
         #   @return [Integer]
         attr_accessor :item_count
+        # @!attribute item_count_capped
+        #   @return [Boolean]
+        attr_accessor :item_count_capped
+        # @!attribute item_count_pending
+        #   @return [Boolean]
+        attr_accessor :item_count_pending
         # @!attribute name
         #   @return [String]
         attr_accessor :name
@@ -43,16 +49,18 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @created_by = attributes[:created_by] || attributes['created_by']
-          @description = attributes[:description] || attributes['description']
-          @id = attributes[:id] || attributes['id']
-          @item_count = attributes[:item_count] || attributes['item_count']
-          @name = attributes[:name] || attributes['name']
-          @type = attributes[:type] || attributes['type']
-          @updated_at = attributes[:updated_at] || attributes['updated_at']
-          @sort = attributes[:sort] || attributes['sort']
-          @filters = attributes[:filters] || attributes['filters']
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @created_by = attributes.fetch(:created_by) { attributes.fetch('created_by', nil) }
+          @description = attributes.fetch(:description) { attributes.fetch('description', nil) }
+          @id = attributes.fetch(:id) { attributes.fetch('id', nil) }
+          @item_count = attributes.fetch(:item_count) { attributes.fetch('item_count', nil) }
+          @item_count_capped = attributes.fetch(:item_count_capped) { attributes.fetch('item_count_capped', nil) }
+          @item_count_pending = attributes.fetch(:item_count_pending) { attributes.fetch('item_count_pending', nil) }
+          @name = attributes.fetch(:name) { attributes.fetch('name', nil) }
+          @type = attributes.fetch(:type) { attributes.fetch('type', nil) }
+          @updated_at = attributes.fetch(:updated_at) { attributes.fetch('updated_at', nil) }
+          @sort = attributes.fetch(:sort) { attributes.fetch('sort', nil) }
+          @filters = attributes.fetch(:filters) { attributes.fetch('filters', nil) }
         end
 
         # Override field mappings for JSON serialization
@@ -63,6 +71,8 @@ module GetStream
             description: 'description',
             id: 'id',
             item_count: 'item_count',
+            item_count_capped: 'item_count_capped',
+            item_count_pending: 'item_count_pending',
             name: 'name',
             type: 'type',
             updated_at: 'updated_at',

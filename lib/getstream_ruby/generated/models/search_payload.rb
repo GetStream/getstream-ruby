@@ -43,16 +43,16 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @filter_conditions = attributes[:filter_conditions] || attributes['filter_conditions']
-          @force_default_search = attributes[:force_default_search] || attributes['force_default_search'] || nil
-          @force_sql_v2_backend = attributes[:force_sql_v2_backend] || attributes['force_sql_v2_backend'] || nil
-          @limit = attributes[:limit] || attributes['limit'] || nil
-          @next = attributes[:next] || attributes['next'] || nil
-          @offset = attributes[:offset] || attributes['offset'] || nil
-          @query = attributes[:query] || attributes['query'] || nil
-          @sort = attributes[:sort] || attributes['sort'] || nil
-          @message_filter_conditions = attributes[:message_filter_conditions] || attributes['message_filter_conditions'] || nil
-          @message_options = attributes[:message_options] || attributes['message_options'] || nil
+          @filter_conditions = attributes.fetch(:filter_conditions) { attributes.fetch('filter_conditions', nil) }
+          @force_default_search = attributes.fetch(:force_default_search) { attributes.fetch('force_default_search', nil) }
+          @force_sql_v2_backend = attributes.fetch(:force_sql_v2_backend) { attributes.fetch('force_sql_v2_backend', nil) }
+          @limit = attributes.fetch(:limit) { attributes.fetch('limit', nil) }
+          @next = attributes.fetch(:next) { attributes.fetch('next', nil) }
+          @offset = attributes.fetch(:offset) { attributes.fetch('offset', nil) }
+          @query = attributes.fetch(:query) { attributes.fetch('query', nil) }
+          @sort = attributes.fetch(:sort) { attributes.fetch('sort', nil) }
+          @message_filter_conditions = attributes.fetch(:message_filter_conditions) { attributes.fetch('message_filter_conditions', nil) }
+          @message_options = attributes.fetch(:message_options) { attributes.fetch('message_options', nil) }
         end
 
         # Override field mappings for JSON serialization

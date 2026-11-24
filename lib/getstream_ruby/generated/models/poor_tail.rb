@@ -31,12 +31,12 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @healthy_viewers = attributes[:healthy_viewers] || attributes['healthy_viewers']
-          @note = attributes[:note] || attributes['note']
-          @poor_total = attributes[:poor_total] || attributes['poor_total']
-          @poor_by_cause = attributes[:poor_by_cause] || attributes['poor_by_cause']
-          @supporting = attributes[:supporting] || attributes['supporting']
-          @healthy_pct = attributes[:healthy_pct] || attributes['healthy_pct'] || nil
+          @healthy_viewers = attributes.fetch(:healthy_viewers) { attributes.fetch('healthy_viewers', nil) }
+          @note = attributes.fetch(:note) { attributes.fetch('note', nil) }
+          @poor_total = attributes.fetch(:poor_total) { attributes.fetch('poor_total', nil) }
+          @poor_by_cause = attributes.fetch(:poor_by_cause) { attributes.fetch('poor_by_cause', nil) }
+          @supporting = attributes.fetch(:supporting) { attributes.fetch('supporting', nil) }
+          @healthy_pct = attributes.fetch(:healthy_pct) { attributes.fetch('healthy_pct', nil) }
         end
 
         # Override field mappings for JSON serialization

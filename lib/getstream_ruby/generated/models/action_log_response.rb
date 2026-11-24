@@ -19,7 +19,7 @@ module GetStream
         #   @return [String] Reason for the moderation action
         attr_accessor :reason
         # @!attribute reporter_type
-        #   @return [String] Classification of who triggered the action (e.g. user, moderator, automod, api_integration)
+        #   @return [String] Classification of who triggered the action (e.g. user, moderator, automod, agent_reviewer, api_integration)
         attr_accessor :reporter_type
         # @!attribute target_user_id
         #   @return [String] ID of the user who was the target of the action
@@ -34,8 +34,11 @@ module GetStream
         #   @return [Array<String>]
         attr_accessor :ai_providers
         # @!attribute custom
-        #   @return [Object] Additional metadata about the action
+        #   @return [Object] Additional metadata about the action. An agent_recommendation log keeps the suggested action under recommended_action
         attr_accessor :custom
+        # @!attribute agent_recommendation
+        #   @return [AgentRecommendationResponse]
+        attr_accessor :agent_recommendation
         # @!attribute review_queue_item
         #   @return [ReviewQueueItemResponse]
         attr_accessor :review_queue_item
@@ -49,18 +52,19 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @id = attributes[:id] || attributes['id']
-          @reason = attributes[:reason] || attributes['reason']
-          @reporter_type = attributes[:reporter_type] || attributes['reporter_type']
-          @target_user_id = attributes[:target_user_id] || attributes['target_user_id']
-          @type = attributes[:type] || attributes['type']
-          @user_id = attributes[:user_id] || attributes['user_id']
-          @ai_providers = attributes[:ai_providers] || attributes['ai_providers']
-          @custom = attributes[:custom] || attributes['custom']
-          @review_queue_item = attributes[:review_queue_item] || attributes['review_queue_item'] || nil
-          @target_user = attributes[:target_user] || attributes['target_user'] || nil
-          @user = attributes[:user] || attributes['user'] || nil
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @id = attributes.fetch(:id) { attributes.fetch('id', nil) }
+          @reason = attributes.fetch(:reason) { attributes.fetch('reason', nil) }
+          @reporter_type = attributes.fetch(:reporter_type) { attributes.fetch('reporter_type', nil) }
+          @target_user_id = attributes.fetch(:target_user_id) { attributes.fetch('target_user_id', nil) }
+          @type = attributes.fetch(:type) { attributes.fetch('type', nil) }
+          @user_id = attributes.fetch(:user_id) { attributes.fetch('user_id', nil) }
+          @ai_providers = attributes.fetch(:ai_providers) { attributes.fetch('ai_providers', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
+          @agent_recommendation = attributes.fetch(:agent_recommendation) { attributes.fetch('agent_recommendation', nil) }
+          @review_queue_item = attributes.fetch(:review_queue_item) { attributes.fetch('review_queue_item', nil) }
+          @target_user = attributes.fetch(:target_user) { attributes.fetch('target_user', nil) }
+          @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
         end
 
         # Override field mappings for JSON serialization
@@ -75,6 +79,7 @@ module GetStream
             user_id: 'user_id',
             ai_providers: 'ai_providers',
             custom: 'custom',
+            agent_recommendation: 'agent_recommendation',
             review_queue_item: 'review_queue_item',
             target_user: 'target_user',
             user: 'user'

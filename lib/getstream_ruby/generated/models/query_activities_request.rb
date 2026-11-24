@@ -49,18 +49,18 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @enrich_own_fields = attributes[:enrich_own_fields] || attributes['enrich_own_fields'] || nil
-          @include_expired_activities = attributes[:include_expired_activities] || attributes['include_expired_activities'] || nil
-          @include_moderated_activities = attributes[:include_moderated_activities] || attributes['include_moderated_activities'] || nil
-          @include_private_activities = attributes[:include_private_activities] || attributes['include_private_activities'] || nil
-          @include_soft_deleted_activities = attributes[:include_soft_deleted_activities] || attributes['include_soft_deleted_activities'] || nil
-          @limit = attributes[:limit] || attributes['limit'] || nil
-          @next = attributes[:next] || attributes['next'] || nil
-          @prev = attributes[:prev] || attributes['prev'] || nil
-          @user_id = attributes[:user_id] || attributes['user_id'] || nil
-          @sort = attributes[:sort] || attributes['sort'] || nil
-          @filter = attributes[:filter] || attributes['filter'] || nil
-          @user = attributes[:user] || attributes['user'] || nil
+          @enrich_own_fields = attributes.fetch(:enrich_own_fields) { attributes.fetch('enrich_own_fields', nil) }
+          @include_expired_activities = attributes.fetch(:include_expired_activities) { attributes.fetch('include_expired_activities', nil) }
+          @include_moderated_activities = attributes.fetch(:include_moderated_activities) { attributes.fetch('include_moderated_activities', nil) }
+          @include_private_activities = attributes.fetch(:include_private_activities) { attributes.fetch('include_private_activities', nil) }
+          @include_soft_deleted_activities = attributes.fetch(:include_soft_deleted_activities) { attributes.fetch('include_soft_deleted_activities', nil) }
+          @limit = attributes.fetch(:limit) { attributes.fetch('limit', nil) }
+          @next = attributes.fetch(:next) { attributes.fetch('next', nil) }
+          @prev = attributes.fetch(:prev) { attributes.fetch('prev', nil) }
+          @user_id = attributes.fetch(:user_id) { attributes.fetch('user_id', nil) }
+          @sort = attributes.fetch(:sort) { attributes.fetch('sort', nil) }
+          @filter = attributes.fetch(:filter) { attributes.fetch('filter', nil) }
+          @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
         end
 
         # Override field mappings for JSON serialization

@@ -85,30 +85,30 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @html = attributes[:html] || attributes['html'] || nil
-          @id = attributes[:id] || attributes['id'] || nil
-          @mentioned_channel = attributes[:mentioned_channel] || attributes['mentioned_channel'] || nil
-          @mentioned_here = attributes[:mentioned_here] || attributes['mentioned_here'] || nil
-          @mml = attributes[:mml] || attributes['mml'] || nil
-          @parent_id = attributes[:parent_id] || attributes['parent_id'] || nil
-          @pin_expires = attributes[:pin_expires] || attributes['pin_expires'] || nil
-          @pinned = attributes[:pinned] || attributes['pinned'] || nil
-          @pinned_at = attributes[:pinned_at] || attributes['pinned_at'] || nil
-          @poll_id = attributes[:poll_id] || attributes['poll_id'] || nil
-          @quoted_message_id = attributes[:quoted_message_id] || attributes['quoted_message_id'] || nil
-          @show_in_channel = attributes[:show_in_channel] || attributes['show_in_channel'] || nil
-          @silent = attributes[:silent] || attributes['silent'] || nil
-          @text = attributes[:text] || attributes['text'] || nil
-          @type = attributes[:type] || attributes['type'] || nil
-          @user_id = attributes[:user_id] || attributes['user_id'] || nil
-          @attachments = attributes[:attachments] || attributes['attachments'] || nil
-          @mentioned_group_ids = attributes[:mentioned_group_ids] || attributes['mentioned_group_ids'] || nil
-          @mentioned_roles = attributes[:mentioned_roles] || attributes['mentioned_roles'] || nil
-          @mentioned_users = attributes[:mentioned_users] || attributes['mentioned_users'] || nil
-          @restricted_visibility = attributes[:restricted_visibility] || attributes['restricted_visibility'] || nil
-          @custom = attributes[:custom] || attributes['custom'] || nil
-          @shared_location = attributes[:shared_location] || attributes['shared_location'] || nil
-          @user = attributes[:user] || attributes['user'] || nil
+          @html = attributes.fetch(:html) { attributes.fetch('html', nil) }
+          @id = attributes.fetch(:id) { attributes.fetch('id', nil) }
+          @mentioned_channel = attributes.fetch(:mentioned_channel) { attributes.fetch('mentioned_channel', nil) }
+          @mentioned_here = attributes.fetch(:mentioned_here) { attributes.fetch('mentioned_here', nil) }
+          @mml = attributes.fetch(:mml) { attributes.fetch('mml', nil) }
+          @parent_id = attributes.fetch(:parent_id) { attributes.fetch('parent_id', nil) }
+          @pin_expires = attributes.fetch(:pin_expires) { attributes.fetch('pin_expires', nil) }
+          @pinned = attributes.fetch(:pinned) { attributes.fetch('pinned', nil) }
+          @pinned_at = attributes.fetch(:pinned_at) { attributes.fetch('pinned_at', nil) }
+          @poll_id = attributes.fetch(:poll_id) { attributes.fetch('poll_id', nil) }
+          @quoted_message_id = attributes.fetch(:quoted_message_id) { attributes.fetch('quoted_message_id', nil) }
+          @show_in_channel = attributes.fetch(:show_in_channel) { attributes.fetch('show_in_channel', nil) }
+          @silent = attributes.fetch(:silent) { attributes.fetch('silent', nil) }
+          @text = attributes.fetch(:text) { attributes.fetch('text', nil) }
+          @type = attributes.fetch(:type) { attributes.fetch('type', nil) }
+          @user_id = attributes.fetch(:user_id) { attributes.fetch('user_id', nil) }
+          @attachments = attributes.fetch(:attachments) { attributes.fetch('attachments', nil) }
+          @mentioned_group_ids = attributes.fetch(:mentioned_group_ids) { attributes.fetch('mentioned_group_ids', nil) }
+          @mentioned_roles = attributes.fetch(:mentioned_roles) { attributes.fetch('mentioned_roles', nil) }
+          @mentioned_users = attributes.fetch(:mentioned_users) { attributes.fetch('mentioned_users', nil) }
+          @restricted_visibility = attributes.fetch(:restricted_visibility) { attributes.fetch('restricted_visibility', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
+          @shared_location = attributes.fetch(:shared_location) { attributes.fetch('shared_location', nil) }
+          @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
         end
 
         # Override field mappings for JSON serialization

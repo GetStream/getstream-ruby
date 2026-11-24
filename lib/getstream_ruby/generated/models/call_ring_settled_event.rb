@@ -49,18 +49,18 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @call_cid = attributes[:call_cid] || attributes['call_cid']
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @initiated_by = attributes[:initiated_by] || attributes['initiated_by']
-          @outcome = attributes[:outcome] || attributes['outcome']
-          @rang_at = attributes[:rang_at] || attributes['rang_at']
-          @ring_id = attributes[:ring_id] || attributes['ring_id']
-          @session_id = attributes[:session_id] || attributes['session_id']
-          @settle_reason = attributes[:settle_reason] || attributes['settle_reason']
-          @settled_at = attributes[:settled_at] || attributes['settled_at']
-          @settled_by = attributes[:settled_by] || attributes['settled_by']
-          @targets = attributes[:targets] || attributes['targets']
-          @type = attributes[:type] || attributes['type'] || "call.ring_settled"
+          @call_cid = attributes.fetch(:call_cid) { attributes.fetch('call_cid', nil) }
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @initiated_by = attributes.fetch(:initiated_by) { attributes.fetch('initiated_by', nil) }
+          @outcome = attributes.fetch(:outcome) { attributes.fetch('outcome', nil) }
+          @rang_at = attributes.fetch(:rang_at) { attributes.fetch('rang_at', nil) }
+          @ring_id = attributes.fetch(:ring_id) { attributes.fetch('ring_id', nil) }
+          @session_id = attributes.fetch(:session_id) { attributes.fetch('session_id', nil) }
+          @settle_reason = attributes.fetch(:settle_reason) { attributes.fetch('settle_reason', nil) }
+          @settled_at = attributes.fetch(:settled_at) { attributes.fetch('settled_at', nil) }
+          @settled_by = attributes.fetch(:settled_by) { attributes.fetch('settled_by', nil) }
+          @targets = attributes.fetch(:targets) { attributes.fetch('targets', nil) }
+          @type = attributes.fetch(:type) { attributes.fetch('type', "call.ring_settled") }
         end
 
         # Override field mappings for JSON serialization

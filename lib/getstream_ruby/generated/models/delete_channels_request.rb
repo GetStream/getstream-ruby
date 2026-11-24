@@ -22,9 +22,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @cids = attributes[:cids] || attributes['cids']
-          @hard_delete = attributes[:hard_delete] || attributes['hard_delete'] || nil
-          @skip_truncate = attributes[:skip_truncate] || attributes['skip_truncate'] || nil
+          @cids = attributes.fetch(:cids) { attributes.fetch('cids', nil) }
+          @hard_delete = attributes.fetch(:hard_delete) { attributes.fetch('hard_delete', nil) }
+          @skip_truncate = attributes.fetch(:skip_truncate) { attributes.fetch('skip_truncate', nil) }
         end
 
         # Override field mappings for JSON serialization

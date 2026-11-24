@@ -45,6 +45,9 @@ module GetStream
         # @!attribute received_at
         #   @return [DateTime]
         attr_accessor :received_at
+        # @!attribute soft_unread
+        #   @return [Boolean] True when the channel was marked unread without a message: an unread dot with no counter
+        attr_accessor :soft_unread
         # @!attribute team
         #   @return [String] The team ID
         attr_accessor :team
@@ -85,30 +88,31 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @custom = attributes[:custom] || attributes['custom']
-          @type = attributes[:type] || attributes['type'] || "notification.mark_unread"
-          @channel_id = attributes[:channel_id] || attributes['channel_id'] || nil
-          @channel_member_count = attributes[:channel_member_count] || attributes['channel_member_count'] || nil
-          @channel_message_count = attributes[:channel_message_count] || attributes['channel_message_count'] || nil
-          @channel_type = attributes[:channel_type] || attributes['channel_type'] || nil
-          @cid = attributes[:cid] || attributes['cid'] || nil
-          @first_unread_message_id = attributes[:first_unread_message_id] || attributes['first_unread_message_id'] || nil
-          @last_read_at = attributes[:last_read_at] || attributes['last_read_at'] || nil
-          @last_read_message_id = attributes[:last_read_message_id] || attributes['last_read_message_id'] || nil
-          @received_at = attributes[:received_at] || attributes['received_at'] || nil
-          @team = attributes[:team] || attributes['team'] || nil
-          @thread_id = attributes[:thread_id] || attributes['thread_id'] || nil
-          @total_unread_count = attributes[:total_unread_count] || attributes['total_unread_count'] || nil
-          @unread_channels = attributes[:unread_channels] || attributes['unread_channels'] || nil
-          @unread_count = attributes[:unread_count] || attributes['unread_count'] || nil
-          @unread_messages = attributes[:unread_messages] || attributes['unread_messages'] || nil
-          @unread_thread_messages = attributes[:unread_thread_messages] || attributes['unread_thread_messages'] || nil
-          @unread_threads = attributes[:unread_threads] || attributes['unread_threads'] || nil
-          @channel = attributes[:channel] || attributes['channel'] || nil
-          @channel_custom = attributes[:channel_custom] || attributes['channel_custom'] || nil
-          @grouped_unread_channels = attributes[:grouped_unread_channels] || attributes['grouped_unread_channels'] || nil
-          @user = attributes[:user] || attributes['user'] || nil
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
+          @type = attributes.fetch(:type) { attributes.fetch('type', "notification.mark_unread") }
+          @channel_id = attributes.fetch(:channel_id) { attributes.fetch('channel_id', nil) }
+          @channel_member_count = attributes.fetch(:channel_member_count) { attributes.fetch('channel_member_count', nil) }
+          @channel_message_count = attributes.fetch(:channel_message_count) { attributes.fetch('channel_message_count', nil) }
+          @channel_type = attributes.fetch(:channel_type) { attributes.fetch('channel_type', nil) }
+          @cid = attributes.fetch(:cid) { attributes.fetch('cid', nil) }
+          @first_unread_message_id = attributes.fetch(:first_unread_message_id) { attributes.fetch('first_unread_message_id', nil) }
+          @last_read_at = attributes.fetch(:last_read_at) { attributes.fetch('last_read_at', nil) }
+          @last_read_message_id = attributes.fetch(:last_read_message_id) { attributes.fetch('last_read_message_id', nil) }
+          @received_at = attributes.fetch(:received_at) { attributes.fetch('received_at', nil) }
+          @soft_unread = attributes.fetch(:soft_unread) { attributes.fetch('soft_unread', nil) }
+          @team = attributes.fetch(:team) { attributes.fetch('team', nil) }
+          @thread_id = attributes.fetch(:thread_id) { attributes.fetch('thread_id', nil) }
+          @total_unread_count = attributes.fetch(:total_unread_count) { attributes.fetch('total_unread_count', nil) }
+          @unread_channels = attributes.fetch(:unread_channels) { attributes.fetch('unread_channels', nil) }
+          @unread_count = attributes.fetch(:unread_count) { attributes.fetch('unread_count', nil) }
+          @unread_messages = attributes.fetch(:unread_messages) { attributes.fetch('unread_messages', nil) }
+          @unread_thread_messages = attributes.fetch(:unread_thread_messages) { attributes.fetch('unread_thread_messages', nil) }
+          @unread_threads = attributes.fetch(:unread_threads) { attributes.fetch('unread_threads', nil) }
+          @channel = attributes.fetch(:channel) { attributes.fetch('channel', nil) }
+          @channel_custom = attributes.fetch(:channel_custom) { attributes.fetch('channel_custom', nil) }
+          @grouped_unread_channels = attributes.fetch(:grouped_unread_channels) { attributes.fetch('grouped_unread_channels', nil) }
+          @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
         end
 
         # Override field mappings for JSON serialization
@@ -126,6 +130,7 @@ module GetStream
             last_read_at: 'last_read_at',
             last_read_message_id: 'last_read_message_id',
             received_at: 'received_at',
+            soft_unread: 'soft_unread',
             team: 'team',
             thread_id: 'thread_id',
             total_unread_count: 'total_unread_count',

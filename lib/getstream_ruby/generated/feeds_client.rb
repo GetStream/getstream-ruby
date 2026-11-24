@@ -103,14 +103,14 @@ module GetStream
       # @param language [String]
       # @param translate_text [Boolean]
       # @return [Models::QueryActivitiesResponse]
-      def query_activities(query_activities_request, language = nil, translate_text = nil)
+      def query_activities(query_activities_request = nil, language = nil, translate_text = nil)
         path = '/api/v2/feeds/activities/query'
         # Build query parameters
         query_params = {}
         query_params['language'] = language unless language.nil?
         query_params['translate_text'] = translate_text unless translate_text.nil?
         # Build request body
-        body = query_activities_request
+        body = query_activities_request || {}
 
         # Make the API request
         @client.make_request(
@@ -166,12 +166,12 @@ module GetStream
       # @param activity_id [String]
       # @param update_bookmark_request [UpdateBookmarkRequest]
       # @return [Models::UpdateBookmarkResponse]
-      def update_bookmark(activity_id, update_bookmark_request)
+      def update_bookmark(activity_id, update_bookmark_request = nil)
         path = '/api/v2/feeds/activities/{activity_id}/bookmarks'
         # Replace path parameters
         path = path.gsub('{activity_id}', activity_id.to_s)
         # Build request body
-        body = update_bookmark_request
+        body = update_bookmark_request || {}
 
         # Make the API request
         @client.make_request(
@@ -186,12 +186,12 @@ module GetStream
       # @param activity_id [String]
       # @param add_bookmark_request [AddBookmarkRequest]
       # @return [Models::AddBookmarkResponse]
-      def add_bookmark(activity_id, add_bookmark_request)
+      def add_bookmark(activity_id, add_bookmark_request = nil)
         path = '/api/v2/feeds/activities/{activity_id}/bookmarks'
         # Replace path parameters
         path = path.gsub('{activity_id}', activity_id.to_s)
         # Build request body
-        body = add_bookmark_request
+        body = add_bookmark_request || {}
 
         # Make the API request
         @client.make_request(
@@ -206,12 +206,12 @@ module GetStream
       # @param activity_id [String]
       # @param activity_feedback_request [ActivityFeedbackRequest]
       # @return [Models::ActivityFeedbackResponse]
-      def activity_feedback(activity_id, activity_feedback_request)
+      def activity_feedback(activity_id, activity_feedback_request = nil)
         path = '/api/v2/feeds/activities/{activity_id}/feedback'
         # Replace path parameters
         path = path.gsub('{activity_id}', activity_id.to_s)
         # Build request body
-        body = activity_feedback_request
+        body = activity_feedback_request || {}
 
         # Make the API request
         @client.make_request(
@@ -227,13 +227,13 @@ module GetStream
       # @param poll_id [String]
       # @param cast_poll_vote_request [CastPollVoteRequest]
       # @return [Models::PollVoteResponse]
-      def cast_poll_vote(activity_id, poll_id, cast_poll_vote_request)
+      def cast_poll_vote(activity_id, poll_id, cast_poll_vote_request = nil)
         path = '/api/v2/feeds/activities/{activity_id}/polls/{poll_id}/vote'
         # Replace path parameters
         path = path.gsub('{activity_id}', activity_id.to_s)
         path = path.gsub('{poll_id}', poll_id.to_s)
         # Build request body
-        body = cast_poll_vote_request
+        body = cast_poll_vote_request || {}
 
         # Make the API request
         @client.make_request(
@@ -293,12 +293,12 @@ module GetStream
       # @param activity_id [String]
       # @param query_activity_reactions_request [QueryActivityReactionsRequest]
       # @return [Models::QueryActivityReactionsResponse]
-      def query_activity_reactions(activity_id, query_activity_reactions_request)
+      def query_activity_reactions(activity_id, query_activity_reactions_request = nil)
         path = '/api/v2/feeds/activities/{activity_id}/reactions/query'
         # Replace path parameters
         path = path.gsub('{activity_id}', activity_id.to_s)
         # Build request body
-        body = query_activity_reactions_request
+        body = query_activity_reactions_request || {}
 
         # Make the API request
         @client.make_request(
@@ -393,8 +393,9 @@ module GetStream
       # @param include_top_level_comment_count [Boolean]
       # @param include_soft_deleted_activities [Boolean]
       # @param include_moderated_activities [Boolean]
+      # @param skip_viewer_visibility [Boolean]
       # @return [Models::GetActivityResponse]
-      def get_activity(_id, comment_sort = nil, comment_limit = nil, skip_own_followings = nil, user_id = nil, language = nil, translate_text = nil, include_top_level_comment_count = nil, include_soft_deleted_activities = nil, include_moderated_activities = nil)
+      def get_activity(_id, comment_sort = nil, comment_limit = nil, skip_own_followings = nil, user_id = nil, language = nil, translate_text = nil, include_top_level_comment_count = nil, include_soft_deleted_activities = nil, include_moderated_activities = nil, skip_viewer_visibility = nil)
         path = '/api/v2/feeds/activities/{id}'
         # Replace path parameters
         path = path.gsub('{id}', _id.to_s)
@@ -409,6 +410,7 @@ module GetStream
         query_params['include_top_level_comment_count'] = include_top_level_comment_count unless include_top_level_comment_count.nil?
         query_params['include_soft_deleted_activities'] = include_soft_deleted_activities unless include_soft_deleted_activities.nil?
         query_params['include_moderated_activities'] = include_moderated_activities unless include_moderated_activities.nil?
+        query_params['skip_viewer_visibility'] = skip_viewer_visibility unless skip_viewer_visibility.nil?
 
         # Make the API request
         @client.make_request(
@@ -423,12 +425,12 @@ module GetStream
       # @param _id [String]
       # @param update_activity_partial_request [UpdateActivityPartialRequest]
       # @return [Models::UpdateActivityPartialResponse]
-      def update_activity_partial(_id, update_activity_partial_request)
+      def update_activity_partial(_id, update_activity_partial_request = nil)
         path = '/api/v2/feeds/activities/{id}'
         # Replace path parameters
         path = path.gsub('{id}', _id.to_s)
         # Build request body
-        body = update_activity_partial_request
+        body = update_activity_partial_request || {}
 
         # Make the API request
         @client.make_request(
@@ -443,12 +445,12 @@ module GetStream
       # @param _id [String]
       # @param update_activity_request [UpdateActivityRequest]
       # @return [Models::UpdateActivityResponse]
-      def update_activity(_id, update_activity_request)
+      def update_activity(_id, update_activity_request = nil)
         path = '/api/v2/feeds/activities/{id}'
         # Replace path parameters
         path = path.gsub('{id}', _id.to_s)
         # Build request body
-        body = update_activity_request
+        body = update_activity_request || {}
 
         # Make the API request
         @client.make_request(
@@ -464,7 +466,7 @@ module GetStream
       # @param restore_activity_request [RestoreActivityRequest]
       # @param enrich_own_fields [Boolean]
       # @return [Models::RestoreActivityResponse]
-      def restore_activity(_id, restore_activity_request, enrich_own_fields = nil)
+      def restore_activity(_id, restore_activity_request = nil, enrich_own_fields = nil)
         path = '/api/v2/feeds/activities/{id}/restore'
         # Replace path parameters
         path = path.gsub('{id}', _id.to_s)
@@ -472,7 +474,7 @@ module GetStream
         query_params = {}
         query_params['enrich_own_fields'] = enrich_own_fields unless enrich_own_fields.nil?
         # Build request body
-        body = restore_activity_request
+        body = restore_activity_request || {}
 
         # Make the API request
         @client.make_request(
@@ -507,10 +509,10 @@ module GetStream
       #
       # @param query_bookmark_folders_request [QueryBookmarkFoldersRequest]
       # @return [Models::QueryBookmarkFoldersResponse]
-      def query_bookmark_folders(query_bookmark_folders_request)
+      def query_bookmark_folders(query_bookmark_folders_request = nil)
         path = '/api/v2/feeds/bookmark_folders/query'
         # Build request body
-        body = query_bookmark_folders_request
+        body = query_bookmark_folders_request || {}
 
         # Make the API request
         @client.make_request(
@@ -541,12 +543,12 @@ module GetStream
       # @param folder_id [String]
       # @param update_bookmark_folder_request [UpdateBookmarkFolderRequest]
       # @return [Models::UpdateBookmarkFolderResponse]
-      def update_bookmark_folder(folder_id, update_bookmark_folder_request)
+      def update_bookmark_folder(folder_id, update_bookmark_folder_request = nil)
         path = '/api/v2/feeds/bookmark_folders/{folder_id}'
         # Replace path parameters
         path = path.gsub('{folder_id}', folder_id.to_s)
         # Build request body
-        body = update_bookmark_folder_request
+        body = update_bookmark_folder_request || {}
 
         # Make the API request
         @client.make_request(
@@ -562,14 +564,14 @@ module GetStream
       # @param language [String]
       # @param translate_text [Boolean]
       # @return [Models::QueryBookmarksResponse]
-      def query_bookmarks(query_bookmarks_request, language = nil, translate_text = nil)
+      def query_bookmarks(query_bookmarks_request = nil, language = nil, translate_text = nil)
         path = '/api/v2/feeds/bookmarks/query'
         # Build query parameters
         query_params = {}
         query_params['language'] = language unless language.nil?
         query_params['translate_text'] = translate_text unless translate_text.nil?
         # Build request body
-        body = query_bookmarks_request
+        body = query_bookmarks_request || {}
 
         # Make the API request
         @client.make_request(
@@ -675,10 +677,10 @@ module GetStream
       #
       # @param query_collections_request [QueryCollectionsRequest]
       # @return [Models::QueryCollectionsResponse]
-      def query_collections(query_collections_request)
+      def query_collections(query_collections_request = nil)
         path = '/api/v2/feeds/collections/query'
         # Build request body
-        body = query_collections_request
+        body = query_collections_request || {}
 
         # Make the API request
         @client.make_request(
@@ -734,10 +736,10 @@ module GetStream
       #
       # @param add_comment_request [AddCommentRequest]
       # @return [Models::AddCommentResponse]
-      def add_comment(add_comment_request)
+      def add_comment(add_comment_request = nil)
         path = '/api/v2/feeds/comments'
         # Build request body
-        body = add_comment_request
+        body = add_comment_request || {}
 
         # Make the API request
         @client.make_request(
@@ -833,12 +835,12 @@ module GetStream
       # @param comment_id [String]
       # @param update_comment_bookmark_request [UpdateCommentBookmarkRequest]
       # @return [Models::UpdateCommentBookmarkResponse]
-      def update_comment_bookmark(comment_id, update_comment_bookmark_request)
+      def update_comment_bookmark(comment_id, update_comment_bookmark_request = nil)
         path = '/api/v2/feeds/comments/{comment_id}/bookmarks'
         # Replace path parameters
         path = path.gsub('{comment_id}', comment_id.to_s)
         # Build request body
-        body = update_comment_bookmark_request
+        body = update_comment_bookmark_request || {}
 
         # Make the API request
         @client.make_request(
@@ -853,12 +855,12 @@ module GetStream
       # @param comment_id [String]
       # @param add_comment_bookmark_request [AddCommentBookmarkRequest]
       # @return [Models::AddCommentBookmarkResponse]
-      def add_comment_bookmark(comment_id, add_comment_bookmark_request)
+      def add_comment_bookmark(comment_id, add_comment_bookmark_request = nil)
         path = '/api/v2/feeds/comments/{comment_id}/bookmarks'
         # Replace path parameters
         path = path.gsub('{comment_id}', comment_id.to_s)
         # Build request body
-        body = add_comment_bookmark_request
+        body = add_comment_bookmark_request || {}
 
         # Make the API request
         @client.make_request(
@@ -921,12 +923,12 @@ module GetStream
       # @param _id [String]
       # @param update_comment_request [UpdateCommentRequest]
       # @return [Models::UpdateCommentResponse]
-      def update_comment(_id, update_comment_request)
+      def update_comment(_id, update_comment_request = nil)
         path = '/api/v2/feeds/comments/{id}'
         # Replace path parameters
         path = path.gsub('{id}', _id.to_s)
         # Build request body
-        body = update_comment_request
+        body = update_comment_request || {}
 
         # Make the API request
         @client.make_request(
@@ -941,12 +943,12 @@ module GetStream
       # @param _id [String]
       # @param comment_feedback_request [CommentFeedbackRequest]
       # @return [Models::CommentFeedbackResponse]
-      def comment_feedback(_id, comment_feedback_request)
+      def comment_feedback(_id, comment_feedback_request = nil)
         path = '/api/v2/feeds/comments/{id}/feedback'
         # Replace path parameters
         path = path.gsub('{id}', _id.to_s)
         # Build request body
-        body = comment_feedback_request
+        body = comment_feedback_request || {}
 
         # Make the API request
         @client.make_request(
@@ -961,12 +963,12 @@ module GetStream
       # @param _id [String]
       # @param update_comment_partial_request [UpdateCommentPartialRequest]
       # @return [Models::UpdateCommentPartialResponse]
-      def update_comment_partial(_id, update_comment_partial_request)
+      def update_comment_partial(_id, update_comment_partial_request = nil)
         path = '/api/v2/feeds/comments/{id}/partial'
         # Replace path parameters
         path = path.gsub('{id}', _id.to_s)
         # Build request body
-        body = update_comment_partial_request
+        body = update_comment_partial_request || {}
 
         # Make the API request
         @client.make_request(
@@ -1001,12 +1003,12 @@ module GetStream
       # @param _id [String]
       # @param query_comment_reactions_request [QueryCommentReactionsRequest]
       # @return [Models::QueryCommentReactionsResponse]
-      def query_comment_reactions(_id, query_comment_reactions_request)
+      def query_comment_reactions(_id, query_comment_reactions_request = nil)
         path = '/api/v2/feeds/comments/{id}/reactions/query'
         # Replace path parameters
         path = path.gsub('{id}', _id.to_s)
         # Build request body
-        body = query_comment_reactions_request
+        body = query_comment_reactions_request || {}
 
         # Make the API request
         @client.make_request(
@@ -1085,12 +1087,12 @@ module GetStream
       # @param _id [String]
       # @param restore_comment_request [RestoreCommentRequest]
       # @return [Models::RestoreCommentResponse]
-      def restore_comment(_id, restore_comment_request)
+      def restore_comment(_id, restore_comment_request = nil)
         path = '/api/v2/feeds/comments/{id}/restore'
         # Replace path parameters
         path = path.gsub('{id}', _id.to_s)
         # Build request body
-        body = restore_comment_request
+        body = restore_comment_request || {}
 
         # Make the API request
         @client.make_request(
@@ -1122,14 +1124,18 @@ module GetStream
 
       # Starts an async task that exports all feeds data of the app in export format v1. Poll the task for the result
       #
+      # @param export_feeds_app_request [ExportFeedsAppRequest]
       # @return [Models::ExportFeedsResponse]
-      def export_feeds_app()
+      def export_feeds_app(export_feeds_app_request = nil)
         path = '/api/v2/feeds/export/app'
+        # Build request body
+        body = export_feeds_app_request || {}
 
         # Make the API request
         @client.make_request(
           :post,
-          path
+          path,
+          body: body
         )
       end
 
@@ -1154,12 +1160,12 @@ module GetStream
       # @param _type [String]
       # @param export_feeds_by_type_request [ExportFeedsByTypeRequest]
       # @return [Models::ExportFeedsResponse]
-      def export_feeds_by_type(_type, export_feeds_by_type_request)
+      def export_feeds_by_type(_type, export_feeds_by_type_request = nil)
         path = '/api/v2/feeds/export/{type}'
         # Replace path parameters
         path = path.gsub('{type}', _type.to_s)
         # Build request body
-        body = export_feeds_by_type_request
+        body = export_feeds_by_type_request || {}
 
         # Make the API request
         @client.make_request(
@@ -1237,7 +1243,7 @@ module GetStream
       # @param language [String]
       # @param translate_text [Boolean]
       # @return [Models::GetOrCreateFeedResponse]
-      def get_or_create_feed(feed_group_id, feed_id, get_or_create_feed_request, language = nil, translate_text = nil)
+      def get_or_create_feed(feed_group_id, feed_id, get_or_create_feed_request = nil, language = nil, translate_text = nil)
         path = '/api/v2/feeds/feed_groups/{feed_group_id}/feeds/{feed_id}'
         # Replace path parameters
         path = path.gsub('{feed_group_id}', feed_group_id.to_s)
@@ -1247,7 +1253,7 @@ module GetStream
         query_params['language'] = language unless language.nil?
         query_params['translate_text'] = translate_text unless translate_text.nil?
         # Build request body
-        body = get_or_create_feed_request
+        body = get_or_create_feed_request || {}
 
         # Make the API request
         @client.make_request(
@@ -1264,13 +1270,13 @@ module GetStream
       # @param feed_id [String]
       # @param update_feed_request [UpdateFeedRequest]
       # @return [Models::UpdateFeedResponse]
-      def update_feed(feed_group_id, feed_id, update_feed_request)
+      def update_feed(feed_group_id, feed_id, update_feed_request = nil)
         path = '/api/v2/feeds/feed_groups/{feed_group_id}/feeds/{feed_id}'
         # Replace path parameters
         path = path.gsub('{feed_group_id}', feed_group_id.to_s)
         path = path.gsub('{feed_id}', feed_id.to_s)
         # Build request body
-        body = update_feed_request
+        body = update_feed_request || {}
 
         # Make the API request
         @client.make_request(
@@ -1286,13 +1292,13 @@ module GetStream
       # @param feed_id [String]
       # @param mark_activity_request [MarkActivityRequest]
       # @return [Models::Response]
-      def mark_activity(feed_group_id, feed_id, mark_activity_request)
+      def mark_activity(feed_group_id, feed_id, mark_activity_request = nil)
         path = '/api/v2/feeds/feed_groups/{feed_group_id}/feeds/{feed_id}/activities/mark/batch'
         # Replace path parameters
         path = path.gsub('{feed_group_id}', feed_group_id.to_s)
         path = path.gsub('{feed_id}', feed_id.to_s)
         # Build request body
-        body = mark_activity_request
+        body = mark_activity_request || {}
 
         # Make the API request
         @client.make_request(
@@ -1336,14 +1342,14 @@ module GetStream
       # @param activity_id [String]
       # @param pin_activity_request [PinActivityRequest]
       # @return [Models::PinActivityResponse]
-      def pin_activity(feed_group_id, feed_id, activity_id, pin_activity_request)
+      def pin_activity(feed_group_id, feed_id, activity_id, pin_activity_request = nil)
         path = '/api/v2/feeds/feed_groups/{feed_group_id}/feeds/{feed_id}/activities/{activity_id}/pin'
         # Replace path parameters
         path = path.gsub('{feed_group_id}', feed_group_id.to_s)
         path = path.gsub('{feed_id}', feed_id.to_s)
         path = path.gsub('{activity_id}', activity_id.to_s)
         # Build request body
-        body = pin_activity_request
+        body = pin_activity_request || {}
 
         # Make the API request
         @client.make_request(
@@ -1421,13 +1427,13 @@ module GetStream
       # @param feed_group_id [String]
       # @param accept_feed_member_invite_request [AcceptFeedMemberInviteRequest]
       # @return [Models::AcceptFeedMemberInviteResponse]
-      def accept_feed_member_invite(feed_id, feed_group_id, accept_feed_member_invite_request)
+      def accept_feed_member_invite(feed_id, feed_group_id, accept_feed_member_invite_request = nil)
         path = '/api/v2/feeds/feed_groups/{feed_group_id}/feeds/{feed_id}/members/accept'
         # Replace path parameters
         path = path.gsub('{feed_id}', feed_id.to_s)
         path = path.gsub('{feed_group_id}', feed_group_id.to_s)
         # Build request body
-        body = accept_feed_member_invite_request
+        body = accept_feed_member_invite_request || {}
 
         # Make the API request
         @client.make_request(
@@ -1443,13 +1449,13 @@ module GetStream
       # @param feed_id [String]
       # @param query_feed_members_request [QueryFeedMembersRequest]
       # @return [Models::QueryFeedMembersResponse]
-      def query_feed_members(feed_group_id, feed_id, query_feed_members_request)
+      def query_feed_members(feed_group_id, feed_id, query_feed_members_request = nil)
         path = '/api/v2/feeds/feed_groups/{feed_group_id}/feeds/{feed_id}/members/query'
         # Replace path parameters
         path = path.gsub('{feed_group_id}', feed_group_id.to_s)
         path = path.gsub('{feed_id}', feed_id.to_s)
         # Build request body
-        body = query_feed_members_request
+        body = query_feed_members_request || {}
 
         # Make the API request
         @client.make_request(
@@ -1465,19 +1471,44 @@ module GetStream
       # @param feed_id [String]
       # @param reject_feed_member_invite_request [RejectFeedMemberInviteRequest]
       # @return [Models::RejectFeedMemberInviteResponse]
-      def reject_feed_member_invite(feed_group_id, feed_id, reject_feed_member_invite_request)
+      def reject_feed_member_invite(feed_group_id, feed_id, reject_feed_member_invite_request = nil)
         path = '/api/v2/feeds/feed_groups/{feed_group_id}/feeds/{feed_id}/members/reject'
         # Replace path parameters
         path = path.gsub('{feed_group_id}', feed_group_id.to_s)
         path = path.gsub('{feed_id}', feed_id.to_s)
         # Build request body
-        body = reject_feed_member_invite_request
+        body = reject_feed_member_invite_request || {}
 
         # Make the API request
         @client.make_request(
           :post,
           path,
           body: body
+        )
+      end
+
+      # Returns the unread and unseen counts of a notification feed, along with the last seen and last read timestamps, without building a page.
+      #
+      # @param feed_group_id [String]
+      # @param feed_id [String]
+      # @param view [String]
+      # @param user_id [String]
+      # @return [Models::GetNotificationStatusResponse]
+      def get_notification_status(feed_group_id, feed_id, view = nil, user_id = nil)
+        path = '/api/v2/feeds/feed_groups/{feed_group_id}/feeds/{feed_id}/notification_status'
+        # Replace path parameters
+        path = path.gsub('{feed_group_id}', feed_group_id.to_s)
+        path = path.gsub('{feed_id}', feed_id.to_s)
+        # Build query parameters
+        query_params = {}
+        query_params['view'] = view unless view.nil?
+        query_params['user_id'] = user_id unless user_id.nil?
+
+        # Make the API request
+        @client.make_request(
+          :get,
+          path,
+          query_params: query_params
         )
       end
 
@@ -1489,7 +1520,7 @@ module GetStream
       # @param language [String]
       # @param translate_text [Boolean]
       # @return [Models::QueryPinnedActivitiesResponse]
-      def query_pinned_activities(feed_group_id, feed_id, query_pinned_activities_request, language = nil, translate_text = nil)
+      def query_pinned_activities(feed_group_id, feed_id, query_pinned_activities_request = nil, language = nil, translate_text = nil)
         path = '/api/v2/feeds/feed_groups/{feed_group_id}/feeds/{feed_id}/pinned_activities/query'
         # Replace path parameters
         path = path.gsub('{feed_group_id}', feed_group_id.to_s)
@@ -1499,7 +1530,7 @@ module GetStream
         query_params['language'] = language unless language.nil?
         query_params['translate_text'] = translate_text unless translate_text.nil?
         # Build request body
-        body = query_pinned_activities_request
+        body = query_pinned_activities_request || {}
 
         # Make the API request
         @client.make_request(
@@ -1596,12 +1627,12 @@ module GetStream
       # @param _id [String]
       # @param get_or_create_feed_group_request [GetOrCreateFeedGroupRequest]
       # @return [Models::GetOrCreateFeedGroupResponse]
-      def get_or_create_feed_group(_id, get_or_create_feed_group_request)
+      def get_or_create_feed_group(_id, get_or_create_feed_group_request = nil)
         path = '/api/v2/feeds/feed_groups/{id}'
         # Replace path parameters
         path = path.gsub('{id}', _id.to_s)
         # Build request body
-        body = get_or_create_feed_group_request
+        body = get_or_create_feed_group_request || {}
 
         # Make the API request
         @client.make_request(
@@ -1616,12 +1647,12 @@ module GetStream
       # @param _id [String]
       # @param update_feed_group_request [UpdateFeedGroupRequest]
       # @return [Models::UpdateFeedGroupResponse]
-      def update_feed_group(_id, update_feed_group_request)
+      def update_feed_group(_id, update_feed_group_request = nil)
         path = '/api/v2/feeds/feed_groups/{id}'
         # Replace path parameters
         path = path.gsub('{id}', _id.to_s)
         # Build request body
-        body = update_feed_group_request
+        body = update_feed_group_request || {}
 
         # Make the API request
         @client.make_request(
@@ -1698,12 +1729,12 @@ module GetStream
       # @param _id [String]
       # @param get_or_create_feed_view_request [GetOrCreateFeedViewRequest]
       # @return [Models::GetOrCreateFeedViewResponse]
-      def get_or_create_feed_view(_id, get_or_create_feed_view_request)
+      def get_or_create_feed_view(_id, get_or_create_feed_view_request = nil)
         path = '/api/v2/feeds/feed_views/{id}'
         # Replace path parameters
         path = path.gsub('{id}', _id.to_s)
         # Build request body
-        body = get_or_create_feed_view_request
+        body = get_or_create_feed_view_request || {}
 
         # Make the API request
         @client.make_request(
@@ -1718,12 +1749,12 @@ module GetStream
       # @param _id [String]
       # @param update_feed_view_request [UpdateFeedViewRequest]
       # @return [Models::UpdateFeedViewResponse]
-      def update_feed_view(_id, update_feed_view_request)
+      def update_feed_view(_id, update_feed_view_request = nil)
         path = '/api/v2/feeds/feed_views/{id}'
         # Replace path parameters
         path = path.gsub('{id}', _id.to_s)
         # Build request body
-        body = update_feed_view_request
+        body = update_feed_view_request || {}
 
         # Make the API request
         @client.make_request(
@@ -1767,12 +1798,12 @@ module GetStream
       # @param name [FeedVisibility]
       # @param update_feed_visibility_request [UpdateFeedVisibilityRequest]
       # @return [Models::UpdateFeedVisibilityResponse]
-      def update_feed_visibility(name, update_feed_visibility_request)
+      def update_feed_visibility(name, update_feed_visibility_request = nil)
         path = '/api/v2/feeds/feed_visibilities/{name}'
         # Replace path parameters
         path = path.gsub('{name}', name.to_s)
         # Build request body
-        body = update_feed_visibility_request
+        body = update_feed_visibility_request || {}
 
         # Make the API request
         @client.make_request(
@@ -1837,10 +1868,10 @@ module GetStream
       #
       # @param query_feeds_request [QueryFeedsRequest]
       # @return [Models::QueryFeedsResponse]
-      def query_feeds(query_feeds_request)
+      def query_feeds(query_feeds_request = nil)
         path = '/api/v2/feeds/feeds/query'
         # Build request body
-        body = query_feeds_request
+        body = query_feeds_request || {}
 
         # Make the API request
         @client.make_request(
@@ -1972,10 +2003,10 @@ module GetStream
       #
       # @param query_follows_request [QueryFollowsRequest]
       # @return [Models::QueryFollowsResponse]
-      def query_follows(query_follows_request)
+      def query_follows(query_follows_request = nil)
         path = '/api/v2/feeds/follows/query'
         # Build request body
-        body = query_follows_request
+        body = query_follows_request || {}
 
         # Make the API request
         @client.make_request(
@@ -2067,10 +2098,10 @@ module GetStream
       #
       # @param query_membership_levels_request [QueryMembershipLevelsRequest]
       # @return [Models::QueryMembershipLevelsResponse]
-      def query_membership_levels(query_membership_levels_request)
+      def query_membership_levels(query_membership_levels_request = nil)
         path = '/api/v2/feeds/membership_levels/query'
         # Build request body
-        body = query_membership_levels_request
+        body = query_membership_levels_request || {}
 
         # Make the API request
         @client.make_request(
@@ -2101,16 +2132,79 @@ module GetStream
       # @param _id [String]
       # @param update_membership_level_request [UpdateMembershipLevelRequest]
       # @return [Models::UpdateMembershipLevelResponse]
-      def update_membership_level(_id, update_membership_level_request)
+      def update_membership_level(_id, update_membership_level_request = nil)
         path = '/api/v2/feeds/membership_levels/{id}'
         # Replace path parameters
         path = path.gsub('{id}', _id.to_s)
         # Build request body
-        body = update_membership_level_request
+        body = update_membership_level_request || {}
 
         # Make the API request
         @client.make_request(
           :patch,
+          path,
+          body: body
+        )
+      end
+
+      # Lists the app's active promotions, also while for_you.trending is off. Not paginated: an app holds at most 20. Server-side only.
+      #
+      # @return [Models::ListPromotedTopicsResponse]
+      def list_promoted_topics()
+        path = '/api/v2/feeds/promoted_topics'
+
+        # Make the API request
+        @client.make_request(
+          :get,
+          path
+        )
+      end
+
+      # Promotes topic tags for the trend signal of feed groups with for_you.trending until the TTL passes. Clients watching a For You feed receive a feeds.promoted_topics.updated event. An app holds at most 20 active promotions. Server-side only.
+      #
+      # @param promote_topics_request [PromoteTopicsRequest]
+      # @return [Models::PromoteTopicsResponse]
+      def promote_topics(promote_topics_request)
+        path = '/api/v2/feeds/promoted_topics'
+        # Build request body
+        body = promote_topics_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
+      # Ends a promotion before it expires, also while for_you.trending is off. Clients watching a For You feed receive a feeds.promoted_topics.updated event. Returns 404 when the promotion is not active. Server-side only.
+      #
+      # @param _id [String]
+      # @return [Models::UnpromoteTopicsResponse]
+      def unpromote_topics(_id)
+        path = '/api/v2/feeds/promoted_topics/{id}'
+        # Replace path parameters
+        path = path.gsub('{id}', _id.to_s)
+
+        # Make the API request
+        @client.make_request(
+          :delete,
+          path
+        )
+      end
+
+      # Lists a single user's activity or comment reactions, newest first by default, without activity or comment payloads
+      #
+      # @param query_feeds_reactions_request [QueryFeedsReactionsRequest]
+      # @return [Models::QueryFeedsReactionsResponse]
+      def query_feeds_reactions(query_feeds_reactions_request)
+        path = '/api/v2/feeds/reactions/query'
+        # Build request body
+        body = query_feeds_reactions_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
           path,
           body: body
         )
@@ -2167,10 +2261,10 @@ module GetStream
       #
       # @param get_feeds_retention_policy_runs_request [GetFeedsRetentionPolicyRunsRequest]
       # @return [Models::GetFeedsRetentionPolicyRunsResponse]
-      def feeds_get_retention_policy_runs(get_feeds_retention_policy_runs_request)
+      def feeds_get_retention_policy_runs(get_feeds_retention_policy_runs_request = nil)
         path = '/api/v2/feeds/retention_policy/runs'
         # Build request body
-        body = get_feeds_retention_policy_runs_request
+        body = get_feeds_retention_policy_runs_request || {}
 
         # Make the API request
         @client.make_request(
@@ -2197,14 +2291,116 @@ module GetStream
         )
       end
 
+      # Schedule an activity to be published at a future time
+      #
+      # @param schedule_activity_request [ScheduleActivityRequest]
+      # @return [Models::ScheduleActivityResponse]
+      def schedule_activity(schedule_activity_request)
+        path = '/api/v2/feeds/scheduled_activities'
+        # Build request body
+        body = schedule_activity_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
+      # Query scheduled activities ordered by scheduled time
+      #
+      # @param query_scheduled_activities_request [QueryScheduledActivitiesRequest]
+      # @return [Models::QueryScheduledActivitiesResponse]
+      def query_scheduled_activities(query_scheduled_activities_request = nil)
+        path = '/api/v2/feeds/scheduled_activities/query'
+        # Build request body
+        body = query_scheduled_activities_request || {}
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
+        )
+      end
+
+      # Cancel a scheduled activity so it is never published
+      #
+      # @param _id [String]
+      # @return [Models::DeleteScheduledActivityResponse]
+      def delete_scheduled_activity(_id)
+        path = '/api/v2/feeds/scheduled_activities/{id}'
+        # Replace path parameters
+        path = path.gsub('{id}', _id.to_s)
+
+        # Make the API request
+        @client.make_request(
+          :delete,
+          path
+        )
+      end
+
+      # Get a scheduled activity by its ID
+      #
+      # @param _id [String]
+      # @return [Models::GetScheduledActivityResponse]
+      def get_scheduled_activity(_id)
+        path = '/api/v2/feeds/scheduled_activities/{id}'
+        # Replace path parameters
+        path = path.gsub('{id}', _id.to_s)
+
+        # Make the API request
+        @client.make_request(
+          :get,
+          path
+        )
+      end
+
+      # Change the activity or the publish time of a scheduled activity
+      #
+      # @param _id [String]
+      # @param update_scheduled_activity_request [UpdateScheduledActivityRequest]
+      # @return [Models::UpdateScheduledActivityResponse]
+      def update_scheduled_activity(_id, update_scheduled_activity_request = nil)
+        path = '/api/v2/feeds/scheduled_activities/{id}'
+        # Replace path parameters
+        path = path.gsub('{id}', _id.to_s)
+        # Build request body
+        body = update_scheduled_activity_request || {}
+
+        # Make the API request
+        @client.make_request(
+          :patch,
+          path,
+          body: body
+        )
+      end
+
+      # Move the publish time of a scheduled activity to now
+      #
+      # @param _id [String]
+      # @return [Models::PublishScheduledActivityNowResponse]
+      def publish_scheduled_activity_now(_id)
+        path = '/api/v2/feeds/scheduled_activities/{id}/publish_now'
+        # Replace path parameters
+        path = path.gsub('{id}', _id.to_s)
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path
+        )
+      end
+
       # Retrieve usage statistics for feeds including activity count, follow count, and API request count.Returns data aggregated by day with pagination support via from/to date parameters.This endpoint is server-side only.
       #
       # @param query_feeds_usage_stats_request [QueryFeedsUsageStatsRequest]
       # @return [Models::QueryFeedsUsageStatsResponse]
-      def query_feeds_usage_stats(query_feeds_usage_stats_request)
+      def query_feeds_usage_stats(query_feeds_usage_stats_request = nil)
         path = '/api/v2/feeds/stats/usage'
         # Build request body
-        body = query_feeds_usage_stats_request
+        body = query_feeds_usage_stats_request || {}
 
         # Make the API request
         @client.make_request(
@@ -2271,12 +2467,12 @@ module GetStream
       # @param user_id [String]
       # @param delete_feed_user_data_request [DeleteFeedUserDataRequest]
       # @return [Models::DeleteFeedUserDataResponse]
-      def delete_feed_user_data(user_id, delete_feed_user_data_request)
+      def delete_feed_user_data(user_id, delete_feed_user_data_request = nil)
         path = '/api/v2/feeds/users/{user_id}/delete'
         # Replace path parameters
         path = path.gsub('{user_id}', user_id.to_s)
         # Build request body
-        body = delete_feed_user_data_request
+        body = delete_feed_user_data_request || {}
 
         # Make the API request
         @client.make_request(
@@ -2361,6 +2557,27 @@ module GetStream
           :put,
           path,
           body: body
+        )
+      end
+
+      # Returns the topics trending in the app, ranked for the user: the trend of a tag scaled by the user's interest weight in it. Tags the user has a negative weight for are left out. Empty for apps without for_you.trending. Client-side callers may only read their own.
+      #
+      # @param user_id [String]
+      # @param limit [Integer]
+      # @return [Models::GetTrendingTopicsResponse]
+      def get_trending_topics(user_id, limit = nil)
+        path = '/api/v2/feeds/users/{user_id}/trending_topics'
+        # Replace path parameters
+        path = path.gsub('{user_id}', user_id.to_s)
+        # Build query parameters
+        query_params = {}
+        query_params['limit'] = limit unless limit.nil?
+
+        # Make the API request
+        @client.make_request(
+          :get,
+          path,
+          query_params: query_params
         )
       end
 

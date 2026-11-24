@@ -103,36 +103,36 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @call_session_id = attributes[:call_session_id] || attributes['call_session_id'] || nil
-          @camera_permission_status = attributes[:camera_permission_status] || attributes['camera_permission_status'] || nil
-          @coordinator_connect_id = attributes[:coordinator_connect_id] || attributes['coordinator_connect_id'] || nil
-          @elapsed_time = attributes[:elapsed_time] || attributes['elapsed_time'] || nil
-          @event_type = attributes[:event_type] || attributes['event_type'] || nil
-          @ice_state = attributes[:ice_state] || attributes['ice_state'] || nil
-          @id = attributes[:id] || attributes['id'] || nil
-          @join_attempt_id = attributes[:join_attempt_id] || attributes['join_attempt_id'] || nil
-          @join_reason = attributes[:join_reason] || attributes['join_reason'] || nil
-          @leave_initiator = attributes[:leave_initiator] || attributes['leave_initiator'] || nil
-          @leave_reason = attributes[:leave_reason] || attributes['leave_reason'] || nil
-          @microphone_permission_status = attributes[:microphone_permission_status] || attributes['microphone_permission_status'] || nil
-          @outcome = attributes[:outcome] || attributes['outcome'] || nil
-          @peer_connection = attributes[:peer_connection] || attributes['peer_connection'] || nil
-          @previously_connected_timestamp = attributes[:previously_connected_timestamp] || attributes['previously_connected_timestamp'] || nil
-          @retry_count_attempt = attributes[:retry_count_attempt] || attributes['retry_count_attempt'] || nil
-          @retry_failure_code = attributes[:retry_failure_code] || attributes['retry_failure_code'] || nil
-          @retry_failure_reason = attributes[:retry_failure_reason] || attributes['retry_failure_reason'] || nil
-          @screen_share_status = attributes[:screen_share_status] || attributes['screen_share_status'] || nil
-          @sdk_version = attributes[:sdk_version] || attributes['sdk_version'] || nil
-          @sfu_id = attributes[:sfu_id] || attributes['sfu_id'] || nil
-          @source = attributes[:source] || attributes['source'] || nil
-          @stage = attributes[:stage] || attributes['stage'] || nil
-          @stage_id = attributes[:stage_id] || attributes['stage_id'] || nil
-          @timestamp = attributes[:timestamp] || attributes['timestamp'] || nil
-          @track_id = attributes[:track_id] || attributes['track_id'] || nil
-          @type = attributes[:type] || attributes['type'] || nil
-          @user_agent = attributes[:user_agent] || attributes['user_agent'] || nil
-          @user_id = attributes[:user_id] || attributes['user_id'] || nil
-          @was_previously_connected = attributes[:was_previously_connected] || attributes['was_previously_connected'] || nil
+          @call_session_id = attributes.fetch(:call_session_id) { attributes.fetch('call_session_id', nil) }
+          @camera_permission_status = attributes.fetch(:camera_permission_status) { attributes.fetch('camera_permission_status', nil) }
+          @coordinator_connect_id = attributes.fetch(:coordinator_connect_id) { attributes.fetch('coordinator_connect_id', nil) }
+          @elapsed_time = attributes.fetch(:elapsed_time) { attributes.fetch('elapsed_time', nil) }
+          @event_type = attributes.fetch(:event_type) { attributes.fetch('event_type', nil) }
+          @ice_state = attributes.fetch(:ice_state) { attributes.fetch('ice_state', nil) }
+          @id = attributes.fetch(:id) { attributes.fetch('id', nil) }
+          @join_attempt_id = attributes.fetch(:join_attempt_id) { attributes.fetch('join_attempt_id', nil) }
+          @join_reason = attributes.fetch(:join_reason) { attributes.fetch('join_reason', nil) }
+          @leave_initiator = attributes.fetch(:leave_initiator) { attributes.fetch('leave_initiator', nil) }
+          @leave_reason = attributes.fetch(:leave_reason) { attributes.fetch('leave_reason', nil) }
+          @microphone_permission_status = attributes.fetch(:microphone_permission_status) { attributes.fetch('microphone_permission_status', nil) }
+          @outcome = attributes.fetch(:outcome) { attributes.fetch('outcome', nil) }
+          @peer_connection = attributes.fetch(:peer_connection) { attributes.fetch('peer_connection', nil) }
+          @previously_connected_timestamp = attributes.fetch(:previously_connected_timestamp) { attributes.fetch('previously_connected_timestamp', nil) }
+          @retry_count_attempt = attributes.fetch(:retry_count_attempt) { attributes.fetch('retry_count_attempt', nil) }
+          @retry_failure_code = attributes.fetch(:retry_failure_code) { attributes.fetch('retry_failure_code', nil) }
+          @retry_failure_reason = attributes.fetch(:retry_failure_reason) { attributes.fetch('retry_failure_reason', nil) }
+          @screen_share_status = attributes.fetch(:screen_share_status) { attributes.fetch('screen_share_status', nil) }
+          @sdk_version = attributes.fetch(:sdk_version) { attributes.fetch('sdk_version', nil) }
+          @sfu_id = attributes.fetch(:sfu_id) { attributes.fetch('sfu_id', nil) }
+          @source = attributes.fetch(:source) { attributes.fetch('source', nil) }
+          @stage = attributes.fetch(:stage) { attributes.fetch('stage', nil) }
+          @stage_id = attributes.fetch(:stage_id) { attributes.fetch('stage_id', nil) }
+          @timestamp = attributes.fetch(:timestamp) { attributes.fetch('timestamp', nil) }
+          @track_id = attributes.fetch(:track_id) { attributes.fetch('track_id', nil) }
+          @type = attributes.fetch(:type) { attributes.fetch('type', nil) }
+          @user_agent = attributes.fetch(:user_agent) { attributes.fetch('user_agent', nil) }
+          @user_id = attributes.fetch(:user_id) { attributes.fetch('user_id', nil) }
+          @was_previously_connected = attributes.fetch(:was_previously_connected) { attributes.fetch('was_previously_connected', nil) }
         end
 
         # Override field mappings for JSON serialization

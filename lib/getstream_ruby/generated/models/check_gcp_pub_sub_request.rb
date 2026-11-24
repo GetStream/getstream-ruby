@@ -22,9 +22,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @gcp_pubsub_event_based_ordering_key_enabled = attributes[:gcp_pubsub_event_based_ordering_key_enabled] || attributes['gcp_pubsub_event_based_ordering_key_enabled'] || nil
-          @gcp_pubsub_region = attributes[:gcp_pubsub_region] || attributes['gcp_pubsub_region'] || nil
-          @gcp_pubsub_topic = attributes[:gcp_pubsub_topic] || attributes['gcp_pubsub_topic'] || nil
+          @gcp_pubsub_event_based_ordering_key_enabled = attributes.fetch(:gcp_pubsub_event_based_ordering_key_enabled) { attributes.fetch('gcp_pubsub_event_based_ordering_key_enabled', nil) }
+          @gcp_pubsub_region = attributes.fetch(:gcp_pubsub_region) { attributes.fetch('gcp_pubsub_region', nil) }
+          @gcp_pubsub_topic = attributes.fetch(:gcp_pubsub_topic) { attributes.fetch('gcp_pubsub_topic', nil) }
         end
 
         # Override field mappings for JSON serialization

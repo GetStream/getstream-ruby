@@ -99,6 +99,9 @@ module GetStream
         # @!attribute activity
         #   @return [EnrichedActivity]
         attr_accessor :activity
+        # @!attribute agent_review
+        #   @return [AgentReviewSummaryResponse]
+        attr_accessor :agent_review
         # @!attribute appeal
         #   @return [AppealItemResponse]
         attr_accessor :appeal
@@ -142,49 +145,50 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @ai_text_severity = attributes[:ai_text_severity] || attributes['ai_text_severity']
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @entity_id = attributes[:entity_id] || attributes['entity_id']
-          @entity_type = attributes[:entity_type] || attributes['entity_type']
-          @escalated = attributes[:escalated] || attributes['escalated']
-          @flags_count = attributes[:flags_count] || attributes['flags_count']
-          @id = attributes[:id] || attributes['id']
-          @latest_moderator_action = attributes[:latest_moderator_action] || attributes['latest_moderator_action']
-          @recommended_action = attributes[:recommended_action] || attributes['recommended_action']
-          @reviewed_by = attributes[:reviewed_by] || attributes['reviewed_by']
-          @severity = attributes[:severity] || attributes['severity']
-          @status = attributes[:status] || attributes['status']
-          @updated_at = attributes[:updated_at] || attributes['updated_at']
-          @actions = attributes[:actions] || attributes['actions']
-          @bans = attributes[:bans] || attributes['bans']
-          @flags = attributes[:flags] || attributes['flags']
-          @languages = attributes[:languages] || attributes['languages']
-          @media_display = attributes[:media_display] || attributes['media_display']
-          @completed_at = attributes[:completed_at] || attributes['completed_at'] || nil
-          @confidence_score = attributes[:confidence_score] || attributes['confidence_score'] || nil
-          @config_key = attributes[:config_key] || attributes['config_key'] || nil
-          @country_code = attributes[:country_code] || attributes['country_code'] || nil
-          @entity_creator_id = attributes[:entity_creator_id] || attributes['entity_creator_id'] || nil
-          @escalated_at = attributes[:escalated_at] || attributes['escalated_at'] || nil
-          @escalated_by = attributes[:escalated_by] || attributes['escalated_by'] || nil
-          @reviewed_at = attributes[:reviewed_at] || attributes['reviewed_at'] || nil
-          @country_codes = attributes[:country_codes] || attributes['country_codes'] || nil
-          @false_positive_flags = attributes[:false_positive_flags] || attributes['false_positive_flags'] || nil
-          @teams = attributes[:teams] || attributes['teams'] || nil
-          @activity = attributes[:activity] || attributes['activity'] || nil
-          @appeal = attributes[:appeal] || attributes['appeal'] || nil
-          @assigned_to = attributes[:assigned_to] || attributes['assigned_to'] || nil
-          @call = attributes[:call] || attributes['call'] || nil
-          @entity_creator = attributes[:entity_creator] || attributes['entity_creator'] || nil
-          @escalation_metadata = attributes[:escalation_metadata] || attributes['escalation_metadata'] || nil
-          @feeds_v2_activity = attributes[:feeds_v2_activity] || attributes['feeds_v2_activity'] || nil
-          @feeds_v2_reaction = attributes[:feeds_v2_reaction] || attributes['feeds_v2_reaction'] || nil
-          @feeds_v3_activity = attributes[:feeds_v3_activity] || attributes['feeds_v3_activity'] || nil
-          @feeds_v3_comment = attributes[:feeds_v3_comment] || attributes['feeds_v3_comment'] || nil
-          @message = attributes[:message] || attributes['message'] || nil
-          @moderation_payload = attributes[:moderation_payload] || attributes['moderation_payload'] || nil
-          @poll = attributes[:poll] || attributes['poll'] || nil
-          @reaction = attributes[:reaction] || attributes['reaction'] || nil
+          @ai_text_severity = attributes.fetch(:ai_text_severity) { attributes.fetch('ai_text_severity', nil) }
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @entity_id = attributes.fetch(:entity_id) { attributes.fetch('entity_id', nil) }
+          @entity_type = attributes.fetch(:entity_type) { attributes.fetch('entity_type', nil) }
+          @escalated = attributes.fetch(:escalated) { attributes.fetch('escalated', nil) }
+          @flags_count = attributes.fetch(:flags_count) { attributes.fetch('flags_count', nil) }
+          @id = attributes.fetch(:id) { attributes.fetch('id', nil) }
+          @latest_moderator_action = attributes.fetch(:latest_moderator_action) { attributes.fetch('latest_moderator_action', nil) }
+          @recommended_action = attributes.fetch(:recommended_action) { attributes.fetch('recommended_action', nil) }
+          @reviewed_by = attributes.fetch(:reviewed_by) { attributes.fetch('reviewed_by', nil) }
+          @severity = attributes.fetch(:severity) { attributes.fetch('severity', nil) }
+          @status = attributes.fetch(:status) { attributes.fetch('status', nil) }
+          @updated_at = attributes.fetch(:updated_at) { attributes.fetch('updated_at', nil) }
+          @actions = attributes.fetch(:actions) { attributes.fetch('actions', nil) }
+          @bans = attributes.fetch(:bans) { attributes.fetch('bans', nil) }
+          @flags = attributes.fetch(:flags) { attributes.fetch('flags', nil) }
+          @languages = attributes.fetch(:languages) { attributes.fetch('languages', nil) }
+          @media_display = attributes.fetch(:media_display) { attributes.fetch('media_display', nil) }
+          @completed_at = attributes.fetch(:completed_at) { attributes.fetch('completed_at', nil) }
+          @confidence_score = attributes.fetch(:confidence_score) { attributes.fetch('confidence_score', nil) }
+          @config_key = attributes.fetch(:config_key) { attributes.fetch('config_key', nil) }
+          @country_code = attributes.fetch(:country_code) { attributes.fetch('country_code', nil) }
+          @entity_creator_id = attributes.fetch(:entity_creator_id) { attributes.fetch('entity_creator_id', nil) }
+          @escalated_at = attributes.fetch(:escalated_at) { attributes.fetch('escalated_at', nil) }
+          @escalated_by = attributes.fetch(:escalated_by) { attributes.fetch('escalated_by', nil) }
+          @reviewed_at = attributes.fetch(:reviewed_at) { attributes.fetch('reviewed_at', nil) }
+          @country_codes = attributes.fetch(:country_codes) { attributes.fetch('country_codes', nil) }
+          @false_positive_flags = attributes.fetch(:false_positive_flags) { attributes.fetch('false_positive_flags', nil) }
+          @teams = attributes.fetch(:teams) { attributes.fetch('teams', nil) }
+          @activity = attributes.fetch(:activity) { attributes.fetch('activity', nil) }
+          @agent_review = attributes.fetch(:agent_review) { attributes.fetch('agent_review', nil) }
+          @appeal = attributes.fetch(:appeal) { attributes.fetch('appeal', nil) }
+          @assigned_to = attributes.fetch(:assigned_to) { attributes.fetch('assigned_to', nil) }
+          @call = attributes.fetch(:call) { attributes.fetch('call', nil) }
+          @entity_creator = attributes.fetch(:entity_creator) { attributes.fetch('entity_creator', nil) }
+          @escalation_metadata = attributes.fetch(:escalation_metadata) { attributes.fetch('escalation_metadata', nil) }
+          @feeds_v2_activity = attributes.fetch(:feeds_v2_activity) { attributes.fetch('feeds_v2_activity', nil) }
+          @feeds_v2_reaction = attributes.fetch(:feeds_v2_reaction) { attributes.fetch('feeds_v2_reaction', nil) }
+          @feeds_v3_activity = attributes.fetch(:feeds_v3_activity) { attributes.fetch('feeds_v3_activity', nil) }
+          @feeds_v3_comment = attributes.fetch(:feeds_v3_comment) { attributes.fetch('feeds_v3_comment', nil) }
+          @message = attributes.fetch(:message) { attributes.fetch('message', nil) }
+          @moderation_payload = attributes.fetch(:moderation_payload) { attributes.fetch('moderation_payload', nil) }
+          @poll = attributes.fetch(:poll) { attributes.fetch('poll', nil) }
+          @reaction = attributes.fetch(:reaction) { attributes.fetch('reaction', nil) }
         end
 
         # Override field mappings for JSON serialization
@@ -220,6 +224,7 @@ module GetStream
             false_positive_flags: 'false_positive_flags',
             teams: 'teams',
             activity: 'activity',
+            agent_review: 'agent_review',
             appeal: 'appeal',
             assigned_to: 'assigned_to',
             call: 'call',

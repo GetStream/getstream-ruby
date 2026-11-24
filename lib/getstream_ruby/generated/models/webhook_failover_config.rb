@@ -43,16 +43,16 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @gcs_bucket = attributes[:gcs_bucket] || attributes['gcs_bucket'] || nil
-          @gcs_credentials = attributes[:gcs_credentials] || attributes['gcs_credentials'] || nil
-          @gcs_path = attributes[:gcs_path] || attributes['gcs_path'] || nil
-          @s3_api_key = attributes[:s3_api_key] || attributes['s3_api_key'] || nil
-          @s3_bucket = attributes[:s3_bucket] || attributes['s3_bucket'] || nil
-          @s3_path = attributes[:s3_path] || attributes['s3_path'] || nil
-          @s3_region = attributes[:s3_region] || attributes['s3_region'] || nil
-          @s3_role_arn = attributes[:s3_role_arn] || attributes['s3_role_arn'] || nil
-          @s3_secret = attributes[:s3_secret] || attributes['s3_secret'] || nil
-          @type = attributes[:type] || attributes['type'] || nil
+          @gcs_bucket = attributes.fetch(:gcs_bucket) { attributes.fetch('gcs_bucket', nil) }
+          @gcs_credentials = attributes.fetch(:gcs_credentials) { attributes.fetch('gcs_credentials', nil) }
+          @gcs_path = attributes.fetch(:gcs_path) { attributes.fetch('gcs_path', nil) }
+          @s3_api_key = attributes.fetch(:s3_api_key) { attributes.fetch('s3_api_key', nil) }
+          @s3_bucket = attributes.fetch(:s3_bucket) { attributes.fetch('s3_bucket', nil) }
+          @s3_path = attributes.fetch(:s3_path) { attributes.fetch('s3_path', nil) }
+          @s3_region = attributes.fetch(:s3_region) { attributes.fetch('s3_region', nil) }
+          @s3_role_arn = attributes.fetch(:s3_role_arn) { attributes.fetch('s3_role_arn', nil) }
+          @s3_secret = attributes.fetch(:s3_secret) { attributes.fetch('s3_secret', nil) }
+          @type = attributes.fetch(:type) { attributes.fetch('type', nil) }
         end
 
         # Override field mappings for JSON serialization

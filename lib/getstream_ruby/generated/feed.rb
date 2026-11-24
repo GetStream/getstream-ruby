@@ -35,7 +35,7 @@ module GetStream
       # @param language [String]
       # @param translate_text [Boolean]
       # @return [Models::GetOrCreateFeedResponse]
-      def get_or_create_feed(get_or_create_feed_request, language = nil, translate_text = nil)
+      def get_or_create_feed(get_or_create_feed_request = nil, language = nil, translate_text = nil)
         # Build query parameters
         query_params = {}
         query_params['language'] = language unless language.nil?
@@ -49,7 +49,7 @@ module GetStream
       #
       # @param update_feed_request [UpdateFeedRequest]
       # @return [Models::UpdateFeedResponse]
-      def update_feed(update_feed_request)
+      def update_feed(update_feed_request = nil)
 
         # Delegate to the FeedsClient
         @client.feeds.update_feed(@feed_group_id, @feed_id, update_feed_request)
@@ -59,7 +59,7 @@ module GetStream
       #
       # @param mark_activity_request [MarkActivityRequest]
       # @return [Models::Response]
-      def mark_activity(mark_activity_request)
+      def mark_activity(mark_activity_request = nil)
 
         # Delegate to the FeedsClient
         @client.feeds.mark_activity(@feed_group_id, @feed_id, mark_activity_request)
@@ -86,7 +86,7 @@ module GetStream
       # @param activity_id [String]
       # @param pin_activity_request [PinActivityRequest]
       # @return [Models::PinActivityResponse]
-      def pin_activity(activity_id, pin_activity_request)
+      def pin_activity(activity_id, pin_activity_request = nil)
 
         # Delegate to the FeedsClient
         @client.feeds.pin_activity(@feed_group_id, @feed_id, activity_id, pin_activity_request)
@@ -125,7 +125,7 @@ module GetStream
       #
       # @param accept_feed_member_invite_request [AcceptFeedMemberInviteRequest]
       # @return [Models::AcceptFeedMemberInviteResponse]
-      def accept_feed_member_invite(accept_feed_member_invite_request)
+      def accept_feed_member_invite(accept_feed_member_invite_request = nil)
 
         # Delegate to the FeedsClient
         @client.feeds.accept_feed_member_invite(@feed_group_id, @feed_id, accept_feed_member_invite_request)
@@ -135,7 +135,7 @@ module GetStream
       #
       # @param query_feed_members_request [QueryFeedMembersRequest]
       # @return [Models::QueryFeedMembersResponse]
-      def query_feed_members(query_feed_members_request)
+      def query_feed_members(query_feed_members_request = nil)
 
         # Delegate to the FeedsClient
         @client.feeds.query_feed_members(@feed_group_id, @feed_id, query_feed_members_request)
@@ -145,10 +145,25 @@ module GetStream
       #
       # @param reject_feed_member_invite_request [RejectFeedMemberInviteRequest]
       # @return [Models::RejectFeedMemberInviteResponse]
-      def reject_feed_member_invite(reject_feed_member_invite_request)
+      def reject_feed_member_invite(reject_feed_member_invite_request = nil)
 
         # Delegate to the FeedsClient
         @client.feeds.reject_feed_member_invite(@feed_group_id, @feed_id, reject_feed_member_invite_request)
+      end
+
+      # Returns the unread and unseen counts of a notification feed, along with the last seen and last read timestamps, without building a page.
+      #
+      # @param view [String]
+      # @param user_id [String]
+      # @return [Models::GetNotificationStatusResponse]
+      def get_notification_status(view = nil, user_id = nil)
+        # Build query parameters
+        query_params = {}
+        query_params['view'] = view unless view.nil?
+        query_params['user_id'] = user_id unless user_id.nil?
+
+        # Delegate to the FeedsClient
+        @client.feeds.get_notification_status(@feed_group_id, @feed_id, query_params)
       end
 
       # Query pinned activities for a feed with filter query
@@ -157,7 +172,7 @@ module GetStream
       # @param language [String]
       # @param translate_text [Boolean]
       # @return [Models::QueryPinnedActivitiesResponse]
-      def query_pinned_activities(query_pinned_activities_request, language = nil, translate_text = nil)
+      def query_pinned_activities(query_pinned_activities_request = nil, language = nil, translate_text = nil)
         # Build query parameters
         query_params = {}
         query_params['language'] = language unless language.nil?

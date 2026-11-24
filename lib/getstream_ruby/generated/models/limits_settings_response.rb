@@ -25,10 +25,10 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @max_participants_exclude_roles = attributes[:max_participants_exclude_roles] || attributes['max_participants_exclude_roles']
-          @max_duration_seconds = attributes[:max_duration_seconds] || attributes['max_duration_seconds'] || nil
-          @max_participants = attributes[:max_participants] || attributes['max_participants'] || nil
-          @max_participants_exclude_owner = attributes[:max_participants_exclude_owner] || attributes['max_participants_exclude_owner'] || nil
+          @max_participants_exclude_roles = attributes.fetch(:max_participants_exclude_roles) { attributes.fetch('max_participants_exclude_roles', nil) }
+          @max_duration_seconds = attributes.fetch(:max_duration_seconds) { attributes.fetch('max_duration_seconds', nil) }
+          @max_participants = attributes.fetch(:max_participants) { attributes.fetch('max_participants', nil) }
+          @max_participants_exclude_owner = attributes.fetch(:max_participants_exclude_owner) { attributes.fetch('max_participants_exclude_owner', nil) }
         end
 
         # Override field mappings for JSON serialization

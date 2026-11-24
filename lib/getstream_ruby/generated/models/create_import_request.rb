@@ -22,9 +22,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @mode = attributes[:mode] || attributes['mode']
-          @path = attributes[:path] || attributes['path']
-          @merge_custom = attributes[:merge_custom] || attributes['merge_custom'] || nil
+          @mode = attributes.fetch(:mode) { attributes.fetch('mode', nil) }
+          @path = attributes.fetch(:path) { attributes.fetch('path', nil) }
+          @merge_custom = attributes.fetch(:merge_custom) { attributes.fetch('merge_custom', nil) }
         end
 
         # Override field mappings for JSON serialization

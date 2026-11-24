@@ -10,13 +10,13 @@ module GetStream
 
         # Model attributes
         # @!attribute mode
-        #   @return [CallLifecycleMode] Call lifecycle mode. One of: reusable, single_use. A single_use call cannot be reused once it has ended; the server ends it when its ring settles without an answer (currently: when the caller cancels the ring). Fixed at call creation
+        #   @return [CallLifecycleMode] Call lifecycle mode. One of: reusable, single_use. A single_use call cannot be reused once it has ended; the server ends it when its ring settles without an answer: when the caller cancels the ring, or when the ring times out on the server (missed_call_timeout_ms) without anyone accepting or joining. Fixed at call creation
         attr_accessor :mode
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @mode = attributes[:mode] || attributes['mode'] || nil
+          @mode = attributes.fetch(:mode) { attributes.fetch('mode', nil) }
         end
 
         # Override field mappings for JSON serialization

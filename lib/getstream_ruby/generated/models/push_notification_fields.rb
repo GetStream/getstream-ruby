@@ -34,13 +34,13 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @offline_only = attributes[:offline_only] || attributes['offline_only']
-          @version = attributes[:version] || attributes['version']
-          @apn = attributes[:apn] || attributes['apn']
-          @firebase = attributes[:firebase] || attributes['firebase']
-          @huawei = attributes[:huawei] || attributes['huawei']
-          @xiaomi = attributes[:xiaomi] || attributes['xiaomi']
-          @providers = attributes[:providers] || attributes['providers'] || nil
+          @offline_only = attributes.fetch(:offline_only) { attributes.fetch('offline_only', nil) }
+          @version = attributes.fetch(:version) { attributes.fetch('version', nil) }
+          @apn = attributes.fetch(:apn) { attributes.fetch('apn', nil) }
+          @firebase = attributes.fetch(:firebase) { attributes.fetch('firebase', nil) }
+          @huawei = attributes.fetch(:huawei) { attributes.fetch('huawei', nil) }
+          @xiaomi = attributes.fetch(:xiaomi) { attributes.fetch('xiaomi', nil) }
+          @providers = attributes.fetch(:providers) { attributes.fetch('providers', nil) }
         end
 
         # Override field mappings for JSON serialization

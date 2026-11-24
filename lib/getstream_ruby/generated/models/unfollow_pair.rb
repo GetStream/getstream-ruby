@@ -22,9 +22,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @source = attributes[:source] || attributes['source']
-          @target = attributes[:target] || attributes['target']
-          @keep_history = attributes[:keep_history] || attributes['keep_history'] || nil
+          @source = attributes.fetch(:source) { attributes.fetch('source', nil) }
+          @target = attributes.fetch(:target) { attributes.fetch('target', nil) }
+          @keep_history = attributes.fetch(:keep_history) { attributes.fetch('keep_history', nil) }
         end
 
         # Override field mappings for JSON serialization

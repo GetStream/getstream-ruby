@@ -46,17 +46,17 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @type = attributes[:type] || attributes['type'] || "moderation.image_analysis.complete"
-          @config_key = attributes[:config_key] || attributes['config_key'] || nil
-          @entity_creator_id = attributes[:entity_creator_id] || attributes['entity_creator_id'] || nil
-          @entity_id = attributes[:entity_id] || attributes['entity_id'] || nil
-          @entity_type = attributes[:entity_type] || attributes['entity_type'] || nil
-          @received_at = attributes[:received_at] || attributes['received_at'] || nil
-          @review_queue_item_id = attributes[:review_queue_item_id] || attributes['review_queue_item_id'] || nil
-          @custom = attributes[:custom] || attributes['custom'] || nil
-          @images = attributes[:images] || attributes['images'] || nil
-          @texts = attributes[:texts] || attributes['texts'] || nil
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @type = attributes.fetch(:type) { attributes.fetch('type', "moderation.image_analysis.complete") }
+          @config_key = attributes.fetch(:config_key) { attributes.fetch('config_key', nil) }
+          @entity_creator_id = attributes.fetch(:entity_creator_id) { attributes.fetch('entity_creator_id', nil) }
+          @entity_id = attributes.fetch(:entity_id) { attributes.fetch('entity_id', nil) }
+          @entity_type = attributes.fetch(:entity_type) { attributes.fetch('entity_type', nil) }
+          @received_at = attributes.fetch(:received_at) { attributes.fetch('received_at', nil) }
+          @review_queue_item_id = attributes.fetch(:review_queue_item_id) { attributes.fetch('review_queue_item_id', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
+          @images = attributes.fetch(:images) { attributes.fetch('images', nil) }
+          @texts = attributes.fetch(:texts) { attributes.fetch('texts', nil) }
         end
 
         # Override field mappings for JSON serialization

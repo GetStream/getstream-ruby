@@ -37,14 +37,14 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @accuracy_radius_meters = attributes[:accuracy_radius_meters] || attributes['accuracy_radius_meters'] || nil
-          @city = attributes[:city] || attributes['city'] || nil
-          @continent = attributes[:continent] || attributes['continent'] || nil
-          @country = attributes[:country] || attributes['country'] || nil
-          @country_iso_code = attributes[:country_iso_code] || attributes['country_iso_code'] || nil
-          @latitude = attributes[:latitude] || attributes['latitude'] || nil
-          @longitude = attributes[:longitude] || attributes['longitude'] || nil
-          @subdivision = attributes[:subdivision] || attributes['subdivision'] || nil
+          @accuracy_radius_meters = attributes.fetch(:accuracy_radius_meters) { attributes.fetch('accuracy_radius_meters', nil) }
+          @city = attributes.fetch(:city) { attributes.fetch('city', nil) }
+          @continent = attributes.fetch(:continent) { attributes.fetch('continent', nil) }
+          @country = attributes.fetch(:country) { attributes.fetch('country', nil) }
+          @country_iso_code = attributes.fetch(:country_iso_code) { attributes.fetch('country_iso_code', nil) }
+          @latitude = attributes.fetch(:latitude) { attributes.fetch('latitude', nil) }
+          @longitude = attributes.fetch(:longitude) { attributes.fetch('longitude', nil) }
+          @subdivision = attributes.fetch(:subdivision) { attributes.fetch('subdivision', nil) }
         end
 
         # Override field mappings for JSON serialization

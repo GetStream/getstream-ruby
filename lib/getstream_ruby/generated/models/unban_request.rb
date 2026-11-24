@@ -21,8 +21,8 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @unbanned_by_id = attributes[:unbanned_by_id] || attributes['unbanned_by_id'] || nil
-          @unbanned_by = attributes[:unbanned_by] || attributes['unbanned_by'] || nil
+          @unbanned_by_id = attributes.fetch(:unbanned_by_id) { attributes.fetch('unbanned_by_id', nil) }
+          @unbanned_by = attributes.fetch(:unbanned_by) { attributes.fetch('unbanned_by', nil) }
         end
 
         # Override field mappings for JSON serialization

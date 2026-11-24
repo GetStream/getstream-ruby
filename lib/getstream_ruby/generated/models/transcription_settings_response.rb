@@ -28,11 +28,11 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @closed_caption_mode = attributes[:closed_caption_mode] || attributes['closed_caption_mode']
-          @language = attributes[:language] || attributes['language']
-          @mode = attributes[:mode] || attributes['mode']
-          @speech_segment_config = attributes[:speech_segment_config] || attributes['speech_segment_config'] || nil
-          @translation = attributes[:translation] || attributes['translation'] || nil
+          @closed_caption_mode = attributes.fetch(:closed_caption_mode) { attributes.fetch('closed_caption_mode', nil) }
+          @language = attributes.fetch(:language) { attributes.fetch('language', nil) }
+          @mode = attributes.fetch(:mode) { attributes.fetch('mode', nil) }
+          @speech_segment_config = attributes.fetch(:speech_segment_config) { attributes.fetch('speech_segment_config', nil) }
+          @translation = attributes.fetch(:translation) { attributes.fetch('translation', nil) }
         end
 
         # Override field mappings for JSON serialization

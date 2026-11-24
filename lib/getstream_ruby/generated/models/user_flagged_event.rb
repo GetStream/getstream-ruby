@@ -37,14 +37,14 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @reason = attributes[:reason] || attributes['reason']
-          @total_flags = attributes[:total_flags] || attributes['total_flags']
-          @user = attributes[:user] || attributes['user']
-          @type = attributes[:type] || attributes['type'] || "user.flagged"
-          @received_at = attributes[:received_at] || attributes['received_at'] || nil
-          @custom = attributes[:custom] || attributes['custom'] || nil
-          @target_user = attributes[:target_user] || attributes['target_user'] || nil
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @reason = attributes.fetch(:reason) { attributes.fetch('reason', nil) }
+          @total_flags = attributes.fetch(:total_flags) { attributes.fetch('total_flags', nil) }
+          @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
+          @type = attributes.fetch(:type) { attributes.fetch('type', "user.flagged") }
+          @received_at = attributes.fetch(:received_at) { attributes.fetch('received_at', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
+          @target_user = attributes.fetch(:target_user) { attributes.fetch('target_user', nil) }
         end
 
         # Override field mappings for JSON serialization

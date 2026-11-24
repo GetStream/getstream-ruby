@@ -37,14 +37,14 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @custom = attributes[:custom] || attributes['custom']
-          @poll = attributes[:poll] || attributes['poll']
-          @type = attributes[:type] || attributes['type'] || "poll.deleted"
-          @activity_id = attributes[:activity_id] || attributes['activity_id'] || nil
-          @cid = attributes[:cid] || attributes['cid'] || nil
-          @message_id = attributes[:message_id] || attributes['message_id'] || nil
-          @received_at = attributes[:received_at] || attributes['received_at'] || nil
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
+          @poll = attributes.fetch(:poll) { attributes.fetch('poll', nil) }
+          @type = attributes.fetch(:type) { attributes.fetch('type', "poll.deleted") }
+          @activity_id = attributes.fetch(:activity_id) { attributes.fetch('activity_id', nil) }
+          @cid = attributes.fetch(:cid) { attributes.fetch('cid', nil) }
+          @message_id = attributes.fetch(:message_id) { attributes.fetch('message_id', nil) }
+          @received_at = attributes.fetch(:received_at) { attributes.fetch('received_at', nil) }
         end
 
         # Override field mappings for JSON serialization

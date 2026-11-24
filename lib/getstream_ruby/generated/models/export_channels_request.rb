@@ -37,14 +37,14 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @channels = attributes[:channels] || attributes['channels']
-          @clear_deleted_message_text = attributes[:clear_deleted_message_text] || attributes['clear_deleted_message_text'] || nil
-          @export_users = attributes[:export_users] || attributes['export_users'] || nil
-          @format = attributes[:format] || attributes['format'] || nil
-          @include_soft_deleted_channels = attributes[:include_soft_deleted_channels] || attributes['include_soft_deleted_channels'] || nil
-          @include_truncated_messages = attributes[:include_truncated_messages] || attributes['include_truncated_messages'] || nil
-          @version = attributes[:version] || attributes['version'] || nil
-          @include_fields = attributes[:include_fields] || attributes['include_fields'] || nil
+          @channels = attributes.fetch(:channels) { attributes.fetch('channels', nil) }
+          @clear_deleted_message_text = attributes.fetch(:clear_deleted_message_text) { attributes.fetch('clear_deleted_message_text', nil) }
+          @export_users = attributes.fetch(:export_users) { attributes.fetch('export_users', nil) }
+          @format = attributes.fetch(:format) { attributes.fetch('format', nil) }
+          @include_soft_deleted_channels = attributes.fetch(:include_soft_deleted_channels) { attributes.fetch('include_soft_deleted_channels', nil) }
+          @include_truncated_messages = attributes.fetch(:include_truncated_messages) { attributes.fetch('include_truncated_messages', nil) }
+          @version = attributes.fetch(:version) { attributes.fetch('version', nil) }
+          @include_fields = attributes.fetch(:include_fields) { attributes.fetch('include_fields', nil) }
         end
 
         # Override field mappings for JSON serialization

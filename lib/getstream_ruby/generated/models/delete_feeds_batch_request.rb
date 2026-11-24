@@ -22,9 +22,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @feeds = attributes[:feeds] || attributes['feeds']
-          @hard_delete = attributes[:hard_delete] || attributes['hard_delete'] || nil
-          @purge_user_activities = attributes[:purge_user_activities] || attributes['purge_user_activities'] || nil
+          @feeds = attributes.fetch(:feeds) { attributes.fetch('feeds', nil) }
+          @hard_delete = attributes.fetch(:hard_delete) { attributes.fetch('hard_delete', nil) }
+          @purge_user_activities = attributes.fetch(:purge_user_activities) { attributes.fetch('purge_user_activities', nil) }
         end
 
         # Override field mappings for JSON serialization

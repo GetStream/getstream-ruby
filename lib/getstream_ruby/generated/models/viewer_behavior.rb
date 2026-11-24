@@ -37,14 +37,14 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @connection_duration_p50_s = attributes[:connection_duration_p50_s] || attributes['connection_duration_p50_s']
-          @connections_per_viewer_mean = attributes[:connections_per_viewer_mean] || attributes['connections_per_viewer_mean']
-          @median_watch_min = attributes[:median_watch_min] || attributes['median_watch_min']
-          @note = attributes[:note] || attributes['note']
-          @p90_watch_min = attributes[:p90_watch_min] || attributes['p90_watch_min']
-          @bounce_rate_pct = attributes[:bounce_rate_pct] || attributes['bounce_rate_pct'] || nil
-          @connections_under_30s_pct = attributes[:connections_under_30s_pct] || attributes['connections_under_30s_pct'] || nil
-          @return_visit_rate_pct = attributes[:return_visit_rate_pct] || attributes['return_visit_rate_pct'] || nil
+          @connection_duration_p50_s = attributes.fetch(:connection_duration_p50_s) { attributes.fetch('connection_duration_p50_s', nil) }
+          @connections_per_viewer_mean = attributes.fetch(:connections_per_viewer_mean) { attributes.fetch('connections_per_viewer_mean', nil) }
+          @median_watch_min = attributes.fetch(:median_watch_min) { attributes.fetch('median_watch_min', nil) }
+          @note = attributes.fetch(:note) { attributes.fetch('note', nil) }
+          @p90_watch_min = attributes.fetch(:p90_watch_min) { attributes.fetch('p90_watch_min', nil) }
+          @bounce_rate_pct = attributes.fetch(:bounce_rate_pct) { attributes.fetch('bounce_rate_pct', nil) }
+          @connections_under_30s_pct = attributes.fetch(:connections_under_30s_pct) { attributes.fetch('connections_under_30s_pct', nil) }
+          @return_visit_rate_pct = attributes.fetch(:return_visit_rate_pct) { attributes.fetch('return_visit_rate_pct', nil) }
         end
 
         # Override field mappings for JSON serialization

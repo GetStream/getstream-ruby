@@ -37,14 +37,14 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @comment = attributes[:comment] || attributes['comment'] || nil
-          @comment_mention = attributes[:comment_mention] || attributes['comment_mention'] || nil
-          @comment_reaction = attributes[:comment_reaction] || attributes['comment_reaction'] || nil
-          @comment_reply = attributes[:comment_reply] || attributes['comment_reply'] || nil
-          @follow = attributes[:follow] || attributes['follow'] || nil
-          @mention = attributes[:mention] || attributes['mention'] || nil
-          @reaction = attributes[:reaction] || attributes['reaction'] || nil
-          @custom_activity_types = attributes[:custom_activity_types] || attributes['custom_activity_types'] || nil
+          @comment = attributes.fetch(:comment) { attributes.fetch('comment', nil) }
+          @comment_mention = attributes.fetch(:comment_mention) { attributes.fetch('comment_mention', nil) }
+          @comment_reaction = attributes.fetch(:comment_reaction) { attributes.fetch('comment_reaction', nil) }
+          @comment_reply = attributes.fetch(:comment_reply) { attributes.fetch('comment_reply', nil) }
+          @follow = attributes.fetch(:follow) { attributes.fetch('follow', nil) }
+          @mention = attributes.fetch(:mention) { attributes.fetch('mention', nil) }
+          @reaction = attributes.fetch(:reaction) { attributes.fetch('reaction', nil) }
+          @custom_activity_types = attributes.fetch(:custom_activity_types) { attributes.fetch('custom_activity_types', nil) }
         end
 
         # Override field mappings for JSON serialization

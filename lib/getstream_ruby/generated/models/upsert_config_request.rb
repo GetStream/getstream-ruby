@@ -34,12 +34,15 @@ module GetStream
         #   @return [AIVideoConfigRequest]
         attr_accessor :ai_video_config
         # @!attribute automod_platform_circumvention_config
+        # @deprecated This field is deprecated.
         #   @return [AutomodPlatformCircumventionConfig]
         attr_accessor :automod_platform_circumvention_config
         # @!attribute automod_semantic_filters_config
+        # @deprecated This field is deprecated.
         #   @return [AutomodSemanticFiltersConfig]
         attr_accessor :automod_semantic_filters_config
         # @!attribute automod_toxicity_config
+        # @deprecated This field is deprecated.
         #   @return [AutomodToxicityConfig]
         attr_accessor :automod_toxicity_config
         # @!attribute aws_rekognition_config
@@ -51,6 +54,9 @@ module GetStream
         # @!attribute bodyguard_config
         #   @return [AITextConfig]
         attr_accessor :bodyguard_config
+        # @!attribute engine
+        #   @return [ModerationEngineConfigRequest]
+        attr_accessor :engine
         # @!attribute flood_config
         #   @return [FloodConfig]
         attr_accessor :flood_config
@@ -79,28 +85,29 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @key = attributes[:key] || attributes['key']
-          @async = attributes[:async] || attributes['async'] || nil
-          @team = attributes[:team] || attributes['team'] || nil
-          @user_id = attributes[:user_id] || attributes['user_id'] || nil
-          @ai_audio_config = attributes[:ai_audio_config] || attributes['ai_audio_config'] || nil
-          @ai_image_config = attributes[:ai_image_config] || attributes['ai_image_config'] || nil
-          @ai_text_config = attributes[:ai_text_config] || attributes['ai_text_config'] || nil
-          @ai_video_config = attributes[:ai_video_config] || attributes['ai_video_config'] || nil
-          @automod_platform_circumvention_config = attributes[:automod_platform_circumvention_config] || attributes['automod_platform_circumvention_config'] || nil
-          @automod_semantic_filters_config = attributes[:automod_semantic_filters_config] || attributes['automod_semantic_filters_config'] || nil
-          @automod_toxicity_config = attributes[:automod_toxicity_config] || attributes['automod_toxicity_config'] || nil
-          @aws_rekognition_config = attributes[:aws_rekognition_config] || attributes['aws_rekognition_config'] || nil
-          @block_list_config = attributes[:block_list_config] || attributes['block_list_config'] || nil
-          @bodyguard_config = attributes[:bodyguard_config] || attributes['bodyguard_config'] || nil
-          @flood_config = attributes[:flood_config] || attributes['flood_config'] || nil
-          @google_vision_config = attributes[:google_vision_config] || attributes['google_vision_config'] || nil
-          @intent_config = attributes[:intent_config] || attributes['intent_config'] || nil
-          @llm_config = attributes[:llm_config] || attributes['llm_config'] || nil
-          @rule_builder_config = attributes[:rule_builder_config] || attributes['rule_builder_config'] || nil
-          @user = attributes[:user] || attributes['user'] || nil
-          @velocity_filter_config = attributes[:velocity_filter_config] || attributes['velocity_filter_config'] || nil
-          @video_call_rule_config = attributes[:video_call_rule_config] || attributes['video_call_rule_config'] || nil
+          @key = attributes.fetch(:key) { attributes.fetch('key', nil) }
+          @async = attributes.fetch(:async) { attributes.fetch('async', nil) }
+          @team = attributes.fetch(:team) { attributes.fetch('team', nil) }
+          @user_id = attributes.fetch(:user_id) { attributes.fetch('user_id', nil) }
+          @ai_audio_config = attributes.fetch(:ai_audio_config) { attributes.fetch('ai_audio_config', nil) }
+          @ai_image_config = attributes.fetch(:ai_image_config) { attributes.fetch('ai_image_config', nil) }
+          @ai_text_config = attributes.fetch(:ai_text_config) { attributes.fetch('ai_text_config', nil) }
+          @ai_video_config = attributes.fetch(:ai_video_config) { attributes.fetch('ai_video_config', nil) }
+          @automod_platform_circumvention_config = attributes.fetch(:automod_platform_circumvention_config) { attributes.fetch('automod_platform_circumvention_config', nil) }
+          @automod_semantic_filters_config = attributes.fetch(:automod_semantic_filters_config) { attributes.fetch('automod_semantic_filters_config', nil) }
+          @automod_toxicity_config = attributes.fetch(:automod_toxicity_config) { attributes.fetch('automod_toxicity_config', nil) }
+          @aws_rekognition_config = attributes.fetch(:aws_rekognition_config) { attributes.fetch('aws_rekognition_config', nil) }
+          @block_list_config = attributes.fetch(:block_list_config) { attributes.fetch('block_list_config', nil) }
+          @bodyguard_config = attributes.fetch(:bodyguard_config) { attributes.fetch('bodyguard_config', nil) }
+          @engine = attributes.fetch(:engine) { attributes.fetch('engine', nil) }
+          @flood_config = attributes.fetch(:flood_config) { attributes.fetch('flood_config', nil) }
+          @google_vision_config = attributes.fetch(:google_vision_config) { attributes.fetch('google_vision_config', nil) }
+          @intent_config = attributes.fetch(:intent_config) { attributes.fetch('intent_config', nil) }
+          @llm_config = attributes.fetch(:llm_config) { attributes.fetch('llm_config', nil) }
+          @rule_builder_config = attributes.fetch(:rule_builder_config) { attributes.fetch('rule_builder_config', nil) }
+          @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
+          @velocity_filter_config = attributes.fetch(:velocity_filter_config) { attributes.fetch('velocity_filter_config', nil) }
+          @video_call_rule_config = attributes.fetch(:video_call_rule_config) { attributes.fetch('video_call_rule_config', nil) }
         end
 
         # Override field mappings for JSON serialization
@@ -120,6 +127,7 @@ module GetStream
             aws_rekognition_config: 'aws_rekognition_config',
             block_list_config: 'block_list_config',
             bodyguard_config: 'bodyguard_config',
+            engine: 'engine',
             flood_config: 'flood_config',
             google_vision_config: 'google_vision_config',
             intent_config: 'intent_config',

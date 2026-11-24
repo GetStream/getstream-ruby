@@ -49,18 +49,18 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @country_code = attributes[:country_code] || attributes['country_code'] || nil
-          @audios = attributes[:audios] || attributes['audios'] || nil
-          @country_codes = attributes[:country_codes] || attributes['country_codes'] || nil
-          @image_ordered_keys = attributes[:image_ordered_keys] || attributes['image_ordered_keys'] || nil
-          @images = attributes[:images] || attributes['images'] || nil
-          @other_media = attributes[:other_media] || attributes['other_media'] || nil
-          @text_ordered_keys = attributes[:text_ordered_keys] || attributes['text_ordered_keys'] || nil
-          @texts = attributes[:texts] || attributes['texts'] || nil
-          @videos = attributes[:videos] || attributes['videos'] || nil
-          @custom = attributes[:custom] || attributes['custom'] || nil
-          @image_ids = attributes[:image_ids] || attributes['image_ids'] || nil
-          @text_ids = attributes[:text_ids] || attributes['text_ids'] || nil
+          @country_code = attributes.fetch(:country_code) { attributes.fetch('country_code', nil) }
+          @audios = attributes.fetch(:audios) { attributes.fetch('audios', nil) }
+          @country_codes = attributes.fetch(:country_codes) { attributes.fetch('country_codes', nil) }
+          @image_ordered_keys = attributes.fetch(:image_ordered_keys) { attributes.fetch('image_ordered_keys', nil) }
+          @images = attributes.fetch(:images) { attributes.fetch('images', nil) }
+          @other_media = attributes.fetch(:other_media) { attributes.fetch('other_media', nil) }
+          @text_ordered_keys = attributes.fetch(:text_ordered_keys) { attributes.fetch('text_ordered_keys', nil) }
+          @texts = attributes.fetch(:texts) { attributes.fetch('texts', nil) }
+          @videos = attributes.fetch(:videos) { attributes.fetch('videos', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
+          @image_ids = attributes.fetch(:image_ids) { attributes.fetch('image_ids', nil) }
+          @text_ids = attributes.fetch(:text_ids) { attributes.fetch('text_ids', nil) }
         end
 
         # Override field mappings for JSON serialization

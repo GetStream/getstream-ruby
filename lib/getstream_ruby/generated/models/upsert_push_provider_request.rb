@@ -16,7 +16,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @push_provider = attributes[:push_provider] || attributes['push_provider'] || nil
+          @push_provider = attributes.fetch(:push_provider) { attributes.fetch('push_provider', nil) }
         end
 
         # Override field mappings for JSON serialization

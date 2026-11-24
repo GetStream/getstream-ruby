@@ -25,10 +25,10 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @from = attributes[:from] || attributes['from']
-          @peak_concurrency = attributes[:peak_concurrency] || attributes['peak_concurrency']
-          @to = attributes[:to] || attributes['to']
-          @viewers_interrupted = attributes[:viewers_interrupted] || attributes['viewers_interrupted']
+          @from = attributes.fetch(:from) { attributes.fetch('from', nil) }
+          @peak_concurrency = attributes.fetch(:peak_concurrency) { attributes.fetch('peak_concurrency', nil) }
+          @to = attributes.fetch(:to) { attributes.fetch('to', nil) }
+          @viewers_interrupted = attributes.fetch(:viewers_interrupted) { attributes.fetch('viewers_interrupted', nil) }
         end
 
         # Override field mappings for JSON serialization

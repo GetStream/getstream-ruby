@@ -37,14 +37,14 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @action_type = attributes[:action_type] || attributes['action_type']
-          @entity_creator_id = attributes[:entity_creator_id] || attributes['entity_creator_id']
-          @entity_id = attributes[:entity_id] || attributes['entity_id']
-          @entity_type = attributes[:entity_type] || attributes['entity_type']
-          @reason = attributes[:reason] || attributes['reason'] || nil
-          @reporter_type = attributes[:reporter_type] || attributes['reporter_type'] || nil
-          @reporter_user_id = attributes[:reporter_user_id] || attributes['reporter_user_id'] || nil
-          @custom = attributes[:custom] || attributes['custom'] || nil
+          @action_type = attributes.fetch(:action_type) { attributes.fetch('action_type', nil) }
+          @entity_creator_id = attributes.fetch(:entity_creator_id) { attributes.fetch('entity_creator_id', nil) }
+          @entity_id = attributes.fetch(:entity_id) { attributes.fetch('entity_id', nil) }
+          @entity_type = attributes.fetch(:entity_type) { attributes.fetch('entity_type', nil) }
+          @reason = attributes.fetch(:reason) { attributes.fetch('reason', nil) }
+          @reporter_type = attributes.fetch(:reporter_type) { attributes.fetch('reporter_type', nil) }
+          @reporter_user_id = attributes.fetch(:reporter_user_id) { attributes.fetch('reporter_user_id', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
         end
 
         # Override field mappings for JSON serialization

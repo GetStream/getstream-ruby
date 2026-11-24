@@ -25,10 +25,10 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @follows = attributes[:follows] || attributes['follows']
-          @async = attributes[:async] || attributes['async'] || nil
-          @create_users = attributes[:create_users] || attributes['create_users'] || nil
-          @enrich_own_fields = attributes[:enrich_own_fields] || attributes['enrich_own_fields'] || nil
+          @follows = attributes.fetch(:follows) { attributes.fetch('follows', nil) }
+          @async = attributes.fetch(:async) { attributes.fetch('async', nil) }
+          @create_users = attributes.fetch(:create_users) { attributes.fetch('create_users', nil) }
+          @enrich_own_fields = attributes.fetch(:enrich_own_fields) { attributes.fetch('enrich_own_fields', nil) }
         end
 
         # Override field mappings for JSON serialization

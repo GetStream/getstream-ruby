@@ -19,8 +19,8 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @exclude = attributes[:exclude] || attributes['exclude'] || nil
-          @include = attributes[:include] || attributes['include'] || nil
+          @exclude = attributes.fetch(:exclude) { attributes.fetch('exclude', nil) }
+          @include = attributes.fetch(:include) { attributes.fetch('include', nil) }
         end
 
         # Override field mappings for JSON serialization

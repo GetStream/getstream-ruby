@@ -55,20 +55,20 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @call_id = attributes[:call_id] || attributes['call_id']
-          @call_session_id = attributes[:call_session_id] || attributes['call_session_id']
-          @call_type = attributes[:call_type] || attributes['call_type']
-          @duration = attributes[:duration] || attributes['duration']
-          @counts = attributes[:counts] || attributes['counts']
-          @call_ended_at = attributes[:call_ended_at] || attributes['call_ended_at'] || nil
-          @call_started_at = attributes[:call_started_at] || attributes['call_started_at'] || nil
-          @data_source = attributes[:data_source] || attributes['data_source'] || nil
-          @end_time = attributes[:end_time] || attributes['end_time'] || nil
-          @generated_at = attributes[:generated_at] || attributes['generated_at'] || nil
-          @start_time = attributes[:start_time] || attributes['start_time'] || nil
-          @publishers = attributes[:publishers] || attributes['publishers'] || nil
-          @sfus = attributes[:sfus] || attributes['sfus'] || nil
-          @subscribers = attributes[:subscribers] || attributes['subscribers'] || nil
+          @call_id = attributes.fetch(:call_id) { attributes.fetch('call_id', nil) }
+          @call_session_id = attributes.fetch(:call_session_id) { attributes.fetch('call_session_id', nil) }
+          @call_type = attributes.fetch(:call_type) { attributes.fetch('call_type', nil) }
+          @duration = attributes.fetch(:duration) { attributes.fetch('duration', nil) }
+          @counts = attributes.fetch(:counts) { attributes.fetch('counts', nil) }
+          @call_ended_at = attributes.fetch(:call_ended_at) { attributes.fetch('call_ended_at', nil) }
+          @call_started_at = attributes.fetch(:call_started_at) { attributes.fetch('call_started_at', nil) }
+          @data_source = attributes.fetch(:data_source) { attributes.fetch('data_source', nil) }
+          @end_time = attributes.fetch(:end_time) { attributes.fetch('end_time', nil) }
+          @generated_at = attributes.fetch(:generated_at) { attributes.fetch('generated_at', nil) }
+          @start_time = attributes.fetch(:start_time) { attributes.fetch('start_time', nil) }
+          @publishers = attributes.fetch(:publishers) { attributes.fetch('publishers', nil) }
+          @sfus = attributes.fetch(:sfus) { attributes.fetch('sfus', nil) }
+          @subscribers = attributes.fetch(:subscribers) { attributes.fetch('subscribers', nil) }
         end
 
         # Override field mappings for JSON serialization

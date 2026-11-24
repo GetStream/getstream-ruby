@@ -22,9 +22,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @type = attributes[:type] || attributes['type']
-          @aws_s3 = attributes[:aws_s3] || attributes['aws_s3'] || nil
-          @gcs = attributes[:gcs] || attributes['gcs'] || nil
+          @type = attributes.fetch(:type) { attributes.fetch('type', nil) }
+          @aws_s3 = attributes.fetch(:aws_s3) { attributes.fetch('aws_s3', nil) }
+          @gcs = attributes.fetch(:gcs) { attributes.fetch('gcs', nil) }
         end
 
         # Override field mappings for JSON serialization

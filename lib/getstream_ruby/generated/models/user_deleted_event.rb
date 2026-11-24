@@ -46,17 +46,17 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @delete_conversation = attributes[:delete_conversation] || attributes['delete_conversation']
-          @delete_conversation_channels = attributes[:delete_conversation_channels] || attributes['delete_conversation_channels']
-          @delete_messages = attributes[:delete_messages] || attributes['delete_messages']
-          @delete_user = attributes[:delete_user] || attributes['delete_user']
-          @hard_delete = attributes[:hard_delete] || attributes['hard_delete']
-          @mark_messages_deleted = attributes[:mark_messages_deleted] || attributes['mark_messages_deleted']
-          @custom = attributes[:custom] || attributes['custom']
-          @user = attributes[:user] || attributes['user']
-          @type = attributes[:type] || attributes['type'] || "user.deleted"
-          @received_at = attributes[:received_at] || attributes['received_at'] || nil
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @delete_conversation = attributes.fetch(:delete_conversation) { attributes.fetch('delete_conversation', nil) }
+          @delete_conversation_channels = attributes.fetch(:delete_conversation_channels) { attributes.fetch('delete_conversation_channels', nil) }
+          @delete_messages = attributes.fetch(:delete_messages) { attributes.fetch('delete_messages', nil) }
+          @delete_user = attributes.fetch(:delete_user) { attributes.fetch('delete_user', nil) }
+          @hard_delete = attributes.fetch(:hard_delete) { attributes.fetch('hard_delete', nil) }
+          @mark_messages_deleted = attributes.fetch(:mark_messages_deleted) { attributes.fetch('mark_messages_deleted', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
+          @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
+          @type = attributes.fetch(:type) { attributes.fetch('type', "user.deleted") }
+          @received_at = attributes.fetch(:received_at) { attributes.fetch('received_at', nil) }
         end
 
         # Override field mappings for JSON serialization

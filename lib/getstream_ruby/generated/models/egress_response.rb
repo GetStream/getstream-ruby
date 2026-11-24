@@ -34,13 +34,13 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @broadcasting = attributes[:broadcasting] || attributes['broadcasting']
-          @rtmps = attributes[:rtmps] || attributes['rtmps']
-          @composite_recording = attributes[:composite_recording] || attributes['composite_recording'] || nil
-          @frame_recording = attributes[:frame_recording] || attributes['frame_recording'] || nil
-          @hls = attributes[:hls] || attributes['hls'] || nil
-          @individual_recording = attributes[:individual_recording] || attributes['individual_recording'] || nil
-          @raw_recording = attributes[:raw_recording] || attributes['raw_recording'] || nil
+          @broadcasting = attributes.fetch(:broadcasting) { attributes.fetch('broadcasting', nil) }
+          @rtmps = attributes.fetch(:rtmps) { attributes.fetch('rtmps', nil) }
+          @composite_recording = attributes.fetch(:composite_recording) { attributes.fetch('composite_recording', nil) }
+          @frame_recording = attributes.fetch(:frame_recording) { attributes.fetch('frame_recording', nil) }
+          @hls = attributes.fetch(:hls) { attributes.fetch('hls', nil) }
+          @individual_recording = attributes.fetch(:individual_recording) { attributes.fetch('individual_recording', nil) }
+          @raw_recording = attributes.fetch(:raw_recording) { attributes.fetch('raw_recording', nil) }
         end
 
         # Override field mappings for JSON serialization

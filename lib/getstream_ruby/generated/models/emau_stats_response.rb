@@ -22,9 +22,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @daily = attributes[:daily] || attributes['daily']
-          @last_30_days = attributes[:last_30_days] || attributes['last_30_days']
-          @month_to_date = attributes[:month_to_date] || attributes['month_to_date']
+          @daily = attributes.fetch(:daily) { attributes.fetch('daily', nil) }
+          @last_30_days = attributes.fetch(:last_30_days) { attributes.fetch('last_30_days', nil) }
+          @month_to_date = attributes.fetch(:month_to_date) { attributes.fetch('month_to_date', nil) }
         end
 
         # Override field mappings for JSON serialization

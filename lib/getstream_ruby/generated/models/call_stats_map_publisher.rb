@@ -34,13 +34,13 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @is_live = attributes[:is_live] || attributes['is_live']
-          @user_id = attributes[:user_id] || attributes['user_id']
-          @user_session_id = attributes[:user_session_id] || attributes['user_session_id']
-          @published_tracks = attributes[:published_tracks] || attributes['published_tracks']
-          @name = attributes[:name] || attributes['name'] || nil
-          @publisher_type = attributes[:publisher_type] || attributes['publisher_type'] || nil
-          @location = attributes[:location] || attributes['location'] || nil
+          @is_live = attributes.fetch(:is_live) { attributes.fetch('is_live', nil) }
+          @user_id = attributes.fetch(:user_id) { attributes.fetch('user_id', nil) }
+          @user_session_id = attributes.fetch(:user_session_id) { attributes.fetch('user_session_id', nil) }
+          @published_tracks = attributes.fetch(:published_tracks) { attributes.fetch('published_tracks', nil) }
+          @name = attributes.fetch(:name) { attributes.fetch('name', nil) }
+          @publisher_type = attributes.fetch(:publisher_type) { attributes.fetch('publisher_type', nil) }
+          @location = attributes.fetch(:location) { attributes.fetch('location', nil) }
         end
 
         # Override field mappings for JSON serialization

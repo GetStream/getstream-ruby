@@ -31,12 +31,12 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @rating = attributes[:rating] || attributes['rating']
-          @sdk = attributes[:sdk] || attributes['sdk']
-          @sdk_version = attributes[:sdk_version] || attributes['sdk_version']
-          @reason = attributes[:reason] || attributes['reason'] || nil
-          @user_session_id = attributes[:user_session_id] || attributes['user_session_id'] || nil
-          @custom = attributes[:custom] || attributes['custom'] || nil
+          @rating = attributes.fetch(:rating) { attributes.fetch('rating', nil) }
+          @sdk = attributes.fetch(:sdk) { attributes.fetch('sdk', nil) }
+          @sdk_version = attributes.fetch(:sdk_version) { attributes.fetch('sdk_version', nil) }
+          @reason = attributes.fetch(:reason) { attributes.fetch('reason', nil) }
+          @user_session_id = attributes.fetch(:user_session_id) { attributes.fetch('user_session_id', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
         end
 
         # Override field mappings for JSON serialization

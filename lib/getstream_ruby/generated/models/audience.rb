@@ -46,17 +46,17 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @avg_concurrent_viewers = attributes[:avg_concurrent_viewers] || attributes['avg_concurrent_viewers']
-          @hours_watched = attributes[:hours_watched] || attributes['hours_watched']
-          @peak_concurrent_viewers = attributes[:peak_concurrent_viewers] || attributes['peak_concurrent_viewers']
-          @unique_viewers = attributes[:unique_viewers] || attributes['unique_viewers']
-          @viewer_connections = attributes[:viewer_connections] || attributes['viewer_connections']
-          @concurrency_by_minute = attributes[:concurrency_by_minute] || attributes['concurrency_by_minute']
-          @peak_at = attributes[:peak_at] || attributes['peak_at'] || nil
-          @ramp_up_min_to_90pct_peak = attributes[:ramp_up_min_to_90pct_peak] || attributes['ramp_up_min_to_90pct_peak'] || nil
-          @retention_at_90pct_mark = attributes[:retention_at_90pct_mark] || attributes['retention_at_90pct_mark'] || nil
-          @retention_at_midpoint = attributes[:retention_at_midpoint] || attributes['retention_at_midpoint'] || nil
-          @shape = attributes[:shape] || attributes['shape'] || nil
+          @avg_concurrent_viewers = attributes.fetch(:avg_concurrent_viewers) { attributes.fetch('avg_concurrent_viewers', nil) }
+          @hours_watched = attributes.fetch(:hours_watched) { attributes.fetch('hours_watched', nil) }
+          @peak_concurrent_viewers = attributes.fetch(:peak_concurrent_viewers) { attributes.fetch('peak_concurrent_viewers', nil) }
+          @unique_viewers = attributes.fetch(:unique_viewers) { attributes.fetch('unique_viewers', nil) }
+          @viewer_connections = attributes.fetch(:viewer_connections) { attributes.fetch('viewer_connections', nil) }
+          @concurrency_by_minute = attributes.fetch(:concurrency_by_minute) { attributes.fetch('concurrency_by_minute', nil) }
+          @peak_at = attributes.fetch(:peak_at) { attributes.fetch('peak_at', nil) }
+          @ramp_up_min_to_90pct_peak = attributes.fetch(:ramp_up_min_to_90pct_peak) { attributes.fetch('ramp_up_min_to_90pct_peak', nil) }
+          @retention_at_90pct_mark = attributes.fetch(:retention_at_90pct_mark) { attributes.fetch('retention_at_90pct_mark', nil) }
+          @retention_at_midpoint = attributes.fetch(:retention_at_midpoint) { attributes.fetch('retention_at_midpoint', nil) }
+          @shape = attributes.fetch(:shape) { attributes.fetch('shape', nil) }
         end
 
         # Override field mappings for JSON serialization

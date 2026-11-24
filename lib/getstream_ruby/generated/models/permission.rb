@@ -46,17 +46,17 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @action = attributes[:action] || attributes['action']
-          @custom = attributes[:custom] || attributes['custom']
-          @description = attributes[:description] || attributes['description']
-          @id = attributes[:id] || attributes['id']
-          @level = attributes[:level] || attributes['level']
-          @name = attributes[:name] || attributes['name']
-          @owner = attributes[:owner] || attributes['owner']
-          @owner_resource = attributes[:owner_resource] || attributes['owner_resource']
-          @same_team = attributes[:same_team] || attributes['same_team']
-          @tags = attributes[:tags] || attributes['tags']
-          @condition = attributes[:condition] || attributes['condition'] || nil
+          @action = attributes.fetch(:action) { attributes.fetch('action', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
+          @description = attributes.fetch(:description) { attributes.fetch('description', nil) }
+          @id = attributes.fetch(:id) { attributes.fetch('id', nil) }
+          @level = attributes.fetch(:level) { attributes.fetch('level', nil) }
+          @name = attributes.fetch(:name) { attributes.fetch('name', nil) }
+          @owner = attributes.fetch(:owner) { attributes.fetch('owner', nil) }
+          @owner_resource = attributes.fetch(:owner_resource) { attributes.fetch('owner_resource', nil) }
+          @same_team = attributes.fetch(:same_team) { attributes.fetch('same_team', nil) }
+          @tags = attributes.fetch(:tags) { attributes.fetch('tags', nil) }
+          @condition = attributes.fetch(:condition) { attributes.fetch('condition', nil) }
         end
 
         # Override field mappings for JSON serialization

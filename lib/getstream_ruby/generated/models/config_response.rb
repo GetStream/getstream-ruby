@@ -27,6 +27,9 @@ module GetStream
         # @!attribute supported_video_call_harm_types
         #   @return [Array<String>]
         attr_accessor :supported_video_call_harm_types
+        # @!attribute published_version
+        #   @return [Integer] The version of this configuration moderation currently runs
+        attr_accessor :published_version
         # @!attribute ai_image_label_definitions
         #   @return [Array<AIImageLabelDefinition>] Configurable image moderation label definitions for dashboard rendering
         attr_accessor :ai_image_label_definitions
@@ -49,17 +52,23 @@ module GetStream
         #   @return [AIVideoConfigResponse]
         attr_accessor :ai_video_config
         # @!attribute automod_platform_circumvention_config
+        # @deprecated This field is deprecated.
         #   @return [AutomodPlatformCircumventionConfig]
         attr_accessor :automod_platform_circumvention_config
         # @!attribute automod_semantic_filters_config
+        # @deprecated This field is deprecated.
         #   @return [AutomodSemanticFiltersConfig]
         attr_accessor :automod_semantic_filters_config
         # @!attribute automod_toxicity_config
+        # @deprecated This field is deprecated.
         #   @return [AutomodToxicityConfig]
         attr_accessor :automod_toxicity_config
         # @!attribute block_list_config
         #   @return [BlockListConfig]
         attr_accessor :block_list_config
+        # @!attribute engine
+        #   @return [ModerationEngineConfigResponse]
+        attr_accessor :engine
         # @!attribute flood_config
         #   @return [FloodConfig]
         attr_accessor :flood_config
@@ -79,28 +88,30 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @async = attributes[:async] || attributes['async']
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @key = attributes[:key] || attributes['key']
-          @team = attributes[:team] || attributes['team']
-          @updated_at = attributes[:updated_at] || attributes['updated_at']
-          @supported_video_call_harm_types = attributes[:supported_video_call_harm_types] || attributes['supported_video_call_harm_types']
-          @ai_image_label_definitions = attributes[:ai_image_label_definitions] || attributes['ai_image_label_definitions'] || nil
-          @available_bodyguard_profiles = attributes[:available_bodyguard_profiles] || attributes['available_bodyguard_profiles'] || nil
-          @ai_audio_config = attributes[:ai_audio_config] || attributes['ai_audio_config'] || nil
-          @ai_image_config = attributes[:ai_image_config] || attributes['ai_image_config'] || nil
-          @ai_image_subclassifications = attributes[:ai_image_subclassifications] || attributes['ai_image_subclassifications'] || nil
-          @ai_text_config = attributes[:ai_text_config] || attributes['ai_text_config'] || nil
-          @ai_video_config = attributes[:ai_video_config] || attributes['ai_video_config'] || nil
-          @automod_platform_circumvention_config = attributes[:automod_platform_circumvention_config] || attributes['automod_platform_circumvention_config'] || nil
-          @automod_semantic_filters_config = attributes[:automod_semantic_filters_config] || attributes['automod_semantic_filters_config'] || nil
-          @automod_toxicity_config = attributes[:automod_toxicity_config] || attributes['automod_toxicity_config'] || nil
-          @block_list_config = attributes[:block_list_config] || attributes['block_list_config'] || nil
-          @flood_config = attributes[:flood_config] || attributes['flood_config'] || nil
-          @intent_config = attributes[:intent_config] || attributes['intent_config'] || nil
-          @llm_config = attributes[:llm_config] || attributes['llm_config'] || nil
-          @velocity_filter_config = attributes[:velocity_filter_config] || attributes['velocity_filter_config'] || nil
-          @video_call_rule_config = attributes[:video_call_rule_config] || attributes['video_call_rule_config'] || nil
+          @async = attributes.fetch(:async) { attributes.fetch('async', nil) }
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @key = attributes.fetch(:key) { attributes.fetch('key', nil) }
+          @team = attributes.fetch(:team) { attributes.fetch('team', nil) }
+          @updated_at = attributes.fetch(:updated_at) { attributes.fetch('updated_at', nil) }
+          @supported_video_call_harm_types = attributes.fetch(:supported_video_call_harm_types) { attributes.fetch('supported_video_call_harm_types', nil) }
+          @published_version = attributes.fetch(:published_version) { attributes.fetch('published_version', nil) }
+          @ai_image_label_definitions = attributes.fetch(:ai_image_label_definitions) { attributes.fetch('ai_image_label_definitions', nil) }
+          @available_bodyguard_profiles = attributes.fetch(:available_bodyguard_profiles) { attributes.fetch('available_bodyguard_profiles', nil) }
+          @ai_audio_config = attributes.fetch(:ai_audio_config) { attributes.fetch('ai_audio_config', nil) }
+          @ai_image_config = attributes.fetch(:ai_image_config) { attributes.fetch('ai_image_config', nil) }
+          @ai_image_subclassifications = attributes.fetch(:ai_image_subclassifications) { attributes.fetch('ai_image_subclassifications', nil) }
+          @ai_text_config = attributes.fetch(:ai_text_config) { attributes.fetch('ai_text_config', nil) }
+          @ai_video_config = attributes.fetch(:ai_video_config) { attributes.fetch('ai_video_config', nil) }
+          @automod_platform_circumvention_config = attributes.fetch(:automod_platform_circumvention_config) { attributes.fetch('automod_platform_circumvention_config', nil) }
+          @automod_semantic_filters_config = attributes.fetch(:automod_semantic_filters_config) { attributes.fetch('automod_semantic_filters_config', nil) }
+          @automod_toxicity_config = attributes.fetch(:automod_toxicity_config) { attributes.fetch('automod_toxicity_config', nil) }
+          @block_list_config = attributes.fetch(:block_list_config) { attributes.fetch('block_list_config', nil) }
+          @engine = attributes.fetch(:engine) { attributes.fetch('engine', nil) }
+          @flood_config = attributes.fetch(:flood_config) { attributes.fetch('flood_config', nil) }
+          @intent_config = attributes.fetch(:intent_config) { attributes.fetch('intent_config', nil) }
+          @llm_config = attributes.fetch(:llm_config) { attributes.fetch('llm_config', nil) }
+          @velocity_filter_config = attributes.fetch(:velocity_filter_config) { attributes.fetch('velocity_filter_config', nil) }
+          @video_call_rule_config = attributes.fetch(:video_call_rule_config) { attributes.fetch('video_call_rule_config', nil) }
         end
 
         # Override field mappings for JSON serialization
@@ -112,6 +123,7 @@ module GetStream
             team: 'team',
             updated_at: 'updated_at',
             supported_video_call_harm_types: 'supported_video_call_harm_types',
+            published_version: 'published_version',
             ai_image_label_definitions: 'ai_image_label_definitions',
             available_bodyguard_profiles: 'available_bodyguard_profiles',
             ai_audio_config: 'ai_audio_config',
@@ -123,6 +135,7 @@ module GetStream
             automod_semantic_filters_config: 'automod_semantic_filters_config',
             automod_toxicity_config: 'automod_toxicity_config',
             block_list_config: 'block_list_config',
+            engine: 'engine',
             flood_config: 'flood_config',
             intent_config: 'intent_config',
             llm_config: 'llm_config',

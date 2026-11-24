@@ -34,13 +34,13 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @duration = attributes[:duration] || attributes['duration']
-          @total_unread_count = attributes[:total_unread_count] || attributes['total_unread_count']
-          @total_unread_threads_count = attributes[:total_unread_threads_count] || attributes['total_unread_threads_count']
-          @channel_type = attributes[:channel_type] || attributes['channel_type']
-          @channels = attributes[:channels] || attributes['channels']
-          @threads = attributes[:threads] || attributes['threads']
-          @total_unread_count_by_team = attributes[:total_unread_count_by_team] || attributes['total_unread_count_by_team'] || nil
+          @duration = attributes.fetch(:duration) { attributes.fetch('duration', nil) }
+          @total_unread_count = attributes.fetch(:total_unread_count) { attributes.fetch('total_unread_count', nil) }
+          @total_unread_threads_count = attributes.fetch(:total_unread_threads_count) { attributes.fetch('total_unread_threads_count', nil) }
+          @channel_type = attributes.fetch(:channel_type) { attributes.fetch('channel_type', nil) }
+          @channels = attributes.fetch(:channels) { attributes.fetch('channels', nil) }
+          @threads = attributes.fetch(:threads) { attributes.fetch('threads', nil) }
+          @total_unread_count_by_team = attributes.fetch(:total_unread_count_by_team) { attributes.fetch('total_unread_count_by_team', nil) }
         end
 
         # Override field mappings for JSON serialization

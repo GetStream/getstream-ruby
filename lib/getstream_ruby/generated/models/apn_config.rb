@@ -43,16 +43,16 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @auth_key = attributes[:auth_key] || attributes['auth_key'] || nil
-          @auth_type = attributes[:auth_type] || attributes['auth_type'] || nil
-          @bundle_id = attributes[:bundle_id] || attributes['bundle_id'] || nil
-          @development = attributes[:development] || attributes['development'] || nil
-          @disabled = attributes[:disabled] || attributes['Disabled'] || nil
-          @host = attributes[:host] || attributes['host'] || nil
-          @key_id = attributes[:key_id] || attributes['key_id'] || nil
-          @notification_template = attributes[:notification_template] || attributes['notification_template'] || nil
-          @p12_cert = attributes[:p12_cert] || attributes['p12_cert'] || nil
-          @team_id = attributes[:team_id] || attributes['team_id'] || nil
+          @auth_key = attributes.fetch(:auth_key) { attributes.fetch('auth_key', nil) }
+          @auth_type = attributes.fetch(:auth_type) { attributes.fetch('auth_type', nil) }
+          @bundle_id = attributes.fetch(:bundle_id) { attributes.fetch('bundle_id', nil) }
+          @development = attributes.fetch(:development) { attributes.fetch('development', nil) }
+          @disabled = attributes.fetch(:disabled) { attributes.fetch('Disabled', nil) }
+          @host = attributes.fetch(:host) { attributes.fetch('host', nil) }
+          @key_id = attributes.fetch(:key_id) { attributes.fetch('key_id', nil) }
+          @notification_template = attributes.fetch(:notification_template) { attributes.fetch('notification_template', nil) }
+          @p12_cert = attributes.fetch(:p12_cert) { attributes.fetch('p12_cert', nil) }
+          @team_id = attributes.fetch(:team_id) { attributes.fetch('team_id', nil) }
         end
 
         # Override field mappings for JSON serialization

@@ -31,12 +31,12 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @duration = attributes[:duration] || attributes['duration']
-          @bans = attributes[:bans] || attributes['bans']
-          @next = attributes[:next] || attributes['next'] || nil
-          @prev = attributes[:prev] || attributes['prev'] || nil
-          @total = attributes[:total] || attributes['total'] || nil
-          @total_by_scope = attributes[:total_by_scope] || attributes['total_by_scope'] || nil
+          @duration = attributes.fetch(:duration) { attributes.fetch('duration', nil) }
+          @bans = attributes.fetch(:bans) { attributes.fetch('bans', nil) }
+          @next = attributes.fetch(:next) { attributes.fetch('next', nil) }
+          @prev = attributes.fetch(:prev) { attributes.fetch('prev', nil) }
+          @total = attributes.fetch(:total) { attributes.fetch('total', nil) }
+          @total_by_scope = attributes.fetch(:total_by_scope) { attributes.fetch('total_by_scope', nil) }
         end
 
         # Override field mappings for JSON serialization

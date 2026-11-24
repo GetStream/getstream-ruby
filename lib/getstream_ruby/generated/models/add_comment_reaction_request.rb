@@ -41,15 +41,15 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @type = attributes[:type] || attributes['type']
-          @copy_custom_to_notification = attributes[:copy_custom_to_notification] || attributes['copy_custom_to_notification'] || nil
-          @create_notification_activity = attributes[:create_notification_activity] || attributes['create_notification_activity'] || nil
-          @enforce_unique = attributes[:enforce_unique] || attributes['enforce_unique'] || nil
-          @skip_push = attributes[:skip_push] || attributes['skip_push'] || nil
-          @user_id = attributes[:user_id] || attributes['user_id'] || nil
-          @target_feeds = attributes[:target_feeds] || attributes['target_feeds'] || nil
-          @custom = attributes[:custom] || attributes['custom'] || nil
-          @user = attributes[:user] || attributes['user'] || nil
+          @type = attributes.fetch(:type) { attributes.fetch('type', nil) }
+          @copy_custom_to_notification = attributes.fetch(:copy_custom_to_notification) { attributes.fetch('copy_custom_to_notification', nil) }
+          @create_notification_activity = attributes.fetch(:create_notification_activity) { attributes.fetch('create_notification_activity', nil) }
+          @enforce_unique = attributes.fetch(:enforce_unique) { attributes.fetch('enforce_unique', nil) }
+          @skip_push = attributes.fetch(:skip_push) { attributes.fetch('skip_push', nil) }
+          @user_id = attributes.fetch(:user_id) { attributes.fetch('user_id', nil) }
+          @target_feeds = attributes.fetch(:target_feeds) { attributes.fetch('target_feeds', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
+          @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
         end
 
         # Override field mappings for JSON serialization

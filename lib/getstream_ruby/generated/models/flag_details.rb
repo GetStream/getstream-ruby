@@ -19,8 +19,8 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @original_text = attributes[:original_text] || attributes['original_text']
-          @automod = attributes[:automod] || attributes['automod'] || nil
+          @original_text = attributes.fetch(:original_text) { attributes.fetch('original_text', nil) }
+          @automod = attributes.fetch(:automod) { attributes.fetch('automod', nil) }
         end
 
         # Override field mappings for JSON serialization

@@ -46,17 +46,17 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @config_key = attributes[:config_key] || attributes['config_key']
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @created_by = attributes[:created_by] || attributes['created_by']
-          @id = attributes[:id] || attributes['id']
-          @mode = attributes[:mode] || attributes['mode']
-          @name = attributes[:name] || attributes['name']
-          @row_count = attributes[:row_count] || attributes['row_count']
-          @updated_at = attributes[:updated_at] || attributes['updated_at']
-          @team = attributes[:team] || attributes['team'] || nil
-          @rows = attributes[:rows] || attributes['rows'] || nil
-          @last_run = attributes[:last_run] || attributes['last_run'] || nil
+          @config_key = attributes.fetch(:config_key) { attributes.fetch('config_key', nil) }
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @created_by = attributes.fetch(:created_by) { attributes.fetch('created_by', nil) }
+          @id = attributes.fetch(:id) { attributes.fetch('id', nil) }
+          @mode = attributes.fetch(:mode) { attributes.fetch('mode', nil) }
+          @name = attributes.fetch(:name) { attributes.fetch('name', nil) }
+          @row_count = attributes.fetch(:row_count) { attributes.fetch('row_count', nil) }
+          @updated_at = attributes.fetch(:updated_at) { attributes.fetch('updated_at', nil) }
+          @team = attributes.fetch(:team) { attributes.fetch('team', nil) }
+          @rows = attributes.fetch(:rows) { attributes.fetch('rows', nil) }
+          @last_run = attributes.fetch(:last_run) { attributes.fetch('last_run', nil) }
         end
 
         # Override field mappings for JSON serialization

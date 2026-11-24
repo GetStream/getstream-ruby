@@ -55,20 +55,20 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @config_key = attributes[:config_key] || attributes['config_key']
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @id = attributes[:id] || attributes['id']
-          @rows_completed = attributes[:rows_completed] || attributes['rows_completed']
-          @rows_total = attributes[:rows_total] || attributes['rows_total']
-          @set_id = attributes[:set_id] || attributes['set_id']
-          @status = attributes[:status] || attributes['status']
-          @task_id = attributes[:task_id] || attributes['task_id']
-          @triggered_by = attributes[:triggered_by] || attributes['triggered_by']
-          @completed_at = attributes[:completed_at] || attributes['completed_at'] || nil
-          @config_updated_at = attributes[:config_updated_at] || attributes['config_updated_at'] || nil
-          @error_message = attributes[:error_message] || attributes['error_message'] || nil
-          @started_at = attributes[:started_at] || attributes['started_at'] || nil
-          @metrics = attributes[:metrics] || attributes['metrics'] || nil
+          @config_key = attributes.fetch(:config_key) { attributes.fetch('config_key', nil) }
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @id = attributes.fetch(:id) { attributes.fetch('id', nil) }
+          @rows_completed = attributes.fetch(:rows_completed) { attributes.fetch('rows_completed', nil) }
+          @rows_total = attributes.fetch(:rows_total) { attributes.fetch('rows_total', nil) }
+          @set_id = attributes.fetch(:set_id) { attributes.fetch('set_id', nil) }
+          @status = attributes.fetch(:status) { attributes.fetch('status', nil) }
+          @task_id = attributes.fetch(:task_id) { attributes.fetch('task_id', nil) }
+          @triggered_by = attributes.fetch(:triggered_by) { attributes.fetch('triggered_by', nil) }
+          @completed_at = attributes.fetch(:completed_at) { attributes.fetch('completed_at', nil) }
+          @config_updated_at = attributes.fetch(:config_updated_at) { attributes.fetch('config_updated_at', nil) }
+          @error_message = attributes.fetch(:error_message) { attributes.fetch('error_message', nil) }
+          @started_at = attributes.fetch(:started_at) { attributes.fetch('started_at', nil) }
+          @metrics = attributes.fetch(:metrics) { attributes.fetch('metrics', nil) }
         end
 
         # Override field mappings for JSON serialization

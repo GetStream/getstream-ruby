@@ -40,15 +40,15 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @cid = attributes[:cid] || attributes['cid']
-          @rating = attributes[:rating] || attributes['rating']
-          @reason = attributes[:reason] || attributes['reason']
-          @sdk = attributes[:sdk] || attributes['sdk']
-          @sdk_version = attributes[:sdk_version] || attributes['sdk_version']
-          @session_id = attributes[:session_id] || attributes['session_id']
-          @user_id = attributes[:user_id] || attributes['user_id']
-          @platform = attributes[:platform] || attributes['platform']
-          @custom = attributes[:custom] || attributes['custom'] || nil
+          @cid = attributes.fetch(:cid) { attributes.fetch('cid', nil) }
+          @rating = attributes.fetch(:rating) { attributes.fetch('rating', nil) }
+          @reason = attributes.fetch(:reason) { attributes.fetch('reason', nil) }
+          @sdk = attributes.fetch(:sdk) { attributes.fetch('sdk', nil) }
+          @sdk_version = attributes.fetch(:sdk_version) { attributes.fetch('sdk_version', nil) }
+          @session_id = attributes.fetch(:session_id) { attributes.fetch('session_id', nil) }
+          @user_id = attributes.fetch(:user_id) { attributes.fetch('user_id', nil) }
+          @platform = attributes.fetch(:platform) { attributes.fetch('platform', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
         end
 
         # Override field mappings for JSON serialization

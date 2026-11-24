@@ -24,15 +24,23 @@ module GetStream
         # @!attribute url
         #   @return [String]
         attr_accessor :url
+        # @!attribute language
+        #   @return [String]
+        attr_accessor :language
+        # @!attribute translated
+        #   @return [Boolean]
+        attr_accessor :translated
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @end_time = attributes[:end_time] || attributes['end_time']
-          @filename = attributes[:filename] || attributes['filename']
-          @session_id = attributes[:session_id] || attributes['session_id']
-          @start_time = attributes[:start_time] || attributes['start_time']
-          @url = attributes[:url] || attributes['url']
+          @end_time = attributes.fetch(:end_time) { attributes.fetch('end_time', nil) }
+          @filename = attributes.fetch(:filename) { attributes.fetch('filename', nil) }
+          @session_id = attributes.fetch(:session_id) { attributes.fetch('session_id', nil) }
+          @start_time = attributes.fetch(:start_time) { attributes.fetch('start_time', nil) }
+          @url = attributes.fetch(:url) { attributes.fetch('url', nil) }
+          @language = attributes.fetch(:language) { attributes.fetch('language', nil) }
+          @translated = attributes.fetch(:translated) { attributes.fetch('translated', nil) }
         end
 
         # Override field mappings for JSON serialization
@@ -42,7 +50,9 @@ module GetStream
             filename: 'filename',
             session_id: 'session_id',
             start_time: 'start_time',
-            url: 'url'
+            url: 'url',
+            language: 'language',
+            translated: 'translated'
           }
         end
       end

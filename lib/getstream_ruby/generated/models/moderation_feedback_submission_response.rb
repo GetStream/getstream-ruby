@@ -46,17 +46,17 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @item_count = attributes[:item_count] || attributes['item_count']
-          @matched_count = attributes[:matched_count] || attributes['matched_count']
-          @sent_count = attributes[:sent_count] || attributes['sent_count']
-          @items = attributes[:items] || attributes['items']
-          @entity_id = attributes[:entity_id] || attributes['entity_id'] || nil
-          @entity_type = attributes[:entity_type] || attributes['entity_type'] || nil
-          @reporter_id = attributes[:reporter_id] || attributes['reporter_id'] || nil
-          @review_queue_item_id = attributes[:review_queue_item_id] || attributes['review_queue_item_id'] || nil
-          @current_labels = attributes[:current_labels] || attributes['current_labels'] || nil
-          @expected_labels = attributes[:expected_labels] || attributes['expected_labels'] || nil
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @item_count = attributes.fetch(:item_count) { attributes.fetch('item_count', nil) }
+          @matched_count = attributes.fetch(:matched_count) { attributes.fetch('matched_count', nil) }
+          @sent_count = attributes.fetch(:sent_count) { attributes.fetch('sent_count', nil) }
+          @items = attributes.fetch(:items) { attributes.fetch('items', nil) }
+          @entity_id = attributes.fetch(:entity_id) { attributes.fetch('entity_id', nil) }
+          @entity_type = attributes.fetch(:entity_type) { attributes.fetch('entity_type', nil) }
+          @reporter_id = attributes.fetch(:reporter_id) { attributes.fetch('reporter_id', nil) }
+          @review_queue_item_id = attributes.fetch(:review_queue_item_id) { attributes.fetch('review_queue_item_id', nil) }
+          @current_labels = attributes.fetch(:current_labels) { attributes.fetch('current_labels', nil) }
+          @expected_labels = attributes.fetch(:expected_labels) { attributes.fetch('expected_labels', nil) }
         end
 
         # Override field mappings for JSON serialization

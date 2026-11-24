@@ -25,10 +25,10 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @latitude = attributes[:latitude] || attributes['latitude']
-          @longitude = attributes[:longitude] || attributes['longitude']
-          @created_by_device_id = attributes[:created_by_device_id] || attributes['created_by_device_id'] || nil
-          @end_at = attributes[:end_at] || attributes['end_at'] || nil
+          @latitude = attributes.fetch(:latitude) { attributes.fetch('latitude', nil) }
+          @longitude = attributes.fetch(:longitude) { attributes.fetch('longitude', nil) }
+          @created_by_device_id = attributes.fetch(:created_by_device_id) { attributes.fetch('created_by_device_id', nil) }
+          @end_at = attributes.fetch(:end_at) { attributes.fetch('end_at', nil) }
         end
 
         # Override field mappings for JSON serialization

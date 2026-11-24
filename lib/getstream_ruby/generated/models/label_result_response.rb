@@ -61,22 +61,22 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @category = attributes[:category] || attributes['category']
-          @content = attributes[:content] || attributes['content']
-          @content_type = attributes[:content_type] || attributes['content_type']
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @harm_type = attributes[:harm_type] || attributes['harm_type']
-          @id = attributes[:id] || attributes['id']
-          @language = attributes[:language] || attributes['language']
-          @recommended_action = attributes[:recommended_action] || attributes['recommended_action']
-          @severity = attributes[:severity] || attributes['severity']
-          @labels = attributes[:labels] || attributes['labels']
-          @content_id = attributes[:content_id] || attributes['content_id'] || nil
-          @directed_at = attributes[:directed_at] || attributes['directed_at'] || nil
-          @fully_masked_content = attributes[:fully_masked_content] || attributes['fully_masked_content'] || nil
-          @masked_content = attributes[:masked_content] || attributes['masked_content'] || nil
-          @policy = attributes[:policy] || attributes['policy'] || nil
-          @user_id = attributes[:user_id] || attributes['user_id'] || nil
+          @category = attributes.fetch(:category) { attributes.fetch('category', nil) }
+          @content = attributes.fetch(:content) { attributes.fetch('content', nil) }
+          @content_type = attributes.fetch(:content_type) { attributes.fetch('content_type', nil) }
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @harm_type = attributes.fetch(:harm_type) { attributes.fetch('harm_type', nil) }
+          @id = attributes.fetch(:id) { attributes.fetch('id', nil) }
+          @language = attributes.fetch(:language) { attributes.fetch('language', nil) }
+          @recommended_action = attributes.fetch(:recommended_action) { attributes.fetch('recommended_action', nil) }
+          @severity = attributes.fetch(:severity) { attributes.fetch('severity', nil) }
+          @labels = attributes.fetch(:labels) { attributes.fetch('labels', nil) }
+          @content_id = attributes.fetch(:content_id) { attributes.fetch('content_id', nil) }
+          @directed_at = attributes.fetch(:directed_at) { attributes.fetch('directed_at', nil) }
+          @fully_masked_content = attributes.fetch(:fully_masked_content) { attributes.fetch('fully_masked_content', nil) }
+          @masked_content = attributes.fetch(:masked_content) { attributes.fetch('masked_content', nil) }
+          @policy = attributes.fetch(:policy) { attributes.fetch('policy', nil) }
+          @user_id = attributes.fetch(:user_id) { attributes.fetch('user_id', nil) }
         end
 
         # Override field mappings for JSON serialization

@@ -28,11 +28,11 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @async = attributes[:async] || attributes['async'] || nil
-          @enabled = attributes[:enabled] || attributes['enabled'] || nil
-          @explicit_urls_only = attributes[:explicit_urls_only] || attributes['explicit_urls_only'] || nil
-          @match_substring = attributes[:match_substring] || attributes['match_substring'] || nil
-          @rules = attributes[:rules] || attributes['rules'] || nil
+          @async = attributes.fetch(:async) { attributes.fetch('async', nil) }
+          @enabled = attributes.fetch(:enabled) { attributes.fetch('enabled', nil) }
+          @explicit_urls_only = attributes.fetch(:explicit_urls_only) { attributes.fetch('explicit_urls_only', nil) }
+          @match_substring = attributes.fetch(:match_substring) { attributes.fetch('match_substring', nil) }
+          @rules = attributes.fetch(:rules) { attributes.fetch('rules', nil) }
         end
 
         # Override field mappings for JSON serialization

@@ -55,20 +55,20 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @action = attributes[:action] || attributes['action']
-          @ban_duration = attributes[:ban_duration] || attributes['ban_duration'] || nil
-          @cascading_action = attributes[:cascading_action] || attributes['cascading_action'] || nil
-          @cascading_threshold = attributes[:cascading_threshold] || attributes['cascading_threshold'] || nil
-          @check_message_context = attributes[:check_message_context] || attributes['check_message_context'] || nil
-          @fast_spam_threshold = attributes[:fast_spam_threshold] || attributes['fast_spam_threshold'] || nil
-          @fast_spam_ttl = attributes[:fast_spam_ttl] || attributes['fast_spam_ttl'] || nil
-          @ip_ban = attributes[:ip_ban] || attributes['ip_ban'] || nil
-          @probation_period = attributes[:probation_period] || attributes['probation_period'] || nil
-          @shadow_ban = attributes[:shadow_ban] || attributes['shadow_ban'] || nil
-          @slow_spam_ban_duration = attributes[:slow_spam_ban_duration] || attributes['slow_spam_ban_duration'] || nil
-          @slow_spam_threshold = attributes[:slow_spam_threshold] || attributes['slow_spam_threshold'] || nil
-          @slow_spam_ttl = attributes[:slow_spam_ttl] || attributes['slow_spam_ttl'] || nil
-          @url_only = attributes[:url_only] || attributes['url_only'] || nil
+          @action = attributes.fetch(:action) { attributes.fetch('action', nil) }
+          @ban_duration = attributes.fetch(:ban_duration) { attributes.fetch('ban_duration', nil) }
+          @cascading_action = attributes.fetch(:cascading_action) { attributes.fetch('cascading_action', nil) }
+          @cascading_threshold = attributes.fetch(:cascading_threshold) { attributes.fetch('cascading_threshold', nil) }
+          @check_message_context = attributes.fetch(:check_message_context) { attributes.fetch('check_message_context', nil) }
+          @fast_spam_threshold = attributes.fetch(:fast_spam_threshold) { attributes.fetch('fast_spam_threshold', nil) }
+          @fast_spam_ttl = attributes.fetch(:fast_spam_ttl) { attributes.fetch('fast_spam_ttl', nil) }
+          @ip_ban = attributes.fetch(:ip_ban) { attributes.fetch('ip_ban', nil) }
+          @probation_period = attributes.fetch(:probation_period) { attributes.fetch('probation_period', nil) }
+          @shadow_ban = attributes.fetch(:shadow_ban) { attributes.fetch('shadow_ban', nil) }
+          @slow_spam_ban_duration = attributes.fetch(:slow_spam_ban_duration) { attributes.fetch('slow_spam_ban_duration', nil) }
+          @slow_spam_threshold = attributes.fetch(:slow_spam_threshold) { attributes.fetch('slow_spam_threshold', nil) }
+          @slow_spam_ttl = attributes.fetch(:slow_spam_ttl) { attributes.fetch('slow_spam_ttl', nil) }
+          @url_only = attributes.fetch(:url_only) { attributes.fetch('url_only', nil) }
         end
 
         # Override field mappings for JSON serialization

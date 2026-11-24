@@ -34,13 +34,13 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @custom = attributes[:custom] || attributes['custom']
-          @user = attributes[:user] || attributes['user']
-          @type = attributes[:type] || attributes['type'] || "scheduled_message.failed"
-          @cid = attributes[:cid] || attributes['cid'] || nil
-          @received_at = attributes[:received_at] || attributes['received_at'] || nil
-          @scheduled_message = attributes[:scheduled_message] || attributes['scheduled_message'] || nil
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
+          @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
+          @type = attributes.fetch(:type) { attributes.fetch('type', "scheduled_message.failed") }
+          @cid = attributes.fetch(:cid) { attributes.fetch('cid', nil) }
+          @received_at = attributes.fetch(:received_at) { attributes.fetch('received_at', nil) }
+          @scheduled_message = attributes.fetch(:scheduled_message) { attributes.fetch('scheduled_message', nil) }
         end
 
         # Override field mappings for JSON serialization

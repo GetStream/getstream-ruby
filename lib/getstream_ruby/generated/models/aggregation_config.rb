@@ -25,10 +25,10 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @activities_sort = attributes[:activities_sort] || attributes['activities_sort'] || nil
-          @format = attributes[:format] || attributes['format'] || nil
-          @group_size = attributes[:group_size] || attributes['group_size'] || nil
-          @score_strategy = attributes[:score_strategy] || attributes['score_strategy'] || nil
+          @activities_sort = attributes.fetch(:activities_sort) { attributes.fetch('activities_sort', nil) }
+          @format = attributes.fetch(:format) { attributes.fetch('format', nil) }
+          @group_size = attributes.fetch(:group_size) { attributes.fetch('group_size', nil) }
+          @score_strategy = attributes.fetch(:score_strategy) { attributes.fetch('score_strategy', nil) }
         end
 
         # Override field mappings for JSON serialization

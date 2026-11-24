@@ -40,15 +40,15 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @analysis_type = attributes[:analysis_type] || attributes['analysis_type']
-          @score = attributes[:score] || attributes['score']
-          @indexed_fields = attributes[:indexed_fields] || attributes['indexed_fields']
-          @recommendations = attributes[:recommendations] || attributes['recommendations']
-          @unindexed_fields = attributes[:unindexed_fields] || attributes['unindexed_fields']
-          @unindexed_sort_fields = attributes[:unindexed_sort_fields] || attributes['unindexed_sort_fields']
-          @warnings = attributes[:warnings] || attributes['warnings']
-          @last_analyzed = attributes[:last_analyzed] || attributes['last_analyzed'] || nil
-          @scan_type = attributes[:scan_type] || attributes['scan_type'] || nil
+          @analysis_type = attributes.fetch(:analysis_type) { attributes.fetch('analysis_type', nil) }
+          @score = attributes.fetch(:score) { attributes.fetch('score', nil) }
+          @indexed_fields = attributes.fetch(:indexed_fields) { attributes.fetch('indexed_fields', nil) }
+          @recommendations = attributes.fetch(:recommendations) { attributes.fetch('recommendations', nil) }
+          @unindexed_fields = attributes.fetch(:unindexed_fields) { attributes.fetch('unindexed_fields', nil) }
+          @unindexed_sort_fields = attributes.fetch(:unindexed_sort_fields) { attributes.fetch('unindexed_sort_fields', nil) }
+          @warnings = attributes.fetch(:warnings) { attributes.fetch('warnings', nil) }
+          @last_analyzed = attributes.fetch(:last_analyzed) { attributes.fetch('last_analyzed', nil) }
+          @scan_type = attributes.fetch(:scan_type) { attributes.fetch('scan_type', nil) }
         end
 
         # Override field mappings for JSON serialization

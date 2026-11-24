@@ -60,6 +60,9 @@ module GetStream
         # @!attribute video
         #   @return [VideoSettingsResponse]
         attr_accessor :video
+        # @!attribute extra_opts
+        #   @return [Object]
+        attr_accessor :extra_opts
         # @!attribute ingress
         #   @return [IngressSettingsResponse]
         attr_accessor :ingress
@@ -67,24 +70,25 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @audio = attributes[:audio] || attributes['audio']
-          @backstage = attributes[:backstage] || attributes['backstage']
-          @broadcasting = attributes[:broadcasting] || attributes['broadcasting']
-          @encryption = attributes[:encryption] || attributes['encryption']
-          @frame_recording = attributes[:frame_recording] || attributes['frame_recording']
-          @geofencing = attributes[:geofencing] || attributes['geofencing']
-          @individual_recording = attributes[:individual_recording] || attributes['individual_recording']
-          @lifecycle = attributes[:lifecycle] || attributes['lifecycle']
-          @limits = attributes[:limits] || attributes['limits']
-          @raw_recording = attributes[:raw_recording] || attributes['raw_recording']
-          @recording = attributes[:recording] || attributes['recording']
-          @ring = attributes[:ring] || attributes['ring']
-          @screensharing = attributes[:screensharing] || attributes['screensharing']
-          @session = attributes[:session] || attributes['session']
-          @thumbnails = attributes[:thumbnails] || attributes['thumbnails']
-          @transcription = attributes[:transcription] || attributes['transcription']
-          @video = attributes[:video] || attributes['video']
-          @ingress = attributes[:ingress] || attributes['ingress'] || nil
+          @audio = attributes.fetch(:audio) { attributes.fetch('audio', nil) }
+          @backstage = attributes.fetch(:backstage) { attributes.fetch('backstage', nil) }
+          @broadcasting = attributes.fetch(:broadcasting) { attributes.fetch('broadcasting', nil) }
+          @encryption = attributes.fetch(:encryption) { attributes.fetch('encryption', nil) }
+          @frame_recording = attributes.fetch(:frame_recording) { attributes.fetch('frame_recording', nil) }
+          @geofencing = attributes.fetch(:geofencing) { attributes.fetch('geofencing', nil) }
+          @individual_recording = attributes.fetch(:individual_recording) { attributes.fetch('individual_recording', nil) }
+          @lifecycle = attributes.fetch(:lifecycle) { attributes.fetch('lifecycle', nil) }
+          @limits = attributes.fetch(:limits) { attributes.fetch('limits', nil) }
+          @raw_recording = attributes.fetch(:raw_recording) { attributes.fetch('raw_recording', nil) }
+          @recording = attributes.fetch(:recording) { attributes.fetch('recording', nil) }
+          @ring = attributes.fetch(:ring) { attributes.fetch('ring', nil) }
+          @screensharing = attributes.fetch(:screensharing) { attributes.fetch('screensharing', nil) }
+          @session = attributes.fetch(:session) { attributes.fetch('session', nil) }
+          @thumbnails = attributes.fetch(:thumbnails) { attributes.fetch('thumbnails', nil) }
+          @transcription = attributes.fetch(:transcription) { attributes.fetch('transcription', nil) }
+          @video = attributes.fetch(:video) { attributes.fetch('video', nil) }
+          @extra_opts = attributes.fetch(:extra_opts) { attributes.fetch('extra_opts', nil) }
+          @ingress = attributes.fetch(:ingress) { attributes.fetch('ingress', nil) }
         end
 
         # Override field mappings for JSON serialization
@@ -107,6 +111,7 @@ module GetStream
             thumbnails: 'thumbnails',
             transcription: 'transcription',
             video: 'video',
+            extra_opts: 'extra_opts',
             ingress: 'ingress'
           }
         end

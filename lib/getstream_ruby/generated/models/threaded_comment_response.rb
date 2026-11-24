@@ -103,36 +103,36 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @_object_id = attributes[:_object_id] || attributes['object_id']
-          @bookmark_count = attributes[:bookmark_count] || attributes['bookmark_count']
-          @confidence_score = attributes[:confidence_score] || attributes['confidence_score']
-          @created_at = attributes[:created_at] || attributes['created_at']
-          @downvote_count = attributes[:downvote_count] || attributes['downvote_count']
-          @hidden = attributes[:hidden] || attributes['hidden']
-          @id = attributes[:id] || attributes['id']
-          @object_type = attributes[:object_type] || attributes['object_type']
-          @reaction_count = attributes[:reaction_count] || attributes['reaction_count']
-          @reply_count = attributes[:reply_count] || attributes['reply_count']
-          @score = attributes[:score] || attributes['score']
-          @status = attributes[:status] || attributes['status']
-          @updated_at = attributes[:updated_at] || attributes['updated_at']
-          @upvote_count = attributes[:upvote_count] || attributes['upvote_count']
-          @mentioned_users = attributes[:mentioned_users] || attributes['mentioned_users']
-          @own_reactions = attributes[:own_reactions] || attributes['own_reactions']
-          @user = attributes[:user] || attributes['user']
-          @controversy_score = attributes[:controversy_score] || attributes['controversy_score'] || nil
-          @deleted_at = attributes[:deleted_at] || attributes['deleted_at'] || nil
-          @edited_at = attributes[:edited_at] || attributes['edited_at'] || nil
-          @parent_id = attributes[:parent_id] || attributes['parent_id'] || nil
-          @text = attributes[:text] || attributes['text'] || nil
-          @attachments = attributes[:attachments] || attributes['attachments'] || nil
-          @latest_reactions = attributes[:latest_reactions] || attributes['latest_reactions'] || nil
-          @replies = attributes[:replies] || attributes['replies'] || nil
-          @custom = attributes[:custom] || attributes['custom'] || nil
-          @i18n = attributes[:i18n] || attributes['i18n'] || nil
-          @meta = attributes[:meta] || attributes['meta'] || nil
-          @moderation = attributes[:moderation] || attributes['moderation'] || nil
-          @reaction_groups = attributes[:reaction_groups] || attributes['reaction_groups'] || nil
+          @_object_id = attributes.fetch(:_object_id) { attributes.fetch('object_id', nil) }
+          @bookmark_count = attributes.fetch(:bookmark_count) { attributes.fetch('bookmark_count', nil) }
+          @confidence_score = attributes.fetch(:confidence_score) { attributes.fetch('confidence_score', nil) }
+          @created_at = attributes.fetch(:created_at) { attributes.fetch('created_at', nil) }
+          @downvote_count = attributes.fetch(:downvote_count) { attributes.fetch('downvote_count', nil) }
+          @hidden = attributes.fetch(:hidden) { attributes.fetch('hidden', nil) }
+          @id = attributes.fetch(:id) { attributes.fetch('id', nil) }
+          @object_type = attributes.fetch(:object_type) { attributes.fetch('object_type', nil) }
+          @reaction_count = attributes.fetch(:reaction_count) { attributes.fetch('reaction_count', nil) }
+          @reply_count = attributes.fetch(:reply_count) { attributes.fetch('reply_count', nil) }
+          @score = attributes.fetch(:score) { attributes.fetch('score', nil) }
+          @status = attributes.fetch(:status) { attributes.fetch('status', nil) }
+          @updated_at = attributes.fetch(:updated_at) { attributes.fetch('updated_at', nil) }
+          @upvote_count = attributes.fetch(:upvote_count) { attributes.fetch('upvote_count', nil) }
+          @mentioned_users = attributes.fetch(:mentioned_users) { attributes.fetch('mentioned_users', nil) }
+          @own_reactions = attributes.fetch(:own_reactions) { attributes.fetch('own_reactions', nil) }
+          @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
+          @controversy_score = attributes.fetch(:controversy_score) { attributes.fetch('controversy_score', nil) }
+          @deleted_at = attributes.fetch(:deleted_at) { attributes.fetch('deleted_at', nil) }
+          @edited_at = attributes.fetch(:edited_at) { attributes.fetch('edited_at', nil) }
+          @parent_id = attributes.fetch(:parent_id) { attributes.fetch('parent_id', nil) }
+          @text = attributes.fetch(:text) { attributes.fetch('text', nil) }
+          @attachments = attributes.fetch(:attachments) { attributes.fetch('attachments', nil) }
+          @latest_reactions = attributes.fetch(:latest_reactions) { attributes.fetch('latest_reactions', nil) }
+          @replies = attributes.fetch(:replies) { attributes.fetch('replies', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
+          @i18n = attributes.fetch(:i18n) { attributes.fetch('i18n', nil) }
+          @meta = attributes.fetch(:meta) { attributes.fetch('meta', nil) }
+          @moderation = attributes.fetch(:moderation) { attributes.fetch('moderation', nil) }
+          @reaction_groups = attributes.fetch(:reaction_groups) { attributes.fetch('reaction_groups', nil) }
         end
 
         # Override field mappings for JSON serialization

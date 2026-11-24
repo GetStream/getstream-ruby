@@ -19,8 +19,8 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @inclusive = attributes[:inclusive] || attributes['inclusive']
-          @value = attributes[:value] || attributes['value']
+          @inclusive = attributes.fetch(:inclusive) { attributes.fetch('inclusive', nil) }
+          @value = attributes.fetch(:value) { attributes.fetch('value', nil) }
         end
 
         # Override field mappings for JSON serialization

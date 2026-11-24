@@ -37,14 +37,14 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @operation = attributes[:operation] || attributes['operation']
-          @filter = attributes[:filter] || attributes['filter']
-          @hide_history_before = attributes[:hide_history_before] || attributes['hide_history_before'] || nil
-          @synchronous = attributes[:synchronous] || attributes['synchronous'] || nil
-          @custom_unset = attributes[:custom_unset] || attributes['custom_unset'] || nil
-          @members = attributes[:members] || attributes['members'] || nil
-          @custom_set = attributes[:custom_set] || attributes['custom_set'] || nil
-          @data = attributes[:data] || attributes['data'] || nil
+          @operation = attributes.fetch(:operation) { attributes.fetch('operation', nil) }
+          @filter = attributes.fetch(:filter) { attributes.fetch('filter', nil) }
+          @hide_history_before = attributes.fetch(:hide_history_before) { attributes.fetch('hide_history_before', nil) }
+          @synchronous = attributes.fetch(:synchronous) { attributes.fetch('synchronous', nil) }
+          @custom_unset = attributes.fetch(:custom_unset) { attributes.fetch('custom_unset', nil) }
+          @members = attributes.fetch(:members) { attributes.fetch('members', nil) }
+          @custom_set = attributes.fetch(:custom_set) { attributes.fetch('custom_set', nil) }
+          @data = attributes.fetch(:data) { attributes.fetch('data', nil) }
         end
 
         # Override field mappings for JSON serialization

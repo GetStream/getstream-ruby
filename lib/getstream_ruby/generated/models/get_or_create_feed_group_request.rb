@@ -52,19 +52,19 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @default_follower_role = attributes[:default_follower_role] || attributes['default_follower_role'] || nil
-          @default_visibility = attributes[:default_visibility] || attributes['default_visibility'] || nil
-          @activity_processors = attributes[:activity_processors] || attributes['activity_processors'] || nil
-          @activity_selectors = attributes[:activity_selectors] || attributes['activity_selectors'] || nil
-          @activity_filter = attributes[:activity_filter] || attributes['activity_filter'] || nil
-          @activity_marks = attributes[:activity_marks] || attributes['activity_marks'] || nil
-          @activity_processing = attributes[:activity_processing] || attributes['activity_processing'] || nil
-          @aggregation = attributes[:aggregation] || attributes['aggregation'] || nil
-          @custom = attributes[:custom] || attributes['custom'] || nil
-          @notification = attributes[:notification] || attributes['notification'] || nil
-          @push_notification = attributes[:push_notification] || attributes['push_notification'] || nil
-          @ranking = attributes[:ranking] || attributes['ranking'] || nil
-          @stories = attributes[:stories] || attributes['stories'] || nil
+          @default_follower_role = attributes.fetch(:default_follower_role) { attributes.fetch('default_follower_role', nil) }
+          @default_visibility = attributes.fetch(:default_visibility) { attributes.fetch('default_visibility', nil) }
+          @activity_processors = attributes.fetch(:activity_processors) { attributes.fetch('activity_processors', nil) }
+          @activity_selectors = attributes.fetch(:activity_selectors) { attributes.fetch('activity_selectors', nil) }
+          @activity_filter = attributes.fetch(:activity_filter) { attributes.fetch('activity_filter', nil) }
+          @activity_marks = attributes.fetch(:activity_marks) { attributes.fetch('activity_marks', nil) }
+          @activity_processing = attributes.fetch(:activity_processing) { attributes.fetch('activity_processing', nil) }
+          @aggregation = attributes.fetch(:aggregation) { attributes.fetch('aggregation', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
+          @notification = attributes.fetch(:notification) { attributes.fetch('notification', nil) }
+          @push_notification = attributes.fetch(:push_notification) { attributes.fetch('push_notification', nil) }
+          @ranking = attributes.fetch(:ranking) { attributes.fetch('ranking', nil) }
+          @stories = attributes.fetch(:stories) { attributes.fetch('stories', nil) }
         end
 
         # Override field mappings for JSON serialization

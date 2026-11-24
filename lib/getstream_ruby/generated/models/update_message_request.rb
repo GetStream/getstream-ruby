@@ -22,9 +22,9 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @message = attributes[:message] || attributes['message']
-          @skip_enrich_url = attributes[:skip_enrich_url] || attributes['skip_enrich_url'] || nil
-          @skip_push = attributes[:skip_push] || attributes['skip_push'] || nil
+          @message = attributes.fetch(:message) { attributes.fetch('message', nil) }
+          @skip_enrich_url = attributes.fetch(:skip_enrich_url) { attributes.fetch('skip_enrich_url', nil) }
+          @skip_push = attributes.fetch(:skip_push) { attributes.fetch('skip_push', nil) }
         end
 
         # Override field mappings for JSON serialization

@@ -16,7 +16,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @s3_url = attributes[:s3_url] || attributes['s3_url'] || nil
+          @s3_url = attributes.fetch(:s3_url) { attributes.fetch('s3_url', nil) }
         end
 
         # Override field mappings for JSON serialization

@@ -52,19 +52,19 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @foreign_id = attributes[:foreign_id] || attributes['foreign_id'] || nil
-          @id = attributes[:id] || attributes['id'] || nil
-          @score = attributes[:score] || attributes['score'] || nil
-          @time = attributes[:time] || attributes['time'] || nil
-          @verb = attributes[:verb] || attributes['verb'] || nil
-          @to = attributes[:to] || attributes['to'] || nil
-          @actor = attributes[:actor] || attributes['actor'] || nil
-          @latest_reactions = attributes[:latest_reactions] || attributes['latest_reactions'] || nil
-          @object = attributes[:object] || attributes['object'] || nil
-          @origin = attributes[:origin] || attributes['origin'] || nil
-          @own_reactions = attributes[:own_reactions] || attributes['own_reactions'] || nil
-          @reaction_counts = attributes[:reaction_counts] || attributes['reaction_counts'] || nil
-          @target = attributes[:target] || attributes['target'] || nil
+          @foreign_id = attributes.fetch(:foreign_id) { attributes.fetch('foreign_id', nil) }
+          @id = attributes.fetch(:id) { attributes.fetch('id', nil) }
+          @score = attributes.fetch(:score) { attributes.fetch('score', nil) }
+          @time = attributes.fetch(:time) { attributes.fetch('time', nil) }
+          @verb = attributes.fetch(:verb) { attributes.fetch('verb', nil) }
+          @to = attributes.fetch(:to) { attributes.fetch('to', nil) }
+          @actor = attributes.fetch(:actor) { attributes.fetch('actor', nil) }
+          @latest_reactions = attributes.fetch(:latest_reactions) { attributes.fetch('latest_reactions', nil) }
+          @object = attributes.fetch(:object) { attributes.fetch('object', nil) }
+          @origin = attributes.fetch(:origin) { attributes.fetch('origin', nil) }
+          @own_reactions = attributes.fetch(:own_reactions) { attributes.fetch('own_reactions', nil) }
+          @reaction_counts = attributes.fetch(:reaction_counts) { attributes.fetch('reaction_counts', nil) }
+          @target = attributes.fetch(:target) { attributes.fetch('target', nil) }
         end
 
         # Override field mappings for JSON serialization

@@ -19,8 +19,8 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @skip_watched = attributes[:skip_watched] || attributes['skip_watched'] || nil
-          @track_watched = attributes[:track_watched] || attributes['track_watched'] || nil
+          @skip_watched = attributes.fetch(:skip_watched) { attributes.fetch('skip_watched', nil) }
+          @track_watched = attributes.fetch(:track_watched) { attributes.fetch('track_watched', nil) }
         end
 
         # Override field mappings for JSON serialization

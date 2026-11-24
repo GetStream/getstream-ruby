@@ -31,12 +31,12 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @type = attributes[:type] || attributes['type']
-          @id = attributes[:id] || attributes['id'] || nil
-          @team = attributes[:team] || attributes['team'] || nil
-          @members = attributes[:members] || attributes['members'] || nil
-          @members_template = attributes[:members_template] || attributes['members_template'] || nil
-          @custom = attributes[:custom] || attributes['custom'] || nil
+          @type = attributes.fetch(:type) { attributes.fetch('type', nil) }
+          @id = attributes.fetch(:id) { attributes.fetch('id', nil) }
+          @team = attributes.fetch(:team) { attributes.fetch('team', nil) }
+          @members = attributes.fetch(:members) { attributes.fetch('members', nil) }
+          @members_template = attributes.fetch(:members_template) { attributes.fetch('members_template', nil) }
+          @custom = attributes.fetch(:custom) { attributes.fetch('custom', nil) }
         end
 
         # Override field mappings for JSON serialization

@@ -16,7 +16,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
-          @count_over_time = attributes[:count_over_time] || attributes['count_over_time'] || nil
+          @count_over_time = attributes.fetch(:count_over_time) { attributes.fetch('count_over_time', nil) }
         end
 
         # Override field mappings for JSON serialization
