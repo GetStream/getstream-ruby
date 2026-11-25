@@ -1182,7 +1182,7 @@ module GetStream
         )
       end
 
-      # Deletes previously uploaded file
+      # Deletes previously uploaded file. A client can delete its own uploads; deleting another user's upload needs DeleteAttachmentGlobal for uploads of other users (by default, moderators and admins; in a multi-tenant app, within the uploader's team).
       #
       # @param url [String]
       # @return [Models::Response]
@@ -1217,7 +1217,7 @@ module GetStream
         )
       end
 
-      # Deletes previously uploaded image
+      # Deletes previously uploaded image. A client can delete its own uploads; deleting another user's upload needs DeleteAttachmentGlobal for uploads of other users (by default, moderators and admins; in a multi-tenant app, within the uploader's team).
       #
       # @param url [String]
       # @return [Models::Response]
