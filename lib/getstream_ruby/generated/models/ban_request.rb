@@ -21,6 +21,9 @@ module GetStream
         # @!attribute channel_cid
         #   @return [String] Channel where the ban applies
         attr_accessor :channel_cid
+        # @!attribute channel_type
+        #   @return [String] Ban the user from every channel of this type, including channels they join later. Cannot be combined with channel_cid, ip_ban, ban_from_future_channels, delete_messages or delete_reactions
+        attr_accessor :channel_type
         # @!attribute delete_messages
         #   @return [DeleteMessages] How a ban or user deletion treats the user's messages.
         attr_accessor :delete_messages
@@ -50,6 +53,7 @@ module GetStream
           @ban_from_future_channels = attributes.fetch(:ban_from_future_channels) { attributes.fetch('ban_from_future_channels', nil) }
           @banned_by_id = attributes.fetch(:banned_by_id) { attributes.fetch('banned_by_id', nil) }
           @channel_cid = attributes.fetch(:channel_cid) { attributes.fetch('channel_cid', nil) }
+          @channel_type = attributes.fetch(:channel_type) { attributes.fetch('channel_type', nil) }
           @delete_messages = attributes.fetch(:delete_messages) { attributes.fetch('delete_messages', nil) }
           @delete_reactions = attributes.fetch(:delete_reactions) { attributes.fetch('delete_reactions', nil) }
           @ip_ban = attributes.fetch(:ip_ban) { attributes.fetch('ip_ban', nil) }
@@ -66,6 +70,7 @@ module GetStream
             ban_from_future_channels: 'ban_from_future_channels',
             banned_by_id: 'banned_by_id',
             channel_cid: 'channel_cid',
+            channel_type: 'channel_type',
             delete_messages: 'delete_messages',
             delete_reactions: 'delete_reactions',
             ip_ban: 'ip_ban',
