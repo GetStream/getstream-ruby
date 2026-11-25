@@ -1476,6 +1476,22 @@ module GetStream
         )
       end
 
+      # Transcribes the voice recordings of a message that have no transcript yet. Transcription runs in the background: the transcript arrives in the attachment's voice_transcript field with message.updated. A recording that already has a transcript, or is already being transcribed, is not transcribed againSends events:- message.updated
+      #
+      # @param _id [String]
+      # @return [Models::TranscribeMessageResponse]
+      def transcribe_message(_id)
+        path = '/api/v2/chat/messages/{id}/transcribe'
+        # Replace path parameters
+        path = path.gsub('{id}', _id.to_s)
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path
+        )
+      end
+
       # Translates message to a given language using automated translation softwareSends events:- message.updated
       #
       # @param _id [String]
