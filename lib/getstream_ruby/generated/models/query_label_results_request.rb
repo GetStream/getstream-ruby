@@ -25,7 +25,7 @@ module GetStream
         #   @return [Array<SortParamRequest>] Sorting parameters
         attr_accessor :sort
         # @!attribute filter
-        #   @return [Object] Filter conditions
+        #   @return [Object] Filter conditions. keyword searches the moderated content: "$q" matches whole words, while "$contains" is a case-insensitive substring match (text inside unspaced CJK sentences, word roots, emoji and symbols). "$contains" requires a date_range or created_at window within the last 7 days, at most 1 day long, or 7 days when the filter also narrows language to at most 3 non-empty values. The 7-day window is best effort: a language that covers most of an app's results can still time out.
         attr_accessor :filter
         # @!attribute user
         #   @return [UserRequest] User request object

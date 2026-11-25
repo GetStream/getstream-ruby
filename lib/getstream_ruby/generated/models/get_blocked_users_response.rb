@@ -13,21 +13,26 @@ module GetStream
         #   @return [String] Duration of the request in milliseconds
         attr_accessor :duration
         # @!attribute blocks
-        #   @return [Array<BlockedUserResponse>] Array of blocked user object
+        #   @return [Array<BlockedUserResponse>] Blocked users on this page, oldest block first
         attr_accessor :blocks
+        # @!attribute next
+        #   @return [String] Cursor for the next page. Absent on the last page
+        attr_accessor :next
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @duration = attributes.fetch(:duration) { attributes.fetch('duration', nil) }
           @blocks = attributes.fetch(:blocks) { attributes.fetch('blocks', nil) }
+          @next = attributes.fetch(:next) { attributes.fetch('next', nil) }
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
             duration: 'duration',
-            blocks: 'blocks'
+            blocks: 'blocks',
+            next: 'next'
           }
         end
       end

@@ -24,6 +24,9 @@ module GetStream
         # @!attribute rules
         #   @return [Array<AWSRekognitionRule>]
         attr_accessor :rules
+        # @!attribute audio_config
+        #   @return [AIAudioConfigRequest]
+        attr_accessor :audio_config
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -33,6 +36,7 @@ module GetStream
           @ocr_rules = attributes.fetch(:ocr_rules) { attributes.fetch('ocr_rules', nil) }
           @ocr_severity_rules = attributes.fetch(:ocr_severity_rules) { attributes.fetch('ocr_severity_rules', nil) }
           @rules = attributes.fetch(:rules) { attributes.fetch('rules', nil) }
+          @audio_config = attributes.fetch(:audio_config) { attributes.fetch('audio_config', nil) }
         end
 
         # Override field mappings for JSON serialization
@@ -42,7 +46,8 @@ module GetStream
             enabled: 'enabled',
             ocr_rules: 'ocr_rules',
             ocr_severity_rules: 'ocr_severity_rules',
-            rules: 'rules'
+            rules: 'rules',
+            audio_config: 'audio_config'
           }
         end
       end
