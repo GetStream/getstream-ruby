@@ -10,7 +10,7 @@ module GetStream
 
         # Model attributes
         # @!attribute tag
-        #   @return [String] The interest tag; trimmed and lower-cased like activity interest_tags
+        #   @return [String] The interest tag; trimmed and lower-cased like activity interest_tags. Avoid commas: removing interests takes a comma-separated list, so a tag that contains a comma cannot be removed
         attr_accessor :tag
         # @!attribute weight
         #   @return [Float] Ranking weight between -1.0 (dislike) and 1.0 (like). Defaults to 1.0

@@ -1473,15 +1473,19 @@ module GetStream
         )
       end
 
-      # Get list of blocked Users
+      # Returns users blocked by one user, oldest block first. Page with limit (default 500, max 500) and next.
       #
       # @param user_id [String]
+      # @param limit [Integer]
+      # @param _next [String]
       # @return [Models::GetBlockedUsersResponse]
-      def get_blocked_users(user_id = nil)
+      def get_blocked_users(user_id = nil, limit = nil, _next = nil)
         path = '/api/v2/users/block'
         # Build query parameters
         query_params = {}
         query_params['user_id'] = user_id unless user_id.nil?
+        query_params['limit'] = limit unless limit.nil?
+        query_params['next'] = _next unless _next.nil?
 
         # Make the API request
         @client.make_request(

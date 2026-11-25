@@ -24,6 +24,9 @@ module GetStream
         # @!attribute ocr_severity_rules
         #   @return [Array<BodyguardRule>]
         attr_accessor :ocr_severity_rules
+        # @!attribute audio_config
+        #   @return [AIAudioConfigResponse]
+        attr_accessor :audio_config
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -33,6 +36,7 @@ module GetStream
           @async = attributes.fetch(:async) { attributes.fetch('async', nil) }
           @ocr_rules = attributes.fetch(:ocr_rules) { attributes.fetch('ocr_rules', nil) }
           @ocr_severity_rules = attributes.fetch(:ocr_severity_rules) { attributes.fetch('ocr_severity_rules', nil) }
+          @audio_config = attributes.fetch(:audio_config) { attributes.fetch('audio_config', nil) }
         end
 
         # Override field mappings for JSON serialization
@@ -42,7 +46,8 @@ module GetStream
             rules: 'rules',
             async: 'async',
             ocr_rules: 'ocr_rules',
-            ocr_severity_rules: 'ocr_severity_rules'
+            ocr_severity_rules: 'ocr_severity_rules',
+            audio_config: 'audio_config'
           }
         end
       end

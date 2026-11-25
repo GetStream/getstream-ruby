@@ -12,6 +12,9 @@ module GetStream
         # @!attribute user_id
         #   @return [String]
         attr_accessor :user_id
+        # @!attribute filter_conditions
+        #   @return [Object] Filter conditions to apply to the query
+        attr_accessor :filter_conditions
         # @!attribute read_by_channel
         #   @return [Hash<String, String>] Map of channel ID to last read message ID
         attr_accessor :read_by_channel
@@ -23,6 +26,7 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @user_id = attributes.fetch(:user_id) { attributes.fetch('user_id', nil) }
+          @filter_conditions = attributes.fetch(:filter_conditions) { attributes.fetch('filter_conditions', nil) }
           @read_by_channel = attributes.fetch(:read_by_channel) { attributes.fetch('read_by_channel', nil) }
           @user = attributes.fetch(:user) { attributes.fetch('user', nil) }
         end
@@ -31,6 +35,7 @@ module GetStream
         def self.json_field_mappings
           {
             user_id: 'user_id',
+            filter_conditions: 'filter_conditions',
             read_by_channel: 'read_by_channel',
             user: 'user'
           }
