@@ -14,6 +14,10 @@ module GetStreamRuby
     # free-form string (e.g. a transport error message that embeds the request
     # URL), value runs up to the next `&`, whitespace, or end of string.
     MESSAGE_SECRET_PATTERN = /\b(#{QUERY_PARAMS.join('|')})=[^&\s]*/i.freeze
+    # Control characters (C0, DEL, C1) plus the Unicode line/paragraph
+    # separators: anything a log sink or viewer may treat as a line break or
+    # terminal escape.
+    CONTROL_CHARS = /[[:cntrl:]  ]/.freeze
 
     module_function
 
@@ -51,6 +55,19 @@ module GetStreamRuby
       return string if string.nil? || string.empty?
 
       string.gsub(MESSAGE_SECRET_PATTERN) { "#{Regexp.last_match(1)}=#{REDACTED}" }
+    end
+
+    # Makes a log line single-line and inert: every control character is
+    # replaced by its escaped form (CR -> `\r`, LF -> `\n`, ESC -> `\e`, ...),
+    # so a value echoed into a log event (path, query, error message, body)
+    # can't forge extra log lines or inject terminal escape sequences.
+    # Non-UTF-8 input (e.g. a binary response body) is scrubbed first so the
+    # match itself can't raise.
+    def sanitize(value)
+      string = value.to_s
+      string = string.dup.force_encoding(Encoding::UTF_8) unless string.encoding == Encoding::UTF_8
+      string = string.scrub unless string.valid_encoding?
+      string.gsub(CONTROL_CHARS) { |char| char.dump[1..-2] }
     end
 
   end
