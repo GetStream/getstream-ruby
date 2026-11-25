@@ -27,6 +27,9 @@ module GetStream
         # @!attribute disable_flagging_reviewed_entity
         #   @return [Boolean]
         attr_accessor :disable_flagging_reviewed_entity
+        # @!attribute disable_review_queue
+        #   @return [Boolean]
+        attr_accessor :disable_review_queue
         # @!attribute enforce_shadow_server_side
         #   @return [Boolean]
         attr_accessor :enforce_shadow_server_side
@@ -73,6 +76,7 @@ module GetStream
           @disable_action_logs = attributes.fetch(:disable_action_logs) { attributes.fetch('disable_action_logs', nil) }
           @disable_audit_logs = attributes.fetch(:disable_audit_logs) { attributes.fetch('disable_audit_logs', nil) }
           @disable_flagging_reviewed_entity = attributes.fetch(:disable_flagging_reviewed_entity) { attributes.fetch('disable_flagging_reviewed_entity', nil) }
+          @disable_review_queue = attributes.fetch(:disable_review_queue) { attributes.fetch('disable_review_queue', nil) }
           @enforce_shadow_server_side = attributes.fetch(:enforce_shadow_server_side) { attributes.fetch('enforce_shadow_server_side', nil) }
           @escalation_queue_enabled = attributes.fetch(:escalation_queue_enabled) { attributes.fetch('escalation_queue_enabled', nil) }
           @flag_user_on_flagged_content = attributes.fetch(:flag_user_on_flagged_content) { attributes.fetch('flag_user_on_flagged_content', nil) }
@@ -96,6 +100,7 @@ module GetStream
             disable_action_logs: 'disable_action_logs',
             disable_audit_logs: 'disable_audit_logs',
             disable_flagging_reviewed_entity: 'disable_flagging_reviewed_entity',
+            disable_review_queue: 'disable_review_queue',
             enforce_shadow_server_side: 'enforce_shadow_server_side',
             escalation_queue_enabled: 'escalation_queue_enabled',
             flag_user_on_flagged_content: 'flag_user_on_flagged_content',

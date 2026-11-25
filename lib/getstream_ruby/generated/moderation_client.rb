@@ -1114,8 +1114,9 @@ module GetStream
       # @param channel_cid [String]
       # @param created_by [String]
       # @param remove_future_channels_ban [Boolean]
+      # @param channel_type [String]
       # @return [Models::UnbanResponse]
-      def unban(unban_request, target_user_id, channel_cid = nil, created_by = nil, remove_future_channels_ban = nil)
+      def unban(unban_request, target_user_id, channel_cid = nil, created_by = nil, remove_future_channels_ban = nil, channel_type = nil)
         path = '/api/v2/moderation/unban'
         # Build query parameters
         query_params = {}
@@ -1123,6 +1124,7 @@ module GetStream
         query_params['channel_cid'] = channel_cid unless channel_cid.nil?
         query_params['created_by'] = created_by unless created_by.nil?
         query_params['remove_future_channels_ban'] = remove_future_channels_ban unless remove_future_channels_ban.nil?
+        query_params['channel_type'] = channel_type unless channel_type.nil?
         # Build request body
         body = unban_request
 
