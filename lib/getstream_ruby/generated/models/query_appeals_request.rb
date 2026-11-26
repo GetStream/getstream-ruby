@@ -9,6 +9,9 @@ module GetStream
       class QueryAppealsRequest < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute include_count
+        #   @return [Boolean] Whether to also return the number of appeals matching the filter (total and capped). Set limit to 0 to get only the count. Not returned for team-scoped moderators, or when the count fails.
+        attr_accessor :include_count
         # @!attribute limit
         #   @return [Integer]
         attr_accessor :limit
@@ -34,6 +37,7 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @include_count = attributes.fetch(:include_count) { attributes.fetch('include_count', nil) }
           @limit = attributes.fetch(:limit) { attributes.fetch('limit', nil) }
           @next = attributes.fetch(:next) { attributes.fetch('next', nil) }
           @prev = attributes.fetch(:prev) { attributes.fetch('prev', nil) }
@@ -46,6 +50,7 @@ module GetStream
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            include_count: 'include_count',
             limit: 'limit',
             next: 'next',
             prev: 'prev',

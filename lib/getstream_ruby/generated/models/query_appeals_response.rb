@@ -15,20 +15,28 @@ module GetStream
         # @!attribute items
         #   @return [Array<AppealItemResponse>] List of Appeal Items
         attr_accessor :items
+        # @!attribute capped
+        #   @return [Boolean] Whether more appeals match than are counted exactly (1,000), so total is a lower bound. Returned when include_count is set.
+        attr_accessor :capped
         # @!attribute next
         #   @return [String]
         attr_accessor :next
         # @!attribute prev
         #   @return [String]
         attr_accessor :prev
+        # @!attribute total
+        #   @return [Integer] Number of appeals matching the filter, returned when include_count is set. When capped is true, at least this many appeals match.
+        attr_accessor :total
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @duration = attributes.fetch(:duration) { attributes.fetch('duration', nil) }
           @items = attributes.fetch(:items) { attributes.fetch('items', nil) }
+          @capped = attributes.fetch(:capped) { attributes.fetch('capped', nil) }
           @next = attributes.fetch(:next) { attributes.fetch('next', nil) }
           @prev = attributes.fetch(:prev) { attributes.fetch('prev', nil) }
+          @total = attributes.fetch(:total) { attributes.fetch('total', nil) }
         end
 
         # Override field mappings for JSON serialization
@@ -36,8 +44,10 @@ module GetStream
           {
             duration: 'duration',
             items: 'items',
+            capped: 'capped',
             next: 'next',
-            prev: 'prev'
+            prev: 'prev',
+            total: 'total'
           }
         end
       end
