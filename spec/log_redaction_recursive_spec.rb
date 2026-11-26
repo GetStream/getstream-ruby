@@ -3,8 +3,11 @@
 require 'spec_helper'
 
 RSpec.describe GetStreamRuby::LogRedaction do
+
   describe '.redact_json_body recursive redaction' do
+
     it 'redacts nested and pattern-matched sensitive keys in hashes and arrays' do
+
       payload = JSON.generate(
         access_token: 'tok-123',
         keep: 'visible',
@@ -27,6 +30,9 @@ RSpec.describe GetStreamRuby::LogRedaction do
       expect(parsed['storage']['bucket']).to eq('my-bucket')
       expect(parsed['items'][0]['apn_auth_key']).to eq('<redacted>')
       expect(parsed['items'][0]['name']).to eq('ios')
+
     end
+
   end
+
 end

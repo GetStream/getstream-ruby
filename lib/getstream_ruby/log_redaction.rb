@@ -42,6 +42,7 @@ module GetStreamRuby
       when Hash
         changed = false
         redacted = value.each_with_object({}) do |(k, v), acc|
+
           if sensitive_key?(k)
             acc[k] = REDACTED
             changed = true
@@ -50,14 +51,17 @@ module GetStreamRuby
             acc[k] = child
             changed ||= child_changed
           end
+
         end
         [redacted, changed]
       when Array
         changed = false
         redacted = value.map do |item|
+
           child, child_changed = redact_value(item)
           changed ||= child_changed
           child
+
         end
         [redacted, changed]
       else
