@@ -15,6 +15,9 @@ module GetStream
         # @!attribute android
         #   @return [Hash<String, LimitInfoResponse>] Map of endpoint rate limits for the Android platform
         attr_accessor :android
+        # @!attribute budgets
+        #   @return [BudgetsResponse]
+        attr_accessor :budgets
         # @!attribute ios
         #   @return [Hash<String, LimitInfoResponse>] Map of endpoint rate limits for the iOS platform
         attr_accessor :ios
@@ -39,6 +42,7 @@ module GetStream
           super(attributes)
           @duration = attributes.fetch(:duration) { attributes.fetch('duration', nil) }
           @android = attributes.fetch(:android) { attributes.fetch('android', nil) }
+          @budgets = attributes.fetch(:budgets) { attributes.fetch('budgets', nil) }
           @ios = attributes.fetch(:ios) { attributes.fetch('ios', nil) }
           @server_side = attributes.fetch(:server_side) { attributes.fetch('server_side', nil) }
           @unity = attributes.fetch(:unity) { attributes.fetch('unity', nil) }
@@ -52,6 +56,7 @@ module GetStream
           {
             duration: 'duration',
             android: 'android',
+            budgets: 'budgets',
             ios: 'ios',
             server_side: 'server_side',
             unity: 'unity',
