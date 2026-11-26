@@ -27,12 +27,13 @@ module GetStreamRuby
     end
 
     def valid?
-      api_key && api_secret
+      !api_key.nil? && !api_key.to_s.strip.empty? &&
+        !api_secret.nil? && !api_secret.to_s.strip.empty?
     end
 
     def validate!
-      raise ConfigurationError, 'API key is required' unless api_key
-      raise ConfigurationError, 'API secret is required' unless api_secret
+      raise ConfigurationError, 'API key is required' if api_key.nil? || api_key.to_s.strip.empty?
+      raise ConfigurationError, 'API secret is required' if api_secret.nil? || api_secret.to_s.strip.empty?
     end
 
     def dup
