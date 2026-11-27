@@ -15,19 +15,24 @@ module GetStream
         # @!attribute feed_groups
         #   @return [Array<String>]
         attr_accessor :feed_groups
+        # @!attribute filter_conditions
+        #   @return [Object] Activities must match every condition to be deleted.
+        attr_accessor :filter_conditions
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @max_age_hours = attributes.fetch(:max_age_hours) { attributes.fetch('max_age_hours', nil) }
           @feed_groups = attributes.fetch(:feed_groups) { attributes.fetch('feed_groups', nil) }
+          @filter_conditions = attributes.fetch(:filter_conditions) { attributes.fetch('filter_conditions', nil) }
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
             max_age_hours: 'max_age_hours',
-            feed_groups: 'feed_groups'
+            feed_groups: 'feed_groups',
+            filter_conditions: 'filter_conditions'
           }
         end
       end

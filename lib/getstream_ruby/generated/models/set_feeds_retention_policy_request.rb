@@ -21,6 +21,9 @@ module GetStream
         # @!attribute feed_groups
         #   @return [Array<String>]
         attr_accessor :feed_groups
+        # @!attribute filter_conditions
+        #   @return [Object] Limits deletion to activities matching every condition; expires_at supports only $exists: true. Not allowed on old-activities. Omitted or null keeps the stored filter; {} removes it.
+        attr_accessor :filter_conditions
 
         # Initialize with attributes
         def initialize(attributes = {})
@@ -29,6 +32,7 @@ module GetStream
           @policy = attributes.fetch(:policy) { attributes.fetch('policy', nil) }
           @enabled = attributes.fetch(:enabled) { attributes.fetch('enabled', nil) }
           @feed_groups = attributes.fetch(:feed_groups) { attributes.fetch('feed_groups', nil) }
+          @filter_conditions = attributes.fetch(:filter_conditions) { attributes.fetch('filter_conditions', nil) }
         end
 
         # Override field mappings for JSON serialization
@@ -37,7 +41,8 @@ module GetStream
             max_age_hours: 'max_age_hours',
             policy: 'policy',
             enabled: 'enabled',
-            feed_groups: 'feed_groups'
+            feed_groups: 'feed_groups',
+            filter_conditions: 'filter_conditions'
           }
         end
       end

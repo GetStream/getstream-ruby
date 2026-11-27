@@ -25,7 +25,7 @@ module GetStream
         #   @return [Integer] 1-based position of the activity in that feed read. A value below 1 fails only this event. Accepted but not stored yet.
         attr_accessor :position
         # @!attribute request_id
-        #   @return [String] The request_id returned by the feed read that showed the activity. An invalid, expired (older than 48h) or future-dated (more than 5 minutes ahead) value fails only this event. Impressions sent with a valid request_id feed ranking, are not added to the activity's metrics.impressions, and must use a delta of 1.
+        #   @return [String] The request_id returned by the feed read that showed the activity. An invalid, expired (older than 48h) or future-dated (more than 5 minutes ahead) value fails only this event. Impressions sent with a valid request_id must use a delta of 1 and feed For You engagement analytics. In apps that use feed impressions (exploration or impressions_bucket) they feed ranking and are not added to the activity's metrics.impressions; with For You analytics on and no feed impressions they are added as without a request_id.
         attr_accessor :request_id
 
         # Initialize with attributes

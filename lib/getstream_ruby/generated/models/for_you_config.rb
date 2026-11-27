@@ -9,6 +9,9 @@ module GetStream
       class ForYouConfig < GetStream::BaseModel
 
         # Model attributes
+        # @!attribute analytics
+        #   @return [Boolean] Counts engagement per feed view and experiment. Requires enabled and a plan with activity metrics
+        attr_accessor :analytics
         # @!attribute enabled
         #   @return [Boolean] Turns For You ranking on. Groups: only the non-aggregated 'foryou' group. Views: applies only when read on that group
         attr_accessor :enabled
@@ -21,6 +24,9 @@ module GetStream
         # @!attribute dwell
         #   @return [ForYouDwellConfig]
         attr_accessor :dwell
+        # @!attribute experiment
+        #   @return [ForYouExperimentConfig]
+        attr_accessor :experiment
         # @!attribute exploration
         #   @return [ForYouExplorationConfig]
         attr_accessor :exploration
@@ -28,20 +34,24 @@ module GetStream
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
+          @analytics = attributes.fetch(:analytics) { attributes.fetch('analytics', nil) }
           @enabled = attributes.fetch(:enabled) { attributes.fetch('enabled', nil) }
           @preset = attributes.fetch(:preset) { attributes.fetch('preset', nil) }
           @trending = attributes.fetch(:trending) { attributes.fetch('trending', nil) }
           @dwell = attributes.fetch(:dwell) { attributes.fetch('dwell', nil) }
+          @experiment = attributes.fetch(:experiment) { attributes.fetch('experiment', nil) }
           @exploration = attributes.fetch(:exploration) { attributes.fetch('exploration', nil) }
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
+            analytics: 'analytics',
             enabled: 'enabled',
             preset: 'preset',
             trending: 'trending',
             dwell: 'dwell',
+            experiment: 'experiment',
             exploration: 'exploration'
           }
         end
