@@ -12,6 +12,9 @@ module GetStream
         # @!attribute hide
         #   @return [Boolean] Whether to hide this activity
         attr_accessor :hide
+        # @!attribute request_id
+        #   @return [String] From the feed response; attributes the hide to the feed's view
+        attr_accessor :request_id
         # @!attribute show_less
         #   @return [Boolean] Whether to show less content like this
         attr_accessor :show_less
@@ -29,6 +32,7 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @hide = attributes.fetch(:hide) { attributes.fetch('hide', nil) }
+          @request_id = attributes.fetch(:request_id) { attributes.fetch('request_id', nil) }
           @show_less = attributes.fetch(:show_less) { attributes.fetch('show_less', nil) }
           @show_more = attributes.fetch(:show_more) { attributes.fetch('show_more', nil) }
           @user_id = attributes.fetch(:user_id) { attributes.fetch('user_id', nil) }
@@ -39,6 +43,7 @@ module GetStream
         def self.json_field_mappings
           {
             hide: 'hide',
+            request_id: 'request_id',
             show_less: 'show_less',
             show_more: 'show_more',
             user_id: 'user_id',

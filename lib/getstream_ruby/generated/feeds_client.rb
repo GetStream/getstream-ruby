@@ -2223,7 +2223,7 @@ module GetStream
         )
       end
 
-      # Creates or updates a feeds retention policy for the app (an app may have multiple, each scoped to feed groups). Server-side only.
+      # Creates or updates a feeds retention policy for the app (an app may have multiple, each scoped to feed groups and, except old-activities, optionally narrowed by filter_conditions). Server-side only.
       #
       # @param set_feeds_retention_policy_request [SetFeedsRetentionPolicyRequest]
       # @return [Models::SetFeedsRetentionPolicyResponse]
@@ -2390,6 +2390,23 @@ module GetStream
         @client.make_request(
           :post,
           path
+        )
+      end
+
+      # Retrieve For You engagement statistics (reads, users, impressions, clicks, dwell, hides) per view and experiment, aggregated by day.users.total counts user-days.Requires a paid Feeds plan (403 otherwise).limit is the maximum number of series (one per group, view and experiment), not rows; it never cuts a series. A metric's days with no events are omitted from its daily values.This endpoint is not paginated: it is a bounded report over one group's views and experiments for at most 396 days, and limit x days must not exceed 10,000 (the default limit always fits).This endpoint is server-side only.
+      #
+      # @param query_feeds_engagement_stats_request [QueryFeedsEngagementStatsRequest]
+      # @return [Models::QueryFeedsEngagementStatsResponse]
+      def query_feeds_engagement_stats(query_feeds_engagement_stats_request)
+        path = '/api/v2/feeds/stats/engagement'
+        # Build request body
+        body = query_feeds_engagement_stats_request
+
+        # Make the API request
+        @client.make_request(
+          :post,
+          path,
+          body: body
         )
       end
 

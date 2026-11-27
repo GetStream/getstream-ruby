@@ -216,6 +216,9 @@ module GetStream
         # @!attribute message_marks
         #   @return [MessageMarksConfig] The app's message marks policy: the mark types it defines or overrides, and the privacy switch. The channel type's mark_types says which of them are on in its channels.
         attr_accessor :message_marks
+        # @!attribute message_schema
+        #   @return [MessageSchemaSettings] The app's message schema settings: how strictly messages and reactions are checked, and the JSON Schemas they are checked against.
+        attr_accessor :message_schema
         # @!attribute moderation_dashboard_preferences
         #   @return [ModerationDashboardPreferences]
         attr_accessor :moderation_dashboard_preferences
@@ -292,6 +295,7 @@ module GetStream
           @datadog_info = attributes.fetch(:datadog_info) { attributes.fetch('datadog_info', nil) }
           @effective_agent_review = attributes.fetch(:effective_agent_review) { attributes.fetch('effective_agent_review', nil) }
           @message_marks = attributes.fetch(:message_marks) { attributes.fetch('message_marks', nil) }
+          @message_schema = attributes.fetch(:message_schema) { attributes.fetch('message_schema', nil) }
           @moderation_dashboard_preferences = attributes.fetch(:moderation_dashboard_preferences) { attributes.fetch('moderation_dashboard_preferences', nil) }
         end
 
@@ -367,6 +371,7 @@ module GetStream
             datadog_info: 'datadog_info',
             effective_agent_review: 'effective_agent_review',
             message_marks: 'message_marks',
+            message_schema: 'message_schema',
             moderation_dashboard_preferences: 'moderation_dashboard_preferences'
           }
         end
