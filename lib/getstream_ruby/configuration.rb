@@ -83,7 +83,10 @@ module GetStreamRuby
     def warn_pool_fallback(fallback_adapter, error)
       warn_logger = @logger || Logger.new($stdout).tap { |l| l.level = Logger::WARN }
       warn_logger.warn(
-        "Falling back to #{fallback_adapter}: could not configure net_http_persistent (#{error.message})",
+        LogRedaction.sanitize(
+          "Falling back to #{fallback_adapter}: could not configure net_http_persistent " \
+          "(#{LogRedaction.redact_message(error.message)})",
+        ),
       )
     end
 

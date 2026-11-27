@@ -198,29 +198,29 @@ module GetStreamRuby
     end
 
     def make_request(method, path, query_params: nil, body: nil, request_timeout: nil)
-      # Handle query parameters
-      if query_params && !query_params.empty?
-        query_string = query_params.map { |k, v| "#{k}=#{query_value(v)}" }.join('&')
-        path = "#{path}?#{query_string}"
-      end
-
-      # Make the request
-      request(method, path, body, request_timeout: request_timeout)
+      # Query params stay a Hash all the way to Faraday (which URL-encodes
+      # them) instead of being baked into `path`, so request logging sees
+      # them as params and can redact them.
+      params = (query_params || {}).to_h { |k, v| [k.to_s, query_value(v)] }
+      request(method, path, body, request_timeout: request_timeout, query_params: params)
     end
 
     private
 
+    # Serializes one query value to its wire string, unencoded (Faraday
+    # URL-encodes it): times as RFC 3339, scalar lists comma-separated,
+    # anything structured as JSON.
     def query_value(value)
-      return URI.encode_www_form_component(value.iso8601(9)) if value.is_a?(Time) || value.is_a?(DateTime)
-      return URI.encode_www_form_component(value) unless [Array, Hash, GetStream::BaseModel].any? { |k| value.is_a?(k) }
+      return value.iso8601(9) if value.is_a?(Time) || value.is_a?(DateTime)
+      return value.to_s unless [Array, Hash, GetStream::BaseModel].any? { |k| value.is_a?(k) }
 
       scalars = value.is_a?(Array) && value.all? { |e| e.is_a?(String) || e.is_a?(Numeric) || e == true || e == false }
-      URI.encode_www_form_component(scalars ? value.join(',') : value.to_json)
+      scalars ? value.join(',') : value.to_json
     end
 
-    def request(method, path, data = {}, request_timeout: nil)
-      # Add API key to query parameters
-      query_params = { api_key: @configuration.api_key }
+    def request(method, path, data = {}, request_timeout: nil, query_params: {})
+      # The SDK's own api_key always wins over a caller-supplied one.
+      query_params = query_params.merge('api_key' => @configuration.api_key)
 
       # Check if this is a file upload request that needs multipart
       return make_multipart_request(method, path, query_params, data) if multipart_request?(data)

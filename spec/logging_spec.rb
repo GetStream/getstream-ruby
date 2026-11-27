@@ -128,4 +128,77 @@ RSpec.describe 'structured logging' do
 
   end
 
+  # SEC-2535: caller query params used to be baked into url.path, bypassing
+  # redact_query; they must now land in url.query and be redacted there.
+  it 'redacts secret caller query params and keeps them out of url.path' do
+
+    stubs = Faraday::Adapter::Test::Stubs.new { |s| s.get(%r{/x}) { [200, {}, '{}'] } }
+    logger, io = recorder
+    build(stubs, logger: logger).make_request(:get, '/x', query_params: { token: 'CALLERTOKEN', user_id: 'u1' })
+    sent = io.string.lines.find { |l| l.include?('http.request.sent') }
+    expect(sent).to include('url.path=/x url.query=')
+    expect(sent).to include('token=<redacted>').and include('user_id=u1').and include('api_key=<redacted>')
+    expect(io.string).not_to include('CALLERTOKEN')
+
+  end
+
+  it 'redacts secrets in a caller-built path' do
+
+    stubs = Faraday::Adapter::Test::Stubs.new { |s| s.post(%r{/x}) { [200, {}, '{}'] } }
+    logger, io = recorder
+    build(stubs, logger: logger).post('/x?token=PATHTOKEN')
+    expect(io.string).to include('url.path=/x?token=<redacted>')
+    expect(io.string).not_to include('PATHTOKEN')
+
+  end
+
+  it 'never logs the Authorization header or the JWT' do
+
+    stubs = Faraday::Adapter::Test::Stubs.new { |s| s.get(%r{/x}) { [200, {}, '{}'] } }
+    logger, io = recorder
+    build(stubs, logger: logger, log_bodies: true).make_request(:get, '/x')
+    expect(io.string).not_to match(/authorization/i)
+    expect(io.string).not_to include('eyJ')
+    expect(io.string).not_to include('sekret')
+
+  end
+
+  # SEC-2535: CR/LF (and other control characters) in any logged value must
+  # not be able to forge extra log lines.
+  it 'escapes CR/LF in path, query, bodies and error messages' do
+
+    forged = "\r\nI, [2026-01-01] INFO -- : forged"
+    stubs = Faraday::Adapter::Test::Stubs.new do |s|
+
+      s.post(%r{/ok}) { [200, { 'Content-Type' => 'text/plain' }, "body#{forged}"] }
+      s.get(%r{/boom}) { raise Faraday::ConnectionFailed, "refused#{forged}" }
+
+    end
+    logger, io = recorder
+    client = build(stubs, logger: logger, log_bodies: true)
+    client.make_request(:post, '/ok', query_params: { user_id: "u1#{forged}" }, body: { text: "hi#{forged}" })
+    expect { client.make_request(:get, '/boom') }.to raise_error(GetStreamRuby::TransportError)
+    # Generated clients interpolate path params unencoded; the URI parser
+    # rejects CR/LF, but only after http.request.sent was already logged.
+    expect { client.make_request(:get, "/ok/c1#{forged}") }.to raise_error(URI::InvalidURIError)
+
+    expect(io.string.lines.grep(/forged/).size).to eq(io.string.lines.grep(/forged/).uniq.size)
+    expect(io.string.lines).to all(satisfy { |l| !l.start_with?('I, [2026-01-01]') })
+    expect(io.string).to include('/ok/c1\\r\\nI, [2026-01-01]')
+    expect(io.string).to include('user_id=u1\\r\\nI')
+    expect(io.string).to include('http.response.body=body\\r\\nI')
+    expect(io.string).to include('error.message=refused\\r\\nI')
+
+  end
+
+  it 'sanitize helper' do
+
+    sanitize = GetStreamRuby::LogRedaction.method(:sanitize)
+    expect(sanitize.call("a\r\nb\tc\e[31md\u2028e\u0085f")).to eq('a\\r\\nb\\tc\\e[31md\\u2028e\\u0085f')
+    expect(sanitize.call("\xFF\n".b)).to eq("\uFFFD\\n")
+    expect(sanitize.call(nil)).to eq('')
+    expect(sanitize.call('plain ünïcode')).to eq('plain ünïcode')
+
+  end
+
 end

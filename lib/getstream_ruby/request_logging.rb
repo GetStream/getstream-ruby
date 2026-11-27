@@ -29,9 +29,9 @@ module GetStreamRuby
       return unless logger
 
       query = LogRedaction.redact_query(query_params).map { |k, v| "#{k}=#{v}" }.join('&')
-      line = +"http.request.sent http.request.method=#{method} url.path=#{path} url.query=#{query}"
+      line = +"http.request.sent http.request.method=#{method} url.path=#{log_path(path)} url.query=#{query}"
       line << " http.request.body=#{LogRedaction.redact_json_body(body_json)}" if @configuration.log_bodies && body_json
-      logger.debug { line }
+      logger.debug { LogRedaction.sanitize(line) }
     end
 
     def log_response_received(response, started)
@@ -42,7 +42,7 @@ module GetStreamRuby
       line = +"http.response.received http.response.status_code=#{response.status} " \
               "http.response.body.size=#{raw_body.bytesize} duration_ms=#{elapsed_ms(started)}"
       line << " http.response.body=#{LogRedaction.redact_json_body(raw_body)}" if @configuration.log_bodies
-      logger.debug { line }
+      logger.debug { LogRedaction.sanitize(line) }
     end
 
     def log_request_failed(method, path, error, started)
@@ -53,8 +53,10 @@ module GetStreamRuby
       message = LogRedaction.redact_message(error.message)
       logger.error do
 
-        "http.request.failed http.request.method=#{method} url.path=#{path} " \
-          "error.type=#{error_type} error.message=#{message} duration_ms=#{elapsed_ms(started)}"
+        LogRedaction.sanitize(
+          "http.request.failed http.request.method=#{method} url.path=#{log_path(path)} " \
+          "error.type=#{error_type} error.message=#{message} duration_ms=#{elapsed_ms(started)}",
+        )
 
       end
     end
@@ -70,10 +72,18 @@ module GetStreamRuby
       return unless logger
 
       message = LogRedaction.redact_message(error.message)
-      line = +"http.request.failed http.request.method=#{method} url.path=#{path} retry.attempt=#{attempt + 1}"
+      line = +"http.request.failed http.request.method=#{method} url.path=#{log_path(path)} " \
+              "retry.attempt=#{attempt + 1}"
       line << " error.type=#{error.error_type}" if error.is_a?(TransportError)
       line << " error.message=#{message} duration_ms=#{elapsed_ms(started)}"
-      logger.debug { line }
+      logger.debug { LogRedaction.sanitize(line) }
+    end
+
+    # Query params travel separately (see Client#request), so `path` is
+    # normally query-free; a caller-built path like `post('/x?token=...')`
+    # still gets its secret values scrubbed.
+    def log_path(path)
+      LogRedaction.redact_message(path.to_s)
     end
 
     def elapsed_ms(started)
