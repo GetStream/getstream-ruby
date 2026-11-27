@@ -12,17 +12,32 @@ module GetStream
         # @!attribute user_ids
         #   @return [Array<String>]
         attr_accessor :user_ids
+        # @!attribute messages_from
+        #   @return [DateTime] Start of the message window, inclusive: messages with created_at >= messages_from are exported. Unlike export_channels' messages_since, which is exclusive. Reactions are selected by the time they were added, in the same window.
+        attr_accessor :messages_from
+        # @!attribute messages_to
+        #   @return [DateTime] End of the message window, exclusive: messages with created_at < messages_to are exported. Unlike export_channels' messages_until, which is inclusive. Must be after messages_from. When any of channel_cids, messages_from or messages_to is set, calls are omitted from the export.
+        attr_accessor :messages_to
+        # @!attribute channel_cids
+        #   @return [Array<String>] Limit the export to these channels, in type:id form (at most 100, not empty). Without it every channel of the users is exported.
+        attr_accessor :channel_cids
 
         # Initialize with attributes
         def initialize(attributes = {})
           super(attributes)
           @user_ids = attributes.fetch(:user_ids) { attributes.fetch('user_ids', nil) }
+          @messages_from = attributes.fetch(:messages_from) { attributes.fetch('messages_from', nil) }
+          @messages_to = attributes.fetch(:messages_to) { attributes.fetch('messages_to', nil) }
+          @channel_cids = attributes.fetch(:channel_cids) { attributes.fetch('channel_cids', nil) }
         end
 
         # Override field mappings for JSON serialization
         def self.json_field_mappings
           {
-            user_ids: 'user_ids'
+            user_ids: 'user_ids',
+            messages_from: 'messages_from',
+            messages_to: 'messages_to',
+            channel_cids: 'channel_cids'
           }
         end
       end
