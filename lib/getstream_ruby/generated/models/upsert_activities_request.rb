@@ -12,6 +12,9 @@ module GetStream
         # @!attribute activities
         #   @return [Array<ActivityRequest>] List of activities to create or update
         attr_accessor :activities
+        # @!attribute create_system_feeds
+        #   @return [Boolean] Server-side only. If true, a missing feed whose id is not a user id (e.g. game:123) is created as a system feed with no user owner. Missing feeds named after an existing user are created either way. Built-in groups (such as user, timeline and notification) and notification groups still require a user. Default: false.
+        attr_accessor :create_system_feeds
         # @!attribute create_users
         #   @return [Boolean] Server-side only. If true, auto-creates users referenced by activity user_id values that don't already exist. Default: false.
         attr_accessor :create_users
@@ -29,6 +32,7 @@ module GetStream
         def initialize(attributes = {})
           super(attributes)
           @activities = attributes.fetch(:activities) { attributes.fetch('activities', nil) }
+          @create_system_feeds = attributes.fetch(:create_system_feeds) { attributes.fetch('create_system_feeds', nil) }
           @create_users = attributes.fetch(:create_users) { attributes.fetch('create_users', nil) }
           @enrich_own_fields = attributes.fetch(:enrich_own_fields) { attributes.fetch('enrich_own_fields', nil) }
           @force_moderation = attributes.fetch(:force_moderation) { attributes.fetch('force_moderation', nil) }
@@ -39,6 +43,7 @@ module GetStream
         def self.json_field_mappings
           {
             activities: 'activities',
+            create_system_feeds: 'create_system_feeds',
             create_users: 'create_users',
             enrich_own_fields: 'enrich_own_fields',
             force_moderation: 'force_moderation',

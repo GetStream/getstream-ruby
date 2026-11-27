@@ -15,6 +15,9 @@ module GetStream
         # @!attribute auto_restore_warning
         #   @return [String] Present when the appeal was accepted but the entity could not be restored automatically. The moderator should restore it manually.
         attr_accessor :auto_restore_warning
+        # @!attribute item_id
+        #   @return [String] ID of the review queue item the action was performed on
+        attr_accessor :item_id
         # @!attribute appeal_item
         #   @return [AppealItemResponse]
         attr_accessor :appeal_item
@@ -27,6 +30,7 @@ module GetStream
           super(attributes)
           @duration = attributes.fetch(:duration) { attributes.fetch('duration', nil) }
           @auto_restore_warning = attributes.fetch(:auto_restore_warning) { attributes.fetch('auto_restore_warning', nil) }
+          @item_id = attributes.fetch(:item_id) { attributes.fetch('item_id', nil) }
           @appeal_item = attributes.fetch(:appeal_item) { attributes.fetch('appeal_item', nil) }
           @item = attributes.fetch(:item) { attributes.fetch('item', nil) }
         end
@@ -36,6 +40,7 @@ module GetStream
           {
             duration: 'duration',
             auto_restore_warning: 'auto_restore_warning',
+            item_id: 'item_id',
             appeal_item: 'appeal_item',
             item: 'item'
           }

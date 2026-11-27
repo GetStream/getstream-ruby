@@ -129,6 +129,9 @@ module GetStream
         # @!attribute channel
         #   @return [ChannelResponse] Represents channel in chat
         attr_accessor :channel
+        # @!attribute deleted_by
+        #   @return [UserResponse] User response object
+        attr_accessor :deleted_by
         # @!attribute draft
         #   @return [DraftResponse]
         attr_accessor :draft
@@ -212,6 +215,7 @@ module GetStream
           @own_marks = attributes.fetch(:own_marks) { attributes.fetch('own_marks', nil) }
           @thread_participants = attributes.fetch(:thread_participants) { attributes.fetch('thread_participants', nil) }
           @channel = attributes.fetch(:channel) { attributes.fetch('channel', nil) }
+          @deleted_by = attributes.fetch(:deleted_by) { attributes.fetch('deleted_by', nil) }
           @draft = attributes.fetch(:draft) { attributes.fetch('draft', nil) }
           @i18n = attributes.fetch(:i18n) { attributes.fetch('i18n', nil) }
           @image_labels = attributes.fetch(:image_labels) { attributes.fetch('image_labels', nil) }
@@ -270,6 +274,7 @@ module GetStream
             own_marks: 'own_marks',
             thread_participants: 'thread_participants',
             channel: 'channel',
+            deleted_by: 'deleted_by',
             draft: 'draft',
             i18n: 'i18n',
             image_labels: 'image_labels',

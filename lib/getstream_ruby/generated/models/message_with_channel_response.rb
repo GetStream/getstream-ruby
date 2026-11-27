@@ -129,6 +129,9 @@ module GetStream
         # @!attribute thread_participants
         #   @return [Array<UserResponse>] List of users who participate in thread
         attr_accessor :thread_participants
+        # @!attribute deleted_by
+        #   @return [UserResponse] User response object
+        attr_accessor :deleted_by
         # @!attribute draft
         #   @return [DraftResponse]
         attr_accessor :draft
@@ -212,6 +215,7 @@ module GetStream
           @mentioned_roles = attributes.fetch(:mentioned_roles) { attributes.fetch('mentioned_roles', nil) }
           @own_marks = attributes.fetch(:own_marks) { attributes.fetch('own_marks', nil) }
           @thread_participants = attributes.fetch(:thread_participants) { attributes.fetch('thread_participants', nil) }
+          @deleted_by = attributes.fetch(:deleted_by) { attributes.fetch('deleted_by', nil) }
           @draft = attributes.fetch(:draft) { attributes.fetch('draft', nil) }
           @i18n = attributes.fetch(:i18n) { attributes.fetch('i18n', nil) }
           @image_labels = attributes.fetch(:image_labels) { attributes.fetch('image_labels', nil) }
@@ -270,6 +274,7 @@ module GetStream
             mentioned_roles: 'mentioned_roles',
             own_marks: 'own_marks',
             thread_participants: 'thread_participants',
+            deleted_by: 'deleted_by',
             draft: 'draft',
             i18n: 'i18n',
             image_labels: 'image_labels',

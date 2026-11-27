@@ -22,6 +22,9 @@ module GetStream
         # @!attribute create_notification_activity
         #   @return [Boolean] Whether to create notification activities for mentioned users
         attr_accessor :create_notification_activity
+        # @!attribute create_system_feeds
+        #   @return [Boolean]
+        attr_accessor :create_system_feeds
         # @!attribute create_users
         #   @return [Boolean]
         attr_accessor :create_users
@@ -102,6 +105,7 @@ module GetStream
           @feeds = attributes.fetch(:feeds) { attributes.fetch('feeds', nil) }
           @copy_custom_to_notification = attributes.fetch(:copy_custom_to_notification) { attributes.fetch('copy_custom_to_notification', nil) }
           @create_notification_activity = attributes.fetch(:create_notification_activity) { attributes.fetch('create_notification_activity', nil) }
+          @create_system_feeds = attributes.fetch(:create_system_feeds) { attributes.fetch('create_system_feeds', nil) }
           @create_users = attributes.fetch(:create_users) { attributes.fetch('create_users', nil) }
           @enrich_own_fields = attributes.fetch(:enrich_own_fields) { attributes.fetch('enrich_own_fields', nil) }
           @expires_at = attributes.fetch(:expires_at) { attributes.fetch('expires_at', nil) }
@@ -135,6 +139,7 @@ module GetStream
             feeds: 'feeds',
             copy_custom_to_notification: 'copy_custom_to_notification',
             create_notification_activity: 'create_notification_activity',
+            create_system_feeds: 'create_system_feeds',
             create_users: 'create_users',
             enrich_own_fields: 'enrich_own_fields',
             expires_at: 'expires_at',
