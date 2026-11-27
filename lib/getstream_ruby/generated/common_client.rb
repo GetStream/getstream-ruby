@@ -1062,7 +1062,7 @@ module GetStream
         )
       end
 
-      # Get rate limits usage and quotas
+      # Get rate limits usage and quotas, and the query budget status of budgeted endpoints
       #
       # @param server_side [Boolean]
       # @param android [Boolean]
